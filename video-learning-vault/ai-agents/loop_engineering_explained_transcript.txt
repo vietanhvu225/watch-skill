@@ -1,0 +1,249 @@
+[00:01] Well, here we are again with yet another term called loop engineering. And it
+[00:04] term called loop engineering. And it wasn't even that long ago we had harness
+[00:05] wasn't even that long ago we had harness engineering. So, is this just a
+[00:07] engineering. So, is this just a marketing hype or is there actually
+[00:09] marketing hype or is there actually something substantial behind loop
+[00:11] something substantial behind loop engineering? Let's walk down from prompt
+[00:13] engineering? Let's walk down from prompt engineering all the way to loop
+[00:14] engineering all the way to loop engineering to see why we need it each
+[00:16] engineering to see why we need it each step of the way. We all know by now what
+[00:19] step of the way. We all know by now what prompt engineering is. Let's say I start
+[00:20] prompt engineering is. Let's say I start with the prompt, you are a helpful
+[00:22] with the prompt, you are a helpful customer service rep. Please be nice to
+[00:24] customer service rep. Please be nice to my customers. This is prompt engineering
+[00:26] my customers. This is prompt engineering because you are prompting the agent by
+[00:28] because you are prompting the agent by implicitly telling the agent what to do.
+[00:30] implicitly telling the agent what to do. And we can then ask AI any question and
+[00:32] And we can then ask AI any question and the agent will impersonate a customer
+[00:35] the agent will impersonate a customer service rep based on the prompt we just
+[00:37] service rep based on the prompt we just generated. That makes sense and super
+[00:39] generated. That makes sense and super simple. So why do we need context
+[00:40] simple. So why do we need context engineering? Turns out this prompt that
+[00:42] engineering? Turns out this prompt that we just created lives inside of the
+[00:44] we just created lives inside of the agents context window and we still have
+[00:47] agents context window and we still have a lot of room left in our context to do
+[00:49] a lot of room left in our context to do something more useful. So what if we
+[00:51] something more useful. So what if we gave the agent autonomy to invoke tools
+[00:54] gave the agent autonomy to invoke tools to start filling up its own context
+[00:57] to start filling up its own context based on what the prompt actually needs?
+[00:59] based on what the prompt actually needs? This was the beginning of context
+[01:01] This was the beginning of context engineering where the agent could now
+[01:02] engineering where the agent could now access files to load and make changes or
+[01:05] access files to load and make changes or even use MCP to start interacting with
+[01:08] even use MCP to start interacting with databases and external applications to
+[01:10] databases and external applications to load its own context. Cool. Context
+[01:12] load its own context. Cool. Context engineering makes sense. So then why do
+[01:14] engineering makes sense. So then why do we need harness engineering? Well,
+[01:16] we need harness engineering? Well, there's actually no inherent flaw to
+[01:18] there's actually no inherent flaw to context engineering, but rather it has
+[01:20] context engineering, but rather it has limitations. Context engineering is not
+[01:23] limitations. Context engineering is not really good at tasks that take longer
+[01:25] really good at tasks that take longer than 5 to 10 minutes long. And here's
+[01:26] than 5 to 10 minutes long. And here's why. Tasks that take long tend to
+[01:28] why. Tasks that take long tend to require more context than what the agent
+[01:31] require more context than what the agent can handle. And while it could keep
+[01:33] can handle. And while it could keep summarizing its own context as it
+[01:35] summarizing its own context as it approached the limit, it was extremely
+[01:37] approached the limit, it was extremely leaky where important details started to
+[01:40] leaky where important details started to get lost in each step of the
+[01:41] get lost in each step of the summarization. So essentially we needed
+[01:44] summarization. So essentially we needed a system outside of context engineering
+[01:47] a system outside of context engineering to better manage internally its own
+[01:50] to better manage internally its own context from outside in and this very
+[01:52] context from outside in and this very external system is what we call harness
+[01:55] external system is what we call harness engineering. Harness engineering manages
+[01:57] engineering. Harness engineering manages the context from the outside and helps
+[02:00] the context from the outside and helps the agent runtime to work on tasks that
+[02:02] the agent runtime to work on tasks that help break down the user's requirement
+[02:05] help break down the user's requirement into a more stable execution. Let's look
+[02:07] into a more stable execution. Let's look at a few examples to make sure that we
+[02:09] at a few examples to make sure that we understand this more concretely and
+[02:11] understand this more concretely and we'll use chatib and clot code since
+[02:13] we'll use chatib and clot code since it's something that we all have hands-on
+[02:15] it's something that we all have hands-on experience in. But before we dive in,
+[02:17] experience in. But before we dive in, today's video is sponsored by Verta. If
+[02:18] today's video is sponsored by Verta. If you write code for a living, you
+[02:20] you write code for a living, you probably hit a point where your own
+[02:21] probably hit a point where your own machine just can't handle what you're
+[02:23] machine just can't handle what you're trying to build. And that's the gap that
+[02:25] trying to build. And that's the gap that Verta fills in. Verta is a full stack AI
+[02:27] Verta fills in. Verta is a full stack AI cloud built for the whole model life
+[02:29] cloud built for the whole model life cycle. from a single GPU instance and
+[02:30] cycle. from a single GPU instance and instant clusters to serverless inference
+[02:33] instant clusters to serverless inference and manage endpoints. It isn't a general
+[02:35] and manage endpoints. It isn't a general purpose cloud with AI bolted on after
+[02:37] purpose cloud with AI bolted on after the fact. It's built specifically for AI
+[02:39] the fact. It's built specifically for AI work by people who actually train and
+[02:41] work by people who actually train and serve models. So the workflow is
+[02:43] serve models. So the workflow is designed around how you'd actually use
+[02:44] designed around how you'd actually use it. And the workflow is the part that I
+[02:46] it. And the workflow is the part that I like. You sign up, spin up an instance,
+[02:48] like. You sign up, spin up an instance, and pick your GPU, anything from the new
+[02:50] and pick your GPU, anything from the new GB300 down to an older V100. You then
+[02:53] GB300 down to an older V100. You then drop in your SSH key, and you're
+[02:55] drop in your SSH key, and you're straight in from your own terminal. I
+[02:56] straight in from your own terminal. I just SSH in from VS Code, drag my code
+[02:59] just SSH in from VS Code, drag my code across, and I've got all the VRAMm that
+[03:01] across, and I've got all the VRAMm that the card gives me to run without ever
+[03:03] the card gives me to run without ever leaving my editor. There's also a CLI if
+[03:06] leaving my editor. There's also a CLI if you'd rather stay in the terminal start
+[03:07] you'd rather stay in the terminal start to finish. Spin instances up, manage
+[03:10] to finish. Spin instances up, manage them, and connect all from the command
+[03:11] them, and connect all from the command line. On the hardware side, you get
+[03:13] line. On the hardware side, you get serious NVIDIA GPUs like B300's with
+[03:16] serious NVIDIA GPUs like B300's with NVLink, Infiniband, and fast NVME
+[03:18] NVLink, Infiniband, and fast NVME storage for workloads where interconnect
+[03:20] storage for workloads where interconnect and throughput actually matter. And if
+[03:22] and throughput actually matter. And if you're working with data or model
+[03:24] you're working with data or model weights you can't afford to expose, Vera
+[03:26] weights you can't afford to expose, Vera supports confidential computing, so your
+[03:28] supports confidential computing, so your workload stays encrypted while it's
+[03:29] workload stays encrypted while it's actually running on GPU, not just
+[03:31] actually running on GPU, not just sitting in storage. Link in the
+[03:33] sitting in storage. Link in the description. Use code Caleb-50 to get
+[03:35] description. Use code Caleb-50 to get $50 off of compute for just $5. That's
+[03:38] $50 off of compute for just $5. That's 90% off of your first top up. Thanks
+[03:40] 90% off of your first top up. Thanks again, Vera, for sponsoring. Asking
+[03:42] again, Vera, for sponsoring. Asking Chachib the question, "How many
+[03:44] Chachib the question, "How many cheeseburgers can I fit between the
+[03:45] cheeseburgers can I fit between the Earth and the Moon?" This is solely
+[03:47] Earth and the Moon?" This is solely using prompt engineering because it
+[03:49] using prompt engineering because it doesn't need anything external to answer
+[03:52] doesn't need anything external to answer a very simple question. It can just
+[03:54] a very simple question. It can just reason through what it already knows to
+[03:56] reason through what it already knows to answer my question. Now asking chacheti
+[03:59] answer my question. Now asking chacheti what is the latest discovery that NASA
+[04:01] what is the latest discovery that NASA made. This now has to use context
+[04:03] made. This now has to use context engineering because it has to search the
+[04:05] engineering because it has to search the web and gather relevant information from
+[04:08] web and gather relevant information from NASA to help answer my question. So
+[04:10] NASA to help answer my question. So context engineering helps bringing
+[04:12] context engineering helps bringing information from the web autonomously.
+[04:14] information from the web autonomously. Now when I ask clot code, can you clone
+[04:16] Now when I ask clot code, can you clone the entire NASA website? This is all
+[04:19] the entire NASA website? This is all done by harness engineering because the
+[04:21] done by harness engineering because the NASA website as you can imagine is
+[04:23] NASA website as you can imagine is really complex and simply relying on
+[04:26] really complex and simply relying on context engineering on tasks like this
+[04:28] context engineering on tasks like this will start to choke midway through. So
+[04:30] will start to choke midway through. So harness engineering provides an external
+[04:32] harness engineering provides an external mechanism to help manage the context and
+[04:35] mechanism to help manage the context and the runtime for the agent to work
+[04:37] the runtime for the agent to work through a long list of tasks. Now you
+[04:39] through a long list of tasks. Now you might have noticed a pattern that
+[04:41] might have noticed a pattern that emerges from this and that pattern is
+[04:43] emerges from this and that pattern is the concept of loops. For context
+[04:45] the concept of loops. For context engineering, there's a loop where the
+[04:47] engineering, there's a loop where the agent recursively calls tool after tool
+[04:51] agent recursively calls tool after tool autonomously until it thinks that it has
+[04:53] autonomously until it thinks that it has enough context to answer your question.
+[04:55] enough context to answer your question. And for harness engineering, there's
+[04:57] And for harness engineering, there's also a loop where the agent has a list
+[04:59] also a loop where the agent has a list of tasks outside of the context window
+[05:01] of tasks outside of the context window to keep iterating task after task until
+[05:04] to keep iterating task after task until the entire operation is finished. So
+[05:07] the entire operation is finished. So what we find is that we are essentially
+[05:09] what we find is that we are essentially stacking loop on top of another loop.
+[05:11] stacking loop on top of another loop. Now we get to loop engineering which is
+[05:13] Now we get to loop engineering which is yet another loop in itself. I know is
+[05:15] yet another loop in itself. I know is there even an end to this. So loop
+[05:17] there even an end to this. So loop engineering stacks another loop outside
+[05:20] engineering stacks another loop outside of harness engineering layer to guide
+[05:22] of harness engineering layer to guide the harness externally. But why why do
+[05:25] the harness externally. But why why do we even need yet another scaffolding?
+[05:27] we even need yet another scaffolding? Again at the heart of loop engineering
+[05:29] Again at the heart of loop engineering loop engineering targets the human
+[05:31] loop engineering targets the human interaction in actually prompting the
+[05:33] interaction in actually prompting the agent to do something. Everything that
+[05:35] agent to do something. Everything that we have seen so far involves a human
+[05:38] we have seen so far involves a human asking the agent questions like, "How
+[05:40] asking the agent questions like, "How many cheeseburgers can I fit between
+[05:41] many cheeseburgers can I fit between Earth and the moon? What is the latest
+[05:43] Earth and the moon? What is the latest news on NASA?" Or even clone the NASA's
+[05:46] news on NASA?" Or even clone the NASA's website. These are prompts that require
+[05:47] website. These are prompts that require me to actually prompt the agent. But
+[05:50] me to actually prompt the agent. But what if we built a scaffolding outside
+[05:52] what if we built a scaffolding outside of this so that the agent can also
+[05:54] of this so that the agent can also prompt itself on what it thinks it needs
+[05:57] prompt itself on what it thinks it needs to do? That is the heart and the spirit
+[05:59] to do? That is the heart and the spirit of what loop engineering tries to
+[06:01] of what loop engineering tries to target. And if all of this sounds hokeyp
+[06:03] target. And if all of this sounds hokeyp pokey to you, you're probably not alone.
+[06:05] pokey to you, you're probably not alone. There's a lot of people saying loop
+[06:07] There's a lot of people saying loop engineering is just a buzzword and
+[06:09] engineering is just a buzzword and that's trying to encourage people to
+[06:11] that's trying to encourage people to just burn more tokens and create more AI
+[06:13] just burn more tokens and create more AI slop. And so far, we have really yet to
+[06:16] slop. And so far, we have really yet to see loop engineering in action that
+[06:18] see loop engineering in action that really makes a huge difference. But it
+[06:20] really makes a huge difference. But it could be the next evolution in our
+[06:22] could be the next evolution in our engineering philosophy as agents expand
+[06:25] engineering philosophy as agents expand its scopes in what it can help us with.
+[06:28] its scopes in what it can help us with. And it does raise a really interesting
+[06:29] And it does raise a really interesting debate and discussion around all of
+[06:31] debate and discussion around all of this. So what exactly is loop
+[06:34] this. So what exactly is loop engineering and how does all of it work?
+[06:36] engineering and how does all of it work? Addiosman wrote a blog describing loop
+[06:38] Addiosman wrote a blog describing loop engineering with six components. But we
+[06:41] engineering with six components. But we don't want to read all of this. So
+[06:42] don't want to read all of this. So instead of boring you with details, I'm
+[06:44] instead of boring you with details, I'm going to give you a potential use case
+[06:46] going to give you a potential use case of loop engineering that help you wrap
+[06:48] of loop engineering that help you wrap your head around what loop engineering
+[06:50] your head around what loop engineering could look like. Let's say I built a
+[06:52] could look like. Let's say I built a website that keeps track of the World
+[06:54] website that keeps track of the World Cup scores. And when I ask Codeex to
+[06:56] Cup scores. And when I ask Codeex to build me a World Cup website, Codex will
+[06:58] build me a World Cup website, Codex will use prompt, context, and harness
+[07:00] use prompt, context, and harness engineering to build this beautifully
+[07:02] engineering to build this beautifully written website. Now, there's one
+[07:04] written website. Now, there's one problem here, and that problem is that
+[07:06] problem here, and that problem is that the World Cup games are happening every
+[07:08] the World Cup games are happening every single day. And that means in order to
+[07:11] single day. And that means in order to maintain the website that I just created
+[07:13] maintain the website that I just created through Codeex, I have to keep prompting
+[07:15] through Codeex, I have to keep prompting the agent to frequently update the site
+[07:17] the agent to frequently update the site and also work on bug fixes that people
+[07:19] and also work on bug fixes that people might find on the website. But what if I
+[07:22] might find on the website. But what if I just created a schedule task inside of
+[07:24] just created a schedule task inside of Codeex to check every hour for updates
+[07:26] Codeex to check every hour for updates as new information becomes available?
+[07:29] as new information becomes available? And what if I do the same for bug fixes
+[07:31] And what if I do the same for bug fixes where the agent just checks autonomously
+[07:33] where the agent just checks autonomously for bugs that are reported by users and
+[07:36] for bugs that are reported by users and fix them. What you're seeing here is
+[07:37] fix them. What you're seeing here is that we are beginning to create this
+[07:39] that we are beginning to create this loop outside of harness engineering
+[07:41] loop outside of harness engineering where it's self-guided rather than
+[07:43] where it's self-guided rather than humanguided to maintain my website. And
+[07:45] humanguided to maintain my website. And because I have skills and plugins
+[07:47] because I have skills and plugins already installed on my codeex
+[07:49] already installed on my codeex environment, the agent can access an
+[07:51] environment, the agent can access an existing knowledge base to keep building
+[07:53] existing knowledge base to keep building and improving its knowledge along the
+[07:55] and improving its knowledge along the way. And the agent can also use sub
+[07:57] way. And the agent can also use sub agents to verify its own work and also
+[08:00] agents to verify its own work and also the ability to work on multiple fixes at
+[08:02] the ability to work on multiple fixes at the same time by using what's called
+[08:04] the same time by using what's called work tree to prevent runtime
+[08:06] work tree to prevent runtime contamination along the way. All of
+[08:07] contamination along the way. All of these that I just mentioned are
+[08:09] these that I just mentioned are essential ingredients to what makes loop
+[08:12] essential ingredients to what makes loop engineering what it is. And that is the
+[08:14] engineering what it is. And that is the six components that Addi Osmani wrote in
+[08:16] six components that Addi Osmani wrote in his blog. Automation, workree, skills,
+[08:19] his blog. Automation, workree, skills, plugins and connectors, sub aents and
+[08:21] plugins and connectors, sub aents and state are components of loop
+[08:23] state are components of loop engineering. And while this World Cup
+[08:25] engineering. And while this World Cup website that I just created is just an
+[08:27] website that I just created is just an example of what loop engineering could
+[08:29] example of what loop engineering could look like, the true potential of what
+[08:31] look like, the true potential of what loop engineering could really be is
+[08:33] loop engineering could really be is still somewhat theoretical. And one
+[08:35] still somewhat theoretical. And one thing to keep in mind is that loop
+[08:37] thing to keep in mind is that loop engineering doesn't necessarily mean
+[08:38] engineering doesn't necessarily mean that all the engineering philosophy
+[08:40] that all the engineering philosophy underneath is less important or even
+[08:43] underneath is less important or even less needed that before. It's just
+[08:45] less needed that before. It's just agents growing in scope and building on
+[08:47] agents growing in scope and building on top of each other.

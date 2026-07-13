@@ -1,0 +1,464 @@
+[00:02] This is how I passed the brand new Claude Certified Architect exam in just
+[00:05] Claude Certified Architect exam in just two days of studying. Now, to be honest
+[00:07] two days of studying. Now, to be honest with you, I'm not super technical and I
+[00:10] with you, I'm not super technical and I didn't really use Claude before studying
+[00:12] didn't really use Claude before studying for this exam, but in just two days of
+[00:14] for this exam, but in just two days of really intense studying, I was able to
+[00:16] really intense studying, I was able to achieve a 743 out of a thousand score on
+[00:20] achieve a 743 out of a thousand score on some pretty complicated AI topics. How
+[00:22] some pretty complicated AI topics. How the heck did I do that? Well, today I'll
+[00:25] the heck did I do that? Well, today I'll be going over one, why this exam is so
+[00:27] be going over one, why this exam is so important, two, details about the exam
+[00:30] important, two, details about the exam like exam structure, question types, and
+[00:34] like exam structure, question types, and topics, and three, my ultimate Anthropic
+[00:37] topics, and three, my ultimate Anthropic CCA exam study guide where I'll be going
+[00:39] CCA exam study guide where I'll be going over the exact strategy I used to pass
+[00:42] over the exact strategy I used to pass the exam as well as the same strategy
+[00:44] the exam as well as the same strategy that I passed on to ten of my colleagues
+[00:46] that I passed on to ten of my colleagues for them to pass the exam as well. And
+[00:48] for them to pass the exam as well. And they all did. And a big tip for you,
+[00:50] they all did. And a big tip for you, honestly, the official Anthropic study
+[00:53] honestly, the official Anthropic study guide, practice exam, and courses, while
+[00:55] guide, practice exam, and courses, while they are very useful, by themselves are
+[00:58] they are very useful, by themselves are not enough to pass this exam. So, enough
+[01:00] not enough to pass this exam. So, enough of this intro, let's get into [music]
+[01:02] of this intro, let's get into [music] it. So, why should you care about this
+[01:04] it. So, why should you care about this exam at all? Well, it's the first
+[01:06] exam at all? Well, it's the first official AI certification in the world
+[01:08] official AI certification in the world from an actual frontier model lab, which
+[01:11] from an actual frontier model lab, which is Anthropic, and they're the current
+[01:13] is Anthropic, and they're the current enterprise AI leader in the market right
+[01:15] enterprise AI leader in the market right now. And if you get it, it's a solid
+[01:16] now. And if you get it, it's a solid sign of expertise in implementing actual
+[01:19] sign of expertise in implementing actual AI systems. It also looks great to
+[01:21] AI systems. It also looks great to employers. One of our friends passed
+[01:23] employers. One of our friends passed this exam recently and got the
+[01:24] this exam recently and got the certification, and he went into an
+[01:26] certification, and he went into an interview, and the employer was just
+[01:28] interview, and the employer was just blown away by him having this cert on
+[01:30] blown away by him having this cert on his resume. For us at NextWork, though,
+[01:32] his resume. For us at NextWork, though, it's the first step for us to become an
+[01:34] it's the first step for us to become an official Claude implementation partner.
+[01:36] official Claude implementation partner. Most importantly, though, going through
+[01:38] Most importantly, though, going through the process of studying for this exam
+[01:40] the process of studying for this exam will teach you real-world AI design and
+[01:43] will teach you real-world AI design and architecture methodologies. Now that you
+[01:45] architecture methodologies. Now that you probably want to take the exam, what
+[01:47] probably want to take the exam, what does it actually cover and what do the
+[01:49] does it actually cover and what do the questions look like? So, here are the
+[01:50] questions look like? So, here are the five topics that the exam covers.
+[01:53] five topics that the exam covers. 27% of the exam is agentic architecture
+[01:56] 27% of the exam is agentic architecture and orchestration, 20% is Claude code
+[01:59] and orchestration, 20% is Claude code configuration and workflows, and another
+[02:02] configuration and workflows, and another 20% is prompt engineering and structured
+[02:04] 20% is prompt engineering and structured output. 18% is tool design and MCP
+[02:07] output. 18% is tool design and MCP integration, and 15% is context
+[02:10] integration, and 15% is context management and reliability. So, it's
+[02:12] management and reliability. So, it's quite heavy on Claude code related
+[02:14] quite heavy on Claude code related things and agentic architecture and
+[02:15] things and agentic architecture and orchestration.
+[02:17] orchestration. To say the least, it's pretty cool
+[02:18] To say the least, it's pretty cool stuff. Maybe a lot of it sounds
+[02:20] stuff. Maybe a lot of it sounds complicated to you, but after going
+[02:22] complicated to you, but after going through all the studying, it'll make
+[02:24] through all the studying, it'll make pretty good sense.
+[02:25] pretty good sense. The exam is 120 minutes and 60
+[02:28] The exam is 120 minutes and 60 questions, so you get around 2 minutes
+[02:30] questions, so you get around 2 minutes per question. And the exam has six
+[02:33] per question. And the exam has six possible scenarios. These six scenarios
+[02:35] possible scenarios. These six scenarios uh which you'll get four of on the test.
+[02:38] uh which you'll get four of on the test. So, each of these topics has around 15
+[02:41] So, each of these topics has around 15 questions, and you know, you'll get four
+[02:42] questions, and you know, you'll get four topics on the test, so 4 * 15, that's 60
+[02:45] topics on the test, so 4 * 15, that's 60 questions. And it'll cover things, as
+[02:48] questions. And it'll cover things, as you can see here, like AI support
+[02:50] you can see here, like AI support agents, AI coding pipelines, and more.
+[02:53] agents, AI coding pipelines, and more. Now, the easiest way that I can describe
+[02:55] Now, the easiest way that I can describe the type of question the exam is made up
+[02:57] the type of question the exam is made up of is SAT-style comprehension questions
+[03:00] of is SAT-style comprehension questions that require you to recall very specific
+[03:03] that require you to recall very specific technical facts that you'll learn over
+[03:05] technical facts that you'll learn over the course of studying, mainly from the
+[03:07] the course of studying, mainly from the official Anthropic study guide,
+[03:09] official Anthropic study guide, actually. It's a combination of critical
+[03:11] actually. It's a combination of critical thinking, basically understanding what
+[03:12] thinking, basically understanding what the question is and what they're
+[03:14] the question is and what they're actually trying to test you on, as much
+[03:16] actually trying to test you on, as much as the technical knowledge itself. And
+[03:17] as the technical knowledge itself. And that's what makes this exam so
+[03:19] that's what makes this exam so difficult.
+[03:20] difficult. &gt;&gt; [music]
+[03:20] &gt;&gt; [music] &gt;&gt; So, let's go through a few example
+[03:22] &gt;&gt; So, let's go through a few example questions here, so we can see what it's
+[03:24] questions here, so we can see what it's like. And hopefully I don't get any
+[03:26] like. And hopefully I don't get any wrong, because I shouldn't. Okay. So,
+[03:28] wrong, because I shouldn't. Okay. So, this is for Claude code for continuous
+[03:30] this is for Claude code for continuous integration. You can see the
+[03:32] integration. You can see the uh description of the question or the
+[03:36] uh description of the question or the the module type here. You are
+[03:37] the module type here. You are integrating Claude code into your CI/CD
+[03:39] integrating Claude code into your CI/CD pipeline. The system runs automated code
+[03:42] pipeline. The system runs automated code reviews, generates test cases, and
+[03:43] reviews, generates test cases, and provides
+[03:44] provides feedback on PRs. Okay. So, a PR modifies
+[03:47] feedback on PRs. Okay. So, a PR modifies 14 of the files across a stock tracking
+[03:50] 14 of the files across a stock tracking module. Your single-pass review,
+[03:52] module. Your single-pass review, analyzing all files together, produces
+[03:54] analyzing all files together, produces inconsistent results. Detailed feedback
+[03:56] inconsistent results. Detailed feedback for some files, but superficial comments
+[03:58] for some files, but superficial comments for others, obvious bugs missed, and
+[04:00] for others, obvious bugs missed, and contradictory feedback flagging a
+[04:02] contradictory feedback flagging a pattern as problematic in one file while
+[04:04] pattern as problematic in one file while approving identical code elsewhere in
+[04:06] approving identical code elsewhere in the same PR. How do you restructure the
+[04:08] the same PR. How do you restructure the review?
+[04:09] review? So,
+[04:11] So, it seems like
+[04:12] it seems like you're basically just passing all of the
+[04:14] you're basically just passing all of the files in at once and it's missing like
+[04:16] files in at once and it's missing like little code errors within the files as
+[04:20] little code errors within the files as well as, you know, errors that would
+[04:22] well as, you know, errors that would arise from wrong code across files.
+[04:24] arise from wrong code across files. Let's say, you know, a function is
+[04:26] Let's say, you know, a function is defined in one and then you're calling
+[04:27] defined in one and then you're calling it wrong in another.
+[04:28] it wrong in another. That's kind of like a, you know, you got
+[04:30] That's kind of like a, you know, you got to think logically like a coder would. I
+[04:32] to think logically like a coder would. I guess I'm I'm not like super
+[04:33] guess I'm I'm not like super untechnical, so I know I know this kind
+[04:35] untechnical, so I know I know this kind of thing. Switch to a higher-tier model.
+[04:38] of thing. Switch to a higher-tier model. That's never really the answer. Run
+[04:40] That's never really the answer. Run three independent review passes on the
+[04:41] three independent review passes on the PR on the full PR. So, that just does
+[04:44] PR on the full PR. So, that just does the same, you know, BS three times, so
+[04:46] the same, you know, BS three times, so not that one. Split into focused passes,
+[04:49] not that one. Split into focused passes, analyze each file individually for local
+[04:51] analyze each file individually for local issues, then run a separate integration
+[04:53] issues, then run a separate integration focused past
+[04:54] focused past past examining cross-file data flow. I
+[04:56] past examining cross-file data flow. I think it's this one. And then require
+[04:57] think it's this one. And then require developers to split large PRs into
+[04:59] developers to split large PRs into smaller submissions of three or four
+[05:00] smaller submissions of three or four files. If you're not um analyzing the
+[05:03] files. If you're not um analyzing the files one at a time, there's still not a
+[05:05] files one at a time, there's still not a guarantee that you're going to do well
+[05:07] guarantee that you're going to do well on those little bugs. So, I think it's
+[05:09] on those little bugs. So, I think it's that one. And I'm correct. Okay. We have
+[05:11] that one. And I'm correct. Okay. We have our multi-agent research system and in
+[05:13] our multi-agent research system and in this system in this scenario, test
+[05:16] this system in this scenario, test scenario, you're getting a multi-agent
+[05:18] scenario, you're getting a multi-agent research system that you're building um
+[05:20] research system that you're building um and it delegates to the specialized sub
+[05:22] and it delegates to the specialized sub agents to search the web, analyze
+[05:23] agents to search the web, analyze documents, and generate reports on
+[05:26] documents, and generate reports on things. Okay.
+[05:27] things. Okay. So, let's read this question. The
+[05:29] So, let's read this question. The document analysis sub agent frequently
+[05:31] document analysis sub agent frequently encounters failures when processing PDF
+[05:33] encounters failures when processing PDF files. Some are corrupted, some are
+[05:35] files. Some are corrupted, some are password protected, and some sometimes
+[05:38] password protected, and some sometimes you just time out on large files.
+[05:39] you just time out on large files. Currently, any exception immediately
+[05:41] Currently, any exception immediately terminates the sub agent and returns an
+[05:43] terminates the sub agent and returns an error, which must decide to do, you
+[05:46] error, which must decide to do, you know, to what to do with the pipeline.
+[05:48] know, to what to do with the pipeline. This is causing excessive coordinator
+[05:50] This is causing excessive coordinator involvement in routine error handling.
+[05:52] involvement in routine error handling. What's the most effective architectural
+[05:54] What's the most effective architectural improvement?
+[05:55] improvement? Okay.
+[05:56] Okay. So, clearly
+[05:58] So, clearly uh it's pushing too much of the buck
+[06:01] uh it's pushing too much of the buck onto the coordinator to
+[06:03] onto the coordinator to interpret the error and, you know,
+[06:05] interpret the error and, you know, figure out what's going wrong and figure
+[06:06] figure out what's going wrong and figure out next actions.
+[06:08] out next actions. So, we want the sub agent to do more.
+[06:11] So, we want the sub agent to do more. [music]
+[06:12] [music] Um local recovery for transient
+[06:14] Um local recovery for transient failures. That's usually correct. When
+[06:16] failures. That's usually correct. When there's a timeout error, like a
+[06:17] there's a timeout error, like a transient error, you do want to uh
+[06:19] transient error, you do want to uh propagate that or like or or do local
+[06:23] propagate that or like or or do local recovery for that. Um create a dedicated
+[06:25] recovery for that. Um create a dedicated error handling agent. Yeah, don't do
+[06:27] error handling agent. Yeah, don't do that. Don't That's That's not the right
+[06:29] that. Don't That's That's not the right answer because you want, you know, the
+[06:30] answer because you want, you know, the agent to handle the error within itself
+[06:32] agent to handle the error within itself to, you know, for context reasons. Have
+[06:34] to, you know, for context reasons. Have the coordinator validate all documents
+[06:36] the coordinator validate all documents before Yeah, don't do that because
+[06:38] before Yeah, don't do that because that's the court That's the sub agent's
+[06:40] that's the court That's the sub agent's job. So, don't make the coordinator
+[06:41] job. So, don't make the coordinator agent do that. And then configure the
+[06:43] agent do that. And then configure the sub agent to always return partial
+[06:45] sub agent to always return partial results with status success status.
+[06:47] results with status success status. Yeah, that's I mean, that's just like
+[06:48] Yeah, that's I mean, that's just like straight-up the sub agent lying and us
+[06:50] straight-up the sub agent lying and us not handling errors gracefully. So, it
+[06:53] not handling errors gracefully. So, it has to be C.
+[06:54] has to be C. And that's correct. Okay, we're going to
+[06:56] And that's correct. Okay, we're going to do one more question, guys.
+[06:58] do one more question, guys. Okay, so we got a customer support
+[07:00] Okay, so we got a customer support resolution agent case.
+[07:01] resolution agent case. You're building a customer support
+[07:03] You're building a customer support resolution agent using the Cloud Agent
+[07:04] resolution agent using the Cloud Agent SDK. Uh the agent handles high ambiguity
+[07:07] SDK. Uh the agent handles high ambiguity requests and tries to resolve most of
+[07:10] requests and tries to resolve most of the um
+[07:12] the um scenarios customer scenarios before
+[07:14] scenarios customer scenarios before escalating.
+[07:16] escalating. You get some MCP tools, get customer
+[07:17] You get some MCP tools, get customer look up order process refund, and
+[07:19] look up order process refund, and escalate to human. Okay. So, the
+[07:21] escalate to human. Okay. So, the production data that shows that in 12%
+[07:24] production data that shows that in 12% of cases your agent skips get get
+[07:26] of cases your agent skips get get customer and entirely calls entirely and
+[07:29] customer and entirely calls entirely and calls look up order
+[07:30] calls look up order using only the customer's stated name,
+[07:32] using only the customer's stated name, occasionally occasionally leading to
+[07:35] occasionally occasionally leading to misidentified accounts and incorrect
+[07:36] misidentified accounts and incorrect refunds. So, you know, two people might
+[07:38] refunds. So, you know, two people might have the same name.
+[07:39] have the same name. What change would most effectively
+[07:41] What change would most effectively address this reliability issue. Okay.
+[07:44] address this reliability issue. Okay. I'm thinking it needs some kind of like
+[07:46] I'm thinking it needs some kind of like hard
+[07:47] hard rule where you have to get like a two
+[07:50] rule where you have to get like a two identifiers. So, just before I even look
+[07:53] identifiers. So, just before I even look at the answer uh the possible answers,
+[07:56] at the answer uh the possible answers, enhance the system prompt to state that
+[07:57] enhance the system prompt to state that the customer verification is mandatory.
+[07:59] the customer verification is mandatory. Yeah, that's not going to work. It might
+[08:00] Yeah, that's not going to work. It might ignore
+[08:01] ignore a little tiny instruction in a big
+[08:03] a little tiny instruction in a big system prompt.
+[08:04] system prompt. And implement a routing classifier.
+[08:06] And implement a routing classifier. Yeah, no, there's no reason to do that.
+[08:09] Yeah, no, there's no reason to do that. Add a few Add few-shot showing the agent
+[08:11] Add a few Add few-shot showing the agent always calling get customer first.
+[08:13] always calling get customer first. That is a good strategy, but it's not
+[08:15] That is a good strategy, but it's not deterministic, which you want it to be.
+[08:16] deterministic, which you want it to be. So, you know, you definitely don't want
+[08:18] So, you know, you definitely don't want to you you want to avoid these kind of
+[08:20] to you you want to avoid these kind of errors. So, it has to be C. Add a
+[08:23] errors. So, it has to be C. Add a programmatic prerequisite that blocks
+[08:24] programmatic prerequisite that blocks lookup order and process refund until
+[08:27] lookup order and process refund until get customer has returned a verified
+[08:29] get customer has returned a verified customer ID. That's correct. And yeah,
+[08:31] customer ID. That's correct. And yeah, as you can see, that's correct.
+[08:34] as you can see, that's correct. Okay, so that's a bit about the exam,
+[08:35] Okay, so that's a bit about the exam, but how do you actually pass it?
+[08:38] but how do you actually pass it? Well, here is my ultimate Entropic CCA
+[08:41] Well, here is my ultimate Entropic CCA exam guide, and I'm going to share this
+[08:43] exam guide, and I'm going to share this with you in the links in the comments.
+[08:45] with you in the links in the comments. And it basically includes like an
+[08:47] And it basically includes like an intense 2-day study guide plan to pass
+[08:50] intense 2-day study guide plan to pass it. Now, I do warn you, I really do want
+[08:52] it. Now, I do warn you, I really do want to warn you about this. This exam is not
+[08:55] to warn you about this. This exam is not easy at all. In fact, it's pretty
+[08:57] easy at all. In fact, it's pretty difficult. I would recommend that you
+[08:58] difficult. I would recommend that you have some significant familiarity with
+[09:01] have some significant familiarity with AI systems if you want to attempt the
+[09:03] AI systems if you want to attempt the pass in 2 days. Otherwise, you really
+[09:05] pass in 2 days. Otherwise, you really should study longer and really take in
+[09:07] should study longer and really take in the material before you try taking the
+[09:09] the material before you try taking the exam. Cuz you can only take the exam
+[09:11] exam. Cuz you can only take the exam once in every 6 months.
+[09:13] once in every 6 months. Now, as I said, I am not the most
+[09:15] Now, as I said, I am not the most technical, and I actually did not have
+[09:17] technical, and I actually did not have that much cloud-specific experience
+[09:19] that much cloud-specific experience before trying to take this exam, but I
+[09:21] before trying to take this exam, but I do have a lot of experience designing
+[09:23] do have a lot of experience designing and scoping AI solutions and use cases
+[09:26] and scoping AI solutions and use cases through the sales side of my own
+[09:28] through the sales side of my own business. Basically, here's what you
+[09:30] business. Basically, here's what you should do in order. And I'm just going
+[09:32] should do in order. And I'm just going to run through this study guide real
+[09:33] to run through this study guide real quick. So,
+[09:34] quick. So, the first thing you got to do, right?
+[09:37] the first thing you got to do, right? You see, you know, two-day battle plan,
+[09:39] You see, you know, two-day battle plan, 10 hours doing the Skill Jar courses and
+[09:41] 10 hours doing the Skill Jar courses and looking at Anthropic study guides,
+[09:43] looking at Anthropic study guides, taking notes, and then 10 hours for like
+[09:44] taking notes, and then 10 hours for like practice questions and and things like
+[09:46] practice questions and and things like that. First thing you want to do,
+[09:48] that. First thing you want to do, definitely definitely definitely take
+[09:49] definitely definitely definitely take the courses. Um
+[09:51] the courses. Um there are these four in the Anthropic
+[09:53] there are these four in the Anthropic Skill Jar.
+[09:54] Skill Jar. You have to be logged in, by the way.
+[09:56] You have to be logged in, by the way. And [music] you you just run through
+[09:58] And [music] you you just run through these. Um they have Some of them have
+[10:01] these. Um they have Some of them have like some
+[10:02] like some coding things using Jupiter notebook,
+[10:05] coding things using Jupiter notebook, like like a Python notebook,
+[10:07] like like a Python notebook, which I think would be this one, or
+[10:09] which I think would be this one, or building with the Claude API.
+[10:11] building with the Claude API. &gt;&gt; [music]
+[10:11] &gt;&gt; [music] &gt;&gt; Uh this is all the all the other ones
+[10:12] &gt;&gt; Uh this is all the all the other ones take like an hour to get through, and
+[10:13] take like an hour to get through, and this one takes like, you know, six six
+[10:16] this one takes like, you know, six six hours to get through for me.
+[10:18] hours to get through for me. Um and you can see that in here.
+[10:22] Um and you can see that in here. They have both the video
+[10:24] They have both the video as well as like a Python notebook, and
+[10:27] as well as like a Python notebook, and the all these notes. Now, I don't think
+[10:29] the all these notes. Now, I don't think you need to go through the Python
+[10:31] you need to go through the Python notebooks. I actually did go through all
+[10:33] notebooks. I actually did go through all of them, and I don't think they helped
+[10:34] of them, and I don't think they helped me that much. Maybe they cemented some
+[10:36] me that much. Maybe they cemented some concepts in my head, but I didn't really
+[10:37] concepts in my head, but I didn't really need them. And then the videos and all
+[10:40] need them. And then the videos and all of the notes are basically the same. So,
+[10:43] of the notes are basically the same. So, I would recommend either just watching
+[10:44] I would recommend either just watching the video or going through the notes.
+[10:46] the video or going through the notes. And probably the video if you're not
+[10:48] And probably the video if you're not going to do the uh Python notebooks at
+[10:50] going to do the uh Python notebooks at all.
+[10:51] all. So, you need to go through these four,
+[10:52] So, you need to go through these four, uh Claude Code in Action, Introduction
+[10:55] uh Claude Code in Action, Introduction to Model Context Protocol, Introduction
+[10:57] to Model Context Protocol, Introduction to Agent Skills, and then Building with
+[10:59] to Agent Skills, and then Building with the Claude API.
+[11:01] the Claude API. One quick note.
+[11:03] One quick note. This one, Introduction to Model Context
+[11:04] This one, Introduction to Model Context Protocol, MCP, it's already included in
+[11:07] Protocol, MCP, it's already included in the Building with the Claude API course,
+[11:10] the Building with the Claude API course, right
+[11:12] right here. Uh they're the exact same
+[11:14] here. Uh they're the exact same lectures. I think they have a different
+[11:16] lectures. I think they have a different quiz, so you just have to click through
+[11:17] quiz, so you just have to click through the quiz on the other one. But, yeah,
+[11:18] the quiz on the other one. But, yeah, don't don't waste your time and do it
+[11:20] don't don't waste your time and do it twice, uh just in case. And yeah, these
+[11:23] twice, uh just in case. And yeah, these will come with quizzes and things like
+[11:24] will come with quizzes and things like that, uh to make sure that you're
+[11:26] that, uh to make sure that you're actually listening, and you know, you
+[11:27] actually listening, and you know, you have to pass them and stuff. So, after
+[11:29] have to pass them and stuff. So, after you take these four required courses
+[11:31] you take these four required courses from Anthropic, which will take you, I
+[11:33] from Anthropic, which will take you, I would say, around 8 hours.
+[11:35] would say, around 8 hours. Then you get into diving to studying for
+[11:37] Then you get into diving to studying for the exam. So,
+[11:39] the exam. So, one thing to note is that a lot of the
+[11:41] one thing to note is that a lot of the course material really isn't on the exam
+[11:44] course material really isn't on the exam uh as it doesn't include all the little
+[11:45] uh as it doesn't include all the little technical facts that I mentioned earlier
+[11:47] technical facts that I mentioned earlier that you need to know to pass the exam,
+[11:49] that you need to know to pass the exam, but it is 100% necessary foundation
+[11:52] but it is 100% necessary foundation knowledge to understand at a high level.
+[11:54] knowledge to understand at a high level. Just don't spend too much time on it.
+[11:56] Just don't spend too much time on it. So, now I'm going to go through the
+[11:59] So, now I'm going to go through the official Anthropic study guide. Um
+[12:01] official Anthropic study guide. Um there's a lot of good stuff here. This
+[12:03] there's a lot of good stuff here. This is where you're going to see all the
+[12:05] is where you're going to see all the little micro technical facts that you
+[12:07] little micro technical facts that you that are necessary to pass the exam. Um
+[12:09] that are necessary to pass the exam. Um but putting these things into actual
+[12:12] but putting these things into actual practice in
+[12:13] practice in &gt;&gt; [music]
+[12:13] &gt;&gt; [music] &gt;&gt; a real exam setting like questions is is
+[12:16] &gt;&gt; a real exam setting like questions is is a real hurdle. So,
+[12:19] a real hurdle. So, it goes through all of these specific
+[12:20] it goes through all of these specific scenarios, and all of these little facts
+[12:23] scenarios, and all of these little facts you will need to know. So, go through
+[12:25] you will need to know. So, go through this in high detail. I would highly
+[12:27] this in high detail. I would highly recommend it. Uh it has some basic
+[12:29] recommend it. Uh it has some basic practice questions as well down here.
+[12:32] practice questions as well down here. Wow, all the way down here. Yeah, these
+[12:34] Wow, all the way down here. Yeah, these and then it has like some
+[12:37] and then it has like some practice exercises for each of the
+[12:41] practice exercises for each of the scenarios. Now, I you don't need to do
+[12:42] scenarios. Now, I you don't need to do them. I didn't do them.
+[12:44] them. I didn't do them. Um I would just read through this entire
+[12:46] Um I would just read through this entire thing and take very good notes.
+[12:48] thing and take very good notes. So, after you do the 12 kind of easier
+[12:51] So, after you do the 12 kind of easier practice questions on this study guide,
+[12:54] practice questions on this study guide, I would immediately go to this source
+[12:56] I would immediately go to this source called
+[12:57] called And by the way, this is all linked on
+[12:58] And by the way, this is all linked on the study guide, but Cert Safari. So,
+[13:00] the study guide, but Cert Safari. So, Cert Safari
+[13:02] Cert Safari uh the question
+[13:04] uh the question types are mixed, I would say. They're
+[13:06] types are mixed, I would say. They're not the best, but they are adequate.
+[13:08] not the best, but they are adequate. They're AI generated based on the study
+[13:10] They're AI generated based on the study guide, and they keep revising and making
+[13:12] guide, and they keep revising and making it better as well. But this is a great
+[13:14] it better as well. But this is a great way to get familiarized with the style
+[13:16] way to get familiarized with the style of question on the exam, and I would
+[13:18] of question on the exam, and I would highly highly recommend going through
+[13:20] highly highly recommend going through maybe 50 or 80 questions on this before
+[13:24] maybe 50 or 80 questions on this before you do the official practice test.
+[13:26] you do the official practice test. &gt;&gt; [music]
+[13:26] &gt;&gt; [music] &gt;&gt; Um and just get a good feel on, you
+[13:28] &gt;&gt; Um and just get a good feel on, you know, trying to decipher questions and
+[13:29] know, trying to decipher questions and stuff cuz that's actually half the
+[13:31] stuff cuz that's actually half the battle and the other half is the facts,
+[13:32] battle and the other half is the facts, as I mentioned earlier.
+[13:34] as I mentioned earlier. Right. So, then you want to take the
+[13:36] Right. So, then you want to take the entire official practice exam. This is
+[13:38] entire official practice exam. This is the link to it. It's the questions that
+[13:40] the link to it. It's the questions that I just pulled from. Uh absolutely take
+[13:43] I just pulled from. Uh absolutely take this all the way through once you get
+[13:45] this all the way through once you get enough practice with the cert safari
+[13:47] enough practice with the cert safari questions uh just to see where you land
+[13:50] questions uh just to see where you land on your on your first try and I will re-
+[13:52] on your on your first try and I will re- warn you, these practice questions are
+[13:54] warn you, these practice questions are probably
+[13:56] probably a whole third easier than the actual
+[13:58] a whole third easier than the actual exam. So, the exam is quite hard.
+[14:00] exam. So, the exam is quite hard. Um
+[14:01] Um and I would just retake the practice
+[14:03] and I would just retake the practice exam uh
+[14:04] exam uh until you hit 90% basically, 54 out of
+[14:07] until you hit 90% basically, 54 out of 60. It shouldn't take you that long to
+[14:09] 60. It shouldn't take you that long to do the repeat attempts because you're
+[14:11] do the repeat attempts because you're going to know the questions, you know,
+[14:12] going to know the questions, you know, after after you take it once or twice,
+[14:15] after after you take it once or twice, right? [music]
+[14:16] right? [music] So, then I would do a full pass on any
+[14:19] So, then I would do a full pass on any notes that you took on the study guide
+[14:20] notes that you took on the study guide because all the facts, you know, are
+[14:22] because all the facts, you know, are are needed from there.
+[14:24] are needed from there. Um and I would speed read your course
+[14:25] Um and I would speed read your course notes if you took any.
+[14:27] notes if you took any. &gt;&gt; [music]
+[14:27] &gt;&gt; [music] &gt;&gt; And then I would review the Cloud
+[14:29] &gt;&gt; And then I would review the Cloud Certification Guide study guide. [music]
+[14:32] Certification Guide study guide. [music] This link right here, they basically go
+[14:35] This link right here, they basically go through each of the domains. They do
+[14:36] through each of the domains. They do have practice questions on this, but I
+[14:38] have practice questions on this, but I don't think they're like there's just
+[14:40] don't think they're like there's just not that many of them, but they do go
+[14:42] not that many of them, but they do go through common traps
+[14:44] through common traps um for every single one of the
+[14:48] um for every single one of the topics that we mentioned earlier. So,
+[14:50] topics that we mentioned earlier. So, this is incredibly useful for digesting
+[14:54] this is incredibly useful for digesting all those study guide facts in a more
+[14:56] all those study guide facts in a more actionable way, I would say. So, I would
+[14:58] actionable way, I would say. So, I would absolutely go through this in high
+[14:59] absolutely go through this in high detail.
+[15:01] detail. Then I would do 60 per uh 60 questions
+[15:04] Then I would do 60 per uh 60 questions on the mock exam site. This mock exam
+[15:06] on the mock exam site. This mock exam site specifically,
+[15:08] site specifically, um and these, you know, these have
+[15:11] um and these, you know, these have much more probably the most similar
+[15:13] much more probably the most similar questions to the actual exam except
+[15:17] questions to the actual exam except &gt;&gt; [music]
+[15:17] &gt;&gt; [music] &gt;&gt; with the exception of the official uh
+[15:20] &gt;&gt; with the exception of the official uh questions from Anthropic. So, I would go
+[15:22] questions from Anthropic. So, I would go through this and then, yeah, that's it,
+[15:24] through this and then, yeah, that's it, guys. Like, really after that, you
+[15:26] guys. Like, really after that, you should be completely ready to take this
+[15:28] should be completely ready to take this take this exam and I would just install
+[15:30] take this exam and I would just install the proctoring software and good luck.
+[15:32] the proctoring software and good luck. That's it. Okay, guys, that's all I got.
+[15:35] That's it. Okay, guys, that's all I got. I genuinely hope you found all of this
+[15:37] I genuinely hope you found all of this exam material exam prep material useful
+[15:40] exam material exam prep material useful and if you did, please like, comment,
+[15:42] and if you did, please like, comment, and subscribe. And yeah,
+[15:44] and subscribe. And yeah, good luck on the exam and I hope you
+[15:46] good luck on the exam and I hope you pass. I know you will. Till next time,
+[15:49] pass. I know you will. Till next time, peace.
