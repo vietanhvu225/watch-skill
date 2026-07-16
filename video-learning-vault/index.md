@@ -4,6 +4,7 @@ Master index mapping Video ID -> Title -> Topic -> Notes.
 
 | Video ID | Title | Topic / Category | Note Link | Duration | Date Processed |
 |----------|-------|------------------|-----------|----------|----------------|
+| `8a893f42dc4c486c` | Google OKF: The Simple Folder That Gives AI Agents Your Entire Company Data | AI Agents / Data | [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) | 08:01 | 2026-07-16 |
 | `15657c4a3940e9c7` | Self-Improving AI Agents | Evolving the Harness, Not the Model | [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) | 35:19 | 2026-07-16 |
 | `c4f8d23d5d2fdc59` | How I passed the NEW Claude Architect Certification Exam (CCA-F) | Certification / Claude | [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) | 15:50 | 2026-07-11 |
 | `579c8e471aee536c` | Harness Engineering：有時候語言模型不是不夠聰明，只是沒有人類好好引導 | AI Agents | [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) | 01:32:20 | 2026-07-11 |
