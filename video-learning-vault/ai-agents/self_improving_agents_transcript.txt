@@ -1,0 +1,845 @@
+[00:03] [music] There's a pull request sitting open in
+[00:05] There's a pull request sitting open in my public repo right now. I didn't write
+[00:07] my public repo right now. I didn't write it. An AI model wrote it after finding a
+[00:10] it. An AI model wrote it after finding a bug in the coding agent we have been
+[00:12] bug in the coding agent we have been building this whole series. And the fix
+[00:14] building this whole series. And the fix doesn't touch the agent's model at all.
+[00:17] doesn't touch the agent's model at all. It changes the hardness the software we
+[00:19] It changes the hardness the software we wrote around that model. It passed every
+[00:22] wrote around that model. It passed every test that I threw at it. I still haven't
+[00:25] test that I threw at it. I still haven't merged it though. People call this kind
+[00:27] merged it though. People call this kind of thing self- evvolving AI or
+[00:30] of thing self- evvolving AI or self-improving AI and the label gets
+[00:32] self-improving AI and the label gets slapped on everything. Model that
+[00:34] slapped on everything. Model that retrains themselves, workflows that tune
+[00:38] retrains themselves, workflows that tune their own prompts, systems that rewrite
+[00:40] their own prompts, systems that rewrite their own code, or maybe even work that
+[00:43] their own code, or maybe even work that you do uh on a continuous basis forming
+[00:46] you do uh on a continuous basis forming a loop. This video is about the version
+[00:49] a loop. This video is about the version that matters the most if you are a
+[00:50] that matters the most if you are a builder. A loop that improves the
+[00:52] builder. A loop that improves the harness and leaves the model alone.
+[00:55] harness and leaves the model alone. Here's what that buys you. Your agent
+[00:57] Here's what that buys you. Your agent gets better on your schedule, not on the
+[01:00] gets better on your schedule, not on the model providers. Every improvement is a
+[01:03] model providers. Every improvement is a change you can read, test, and undo. And
+[01:06] change you can read, test, and undo. And failure once caught can turn into a
+[01:09] failure once caught can turn into a permanent tested fix instead of a patch
+[01:12] permanent tested fix instead of a patch that you might forget about. So over 15
+[01:14] that you might forget about. So over 15 chapters in the last uh video, we built
+[01:17] chapters in the last uh video, we built this agent by hand. Model plus harness
+[01:20] this agent by hand. Model plus harness plus UI. This video is about what
+[01:22] plus UI. This video is about what happens after you have built your agent.
+[01:24] happens after you have built your agent. the harness keeps improving even when no
+[01:28] the harness keeps improving even when no one is editing it by hand. This is the
+[01:30] one is editing it by hand. This is the story of that pull request and of why
+[01:33] story of that pull request and of why it's still waiting to be merged. So
+[01:35] it's still waiting to be merged. So we're going to go through this video in
+[01:37] we're going to go through this video in acts. This one is act one plain question
+[01:41] acts. This one is act one plain question and why. Now here's the idea in plain
+[01:43] and why. Now here's the idea in plain terms. Your agent is a frozen model
+[01:47] terms. Your agent is a frozen model that's wrapped in a hardness that we
+[01:49] that's wrapped in a hardness that we wrote. Frozen means weights. The
+[01:52] wrote. Frozen means weights. The billions of numbers inside the model
+[01:54] billions of numbers inside the model that training produced never change. So
+[01:57] that training produced never change. So what if a second stronger model could
+[02:01] what if a second stronger model could watch your agent fail, figure out why,
+[02:03] watch your agent fail, figure out why, and then propose a fix to the harness
+[02:07] and then propose a fix to the harness instead of the model? And what if you
+[02:09] instead of the model? And what if you could actually check whether that fix
+[02:11] could actually check whether that fix helped before you trusted it? There's no
+[02:14] helped before you trusted it? There's no retraining in that sentence and no
+[02:16] retraining in that sentence and no writing a better prompt. uh and hoping
+[02:20] writing a better prompt. uh and hoping you edit the software wrapped around the
+[02:22] you edit the software wrapped around the model the same way you would edit any
+[02:25] model the same way you would edit any other software and you prove that the
+[02:27] other software and you prove that the edit worked before you ship it. And
+[02:29] edit worked before you ship it. And here's what actually happened in the
+[02:31] here's what actually happened in the experiment that I did. One number in a
+[02:34] experiment that I did. One number in a configuration file went from a number
+[02:37] configuration file went from a number 4,000 to 12,000. That's it. The part
+[02:41] 4,000 to 12,000. That's it. The part worth the rest of the video is
+[02:43] worth the rest of the video is everything around that number. how the
+[02:45] everything around that number. how the bug got found, how the fix got proposed,
+[02:48] bug got found, how the fix got proposed, and how it got proven safe. And this
+[02:52] and how it got proven safe. And this isn't hypothetical. Right now, it's one
+[02:54] isn't hypothetical. Right now, it's one of the most talked about ideas in the
+[02:56] of the most talked about ideas in the field. Lilian Wang, a researcher who
+[02:58] field. Lilian Wang, a researcher who spent years thinking about exactly this,
+[03:01] spent years thinking about exactly this, calls the practice loop engineering. We
+[03:04] calls the practice loop engineering. We have heard the word loop engineering.
+[03:05] have heard the word loop engineering. You might have heard that from so many
+[03:07] You might have heard that from so many different avenues. We have heard that
+[03:10] different avenues. We have heard that same coming from Peter Steinberger. We
+[03:12] same coming from Peter Steinberger. We have heard the same thing coming from
+[03:13] have heard the same thing coming from Boris from Anthropic. So clearly it is
+[03:16] Boris from Anthropic. So clearly it is something that everyone is talking
+[03:17] something that everyone is talking about. But Lilian Wang argues that the
+[03:20] about. But Lilian Wang argues that the hardness is where self-improvement
+[03:22] hardness is where self-improvement actually lives rather than in a bigger
+[03:24] actually lives rather than in a bigger model. Wang slices it into a ladder of
+[03:27] model. Wang slices it into a ladder of five levels. Safest at the bottom and
+[03:30] five levels. Safest at the bottom and riskiest at the top. Level one improve
+[03:32] riskiest at the top. Level one improve the prompt, the instructions that you
+[03:34] the prompt, the instructions that you hand the model, the system prompt, the
+[03:36] hand the model, the system prompt, the agent MD. Level two is improve the
+[03:38] agent MD. Level two is improve the context, the material you feed it
+[03:41] context, the material you feed it alongside those instructions. Level
+[03:43] alongside those instructions. Level three is improve the workflow, the steps
+[03:46] three is improve the workflow, the steps the agent takes. Level four is improve
+[03:48] the agent takes. Level four is improve the harness code itself. That includes
+[03:50] the harness code itself. That includes all of those in some ways. And then
+[03:52] all of those in some ways. And then level five is improve the thing that
+[03:54] level five is improve the thing that does the improving. So it can get meta.
+[03:56] does the improving. So it can get meta. Each level up is a bigger riskier kind
+[03:59] Each level up is a bigger riskier kind of change than the one below it. The
+[04:02] of change than the one below it. The steps above encompasses the steps below
+[04:04] steps above encompasses the steps below in some ways. This video sits at level
+[04:07] in some ways. This video sits at level four, editing the harness score. It's
+[04:10] four, editing the harness score. It's worth knowing where you are on that
+[04:12] worth knowing where you are on that ladder before you start climbing. So, if
+[04:15] ladder before you start climbing. So, if you have not seen the video about the
+[04:18] you have not seen the video about the custom agent that we built from scratch,
+[04:20] custom agent that we built from scratch, here's one sentence you need to know. An
+[04:23] here's one sentence you need to know. An agent is a model plus harness plus a UI.
+[04:26] agent is a model plus harness plus a UI. The model rarely changes and almost
+[04:30] The model rarely changes and almost everything that makes a good agent or
+[04:32] everything that makes a good agent or bad lives in the harness around it.
+[04:34] bad lives in the harness around it. Everything from here assumes that's
+[04:36] Everything from here assumes that's already true and ask the next question.
+[04:39] already true and ask the next question. Once we have built the harness by hand,
+[04:42] Once we have built the harness by hand, can something else improve it safely
+[04:45] can something else improve it safely without us sitting there ret rewriting
+[04:47] without us sitting there ret rewriting the code ourselves? And here's the
+[04:50] the code ourselves? And here's the failure to keep in your head for the
+[04:52] failure to keep in your head for the rest of the video. I asked my agent a
+[04:54] rest of the video. I asked my agent a question whose answer sits near the end
+[04:58] question whose answer sits near the end of a very long log file and it will fail
+[05:02] of a very long log file and it will fail every single time. Every idea coming up
+[05:04] every single time. Every idea coming up points back at that particular failure.
+[05:07] points back at that particular failure. Keep that in mind as we talk about how
+[05:10] Keep that in mind as we talk about how the approach was going from here to what
+[05:13] the approach was going from here to what that pull request is. Now, one word that
+[05:16] that pull request is. Now, one word that is doing a lot of work in that last uh
+[05:18] is doing a lot of work in that last uh slide that we talked about safely. It's
+[05:21] slide that we talked about safely. It's easy to build something that edits its
+[05:23] easy to build something that edits its own hardness, but it's much harder to
+[05:25] own hardness, but it's much harder to build something that only ever makes
+[05:27] build something that only ever makes changes you can inspect or reject, undo,
+[05:31] changes you can inspect or reject, undo, and do so every single time. That pull
+[05:33] and do so every single time. That pull request is a proof of that difference.
+[05:36] request is a proof of that difference. It has passed every test and it still
+[05:39] It has passed every test and it still hasn't shipped. That gap between passing
+[05:41] hasn't shipped. That gap between passing and shipping is what safely means here.
+[05:44] and shipping is what safely means here. And by the end of this video, you will
+[05:46] And by the end of this video, you will have something you can take with you.
+[05:48] have something you can take with you. The checklist are used on anyone who
+[05:51] The checklist are used on anyone who claims their agent improves itself. That
+[05:53] claims their agent improves itself. That brings us to act two. Meet the idea one
+[05:56] brings us to act two. Meet the idea one term at a time. Three things anchor this
+[05:59] term at a time. Three things anchor this video. A paper from Ant Group uh HKUSD
+[06:03] video. A paper from Ant Group uh HKUSD um and Singha called Aal or Ariel about
+[06:07] um and Singha called Aal or Ariel about self- evvolving agents at enterprise
+[06:09] self- evvolving agents at enterprise scale. Second is a paper from Shangghai
+[06:12] scale. Second is a paper from Shangghai AI lab called selfh harness about
+[06:15] AI lab called selfh harness about harnesses that improve themselves. And
+[06:17] harnesses that improve themselves. And then there is Lilian Wang's own post
+[06:19] then there is Lilian Wang's own post connecting both of them to a wider
+[06:22] connecting both of them to a wider landscape. Three different altitudes if
+[06:25] landscape. Three different altitudes if you will. One says why this matters. The
+[06:28] you will. One says why this matters. The other says exactly how to do it. And the
+[06:31] other says exactly how to do it. And the third one says where it fits in the
+[06:33] third one says where it fits in the bigger scheme of things. And I'll be
+[06:35] bigger scheme of things. And I'll be honest about which idea came from which
+[06:37] honest about which idea came from which source as we go because misquoting a
+[06:40] source as we go because misquoting a paper here is worse than not quoting it
+[06:42] paper here is worse than not quoting it at all. Step one in that self harness
+[06:45] at all. Step one in that self harness paper's own words is weakness mining.
+[06:48] paper's own words is weakness mining. This is pretty interesting. In this one,
+[06:50] This is pretty interesting. In this one, you run your agent normally. You let it
+[06:53] you run your agent normally. You let it fail and then you look at the failures
+[06:55] fail and then you look at the failures and ask whether they are the same
+[06:57] and ask whether they are the same problem showing up twice or a bunch of
+[07:00] problem showing up twice or a bunch of unrelated one-off mistakes. And you only
+[07:02] unrelated one-off mistakes. And you only group failures that share a real cause.
+[07:05] group failures that share a real cause. The one flaky slip should not count.
+[07:09] The one flaky slip should not count. Now you take that log failure from the
+[07:12] Now you take that log failure from the earlier example. Every time it happened,
+[07:15] earlier example. Every time it happened, the agent described what went wrong in
+[07:17] the agent described what went wrong in almost the same sentence. Repeated
+[07:19] almost the same sentence. Repeated failures like that with one provable
+[07:22] failures like that with one provable cause is uh something that we should
+[07:25] cause is uh something that we should group together. And that group of
+[07:27] group together. And that group of failures is what's referred to as
+[07:29] failures is what's referred to as cluster. A cluster is what the rest of
+[07:32] cluster. A cluster is what the rest of this pipeline works on. Now, here's an
+[07:34] this pipeline works on. Now, here's an idea from a real paper that's easy to
+[07:37] idea from a real paper that's easy to miss and actually does a lot of work.
+[07:39] miss and actually does a lot of work. Not every failure should get the same
+[07:41] Not every failure should get the same kind of fix. If the agent is missing a
+[07:44] kind of fix. If the agent is missing a plain fact, it should just remember. The
+[07:46] plain fact, it should just remember. The cheapest move is usually the right one
+[07:48] cheapest move is usually the right one and that would be drop that fact into
+[07:51] and that would be drop that fact into its memory. If the failure is in how it
+[07:54] its memory. If the failure is in how it routes a tool call or reads back a
+[07:56] routes a tool call or reads back a result or follows a guard rail, that is
+[07:59] result or follows a guard rail, that is a harness problem and a harness edit is
+[08:03] a harness problem and a harness edit is the right place to fix it. And if a
+[08:04] the right place to fix it. And if a failure keeps showing up no matter what
+[08:07] failure keeps showing up no matter what you do to the memory or harness across
+[08:10] you do to the memory or harness across every task, every user, every project,
+[08:13] every task, every user, every project, that's a signal you'd actually need to
+[08:15] that's a signal you'd actually need to touch the model itself. This video is
+[08:18] touch the model itself. This video is entirely about the middle one.
+[08:20] entirely about the middle one. Everything you're about to see is a
+[08:21] Everything you're about to see is a harness edit because that's what the
+[08:24] harness edit because that's what the failure we found turned out to be.
+[08:25] failure we found turned out to be. Later, I'll show you exactly how the
+[08:28] Later, I'll show you exactly how the diagnosis got made instead of just
+[08:30] diagnosis got made instead of just assuming it. One more distinction, this
+[08:32] assuming it. One more distinction, this one isn't in either paper by name, but
+[08:35] one isn't in either paper by name, but it matters a lot once you actually build
+[08:37] it matters a lot once you actually build one of these. Not every test in your
+[08:40] one of these. Not every test in your suit is there to find something broken.
+[08:43] suit is there to find something broken. Some task you write expecting them to
+[08:45] Some task you write expecting them to fail on purpose because you already know
+[08:48] fail on purpose because you already know the harness has a gap there because
+[08:50] the harness has a gap there because remember you found it by actually
+[08:52] remember you found it by actually looking at the actual failures. Those
+[08:54] looking at the actual failures. Those feed the mining stage. Other task you
+[08:57] feed the mining stage. Other task you write expecting them to already pass and
+[08:59] write expecting them to already pass and their whole job is to sit there quietly
+[09:02] their whole job is to sit there quietly and complain loudly if a fix for one of
+[09:05] and complain loudly if a fix for one of the issue accidentally breaks something
+[09:07] the issue accidentally breaks something else. So let's call the first kind the
+[09:10] else. So let's call the first kind the miners and the second kind the
+[09:12] miners and the second kind the regression guards. And we'll need both.
+[09:15] regression guards. And we'll need both. A suit made only of expected failures
+[09:18] A suit made only of expected failures can't catch a fix that helps one thing
+[09:21] can't catch a fix that helps one thing while breaking another. Once you've got
+[09:22] while breaking another. Once you've got a cluster, you don't want to test a fix
+[09:25] a cluster, you don't want to test a fix only on the failures that caused it. You
+[09:27] only on the failures that caused it. You want to know if the fix actually
+[09:29] want to know if the fix actually understood the problem or just memorized
+[09:32] understood the problem or just memorized it. So you split your test into two
+[09:34] it. So you split your test into two piles. The pile the fixer gets to see is
+[09:37] piles. The pile the fixer gets to see is called held in. The pile you hide from
+[09:40] called held in. The pile you hide from the fixer on purpose, let's call it held
+[09:42] the fixer on purpose, let's call it held out. Afterward, you check the fix
+[09:45] out. Afterward, you check the fix against both. In this project, two
+[09:47] against both. In this project, two different tasks trip over that same log
+[09:50] different tasks trip over that same log file problem. The fixer got to see one
+[09:53] file problem. The fixer got to see one of them. The other stayed hidden. That
+[09:55] of them. The other stayed hidden. That hidden pile is the only thing standing
+[09:58] hidden pile is the only thing standing between a real fix and a fix that just
+[10:00] between a real fix and a fix that just games the test it was shown. Now the
+[10:03] games the test it was shown. Now the small local quantized models like the
+[10:06] small local quantized models like the one I'm running the Gemma model these
+[10:08] one I'm running the Gemma model these models aren't perfectly consistent. You
+[10:11] models aren't perfectly consistent. You ask the same question twice you might
+[10:13] ask the same question twice you might get two different answers. So every task
+[10:16] get two different answers. So every task in this suite gets run several times and
+[10:20] in this suite gets run several times and what gets recorded is a fraction. Two
+[10:23] what gets recorded is a fraction. Two passes out of three isn't a pass or a
+[10:25] passes out of three isn't a pass or a fail. It's 2/3. And when you compare a
+[10:28] fail. It's 2/3. And when you compare a fixed fraction against the original
+[10:30] fixed fraction against the original fraction, you average them instead of
+[10:33] fraction, you average them instead of taking whichever answer showed up most.
+[10:35] taking whichever answer showed up most. That detail comes straight from the
+[10:37] That detail comes straight from the self-h harness paper's own methodology.
+[10:39] self-h harness paper's own methodology. And it adds up fast. 13 tasks, a few
+[10:42] And it adds up fast. 13 tasks, a few tries each. Every single candidate fix
+[10:45] tries each. Every single candidate fix gets measured with 49 separate runs
+[10:48] gets measured with 49 separate runs against the live model. So how do you
+[10:50] against the live model. So how do you decide if a fix counts? Simple rule
+[10:53] decide if a fix counts? Simple rule straight from again the paper. It has to
+[10:56] straight from again the paper. It has to be at least as good as both piles seen
+[11:00] be at least as good as both piles seen and hidden and it has to be strictly bad
+[11:03] and hidden and it has to be strictly bad better at one at least. If it's better
+[11:05] better at one at least. If it's better in one place and worse in another, it
+[11:07] in one place and worse in another, it gets rejected. There is no partial
+[11:09] gets rejected. There is no partial credit here. The AIAL paper adds a
+[11:12] credit here. The AIAL paper adds a warning worth carrying alongside that
+[11:14] warning worth carrying alongside that root. A self- evvolving system that
+[11:16] root. A self- evvolving system that can't explain what changed isn't self-
+[11:19] can't explain what changed isn't self- evvolving, it's drifting. And the
+[11:21] evvolving, it's drifting. And the rolling back a bad change shouldn't be
+[11:24] rolling back a bad change shouldn't be some manual emergency procedure you
+[11:26] some manual emergency procedure you invoke in a pandemic. It should be a
+[11:28] invoke in a pandemic. It should be a normal first class thing the system can
+[11:30] normal first class thing the system can just do. Keep both of those in mind.
+[11:33] just do. Keep both of those in mind. They come back later. One more idea and
+[11:35] They come back later. One more idea and it matters a lot for what comes later.
+[11:38] it matters a lot for what comes later. Before anything outside your agent can
+[11:40] Before anything outside your agent can safely propose a change, your harness
+[11:43] safely propose a change, your harness has to say exactly what's allowed to
+[11:45] has to say exactly what's allowed to change. A short named versioned list.
+[11:48] change. A short named versioned list. And that list is called the editable
+[11:51] And that list is called the editable surface. Everything outside that list
+[11:53] surface. Everything outside that list stays exactly as untouchable as it was
+[11:57] stays exactly as untouchable as it was before. Now one departure before we go
+[11:59] before. Now one departure before we go further. In the self harness paper, the
+[12:02] further. In the self harness paper, the same model diagnoses its own mistakes
+[12:05] same model diagnoses its own mistakes and proposes its own fix. Here I split
+[12:08] and proposes its own fix. Here I split that in two. Gemma, the small model we
+[12:10] that in two. Gemma, the small model we have been running locally this whole
+[12:11] have been running locally this whole series stays completely frozen. It only
+[12:14] series stays completely frozen. It only ever gets tested. A second external
+[12:17] ever gets tested. A second external model in this case fable because had
+[12:21] model in this case fable because had some time to use it does the diagnosing
+[12:23] some time to use it does the diagnosing and the proposing. Why? Because Gemma is
+[12:26] and the proposing. Why? Because Gemma is small enough that asking it to fix its
+[12:29] small enough that asking it to fix its own blind spot means asking it to see
+[12:31] own blind spot means asking it to see past something it can't see. An outside
+[12:34] past something it can't see. An outside model doesn't share the same blind spot.
+[12:36] model doesn't share the same blind spot. So this isn't the paper's experiment
+[12:38] So this isn't the paper's experiment anymore. It's a fair disclosed variation
+[12:41] anymore. It's a fair disclosed variation on it. And I'll say so again when it
+[12:43] on it. And I'll say so again when it matters. There's a real cost to that
+[12:45] matters. There's a real cost to that choice. and it's worth naming now. A
+[12:48] choice. and it's worth naming now. A stronger model proposing fixes for a
+[12:50] stronger model proposing fixes for a smaller one can overshoot. It can
+[12:53] smaller one can overshoot. It can suggest something clever, worldy uh or
+[12:56] suggest something clever, worldy uh or nuanced that a small quantized model
+[12:58] nuanced that a small quantized model might just not be able to follow. So,
+[13:01] might just not be able to follow. So, it's something worth keeping in mind. I
+[13:04] it's something worth keeping in mind. I call that a capability mismatch. It's a
+[13:06] call that a capability mismatch. It's a real risk with this setup. one the
+[13:09] real risk with this setup. one the original paper never had to deal with
+[13:11] original paper never had to deal with because its proposer and its patient
+[13:14] because its proposer and its patient were always the same model. So watch for
+[13:16] were always the same model. So watch for it later. It shows up uh just not quite
+[13:19] it later. It shows up uh just not quite where you'd expect. Okay. So one more
+[13:22] where you'd expect. Okay. So one more check before we move on because getting
+[13:24] check before we move on because getting this wrong here would undercut the whole
+[13:27] this wrong here would undercut the whole point. Cluster weakness mining held in
+[13:30] point. Cluster weakness mining held in and held out the acceptance rule all of
+[13:33] and held out the acceptance rule all of that is coming from the selfarnness
+[13:35] that is coming from the selfarnness paper's own language. The bigger
+[13:37] paper's own language. The bigger picture, an agent as a model wrapped in
+[13:40] picture, an agent as a model wrapped in a harness with memory tools, guardrails,
+[13:42] a harness with memory tools, guardrails, choosing the right kind of mix and roll
+[13:44] choosing the right kind of mix and roll back as a normal first class action. All
+[13:46] back as a normal first class action. All of that is coming from the aerial paper
+[13:49] of that is coming from the aerial paper loop engineering and the fivelevel
+[13:51] loop engineering and the fivelevel ladder that we talked about, they all
+[13:54] ladder that we talked about, they all coming from Linen Wang's post. And a
+[13:56] coming from Linen Wang's post. And a couple of words that I've used, minor
+[13:58] couple of words that I've used, minor versus a guard, capability mismatch, I
+[14:01] versus a guard, capability mismatch, I made up those to describe what I was
+[14:03] made up those to describe what I was actually building. Okay, so let's put
+[14:05] actually building. Okay, so let's put the whole idea back together before we
+[14:07] the whole idea back together before we build it. Something fails repeatedly
+[14:09] build it. Something fails repeatedly when using your agent for a shared
+[14:12] when using your agent for a shared reason. Those group failures are a
+[14:14] reason. Those group failures are a cluster. You show some of those affected
+[14:17] cluster. You show some of those affected task to whoever is fixing it and hide
+[14:19] task to whoever is fixing it and hide the rest. That's held in and held out.
+[14:22] the rest. That's held in and held out. The fixer, the external AI, proposes a
+[14:25] The fixer, the external AI, proposes a change, but only within a short named
+[14:28] change, but only within a short named list of things it's actually allowed to
+[14:30] list of things it's actually allowed to touch. That is the hardness's editable
+[14:33] touch. That is the hardness's editable surface. You test that change against
+[14:36] surface. You test that change against everything, not just what it was aimed
+[14:38] everything, not just what it was aimed at. And it only counts if nothing got
+[14:41] at. And it only counts if nothing got worse anywhere and something got
+[14:44] worse anywhere and something got strictly better somewhere. That is our
+[14:47] strictly better somewhere. That is our acceptance rule. That's the whole
+[14:49] acceptance rule. That's the whole mechanism. Everything from here is that
+[14:51] mechanism. Everything from here is that mechanism run for real against my actual
+[14:55] mechanism run for real against my actual agent and that log file failure from the
+[14:57] agent and that log file failure from the start. That brings us to act three, the
+[15:00] start. That brings us to act three, the build. Before any of this could work,
+[15:02] build. Before any of this could work, the harness we built had to change um
+[15:05] the harness we built had to change um without changing behavior. Of course,
+[15:07] without changing behavior. Of course, every knob that governed how it acted
+[15:11] every knob that governed how it acted used to be scattered across uh multiple
+[15:14] used to be scattered across uh multiple files. In this case, five files to be
+[15:15] files. In this case, five files to be precise. I collected all of it into one
+[15:18] precise. I collected all of it into one place. 35 lines, 11 values, and one
+[15:22] place. 35 lines, 11 values, and one version number. The old code still reads
+[15:25] version number. The old code still reads from it. So the agent continues to
+[15:26] from it. So the agent continues to behave exactly the same as before. What
+[15:29] behave exactly the same as before. What changed is the harness can now honestly
+[15:31] changed is the harness can now honestly answer the question what exactly is
+[15:34] answer the question what exactly is editable about itself. That file is the
+[15:37] editable about itself. That file is the only thing an outside editor is ever
+[15:40] only thing an outside editor is ever allowed to touch. Nothing else. And
+[15:42] allowed to touch. Nothing else. And here's the diff in the public repository
+[15:44] here's the diff in the public repository for Gemma, the coding agent we've been
+[15:46] for Gemma, the coding agent we've been building that makes that change. If you
+[15:49] building that makes that change. If you go check out the commit, you will see
+[15:51] go check out the commit, you will see one place where I have submitted this
+[15:53] one place where I have submitted this change. Exactly. The new file's own dock
+[15:56] change. Exactly. The new file's own dock string says it plainly. One JSON file is
+[15:59] string says it plainly. One JSON file is the entire editable surface of that
+[16:02] the entire editable surface of that particular harness or agent. Now, here's
+[16:05] particular harness or agent. Now, here's the trap worth naming out loud because
+[16:07] the trap worth naming out loud because it's the kind of thing that looks fine
+[16:09] it's the kind of thing that looks fine until it isn't. If the test that grade
+[16:13] until it isn't. If the test that grade of fix live um sits anywhere near the
+[16:16] of fix live um sits anywhere near the thing being edited, the editor can
+[16:18] thing being edited, the editor can cheat. Not maliciously, just
+[16:22] cheat. Not maliciously, just efficiently. It's easier to edit the
+[16:24] efficiently. It's easier to edit the test than to fix the real problem. So
+[16:27] test than to fix the real problem. So the task to it and everything that
+[16:29] the task to it and everything that grades a candidate fix lives somewhere
+[16:32] grades a candidate fix lives somewhere else entirely in a completely separate
+[16:35] else entirely in a completely separate part of the project that the editor
+[16:37] part of the project that the editor never even sees. One more thing that we
+[16:39] never even sees. One more thing that we should borrow from the um aerial paper
+[16:43] should borrow from the um aerial paper is is that that paper argues that a pass
+[16:46] is is that that paper argues that a pass or fail number by itself isn't enough to
+[16:49] or fail number by itself isn't enough to learn from. You need the actual trace.
+[16:51] learn from. You need the actual trace. You need to see what the agent saw, what
+[16:54] You need to see what the agent saw, what it did, what came back stamped with
+[16:57] it did, what came back stamped with exactly which version of the harness
+[16:59] exactly which version of the harness produced it. So every single run this
+[17:01] produced it. So every single run this project does gets recorded in full.
+[17:04] project does gets recorded in full. Every tool call, every reply tied to
+[17:06] Every tool call, every reply tied to that exact commit of the agent and the
+[17:09] that exact commit of the agent and the exact version of the config that is
+[17:12] exact version of the config that is being tested. That pays off in a few
+[17:14] being tested. That pays off in a few minutes when I quote this model's actual
+[17:16] minutes when I quote this model's actual words to you from a failing run. This is
+[17:20] words to you from a failing run. This is the file. those words come from and this
+[17:23] the file. those words come from and this wasn't built in one sitting right and
+[17:24] wasn't built in one sitting right and it's worth looking at how this was built
+[17:27] it's worth looking at how this was built in the first place because that journey
+[17:29] in the first place because that journey is an interesting one as well one AI
+[17:32] is an interesting one as well one AI session read and synthesized the three
+[17:35] session read and synthesized the three sources that I talked about the papers
+[17:37] sources that I talked about the papers and the article a separate AI session
+[17:39] and the article a separate AI session with none of the first one's context
+[17:42] with none of the first one's context came in specifically to check its work
+[17:44] came in specifically to check its work and to check the tasks it adversarily
+[17:47] and to check the tasks it adversarily looking for the same kind of mistake um
+[17:49] looking for the same kind of mistake um tired author misses in their own
+[17:51] tired author misses in their own writing. The other sessions built the
+[17:53] writing. The other sessions built the config file and the runner that actually
+[17:56] config file and the runner that actually measures pass rate. Each handed a
+[17:58] measures pass rate. Each handed a self-contained brief instead of a
+[18:00] self-contained brief instead of a shoulder tap. That's the same discipline
+[18:02] shoulder tap. That's the same discipline the earlier chapters taught. Split work
+[18:05] the earlier chapters taught. Split work into isolated pieces and check your own
+[18:07] into isolated pieces and check your own output before trusting it. So I didn't
+[18:09] output before trusting it. So I didn't build the thing that improves the agent
+[18:11] build the thing that improves the agent any differently than how we build the
+[18:13] any differently than how we build the agent itself. And that adversarial
+[18:15] agent itself. And that adversarial review wasn't a formality. It found five
+[18:19] review wasn't a formality. It found five real problems in how I would written the
+[18:21] real problems in how I would written the checks before a single real test run
+[18:24] checks before a single real test run happened. One test could pass even if
+[18:26] happened. One test could pass even if the agent did nothing at all. So a do
+[18:28] the agent did nothing at all. So a do nothing agent would quietly get credit
+[18:30] nothing agent would quietly get credit for succeeding. Another had a sharper
+[18:33] for succeeding. Another had a sharper problem. Nothing stopped a candidate fix
+[18:36] problem. Nothing stopped a candidate fix from rewriting the answer key itself,
+[18:38] from rewriting the answer key itself, the actual file the test checks against
+[18:40] the actual file the test checks against instead of fixing the real bug. The fix
+[18:42] instead of fixing the real bug. The fix was simple. record a fingerprint of
+[18:45] was simple. record a fingerprint of every seeded test file the moment it's
+[18:47] every seeded test file the moment it's written and if that fingerprint ever
+[18:49] written and if that fingerprint ever changes the task fails outright no
+[18:52] changes the task fails outright no matter what else happened editing the
+[18:54] matter what else happened editing the answer key has to count as a failure not
+[18:57] answer key has to count as a failure not a loophole both of those got closed uh
+[19:00] a loophole both of those got closed uh before I ran any live run instead of
+[19:02] before I ran any live run instead of discovered after one so until a suit has
+[19:05] discovered after one so until a suit has been checked this hard it isn't a yard
+[19:07] been checked this hard it isn't a yard stick uh it it's just a guess so the
+[19:11] stick uh it it's just a guess so the finished suit is 13 small tasks written
+[19:14] finished suit is 13 small tasks written by hand in four groups. Ones that test
+[19:17] by hand in four groups. Ones that test whether the harness loses information
+[19:19] whether the harness loses information across a long session. One that test
+[19:22] across a long session. One that test whether the agent ever claims success it
+[19:25] whether the agent ever claims success it can't prove. Third one that test whether
+[19:27] can't prove. Third one that test whether if uh if it leaks something it
+[19:30] if uh if it leaks something it shouldn't. And the ones that test
+[19:32] shouldn't. And the ones that test whether it reaches for a tool instead of
+[19:34] whether it reaches for a tool instead of guessing. Every one of those is grounded
+[19:36] guessing. Every one of those is grounded in something that my agent actually did
+[19:39] in something that my agent actually did while using that agent earlier in the
+[19:41] while using that agent earlier in the series. Nothing is invented here. And
+[19:44] series. Nothing is invented here. And before letting anything propose a fix, I
+[19:46] before letting anything propose a fix, I measured what this harness actually does
+[19:49] measured what this harness actually does today as it is right now. 13 tasks,
+[19:52] today as it is right now. 13 tasks, three to five tries each, real runs
+[19:54] three to five tries each, real runs against the real local model. And the
+[19:57] against the real local model. And the result was almost entirely green. Just
+[20:00] result was almost entirely green. Just two tasks failed every single attempt.
+[20:03] two tasks failed every single attempt. And they are exactly the log file
+[20:05] And they are exactly the log file failure from the start of the video. A2,
+[20:07] failure from the start of the video. A2, the one the fixer will later get to see
+[20:10] the one the fixer will later get to see fail. Three out of three. A4, that's the
+[20:13] fail. Three out of three. A4, that's the hidden one, failed five out of five. So,
+[20:16] hidden one, failed five out of five. So, two red rows, one shared cause. That's
+[20:19] two red rows, one shared cause. That's the cluster this whole video is about.
+[20:21] the cluster this whole video is about. The other 10 task were passing every
+[20:23] The other 10 task were passing every single time, which means 15 chapters of
+[20:27] single time, which means 15 chapters of deliberate harness engineering held up
+[20:29] deliberate harness engineering held up to quite a lot of adversarial test suit.
+[20:32] to quite a lot of adversarial test suit. And I'll take that. That brings us to
+[20:34] And I'll take that. That brings us to running it for real. That's our act
+[20:36] running it for real. That's our act four. And here's the actual piece of
+[20:38] four. And here's the actual piece of code. This whole story turns on. The
+[20:41] code. This whole story turns on. The entire function is six lines. This, if
+[20:43] entire function is six lines. This, if you remember, is the clamp function.
+[20:47] you remember, is the clamp function. When something the agent reads is too
+[20:49] When something the agent reads is too big, the harness keeps the beginning up
+[20:51] big, the harness keeps the beginning up to a limit and drops everything after
+[20:54] to a limit and drops everything after it, leaving a small marker behind saying
+[20:56] it, leaving a small marker behind saying how much got cut. That's it. Simple on
+[20:59] how much got cut. That's it. Simple on purpose, easy to reason about, and it
+[21:01] purpose, easy to reason about, and it has exactly the weakness you would
+[21:03] has exactly the weakness you would expect from something that simple. If
+[21:05] expect from something that simple. If the part that matters happens to live
+[21:08] the part that matters happens to live past that limit, it's gone before the
+[21:11] past that limit, it's gone before the model ever sees a single token of it. So
+[21:13] model ever sees a single token of it. So here's that log file failure up close. I
+[21:17] here's that log file failure up close. I ask the agent a question whose answer
+[21:19] ask the agent a question whose answer sits near the end of a log file and
+[21:22] sits near the end of a log file and every single time it fails to answer.
+[21:25] every single time it fails to answer. But look at what it actually says. The
+[21:27] But look at what it actually says. The log ends abruptly with a truncated
+[21:30] log ends abruptly with a truncated sequence. I cannot determine the
+[21:32] sequence. I cannot determine the password from the information provided.
+[21:34] password from the information provided. It knew. It noticed the content was cut
+[21:37] It knew. It noticed the content was cut off and it refused to guess. A model
+[21:39] off and it refused to guess. A model that lies confidently would be a much
+[21:42] that lies confidently would be a much harder problem to diagnose. This one
+[21:44] harder problem to diagnose. This one honestly said it didn't have enough
+[21:46] honestly said it didn't have enough information which tells us in plain
+[21:48] information which tells us in plain language exactly where the real bug is.
+[21:50] language exactly where the real bug is. It is in the plumbing around the model
+[21:53] It is in the plumbing around the model and nowhere in the model itself.
+[21:55] and nowhere in the model itself. Remember mining is supposed to separate
+[21:57] Remember mining is supposed to separate a real recurring cause from a one-off
+[22:00] a real recurring cause from a one-off slip. And here it is doing exactly that.
+[22:02] slip. And here it is doing exactly that. One other task in the suit came back
+[22:04] One other task in the suit came back flaky, passing most of the time, failing
+[22:07] flaky, passing most of the time, failing occasionally, no clear pattern. Those
+[22:09] occasionally, no clear pattern. Those failures didn't get grouped into
+[22:11] failures didn't get grouped into anything and nothing got proposed
+[22:13] anything and nothing got proposed against them. They got noted and set
+[22:15] against them. They got noted and set aside as noise. Only the failures that
+[22:18] aside as noise. Only the failures that happened the same way every single time
+[22:20] happened the same way every single time for one provable shared cause formed the
+[22:23] for one provable shared cause formed the cluster this loop worked on. It's an
+[22:25] cluster this loop worked on. It's an important thing to note when creating
+[22:27] important thing to note when creating such clusters for your own agent uh and
+[22:30] such clusters for your own agent uh and agent harnesses. And remember the fork
+[22:32] agent harnesses. And remember the fork from earlier memory harness or the model
+[22:35] from earlier memory harness or the model itself. The missing fact would point at
+[22:38] itself. The missing fact would point at memory. A failure showing up everywhere
+[22:40] memory. A failure showing up everywhere would point at model and a tool result
+[22:42] would point at model and a tool result getting cut off before it ever reaches
+[22:45] getting cut off before it ever reaches the agent point squarely at the harness.
+[22:48] the agent point squarely at the harness. Okay. So from this point on the fixer
+[22:49] Okay. So from this point on the fixer gets to work. So Fable looked at the
+[22:52] gets to work. So Fable looked at the failure and proposed three fixes. All
+[22:54] failure and proposed three fixes. All three of them to do exactly the same
+[22:56] three of them to do exactly the same kind of thing. Raise one number. And in
+[22:59] kind of thing. Raise one number. And in its own reasoning, it said almost
+[23:01] its own reasoning, it said almost exactly this. No instruction edit can
+[23:03] exactly this. No instruction edit can ever recover data that never enters the
+[23:05] ever recover data that never enters the window. That's the right diagnosis.
+[23:08] window. That's the right diagnosis. Remember the editable surface. There is
+[23:10] Remember the editable surface. There is no field in the configuration for change
+[23:12] no field in the configuration for change the strategy of how the content is uh
+[23:16] the strategy of how the content is uh clipped uh or clamped only change the
+[23:19] clipped uh or clamped only change the value. So every fix fable could possibly
+[23:22] value. So every fix fable could possibly propose here was always going to be a
+[23:25] propose here was always going to be a bigger number. One more thing worth
+[23:27] bigger number. One more thing worth noticing, each proposal came with its
+[23:30] noticing, each proposal came with its own written risk assessment. And the
+[23:32] own written risk assessment. And the third one actually calls out in advance
+[23:35] third one actually calls out in advance the exact task that it might hurt. Hold
+[23:37] the exact task that it might hurt. Hold on to that thought. It's worth being
+[23:39] on to that thought. It's worth being precise about what actually happens when
+[23:41] precise about what actually happens when a candidate gets tested because it's way
+[23:45] a candidate gets tested because it's way less dramatic than it sounds. The
+[23:47] less dramatic than it sounds. The configuration file gets edited right
+[23:49] configuration file gets edited right there in the working copy of the
+[23:51] there in the working copy of the repository exactly as if a person had
+[23:53] repository exactly as if a person had typed the change by hand. Then a full 13
+[23:56] typed the change by hand. Then a full 13 task uh test suit runs against that
+[23:59] task uh test suit runs against that edited copy. Every task, not just the
+[24:02] edited copy. Every task, not just the one that failed, not just A2, it's all
+[24:04] one that failed, not just A2, it's all clusters, all test within that. Then
+[24:07] clusters, all test within that. Then whatever the result, the edit gets
+[24:09] whatever the result, the edit gets reverted. You can see it in the record
+[24:11] reverted. You can see it in the record itself. Same commit as the baseline. One
+[24:15] itself. Same commit as the baseline. One extra flag, dirty, true, and a
+[24:17] extra flag, dirty, true, and a fingerprint of exactly what the dirt
+[24:20] fingerprint of exactly what the dirt was. A rejected candidate never becomes
+[24:22] was. A rejected candidate never becomes a commit. It never touches the actual
+[24:25] a commit. It never touches the actual history of the repository at all. It
+[24:27] history of the repository at all. It existed for exactly as long as it took
+[24:30] existed for exactly as long as it took to measure it and then it was gone. Only
+[24:32] to measure it and then it was gone. Only a candidate that clears the bar, our
+[24:35] a candidate that clears the bar, our acceptance criteria gets to a permanent.
+[24:37] acceptance criteria gets to a permanent. But again, there is more to it. It
+[24:39] But again, there is more to it. It caught its own bugs. Before trusting any
+[24:42] caught its own bugs. Before trusting any of this, the very first dry run error
+[24:44] of this, the very first dry run error out. One of my own test files had a bug.
+[24:47] out. One of my own test files had a bug. it was quietly comparing itself against
+[24:49] it was quietly comparing itself against the live editable version of the very
+[24:52] the live editable version of the very number being changed. So any fix that
+[24:54] number being changed. So any fix that raised that number far enough to work
+[24:56] raised that number far enough to work would have errored out um the test
+[24:59] would have errored out um the test instead of passing it. The switch's own
+[25:01] instead of passing it. The switch's own predicted best fix was structurally
+[25:03] predicted best fix was structurally unpossible. Think about what that means.
+[25:06] unpossible. Think about what that means. The measuring stick was coupled to the
+[25:08] The measuring stick was coupled to the thing it was measuring. Of course, I
+[25:10] thing it was measuring. Of course, I fixed it by pinning the test to the
+[25:12] fixed it by pinning the test to the value recorded the day it was written.
+[25:15] value recorded the day it was written. And because fixing it changed the
+[25:17] And because fixing it changed the measuring tool itself, the whole
+[25:19] measuring tool itself, the whole baseline had to be re-recorded um before
+[25:21] baseline had to be re-recorded um before anything else could be trusted. So let's
+[25:24] anything else could be trusted. So let's look at the results. Three candidates
+[25:26] look at the results. Three candidates tested against the full 13 tasks, not
+[25:29] tested against the full 13 tasks, not just the one that was failing. The first
+[25:31] just the one that was failing. The first raising the limit to 8,000 characters.
+[25:34] raising the limit to 8,000 characters. This is again remember for the context.
+[25:36] This is again remember for the context. When you read a file, how many
+[25:38] When you read a file, how many characters should be read? So raising it
+[25:40] characters should be read? So raising it from 4,000 to 8,000 helped one thing but
+[25:43] from 4,000 to 8,000 helped one thing but didn't reach far enough to fix the
+[25:45] didn't reach far enough to fix the actual failure that we had written. And
+[25:47] actual failure that we had written. And it was a near miss. The password line
+[25:50] it was a near miss. The password line starts at the character 8,690
+[25:54] starts at the character 8,690 and the first candidate stopped reading
+[25:55] and the first candidate stopped reading at 8,000. The second went till 12,000
+[25:59] at 8,000. The second went till 12,000 characters. Fixed it completely and
+[26:00] characters. Fixed it completely and didn't cost anything anywhere else in
+[26:02] didn't cost anything anywhere else in the suit. Now look at what the agent
+[26:05] the suit. Now look at what the agent says now. Same question, same model,
+[26:07] says now. Same question, same model, same weights. And the whole reply all
+[26:10] same weights. And the whole reply all three times is the password that was
+[26:12] three times is the password that was look was looked for in the test. The
+[26:14] look was looked for in the test. The failing runs took each about 19 seconds
+[26:17] failing runs took each about 19 seconds to explain what they couldn't see. The
+[26:19] to explain what they couldn't see. The fixed one answers in under two. The
+[26:22] fixed one answers in under two. The third candidate is one worth slowing
+[26:24] third candidate is one worth slowing down for again. So that third candidate
+[26:26] down for again. So that third candidate genuinely broke something. One task that
+[26:29] genuinely broke something. One task that used to pass every time started failing
+[26:31] used to pass every time started failing every time because a side effect changed
+[26:34] every time because a side effect changed how the harness manages its memory of a
+[26:38] how the harness manages its memory of a long conversation. And it didn't fail
+[26:40] long conversation. And it didn't fail loudly. Each attempt ran for over a
+[26:42] loudly. Each attempt ran for over a minute and came back with an empty
+[26:44] minute and came back with an empty reply. Here's that uncomfortable part.
+[26:47] reply. Here's that uncomfortable part. That task went from always passing to
+[26:49] That task went from always passing to always failing. But another flaky pass
+[26:51] always failing. But another flaky pass rate happened to tick up by roughly the
+[26:54] rate happened to tick up by roughly the same amount on that same run. add
+[26:56] same amount on that same run. add everything into one total and the total
+[26:59] everything into one total and the total barely moved. The rule taken at face
+[27:01] barely moved. The rule taken at face value on the aggregate number alone
+[27:04] value on the aggregate number alone would have accepted this. It only got
+[27:06] would have accepted this. It only got caught because I insisted on looking at
+[27:09] caught because I insisted on looking at every task individually, not just the
+[27:12] every task individually, not just the total. And that limitation is disclosed
+[27:15] total. And that limitation is disclosed in the paper the rule comes from. So not
+[27:17] in the paper the rule comes from. So not my idea. I followed the paper to the
+[27:19] my idea. I followed the paper to the tea. So it isn't a bug in this project.
+[27:22] tea. So it isn't a bug in this project. It's just worth knowing about if you
+[27:25] It's just worth knowing about if you ever build one of these yourself. Even
+[27:27] ever build one of these yourself. Even the fix that won gets the same
+[27:30] the fix that won gets the same disclosure. Its overall improvement
+[27:33] disclosure. Its overall improvement wasn't purely the real fix. A good chunk
+[27:36] wasn't purely the real fix. A good chunk of it was real. The failing task
+[27:38] of it was real. The failing task actually recovered completely. So in
+[27:40] actually recovered completely. So in that way it is a real fix but a smaller
+[27:44] that way it is a real fix but a smaller sliver was noise. Another flaky pass
+[27:47] sliver was noise. Another flaky pass rate happening to take up slightly on
+[27:49] rate happening to take up slightly on this particular run. Reporting only the
+[27:51] this particular run. Reporting only the total would have overstated the win. And
+[27:53] total would have overstated the win. And separating the two is what makes the
+[27:55] separating the two is what makes the number trustworthy. As for the risk I
+[27:57] number trustworthy. As for the risk I flagged earlier, the stronger model
+[27:59] flagged earlier, the stronger model proposing something too clever for the
+[28:01] proposing something too clever for the smaller one to follow. It didn't bite me
+[28:03] smaller one to follow. It didn't bite me this time, but only because the winning
+[28:05] this time, but only because the winning fix happened to be a number rather than
+[28:07] fix happened to be a number rather than a sentence or a clever strategy or code.
+[28:11] a sentence or a clever strategy or code. Numbers don't get lost in translation
+[28:13] Numbers don't get lost in translation the way pros does or code does. The
+[28:15] the way pros does or code does. The other two candidates still show fable
+[28:17] other two candidates still show fable guessing wrong about how big a number
+[28:19] guessing wrong about how big a number needed to be and about a side effect it
+[28:22] needed to be and about a side effect it didn't fully anticipate. So the risk is
+[28:24] didn't fully anticipate. So the risk is real. This particular fix just wasn't
+[28:27] real. This particular fix just wasn't the shape that exposed that. Okay. So
+[28:29] the shape that exposed that. Okay. So the second candidate won three
+[28:32] the second candidate won three technically passed but this was the only
+[28:35] technically passed but this was the only one that helped without hiding a cost
+[28:37] one that helped without hiding a cost anywhere. The pipeline opened a real
+[28:39] anywhere. The pipeline opened a real pull request and the one from the top of
+[28:42] pull request and the one from the top of this video against my public repository
+[28:45] this video against my public repository on its own branch not on main. The title
+[28:47] on its own branch not on main. The title says it plainly. It evolving the harness
+[28:51] says it plainly. It evolving the harness iteration one max item characters change
+[28:53] iteration one max item characters change from 4,000 to 12,000. And here's what
+[28:56] from 4,000 to 12,000. And here's what happens next. Nothing. Automatically
+[28:59] happens next. Nothing. Automatically nothing. It did not merge. It's sitting
+[29:01] nothing. It did not merge. It's sitting there right now waiting for me to
+[29:03] there right now waiting for me to actually read it and decide. That brings
+[29:05] actually read it and decide. That brings me to act five. close that pause is
+[29:09] me to act five. close that pause is deliberate. The aerial paper has a
+[29:11] deliberate. The aerial paper has a phrase for this safe audited staged
+[29:14] phrase for this safe audited staged deployment. Every one of these changes
+[29:17] deployment. Every one of these changes changes should carry its own promotion
+[29:19] changes should carry its own promotion path reviewed before it ships not after.
+[29:22] path reviewed before it ships not after. It would have been easy to make the
+[29:24] It would have been easy to make the whole loop automated mining proposing
+[29:27] whole loop automated mining proposing validating and merging start to finish
+[29:29] validating and merging start to finish with no human in it at all. I didn't
+[29:31] with no human in it at all. I didn't build it that way on purpose. A fix that
+[29:33] build it that way on purpose. A fix that can explain itself with real numbers in
+[29:35] can explain itself with real numbers in a pull request and still waits for a
+[29:38] a pull request and still waits for a person to actually read it is a
+[29:40] person to actually read it is a fundamentally different kind of a thing
+[29:42] fundamentally different kind of a thing than one that just ships. It's the same
+[29:44] than one that just ships. It's the same discipline as the roll back idea from
+[29:46] discipline as the roll back idea from earlier. Being able to undo a change and
+[29:48] earlier. Being able to undo a change and choosing not to ship one automatically
+[29:51] choosing not to ship one automatically are really the same instinct pointed in
+[29:53] are really the same instinct pointed in two different directions. But let's talk
+[29:55] two different directions. But let's talk about what actually happens when I read
+[29:58] about what actually happens when I read this. What does actually reviewing this
+[30:00] this. What does actually reviewing this look like in practice? More than reading
+[30:02] look like in practice? More than reading the summary and clicking merge, I check
+[30:05] the summary and clicking merge, I check whether the stated reason for the fix
+[30:07] whether the stated reason for the fix actually matches the per task numbers
+[30:09] actually matches the per task numbers underneath it. The way we just did
+[30:12] underneath it. The way we just did together with the third candidate, I
+[30:14] together with the third candidate, I check whether the change is the smallest
+[30:16] check whether the change is the smallest one that explains the improvement or
+[30:18] one that explains the improvement or whether it's doing more than it needs
+[30:20] whether it's doing more than it needs to. And I check whether I'd have uh
+[30:23] to. And I check whether I'd have uh proposed the same fix myself. And if
+[30:25] proposed the same fix myself. And if not, why would I not have proposed that?
+[30:27] not, why would I not have proposed that? The whole design of this pipeline, one
+[30:30] The whole design of this pipeline, one PR perfix, a full table instead of a
+[30:33] PR perfix, a full table instead of a single number was built specifically to
+[30:35] single number was built specifically to make these reviews a few minutes of
+[30:37] make these reviews a few minutes of reading and and not more. Now, one quiet
+[30:40] reading and and not more. Now, one quiet cost uh that we should look at even
+[30:42] cost uh that we should look at even though it didn't change today's outcome,
+[30:44] though it didn't change today's outcome, the task that was hidden from the fixer
+[30:47] the task that was hidden from the fixer still ended up shaping which candidate
+[30:49] still ended up shaping which candidate got picked because it was part of the
+[30:52] got picked because it was part of the score used to compare all three. The
+[30:54] score used to compare all three. The fixer never read it, but using it to
+[30:57] fixer never read it, but using it to pick up the winner leaks information
+[30:59] pick up the winner leaks information about it into whichever fix survives.
+[31:01] about it into whichever fix survives. So, it's not purely hidden anymore. Not
+[31:04] So, it's not purely hidden anymore. Not the way it was before this run at least.
+[31:06] the way it was before this run at least. So, do this once and it's okay. Do this
+[31:09] So, do this once and it's okay. Do this over and over again, many iterations,
+[31:11] over and over again, many iterations, and your hidden pile slowly stops being
+[31:13] and your hidden pile slowly stops being hidden with one acceptance edit at a
+[31:16] hidden with one acceptance edit at a time. The fix is simple. retire and
+[31:18] time. The fix is simple. retire and replace the held out task occasionally.
+[31:21] replace the held out task occasionally. But it only starts to matter once you
+[31:23] But it only starts to matter once you are running this loop many times not
+[31:24] are running this loop many times not once. So if I were to run this kind of
+[31:27] once. So if I were to run this kind of improvement loops on a regular basis
+[31:30] improvement loops on a regular basis that would be the work that I'll have to
+[31:31] that would be the work that I'll have to keep doing retiring some and adding a
+[31:34] keep doing retiring some and adding a few more. Now what this can't still do
+[31:38] few more. Now what this can't still do um yet and this is again talking about
+[31:40] um yet and this is again talking about the limitation before I close the fix
+[31:42] the limitation before I close the fix that one is real but it's very narrow.
+[31:45] that one is real but it's very narrow. It works because this specific piece of
+[31:47] It works because this specific piece of test content happened to fit under the
+[31:50] test content happened to fit under the 12,000 characters. All it really did was
+[31:52] 12,000 characters. All it really did was raise the size of the bucket. Not
+[31:54] raise the size of the bucket. Not exciting at all. The harness is not
+[31:57] exciting at all. The harness is not smarter about what to keep. A genuinely
+[32:00] smarter about what to keep. A genuinely better fix exists here, right? Keep the
+[32:02] better fix exists here, right? Keep the beginning and the end of something long
+[32:05] beginning and the end of something long instead of just the beginning. And it's
+[32:07] instead of just the beginning. And it's exactly the same trick this harness
+[32:09] exactly the same trick this harness already uses elsewhere. If you remember
+[32:11] already uses elsewhere. If you remember compaction for a long conversation
+[32:14] compaction for a long conversation follows that exact technique. The answer
+[32:16] follows that exact technique. The answer was already in the building, right? It
+[32:18] was already in the building, right? It was already there in the code for some
+[32:20] was already there in the code for some other component, but that trick is code,
+[32:24] other component, but that trick is code, not a number. And I didn't deliberately
+[32:26] not a number. And I didn't deliberately let anything outside of that
+[32:28] let anything outside of that configuration file be touched. That's
+[32:30] configuration file be touched. That's the actual edge of what this version can
+[32:33] the actual edge of what this version can do. And I'd rather name it than hide it.
+[32:35] do. And I'd rather name it than hide it. It's an honest shape of what this first
+[32:38] It's an honest shape of what this first version of the self-improvement or
+[32:40] version of the self-improvement or self-evolving loop is. So what can we do
+[32:43] self-evolving loop is. So what can we do next? If there is a next version to
+[32:45] next? If there is a next version to this, here's honestly what it would look
+[32:48] this, here's honestly what it would look like. First, widen what the editors
+[32:50] like. First, widen what the editors allowed to touch beyond just the values.
+[32:53] allowed to touch beyond just the values. which means that increase the editable
+[32:56] which means that increase the editable surface of the agent or harness that we
+[32:58] surface of the agent or harness that we wrote so that the next time it could
+[33:00] wrote so that the next time it could propose an actual strategy for the same
+[33:02] propose an actual strategy for the same kind of failures we already found
+[33:04] kind of failures we already found instead of just a bigger number. Second,
+[33:06] instead of just a bigger number. Second, that flaky task mining set aside as
+[33:09] that flaky task mining set aside as noise deserves a harder look with more
+[33:12] noise deserves a harder look with more attempts to find out whether there's a
+[33:14] attempts to find out whether there's a second real cluster hiding under the
+[33:17] second real cluster hiding under the noise floor. And third, this whole suit
+[33:19] noise floor. And third, this whole suit only test what this agent has already
+[33:22] only test what this agent has already caught while my usage. So if I increase
+[33:25] caught while my usage. So if I increase the scope to what I know about my
+[33:27] the scope to what I know about my harness and what are all the places
+[33:29] harness and what are all the places where I would want to improve and then
+[33:31] where I would want to improve and then make the surface editable to that extent
+[33:34] make the surface editable to that extent that would widen what the
+[33:36] that would widen what the self-improvement loop would and how it
+[33:38] self-improvement loop would and how it would benefit me. None of that h needs
+[33:40] would benefit me. None of that h needs to happen before the results come. It's
+[33:42] to happen before the results come. It's just the list of what's left. So here's
+[33:45] just the list of what's left. So here's the checklist that I promised in the
+[33:47] the checklist that I promised in the order it ran. A real failure found by
+[33:50] order it ran. A real failure found by looking at the logs. The observability
+[33:52] looking at the logs. The observability helped in that aspect. Then grouped with
+[33:55] helped in that aspect. Then grouped with the other that shared its cause. Then
+[33:58] the other that shared its cause. Then separated from the one that didn't.
+[34:01] separated from the one that didn't. Tested against the work the fixer never
+[34:03] Tested against the work the fixer never saw, not just against the work that it
+[34:06] saw, not just against the work that it was shown. Fixed inside a short named
+[34:09] was shown. Fixed inside a short named list of what was actually allowed to
+[34:11] list of what was actually allowed to change. The editable surface checked
+[34:13] change. The editable surface checked against every task in the so not just
+[34:16] against every task in the so not just the one that was broken caught once
+[34:18] the one that was broken caught once gaming its own test and corrected before
+[34:21] gaming its own test and corrected before that mattered and landed as a real open
+[34:25] that mattered and landed as a real open pull request against a real public
+[34:28] pull request against a real public repository waiting on a person instead
+[34:30] repository waiting on a person instead of shipping itself. Ask those questions
+[34:33] of shipping itself. Ask those questions of any system that claims to improve
+[34:35] of any system that claims to improve itself and you'll know in minutes
+[34:36] itself and you'll know in minutes whether it's engineering or marketing.
+[34:39] whether it's engineering or marketing. So 15 chapters the agent that we built
+[34:41] So 15 chapters the agent that we built by hand. Then this one asked whether
+[34:43] by hand. Then this one asked whether something else could improve it without
+[34:45] something else could improve it without ever touching the model. And the answer
+[34:48] ever touching the model. And the answer today based on my experience and
+[34:50] today based on my experience and experiments is yes. Carefully narrowly
+[34:53] experiments is yes. Carefully narrowly and honestly the model stayed exactly as
+[34:56] and honestly the model stayed exactly as capable as it was. The harness around it
+[34:59] capable as it was. The harness around it got better. And that's the whole thesis
+[35:02] got better. And that's the whole thesis of the papers that we talked about and
+[35:04] of the papers that we talked about and the blog post from Lilian Wang. Model
+[35:06] the blog post from Lilian Wang. Model plus harness plus UI. It just turns out
+[35:09] plus harness plus UI. It just turns out the harness can keep improving even
+[35:11] the harness can keep improving even after you have stopped changing the
+[35:12] after you have stopped changing the model itself. Hope this was helpful.
+[35:14] model itself. Hope this was helpful. Thanks for watching.
