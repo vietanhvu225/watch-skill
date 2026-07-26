@@ -1,0 +1,88 @@
+[00:01] We are excited to announce a breakthrough in memory for agents.
+[00:03] breakthrough in memory for agents. Introducing Cogni, the world's most
+[00:05] Introducing Cogni, the world's most accurate open-source memory platform.
+[00:07] accurate open-source memory platform. Cogni can handle 100 billion token
+[00:09] Cogni can handle 100 billion token context windows, far beyond the limits
+[00:11] context windows, far beyond the limits of models like Claude Opus 4.8 and GPT
+[00:13] of models like Claude Opus 4.8 and GPT 5.5. At this window, Cogni hits more
+[00:16] 5.5. At this window, Cogni hits more than 79% [music]
+[00:17] than 79% [music] accuracy while costing seven times less
+[00:20] accuracy while costing seven times less than top models, an unprecedented feat
+[00:22] than top models, an unprecedented feat for LLM memory. Let me show you how
+[00:24] for LLM memory. Let me show you how powerful Cogni is. Let's say you are a
+[00:26] powerful Cogni is. Let's say you are a developer and want to secure a $1
+[00:28] developer and want to secure a $1 million deal. Here we have [music] a
+[00:30] million deal. Here we have [music] a regular session of Claude code in our
+[00:31] regular session of Claude code in our terminal, and here is a session of
+[00:34] terminal, and here is a session of Claude code using Cogni. We'll ask both
+[00:36] Claude code using Cogni. We'll ask both the same prompt, "Build an app for this
+[00:37] the same prompt, "Build an app for this prospect, make me a millionaire, and
+[00:39] prospect, make me a millionaire, and make [music] no mistakes." First, our
+[00:41] make [music] no mistakes." First, our standard Claude session finds a
+[00:43] standard Claude session finds a transcript from three weeks ago when the
+[00:44] transcript from three weeks ago when the prospect discusses Windows architecture.
+[00:48] prospect discusses Windows architecture. But there is an issue. Last week, the
+[00:50] But there is an issue. Last week, the prospect told you they switched from
+[00:51] prospect told you they switched from Windows to macOS. Claude was overloaded
+[00:54] Windows to macOS. Claude was overloaded with context as it retrieved five
+[00:56] with context as it retrieved five different meeting transcripts with this
+[00:58] different meeting transcripts with this prospect. So it didn't connect the dots,
+[01:01] prospect. So it didn't connect the dots, and it simply slipped through the
+[01:02] and it simply slipped through the cracks. Next, Claude delivered a Windows
+[01:05] cracks. Next, Claude delivered a Windows file incompatible with prospect's macOS
+[01:07] file incompatible with prospect's macOS system, [music] immediately killing the
+[01:09] system, [music] immediately killing the deal. Now we'll take a look at Cogni's
+[01:11] deal. Now we'll take a look at Cogni's session, connected to our company's data
+[01:13] session, connected to our company's data through Agents, Notion, and Slack. Just
+[01:16] through Agents, Notion, and Slack. Just like human brains do, Cogni not only
+[01:18] like human brains do, Cogni not only retrieves the context, but it
+[01:19] retrieves the context, but it understands the relationships between
+[01:21] understands the relationships between the data, so it always knows what's most
+[01:23] the data, so it always knows what's most relevant right now and why. It knows
+[01:25] relevant right now and why. It knows this $1 million prospect has [music] now
+[01:26] this $1 million prospect has [music] now changed to macOS. It knows their most
+[01:28] changed to macOS. It knows their most up-to-date vision for the app even after
+[01:30] up-to-date vision for the app even after three different shifts to their
+[01:31] three different shifts to their perspective, [music]
+[01:33] perspective, [music] and even recognizes the prospect is
+[01:34] and even recognizes the prospect is similar to a client you closed six
+[01:36] similar to a client you closed six months ago having the same stack and
+[01:38] months ago having the same stack and buying triggers. So it pulls the
+[01:40] buying triggers. So it pulls the client's winning app playbook and builds
+[01:41] client's winning app playbook and builds directly into this one. Now, Cogni runs
+[01:44] directly into this one. Now, Cogni runs into an issue. It finds a few different
+[01:46] into an issue. It finds a few different pieces of conflicting information about
+[01:48] pieces of conflicting information about what flows should be used for the app.
+[01:51] what flows should be used for the app. Claude without Cogni would get stuck in
+[01:53] Claude without Cogni would get stuck in a loop for 20 minutes, burn millions of
+[01:55] a loop for 20 minutes, burn millions of tokens, and still hallucinate. But Cogni
+[01:58] tokens, and still hallucinate. But Cogni doesn't guess, and it also doesn't ask
+[02:00] doesn't guess, and it also doesn't ask you for input. Cogni retraces the chain
+[02:02] you for input. Cogni retraces the chain of decisions, identifies which meetings
+[02:04] of decisions, identifies which meetings came later, verifies who made the final
+[02:06] came later, verifies who made the final call, corrects its own memory, and moves
+[02:09] call, corrects its own memory, and moves forward with the correct version on its
+[02:11] forward with the correct version on its own.
+[02:12] own. Claude and ChatGPT use basic vector
+[02:14] Claude and ChatGPT use basic vector memory, a flat pile of facts with no
+[02:17] memory, a flat pile of facts with no relationships between them, treated the
+[02:19] relationships between them, treated the same way for every conversation.
+[02:22] same way for every conversation. But, Cogni uses frontier dynamic [music]
+[02:24] But, Cogni uses frontier dynamic [music] graph memory, which connects
+[02:26] graph memory, which connects relationships between everything it
+[02:27] relationships between everything it knows, updates the context every day,
+[02:30] knows, updates the context every day, and always knows what matters right now.
+[02:32] and always knows what matters right now. Cogni is built by neuroscience
+[02:33] Cogni is built by neuroscience researchers from universities of Brown
+[02:35] researchers from universities of Brown and Berkeley. [music]
+[02:36] and Berkeley. [music] Over a hundred of the world's
+[02:37] Over a hundred of the world's fastest-growing companies, like Bayer,
+[02:39] fastest-growing companies, like Bayer, use Cogni already. To celebrate our
+[02:41] use Cogni already. To celebrate our launch, we're giving away the exact
+[02:43] launch, we're giving away the exact playbook we used to boost Cogni's cloud
+[02:45] playbook we used to boost Cogni's cloud code output by 400% through accurate,
+[02:48] code output by 400% through accurate, persistent, and contextually relevant
+[02:50] persistent, and contextually relevant memory. The right operator could use the
+[02:52] memory. The right operator could use the framework to make an extra seven or
+[02:54] framework to make an extra seven or eight figures a year. Leave a comment,
+[02:57] eight figures a year. Leave a comment, and we'll send [music] it to you.
