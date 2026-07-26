@@ -4,6 +4,7 @@ Master index mapping Video ID -> Title -> Topic -> Notes.
 
 | Video ID | Title | Topic / Category | Note Link | Duration | Date Processed |
 |----------|-------|------------------|-----------|----------|----------------|
+| `987a000f8c3b275e` | In the Land of AI Agents, the Verifiers Are King | AI Agents / Verification | [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) | 18:00 | 2026-07-26 |
 | `efaecd5b5991a381` | cognee 1.0: Self-improving memory for agents | AI Agents / Memory | [cognee_memory.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) | 03:01 | 2026-07-26 |
 | `143af38e605641db` | Why We Killed Our Multi-Agent Pipeline | AI Agents / Architecture | [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) | 15:00 | 2026-07-26 |
 | `8a893f42dc4c486c` | Google OKF: The Simple Folder That Gives AI Agents Your Entire Company Data | AI Agents / Data | [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) | 08:01 | 2026-07-16 |
