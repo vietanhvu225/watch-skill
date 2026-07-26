@@ -1,0 +1,395 @@
+[00:15] Uh, okay. So, I'm Suba. I head AI engineering at ZS. Uh,
+[00:17] engineering at ZS. Uh, &gt;&gt; I'm Ablash. I'm director of AI
+[00:18] &gt;&gt; I'm Ablash. I'm director of AI engineering at CS.
+[00:20] engineering at CS. &gt;&gt; So, ZS, we are a tech firm. We work with
+[00:21] &gt;&gt; So, ZS, we are a tech firm. We work with many of the top companies in the world,
+[00:23] many of the top companies in the world, including a lot of the top farmers
+[00:25] including a lot of the top farmers actually. Um so today's talk I think we
+[00:27] actually. Um so today's talk I think we wanted to as I think already introduced
+[00:29] wanted to as I think already introduced right we wanted to talk from our
+[00:30] right we wanted to talk from our experience right building multi-agent
+[00:32] experience right building multi-agent pipelines uh what are the mistakes we
+[00:34] pipelines uh what are the mistakes we did right and what did we learn and how
+[00:36] did right and what did we learn and how did we fix them so um so I'm going to
+[00:39] did we fix them so um so I'm going to orient it more on pharma commercial
+[00:41] orient it more on pharma commercial domain and for people in the room
+[00:43] domain and for people in the room probably who are not aware quickly u
+[00:45] probably who are not aware quickly u pharma has two main functions one is R&amp;D
+[00:47] pharma has two main functions one is R&amp;D right the drug discovery right uh and
+[00:49] right the drug discovery right uh and the clinical trials part and then
+[00:50] the clinical trials part and then there's a commercial how do you take a
+[00:52] there's a commercial how do you take a drug to a patient basically and and
+[00:55] drug to a patient basically and and Within commercial there are different
+[00:57] Within commercial there are different functions like once you create a drug
+[00:59] functions like once you create a drug right um what is the performance of a
+[01:01] right um what is the performance of a brand how is the drug performing in
+[01:03] brand how is the drug performing in different markets right uh then there
+[01:05] different markets right uh then there are things right your field force your
+[01:06] are things right your field force your reps how effectively are they engaging
+[01:09] reps how effectively are they engaging uh right with everyone there are things
+[01:10] uh right with everyone there are things around patient journey how a patients
+[01:12] around patient journey how a patients are adopting a drug right I think if
+[01:14] are adopting a drug right I think if there is any therapy switch which is
+[01:15] there is any therapy switch which is happening so as you can think about
+[01:17] happening so as you can think about there is a lot of analytics which really
+[01:19] there is a lot of analytics which really happens in a commercial domain and how
+[01:22] happens in a commercial domain and how do typically analysts
+[01:25] do typically analysts So there are four steps right what
+[01:27] So there are four steps right what analysts do right so first there is
+[01:29] analysts do right so first there is always something called a signal
+[01:30] always something called a signal detection right so signal can be
+[01:33] detection right so signal can be something like okay the prescription is
+[01:34] something like okay the prescription is what a doctor is writing maybe is there
+[01:36] what a doctor is writing maybe is there is there a drop in the prescription so
+[01:38] is there a drop in the prescription so that's a signal so once you got a signal
+[01:40] that's a signal so once you got a signal the second thing what an analyst does is
+[01:42] the second thing what an analyst does is why is this signal really failing what
+[01:45] why is this signal really failing what is the reason for it so is it like there
+[01:46] is the reason for it so is it like there is a competitor drug which has come in
+[01:48] is a competitor drug which has come in because of that is it is it reducing is
+[01:50] because of that is it is it reducing is it is it because maybe a payer coverage
+[01:52] it is it because maybe a payer coverage for the drug has reduced or maybe the
+[01:54] for the drug has reduced or maybe the the reps on the ground there's no proper
+[01:56] the reps on the ground there's no proper uh they're actually not taking the
+[01:58] uh they're actually not taking the benefits to the doctors
+[02:00] benefits to the doctors and once you arrive at the reason the
+[02:02] and once you arrive at the reason the next step becomes okay what is the
+[02:04] next step becomes okay what is the action do you take so if reps suppose if
+[02:07] action do you take so if reps suppose if reps the coverage is not good in a
+[02:09] reps the coverage is not good in a particular region should do we have to
+[02:10] particular region should do we have to increase that
+[02:12] increase that and once you do that what is the what is
+[02:14] and once you do that what is the what is the outlook right is my brand is my
+[02:16] the outlook right is my brand is my sales performance is is it going to
+[02:17] sales performance is is it going to improve right so these are the four
+[02:19] improve right so these are the four things which happens
+[02:21] things which happens now for some of the top farmers what we
+[02:24] now for some of the top farmers what we have done is how do we in an agentic way
+[02:26] have done is how do we in an agentic way right I think how do we actually mimic
+[02:27] right I think how do we actually mimic this this analytics work so what we did
+[02:30] this this analytics work so what we did we built agents for every step right
+[02:33] we built agents for every step right signal detection we said okay we'll have
+[02:34] signal detection we said okay we'll have an agent for signal detection it'll
+[02:36] an agent for signal detection it'll identify identify the signals for me
+[02:39] identify identify the signals for me second what are the root cause right for
+[02:40] second what are the root cause right for the signals right so in this case we
+[02:43] the signals right so in this case we have two agents one we call it a source
+[02:44] have two agents one we call it a source localization so for example if my sales
+[02:47] localization so for example if my sales is dropping at a national level is it
+[02:49] is dropping at a national level is it because it's dropping at say a
+[02:50] because it's dropping at say a particular region or is it dropping for
+[02:52] particular region or is it dropping for a payer
+[02:53] a payer So we need to understand that we we are
+[02:55] So we need to understand that we we are trying to identify the source of it and
+[02:57] trying to identify the source of it and then once we understand what is the real
+[02:59] then once we understand what is the real reason right I think the the sales
+[03:01] reason right I think the the sales performance has gone down that's another
+[03:03] performance has gone down that's another agent the driver attribution agent and
+[03:05] agent the driver attribution agent and then the last step is your synthesis
+[03:07] then the last step is your synthesis right so depending on the cause now what
+[03:09] right so depending on the cause now what is action you have to take and what is
+[03:10] is action you have to take and what is outlook like typically how an analyst
+[03:12] outlook like typically how an analyst used to do and all of this we used to
+[03:14] used to do and all of this we used to have an orchestrator agent which
+[03:16] have an orchestrator agent which connects all these agents together
+[03:18] connects all these agents together so now what happened once we had the
+[03:20] so now what happened once we had the system what did it generate right It
+[03:22] system what did it generate right It generates something an information
+[03:23] generates something an information packet like this, right? It clearly
+[03:26] packet like this, right? It clearly tells you the signal, right? So, first
+[03:27] tells you the signal, right? So, first it says maybe my brand's prescriptions
+[03:30] it says maybe my brand's prescriptions have dropped 18% in some territory,
+[03:32] have dropped 18% in some territory, right? In some time frame, maybe four
+[03:33] right? In some time frame, maybe four weeks. It then tells you the reason why
+[03:36] weeks. It then tells you the reason why did it why did it drop, right? The
+[03:38] did it why did it drop, right? The reason it says because
+[03:40] reason it says because a payer actually, right, the coverage
+[03:42] a payer actually, right, the coverage for this drug has actually they moved it
+[03:44] for this drug has actually they moved it to a lower tier. So, for patients, it's
+[03:47] to a lower tier. So, for patients, it's expensive actually to to buy this drug.
+[03:49] expensive actually to to buy this drug. the action it says okay because doctors
+[03:52] the action it says okay because doctors are writing less prescriptions maybe
+[03:55] are writing less prescriptions maybe send more sales reps to talk to doctors
+[03:57] send more sales reps to talk to doctors right and increase the number of
+[03:58] right and increase the number of prescriptions which you're writing and
+[04:00] prescriptions which you're writing and then if you take this action maybe your
+[04:01] then if you take this action maybe your outlook your sales performance is going
+[04:03] outlook your sales performance is going to increase so all of this looks good
+[04:06] to increase so all of this looks good high level but then if you if you look
+[04:08] high level but then if you if you look at at it closely it's not very coherent
+[04:11] at at it closely it's not very coherent right the cause is right it identified
+[04:13] right the cause is right it identified the right cause right because patients
+[04:15] the right cause right because patients can't afford the d drug right but the
+[04:17] can't afford the d drug right but the action it said it didn't really focus is
+[04:19] action it said it didn't really focus is on the payer part, the insurance part of
+[04:21] on the payer part, the insurance part of it, right? It just said reps, right?
+[04:24] it, right? It just said reps, right? Focus more reps actually, right? And
+[04:26] Focus more reps actually, right? And then the outlook because the action is
+[04:28] then the outlook because the action is wrong, the outlook is not going to
+[04:29] wrong, the outlook is not going to match. So at each level, if you see it
+[04:32] match. So at each level, if you see it is actually derived the right fact, but
+[04:33] is actually derived the right fact, but then there is no single agent which is
+[04:36] then there is no single agent which is owning which understands the end to-end
+[04:37] owning which understands the end to-end picture basically.
+[04:40] picture basically. So why did this happen? Like why did it
+[04:42] So why did this happen? Like why did it fail, right? So obviously it's not the
+[04:45] fail, right? So obviously it's not the LLM which failed, right? It's the way
+[04:47] LLM which failed, right? It's the way how we split the work, right? because we
+[04:49] how we split the work, right? because we tried mimicking the analyst behavior and
+[04:51] tried mimicking the analyst behavior and we did it. The first first key issue is
+[04:54] we did it. The first first key issue is like a language model is actually
+[04:57] like a language model is actually determining your signals. So signals
+[04:59] determining your signals. So signals like things like your sales drop is a
+[05:01] like things like your sales drop is a simple information which you can use
+[05:02] simple information which you can use statistical methods to actually go and
+[05:04] statistical methods to actually go and fetch this information. You don't need a
+[05:06] fetch this information. You don't need a language model actually right to fetch
+[05:07] language model actually right to fetch this information.
+[05:09] this information. Second is as your multi- aents there's a
+[05:11] Second is as your multi- aents there's a lot of context handoff which is
+[05:13] lot of context handoff which is happening and context is actually
+[05:15] happening and context is actually getting lost at each of these handoffs.
+[05:17] getting lost at each of these handoffs. So for example, the driver attribution
+[05:18] So for example, the driver attribution agent is actually determining the right
+[05:21] agent is actually determining the right cost. But then the next agent, the
+[05:23] cost. But then the next agent, the synthesis agent is actually is not able
+[05:25] synthesis agent is actually is not able to understand why is that right the the
+[05:27] to understand why is that right the the payers are finding the drug to be
+[05:29] payers are finding the drug to be expensive. It's not understanding the
+[05:30] expensive. It's not understanding the weightage of an insurance coverage going
+[05:33] weightage of an insurance coverage going going down. So that is a key information
+[05:35] going down. So that is a key information right which is getting lost. And the
+[05:37] right which is getting lost. And the last big piece is there's no shared
+[05:39] last big piece is there's no shared understanding of the business domain
+[05:41] understanding of the business domain knowledge for all these agents. All
+[05:43] knowledge for all these agents. All these agents don't understand metrics
+[05:45] these agents don't understand metrics right so things like TRX the number of
+[05:46] right so things like TRX the number of transa number of prescriptions which a
+[05:48] transa number of prescriptions which a doctor writes right what are the
+[05:50] doctor writes right what are the relationships between them why does it
+[05:52] relationships between them why does it go up or down so those are the the
+[05:54] go up or down so those are the the reasons so then what did we do uh so I
+[05:57] reasons so then what did we do uh so I called Abilash to come and solve for
+[05:59] called Abilash to come and solve for this okay
+[06:01] this okay uh thank you SA
+[06:03] uh thank you SA so we had like three problems uh so we
+[06:05] so we had like three problems uh so we thinking how are we going to solve this
+[06:08] thinking how are we going to solve this uh our first instinct was we'll go back
+[06:10] uh our first instinct was we'll go back to the drawing board we'll start
+[06:12] to the drawing board we'll start designing it again. So maybe the
+[06:14] designing it again. So maybe the topology was wrong, the skills were
+[06:16] topology was wrong, the skills were wrong, the tools were wrong, or maybe
+[06:19] wrong, the tools were wrong, or maybe the maybe we have to define a better
+[06:21] the maybe we have to define a better handoff, design a better handoff or a
+[06:23] handoff, design a better handoff or a better schema between agents.
+[06:26] better schema between agents. But we took a step back. We didn't do
+[06:28] But we took a step back. We didn't do any of that. We like all of us, we went
+[06:32] any of that. We like all of us, we went back to cloud code. So we opened a very
+[06:35] back to cloud code. So we opened a very plain empty directory. I rent cloud code
+[06:40] plain empty directory. I rent cloud code then give it just bash and the database
+[06:43] then give it just bash and the database then give it an actual signal which we
+[06:45] then give it an actual signal which we identified then started observing what
+[06:47] identified then started observing what it is doing. So while we look at what
+[06:50] it is doing. So while we look at what code does, we are able to figure out fix
+[06:52] code does, we are able to figure out fix for all the three issues we discussed
+[06:55] for all the three issues we discussed the first the first part.
+[06:58] the first the first part. So what was happening is the agent was
+[07:01] So what was happening is the agent was looking at data and deciding on a
+[07:03] looking at data and deciding on a signal.
+[07:05] signal. Sometimes it's applied some statistical
+[07:06] Sometimes it's applied some statistical methods. Sometimes it's barely look at
+[07:08] methods. Sometimes it's barely look at the data and say this is a signal.
+[07:10] the data and say this is a signal. Sometimes it's actually a signal.
+[07:12] Sometimes it's actually a signal. Sometimes it's a noise. This is
+[07:14] Sometimes it's a noise. This is something we don't want an agent to do.
+[07:16] something we don't want an agent to do. This is a completely deterministic
+[07:17] This is a completely deterministic workflow. So we separated it out from
+[07:19] workflow. So we separated it out from the agentic system. So we built a pure
+[07:23] the agentic system. So we built a pure deterministic workflow with different
+[07:24] deterministic workflow with different statistical methods. We put guard rails,
+[07:27] statistical methods. We put guard rails, we put thresholds, we put
+[07:29] we put thresholds, we put prioritization.
+[07:30] prioritization. Everything happened before the agent
+[07:33] Everything happened before the agent even kickstarts. So we run an automated
+[07:36] even kickstarts. So we run an automated pipeline which scans through the data
+[07:39] pipeline which scans through the data identify signals for each of the KPA. Is
+[07:41] identify signals for each of the KPA. Is anything happening with that? any
+[07:42] anything happening with that? any anomalies which is happening any trend
+[07:44] anomalies which is happening any trend which is very uh any trend which is
+[07:46] which is very uh any trend which is baking based on that we identified a
+[07:49] baking based on that we identified a signal we put it on a queue the moment a
+[07:51] signal we put it on a queue the moment a signal comes to the queue the agent
+[07:52] signal comes to the queue the agent wakes up so the agent's dope is to
+[07:55] wakes up so the agent's dope is to investigate not to identify
+[08:01] the second part so mainly the issue which we previously
+[08:05] so mainly the issue which we previously what sub was mentioning there is no
+[08:06] what sub was mentioning there is no coherence in the output which the agents
+[08:08] coherence in the output which the agents produced
+[08:10] produced so we started consolidating we Look at
+[08:12] so we started consolidating we Look at how cloud code operates. It's able to do
+[08:14] how cloud code operates. It's able to do a lot of operations. So we started
+[08:16] a lot of operations. So we started designing around that. So it's
+[08:19] designing around that. So it's repeatedly writing a function and
+[08:20] repeatedly writing a function and querying database. So we give it a tool
+[08:22] querying database. So we give it a tool for that.
+[08:25] for that. So this consolidated the entire process
+[08:27] So this consolidated the entire process into a single agent. That doesn't mean
+[08:30] into a single agent. That doesn't mean that we didn't do parallelism. We still
+[08:31] that we didn't do parallelism. We still do parallelism. What we removed is do we
+[08:35] do parallelism. What we removed is do we need distributed reasoning? We didn't by
+[08:37] need distributed reasoning? We didn't by the judgment to be distributed between
+[08:39] the judgment to be distributed between agents that we wanted to consolidate to
+[08:41] agents that we wanted to consolidate to a single agent. So that what exactly
+[08:43] a single agent. So that what exactly what we did. Then occasionally we
+[08:45] what we did. Then occasionally we observed cloud code it's launching sub
+[08:47] observed cloud code it's launching sub aents dynamically for a very particular
+[08:50] aents dynamically for a very particular focused task. So we did the same thing
+[08:53] focused task. So we did the same thing because if suppose you want to
+[08:54] because if suppose you want to understand if rep activity in a
+[08:56] understand if rep activity in a particular region that's an
+[08:58] particular region that's an investigation which you need to run that
+[09:00] investigation which you need to run that you can still delegate to a sub agent
+[09:02] you can still delegate to a sub agent you can get back the uh results back not
+[09:04] you can get back the uh results back not the reasoning or the judgment that is
+[09:06] the reasoning or the judgment that is still controlled by the by the main
+[09:08] still controlled by the by the main agent but the investigation part of it
+[09:10] agent but the investigation part of it we did we're delegating it to a sub
+[09:12] we did we're delegating it to a sub agent. So these are some of the things
+[09:14] agent. So these are some of the things we kept based on observing what code was
+[09:16] we kept based on observing what code was do cloud code was doing. So that give us
+[09:19] do cloud code was doing. So that give us a more lighter architecture than what
+[09:22] a more lighter architecture than what was initially there. But still it
+[09:24] was initially there. But still it doesn't solve the problem. That's why
+[09:25] doesn't solve the problem. That's why you see a knowledge graph in the
+[09:26] you see a knowledge graph in the diagram.
+[09:28] diagram. So it still doesn't have the business
+[09:30] So it still doesn't have the business context. It still doesn't understand all
+[09:35] context. It still doesn't understand all the entities, the domain, the KPIs, how
+[09:38] the entities, the domain, the KPIs, how do they relate to each other.
+[09:42] do they relate to each other. So that's something we wanted to solve
+[09:43] So that's something we wanted to solve for because the agent was looking at
+[09:45] for because the agent was looking at data looking at tables then trying to
+[09:47] data looking at tables then trying to infer the relationship that which was
+[09:49] infer the relationship that which was not scalable and it often produce
+[09:52] not scalable and it often produce relationship which is which is not
+[09:54] relationship which is which is not actually exist in the data.
+[09:57] actually exist in the data. So what we did so we've been in this
+[10:00] So what we did so we've been in this working in this field for a lot
+[10:03] working in this field for a lot whole lot of years. So we've been doing
+[10:05] whole lot of years. So we've been doing this for our clients. So we had a lot of
+[10:07] this for our clients. So we had a lot of domain experts who understand the farmer
+[10:08] domain experts who understand the farmer domain very well. We're doing commercial
+[10:10] domain very well. We're doing commercial analytics for the clients. So we start
+[10:12] analytics for the clients. So we start sat with them start building a knowledge
+[10:14] sat with them start building a knowledge graph. We start trying to map out the
+[10:16] graph. We start trying to map out the domain.
+[10:21] So we are able to build a knowledge graph. We are able to identify different
+[10:23] graph. We are able to identify different entities their relationship between
+[10:24] entities their relationship between that. So if you see there are like
+[10:26] that. So if you see there are like geographic entities, there are payers.
+[10:29] geographic entities, there are payers. How how geographic is connect to a payer
+[10:31] How how geographic is connect to a payer or an account? How does this connect to
+[10:34] or an account? How does this connect to a brand? Then from B brand or payer, how
+[10:37] a brand? Then from B brand or payer, how does it go to a KPI? How does a KPI
+[10:39] does it go to a KPI? How does a KPI relate to like a uh secondary KPI,
+[10:42] relate to like a uh secondary KPI, tertiary KPI? How does one KPI drives
+[10:44] tertiary KPI? How does one KPI drives another KPI? So, we started mapping out
+[10:46] another KPI? So, we started mapping out all of this information and then
+[10:48] all of this information and then creating our our knowledge graph.
+[10:51] creating our our knowledge graph. Once you have the knowledge graph, then
+[10:52] Once you have the knowledge graph, then we wanted to let the agent to navigate
+[10:55] we wanted to let the agent to navigate the knowledge graph. So, the knowledge
+[10:57] the knowledge graph. So, the knowledge graph is not just something the agent
+[11:00] graph is not just something the agent looks up for data. It is a control plane
+[11:02] looks up for data. It is a control plane for the agent.
+[11:04] for the agent. So, what do I mean by that? So the
+[11:07] So, what do I mean by that? So the knowledge graphs dictates what the agent
+[11:10] knowledge graphs dictates what the agent can look into, what path it can take,
+[11:12] can look into, what path it can take, what investigation hypothesis uh it can
+[11:15] what investigation hypothesis uh it can evaluate.
+[11:17] evaluate. So for example, if you when you do this
+[11:18] So for example, if you when you do this analysis, the root of the problem say
+[11:21] analysis, the root of the problem say something like your TRX is declining at
+[11:23] something like your TRX is declining at a national level. This could be when you
+[11:25] a national level. This could be when you do source localization. So that's our uh
+[11:28] do source localization. So that's our uh contract for how to find the bear. It
+[11:31] contract for how to find the bear. It might happen within a region. It could
+[11:33] might happen within a region. It could be concentrated in a territory. it would
+[11:35] be concentrated in a territory. it would be concentrated in a combination of a
+[11:36] be concentrated in a combination of a territory or a payer or an account. So
+[11:38] territory or a payer or an account. So there are whole lot of dimensions which
+[11:40] there are whole lot of dimensions which the agent needs to evaluate. Now it's a
+[11:43] the agent needs to evaluate. Now it's a lot of permission permutation
+[11:44] lot of permission permutation combination. So the knowledge graphs
+[11:46] combination. So the knowledge graphs gauge the agent on how to find where
+[11:48] gauge the agent on how to find where this is concentrated.
+[11:50] this is concentrated. &gt;&gt; Then the why why part of it why it is
+[11:53] &gt;&gt; Then the why why part of it why it is happening. When you figure out that okay
+[11:55] happening. When you figure out that okay something is concentrated at say the
+[11:57] something is concentrated at say the decline is concentrated at a particular
+[11:59] decline is concentrated at a particular region. Now you need to figure out the
+[12:00] region. Now you need to figure out the why. This is where where the uh KPS and
+[12:04] why. This is where where the uh KPS and the relations comes in. Once the agent
+[12:06] the relations comes in. Once the agent is able to narrow down the where then
+[12:08] is able to narrow down the where then it's able to go and figure out the u
+[12:11] it's able to go and figure out the u figure out the why part of it, which KPS
+[12:13] figure out the why part of it, which KPS is driving what
+[12:16] is driving what graph acts as the control surface. So
+[12:18] graph acts as the control surface. So agent every edge is a hypothesis. So the
+[12:22] agent every edge is a hypothesis. So the agent can go and evaluate that hypothes
+[12:24] agent can go and evaluate that hypothes hypothesis. Uh it doesn't go outside of
+[12:27] hypothesis. Uh it doesn't go outside of this. So that gives a more bounded
+[12:29] this. So that gives a more bounded surface for the agent to investigate.
+[12:36] So like everyone was mentioning about loop. So we also build a loop. So what
+[12:39] loop. So we also build a loop. So what the agent does? So the agent first start
+[12:42] the agent does? So the agent first start with an entity. It goes to the graph.
+[12:46] with an entity. It goes to the graph. It looks at the neighborhood of the
+[12:47] It looks at the neighborhood of the graph. Then it it figures out the edges.
+[12:51] graph. Then it it figures out the edges. So it's got some hypothesis. It will go
+[12:54] So it's got some hypothesis. It will go it'll go back to the original data.
+[12:56] it'll go back to the original data. evaluate that hypothesis. Look at the
+[12:59] evaluate that hypothesis. Look at the actual numbers. Then reason over it.
+[13:02] actual numbers. Then reason over it. Then it will it will either find it find
+[13:05] Then it will it will either find it find it contradicting or it finding
+[13:06] it contradicting or it finding supporting the the evidence supporting
+[13:08] supporting the the evidence supporting the hypothesis. If it's supporting it,
+[13:10] the hypothesis. If it's supporting it, it started traversing through the graph.
+[13:13] it started traversing through the graph. So this repeats this until it ran out of
+[13:16] So this repeats this until it ran out of all the hypothesis or it's able to
+[13:18] all the hypothesis or it's able to figure out the root cause. So this this
+[13:22] figure out the root cause. So this this concludes this run. this runs and it'll
+[13:24] concludes this run. this runs and it'll be able to figure out the uh root cause
+[13:26] be able to figure out the uh root cause of the problem.
+[13:28] of the problem. So once we build this so maybe like
+[13:30] So once we build this so maybe like after like 50 plus turns a whole lot of
+[13:33] after like 50 plus turns a whole lot of tokens it's able to produce something an
+[13:35] tokens it's able to produce something an analyst uh was able to produce maybe in
+[13:38] analyst uh was able to produce maybe in three or four weeks in like maybe 20 30
+[13:40] three or four weeks in like maybe 20 30 minutes. Thank you.
+[13:44] minutes. Thank you. So just to wrap it up um key takeaways
+[13:48] So just to wrap it up um key takeaways first thing is I think we should not be
+[13:49] first thing is I think we should not be introducing human constraints or design
+[13:51] introducing human constraints or design constraints into architecture. I think
+[13:53] constraints into architecture. I think let the architecture be derived actually
+[13:56] let the architecture be derived actually number one. Second I think any complex
+[13:58] number one. Second I think any complex workflows will have deterministic parts
+[14:00] workflows will have deterministic parts and agentic parts. Don't let agents
+[14:02] and agentic parts. Don't let agents actually run the deterministic part.
+[14:04] actually run the deterministic part. Right? So I think we need to break break
+[14:06] Right? So I think we need to break break that off.
+[14:08] that off. The third you need to have one agent
+[14:11] The third you need to have one agent right which owns the reasoning end to
+[14:12] right which owns the reasoning end to end right this agent can actually take
+[14:15] end right this agent can actually take the call to use sub agents tools skills
+[14:17] the call to use sub agents tools skills to actually spawn off other other tasks
+[14:19] to actually spawn off other other tasks basically right but you need one agent
+[14:20] basically right but you need one agent to own the the reasoning and the last
+[14:23] to own the the reasoning and the last probably the most important I think
+[14:26] probably the most important I think graph cannot be treated just as a lookup
+[14:28] graph cannot be treated just as a lookup player I think graph has to be treated
+[14:29] player I think graph has to be treated as a control plane which the agent uses
+[14:32] as a control plane which the agent uses to navigate and takes the next decisions
+[14:34] to navigate and takes the next decisions basically
+[14:36] basically okay with that I I think thank you.
+[14:39] okay with that I I think thank you. Thanks. Thanks for telling me this.
+[14:40] Thanks. Thanks for telling me this. [applause]

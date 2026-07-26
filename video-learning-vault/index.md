@@ -4,6 +4,7 @@ Master index mapping Video ID -> Title -> Topic -> Notes.
 
 | Video ID | Title | Topic / Category | Note Link | Duration | Date Processed |
 |----------|-------|------------------|-----------|----------|----------------|
+| `143af38e605641db` | Why We Killed Our Multi-Agent Pipeline | AI Agents / Architecture | [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) | 15:00 | 2026-07-26 |
 | `8a893f42dc4c486c` | Google OKF: The Simple Folder That Gives AI Agents Your Entire Company Data | AI Agents / Data | [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) | 08:01 | 2026-07-16 |
 | `15657c4a3940e9c7` | Self-Improving AI Agents | Evolving the Harness, Not the Model | [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) | 35:19 | 2026-07-16 |
 | `c4f8d23d5d2fdc59` | How I passed the NEW Claude Architect Certification Exam (CCA-F) | Certification / Claude | [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) | 15:50 | 2026-07-11 |
