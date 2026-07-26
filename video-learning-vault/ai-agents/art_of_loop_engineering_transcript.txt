@@ -1,0 +1,1183 @@
+[00:03] Agents are new kind of software, endless inputs and non-deterministic outputs.
+[00:05] inputs and non-deterministic outputs. Build them the old way
+[00:07] Build them the old way and they break.
+[00:11] &gt;&gt; [music] &gt;&gt; Enter LangSmith, the agent engineering
+[00:14] &gt;&gt; Enter LangSmith, the agent engineering platform. It's model agnostic, cloud
+[00:16] platform. It's model agnostic, cloud agnostic, and framework agnostic.
+[00:20] agnostic, and framework agnostic. Organizations shipping the best agents
+[00:22] Organizations shipping the best agents iterate with a system, and we call that
+[00:24] iterate with a system, and we call that system the agent development life cycle.
+[00:27] system the agent development life cycle. Build, test, deploy, and monitor.
+[00:30] Build, test, deploy, and monitor. &gt;&gt; [music]
+[00:31] &gt;&gt; [music] &gt;&gt; You build with our open-source
+[00:32] &gt;&gt; You build with our open-source frameworks.
+[00:34] frameworks. Deep Agents, LangChain, or LangGraph.
+[00:37] Deep Agents, LangChain, or LangGraph. LangSmith Fleet enables anyone to build
+[00:39] LangSmith Fleet enables anyone to build agents
+[00:40] agents &gt;&gt; [music]
+[00:41] &gt;&gt; [music] &gt;&gt; without code.
+[00:46] Test [music] agents using evals and experiments.
+[00:52] Deploy changes in one click with LangSmith deployment.
+[00:58] &gt;&gt; [music] &gt;&gt; Monitor every interaction from a single
+[01:00] &gt;&gt; Monitor every interaction from a single dashboard.
+[01:02] dashboard. &gt;&gt; [music]
+[01:07] &gt;&gt; Governance is built into every stage of the agent development cycle
+[01:08] the agent development cycle &gt;&gt; [music]
+[01:09] &gt;&gt; [music] &gt;&gt; with LangSmith LLM Gateway.
+[01:12] &gt;&gt; with LangSmith LLM Gateway. LangSmith Engine helps you improve
+[01:14] LangSmith Engine helps you improve agents autonomously and move through the
+[01:16] agents autonomously and move through the development life cycle more quickly.
+[01:19] development life cycle more quickly. &gt;&gt; [music]
+[01:21] &gt;&gt; [music] &gt;&gt; LangSmith Engine is your agent for agent
+[01:23] &gt;&gt; LangSmith Engine is your agent for agent engineering.
+[01:43] &gt;&gt; Hey folks. Um my name is Sydney. Just going to give
+[01:46] Um my name is Sydney. Just going to give uh folks maybe like 15 more seconds to
+[01:47] uh folks maybe like 15 more seconds to join, but we'll get started with the art
+[01:50] join, but we'll get started with the art of loop engineering here soon.
+[02:05] &gt;&gt; All right, let's get started. So, welcome to
+[02:07] welcome to uh our latest LangChain webinar on the
+[02:10] uh our latest LangChain webinar on the art of loop engineering. Um so, the
+[02:12] art of loop engineering. Um so, the subtext here is how we build agents that
+[02:15] subtext here is how we build agents that improve over time.
+[02:17] improve over time. Uh just general reminders, um if you
+[02:19] Uh just general reminders, um if you have any questions, feel free to drop
+[02:21] have any questions, feel free to drop them in the chat or the Q&amp;A. Um because
+[02:23] them in the chat or the Q&amp;A. Um because we have a lot of
+[02:25] we have a lot of uh folks tuning in today, I'm going to
+[02:26] uh folks tuning in today, I'm going to wait to answer questions at the end, but
+[02:28] wait to answer questions at the end, but feel free to send them anytime.
+[02:30] feel free to send them anytime. And I think on the Q&amp;A, you can also
+[02:32] And I think on the Q&amp;A, you can also upvote questions if there are any that
+[02:33] upvote questions if there are any that you really want to get answered.
+[02:40] All right, so just starting with a quick intro here. Um my name is Sydney. I am a
+[02:44] intro here. Um my name is Sydney. I am a uh project manager on the open source uh
+[02:46] uh project manager on the open source uh sorry, product manager on the open
+[02:48] sorry, product manager on the open source team at LangChain. Was previously
+[02:49] source team at LangChain. Was previously a software engineer. Um and I'm super
+[02:52] a software engineer. Um and I'm super excited to talk about how you can do
+[02:56] excited to talk about how you can do loop engineering both with our open
+[02:57] loop engineering both with our open source frameworks and LangSmith and our
+[03:00] source frameworks and LangSmith and our um kind of commercial platform.
+[03:02] um kind of commercial platform. So,
+[03:04] So, uh as a company, provides the platform
+[03:06] uh as a company, provides the platform for what we call the agent development
+[03:08] for what we call the agent development life cycle. And core to that agent
+[03:10] life cycle. And core to that agent development life life cycle is uh the
+[03:13] development life life cycle is uh the primitive of loops. So, that's what
+[03:14] primitive of loops. So, that's what we're going to talk about today.
+[03:22] So, first, I'm going to talk about why loops matter.
+[03:23] loops matter. Um so, if we zoom out and think about
+[03:26] Um so, if we zoom out and think about why agents matter in the first place,
+[03:29] why agents matter in the first place, it's because they can take action and do
+[03:32] it's because they can take action and do work for us.
+[03:33] work for us. Um
+[03:34] Um and
+[03:36] and agents are really only as useful as the
+[03:39] agents are really only as useful as the kind of model and harness that you build
+[03:41] kind of model and harness that you build them around. And so, the model has some
+[03:43] them around. And so, the model has some like fixed level of intelligence, and
+[03:45] like fixed level of intelligence, and then you can make it for useful for your
+[03:47] then you can make it for useful for your given use case um by building harness
+[03:50] given use case um by building harness around it that connects it to your
+[03:52] around it that connects it to your workflows.
+[03:54] workflows. Um and so part of building a robust
+[03:56] Um and so part of building a robust harness is building loops in.
+[03:59] harness is building loops in. Um I have kind of these four points
+[04:02] Um I have kind of these four points outlined here and we'll dive into how
+[04:03] outlined here and we'll dive into how those correspond to different loops. Um
+[04:06] those correspond to different loops. Um but
+[04:07] but another important piece here is uh
+[04:09] another important piece here is uh continuous integration. So, having loops
+[04:12] continuous integration. So, having loops built into like every agent that you
+[04:14] built into like every agent that you build, making sure that um every time
+[04:17] build, making sure that um every time you run an agent, it can get better and
+[04:20] you run an agent, it can get better and improve from that run. Um
+[04:23] improve from that run. Um so, let's kind of jump into to our
+[04:24] so, let's kind of jump into to our levels of loops here.
+[04:30] So, the first loop is the core agent loop. Um we've been talking about this
+[04:33] loop. Um we've been talking about this at LangChain
+[04:34] at LangChain basically ever since uh LLMs gained
+[04:36] basically ever since uh LLMs gained popularity. Um and this is that that
+[04:38] popularity. Um and this is that that action-taking loop. And so, what happens
+[04:41] action-taking loop. And so, what happens here um is
+[04:43] here um is basically the the basic
+[04:46] basically the the basic agent model and tool loop. So, first, a
+[04:49] agent model and tool loop. So, first, a model receives context for a given task.
+[04:52] model receives context for a given task. Then, it calls tools to complete given
+[04:55] Then, it calls tools to complete given work for that task. Tools return
+[04:58] work for that task. Tools return observations. And then the model kind of
+[05:00] observations. And then the model kind of continues in that core loop until it's
+[05:02] continues in that core loop until it's done with the given task.
+[05:04] done with the given task. Um and so, when we talk about loop
+[05:06] Um and so, when we talk about loop engineering here, what does that mean at
+[05:08] engineering here, what does that mean at loop level one? That means that you're
+[05:11] loop level one? That means that you're giving
+[05:12] giving the model the right tools for the given
+[05:13] the model the right tools for the given task. Um and then also that you're
+[05:15] task. Um and then also that you're selecting the right model. So, given the
+[05:18] selecting the right model. So, given the complexity of tasks coming in, you want
+[05:20] complexity of tasks coming in, you want to match the model intelligence to those
+[05:22] to match the model intelligence to those so that you can kind of optimize along
+[05:24] so that you can kind of optimize along the cost axis.
+[05:26] the cost axis. And then
+[05:27] And then for tools, you can also do kind of
+[05:29] for tools, you can also do kind of prompt engineering here, right? Like are
+[05:31] prompt engineering here, right? Like are your tool descriptions good enough that
+[05:33] your tool descriptions good enough that the model uses them effectively? Um and
+[05:36] the model uses them effectively? Um and so, really like this is a pretty simple
+[05:38] so, really like this is a pretty simple loop, but um
+[05:40] loop, but um at every level there's like
+[05:41] at every level there's like optimizations you can make.
+[05:44] optimizations you can make. And so, the power in the agent loop
+[05:46] And so, the power in the agent loop specifically is that the model has the
+[05:48] specifically is that the model has the discretion to take action and then also
+[05:50] discretion to take action and then also decide when it's done with actions for a
+[05:52] decide when it's done with actions for a given task.
+[05:58] For each of these kind of loop levels, I'm going to talk about an example
+[05:59] I'm going to talk about an example agent. Um it's really not not uh
+[06:03] agent. Um it's really not not uh an example, but rather an agent that we
+[06:05] an example, but rather an agent that we use every day at LangChain.
+[06:07] use every day at LangChain. So, this is our docs improvement agent.
+[06:09] So, this is our docs improvement agent. Um so, we'll start with the very basic
+[06:11] Um so, we'll start with the very basic infrastructure here.
+[06:13] infrastructure here. We send a docs improvement request. The
+[06:16] We send a docs improvement request. The model plans and drafts changes. And then
+[06:19] model plans and drafts changes. And then we give it tools to
+[06:20] we give it tools to um
+[06:21] um you know, clone the docs repository,
+[06:24] you know, clone the docs repository, read existing docs, write new docs, um
+[06:27] read existing docs, write new docs, um and then open a pull request with an
+[06:29] and then open a pull request with an appropriate diff and description.
+[06:31] appropriate diff and description. So, this is like very basic docs writer
+[06:34] So, this is like very basic docs writer agent.
+[06:39] So, the second loop is probably the loop that started to popular popularize the
+[06:41] that started to popular popularize the term loops in the first place.
+[06:43] term loops in the first place. And that's the what you might call like
+[06:45] And that's the what you might call like a slash goal loop or a verification
+[06:47] a slash goal loop or a verification loop. Um and this adds reliability to
+[06:51] loop. Um and this adds reliability to agents basically via like grading and
+[06:55] agents basically via like grading and rubric criteria. So, what does this look
+[06:57] rubric criteria. So, what does this look like? You can see outlined in purple
+[06:59] like? You can see outlined in purple here, I have that like core agent loop.
+[07:02] here, I have that like core agent loop. Um but now we have this green grader. Um
+[07:05] Um but now we have this green grader. Um and so,
+[07:06] and so, you send a request, uh the model and
+[07:09] you send a request, uh the model and tools, we have that core loop, and it
+[07:12] tools, we have that core loop, and it returns a result. So, that's like one
+[07:14] returns a result. So, that's like one agent cycle. Um and then that gets fed
+[07:17] agent cycle. Um and then that gets fed into our grader, which decides if the
+[07:20] into our grader, which decides if the task that came in with the initial
+[07:22] task that came in with the initial request is actually complete.
+[07:24] request is actually complete. Um so, agent attempts a task.
+[07:27] Um so, agent attempts a task. That's part one. And then the actual
+[07:29] That's part one. And then the actual loop that we're talking about here is
+[07:31] loop that we're talking about here is the grader scoring against given
+[07:32] the grader scoring against given criteria.
+[07:34] criteria. If those criteria are not met, we feed
+[07:36] If those criteria are not met, we feed it back into the into the agent loop.
+[07:38] it back into the into the agent loop. And then if those criteria are met, then
+[07:40] And then if those criteria are met, then we move to done.
+[07:42] we move to done. So, one basic example might be like,
+[07:46] So, one basic example might be like, you know, {slash} goal, implement this
+[07:48] you know, {slash} goal, implement this new feature in my code base, um and
+[07:51] new feature in my code base, um and don't stop until all tests are passing
+[07:54] don't stop until all tests are passing and coverage is at 95%. Um and so, your
+[07:57] and coverage is at 95%. Um and so, your agent, your coding agent, maybe Claude
+[07:59] agent, your coding agent, maybe Claude code, deep agents code, would take a
+[08:02] code, deep agents code, would take a pass at implementing that new feature,
+[08:04] pass at implementing that new feature, um and then
+[08:07] um and then once it takes the pass, then we have
+[08:08] once it takes the pass, then we have that grader run over the criteria.
+[08:11] that grader run over the criteria. One interesting thing that I'll call out
+[08:13] One interesting thing that I'll call out with {slash} goal, um or verification
+[08:16] with {slash} goal, um or verification loops, we've uh added support for this
+[08:18] loops, we've uh added support for this in Dcode, which is our like terminal
+[08:21] in Dcode, which is our like terminal coding agent based on deep agents, and
+[08:23] coding agent based on deep agents, and one unique feature of our {slash} goal
+[08:25] one unique feature of our {slash} goal implementation specifically is, when you
+[08:28] implementation specifically is, when you give it a goal, it actually gives you
+[08:29] give it a goal, it actually gives you criteria to review. So, like a specific
+[08:32] criteria to review. So, like a specific basically rubric that is going to be
+[08:34] basically rubric that is going to be checked every time.
+[08:36] checked every time. Um and so, that allows you like a little
+[08:39] Um and so, that allows you like a little bit more transparency into um
+[08:42] bit more transparency into um the criteria that you're scoring uh
+[08:45] the criteria that you're scoring uh success against. I think Codex and
+[08:47] success against. I think Codex and Claude code don't have that kind of
+[08:48] Claude code don't have that kind of finer grained level of control.
+[08:51] finer grained level of control. And then, I'll also note, because Dcode
+[08:53] And then, I'll also note, because Dcode and deep agents are open source, we
+[08:55] and deep agents are open source, we allow you to plug in this like goal or
+[08:57] allow you to plug in this like goal or rubric middleware into any of your
+[08:59] rubric middleware into any of your agents. So, if you're like, "Oh, great.
+[09:02] agents. So, if you're like, "Oh, great. I love building, you know, langchain
+[09:04] I love building, you know, langchain agents with create agent or deep agents
+[09:06] agents with create agent or deep agents with create deep agent, but I actually
+[09:08] with create deep agent, but I actually want it to be kind of more reliable and
+[09:10] want it to be kind of more reliable and trustworthy against the like end goal."
+[09:12] trustworthy against the like end goal." You can just plug in that middleware to
+[09:14] You can just plug in that middleware to support that.
+[09:16] support that. So, uh what does this look like for our
+[09:19] So, uh what does this look like for our docs agent? We have the docs improvement
+[09:21] docs agent? We have the docs improvement request coming in.
+[09:23] request coming in. Core agent loop opens a pull request, um
+[09:26] Core agent loop opens a pull request, um and then the grader agent ensures that
+[09:28] and then the grader agent ensures that all links resolve and that CI passes uh
+[09:32] all links resolve and that CI passes uh before an actual done notification,
+[09:34] before an actual done notification, right? Like, it's a little bit of a
+[09:35] right? Like, it's a little bit of a waste of a human reviewer's time to
+[09:38] waste of a human reviewer's time to review a docs PR if there's tons of
+[09:41] review a docs PR if there's tons of faulty links, for example.
+[09:43] faulty links, for example. Um
+[09:45] Um the last thing that I'll note about
+[09:46] the last thing that I'll note about verification loops is that they're
+[09:49] verification loops is that they're particularly powerful when
+[09:52] particularly powerful when um you want to use like a cheaper model
+[09:55] um you want to use like a cheaper model but still for more challenging tasks.
+[09:57] but still for more challenging tasks. So, in the same way that we saw folks
+[09:59] So, in the same way that we saw folks early on using that to do list to keep
+[10:01] early on using that to do list to keep models on track, um
+[10:03] models on track, um the kind of greater verification loop
+[10:06] the kind of greater verification loop can help to keep those like major agent
+[10:08] can help to keep those like major agent cycles on track, especially if you know
+[10:10] cycles on track, especially if you know your model is not like quite as
+[10:12] your model is not like quite as powerful.
+[10:19] All right. So, the third loop is the event-driven loop. The reason that I'm
+[10:21] event-driven loop. The reason that I'm excited about this loop is because it is
+[10:24] excited about this loop is because it is what makes me personally actually use
+[10:26] what makes me personally actually use agents.
+[10:27] agents. Um and so
+[10:29] Um and so agents become more powerful when they
+[10:31] agents become more powerful when they are like looped into the actual systems
+[10:33] are like looped into the actual systems where they're relevant. So, what do I
+[10:35] where they're relevant. So, what do I mean by this? Um the TLDR is basically
+[10:37] mean by this? Um the TLDR is basically like I want to be able to use my agents
+[10:40] like I want to be able to use my agents in Slack and in GitHub
+[10:42] in Slack and in GitHub um and
+[10:43] um and in any of the places where I'm like
+[10:45] in any of the places where I'm like having important conversations with
+[10:46] having important conversations with people.
+[10:47] people. And so, I think this one might be the
+[10:49] And so, I think this one might be the most
+[10:51] most of a like stretch to call a loop, but
+[10:53] of a like stretch to call a loop, but really the loop is like
+[10:55] really the loop is like you are able to trigger the agent in the
+[10:57] you are able to trigger the agent in the system where it's relevant and then
+[10:59] system where it's relevant and then inherently you're making some other
+[11:01] inherently you're making some other system better. Um and so you've got this
+[11:03] system better. Um and so you've got this like improvement loop.
+[11:05] like improvement loop. Um
+[11:06] Um so, what do those triggers actually look
+[11:08] so, what do those triggers actually look like? Um they can be scheduled or they
+[11:10] like? Um they can be scheduled or they can be event-driven. For example, I have
+[11:14] can be event-driven. For example, I have a background agent that runs over my
+[11:17] a background agent that runs over my calendar every morning um and gives me a
+[11:19] calendar every morning um and gives me a summary of my day and you know anything
+[11:21] summary of my day and you know anything that I might need to prep, etc.
+[11:23] that I might need to prep, etc. Or I have an email assistant agent um
+[11:26] Or I have an email assistant agent um that is triggered on a specific event.
+[11:29] that is triggered on a specific event. So, Sydney has received an email, like
+[11:31] So, Sydney has received an email, like great, let's kick off her email
+[11:33] great, let's kick off her email assistant that will kind of read the
+[11:35] assistant that will kind of read the email, draft a reply, decide if it's
+[11:38] email, draft a reply, decide if it's spam or if it's worth surfacing to me,
+[11:40] spam or if it's worth surfacing to me, etc.
+[11:42] etc. Um, again, I I'm pretty excited about
+[11:44] Um, again, I I'm pretty excited about this one because I think agents don't
+[11:47] this one because I think agents don't have that much value unless they're
+[11:48] have that much value unless they're incredibly easy to use.
+[11:50] incredibly easy to use. Um,
+[11:52] Um, you can see in the diagram at the right,
+[11:54] you can see in the diagram at the right, uh we have the event trigger, then our
+[11:56] uh we have the event trigger, then our nested verification loops, and the core
+[11:59] nested verification loops, and the core agent loop, and then also a like system
+[12:02] agent loop, and then also a like system update, which again is
+[12:04] update, which again is um
+[12:05] um how we
+[12:06] how we modeled this one as a loop.
+[12:09] modeled this one as a loop. Also note in these diagrams, I'm doing
+[12:11] Also note in these diagrams, I'm doing the um kind of like Russian doll thing
+[12:13] the um kind of like Russian doll thing of like nesting every loop in itself.
+[12:15] of like nesting every loop in itself. You don't necessarily have to do that
+[12:16] You don't necessarily have to do that for all four loops. For example, you
+[12:18] for all four loops. For example, you could just nest a core agent loop in
+[12:21] could just nest a core agent loop in with an event-driven loop. You don't
+[12:23] with an event-driven loop. You don't need the verification loop, but um just
+[12:25] need the verification loop, but um just kind of to demonstrate that they are all
+[12:27] kind of to demonstrate that they are all composable.
+[12:29] composable. So tying this back to our docs writer
+[12:31] So tying this back to our docs writer event, what does this uh actually look
+[12:34] event, what does this uh actually look like? So,
+[12:35] like? So, we have a channel called docs please. Um
+[12:39] we have a channel called docs please. Um I can send it a Slack message and say,
+[12:41] I can send it a Slack message and say, "Hey, can you please update our deep
+[12:43] "Hey, can you please update our deep agents docs to showcase the value of
+[12:46] agents docs to showcase the value of verification loops on a new uh
+[12:49] verification loops on a new uh you know, {slash} goal or {slash} rubric
+[12:51] you know, {slash} goal or {slash} rubric page."
+[12:52] page." Um then agent
+[12:55] Um then agent core agent runs, drafts a PR, my
+[12:58] core agent runs, drafts a PR, my verification loop decides if links
+[13:01] verification loop decides if links resolve and CI passes, we actually go
+[13:04] resolve and CI passes, we actually go ahead and send a Slack notification back
+[13:06] ahead and send a Slack notification back that's like, "Here's your PR, Sydney,
+[13:08] that's like, "Here's your PR, Sydney, like please review." Um and then we have
+[13:11] like please review." Um and then we have this merged live and like discoverable
+[13:14] this merged live and like discoverable docs enhancement. And hopefully this can
+[13:16] docs enhancement. And hopefully this can really help to illustrate why this
+[13:18] really help to illustrate why this event-driven loop um is a loop, which is
+[13:21] event-driven loop um is a loop, which is like now those changes are live, and I
+[13:24] like now those changes are live, and I can go look at the docs, um
+[13:26] can go look at the docs, um which will motivate me to start another
+[13:29] which will motivate me to start another or trigger another event, which kicks
+[13:31] or trigger another event, which kicks off my docs agent.
+[13:33] off my docs agent. So, this one is particularly relevant
+[13:35] So, this one is particularly relevant when you're like improving, um,
+[13:38] when you're like improving, um, systems where the agent is embedded.
+[13:44] All right. Maybe I said the most exciting loop for
+[13:46] Maybe I said the most exciting loop for the goal loop, but I take it back. I
+[13:48] the goal loop, but I take it back. I think the self-improvement loop is
+[13:50] think the self-improvement loop is actually the most exciting.
+[13:51] actually the most exciting. Um, so we'll call this one the hill
+[13:53] Um, so we'll call this one the hill climbing loop, the learning loop,
+[13:55] climbing loop, the learning loop, self-improvement loop,
+[13:57] self-improvement loop, all things of that nature.
+[13:59] all things of that nature. Um, so this automates improvement, and
+[14:01] Um, so this automates improvement, and we can automate improvement by
+[14:04] we can automate improvement by finding signal in traces. So, this is
+[14:07] finding signal in traces. So, this is really the foundation of what LangChain
+[14:10] really the foundation of what LangChain the company is built on, which is that,
+[14:12] the company is built on, which is that, uh, to build agents, you really need to
+[14:14] uh, to build agents, you really need to have insight into what they're doing. As
+[14:17] have insight into what they're doing. As you saw in our new awesome intro video,
+[14:19] you saw in our new awesome intro video, um, agents are non-deterministic, and
+[14:21] um, agents are non-deterministic, and so, unlike previous code where like,
+[14:25] so, unlike previous code where like, you know, observability showed you,
+[14:27] you know, observability showed you, um,
+[14:28] um, exact or unlike previous code where the
+[14:30] exact or unlike previous code where the truth was kind of in the code itself,
+[14:32] truth was kind of in the code itself, you could tell exactly what it's going
+[14:33] you could tell exactly what it's going to do, um, the story is actually in
+[14:35] to do, um, the story is actually in traces for agents. And so, you need that
+[14:37] traces for agents. And so, you need that trace signal to tell you how to improve
+[14:40] trace signal to tell you how to improve your agent.
+[14:41] your agent. So, let's talk a little bit more about
+[14:43] So, let's talk a little bit more about what this means. Um,
+[14:45] what this means. Um, we run our docs agent, um,
+[14:48] we run our docs agent, um, it
+[14:49] it or actually, I'll I'll do the docs
+[14:51] or actually, I'll I'll do the docs example on the next page. Um, let me
+[14:53] example on the next page. Um, let me talk a little bit more theoretically
+[14:54] talk a little bit more theoretically here. So, we run our agent in response
+[14:57] here. So, we run our agent in response to an event trigger.
+[14:58] to an event trigger. The greater eventually decides that it's
+[15:01] The greater eventually decides that it's met the criteria. We update some system,
+[15:04] met the criteria. We update some system, and then in the background, after the
+[15:06] and then in the background, after the main agent run is done, we run an agent
+[15:09] main agent run is done, we run an agent over that trace, or maybe traces in bulk
+[15:12] over that trace, or maybe traces in bulk for this agent. Um, and that sort of
+[15:16] for this agent. Um, and that sort of helper agent, which at LangChain we call
+[15:18] helper agent, which at LangChain we call it engine,
+[15:19] it engine, um, is able to detract detect various
+[15:22] um, is able to detract detect various failure modes from the trace itself. So,
+[15:25] failure modes from the trace itself. So, what does that look like? Maybe a tool
+[15:27] what does that look like? Maybe a tool was called with improper arguments.
+[15:30] was called with improper arguments. Maybe a critical tool call was missed
+[15:33] Maybe a critical tool call was missed because the relevant context wasn't
+[15:34] because the relevant context wasn't there.
+[15:35] there. Um
+[15:36] Um maybe there were certain docs writing
+[15:38] maybe there were certain docs writing preferences that
+[15:40] preferences that I have across requests that are not
+[15:43] I have across requests that are not being respected when I make my docs
+[15:45] being respected when I make my docs please requests. Um so, identifying
+[15:48] please requests. Um so, identifying recurring issues or kind of gaps in the
+[15:50] recurring issues or kind of gaps in the core harness.
+[15:52] core harness. Um and then
+[15:54] Um and then the super exciting part is that this
+[15:55] the super exciting part is that this agent has the capability to
+[15:58] agent has the capability to update the prompts, tools, skills,
+[16:01] update the prompts, tools, skills, memory, basically anything that's part
+[16:03] memory, basically anything that's part of that core harness. Um
+[16:05] of that core harness. Um and port that back to the source code.
+[16:08] and port that back to the source code. Um and so, this outer loop makes each
+[16:11] Um and so, this outer loop makes each inner loop more effective. Um and and I
+[16:15] inner loop more effective. Um and and I have 30 minutes to talk and have saved a
+[16:17] have 30 minutes to talk and have saved a lot of time for this loop in particular
+[16:18] lot of time for this loop in particular because there's a lot to discuss here.
+[16:21] because there's a lot to discuss here. So,
+[16:22] So, the first kind of category of things
+[16:24] the first kind of category of things that you can do with the hill climbing
+[16:26] that you can do with the hill climbing loop are improve those like base
+[16:30] loop are improve those like base kind of procedural things like um tool
+[16:33] kind of procedural things like um tool descriptions, prompts, I would even say
+[16:36] descriptions, prompts, I would even say like skills that are more procedural. Um
+[16:40] like skills that are more procedural. Um and that's like if your agent is not
+[16:42] and that's like if your agent is not taking the right trajectory and it's
+[16:44] taking the right trajectory and it's something that you can inform with those
+[16:47] something that you can inform with those kind of hard-coded prompts. Um
+[16:50] kind of hard-coded prompts. Um then you can
+[16:51] then you can extract that signal from traces.
+[16:53] extract that signal from traces. The second category is more like memory
+[16:57] The second category is more like memory information. So, information that's um
+[17:00] information. So, information that's um persisted across runs. Um
+[17:03] persisted across runs. Um so, let's take let's go back to the
+[17:05] so, let's take let's go back to the email assistant example. Um
+[17:08] email assistant example. Um I probably want my email assistant to
+[17:11] I probably want my email assistant to respond differently to my boss versus my
+[17:15] respond differently to my boss versus my co-worker, right? I would be a little
+[17:16] co-worker, right? I would be a little bit more informal with my co-worker um
+[17:19] bit more informal with my co-worker um and and more formal with my boss.
+[17:21] and and more formal with my boss. And so it's important to me that my
+[17:23] And so it's important to me that my email assistant understands the
+[17:25] email assistant understands the relationships that I have to different
+[17:27] relationships that I have to different people who are sending me emails
+[17:29] people who are sending me emails and the kind of email styles that I want
+[17:32] and the kind of email styles that I want to use.
+[17:33] to use. And so
+[17:34] And so if I get an email from my boss and my
+[17:36] if I get an email from my boss and my email assistant drafts a reply that's
+[17:38] email assistant drafts a reply that's super informal
+[17:40] super informal and before it sends obviously cuz I
+[17:41] and before it sends obviously cuz I probably want a human in the loop here,
+[17:43] probably want a human in the loop here, I would say hey like wait that's that's
+[17:45] I would say hey like wait that's that's my boss. Let's be you know more formal.
+[17:48] my boss. Let's be you know more formal. I would hope that it would actually
+[17:50] I would hope that it would actually remember that guidance for future runs.
+[17:53] remember that guidance for future runs. And so one job that this background
+[17:55] And so one job that this background agent can do is kind of memory
+[17:57] agent can do is kind of memory consolidation again so that the harness
+[18:00] consolidation again so that the harness is like learning over time. And a lot of
+[18:02] is like learning over time. And a lot of that comes in the form of like user
+[18:04] that comes in the form of like user preferences etc.
+[18:06] preferences etc. Um
+[18:07] Um yeah. So kind of procedural stuff and
+[18:10] yeah. So kind of procedural stuff and then more semantic stuff is what you can
+[18:12] then more semantic stuff is what you can extract.
+[18:14] extract. The final note that I'll add on this
+[18:16] The final note that I'll add on this hill climbing loop slide is that
+[18:19] hill climbing loop slide is that it's actually really hard to close this
+[18:21] it's actually really hard to close this loop if you don't have good emails. So
+[18:25] loop if you don't have good emails. So it's pretty hard to have confidence
+[18:27] it's pretty hard to have confidence merging changes to your like core
+[18:29] merging changes to your like core harness if you don't have emails that
+[18:32] harness if you don't have emails that can help you justify those changes. So
+[18:35] can help you justify those changes. So engine or you know your assistant agent
+[18:37] engine or you know your assistant agent has made some change to its added a
+[18:39] has made some change to its added a skill and changed a prompt and updated
+[18:42] skill and changed a prompt and updated memory for some user like how you feel
+[18:45] memory for some user like how you feel confidence with that merge is probably
+[18:47] confidence with that merge is probably like running your email suite and making
+[18:49] like running your email suite and making sure there's no regressions or even
+[18:51] sure there's no regressions or even actually that there's
+[18:52] actually that there's um
+[18:53] um that there's improvements on some tasks.
+[18:56] that there's improvements on some tasks. Um so just bringing this back to our
+[18:58] Um so just bringing this back to our kind of core example
+[19:00] kind of core example um what do we do with our docs writing
+[19:02] um what do we do with our docs writing agent? Well, we run
+[19:04] agent? Well, we run engine again our LangSmith agent over
+[19:07] engine again our LangSmith agent over our traces and then we can Um, update
+[19:11] our traces and then we can Um, update all those things that I was talking
+[19:12] all those things that I was talking about on the last slide.
+[19:18] Uh, one really important note that I'll add here is that
+[19:20] add here is that we talk about like automating things
+[19:22] we talk about like automating things with loops, right? The value of an agent
+[19:24] with loops, right? The value of an agent at loop one is to automate things. The
+[19:27] at loop one is to automate things. The value of a greater at loop two is to
+[19:30] value of a greater at loop two is to like automate with reliability. Um,
+[19:33] like automate with reliability. Um, you're basically adding like automated
+[19:36] you're basically adding like automated checks.
+[19:37] checks. The value at loop three is like in some
+[19:40] The value at loop three is like in some ways you're automating continuous
+[19:41] ways you're automating continuous improvements in a system, and then loop
+[19:44] improvements in a system, and then loop four, um, or or sorry, for loop three
+[19:47] four, um, or or sorry, for loop three you're like
+[19:48] you're like automating improvements to the system
+[19:50] automating improvements to the system itself as in like your documentation.
+[19:52] itself as in like your documentation. And then loop four, the most powerful
+[19:55] And then loop four, the most powerful loop arguably, is automating
+[19:57] loop arguably, is automating improvements to your agent. So,
+[19:59] improvements to your agent. So, self-improving. Um, that being said, a
+[20:02] self-improving. Um, that being said, a lot of things that agents do are still
+[20:03] lot of things that agents do are still really sensitive. Um, and so human
+[20:06] really sensitive. Um, and so human approval totally has its place, um, in
+[20:08] approval totally has its place, um, in any of these loops.
+[20:10] any of these loops. As I have here in blue, automation does
+[20:11] As I have here in blue, automation does not necessarily
+[20:13] not necessarily mean removing humans, it means just like
+[20:15] mean removing humans, it means just like using them when human review or
+[20:18] using them when human review or discretion or judgment adds value and
+[20:21] discretion or judgment adds value and not wasting time when it doesn't. Um,
+[20:24] not wasting time when it doesn't. Um, now let's talk about this at each loop
+[20:26] now let's talk about this at each loop level. So,
+[20:27] level. So, um, let's go back to the email
+[20:30] um, let's go back to the email assistant. Um, if there's a send email
+[20:33] assistant. Um, if there's a send email tool, I probably want uh, human approval
+[20:37] tool, I probably want uh, human approval in that cycle at least for, um, people
+[20:40] in that cycle at least for, um, people that are important. So, you can still
+[20:42] that are important. So, you can still add human approval at, uh,
+[20:44] add human approval at, uh, core, you know, important or sensitive
+[20:47] core, you know, important or sensitive tool calls. For like a transaction, for
+[20:48] tool calls. For like a transaction, for example, before my travel agent books
+[20:52] example, before my travel agent books travel for me, I probably want to click
+[20:53] travel for me, I probably want to click like, yes, that flight looks great. Um,
+[20:57] like, yes, that flight looks great. Um, the second is you can add, uh, human
+[21:00] the second is you can add, uh, human loop into the like greater or verifier
+[21:02] loop into the like greater or verifier cycle, right? So, um,
+[21:05] cycle, right? So, um, basically plugging in some form of human
+[21:07] basically plugging in some form of human approval in that green stage of the loop
+[21:09] approval in that green stage of the loop we were talking about.
+[21:10] we were talking about. The third,
+[21:12] The third, human approval on like workflow
+[21:14] human approval on like workflow artifacts or results. So, in our docs
+[21:16] artifacts or results. So, in our docs writer
+[21:17] writer example, we always have to have human
+[21:19] example, we always have to have human approval on those PRs before they merge.
+[21:23] approval on those PRs before they merge. And then the fourth is
+[21:26] And then the fourth is approving
+[21:27] approving harness and like code changes to your
+[21:29] harness and like code changes to your core agent is pretty important. I think
+[21:32] core agent is pretty important. I think you can start to
+[21:34] you can start to Man, now I'm thinking about loop five,
+[21:35] Man, now I'm thinking about loop five, which is like
+[21:37] which is like if you actually have a RL or basically
+[21:40] if you actually have a RL or basically like a learning environment where you
+[21:42] like a learning environment where you can then like propose changes to your
+[21:44] can then like propose changes to your harness and run all of your emails
+[21:46] harness and run all of your emails against them and then decide if they
+[21:48] against them and then decide if they meet some threshold of like improved
+[21:50] meet some threshold of like improved behavior, then you auto merge. That's
+[21:52] behavior, then you auto merge. That's like level five.
+[21:54] like level five. But yeah, I think for most development
+[21:58] But yeah, I think for most development teams, the actual like changing to
+[22:01] teams, the actual like changing to source code of an agent is going to
+[22:03] source code of an agent is going to require some form of human review.
+[22:05] require some form of human review. So, humans still important, but
+[22:08] So, humans still important, but um
+[22:09] um are not quite as important as they used
+[22:11] are not quite as important as they used to be.
+[22:16] Putting it all together, just going to do a kind of a quick recap over the
+[22:18] do a kind of a quick recap over the loops we've talked about.
+[22:21] loops we've talked about. I'm going to leave a couple of extra
+[22:22] I'm going to leave a couple of extra minutes for questions here cuz I do
+[22:23] minutes for questions here cuz I do think we have a lot of folks and
+[22:25] think we have a lot of folks and everyone has good questions about loops
+[22:26] everyone has good questions about loops on Twitter, so I'm sure there will be
+[22:27] on Twitter, so I'm sure there will be some good ones here. So, first, the
+[22:30] some good ones here. So, first, the agent loop the agent loop does the work.
+[22:33] agent loop the agent loop does the work. Model calls tools, tools allow the agent
+[22:35] Model calls tools, tools allow the agent to take action, and then the fact that
+[22:37] to take action, and then the fact that this is done in a loop
+[22:39] this is done in a loop makes it more powerful.
+[22:41] makes it more powerful. The verification loop improves quality,
+[22:43] The verification loop improves quality, especially for cases where
+[22:45] especially for cases where models aren't as powerful and need more
+[22:47] models aren't as powerful and need more of that like check checked work model.
+[22:50] of that like check checked work model. The event-driven loop helps to scale
+[22:53] The event-driven loop helps to scale execution and make sure that agents
+[22:55] execution and make sure that agents actually get used and are used to like
+[22:57] actually get used and are used to like improve systems.
+[22:59] improve systems. Um
+[23:00] Um And then the fourth, my favorite, is the
+[23:03] And then the fourth, my favorite, is the hill climbing loop. Call it the learning
+[23:05] hill climbing loop. Call it the learning loop, self-improvement loop. And this
+[23:07] loop, self-improvement loop. And this improves your agent system over time.
+[23:10] improves your agent system over time. And so, we have the key takeaway here is
+[23:13] And so, we have the key takeaway here is the advantage is not just in the agent
+[23:15] the advantage is not just in the agent that you build to automate work, but
+[23:16] that you build to automate work, but rather in the loops that you build
+[23:18] rather in the loops that you build around it.
+[23:20] around it. Loops basically like amplify impact. We
+[23:22] Loops basically like amplify impact. We know agents are impactful, so building
+[23:24] know agents are impactful, so building loops helps them do more.
+[23:32] All right. Going to
+[23:33] Going to hit it back to the main screen here and
+[23:34] hit it back to the main screen here and then happy to answer questions.
+[23:48] Okay, great. First question. I would assume there's some kind of memory
+[23:49] assume there's some kind of memory system for these advanced loops.
+[23:52] system for these advanced loops. How do you decide what information to
+[23:53] How do you decide what information to save such that multiple agents are
+[23:56] save such that multiple agents are involved in loop
+[23:57] involved in loop have the right context to do their work?
+[24:00] have the right context to do their work? That is an excellent question. Perhaps
+[24:02] That is an excellent question. Perhaps our next webinar will be on
+[24:04] our next webinar will be on memory.
+[24:05] memory. I would recommend for folks to check out
+[24:08] I would recommend for folks to check out our new deep agent memory docs, which do
+[24:11] our new deep agent memory docs, which do kind of a very deep dive into
+[24:14] kind of a very deep dive into um
+[24:15] um all of the aspects of memory, when you
+[24:18] all of the aspects of memory, when you read it, when you write it, what's worth
+[24:21] read it, when you write it, what's worth being saved, how different memories
+[24:23] being saved, how different memories interact, etc. But, I'll give a quick
+[24:25] interact, etc. But, I'll give a quick overview here.
+[24:26] overview here. Which is yes, there's totally a memory
+[24:29] Which is yes, there's totally a memory system especially involved in that loop
+[24:32] system especially involved in that loop four. I I think you can almost argue
+[24:35] four. I I think you can almost argue that like information that's persisted
+[24:37] that like information that's persisted across runs is some form of memory and
+[24:39] across runs is some form of memory and that's like inherently what we're doing
+[24:41] that's like inherently what we're doing with loop four. And so, I think maybe
+[24:45] with loop four. And so, I think maybe unfortunately my answer is that like the
+[24:47] unfortunately my answer is that like the information that is saved is very
+[24:50] information that is saved is very specific to the agent itself.
+[24:53] specific to the agent itself. That being said, uh
+[24:57] That being said, uh evals can really help you determine if
+[24:59] evals can really help you determine if the information that you're saving is
+[25:00] the information that you're saving is helping your agents like trajectory and
+[25:02] helping your agents like trajectory and performance.
+[25:04] performance. Um
+[25:04] Um and the the one other thing that I'll
+[25:06] and the the one other thing that I'll plug here
+[25:07] plug here is that I think there's like two main
+[25:11] is that I think there's like two main types of memory stores that we're
+[25:13] types of memory stores that we're thinking about a lot at LangChain right
+[25:14] thinking about a lot at LangChain right now. One is like
+[25:16] now. One is like man, we all use coding agents so much.
+[25:18] man, we all use coding agents so much. Like wouldn't it be great if they could
+[25:20] Like wouldn't it be great if they could traverse our repository super
+[25:22] traverse our repository super efficiently? And for that, you can build
+[25:23] efficiently? And for that, you can build in like um
+[25:26] in like um memory into your repository via a wiki
+[25:29] memory into your repository via a wiki structure.
+[25:30] structure. And then you can also build kind of like
+[25:32] And then you can also build kind of like personal wikis that have more of that
+[25:34] personal wikis that have more of that like semantic knowledge. Um and I would
+[25:37] like semantic knowledge. Um and I would recommend checking out open wiki, which
+[25:39] recommend checking out open wiki, which we just released built on top of deep
+[25:41] we just released built on top of deep agents to help you kind of build out
+[25:44] agents to help you kind of build out that uh initial memory system for your
+[25:46] that uh initial memory system for your agent. And then Loop Four can help you
+[25:48] agent. And then Loop Four can help you update that system.
+[25:54] Um okay, looks like the next question is,
+[25:55] is, uh what are the best practices for
+[25:57] uh what are the best practices for designing your grader? And how does this
+[25:59] designing your grader? And how does this work?
+[26:00] work? Um
+[26:02] Um where correctness or your reward signal,
+[26:04] where correctness or your reward signal, if you will, is ambiguous or difficult
+[26:07] if you will, is ambiguous or difficult to quantify.
+[26:09] to quantify. That's a good question. Um
+[26:13] That's a good question. Um I think the very basic
+[26:16] I think the very basic um
+[26:18] um kind of verification loop that we think
+[26:20] kind of verification loop that we think about is
+[26:22] about is uh
+[26:23] uh let's see. I'm I'm going to pivot my
+[26:25] let's see. I'm I'm going to pivot my answer here. So, the basic loop that we
+[26:27] answer here. So, the basic loop that we can use as an example, as I mentioned,
+[26:29] can use as an example, as I mentioned, is the like slash goal example in Claude
+[26:31] is the like slash goal example in Claude code or other coding agents.
+[26:33] code or other coding agents. Um
+[26:37] I think the like explicit criteria really help here.
+[26:39] really help here. Um if you're able to have a human in the
+[26:42] Um if you're able to have a human in the loop
+[26:44] loop to score the criteria that your agent is
+[26:47] to score the criteria that your agent is coming up with for a given goal, and
+[26:49] coming up with for a given goal, and then use that to basically
+[26:51] then use that to basically train the model that comes up with the
+[26:53] train the model that comes up with the criteria.
+[26:54] criteria. Um that's probably best. Um so like if
+[26:57] Um that's probably best. Um so like if your reward signal is ambiguous or
+[26:59] your reward signal is ambiguous or different uh difficult to quantify, then
+[27:01] different uh difficult to quantify, then you like probably need some human
+[27:04] you like probably need some human annotation and signal on examples that
+[27:06] annotation and signal on examples that you can use to like um
+[27:09] you can use to like um basically train your your criteria
+[27:12] basically train your your criteria generator end evaluator.
+[27:18] Um any example public repositories to
+[27:20] any example public repositories to demonstrate this concept? Yeah, great
+[27:22] demonstrate this concept? Yeah, great question. Um
+[27:24] question. Um so we
+[27:26] so we uh have deep agents, which is our core
+[27:29] uh have deep agents, which is our core um agent building library at LangChain.
+[27:31] um agent building library at LangChain. It's fully open source, and that I think
+[27:33] It's fully open source, and that I think does a great job of demonstrating
+[27:35] does a great job of demonstrating loops one and two. So core agent loop
+[27:37] loops one and two. So core agent loop and then verification loop with that
+[27:39] and then verification loop with that like rubric or gold middleware.
+[27:41] like rubric or gold middleware. Um
+[27:43] Um in terms of good examples for three and
+[27:45] in terms of good examples for three and four,
+[27:46] four, so the fourth one I would say like
+[27:48] so the fourth one I would say like trying out LangSmith and Agent is the
+[27:50] trying out LangSmith and Agent is the best way to sort of get a feel for like,
+[27:51] best way to sort of get a feel for like, "Wow, I'm I'm tracing my um agent runs
+[27:54] "Wow, I'm I'm tracing my um agent runs and like I can already see improvements
+[27:56] and like I can already see improvements and suggestions being made back to that
+[27:58] and suggestions being made back to that repository."
+[28:00] repository." Um
+[28:01] Um the third, I would say the best place to
+[28:02] the third, I would say the best place to try that is maybe with our fleet agent.
+[28:07] try that is maybe with our fleet agent. Um so that's like a no-code agent
+[28:09] Um so that's like a no-code agent builder, but comes built in with all of
+[28:11] builder, but comes built in with all of these automatic um
+[28:14] these automatic um connectors like Slack, Gmail, etc. Um we
+[28:17] connectors like Slack, Gmail, etc. Um we also have for like a code version of
+[28:18] also have for like a code version of that. We call it managed deep agents. Um
+[28:21] that. We call it managed deep agents. Um but that's the best way to like start
+[28:22] but that's the best way to like start with integrations um and triggers.
+[28:30] I think the last thing I'll say is we also have like open source email
+[28:32] also have like open source email assistants throughout the eras of like
+[28:33] assistants throughout the eras of like LangChain development um and and all
+[28:36] LangChain development um and and all have triggers as well.
+[28:43] Um the next question is how does greater work in a sub-agent architecture? Does
+[28:45] work in a sub-agent architecture? Does it always evaluate against the main
+[28:47] it always evaluate against the main agent in a deep agent context? Yeah,
+[28:50] agent in a deep agent context? Yeah, great question. So, the Rubric
+[28:52] great question. So, the Rubric middleware inherently is tied to that
+[28:54] middleware inherently is tied to that like main agent loop, but you actually
+[28:55] like main agent loop, but you actually could assign
+[28:57] could assign um
+[28:59] um like Rubric middleware or graders to sub
+[29:01] like Rubric middleware or graders to sub agents specifically. Um so, if you have
+[29:03] agents specifically. Um so, if you have like a very task-focused sub agent that
+[29:06] like a very task-focused sub agent that you wanted to add uh kind of greater
+[29:08] you wanted to add uh kind of greater loops onto, um you could do that.
+[29:10] loops onto, um you could do that. [clears throat] And that's kind of the
+[29:11] [clears throat] And that's kind of the beauty of LangChain's like composable um
+[29:14] beauty of LangChain's like composable um middleware stack.
+[29:17] middleware stack. Oh, the next question is great. Um how
+[29:19] Oh, the next question is great. Um how do you deal with latency when you
+[29:21] do you deal with latency when you implement loops?
+[29:23] implement loops? That's a good question. So, basically
+[29:25] That's a good question. So, basically loops are like inherently going to add
+[29:28] loops are like inherently going to add latency.
+[29:29] latency. Um
+[29:30] Um if your model is not doing a good enough
+[29:31] if your model is not doing a good enough job and you So, you have like tons of
+[29:33] job and you So, you have like tons of greater loops, for example,
+[29:35] greater loops, for example, it's really just a trade-off of like
+[29:37] it's really just a trade-off of like do you care a ton about correctness and
+[29:41] do you care a ton about correctness and quality, or do you care a ton about
+[29:43] quality, or do you care a ton about cost? Um so, one thing you could do is
+[29:47] cost? Um so, one thing you could do is like
+[29:48] like if you if you don't care that much about
+[29:51] if you if you don't care that much about cost, uh you could use a more powerful
+[29:54] cost, uh you could use a more powerful model, which probably doesn't need quite
+[29:56] model, which probably doesn't need quite as strict about like greater loop.
+[29:58] as strict about like greater loop. Um
+[30:00] Um yeah, that would be that would be my
+[30:01] yeah, that would be that would be my kind of first push um is just you need
+[30:04] kind of first push um is just you need to like optimize your needs for latency
+[30:05] to like optimize your needs for latency and cost. Um
+[30:08] and cost. Um in terms of the other loops, I don't
+[30:09] in terms of the other loops, I don't think like latency is actually a huge
+[30:11] think like latency is actually a huge thing there. Like the event-driven one
+[30:12] thing there. Like the event-driven one is more of a systems thing.
+[30:14] is more of a systems thing. The model loop, I guess.
+[30:17] The model loop, I guess. One one idea here is like adding
+[30:20] One one idea here is like adding um
+[30:21] um guardrails. So, you might want to like
+[30:22] guardrails. So, you might want to like have sub agents um which are also called
+[30:25] have sub agents um which are also called in that loop, like time out after a
+[30:27] in that loop, like time out after a given amount of time, or set a max
+[30:29] given amount of time, or set a max number of
+[30:31] number of um cycles, and then your agent like
+[30:33] um cycles, and then your agent like returns to the main user. Um so, you can
+[30:35] returns to the main user. Um so, you can definitely put up like guardrails to
+[30:37] definitely put up like guardrails to control. Um and then I don't think
+[30:39] control. Um and then I don't think latency is like a huge thing on the
+[30:40] latency is like a huge thing on the learning loop side. Probably the issue
+[30:42] learning loop side. Probably the issue there is like do you have enough data to
+[30:44] there is like do you have enough data to make um
+[30:45] make um good choices about harness changes?
+[30:54] Um what are the biggest problems agent builders are solving with loops on your
+[30:57] builders are solving with loops on your team?
+[30:58] team? That's a great question. Um
+[31:05] we have lots of awesome
+[31:06] awesome um internal agents built on our
+[31:08] um internal agents built on our LangChain open source.
+[31:09] LangChain open source. So I'm kind of um
+[31:11] So I'm kind of um going through all of those.
+[31:13] going through all of those. I'll say one really interesting one is
+[31:15] I'll say one really interesting one is our like go-to-market agent um that's
+[31:17] our like go-to-market agent um that's accessible in Slack has a really awesome
+[31:20] accessible in Slack has a really awesome memory system um and I think we're
+[31:22] memory system um and I think we're working on improving that memory system
+[31:24] working on improving that memory system with loops by not only pulling from data
+[31:28] with loops by not only pulling from data sources like right when the agent is
+[31:29] sources like right when the agent is triggered, but also just trying to like
+[31:31] triggered, but also just trying to like distill other
+[31:33] distill other domain knowledge from resources like
+[31:36] domain knowledge from resources like um you know, email, Slack, etc. into
+[31:39] um you know, email, Slack, etc. into things that are going to be relevant for
+[31:41] things that are going to be relevant for that agent and its communication. So
+[31:42] that agent and its communication. So that's kind of the like event-driven
+[31:45] that's kind of the like event-driven memory self-improvement loops.
+[31:47] memory self-improvement loops. Um
+[31:49] Um another one is
+[31:51] another one is uh
+[31:53] uh in terms of self-improvement stuff, just
+[31:54] in terms of self-improvement stuff, just improving our repository context
+[31:57] improving our repository context um and looking at traces.
+[31:59] um and looking at traces. Uh one thing I actually didn't mention
+[32:00] Uh one thing I actually didn't mention with the learning loop that's really
+[32:02] with the learning loop that's really interesting is like not only can you
+[32:04] interesting is like not only can you make sure that your agent is doing the
+[32:06] make sure that your agent is doing the right thing, but is your agent doing
+[32:08] right thing, but is your agent doing the thing efficiently and correctly? So
+[32:11] the thing efficiently and correctly? So like is the tool called trajectory
+[32:13] like is the tool called trajectory efficient? And if not, why not? And how
+[32:15] efficient? And if not, why not? And how can you fix that? Um and so that's like
+[32:17] can you fix that? Um and so that's like a very interesting research problem
+[32:18] a very interesting research problem we're working on with coding agents
+[32:20] we're working on with coding agents specifically.
+[32:29] Um cool. Uh human in the loop question. On human in the loop, how do you balance
+[32:31] On human in the loop, how do you balance the bottleneck of requiring human
+[32:32] the bottleneck of requiring human approval
+[32:34] approval uh with the need to scale these agentic
+[32:35] uh with the need to scale these agentic workflows in a production environment.
+[32:38] workflows in a production environment. That's a great question.
+[32:40] That's a great question. Um
+[32:41] Um sort of two things here.
+[32:43] sort of two things here. One is
+[32:45] One is I think if you're
+[32:47] I think if you're the if you can defer human approval um
+[32:51] the if you can defer human approval um to
+[32:53] to someone who it's not uh
+[32:56] someone who it's not uh challenged to
+[32:57] challenged to um approve things, then that's good. So,
+[33:00] um approve things, then that's good. So, for example, like with the travel agent,
+[33:01] for example, like with the travel agent, if the human approval relies on the like
+[33:04] if the human approval relies on the like user of the travel agent, that like
+[33:06] user of the travel agent, that like totally scales with a production
+[33:07] totally scales with a production environment.
+[33:09] environment. The other thing that I would say is
+[33:11] The other thing that I would say is if you can use some model discretion to
+[33:14] if you can use some model discretion to decide when human approval um is
+[33:17] decide when human approval um is absolutely necessary, that can help to
+[33:19] absolutely necessary, that can help to kind of reduce the number of like
+[33:21] kind of reduce the number of like approval requests that you're getting.
+[33:23] approval requests that you're getting. For example, like with the email agent,
+[33:25] For example, like with the email agent, I don't really need
+[33:27] I don't really need human approval to say like, "Yes, this
+[33:29] human approval to say like, "Yes, this is spam. Don't um don't reply." Maybe
+[33:33] is spam. Don't um don't reply." Maybe just like for my most sensitive emails,
+[33:35] just like for my most sensitive emails, I want like human in the loop there. Um
+[33:39] I want like human in the loop there. Um And then I would also say making sure
+[33:41] And then I would also say making sure um you have all of the like human in the
+[33:44] um you have all of the like human in the loop requests
+[33:45] loop requests that are essential in a place that's
+[33:47] that are essential in a place that's very accessible for people. So, this
+[33:49] very accessible for people. So, this comes back to the like event-driven
+[33:51] comes back to the like event-driven loop, right? Which is like
+[33:53] loop, right? Which is like as soon as the docs agent has a PR
+[33:55] as soon as the docs agent has a PR that's ready to go, uh we send a Slack
+[33:58] that's ready to go, uh we send a Slack message with a ping so that you like
+[34:00] message with a ping so that you like keep the human in the loop, right? Like
+[34:02] keep the human in the loop, right? Like one of the worst things is if you have
+[34:03] one of the worst things is if you have an agent doing valuable work, but it's
+[34:05] an agent doing valuable work, but it's not getting the approval it needs. And
+[34:07] not getting the approval it needs. And so, if you can leverage integrations um
+[34:10] so, if you can leverage integrations um so that the human in the loop flow is
+[34:12] so that the human in the loop flow is super easy for folks, then uh that helps
+[34:15] super easy for folks, then uh that helps a lot.
+[34:25] Um all right. For agents developed with LangGraph, in addition to using graders
+[34:27] LangGraph, in addition to using graders to tweak prompts and tool descriptions,
+[34:29] to tweak prompts and tool descriptions, uh do you use them to optimize the
+[34:31] uh do you use them to optimize the structure of the graph?
+[34:32] structure of the graph? This is a great question. Um, I think we
+[34:34] This is a great question. Um, I think we see more folks building with
+[34:37] see more folks building with deep agents right now. So, just around
+[34:38] deep agents right now. So, just around that like core agent loop, but we
+[34:40] that like core agent loop, but we definitely do see folks still building
+[34:42] definitely do see folks still building with LangGraph for those more like
+[34:44] with LangGraph for those more like bespoke, kind of custom workflows where
+[34:46] bespoke, kind of custom workflows where you're mixing more, um, agentic and
+[34:49] you're mixing more, um, agentic and deterministic steps.
+[34:50] deterministic steps. Um,
+[34:53] Um, we have not trained agents specifically
+[34:55] we have not trained agents specifically to update, well, actually no. I think
+[34:58] to update, well, actually no. I think agent could update LangGraph code if you
+[35:00] agent could update LangGraph code if you wanted it to. Um,
+[35:02] wanted it to. Um, and that definitely ties into the like
+[35:04] and that definitely ties into the like trajectory of tool calls, etc. So,
+[35:06] trajectory of tool calls, etc. So, basically my answer is yes, and I think
+[35:08] basically my answer is yes, and I think um,
+[35:10] um, the key for a lot of teams, just as
+[35:12] the key for a lot of teams, just as they've learned at the like
+[35:14] they've learned at the like levels one, two, and three, uh, is that
+[35:17] levels one, two, and three, uh, is that your like self-improvement agent does
+[35:19] your like self-improvement agent does often have to be like tailored to your
+[35:21] often have to be like tailored to your use case, right? So, like it needs to be
+[35:23] use case, right? So, like it needs to be very context-aware, um, of what kind of
+[35:26] very context-aware, um, of what kind of improvements you might want to be making
+[35:27] improvements you might want to be making to your system and just like your system
+[35:29] to your system and just like your system in general.
+[35:38] How do we address context rot in a loop? That's a good question. I think this
+[35:40] That's a good question. I think this could go in a lot of different
+[35:41] could go in a lot of different directions, so I'm not exactly sure how
+[35:44] directions, so I'm not exactly sure how to answer it, but um,
+[35:46] to answer it, but um, one interesting thing that I'll add is
+[35:49] one interesting thing that I'll add is that we're considering, uh, you know,
+[35:51] that we're considering, uh, you know, lots of teams are struggling right now
+[35:52] lots of teams are struggling right now with
+[35:53] with increased
+[35:54] increased cost associated with their agent runs,
+[35:57] cost associated with their agent runs, uh, just because like state-of-the-art
+[35:59] uh, just because like state-of-the-art models are getting more expensive, um,
+[36:01] models are getting more expensive, um, as things run in these crazy loops, like
+[36:03] as things run in these crazy loops, like it's not super sustainable. And so,
+[36:05] it's not super sustainable. And so, prompt compression can be really
+[36:06] prompt compression can be really helpful, uh, especially prompt
+[36:08] helpful, uh, especially prompt compression if like I have a Claude code
+[36:11] compression if like I have a Claude code session where I've
+[36:13] session where I've started talking about like,
+[36:14] started talking about like, you know, three different things in
+[36:16] you know, three different things in series and I'm like only focused on the
+[36:18] series and I'm like only focused on the most recent thing, like in the
+[36:20] most recent thing, like in the background compressing those old
+[36:22] background compressing those old prompts, etc., can help to like address
+[36:25] prompts, etc., can help to like address context rot in those longer-running
+[36:26] context rot in those longer-running loops.
+[36:27] loops. So, I think
+[36:29] So, I think addressing context drought really is
+[36:30] addressing context drought really is just a like context engineering game. Um
+[36:34] just a like context engineering game. Um yeah. Hopefully that answers that
+[36:36] yeah. Hopefully that answers that question. If there's like more specifics
+[36:38] question. If there's like more specifics you're looking for, happy to help.
+[36:48] How do we build evals for scientific agents where we do not have a ground
+[36:49] agents where we do not have a ground truth?
+[36:51] truth? This question might be above my pay
+[36:53] This question might be above my pay grade, which is okay. it's great to have
+[36:55] grade, which is okay. it's great to have uh questions that I don't know the
+[36:57] uh questions that I don't know the answer to. Um
+[37:00] answer to. Um yeah, I don't know the answer to this
+[37:01] yeah, I don't know the answer to this one. I think having uh humans involved
+[37:06] one. I think having uh humans involved in like
+[37:08] in like Well, okay. Actually, I have an
+[37:09] Well, okay. Actually, I have an interesting answer to this one, which
+[37:10] interesting answer to this one, which like points at more questions, but
+[37:13] like points at more questions, but we recently released a blog post on eval
+[37:16] we recently released a blog post on eval engineering. And that basically helps
+[37:19] engineering. And that basically helps you auto-generate evals from live traces
+[37:22] you auto-generate evals from live traces and the context of your repository.
+[37:25] and the context of your repository. And so, I would say I would point in
+[37:26] And so, I would say I would point in that direction, which is
+[37:28] that direction, which is basically like
+[37:29] basically like you probably need some way to test if
+[37:32] you probably need some way to test if your agent run was successful against
+[37:34] your agent run was successful against some criteria that you have. Um and if
+[37:37] some criteria that you have. Um and if you give an agent the context of your
+[37:39] you give an agent the context of your challenge and trace context,
+[37:42] challenge and trace context, it can do a like pretty good job of
+[37:44] it can do a like pretty good job of generating evals. So, that's like an an
+[37:45] generating evals. So, that's like an an interesting research question is like
+[37:47] interesting research question is like would that
+[37:48] would that do a good job at automated-ish eval
+[37:50] do a good job at automated-ish eval generation
+[37:52] generation where your
+[37:54] where your uh agent doesn't have
+[37:56] uh agent doesn't have ground truth.
+[37:59] ground truth. Good question. I will forward along to
+[38:01] Good question. I will forward along to some of our
+[38:02] some of our our more researchy folks.
+[38:10] Uh what best best practices do you implement to make a mental model of work
+[38:12] implement to make a mental model of work um and changes made to the
+[38:16] um and changes made to the uh by the agent loop.
+[38:18] uh by the agent loop. Um
+[38:19] Um work and changes made by the agent loop.
+[38:22] work and changes made by the agent loop. Um
+[38:24] Um I would say version control
+[38:27] I would say version control uh
+[38:29] uh is great for
+[38:31] is great for changes made If you mean changes made by
+[38:33] changes made If you mean changes made by the agent loop for like the
+[38:34] the agent loop for like the self-improving one, version control.
+[38:37] self-improving one, version control. Uh work done by the agent, I think like
+[38:39] Uh work done by the agent, I think like trajectory views of traces are very
+[38:41] trajectory views of traces are very interesting. Um and also just traces are
+[38:43] interesting. Um and also just traces are super key here, right? Like what the
+[38:45] super key here, right? Like what the heck did my agent do? You're only going
+[38:47] heck did my agent do? You're only going to figure it out if [clears throat] you
+[38:48] to figure it out if [clears throat] you go through the trace. And also, if your
+[38:50] go through the trace. And also, if your tools have like breadcrumbs of impact.
+[38:53] tools have like breadcrumbs of impact. Hopefully that answers that.
+[39:01] Okay, great question. How do you measure um and prove that the verification loop
+[39:04] um and prove that the verification loop improves production outcomes rather than
+[39:06] improves production outcomes rather than just increasing latency and cost? And do
+[39:09] just increasing latency and cost? And do you have a reference architecture that
+[39:11] you have a reference architecture that you would recommend?
+[39:14] you would recommend? That's a great question. Um
+[39:16] That's a great question. Um my favorite quote that I heard this week
+[39:18] my favorite quote that I heard this week that I probably need to tweet about is
+[39:20] that I probably need to tweet about is this just sounds like an eval in a
+[39:22] this just sounds like an eval in a trench coat. Um and that's exactly what
+[39:24] trench coat. Um and that's exactly what this is. So,
+[39:26] this is. So, uh how do you
+[39:27] uh how do you prove that it improves production
+[39:30] prove that it improves production outcomes? Like you can't unless you have
+[39:33] outcomes? Like you can't unless you have um
+[39:34] um online evals.
+[39:35] online evals. Um
+[39:37] Um and all like offline evals are great,
+[39:38] and all like offline evals are great, too.
+[39:39] too. Um and do you have a reference
+[39:41] Um and do you have a reference architecture? I mean, I think I would
+[39:43] architecture? I mean, I think I would just point to our like stack that helps
+[39:47] just point to our like stack that helps with the agent development life life
+[39:48] with the agent development life life cycle. Um build, test, monitor, deploy.
+[39:51] cycle. Um build, test, monitor, deploy. So, we're building with open source,
+[39:53] So, we're building with open source, we're testing before deployment, deploy,
+[39:57] we're testing before deployment, deploy, observe. We use the results from
+[39:59] observe. We use the results from observation to make improvements to the
+[40:02] observation to make improvements to the base
+[40:03] base harness. [clears throat]
+[40:04] harness. [clears throat] And then, yeah, you know, we're at the
+[40:06] And then, yeah, you know, we're at the test step step again.
+[40:08] test step step again. Um
+[40:09] Um yeah, that's that's really the only way
+[40:10] yeah, that's that's really the only way to know.
+[40:15] And then, the last note that I'll have here is like increasing latency and
+[40:17] here is like increasing latency and cost. Yes, if it improves your outcomes,
+[40:20] cost. Yes, if it improves your outcomes, maybe that's like a trade-off that's
+[40:21] maybe that's like a trade-off that's worth it.
+[40:23] worth it. But again, you can like play the
+[40:24] But again, you can like play the optimization game between like
+[40:26] optimization game between like where does my like greater and
+[40:28] where does my like greater and verification loop help and like what
+[40:31] verification loop help and like what power model should I use? For example,
+[40:33] power model should I use? For example, if I don't care that much about latency,
+[40:35] if I don't care that much about latency, but like cost is a factor,
+[40:37] but like cost is a factor, you could use a
+[40:39] you could use a like cheaper model and just like accept
+[40:42] like cheaper model and just like accept the latency of the greater verification
+[40:44] the latency of the greater verification loops.
+[40:54] How do you deal with planner to looping and token optimization for
+[40:57] to looping and token optimization for complex queries?
+[40:59] complex queries? Great question. I feel like
+[41:01] Great question. I feel like &gt;&gt; [clears throat]
+[41:01] &gt;&gt; [clears throat] &gt;&gt; I've kind of piecemeal answered this
+[41:02] &gt;&gt; I've kind of piecemeal answered this through some of the other questions, but
+[41:05] through some of the other questions, but context engineering and like prompt
+[41:07] context engineering and like prompt compression is definitely an important
+[41:09] compression is definitely an important factor here,
+[41:11] factor here, especially as like
+[41:13] especially as like you are doing more loops, you can you
+[41:15] you are doing more loops, you can you can probably compress some of the like
+[41:18] can probably compress some of the like earlier iterations and histories, right?
+[41:20] earlier iterations and histories, right? Because like
+[41:21] Because like once you re-enter that like try again
+[41:23] once you re-enter that like try again loop for an agent,
+[41:25] loop for an agent, it probably makes sense to compress most
+[41:28] it probably makes sense to compress most of the other like attempts
+[41:30] of the other like attempts um
+[41:31] um and
+[41:32] and just work with like the current state of
+[41:34] just work with like the current state of the artifact and the rubric criteria and
+[41:36] the artifact and the rubric criteria and goal.
+[41:37] goal. Um
+[41:38] Um yeah.
+[41:40] yeah. And then I I sort of talked about um
+[41:43] And then I I sort of talked about um how you can trade off cost and latency
+[41:45] how you can trade off cost and latency with loops.
+[41:54] Uh the hill climbing loops performance would depend on the evals loop and
+[41:58] would depend on the evals loop and the the evals loop and work as planned.
+[42:01] the the evals loop and work as planned. Do you have any insights on
+[42:03] Do you have any insights on automatically improving evals over time
+[42:05] automatically improving evals over time and the efficiency of that loop as well?
+[42:09] and the efficiency of that loop as well? That's a great question. I've been
+[42:11] That's a great question. I've been finding myself happy learning more and
+[42:13] finding myself happy learning more and more about evals by the week um
+[42:17] more about evals by the week um because they're just like such an
+[42:18] because they're just like such an essential part of this cycle.
+[42:20] essential part of this cycle. Um
+[42:26] I think I mean the word automatically here like just points me
+[42:29] here like just points me &gt;&gt; [clears throat]
+[42:29] &gt;&gt; [clears throat] &gt;&gt; directly into like another oh an agent
+[42:32] &gt;&gt; directly into like another oh an agent could help with that thing.
+[42:34] could help with that thing. Um
+[42:35] Um but I think the important part of like
+[42:37] but I think the important part of like automating eval generation is that
+[42:39] automating eval generation is that there's like some
+[42:41] there's like some understanding of the context of your
+[42:44] understanding of the context of your what your agent is doing and like what
+[42:46] what your agent is doing and like what the success criteria are.
+[42:49] the success criteria are. Um and again I will point at the new
+[42:52] Um and again I will point at the new skill that we just released on eval
+[42:53] skill that we just released on eval engineering that basically can look at
+[42:56] engineering that basically can look at traces and help to generate evals from
+[42:58] traces and help to generate evals from those but it also has the like base
+[43:01] those but it also has the like base context of the
+[43:03] context of the um repository and agent. And then I'll
+[43:06] um repository and agent. And then I'll also note that that skill actually it's
+[43:08] also note that that skill actually it's it's meant for a coding agent to help
+[43:09] it's meant for a coding agent to help you extract evals.
+[43:11] you extract evals. Um but it is pretty interactive like it
+[43:14] Um but it is pretty interactive like it asks you the human lots of questions
+[43:16] asks you the human lots of questions about like the context in which you want
+[43:18] about like the context in which you want to generate these evals etc. It almost
+[43:21] to generate these evals etc. It almost like interviews you. Um
+[43:23] like interviews you. Um and then the other thing that I'll note
+[43:24] and then the other thing that I'll note on evals and Nick from our open source
+[43:27] on evals and Nick from our open source team just released a great blog on like
+[43:28] team just released a great blog on like how we think about evals for deep agents
+[43:30] how we think about evals for deep agents is um
+[43:32] is um you kind of want like two types of
+[43:33] you kind of want like two types of evals. One almost reminds me of like a
+[43:35] evals. One almost reminds me of like a unit test. It's like a baseline
+[43:37] unit test. It's like a baseline functionality thing. Um so like is the
+[43:40] functionality thing. Um so like is the agent doing the like bare minimum and
+[43:41] agent doing the like bare minimum and and not regressing in terms of behavior?
+[43:43] and not regressing in terms of behavior? And then the other one is like a
+[43:45] And then the other one is like a uh challenging integration test almost
+[43:48] uh challenging integration test almost where it's like more of an end-to-end
+[43:49] where it's like more of an end-to-end thing or even like a
+[43:51] thing or even like a um shoot for the stars sort of eval that
+[43:54] um shoot for the stars sort of eval that you can like hill climb on. Um and so I
+[43:56] you can like hill climb on. Um and so I think making sure that your eval suite
+[43:58] think making sure that your eval suite has both of those is good and especially
+[44:00] has both of those is good and especially making sure that your baseline ones
+[44:02] making sure that your baseline ones um are really good is great.
+[44:04] um are really good is great. I think I have time for just one more
+[44:06] I think I have time for just one more question here.
+[44:13] Um oh, great question. Uh for the hill climbing loop, what types of changes are
+[44:15] climbing loop, what types of changes are better in the harness? Changing code and
+[44:18] better in the harness? Changing code and architecture, some more runtime stuff,
+[44:20] architecture, some more runtime stuff, or updating memory {slash} skills
+[44:22] or updating memory {slash} skills {slash} prompts?
+[44:24] {slash} prompts? This is a fantastic question. So, um
+[44:28] This is a fantastic question. So, um I can't, unfortunately, say which is
+[44:31] I can't, unfortunately, say which is better.
+[44:32] better. But, what I would push folks to
+[44:34] But, what I would push folks to generally try to do is like keep the
+[44:37] generally try to do is like keep the agent architecture relatively similar,
+[44:39] agent architecture relatively similar, like trust in the power of that core
+[44:40] like trust in the power of that core agent loop,
+[44:42] agent loop, um and then
+[44:43] um and then update the memory and skills and prompts
+[44:45] update the memory and skills and prompts and see how far you can get with that.
+[44:46] and see how far you can get with that. Because like most of the time the reason
+[44:49] Because like most of the time the reason the agent does something wrong is not
+[44:51] the agent does something wrong is not necessarily cuz the model isn't powerful
+[44:53] necessarily cuz the model isn't powerful enough, but just cuz it doesn't have the
+[44:54] enough, but just cuz it doesn't have the right information.
+[44:56] right information. Um and so, I would lean towards like try
+[44:58] Um and so, I would lean towards like try to update memory and skills and prompts
+[45:00] to update memory and skills and prompts first. And then, if there are important
+[45:03] first. And then, if there are important architecture changes, for example,
+[45:04] architecture changes, for example, something like man, the agent is never
+[45:07] something like man, the agent is never following this compliance step, like
+[45:09] following this compliance step, like then you can definitely, uh
+[45:11] then you can definitely, uh you know, add like deterministic code or
+[45:12] you know, add like deterministic code or change the runtime structure there. So,
+[45:15] change the runtime structure there. So, first, more of the memory stuff, second,
+[45:18] first, more of the memory stuff, second, more of the runtime stuff, especially if
+[45:20] more of the runtime stuff, especially if it's like I needed to take this
+[45:21] it's like I needed to take this deterministic step.
+[45:24] deterministic step. Um all righty. Well, thank you folks for
+[45:26] Um all righty. Well, thank you folks for all the questions. I just have a couple
+[45:28] all the questions. I just have a couple more uh things to chat about here. So,
+[45:30] more uh things to chat about here. So, the
+[45:32] the the first is that we're expanding our
+[45:35] the first is that we're expanding our Interrupt conference. Um and so, we now
+[45:37] Interrupt conference. Um and so, we now have Interrupt 2026 planned in New York
+[45:40] have Interrupt 2026 planned in New York City, uh September 24th, and then
+[45:43] City, uh September 24th, and then Interrupt 2026 in London, um on the 13th
+[45:46] Interrupt 2026 in London, um on the 13th of October. So, super exciting
+[45:57] Thank you so much for attending. Um if you have more questions, feel free to
+[45:59] you have more questions, feel free to bug me on on
+[46:00] bug me on on Um
+[46:01] Um yeah, much appreciated.
