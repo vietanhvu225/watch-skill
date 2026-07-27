@@ -1,0 +1,483 @@
+[00:31] Hey everybody, my name is Kyle. Hums
+[00:43] are really powerful, don't get me wrong, but so much of the discourse around them
+[00:44] but so much of the discourse around them is hype and just really not helpful,
+[00:47] is hype and just really not helpful, right? We I think we have this idea just
+[00:50] right? We I think we have this idea just kind of as an industry somehow that we
+[00:52] kind of as an industry somehow that we can like pipe a prompt and a loop to a
+[00:55] can like pipe a prompt and a loop to a coding agent and that we can build
+[00:57] coding agent and that we can build software this way, right?
+[00:59] software this way, right? Maybe we're investing a lot of time in
+[01:01] Maybe we're investing a lot of time in verifiers. Maybe you have six different
+[01:03] verifiers. Maybe you have six different code review agents. But at the end of
+[01:06] code review agents. But at the end of the day, if we're doing this, we're
+[01:07] the day, if we're doing this, we're still building 40,000line PRs that just
+[01:10] still building 40,000line PRs that just nobody wants to read, right? And this
+[01:13] nobody wants to read, right? And this isn't a throchet to Jeff Huntley, right?
+[01:15] isn't a throchet to Jeff Huntley, right? This is Ralph is an innovative uh it's a
+[01:19] This is Ralph is an innovative uh it's a sharp tool that works very well for
+[01:21] sharp tool that works very well for certain types of problems. It works very
+[01:23] certain types of problems. It works very well if you're not building on a team
+[01:25] well if you're not building on a team and it works very well if you're not
+[01:26] and it works very well if you're not working on critical systems. But most of
+[01:29] working on critical systems. But most of us are working on teams and we don't fit
+[01:31] us are working on teams and we don't fit in that box. So today I want to talk
+[01:34] in that box. So today I want to talk about how to build loops that work in
+[01:36] about how to build loops that work in large complex code bases for systems
+[01:38] large complex code bases for systems that have real customers, real users,
+[01:41] that have real customers, real users, real regulatory obligations and service
+[01:43] real regulatory obligations and service level agreements and everything else
+[01:46] level agreements and everything else that keeps us from shipping yolo 40,000
+[01:48] that keeps us from shipping yolo 40,000 line PRs straight to production. In
+[01:51] line PRs straight to production. In other words, I want to talk about how to
+[01:52] other words, I want to talk about how to build loops for the real world.
+[01:55] build loops for the real world. If you're not aware, uh, this post
+[01:57] If you're not aware, uh, this post actually dates back to July. It went
+[01:59] actually dates back to July. It went viral this past January, which is when a
+[02:01] viral this past January, which is when a lot of us, I think, started building
+[02:02] lot of us, I think, started building loops. And of course, much more
+[02:04] loops. And of course, much more recently, I'm sure y'all are going to
+[02:06] recently, I'm sure y'all are going to see this slide a lot this week. Uh, but
+[02:07] see this slide a lot this week. Uh, but Peter Steinberger said that we shouldn't
+[02:09] Peter Steinberger said that we shouldn't be prompting coding agents anymore,
+[02:11] be prompting coding agents anymore, right? We should just be designing loops
+[02:13] right? We should just be designing loops that prompt our agents. Of course, Open
+[02:15] that prompt our agents. Of course, Open Claw is notoriously built on loops.
+[02:18] Claw is notoriously built on loops. Loops build the code. The loops review
+[02:19] Loops build the code. The loops review the code. They merge and release the
+[02:21] the code. They merge and release the code. They find and fix the bugs.
+[02:23] code. They find and fix the bugs. There's even loops for finding and
+[02:25] There's even loops for finding and fixing bugs and the loops that are
+[02:28] fixing bugs and the loops that are merging the things, right? It's loops
+[02:30] merging the things, right? It's loops all the way down. It's uh Boris Churnney
+[02:34] all the way down. It's uh Boris Churnney also the creator of Claude Code recently
+[02:36] also the creator of Claude Code recently said that this is his entire job as an
+[02:38] said that this is his entire job as an engineer now is just writing loops to
+[02:40] engineer now is just writing loops to prompt Claude. And eventually we might
+[02:43] prompt Claude. And eventually we might not even need loops, right? We're just
+[02:44] not even need loops, right? We're just gonna have like swarms of agents
+[02:47] gonna have like swarms of agents designing loops to prompt agents
+[02:49] designing loops to prompt agents building swarms for loops and like I
+[02:52] building swarms for loops and like I don't know somewhere we're like writing
+[02:54] don't know somewhere we're like writing production code I assume and in fact all
+[02:58] production code I assume and in fact all of our loops that we're building are
+[02:59] of our loops that we're building are producing so much code that we can't
+[03:01] producing so much code that we can't possibly read all of it right so we
+[03:03] possibly read all of it right so we might as well just not read any of it
+[03:05] might as well just not read any of it right we're we're investing in
+[03:07] right we're we're investing in verification and in code review but all
+[03:09] verification and in code review but all this code is readon this was the thesis
+[03:11] this code is readon this was the thesis of a conference that uh was here in town
+[03:13] of a conference that uh was here in town last month. So, a lot of smart people at
+[03:16] last month. So, a lot of smart people at the Frontier Labs think that this is the
+[03:17] the Frontier Labs think that this is the future of software development. And if
+[03:19] future of software development. And if you're doing this, you're moving 10x
+[03:22] you're doing this, you're moving 10x faster and everybody else is getting
+[03:25] faster and everybody else is getting left behind. Now, it's not clear how
+[03:27] left behind. Now, it's not clear how well this works yet. Uh took six months
+[03:30] well this works yet. Uh took six months to fix the cloud code terminal flicker.
+[03:32] to fix the cloud code terminal flicker. The open code team wrote a renderer in a
+[03:35] The open code team wrote a renderer in a fraction of that time. And open claw, of
+[03:37] fraction of that time. And open claw, of course, also notoriously has stability
+[03:39] course, also notoriously has stability issues.
+[03:41] issues. What is abundantly clear, however, is
+[03:43] What is abundantly clear, however, is that this is really expensive if
+[03:46] that this is really expensive if you don't work at a frontier lab and
+[03:48] you don't work at a frontier lab and have an unlimited token budget. And all
+[03:51] have an unlimited token budget. And all this code that we're writing is actually
+[03:53] this code that we're writing is actually really expensive, right? Matt PCO talked
+[03:55] really expensive, right? Matt PCO talked about this recently. Uh, bad code is
+[03:58] about this recently. Uh, bad code is much more expensive in the age of agents
+[04:00] much more expensive in the age of agents than it it has ever been at any point in
+[04:02] than it it has ever been at any point in the past. So today I want to talk about
+[04:05] the past. So today I want to talk about what I think works in the real world and
+[04:07] what I think works in the real world and what we've started doing at human layer
+[04:09] what we've started doing at human layer which to be clear is still building
+[04:11] which to be clear is still building loops right I think loops are super
+[04:13] loops right I think loops are super powerful but we can design loops and
+[04:15] powerful but we can design loops and still read the code in fact we can
+[04:18] still read the code in fact we can design loops that make it easier to read
+[04:20] design loops that make it easier to read the code because the loops are making
+[04:21] the code because the loops are making the code better solve hard problems in
+[04:24] the code better solve hard problems in complex code bases with loops and we can
+[04:26] complex code bases with loops and we can build our software factory incrementally
+[04:29] build our software factory incrementally but uh to do this is going to take some
+[04:31] but uh to do this is going to take some real engineering y'all So let's talk
+[04:33] real engineering y'all So let's talk about control theory. Control theory is
+[04:36] about control theory. Control theory is all about how we drive a dynamic system
+[04:38] all about how we drive a dynamic system which would be your codebase towards
+[04:40] which would be your codebase towards some desired stable or optimal end
+[04:43] some desired stable or optimal end state. Right? You have a sensor that
+[04:45] state. Right? You have a sensor that measures the current state of the world.
+[04:47] measures the current state of the world. You have your set point, right? The
+[04:49] You have your set point, right? The desired state of the world. And the
+[04:51] desired state of the world. And the difference between those two things is
+[04:52] difference between those two things is your measured error. You have a
+[04:54] your measured error. You have a controller that reads that measured
+[04:56] controller that reads that measured error and turns it into a control signal
+[04:58] error and turns it into a control signal about an incremental change to apply to
+[05:00] about an incremental change to apply to the system. We have an actuator that
+[05:03] the system. We have an actuator that applies that change to the system which
+[05:05] applies that change to the system which is undergoing disturbances in the
+[05:06] is undergoing disturbances in the meantime and then we reme-measure
+[05:09] meantime and then we reme-measure recomputee our measured error and we're
+[05:11] recomputee our measured error and we're back where we started. Now this sounds
+[05:14] back where we started. Now this sounds really complicated and it can be. I have
+[05:16] really complicated and it can be. I have a twin brother actually who's an
+[05:17] a twin brother actually who's an aerospace engineer. This is how they
+[05:19] aerospace engineer. This is how they keep fighter jets from falling out of
+[05:20] keep fighter jets from falling out of the sky. Uh but uh it's probably a
+[05:23] the sky. Uh but uh it's probably a little bit simpler than most of you all
+[05:25] little bit simpler than most of you all think. Does anyone have one of these?
+[05:28] think. Does anyone have one of these? Uh a thermostat uses a control loop,
+[05:31] Uh a thermostat uses a control loop, right? Uh for for any of our European
+[05:33] right? Uh for for any of our European friends in the audience, it's part of
+[05:35] friends in the audience, it's part of something we have uh here in the states,
+[05:37] something we have uh here in the states, it's called air conditioning.
+[05:44] And uh most of us probably use control loops on a daily basis, right?
+[05:46] loops on a daily basis, right? Kubernetes autoscaling systems are built
+[05:49] Kubernetes autoscaling systems are built on control loops. Infrastructurees code
+[05:51] on control loops. Infrastructurees code uses a desired state, current state,
+[05:55] uses a desired state, current state, iterative change like control loop
+[05:57] iterative change like control loop pattern. Postgress's uh autovacuum in
+[06:00] pattern. Postgress's uh autovacuum in React's virtual DOM both use or
+[06:02] React's virtual DOM both use or approximate control loops. Control loops
+[06:04] approximate control loops. Control loops are ideal when we have a system that we
+[06:06] are ideal when we have a system that we want to change a problem we can measure
+[06:08] want to change a problem we can measure and a way to get feedback on the result
+[06:10] and a way to get feedback on the result of that change. Like good software
+[06:12] of that change. Like good software engineers have always been taught to do.
+[06:15] engineers have always been taught to do. Control loops change a system
+[06:16] Control loops change a system incrementally instead of just trying to
+[06:19] incrementally instead of just trying to get straight to the end state
+[06:20] get straight to the end state immediately all at once and risk blowing
+[06:22] immediately all at once and risk blowing everything up, right? They help us to
+[06:24] everything up, right? They help us to avoid over steering and destabilizing
+[06:26] avoid over steering and destabilizing the system and it minimizes risk.
+[06:29] the system and it minimizes risk. So control loops are the opposite of
+[06:32] So control loops are the opposite of what I'm going to call a blind Ralph
+[06:33] what I'm going to call a blind Ralph loop. They're how we avoid PRs that look
+[06:35] loop. They're how we avoid PRs that look like this because nobody wants to review
+[06:37] like this because nobody wants to review this, right? Which is not to say that
+[06:40] this, right? Which is not to say that all Ralph loops are blind loops. The
+[06:42] all Ralph loops are blind loops. The best Ralphs are actually applying
+[06:44] best Ralphs are actually applying control theory. I know Jeff Huntley is
+[06:46] control theory. I know Jeff Huntley is out in the hall somewhere wandering
+[06:47] out in the hall somewhere wandering around. If you go talk to him, he's
+[06:48] around. If you go talk to him, he's going to tell you the same thing, right?
+[06:50] going to tell you the same thing, right? that Ralph is a a teaching device and I
+[06:53] that Ralph is a a teaching device and I think some of us read it a little too
+[06:55] think some of us read it a little too literally but this is how we should have
+[06:57] literally but this is how we should have always been building loops but the other
+[07:00] always been building loops but the other issue with Ralph loops is they're not
+[07:01] issue with Ralph loops is they're not incremental right it's just a bash loop
+[07:04] incremental right it's just a bash loop so we have to build a gentic control
+[07:06] so we have to build a gentic control loops and to do that we start by
+[07:08] loops and to do that we start by defining a set point which is the
+[07:09] defining a set point which is the desired end state of our codebase with
+[07:11] desired end state of our codebase with respect to some property of it and we
+[07:14] respect to some property of it and we add a sensor there's a lot of ways to
+[07:16] add a sensor there's a lot of ways to build a sensor it can be strictly
+[07:17] build a sensor it can be strictly deterministic your eslint rules your as
+[07:21] deterministic your eslint rules your as GP, your pack work, or it can be
+[07:24] GP, your pack work, or it can be non-deterministic. You can have an agent
+[07:26] non-deterministic. You can have an agent and a skill and a bunch of natural
+[07:28] and a skill and a bunch of natural language rules. And you could also just
+[07:31] language rules. And you could also just have a pipeline, like a combination of
+[07:32] have a pipeline, like a combination of the two. So, how do we build a gentic?
+[07:35] the two. So, how do we build a gentic? Whoops, there we go. Now, uh this is all
+[07:39] Whoops, there we go. Now, uh this is all theory, right? Practically speaking, and
+[07:41] theory, right? Practically speaking, and because we're using agents, we can blur
+[07:43] because we're using agents, we can blur the lines a little bit between system
+[07:44] the lines a little bit between system components. So, Aiden buys React Doctor,
+[07:47] components. So, Aiden buys React Doctor, for example, is fantastic. It is uh it's
+[07:51] for example, is fantastic. It is uh it's a great way to catch all of the React
+[07:52] a great way to catch all of the React slot that Claude snuck into your
+[07:54] slot that Claude snuck into your codebase last week, but uh it's a hybrid
+[07:57] codebase last week, but uh it's a hybrid sensor and controller. It tells you what
+[07:59] sensor and controller. It tells you what are all the problems with your React
+[08:00] are all the problems with your React code and also by the way, what are the
+[08:02] code and also by the way, what are the top three things you should fix and how
+[08:04] top three things you should fix and how do you fix them. Similarly, our
+[08:06] do you fix them. Similarly, our controller and actuator might actually
+[08:08] controller and actuator might actually just be a single agent deciding on an
+[08:11] just be a single agent deciding on an incremental change to make and then
+[08:12] incremental change to make and then applying it in the same context window.
+[08:14] applying it in the same context window. But I want to zoom in on the controller
+[08:16] But I want to zoom in on the controller a little bit because without one or
+[08:18] a little bit because without one or without a welltuned one, we might make
+[08:20] without a welltuned one, we might make too large of a change all at once or we
+[08:23] too large of a change all at once or we might make the wrong change entirely.
+[08:25] might make the wrong change entirely. And if you put that in a loop, you're in
+[08:27] And if you put that in a loop, you're in trouble pretty quickly.
+[08:29] trouble pretty quickly. So we can use control loops to root out
+[08:31] So we can use control loops to root out bad patterns and to clean up our code,
+[08:32] bad patterns and to clean up our code, but we can actually use them for all
+[08:33] but we can actually use them for all sorts of things, right? We could make
+[08:35] sorts of things, right? We could make sure that our API is compliant with
+[08:37] sure that our API is compliant with someone else's open API spec. We can
+[08:40] someone else's open API spec. We can make sure that our MCP server is
+[08:42] make sure that our MCP server is compliant with whatever version of the
+[08:44] compliant with whatever version of the uh the MCP specification that we're
+[08:47] uh the MCP specification that we're currently on. Haven't checked. You could
+[08:49] currently on. Haven't checked. You could mirror a project from Python into
+[08:51] mirror a project from Python into TypeScript or vice versa. You could even
+[08:54] TypeScript or vice versa. You could even maintain your uh Vbased slop fork of
+[08:57] maintain your uh Vbased slop fork of Nex.js against the upstream. The key
+[09:01] Nex.js against the upstream. The key questions are can we find something we
+[09:03] questions are can we find something we can measure? Can we apply changes
+[09:04] can measure? Can we apply changes incrementally? And can we get feedback
+[09:06] incrementally? And can we get feedback on the quality of those changes? To
+[09:09] on the quality of those changes? To illustrate that, I'm going to walk
+[09:10] illustrate that, I'm going to walk through a control loop that we use
+[09:11] through a control loop that we use internally at human layer. Uh for our
+[09:14] internally at human layer. Uh for our loop, we are incrementally migrating our
+[09:15] loop, we are incrementally migrating our RPC API to effect. We adopted it for
+[09:18] RPC API to effect. We adopted it for some of our raceprone code. We like it,
+[09:20] some of our raceprone code. We like it, so we're adopting it across the rest of
+[09:22] so we're adopting it across the rest of our codebase. If you've never seen
+[09:23] our codebase. If you've never seen effects code before, the code on the
+[09:25] effects code before, the code on the right is just the kind of trivial
+[09:27] right is just the kind of trivial procedure on the left rewritten in
+[09:28] procedure on the left rewritten in effect. Uh the syntax is really weird.
+[09:30] effect. Uh the syntax is really weird. We're psychos. We really like it. It's
+[09:32] We're psychos. We really like it. It's not for everybody. That's okay. Uh this
+[09:34] not for everybody. That's okay. Uh this isn't a talk about effect, so we'll keep
+[09:36] isn't a talk about effect, so we'll keep moving.
+[09:42] Clicker's not working. Cool. So, step one, we have to build our sensor to find
+[09:44] one, we have to build our sensor to find unmigrated procedures. We can have an
+[09:46] unmigrated procedures. We can have an agent do this or we could use GP or RIP
+[09:49] agent do this or we could use GP or RIP Grep, but instead we're going to use as
+[09:51] Grep, but instead we're going to use as Grep because it's really powerful. It's
+[09:52] Grep because it's really powerful. It's a great tool to have in your toolbox for
+[09:54] a great tool to have in your toolbox for building loops. It's language agnostic.
+[09:56] building loops. It's language agnostic. It's out of band from your TypeScript
+[09:58] It's out of band from your TypeScript config or ESLint rules, which if you're
+[10:00] config or ESLint rules, which if you're a TypeScript developer, you have watched
+[10:02] a TypeScript developer, you have watched Claude disable those with inline
+[10:03] Claude disable those with inline comments. Uh but so we can just write a
+[10:06] comments. Uh but so we can just write a simple rule that finds unmigrated
+[10:08] simple rule that finds unmigrated procedures uh based on the pattern above
+[10:10] procedures uh based on the pattern above and we over time we can even layer on
+[10:12] and we over time we can even layer on more rules that describe other patterns
+[10:14] more rules that describe other patterns we want to get rid of with granular
+[10:15] we want to get rid of with granular include and exclude paths. If you have a
+[10:17] include and exclude paths. If you have a multilingual monor repo like we do uh
+[10:20] multilingual monor repo like we do uh it'll work for any language you could
+[10:21] it'll work for any language you could possibly imagine. And we can just scan
+[10:23] possibly imagine. And we can just scan our codebase and it'll produce a long
+[10:25] our codebase and it'll produce a long list of violations. Uh way too long in
+[10:28] list of violations. Uh way too long in fact it'll give you about 50 keys per
+[10:30] fact it'll give you about 50 keys per violation. So, we're just going to
+[10:31] violation. So, we're just going to filter it down to four and we're going
+[10:33] filter it down to four and we're going to sort it deterministically. Why are we
+[10:35] to sort it deterministically. Why are we doing that? At the beginning, I said
+[10:37] doing that? At the beginning, I said this was going to be practical. And so,
+[10:39] this was going to be practical. And so, we're going to step outside of our
+[10:40] we're going to step outside of our control loop paradigm for a second
+[10:42] control loop paradigm for a second because before we start incrementally
+[10:43] because before we start incrementally migrating procedures one at a time, we
+[10:45] migrating procedures one at a time, we need to enforce that all new procedures
+[10:47] need to enforce that all new procedures are using effect, right? So, we're going
+[10:49] are using effect, right? So, we're going to run a full scan once on main, sort
+[10:51] to run a full scan once on main, sort all the violations deterministically,
+[10:52] all the violations deterministically, and track it in our version control. And
+[10:55] and track it in our version control. And then on every new PR we can see if it
+[10:57] then on every new PR we can see if it the branch added any unmigrated
+[10:59] the branch added any unmigrated procedures. Right? So this is our
+[11:02] procedures. Right? So this is our control loop and our system is
+[11:03] control loop and our system is undergoing disturbances. In this case uh
+[11:06] undergoing disturbances. In this case uh all of our teammates shipping cloud slot
+[11:08] all of our teammates shipping cloud slot and this is how we make sure that
+[11:09] and this is how we make sure that they're not undoing our loop's work.
+[11:11] they're not undoing our loop's work. This doesn't map directly to a part of
+[11:13] This doesn't map directly to a part of the control loop but we can kind of like
+[11:15] the control loop but we can kind of like squint at it a little bit and call it a
+[11:16] squint at it a little bit and call it a disturbance dampener. So now that we've
+[11:18] disturbance dampener. So now that we've stopped the bleeding we can actually
+[11:20] stopped the bleeding we can actually design our controller. For a simple
+[11:22] design our controller. For a simple controller, we could just
+[11:23] controller, we could just deterministically pick the first
+[11:24] deterministically pick the first violation from the list. You can use
+[11:26] violation from the list. You can use bash and jq. Or we could get a little
+[11:29] bash and jq. Or we could get a little cleverer and use as grep to find the
+[11:31] cleverer and use as grep to find the smallest unmigrated procedure and always
+[11:34] smallest unmigrated procedure and always pick the smallest one to reduce the
+[11:36] pick the smallest one to reduce the risk.
+[11:37] risk. Uh we could have an agent make the
+[11:39] Uh we could have an agent make the decision if we really want to. I don't
+[11:41] decision if we really want to. I don't think you should ever send an agent to
+[11:42] think you should ever send an agent to do deterministic code's job, but you
+[11:44] do deterministic code's job, but you certainly can. In fact, depending on the
+[11:46] certainly can. In fact, depending on the complexity, we could have the agent pick
+[11:48] complexity, we could have the agent pick the procedure to migrate and just do it
+[11:49] the procedure to migrate and just do it at the same time like we just talked
+[11:51] at the same time like we just talked about. But we can make this even more
+[11:53] about. But we can make this even more powerful, right? Because we're not just
+[11:55] powerful, right? Because we're not just migrating to effect for the sake of it.
+[11:56] migrating to effect for the sake of it. We're doing it because it's helpful for
+[11:58] We're doing it because it's helpful for handling errors and for helping us
+[11:59] handling errors and for helping us instrument our code better. And so what
+[12:01] instrument our code better. And so what we could do if we want to get really
+[12:03] we could do if we want to get really clever is we can look at our telemetry
+[12:05] clever is we can look at our telemetry and figure out which procedures have the
+[12:06] and figure out which procedures have the most errors or the least instrumentation
+[12:09] most errors or the least instrumentation or has a gap in our APM, right? And when
+[12:12] or has a gap in our APM, right? And when we send a control signal to our actuator
+[12:14] we send a control signal to our actuator agent, we can include not just the
+[12:16] agent, we can include not just the procedure to migrate, but also all the
+[12:18] procedure to migrate, but also all the data about the things that we're trying
+[12:20] data about the things that we're trying to fix with this migration so that the
+[12:23] to fix with this migration so that the actuator agent can actually make the
+[12:25] actuator agent can actually make the code better instead of just doing a
+[12:26] code better instead of just doing a onetoone migration.
+[12:35] Oh man, there we go. So next is building our actuator. Our actuator is just an
+[12:37] our actuator. Our actuator is just an agent plus a skill. Um, bring your CLI
+[12:40] agent plus a skill. Um, bring your CLI coding agent of choice. You should spend
+[12:42] coding agent of choice. You should spend a lot of time on the skill. Not all of
+[12:43] a lot of time on the skill. Not all of that should be up front. You'll want to
+[12:45] that should be up front. You'll want to iterate on it over time based on what
+[12:46] iterate on it over time based on what works. At human layer, we like to build
+[12:48] works. At human layer, we like to build out what we call golden patterns by hand
+[12:50] out what we call golden patterns by hand before setting the agent loose. These
+[12:51] before setting the agent loose. These are just like idiomatic handwritten
+[12:53] are just like idiomatic handwritten examples for the agent to follow because
+[12:55] examples for the agent to follow because they're just pattern replicators and
+[12:57] they're just pattern replicators and otherwise you're getting what's in the
+[12:58] otherwise you're getting what's in the docks or what the agent knows from the
+[13:00] docks or what the agent knows from the internet. And so we pipe the skill plus
+[13:04] internet. And so we pipe the skill plus our control signal into our actuator
+[13:06] our control signal into our actuator agent. And the skill of course should
+[13:07] agent. And the skill of course should include a response template. And the
+[13:09] include a response template. And the agent's going to work and work and work
+[13:11] agent's going to work and work and work and it'll produce a final response. And
+[13:13] and it'll produce a final response. And then we're going to deterministically
+[13:14] then we're going to deterministically commit and push and create a PR using
+[13:17] commit and push and create a PR using the final message as our PR description.
+[13:20] the final message as our PR description. Now all we have to do is actually run
+[13:21] Now all we have to do is actually run the loop, right? Uh my recommendation is
+[13:23] the loop, right? Uh my recommendation is to use GitHub actions or your GitLab or
+[13:26] to use GitHub actions or your GitLab or your CircleCI or whatever else you're
+[13:28] your CircleCI or whatever else you're using because it has access to your
+[13:30] using because it has access to your code. It has access to your secrets and
+[13:33] code. It has access to your secrets and it has great dispatch and scheduling
+[13:35] it has great dispatch and scheduling primitives. Right? We don't need a new
+[13:37] primitives. Right? We don't need a new cluster for this. So we can write a
+[13:39] cluster for this. So we can write a workflow that runs a single iteration of
+[13:40] workflow that runs a single iteration of the loop sense control actuate and
+[13:43] the loop sense control actuate and creates a PR and then we can schedule
+[13:45] creates a PR and then we can schedule this to run once a day. And every
+[13:47] this to run once a day. And every morning we walk into the office to a
+[13:48] morning we walk into the office to a small incremental PR that's low risk.
+[13:51] small incremental PR that's low risk. And when we first did this, it was
+[13:53] And when we first did this, it was actually really frustrating and we
+[13:54] actually really frustrating and we turned the loop off and it uh because we
+[13:57] turned the loop off and it uh because we had to constantly update the skill. We
+[13:59] had to constantly update the skill. We had to constantly check out the branch,
+[14:01] had to constantly check out the branch, change the skill, change the code,
+[14:02] change the skill, change the code, commit and push. And our loop was
+[14:04] commit and push. And our loop was actually really high friction, right?
+[14:06] actually really high friction, right? But there's a better way to do this uh
+[14:08] But there's a better way to do this uh where we can put a human on the loop in
+[14:09] where we can put a human on the loop in a really low friction way to resteere it
+[14:11] a really low friction way to resteere it when it goes wrong. And the way to do
+[14:13] when it goes wrong. And the way to do this is to just create a feedback file
+[14:15] this is to just create a feedback file that's tracked in version control just
+[14:16] that's tracked in version control just as a markdown file, right? we can
+[14:18] as a markdown file, right? we can deterministically load it into our
+[14:20] deterministically load it into our actuator agents context every time that
+[14:22] actuator agents context every time that it runs after we run the controller.
+[14:24] it runs after we run the controller. Then we can add a label to the PR.
+[14:26] Then we can add a label to the PR. Right? Each workflow needs to be able to
+[14:28] Right? Each workflow needs to be able to identify PRs that it created since there
+[14:30] identify PRs that it created since there might be a bunch of different loops
+[14:31] might be a bunch of different loops running and we only want workflows to
+[14:32] running and we only want workflows to respond to feedback from uh comments on
+[14:35] respond to feedback from uh comments on their PRs. And we're going to add a
+[14:36] their PRs. And we're going to add a comment trigger to each loop workflow so
+[14:38] comment trigger to each loop workflow so that when a user leaves a slashiterate
+[14:40] that when a user leaves a slashiterate comment on the PR, uh the loop workflow
+[14:43] comment on the PR, uh the loop workflow is going to pick that up. It's going to
+[14:44] is going to pick that up. It's going to deterministically load all of the PR
+[14:47] deterministically load all of the PR context, the diff, the comments, the
+[14:49] context, the diff, the comments, the review comments, the description into
+[14:50] review comments, the description into the agents context along with the skill,
+[14:53] the agents context along with the skill, and it's going to instruct the agent to
+[14:55] and it's going to instruct the agent to fix the code, but also to update that
+[14:57] fix the code, but also to update that feedback file, right? Looks kind of like
+[14:59] feedback file, right? Looks kind of like this. And the benefit of doing this way
+[15:01] this. And the benefit of doing this way is that now that feedback file with
+[15:03] is that now that feedback file with instructions is tracked in your version
+[15:05] instructions is tracked in your version control. You can see how you've changed
+[15:06] control. You can see how you've changed it over time. You can revert it if you
+[15:08] it over time. You can revert it if you need to.
+[15:10] need to. So, the next thing we're going to do is
+[15:11] So, the next thing we're going to do is add flow control. Because the other
+[15:13] add flow control. Because the other problem that we had when we did this was
+[15:14] problem that we had when we did this was that if we were at a customer site for a
+[15:17] that if we were at a customer site for a week or if we were traveling or spent
+[15:20] week or if we were traveling or spent six days working on slides instead of
+[15:22] six days working on slides instead of writing code, uh the PRs from all of our
+[15:24] writing code, uh the PRs from all of our loops would just stack up. They'd
+[15:26] loops would just stack up. They'd duplicate work. They'd conflict and we
+[15:28] duplicate work. They'd conflict and we wouldn't get around to doing it. And
+[15:30] wouldn't get around to doing it. And like the loops work is important, but
+[15:31] like the loops work is important, but it's not that important. And so now we
+[15:33] it's not that important. And so now we just had all this like junk we had to
+[15:35] just had all this like junk we had to deal with that wasn't important. So this
+[15:37] deal with that wasn't important. So this is actually a really easy problem to fix
+[15:39] is actually a really easy problem to fix uh because each loop and its workflow
+[15:41] uh because each loop and its workflow has a label that gets attached to PRs.
+[15:44] has a label that gets attached to PRs. When the workflow first runs uh before
+[15:46] When the workflow first runs uh before we check out the code and install the
+[15:48] we check out the code and install the dependencies and run our sense actu or
+[15:51] dependencies and run our sense actu or sense control actuate steps, we can just
+[15:53] sense control actuate steps, we can just check and see if the last PR that we
+[15:55] check and see if the last PR that we created or any PR with the loop's label
+[15:57] created or any PR with the loop's label on it is open. And if so, we just shut
+[16:00] on it is open. And if so, we just shut down, right? Because this means that the
+[16:02] down, right? Because this means that the last time that a human uh reviewed the
+[16:05] last time that a human uh reviewed the code from this loop was before the loop
+[16:08] code from this loop was before the loop ran, right? No human reviewed the last
+[16:09] ran, right? No human reviewed the last output. So there's no reason to stack up
+[16:11] output. So there's no reason to stack up even more work for humans to review.
+[16:13] even more work for humans to review. This way we have exactly one PR at most
+[16:15] This way we have exactly one PR at most open per loop at a time. No stacking, no
+[16:18] open per loop at a time. No stacking, no duplication. Hopefully no conflicts. And
+[16:20] duplication. Hopefully no conflicts. And of course once you're feeling confident
+[16:22] of course once you're feeling confident in the loop, we're going to want to
+[16:23] in the loop, we're going to want to speed it up, right? I have 150 RPC
+[16:25] speed it up, right? I have 150 RPC procedures to migrate. If I do one at a
+[16:27] procedures to migrate. If I do one at a time, it's going to take six months,
+[16:29] time, it's going to take six months, which is way longer than I want to wait.
+[16:30] which is way longer than I want to wait. Fortunately, there's a lot of ways to
+[16:32] Fortunately, there's a lot of ways to pick up the the velocity of our loop. Uh
+[16:34] pick up the the velocity of our loop. Uh we could have our controller pick three
+[16:36] we could have our controller pick three procedures to migrate instead of one at
+[16:38] procedures to migrate instead of one at a time or five. Uh we could have our
+[16:41] a time or five. Uh we could have our controller pick three or five and then
+[16:42] controller pick three or five and then do each of those in a separate
+[16:44] do each of those in a separate implementation phase, which will be both
+[16:46] implementation phase, which will be both cheaper and more reliable since each
+[16:48] cheaper and more reliable since each migration gets its own context window.
+[16:50] migration gets its own context window. Or we could just run the workflow four
+[16:51] Or we could just run the workflow four times and give one PR to each of four
+[16:54] times and give one PR to each of four people on the team. So let's put it all
+[16:56] people on the team. So let's put it all together. We built a control loop that
+[16:59] together. We built a control loop that improves our code incrementally and
+[17:01] improves our code incrementally and we're actually reading the code. It has
+[17:03] we're actually reading the code. It has adaptive flow control so we're not
+[17:05] adaptive flow control so we're not creating a bunch of loop or a bunch of
+[17:06] creating a bunch of loop or a bunch of work that nobody wants to review. And we
+[17:09] work that nobody wants to review. And we can resteer it on the fly in a super low
+[17:11] can resteer it on the fly in a super low friction way. If you want to try this
+[17:13] friction way. If you want to try this yourself, uh we built a skill. Please
+[17:15] yourself, uh we built a skill. Please try it out. My Twitter handle is down
+[17:17] try it out. My Twitter handle is down there on the bottom. Please share it. I
+[17:18] there on the bottom. Please share it. I would love to see what you build. And if
+[17:20] would love to see what you build. And if you get excited by this, uh at Human
+[17:23] you get excited by this, uh at Human Layer, we're hiring here in San
+[17:24] Layer, we're hiring here in San Francisco. And if you're working on
+[17:26] Francisco. And if you're working on mission critical systems and want to
+[17:28] mission critical systems and want to figure out how to get more out of AI,
+[17:29] figure out how to get more out of AI, we'd love to chat. Thank you so much.
+[17:33] we'd love to chat. Thank you so much. [applause]

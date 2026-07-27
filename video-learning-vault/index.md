@@ -7,8 +7,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
-### 🟢 Hôm nay (26/07/2026 - 27/07/2026)
-*Nhóm 5 video mới nhất vừa được phân tích và đẩy lên hôm nay:*
+### 🟢 Hôm nay (27/07/2026)
+*Video vừa được phân tích và đẩy lên hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `cc024710b796fbf1` | Loop Engineering from First Principles | Control Loop | [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) | 18:00 |
+
+### 🟢 Hôm qua (26/07/2026)
+*Nhóm 5 video đã phân tích ngày hôm qua:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -28,7 +35,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
 | `c4f8d23d5d2fdc59` | How I passed the NEW Claude Architect Certification Exam (CCA-F) | Claude Certification | [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) | 15:50 |
-| `579c8e471aee536c` | Harness Engineering：有時候語言模型不是不夠聰明 | Harness Design | [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) | 01:32:20 |
+| `579c8e471aee536c` | Harness Engineering：有時候語言模型 interrupt 團隊沒有引導 | Harness Design | [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) | 01:32:20 |
 | `41056884ffb08d86` | Loop Engineering explained in 8min.. | Agent Loop | [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) | 08:53 |
 | `4b0f48e4f4ae6e02` | Me at the zoo | General / Test | (Ghi chú chung / Test) | 00:19 |
 
@@ -40,6 +47,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 *Các kỹ thuật thiết kế, vận hành, kiểm thử và tối ưu hóa hệ thống Agent.*
 * [Harness Engineering](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) - Cách tối ưu hóa môi trường ràng buộc và kiểm soát LLM.
 * [Loop Engineering (8m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) - Giới thiệu sơ khởi về 4 lớp kiến trúc vòng lặp.
+* [Loop Engineering from First Principles (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) - Phân tích thực tế thiết kế vòng lặp bằng Semgrep/ast-grep, golden patterns và flow control.
 * [The Art of Loop Engineering (46m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) - Phân tích sâu 4 cấp độ vòng lặp từ LangChain và LangSmith.
 * [Self-Improving AI Agents](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) - Cơ chế tối ưu hóa tự động giá trị cấu hình của harness.
 * [Why We Killed Our Multi-Agent Pipeline](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) - Case study chuyển đổi từ Multi-Agent phức tạp về Bounded Single Agent + Knowledge Graph.
@@ -64,6 +72,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) (15:00)
     *   [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) (15:50)
     *   [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) (18:00)
+    *   [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) (18:00)
 *   **🧠 Học sâu & Chi tiết (Trên 30 phút):**
     *   [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) (35:19)
     *   [art_of_loop_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) (46:00)
