@@ -8,10 +8,11 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
 ### 🟢 Hôm nay (04/08/2026)
-*Video vừa được phân tích và đẩy lên hôm nay:*
+*Nhóm 2 video vừa được phân tích và đẩy lên hôm nay:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `7b31de6eea9c4516` | MCP Apps: Extending the Frontier | Interactive UI | [mcp_apps_extending_frontier.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/mcp_apps_extending_frontier.md) | 18:00 |
 | `8c9cbc216c898efe` | Don't Ship Skills Without Evals | Agent Evals | [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) | 21:25 |
 
 ### 🟢 Hôm qua (03/08/2026)
@@ -60,6 +61,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [In the Land of AI Agents, the Verifiers Are King](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) - Khung phát triển ACDC (Sonar) chống suy giảm năng suất do Technical Debt từ AI.
 * [AI Tools for Forward Deployed Engineering](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) - Quy trình tích hợp Agent lên hệ thống kỷ lục (Salesforce/SAP/NetSuite) và tối ưu hóa context retrieval.
 * [Don't Ship Skills Without Evals](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) - Hướng dẫn thiết kế kiểm thử tự động, kiểm định (ablation tests) cho skill của agent từ Google DeepMind.
+* [MCP Apps: Extending the Frontier](file:///f:/source/watch-skill/video-learning-vault/ai-agents/mcp_apps_extending_frontier.md) - Tìm hiểu về chuẩn giao thức MCP Apps truyền tải giao diện người dùng (UI) tương tác trực tiếp vào Chat Client.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -79,6 +81,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) (15:50)
     *   [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) (18:00)
     *   [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) (18:00)
+    *   [mcp_apps_extending_frontier.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/mcp_apps_extending_frontier.md) (18:00)
     *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
 *   **🧠 Học sâu & Chi tiết (Trên 30 phút):**
     *   [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) (21:25)

@@ -1,0 +1,482 @@
+[00:15] &gt;&gt; Hi. So, hi everyone. We built this talk yesterday, so it
+[00:16] We built this talk yesterday, so it might be out of date.
+[00:18] might be out of date. I'm Ido Sadan, I am the creator of MCPY
+[00:21] I'm Ido Sadan, I am the creator of MCPY and co-creator and maintainer of MCP
+[00:24] and co-creator and maintainer of MCP apps in the MCP steering committee. I
+[00:26] apps in the MCP steering committee. I also created Adam Craft if you were in
+[00:27] also created Adam Craft if you were in the talk yesterday.
+[00:30] the talk yesterday. &gt;&gt; I'm the Adi. I work with Ido on MCPY.
+[00:32] &gt;&gt; I'm the Adi. I work with Ido on MCPY. I'm also the co-creator and maintainer
+[00:33] I'm also the co-creator and maintainer of the MCP apps spec and recently
+[00:36] of the MCP apps spec and recently co-founded Aura, which is a research lab
+[00:38] co-founded Aura, which is a research lab for the agentic web. And we're going to
+[00:40] for the agentic web. And we're going to talk a little bit more about it later.
+[00:47] &gt;&gt; So, MCP apps are all around us. You might not even realize it, but all the
+[00:50] might not even realize it, but all the fancy apps you have today in ChatGPT and
+[00:52] fancy apps you have today in ChatGPT and VS Code and Slack are actually all based
+[00:55] VS Code and Slack are actually all based on MCP and the MCP app spec.
+[01:03] &gt;&gt; And if we take a step back and we ask, why do we need MCP apps? What's the idea
+[01:05] why do we need MCP apps? What's the idea behind MCPY or MCP apps? So, when we
+[01:08] behind MCPY or MCP apps? So, when we work with chats, when we chat client
+[01:10] work with chats, when we chat client clients, we used to text because that's
+[01:12] clients, we used to text because that's the natural interface, but text is
+[01:15] the natural interface, but text is really the worst way to convey a lot of
+[01:17] really the worst way to convey a lot of information, right? Because we don't
+[01:19] information, right? Because we don't want walls of text. And actually, this
+[01:21] want walls of text. And actually, this is the main blocker from companies to
+[01:24] is the main blocker from companies to build an MCP server. They don't want to
+[01:25] build an MCP server. They don't want to be reduced to a textual database. They
+[01:27] be reduced to a textual database. They don't want to lose their brand identity
+[01:29] don't want to lose their brand identity in the process. They don't want their
+[01:31] in the process. They don't want their data that they work so hard on um
+[01:34] data that they work so hard on um building the UX for to look something
+[01:36] building the UX for to look something like this.
+[01:37] like this. So,
+[01:39] So, instead of this,
+[01:42] instead of this, what if the apps could just send their
+[01:44] what if the apps could just send their UI to the chat, right? What if every
+[01:47] UI to the chat, right? What if every service and every brand could just send
+[01:49] service and every brand could just send their user interface to the chat? So,
+[01:51] their user interface to the chat? So, instead of us looking at something like
+[01:53] instead of us looking at something like this,
+[01:54] this, we could just have the apps send their
+[01:57] we could just have the apps send their own identity, their own UI chunks into
+[01:59] own identity, their own UI chunks into the chat, and then we take a look and we
+[02:01] the chat, and then we take a look and we see, "Okay, yeah, I know this is Shopify
+[02:03] see, "Okay, yeah, I know this is Shopify in the middle. I know this is Hugging
+[02:04] in the middle. I know this is Hugging Face. I know this is Monday." And what
+[02:07] Face. I know this is Monday." And what if we don't want to do it only as a
+[02:09] if we don't want to do it only as a visualization? We also want to do it
+[02:11] visualization? We also want to do it interactive. So, we want the users to be
+[02:13] interactive. So, we want the users to be able to actually interact with Hugging
+[02:15] able to actually interact with Hugging Face, for example.
+[02:18] Face, for example. And for Hugging Face to actually do
+[02:20] And for Hugging Face to actually do something with it.
+[02:22] something with it. &gt;&gt; So, we don't have to imagine the future
+[02:24] &gt;&gt; So, we don't have to imagine the future as we said
+[02:26] as we said with MCPUI, which I created in May last
+[02:30] with MCPUI, which I created in May last year,
+[02:31] year, and took that, which is essentially like
+[02:33] and took that, which is essentially like an open protocol for interactive
+[02:35] an open protocol for interactive applications over MCP. So, it's not only
+[02:39] applications over MCP. So, it's not only how you transmit UI, but also how that
+[02:41] how you transmit UI, but also how that UI, that application connect connect
+[02:44] UI, that application connect connect communicates with the host.
+[02:46] communicates with the host. And just a few months ago, we partnered
+[02:49] And just a few months ago, we partnered with Anthropic and OpenAI to create
+[02:52] with Anthropic and OpenAI to create the official extension to MCP, which we
+[02:55] the official extension to MCP, which we call MCP apps based on MCPUI, MCP SDK,
+[02:59] call MCP apps based on MCPUI, MCP SDK, and other solutions in the field. Their
+[03:02] and other solutions in the field. Their launch was pretty cool with Claude and
+[03:04] launch was pretty cool with Claude and VS Code supporting it to begin with, but
+[03:06] VS Code supporting it to begin with, but now
+[03:08] now obviously also OpenAI and others have
+[03:10] obviously also OpenAI and others have adopted it.
+[03:13] adopted it. &gt;&gt; Yeah, and there are a lot of early
+[03:14] &gt;&gt; Yeah, and there are a lot of early adopters to MCPUI.
+[03:17] adopters to MCPUI. 11 Labs, Shopify, Postman. Those were
+[03:20] 11 Labs, Shopify, Postman. Those were one of the first first companies to
+[03:22] one of the first first companies to support it back like a year ago. They
+[03:24] support it back like a year ago. They were the one believing in this spec, in
+[03:25] were the one believing in this spec, in this vision.
+[03:27] this vision. And Goose also supported it. And it's a
+[03:30] And Goose also supported it. And it's a it's a funny anecdote because today
+[03:32] it's a funny anecdote because today Block released their agentic commerce
+[03:34] Block released their agentic commerce solution that is based on MCP apps. So,
+[03:36] solution that is based on MCP apps. So, a year ago Goose was the first client to
+[03:38] a year ago Goose was the first client to support MCPUI, and now it is part of
+[03:40] support MCPUI, and now it is part of Block's
+[03:42] Block's product uh
+[03:44] product uh product. And today we have a lot more
+[03:47] product. And today we have a lot more clients that are supporting MCPUI.
+[03:49] clients that are supporting MCPUI. We We Cursor, and we have
+[03:52] We We Cursor, and we have co-pilot and
+[03:54] co-pilot and GitHub ChatGPT support MCP apps. ChatGPT
+[03:58] GitHub ChatGPT support MCP apps. ChatGPT apps that you know are actually based on
+[04:00] apps that you know are actually based on MCP apps and open eye actually recommend
+[04:03] MCP apps and open eye actually recommend using
+[04:04] using MCP apps as the protocol to build
+[04:06] MCP apps as the protocol to build ChatGPT apps.
+[04:08] ChatGPT apps. Postman
+[04:09] Postman and a lot more and obviously Cloud
+[04:10] and a lot more and obviously Cloud supports MCP apps. But we also have a
+[04:13] supports MCP apps. But we also have a lot large community around it, right? So
+[04:15] lot large community around it, right? So people start to to build plugins to MCP
+[04:18] people start to to build plugins to MCP apps and
+[04:19] apps and um integrations to different agents and
+[04:21] um integrations to different agents and also courses on how to build MCP apps.
+[04:24] also courses on how to build MCP apps. This is by integration for MCP apps.
+[04:26] This is by integration for MCP apps. So we have a lot community around it. Um
+[04:29] So we have a lot community around it. Um There's a repo X app which is the repo
+[04:31] There's a repo X app which is the repo for MCP apps where everyone can just
+[04:34] for MCP apps where everyone can just come and propose PRs and ideas of how to
+[04:37] come and propose PRs and ideas of how to how to extend this spec and we have a
+[04:39] how to extend this spec and we have a work group in the MCP committee and
+[04:41] work group in the MCP committee and we're convening every 3 weeks. We have a
+[04:43] we're convening every 3 weeks. We have a tri-weekly meeting on the future of the
+[04:45] tri-weekly meeting on the future of the protocol and how to make the spec not
+[04:48] protocol and how to make the spec not just serve the bigger apps but also the
+[04:51] just serve the bigger apps but also the community. So it's an open working group
+[04:52] community. So it's an open working group with Anthropic, Open AI and all the
+[04:55] with Anthropic, Open AI and all the partners in in the MCP apps protocol.
+[04:58] partners in in the MCP apps protocol. &gt;&gt; Okay, so let's look at a few of the core
+[05:00] &gt;&gt; Okay, so let's look at a few of the core concepts of MCP apps.
+[05:03] concepts of MCP apps. The first and most obvious one is how do
+[05:05] The first and most obvious one is how do we even transmit UI over MCP? So if we
+[05:09] we even transmit UI over MCP? So if we look at this example of Cloud like
+[05:12] look at this example of Cloud like you know agent times like a few months
+[05:13] you know agent times like a few months ago
+[05:14] ago and I would ask something
+[05:16] and I would ask something best case scenario it would reach out to
+[05:19] best case scenario it would reach out to my MCP server and it would get back a
+[05:22] my MCP server and it would get back a textual response which is obviously
+[05:25] textual response which is obviously suboptimal.
+[05:26] suboptimal. So let's say I do want to get
+[05:28] So let's say I do want to get some something better.
+[05:31] some something better. So now I can use existing MCP primitives
+[05:34] So now I can use existing MCP primitives like a resource and now return HTML. And
+[05:38] like a resource and now return HTML. And I can take that HTML and since Cloud
+[05:41] I can take that HTML and since Cloud supports MCP apps it can turn it into an
+[05:44] supports MCP apps it can turn it into an interactive application
+[05:46] interactive application of the best soundtrack in the world.
+[05:52] And what if you wanted to be really interactive, right? This is nice because
+[05:54] interactive, right? This is nice because it shows the best soundtrack in the
+[05:55] it shows the best soundtrack in the world. What if I want to favorite one of
+[05:57] world. What if I want to favorite one of the songs there? I want interaction. I
+[06:00] the songs there? I want interaction. I want communication between the app
+[06:03] want communication between the app and the host. So, when the user clicks
+[06:05] and the host. So, when the user clicks on the favorite button,
+[06:07] on the favorite button, MCP apps actually standardizes this
+[06:09] MCP apps actually standardizes this flow. So, instead of the app sending a
+[06:11] flow. So, instead of the app sending a message to to the backend, to Spotify's
+[06:13] message to to the backend, to Spotify's backend, it's actually sending a message
+[06:16] backend, it's actually sending a message to the host saying, "Hey, user clicked a
+[06:18] to the host saying, "Hey, user clicked a button. Do something with it. I
+[06:20] button. Do something with it. I recommend you to call a tool in
+[06:22] recommend you to call a tool in Spotify's MCP server." And the host
+[06:24] Spotify's MCP server." And the host decides what to do. The host keeps this
+[06:26] decides what to do. The host keeps this control of the flow. In this case, the
+[06:27] control of the flow. In this case, the host can decide to actually call the
+[06:29] host can decide to actually call the favorite favorite tool. And MCP apps
+[06:31] favorite favorite tool. And MCP apps standardizes this flow.
+[06:35] standardizes this flow. &gt;&gt; Okay, so seeing is believing. So, let's
+[06:36] &gt;&gt; Okay, so seeing is believing. So, let's see an example from Claude.
+[06:43] Yeah. Uh so, let's say that I'm a product
+[06:45] Uh so, let's say that I'm a product manager to understand the status of my
+[06:47] manager to understand the status of my funnel. So, I would go to Claude and I
+[06:49] funnel. So, I would go to Claude and I would ask what's the status?
+[06:51] would ask what's the status? In the again, old world of a few months
+[06:53] In the again, old world of a few months ago, uh I would get back the textual
+[06:55] ago, uh I would get back the textual response. Let's say that it's PostHog.
+[06:58] response. Let's say that it's PostHog. So, it reached out to the PostHog
+[06:59] So, it reached out to the PostHog server, got back the textual response.
+[07:01] server, got back the textual response. It's factually correct, but it's
+[07:03] It's factually correct, but it's useless. I mean,
+[07:05] useless. I mean, how do I even take that and understand
+[07:07] how do I even take that and understand quickly what's going on? I would have to
+[07:08] quickly what's going on? I would have to read, which I don't want to do. Uh and
+[07:10] read, which I don't want to do. Uh and it's pretty challenging. Uh but luckily,
+[07:13] it's pretty challenging. Uh but luckily, because both PostHog server and Claude
+[07:17] because both PostHog server and Claude as a host support MCP apps, I can just
+[07:20] as a host support MCP apps, I can just say, "Show me."
+[07:21] say, "Show me." And now, instead of getting that block
+[07:24] And now, instead of getting that block of text, I can actually get something
+[07:25] of text, I can actually get something useful, uh which is this interactive um
+[07:29] useful, uh which is this interactive um widget that you would get, you know, on
+[07:31] widget that you would get, you know, on the PostHog uh uh server. And when you
+[07:34] the PostHog uh uh server. And when you have that, you can at a glance see
+[07:35] have that, you can at a glance see what's going on. And as you can see,
+[07:37] what's going on. And as you can see, it's branded PostHog. So, you're
+[07:39] it's branded PostHog. So, you're actually getting the PostHog experience
+[07:41] actually getting the PostHog experience within ChatGPT or Claude, etc.
+[07:44] within ChatGPT or Claude, etc. Uh but it doesn't really end there. As
+[07:47] Uh but it doesn't really end there. As we said, MCP apps is also like an
+[07:48] we said, MCP apps is also like an interactive photo call. So, not only can
+[07:51] interactive photo call. So, not only can I see and and interact with it, I can
+[07:53] I see and and interact with it, I can also do stuff like
+[07:55] also do stuff like ask him to explain what a funnel is. I
+[07:58] ask him to explain what a funnel is. I might not even know that. So, again,
+[07:59] might not even know that. So, again, instead of getting that huge wall of
+[08:01] instead of getting that huge wall of text explaining what a funnel is, I can
+[08:03] text explaining what a funnel is, I can just get this generative UI answer from
+[08:07] just get this generative UI answer from Claude, which uses MCP apps. It streams
+[08:09] Claude, which uses MCP apps. It streams like the HTML inside, and now I can get
+[08:11] like the HTML inside, and now I can get this nice interactive experience of
+[08:14] this nice interactive experience of learning.
+[08:15] learning. And not only is it visually nice and
+[08:18] And not only is it visually nice and helps me understand, but it's also
+[08:21] helps me understand, but it's also fully interactive. And when we say
+[08:23] fully interactive. And when we say interactive, it actually means that
+[08:25] interactive, it actually means that clicking it would help me communicate
+[08:28] clicking it would help me communicate with the host. So, let's say that I want
+[08:30] with the host. So, let's say that I want to understand like a particular step in
+[08:32] to understand like a particular step in the funnel. Uh I just go and I click on
+[08:35] the funnel. Uh I just go and I click on it, and since it's an MCP app, it can
+[08:37] it, and since it's an MCP app, it can send a prompt back to the uh model and
+[08:40] send a prompt back to the uh model and say, "Okay, explain this specific step
+[08:43] say, "Okay, explain this specific step to me." And I can advance the flow.
+[08:46] to me." And I can advance the flow. Uh so,
+[08:47] Uh so, this is a like an example of of how that
+[08:50] this is a like an example of of how that uh looks. So, how does it actually work?
+[08:52] uh looks. So, how does it actually work? If you look at the architecture of it,
+[08:54] If you look at the architecture of it, uh so, we started by prompting.
+[08:57] uh so, we started by prompting. So, we type something in. Uh we asked
+[08:59] So, we type something in. Uh we asked for the funnel information. A tool call
+[09:01] for the funnel information. A tool call went out. Since our server supports MCP
+[09:04] went out. Since our server supports MCP apps, that tool call is actually linked
+[09:07] apps, that tool call is actually linked to a resource. And if you look at the uh
+[09:10] to a resource. And if you look at the uh code here, then, you know, it's it's a
+[09:12] code here, then, you know, it's it's a it's just a resource with a
+[09:14] it's just a resource with a uh some prefix. Uh we take that. It's
+[09:17] uh some prefix. Uh we take that. It's pretty simple code. I could just add the
+[09:18] pretty simple code. I could just add the but it's still the the resource with the
+[09:20] but it's still the the resource with the HTML, and you're done.
+[09:21] HTML, and you're done. Uh that resource is then
+[09:24] Uh that resource is then um consumed by the host.
+[09:27] um consumed by the host. In practice, it's usually consumed
+[09:28] In practice, it's usually consumed beforehand, like it's preloaded. Uh but
+[09:31] beforehand, like it's preloaded. Uh but imagine that it's just consumed in real
+[09:32] imagine that it's just consumed in real time. That same HTML then passed to the
+[09:35] time. That same HTML then passed to the host that also supports MCP apps. MCP
+[09:38] host that also supports MCP apps. MCP apps basically if you look at the MCP UI
+[09:40] apps basically if you look at the MCP UI SDK, just a React component or a web
+[09:43] SDK, just a React component or a web component that just accepts that
+[09:44] component that just accepts that resource plus a callback which is how we
+[09:47] resource plus a callback which is how we implement that communication protocol as
+[09:50] implement that communication protocol as I said earlier.
+[09:51] I said earlier. And renders it in a sandbox.
+[09:53] And renders it in a sandbox. So,
+[09:55] So, like we said, not only is it
+[09:56] like we said, not only is it presentational, I can click. So, what
+[09:58] presentational, I can click. So, what happens when I click? So, we click on
+[10:00] happens when I click? So, we click on it, it sends back through that callback
+[10:02] it, it sends back through that callback the event all the way up. The model
+[10:04] the event all the way up. The model takes that event and then it can send
+[10:06] takes that event and then it can send out a tool call
+[10:08] out a tool call or
+[10:08] or call a resource or anything else that's
+[10:10] call a resource or anything else that's completing the agentic flow.
+[10:14] completing the agentic flow. &gt;&gt; And this architecture actually brings a
+[10:16] &gt;&gt; And this architecture actually brings a new philosophy or a new vision to the
+[10:17] new philosophy or a new vision to the web. So, instead of us thinking of the
+[10:20] web. So, instead of us thinking of the web as tabs or
+[10:23] web as tabs or services that we need to consume using a
+[10:26] services that we need to consume using a browser, we're now consuming it using
+[10:28] browser, we're now consuming it using our own personal assistants, right? What
+[10:30] our own personal assistants, right? What does it mean? It means that if I want to
+[10:32] does it mean? It means that if I want to accomplish a task, for example, plan a
+[10:35] accomplish a task, for example, plan a um anniversary. So, up until now I had
+[10:37] um anniversary. So, up until now I had to open 20 tabs in the browser and I had
+[10:39] to open 20 tabs in the browser and I had to try to convey my intent to each of
+[10:42] to try to convey my intent to each of those services. And by saying conveying
+[10:44] those services. And by saying conveying my intent, it means that I have to
+[10:45] my intent, it means that I have to interact with the dashboards or the UIs
+[10:48] interact with the dashboards or the UIs of those companies. So, just to plan an
+[10:50] of those companies. So, just to plan an anniversary, I need to convey my intent
+[10:52] anniversary, I need to convey my intent to Google Calendar and Amazon and
+[10:55] to Google Calendar and Amazon and Booking and Booking again and Amazon
+[10:57] Booking and Booking again and Amazon again and all and I don't need 99% of
+[11:00] again and all and I don't need 99% of the UI that is shown there because this
+[11:02] the UI that is shown there because this UI doesn't know me. It doesn't have the
+[11:03] UI doesn't know me. It doesn't have the context on me. What if we could just
+[11:06] context on me. What if we could just take these UIs and just break them into
+[11:09] take these UIs and just break them into atoms?
+[11:10] atoms? And those atoms can be composed by my
+[11:12] And those atoms can be composed by my own personal assistant, right? Because I
+[11:14] own personal assistant, right? Because I don't need
+[11:15] don't need the the UI. I need those atoms. So, if
+[11:18] the the UI. I need those atoms. So, if we can take these atoms and have my
+[11:21] we can take these atoms and have my cloud or ChatGPT or OpenCloud just use
+[11:24] cloud or ChatGPT or OpenCloud just use them using MCP UI,
+[11:26] them using MCP UI, we can have this flow. So, my proactive
+[11:29] we can have this flow. So, my proactive assistant can say, "Yeah, I know. I see
+[11:30] assistant can say, "Yeah, I know. I see that you have an anniversary coming and
+[11:33] that you have an anniversary coming and instead of just showing me data from
+[11:34] instead of just showing me data from Google Calendar, it can display a Google
+[11:36] Google Calendar, it can display a Google Calendar chunk. Now, for me it's good
+[11:38] Calendar chunk. Now, for me it's good because I know Google Calendar, I trust
+[11:40] because I know Google Calendar, I trust Google. For Google it's good because it
+[11:41] Google. For Google it's good because it maintains their brand and identity and
+[11:44] maintains their brand and identity and for the host it's good because they
+[11:46] for the host it's good because they don't need to develop these capability
+[11:47] don't need to develop these capability themselves. And it goes even deeper
+[11:49] themselves. And it goes even deeper because if I'm interacting with Amazon,
+[11:51] because if I'm interacting with Amazon, instead of Amazon being reduced to just
+[11:53] instead of Amazon being reduced to just a list of items or or text,
+[11:56] a list of items or or text, I can see Amazon. I can I can know that
+[11:58] I can see Amazon. I can I can know that this is this is Amazon and I can
+[12:01] this is this is Amazon and I can complete my entire flow without even
+[12:03] complete my entire flow without even leaving my assistant. And this is the
+[12:06] leaving my assistant. And this is the agentic web. This is how we're going to
+[12:08] agentic web. This is how we're going to consume the web because my assistant
+[12:11] consume the web because my assistant will have the context on me. It It will
+[12:13] will have the context on me. It It will know to pull the the map from
+[12:14] know to pull the the map from booking.com. I don't need to know that,
+[12:16] booking.com. I don't need to know that, right? So, this is going to be the shift
+[12:18] right? So, this is going to be the shift that we're going to see very soon where
+[12:20] that we're going to see very soon where websites are going to shift into small
+[12:22] websites are going to shift into small chunks of UIs inside inside personal
+[12:24] chunks of UIs inside inside personal assistants. Um [snorts] and with that
+[12:26] assistants. Um [snorts] and with that come new interaction mindset because um
+[12:29] come new interaction mindset because um if I click on something in the Shopify's
+[12:32] if I click on something in the Shopify's MCP app, then Shopify doesn't control my
+[12:34] MCP app, then Shopify doesn't control my journey anymore. The host does. Um and
+[12:37] journey anymore. The host does. Um and no application will control the user
+[12:39] no application will control the user journey anymore. So, Amazon won't be
+[12:41] journey anymore. So, Amazon won't be able to know to see my flow. It
+[12:43] able to know to see my flow. It everything will go through the chat for
+[12:45] everything will go through the chat for auditability.
+[12:46] auditability. Um and MCP apps actually standardizes it
+[12:48] Um and MCP apps actually standardizes it by defining this three level of control
+[12:52] by defining this three level of control over the user journey. So, an app can
+[12:55] over the user journey. So, an app can notify the chat that something happened
+[12:56] notify the chat that something happened or an app can actually ask the chat to
+[12:58] or an app can actually ask the chat to run a prompt and and releasing all
+[13:01] run a prompt and and releasing all responsibility to the chat. So, MCP apps
+[13:03] responsibility to the chat. So, MCP apps actually standardizes it and this is the
+[13:05] actually standardizes it and this is the new software flow, the new flow of
+[13:07] new software flow, the new flow of interaction that we're going to see
+[13:08] interaction that we're going to see between applications, the chats, and the
+[13:11] between applications, the chats, and the users.
+[13:13] users. Um in 2026, we had we had an amazing
+[13:16] Um in 2026, we had we had an amazing year of standardizing MCP UI and 2026 is
+[13:19] year of standardizing MCP UI and 2026 is going to be the year where it's going to
+[13:20] going to be the year where it's going to be a global standard for UI.
+[13:23] be a global standard for UI. &gt;&gt; Yeah.
+[13:23] &gt;&gt; Yeah. &gt;&gt; But, it's still evolving. There's a lot
+[13:25] &gt;&gt; But, it's still evolving. There's a lot of stuff going on. Even in these past
+[13:27] of stuff going on. Even in these past few months, these are some of the things
+[13:29] few months, these are some of the things that are already in or already
+[13:30] that are already in or already contributed or proposed uh, by the
+[13:33] contributed or proposed uh, by the community. Uh, so you still have a lot
+[13:35] community. Uh, so you still have a lot of time and a lot of room to influence
+[13:37] of time and a lot of room to influence how this future will look like. Uh, so
+[13:40] how this future will look like. Uh, so you can go to X apps. Uh, that's the
+[13:42] you can go to X apps. Uh, that's the official SDK and spec is also hosted
+[13:44] official SDK and spec is also hosted there. It's under the official model
+[13:46] there. It's under the official model context protocol uh, repository. There
+[13:48] context protocol uh, repository. There will be a QR code later. Uh, so you
+[13:50] will be a QR code later. Uh, so you don't have to
+[13:51] don't have to uh, to uh, photograph it. Uh, and also
+[13:55] uh, to uh, photograph it. Uh, and also um,
+[13:56] um, the the cool thing about using X apps in
+[13:58] the the cool thing about using X apps in particular is that because it's
+[14:00] particular is that because it's maintained by us directly, uh, all
+[14:02] maintained by us directly, uh, all changes to the spec are immediately uh,
+[14:04] changes to the spec are immediately uh, reflected in the SDK. So, if you use
+[14:06] reflected in the SDK. So, if you use that SDK, then you automatically get all
+[14:08] that SDK, then you automatically get all the new stuff out of the back.
+[14:10] the new stuff out of the back. Uh, these are some of the issues that we
+[14:12] Uh, these are some of the issues that we have. So, please feel free to come and
+[14:15] have. So, please feel free to come and uh, contribute. So, what's next? Um,
+[14:17] uh, contribute. So, what's next? Um, there's a bunch of stuff coming up. Uh,
+[14:20] there's a bunch of stuff coming up. Uh, the first thing uh, that we get a lot of
+[14:23] the first thing uh, that we get a lot of uh, uh, of asked for is kind of reusable
+[14:26] uh, uh, of asked for is kind of reusable views. So, if you have
+[14:28] views. So, if you have uh, um, companies like Autodesk that
+[14:31] uh, um, companies like Autodesk that have really heavy apps like they have
+[14:33] have really heavy apps like they have in, you know, the entire 3D render
+[14:35] in, you know, the entire 3D render there. They don't want to keep
+[14:37] there. They don't want to keep re-rendering that over and over again
+[14:40] re-rendering that over and over again because it just it takes time, it's
+[14:41] because it just it takes time, it's inefficient. Uh, that is the way that we
+[14:43] inefficient. Uh, that is the way that we had to do it uh, for the MVP. But we are
+[14:46] had to do it uh, for the MVP. But we are working on thinking of maybe we can pass
+[14:49] working on thinking of maybe we can pass some identifier from the server uh, in a
+[14:52] some identifier from the server uh, in a way that would help the model actually
+[14:54] way that would help the model actually keep updating the same view.
+[14:56] keep updating the same view. Uh, the other way to do this is
+[14:59] Uh, the other way to do this is &gt;&gt; Um, app tools, which is something uh, if
+[15:02] &gt;&gt; Um, app tools, which is something uh, if you've heard of web MCP, which is Google
+[15:04] you've heard of web MCP, which is Google standard of how agents will interact in
+[15:06] standard of how agents will interact in with web views. So, in MCP us, we
+[15:08] with web views. So, in MCP us, we actually standardize it into app tools.
+[15:10] actually standardize it into app tools. So,
+[15:11] So, up until now we saw the flow where users
+[15:14] up until now we saw the flow where users does something in the app and the app
+[15:16] does something in the app and the app talks to the host. But what if the host
+[15:18] talks to the host. But what if the host or the chat wants to speak to the app?
+[15:19] or the chat wants to speak to the app? If the user writes something, uh, fill
+[15:22] If the user writes something, uh, fill out this form for me and the chat will
+[15:24] out this form for me and the chat will fill out the form for the user. So, MCP
+[15:26] fill out the form for the user. So, MCP apps actually standardizes this this
+[15:28] apps actually standardizes this this flow which we call view tools. That's
+[15:29] flow which we call view tools. That's actually that's in the spec right now.
+[15:31] actually that's in the spec right now. It's also it's going to be released very
+[15:33] It's also it's going to be released very soon.
+[15:34] soon. And we're working on this generative UI
+[15:36] And we're working on this generative UI spectrum where you have predefined UI.
+[15:38] spectrum where you have predefined UI. That's MCP apps. That's like the black
+[15:40] That's MCP apps. That's like the black box iframe that renders
+[15:43] box iframe that renders all trace UI in that example. But you
+[15:45] all trace UI in that example. But you also have other things on this spectrum
+[15:47] also have other things on this spectrum like declarative UI like JSON render or
+[15:50] like declarative UI like JSON render or A2UI. These specs that say yeah, the the
+[15:53] A2UI. These specs that say yeah, the the app just returns an instructions on how
+[15:55] app just returns an instructions on how to build the UI, but the chat will
+[15:57] to build the UI, but the chat will actually build the UI. And you have
+[15:58] actually build the UI. And you have fully generative UI on the other end of
+[16:00] fully generative UI on the other end of the spectrum. And if you know cloud
+[16:02] the spectrum. And if you know cloud apps, yeah, MCP apps is agnostic to the
+[16:04] apps, yeah, MCP apps is agnostic to the way the UI is generated. And if you know
+[16:06] way the UI is generated. And if you know cloud apps imagine feature where you can
+[16:09] cloud apps imagine feature where you can just ask cloud to generate a UI for you.
+[16:12] just ask cloud to generate a UI for you. That's actually based on MCP apps. So,
+[16:14] That's actually based on MCP apps. So, this is an MCP app behind the scenes,
+[16:16] this is an MCP app behind the scenes, but it supports generative UI. So, we're
+[16:19] but it supports generative UI. So, we're working on interoperability with those
+[16:20] working on interoperability with those other
+[16:21] other standards. And actually just a few days
+[16:24] standards. And actually just a few days ago we released a guide on how to do
+[16:28] ago we released a guide on how to do A2UI versus a generative UI standard and
+[16:31] A2UI versus a generative UI standard and MCP apps which is the standard. How to
+[16:33] MCP apps which is the standard. How to do interoperability. How can a server
+[16:35] do interoperability. How can a server can write A2UI and ship it to Gemini,
+[16:38] can write A2UI and ship it to Gemini, but also wrap it as an MCP app to ship
+[16:39] but also wrap it as an MCP app to ship to ChatGPT and vice versa.
+[16:42] to ChatGPT and vice versa. An MCP app is supported everywhere. So,
+[16:45] An MCP app is supported everywhere. So, it can run everywhere. If you build it
+[16:46] it can run everywhere. If you build it once, it runs in Libra Chat which is an
+[16:48] once, it runs in Libra Chat which is an open source
+[16:49] open source MCP app supported in ChatGPT. That's the
+[16:52] MCP app supported in ChatGPT. That's the same app that you're seeing the same
+[16:53] same app that you're seeing the same code base that runs in in both which is
+[16:57] code base that runs in in both which is pretty cool. Yeah.
+[17:01] Yeah. &gt;&gt; So, this isn't just a technology or a
+[17:03] &gt;&gt; So, this isn't just a technology or a cool feature. This is an entirely new
+[17:05] cool feature. This is an entirely new way to distribute applications. So,
+[17:09] way to distribute applications. So, if you look just a few months back then
+[17:10] if you look just a few months back then someone said that
+[17:12] someone said that ChatGPT in particular has 800 million
+[17:15] ChatGPT in particular has 800 million weekly users which is 10% of the entire
+[17:19] weekly users which is 10% of the entire world population. That's insane.
+[17:21] world population. That's insane. So, if you think about the web in
+[17:23] So, if you think about the web in general, it took around 13 years to get
+[17:26] general, it took around 13 years to get to that number of users.
+[17:27] to that number of users. So,
+[17:28] So, if you look at that and you think that
+[17:30] if you look at that and you think that in the last few months we actually had a
+[17:33] in the last few months we actually had a growth of over 1 billion. Just that we
+[17:35] growth of over 1 billion. Just that we have like 170 times the total
+[17:37] have like 170 times the total addressable market of the Apple App
+[17:39] addressable market of the Apple App Store when it launched.
+[17:42] Store when it launched. So, MCP apps are everywhere.
+[17:43] So, MCP apps are everywhere. So, actually to list them, it is called
+[17:45] So, actually to list them, it is called cloud, open AI, etc. It's already there.
+[17:49] cloud, open AI, etc. It's already there. So, how do you get started?
+[17:51] So, how do you get started? You can clone those you can
+[17:53] You can clone those you can go to the X apps.
+[17:55] go to the X apps. As a host also go to X apps or the MCP
+[17:57] As a host also go to X apps or the MCP website.
+[17:59] website. &gt;&gt; Please visit the official repo.
+[18:01] &gt;&gt; Please visit the official repo. &gt;&gt; [laughter]
+[18:01] &gt;&gt; [laughter] &gt;&gt; The X apps repo to get involved.
+[18:04] &gt;&gt; The X apps repo to get involved. And yeah.
+[18:05] And yeah. &gt;&gt; So, embrace the new web. It's awesome.
+[18:08] &gt;&gt; So, embrace the new web. It's awesome. With MCP apps you can write once and run
+[18:10] With MCP apps you can write once and run it everywhere.
+[18:11] it everywhere. And the future is looking bright. Not
+[18:13] And the future is looking bright. Not quite Travis, but with MCP and MCP apps
+[18:16] quite Travis, but with MCP and MCP apps we're close.
+[18:17] we're close. &gt;&gt; And come talk to us afterwards.
+[18:18] &gt;&gt; And come talk to us afterwards. &gt;&gt; Yeah, thank you.
