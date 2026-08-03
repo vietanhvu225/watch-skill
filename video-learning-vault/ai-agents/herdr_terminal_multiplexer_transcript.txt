@@ -1,0 +1,578 @@
+[00:02] A new modern terminal multiplexer that takes a lot of inspiration from tmux,
+[00:04] takes a lot of inspiration from tmux, but adds a few things that has really
+[00:06] but adds a few things that has really impressed me. This is called Herder. On
+[00:09] impressed me. This is called Herder. On macOS, you can use brew install Herder.
+[00:12] macOS, you can use brew install Herder. Curl is also available for Mac as well
+[00:14] Curl is also available for Mac as well as for Linux. For Windows, you can use
+[00:16] as for Linux. For Windows, you can use PowerShell. For NixOS, it is also
+[00:19] PowerShell. For NixOS, it is also supported here. For this video, I'm on
+[00:20] supported here. For this video, I'm on the latest version 0.7. Once installed,
+[00:23] the latest version 0.7. Once installed, you can simply start it up by typing
+[00:25] you can simply start it up by typing Herder.
+[00:27] Herder. On startup, you can see that we have the
+[00:29] On startup, you can see that we have the tabs up here on the top. Then we have
+[00:31] tabs up here on the top. Then we have our sidebar to the left, which is going
+[00:33] our sidebar to the left, which is going to be used for managing our projects and
+[00:34] to be used for managing our projects and workspaces. Herder uses prefix for key
+[00:37] workspaces. Herder uses prefix for key maps. The default prefix is control B,
+[00:39] maps. The default prefix is control B, which is exactly how I use my tmux as
+[00:41] which is exactly how I use my tmux as well, but it can be remapped later in
+[00:43] well, but it can be remapped later in the config. To detach from Herder, we
+[00:45] the config. To detach from Herder, we can use prefix Q, which is control B and
+[00:48] can use prefix Q, which is control B and Q. That is going to bring us back to our
+[00:50] Q. That is going to bring us back to our terminal while keeping things running in
+[00:52] terminal while keeping things running in the background. To reattach, we can
+[00:54] the background. To reattach, we can simply run Herder.
+[00:56] simply run Herder. If we want to stop the Herder server
+[00:58] If we want to stop the Herder server completely, we can use Herder server
+[01:00] completely, we can use Herder server stop. So, anything running in the
+[01:02] stop. So, anything running in the background is going to be shut down.
+[01:04] background is going to be shut down. This includes any agent processes as
+[01:06] This includes any agent processes as well. However, Herder separates session
+[01:09] well. However, Herder separates session states from process states. So, your
+[01:10] states from process states. So, your layout, tabs, and panes are saved as a
+[01:12] layout, tabs, and panes are saved as a snapshot. If your tmux server dies,
+[01:14] snapshot. If your tmux server dies, everything dies unless you use a plugin
+[01:17] everything dies unless you use a plugin to restore and bring them back. The
+[01:19] to restore and bring them back. The out-of-the-box support for key maps and
+[01:21] out-of-the-box support for key maps and prefix is amazing. As an everyday tmux
+[01:23] prefix is amazing. As an everyday tmux user, this feels right at home. You
+[01:25] user, this feels right at home. You don't really need to set up anything at
+[01:27] don't really need to set up anything at all unless you want to do some
+[01:28] all unless you want to do some remapping. From the documentation,
+[01:30] remapping. From the documentation, this is the path to where Herder would
+[01:32] this is the path to where Herder would read the configuration from. Once you
+[01:34] read the configuration from. Once you create your config file, you can then
+[01:36] create your config file, you can then use this command to automatically
+[01:37] use this command to automatically generate the default configurations and
+[01:39] generate the default configurations and go from there.
+[01:41] go from there. Also, when you hit prefix, at the bottom
+[01:43] Also, when you hit prefix, at the bottom here, you'll see hints for key actions
+[01:46] here, you'll see hints for key actions that are available. Like question mark
+[01:48] that are available. Like question mark shows all the key bindings, including
+[01:50] shows all the key bindings, including the ones that are remapped in your
+[01:51] the ones that are remapped in your configuration. From here, let's jump
+[01:53] configuration. From here, let's jump into the settings with prefix S. That
+[01:55] into the settings with prefix S. That brings us to the themes, which are built
+[01:57] brings us to the themes, which are built in. These are not plugins. You can
+[01:59] in. These are not plugins. You can preview the theme by just cycling
+[02:01] preview the theme by just cycling through them and hit apply on the one
+[02:03] through them and hit apply on the one you want. The second tab is for sound
+[02:05] you want. The second tab is for sound alerts. The third tab controls your
+[02:07] alerts. The third tab controls your notification pop-ups, either from
+[02:09] notification pop-ups, either from Herder, terminal, or the system. We'll
+[02:11] Herder, terminal, or the system. We'll get to pane labels and integrations
+[02:13] get to pane labels and integrations later. And the last one is the
+[02:15] later. And the last one is the experimental features. Finally, I also
+[02:17] experimental features. Finally, I also remap my settings to prefix semicolon.
+[02:20] remap my settings to prefix semicolon. Moving on to tabs and panes, for the
+[02:22] Moving on to tabs and panes, for the sidebar over here, if I hit prefix b,
+[02:25] sidebar over here, if I hit prefix b, that hides it. Prefix b again brings it
+[02:27] that hides it. Prefix b again brings it back. So, this can be used to toggle the
+[02:29] back. So, this can be used to toggle the sidebar.
+[02:30] sidebar. For tabs, just like tmux, you can create
+[02:33] For tabs, just like tmux, you can create a new tab with prefix c.
+[02:36] a new tab with prefix c. We can also rename the tab with prefix
+[02:39] We can also rename the tab with prefix shift t, but I changed that key map to
+[02:42] shift t, but I changed that key map to prefix comma. That's going to allow me
+[02:44] prefix comma. That's going to allow me to rename this tab. So, let's name this
+[02:46] to rename this tab. So, let's name this config.
+[02:48] config. In my Herder configuration, in the
+[02:49] In my Herder configuration, in the config.toml file, as you can see here, I
+[02:52] config.toml file, as you can see here, I remapped the rename tab to prefix comma
+[02:55] remapped the rename tab to prefix comma instead of prefix shift t.
+[02:57] instead of prefix shift t. We can also move between tabs using
+[02:59] We can also move between tabs using prefix n and prefix p. Jumping to tabs
+[03:03] prefix n and prefix p. Jumping to tabs directly is also possible here.
+[03:06] directly is also possible here. Like prefix one, prefix two, prefix
+[03:09] Like prefix one, prefix two, prefix three. This is very similar to tmux.
+[03:11] three. This is very similar to tmux. Finally, we can simply close tab with
+[03:14] Finally, we can simply close tab with prefix x.
+[03:16] prefix x. Now, let's take a look at the panes. We
+[03:18] Now, let's take a look at the panes. We can do a vertical split with prefix v.
+[03:21] can do a vertical split with prefix v. That's a default key binding. Then we
+[03:22] That's a default key binding. Then we can also do a horizontal split with
+[03:25] can also do a horizontal split with prefix dash or prefix minus. I also
+[03:27] prefix dash or prefix minus. I also remapped my vertical split here to a new
+[03:29] remapped my vertical split here to a new key map.
+[03:31] key map. Navigating panes are amazing as well
+[03:33] Navigating panes are amazing as well because it does have vim-style key
+[03:34] because it does have vim-style key bindings built into it. So, as you can
+[03:36] bindings built into it. So, as you can see, prefix j, prefix h, prefix l. But
+[03:40] see, prefix j, prefix h, prefix l. But guess what? Those can be remapped to
+[03:42] guess what? Those can be remapped to control h, j, k, and l exactly like vim
+[03:44] control h, j, k, and l exactly like vim tmux navigator. It's great because we
+[03:46] tmux navigator. It's great because we shouldn't really need a plugin for
+[03:47] shouldn't really need a plugin for things like this. But this might not
+[03:49] things like this. But this might not work for you though because Herder will
+[03:50] work for you though because Herder will take precedence over those binds. So,
+[03:52] take precedence over those binds. So, keep that in mind. And if you make any
+[03:54] keep that in mind. And if you make any changes to your configuration, you can
+[03:56] changes to your configuration, you can always hit prefix capital R to reload
+[03:58] always hit prefix capital R to reload your config. Panes can also be resized.
+[04:01] your config. Panes can also be resized. Prefix R will put you in resize mode,
+[04:04] Prefix R will put you in resize mode, and again, the Vim keys work. As you can
+[04:06] and again, the Vim keys work. As you can see from the resize bar at the bottom
+[04:07] see from the resize bar at the bottom here, you can just adjust the width or
+[04:09] here, you can just adjust the width or the height easily.
+[04:11] the height easily. Panes can also be maximized using prefix
+[04:14] Panes can also be maximized using prefix Z. That puts the current pane into a
+[04:16] Z. That puts the current pane into a full screen. Hitting it again will
+[04:18] full screen. Hitting it again will toggle it back to the previous state.
+[04:20] toggle it back to the previous state. Did I mention the copy and select mode
+[04:22] Did I mention the copy and select mode as well? That actually has a Vim style
+[04:24] as well? That actually has a Vim style key bindings built into it. Hitting
+[04:25] key bindings built into it. Hitting prefix open bracket puts you into a
+[04:27] prefix open bracket puts you into a select and copy mode, allowing you to
+[04:29] select and copy mode, allowing you to walk through your history, so you can
+[04:31] walk through your history, so you can grab whatever output you need. I also
+[04:33] grab whatever output you need. I also remapped resize to prefix capital R and
+[04:36] remapped resize to prefix capital R and change reload to prefix R instead. And
+[04:39] change reload to prefix R instead. And zoom remapped to prefix M. Without a
+[04:41] zoom remapped to prefix M. Without a doubt, Herder comes with such a great
+[04:43] doubt, Herder comes with such a great keyboard support. But I think some of
+[04:46] keyboard support. But I think some of you will actually appreciate the mouse
+[04:47] you will actually appreciate the mouse support that it comes with as well. With
+[04:49] support that it comes with as well. With Tmux, mouse support is not enabled by
+[04:51] Tmux, mouse support is not enabled by default. You would have to enable it in
+[04:53] default. You would have to enable it in your config. Even then, it's pretty
+[04:54] your config. Even then, it's pretty basic. So first off, you can see here
+[04:56] basic. So first off, you can see here that we can basically just switch tabs
+[04:58] that we can basically just switch tabs by clicking them. Right clicking the
+[04:59] by clicking them. Right clicking the current pane will also give you the
+[05:01] current pane will also give you the option to split right or split down.
+[05:03] option to split right or split down. Selecting zoom will also maximize the
+[05:05] Selecting zoom will also maximize the current pane. So the right click itself
+[05:07] current pane. So the right click itself can do quite a lot. For example, let's
+[05:09] can do quite a lot. For example, let's say we close a pane, it focuses on the
+[05:11] say we close a pane, it focuses on the right pane. If we go to the unfocused
+[05:13] right pane. If we go to the unfocused pane, right click, we can swap that with
+[05:16] pane, right click, we can swap that with the focus pane. I know we're just
+[05:17] the focus pane. I know we're just swapping panes here and there, but it's
+[05:19] swapping panes here and there, but it's pretty cool to see. Which can also be
+[05:20] pretty cool to see. Which can also be done from the keyboard using prefix
+[05:22] done from the keyboard using prefix shift and a direction of the Vim keys
+[05:24] shift and a direction of the Vim keys that you want to go to. Drag to resize
+[05:26] that you want to go to. Drag to resize is also available, and it works really
+[05:29] is also available, and it works really well as an alternative for non-keyboard
+[05:31] well as an alternative for non-keyboard users. The sidebar also works the way
+[05:33] users. The sidebar also works the way you would expect it to. And the menu tab
+[05:35] you would expect it to. And the menu tab on the sidebar here also allows you to
+[05:37] on the sidebar here also allows you to access the settings, the key binds,
+[05:39] access the settings, the key binds, reload your config, the patch notes, or
+[05:41] reload your config, the patch notes, or detach from your server. As much as I
+[05:42] detach from your server. As much as I don't use my mouse, I like how it
+[05:44] don't use my mouse, I like how it doesn't force you to just use key binds
+[05:46] doesn't force you to just use key binds for the basic functions. Moving on to
+[05:48] for the basic functions. Moving on to workspaces, in Herder, instead of
+[05:50] workspaces, in Herder, instead of traditional sessions like in tmux, it
+[05:52] traditional sessions like in tmux, it uses something called workspaces. A
+[05:54] uses something called workspaces. A workspace is basically a container for
+[05:56] workspace is basically a container for your tabs and panes, but it's built
+[05:58] your tabs and panes, but it's built around projects. They are not as
+[06:00] around projects. They are not as isolated as tmux sessions, but they are
+[06:02] isolated as tmux sessions, but they are much better suited for organizing
+[06:03] much better suited for organizing different projects and agents side by
+[06:05] different projects and agents side by side. For example, I can have one
+[06:07] side. For example, I can have one workspace for my main project, another
+[06:10] workspace for my main project, another workspace for my side project, one for
+[06:12] workspace for my side project, one for notes, just like in tmux, and maybe
+[06:15] notes, just like in tmux, and maybe another one just for testing agents.
+[06:17] another one just for testing agents. Each workspace keeps its own tabs,
+[06:19] Each workspace keeps its own tabs, panes, and agent states visible in the
+[06:21] panes, and agent states visible in the sidebar. Herder also has its own remote
+[06:24] sidebar. Herder also has its own remote and session management, too, which we
+[06:26] and session management, too, which we will talk about later. Let's move on to
+[06:28] will talk about later. Let's move on to key maps for workspaces. To create a new
+[06:30] key maps for workspaces. To create a new workspace, use prefix capital N, which I
+[06:32] workspace, use prefix capital N, which I remapped to prefix capital W. So, as you
+[06:35] remapped to prefix capital W. So, as you can see, that's going to go ahead and
+[06:36] can see, that's going to go ahead and create new workspaces. To close them,
+[06:39] create new workspaces. To close them, you can hit prefix capital D and confirm
+[06:41] you can hit prefix capital D and confirm it.
+[06:42] it. You can rename workspaces using prefix
+[06:44] You can rename workspaces using prefix capital W, which I remapped to prefix
+[06:47] capital W, which I remapped to prefix dollar sign. So, I'm going to rename
+[06:48] dollar sign. So, I'm going to rename this current workspace to something like
+[06:50] this current workspace to something like main and all caps workspace.
+[06:54] main and all caps workspace. There's also a list and go to workspaces
+[06:56] There's also a list and go to workspaces using prefix G. Again, I remapped that
+[06:59] using prefix G. Again, I remapped that to prefix S. Hitting the key bind will
+[07:01] to prefix S. Hitting the key bind will open up this pane where you can navigate
+[07:03] open up this pane where you can navigate through your workspaces, tabs, and
+[07:05] through your workspaces, tabs, and panes. Or, you can also hit forward
+[07:07] panes. Or, you can also hit forward slash to search for the names of those
+[07:09] slash to search for the names of those spaces and jump there. This is very
+[07:12] spaces and jump there. This is very similar to list sessions in tmux.
+[07:14] similar to list sessions in tmux. There's also something called nav mode,
+[07:16] There's also something called nav mode, or the key bind is actually called
+[07:18] or the key bind is actually called workspace picker. So, if I hit prefix W,
+[07:21] workspace picker. So, if I hit prefix W, once in this nav mode, we can directly
+[07:23] once in this nav mode, we can directly jump to a workspace by hitting the
+[07:25] jump to a workspace by hitting the number of that workspace. So, prefix W 3
+[07:28] number of that workspace. So, prefix W 3 4 5 and so on.
+[07:31] 4 5 and so on. Or, I can go into nav mode and use the
+[07:33] Or, I can go into nav mode and use the up and down arrow keys to automatically
+[07:35] up and down arrow keys to automatically focus the workspace sidebar and select
+[07:38] focus the workspace sidebar and select where to go, which I also remapped to
+[07:40] where to go, which I also remapped to control K and J.
+[07:43] control K and J. As long as you're in nav mode, using vim
+[07:45] As long as you're in nav mode, using vim arrow keys moves your focus around the
+[07:47] arrow keys moves your focus around the panes or hit tab to cycle through the
+[07:49] panes or hit tab to cycle through the panes. This is just focusing the panes
+[07:51] panes. This is just focusing the panes and doesn't actually put you inside the
+[07:53] and doesn't actually put you inside the pane itself. You might also notice the
+[07:55] pane itself. You might also notice the bar down here that it has other options
+[07:56] bar down here that it has other options available in nav mode as well. For
+[07:58] available in nav mode as well. For example, our go to workspaces is also
+[08:00] example, our go to workspaces is also showing up here.
+[08:02] showing up here. This is where Herder really stands out
+[08:04] This is where Herder really stands out as well, agent awareness. When running
+[08:06] as well, agent awareness. When running agents inside Herder, it automatically
+[08:08] agents inside Herder, it automatically detects them in your workspace, which
+[08:10] detects them in your workspace, which you can see from the symbol. Expanding
+[08:12] you can see from the symbol. Expanding the sidebar will allow you to see more
+[08:14] the sidebar will allow you to see more of the agents, like which workspace
+[08:16] of the agents, like which workspace they're in and what agents are running.
+[08:18] they're in and what agents are running. Like if an agent is working, running,
+[08:20] Like if an agent is working, running, and idle, or blocked requiring your
+[08:22] and idle, or blocked requiring your permissions or done when it's complete.
+[08:24] permissions or done when it's complete. This becomes really handy when you're
+[08:26] This becomes really handy when you're running multiple agents at the same
+[08:28] running multiple agents at the same time. Even in the go to and list
+[08:29] time. Even in the go to and list workspaces, you can see the different
+[08:31] workspaces, you can see the different agent states running, which means you're
+[08:33] agent states running, which means you're able to search and jump there. You'll
+[08:35] able to search and jump there. You'll also notice something called states,
+[08:37] also notice something called states, where you can filter out the states of
+[08:39] where you can filter out the states of those agents. So yeah, if you have more
+[08:41] those agents. So yeah, if you have more than 10 windows running agents
+[08:43] than 10 windows running agents everywhere, then I guess this is going
+[08:44] everywhere, then I guess this is going to help you a lot. Another big advantage
+[08:46] to help you a lot. Another big advantage is that agent keeps running even after I
+[08:49] is that agent keeps running even after I detach from Herder. I can come back
+[08:51] detach from Herder. I can come back later and everything is still there the
+[08:53] later and everything is still there the way it was. Like I said before,
+[08:54] way it was. Like I said before, detaching doesn't actually stop any
+[08:56] detaching doesn't actually stop any processes. Agent key maps are not mapped
+[08:58] processes. Agent key maps are not mapped by default, so you'd have to go into the
+[09:00] by default, so you'd have to go into the config and map them yourself. Some
+[09:02] config and map them yourself. Some useful config options include things
+[09:04] useful config options include things like resume agents on restore. This is
+[09:07] like resume agents on restore. This is false by default. This automatically
+[09:09] false by default. This automatically resumes supported agents enter their
+[09:11] resumes supported agents enter their native conversation sessions. The
+[09:13] native conversation sessions. The supported agents are listed in the
+[09:14] supported agents are listed in the integration tabs of the setting. Here
+[09:16] integration tabs of the setting. Here you see three agents show up as
+[09:18] you see three agents show up as available but not installed. So I'm
+[09:20] available but not installed. So I'm going to go ahead and install this.
+[09:23] going to go ahead and install this. And also, show agent labels on pane
+[09:25] And also, show agent labels on pane borders. This shows the detected agent
+[09:27] borders. This shows the detected agent name in the pane borders when you
+[09:29] name in the pane borders when you haven't manually named them. This is the
+[09:30] haven't manually named them. This is the same as pane label tabs we saw in the
+[09:33] same as pane label tabs we saw in the settings. For example, I know Hermes and
+[09:35] settings. For example, I know Hermes and Codex is supported as Herder
+[09:37] Codex is supported as Herder integrations, but Grok isn't. So, let's
+[09:39] integrations, but Grok isn't. So, let's say my conversation stops here and I
+[09:41] say my conversation stops here and I decide to stop the server.
+[09:44] decide to stop the server. Upon reattaching, we should see that we
+[09:46] Upon reattaching, we should see that we still have the supported agents restored
+[09:48] still have the supported agents restored back to their current session and
+[09:50] back to their current session and conversation. So, instead of three
+[09:52] conversation. So, instead of three agents running, now we only have two.
+[09:53] agents running, now we only have two. The next thing I usually want is a fast
+[09:55] The next thing I usually want is a fast way to build the actual interface that
+[09:57] way to build the actual interface that those agents are helping me create.
+[09:59] those agents are helping me create. That's where Hosting Your Horizons comes
+[10:01] That's where Hosting Your Horizons comes in. It's a builder that is able to
+[10:02] in. It's a builder that is able to create full web apps just by describing
+[10:04] create full web apps just by describing them. First, I need to access it. I went
+[10:06] them. First, I need to access it. I went to the Horizon page and the starter plan
+[10:09] to the Horizon page and the starter plan is what we're going to use. It's the
+[10:10] is what we're going to use. It's the middle ground for most users, giving
+[10:12] middle ground for most users, giving access to Horizon builder itself that
+[10:14] access to Horizon builder itself that includes a free domain, five mailboxes
+[10:16] includes a free domain, five mailboxes for website, and any hosting services
+[10:18] for website, and any hosting services for the first year. That is if you
+[10:20] for the first year. That is if you decide to go with the annual plan. It
+[10:22] decide to go with the annual plan. It also comes with a 30-day money-back
+[10:24] also comes with a 30-day money-back guarantee. AI is already built into it.
+[10:26] guarantee. AI is already built into it. So, you have things like chatbots, image
+[10:28] So, you have things like chatbots, image generators, or smart assistants to your
+[10:30] generators, or smart assistants to your app without needing extra accounts like
+[10:32] app without needing extra accounts like OpenAI or Gemini. And that's without
+[10:34] OpenAI or Gemini. And that's without additional billing. You also get access
+[10:36] additional billing. You also get access to their AI assistant Cody to help guide
+[10:39] to their AI assistant Cody to help guide you during the build and it doesn't even
+[10:40] you during the build and it doesn't even use up your credits. If you're
+[10:42] use up your credits. If you're interested, the link in the description
+[10:43] interested, the link in the description will take you straight to the page. Use
+[10:45] will take you straight to the page. Use my code shown on the screen here at
+[10:47] my code shown on the screen here at checkout to get an extra 10% off on top
+[10:50] checkout to get an extra 10% off on top of the current ongoing discount. I think
+[10:52] of the current ongoing discount. I think that's a pretty good deal. Once I have
+[10:53] that's a pretty good deal. Once I have access to it, I can go to Horizons on
+[10:56] access to it, I can go to Horizons on the left side and start giving it some
+[10:57] the left side and start giving it some ideas on what I want to build. Gave it a
+[10:59] ideas on what I want to build. Gave it a prompt to build a simple web app for
+[11:01] prompt to build a simple web app for some personal movie tracking stuff. It
+[11:03] some personal movie tracking stuff. It will then take you to a new page and
+[11:05] will then take you to a new page and start generating the whole thing. And
+[11:06] start generating the whole thing. And this is what I ended up with, which is
+[11:08] this is what I ended up with, which is actually pretty impressive. But, it
+[11:10] actually pretty impressive. But, it still needed a lot of improvements, so I
+[11:11] still needed a lot of improvements, so I reviewed it, made a few changes cuz at
+[11:13] reviewed it, made a few changes cuz at the end of the day, we're the ones doing
+[11:15] the end of the day, we're the ones doing the final checks. After a few more
+[11:17] the final checks. After a few more prompts and debugging, it ended up like
+[11:18] prompts and debugging, it ended up like this. The basic functionality of it
+[11:20] this. The basic functionality of it works. It got the state changes
+[11:22] works. It got the state changes correctly and everything looks good.
+[11:23] correctly and everything looks good. Now, I'm going to export the whole thing
+[11:25] Now, I'm going to export the whole thing and actually deploy this on VPS. From
+[11:27] and actually deploy this on VPS. From here, I'll navigate to the code section
+[11:29] here, I'll navigate to the code section and at the bottom, I'm going to export
+[11:30] and at the bottom, I'm going to export the code, which will give us the zip
+[11:32] the code, which will give us the zip file. For VPS, I'm going to use Ubuntu
+[11:34] file. For VPS, I'm going to use Ubuntu 24.04 LTS, then set up my SSH key and
+[11:38] 24.04 LTS, then set up my SSH key and root password. Then I basically just SSH
+[11:40] root password. Then I basically just SSH into my VPS, which I already set up, and
+[11:42] into my VPS, which I already set up, and SCP the whole project into my VPS, NPM
+[11:45] SCP the whole project into my VPS, NPM run build the project again with the
+[11:47] run build the project again with the help of both PM2 and Nginx. All I have
+[11:49] help of both PM2 and Nginx. All I have to do now is run my IP in the browser,
+[11:52] to do now is run my IP in the browser, and this should just work. And there it
+[11:53] and this should just work. And there it is, that whole thing built with Horizon
+[11:55] is, that whole thing built with Horizon up and running on VPS. You can take this
+[11:57] up and running on VPS. You can take this even further and add your free domain to
+[11:59] even further and add your free domain to this as well. Big thanks to Hostinger
+[12:01] this as well. Big thanks to Hostinger again for sponsoring this video. Now,
+[12:03] again for sponsoring this video. Now, back to it. When we talk about sessions
+[12:04] back to it. When we talk about sessions in Herder, what we're in right now is
+[12:06] in Herder, what we're in right now is already a session containing multiple
+[12:08] already a session containing multiple workspaces. So, let me detach from this
+[12:10] workspaces. So, let me detach from this session and show you what I mean. I'm
+[12:12] session and show you what I mean. I'm going to create a new session by saying
+[12:14] going to create a new session by saying Herder session attach, followed by the
+[12:16] Herder session attach, followed by the name of the session.
+[12:18] name of the session. Now, we're in a completely new session
+[12:20] Now, we're in a completely new session separated from the other one. We can
+[12:21] separated from the other one. We can obviously create multiple sessions, but
+[12:23] obviously create multiple sessions, but we can't really create a session from
+[12:25] we can't really create a session from within the current session.
+[12:27] within the current session. Sessions can be listed using Herder
+[12:29] Sessions can be listed using Herder session list. It will always use default
+[12:32] session list. It will always use default as its main session.
+[12:33] as its main session. Let's say I detach from this session,
+[12:35] Let's say I detach from this session, and I run Herder, that attaches to the
+[12:37] and I run Herder, that attaches to the default. But if I want to go back to
+[12:39] default. But if I want to go back to another session, I'll have to detach and
+[12:42] another session, I'll have to detach and run the session command again.
+[12:44] run the session command again. Sessions can also be stopped using
+[12:46] Sessions can also be stopped using Herder session stop.
+[12:48] Herder session stop. If we run session list again, we should
+[12:50] If we run session list again, we should see it saying stopped.
+[12:52] see it saying stopped. You can delete sessions as well, but
+[12:54] You can delete sessions as well, but note that you have to stop the session
+[12:55] note that you have to stop the session before it can be deleted.
+[12:57] before it can be deleted. Sessions cannot be renamed. The only way
+[12:59] Sessions cannot be renamed. The only way to do that is to create a new session
+[13:01] to do that is to create a new session all together. There's also no direct key
+[13:03] all together. There's also no direct key binding to switch between sessions.
+[13:05] binding to switch between sessions. Herder leans more on workspaces. It
+[13:07] Herder leans more on workspaces. It makes sense to see sessions kept light.
+[13:10] makes sense to see sessions kept light. You just attach to a new one when you
+[13:12] You just attach to a new one when you actually need a fully separate
+[13:13] actually need a fully separate environment, and not just using sessions
+[13:16] environment, and not just using sessions as workspaces. Herder also shines when
+[13:18] as workspaces. Herder also shines when working on remote servers. Let's say I'm
+[13:20] working on remote servers. Let's say I'm just in my default shell, not attached
+[13:22] just in my default shell, not attached to anything. Normally, you would just
+[13:23] to anything. Normally, you would just SSH into VPS, and then run Herder inside
+[13:26] SSH into VPS, and then run Herder inside that SSH session. It works, but you're
+[13:29] that SSH session. It works, but you're limited to key bindings and clipboard of
+[13:31] limited to key bindings and clipboard of the remote machine.
+[13:32] the remote machine. A much better way is to use Herder's
+[13:34] A much better way is to use Herder's remote mode from your local machine. We
+[13:36] remote mode from your local machine. We can do that by running Herder, passing
+[13:38] can do that by running Herder, passing in the remote flag, followed by the
+[13:40] in the remote flag, followed by the server. This acts as a thin client, for
+[13:42] server. This acts as a thin client, for example, connecting over SSH to the
+[13:44] example, connecting over SSH to the Herder server running on VPS. This
+[13:47] Herder server running on VPS. This streams the full interface back to your
+[13:49] streams the full interface back to your local terminal. Everything looks exactly
+[13:51] local terminal. Everything looks exactly the same, but now you're using your
+[13:52] the same, but now you're using your local key bindings with better clipboard
+[13:55] local key bindings with better clipboard support. We can connect directly to a
+[13:57] support. We can connect directly to a named session on the remote machine
+[13:59] named session on the remote machine using the same command we ran before and
+[14:01] using the same command we ran before and passing in the session flag with the new
+[14:03] passing in the session flag with the new session name at the end. This is
+[14:05] session name at the end. This is powerful when it comes to working with
+[14:06] powerful when it comes to working with things on the remote server. You get the
+[14:08] things on the remote server. You get the full Herder experience while staying in
+[14:10] full Herder experience while staying in your familiar local terminal
+[14:11] your familiar local terminal environment. But of course, you need to
+[14:13] environment. But of course, you need to have Herder installed on your server in
+[14:15] have Herder installed on your server in order to do this. I also wanted to touch
+[14:17] order to do this. I also wanted to touch on a bit of custom commands that we can
+[14:19] on a bit of custom commands that we can create. For example, I can hit prefix
+[14:22] create. For example, I can hit prefix capital E to open a terminal file
+[14:23] capital E to open a terminal file explorer. If you were using Yazi, it
+[14:26] explorer. If you were using Yazi, it would work here as well. Or I can also
+[14:27] would work here as well. Or I can also run my script directly from within
+[14:29] run my script directly from within Herder by hitting a key map. Or I can
+[14:31] Herder by hitting a key map. Or I can just be in a Git repo and just use
+[14:34] just be in a Git repo and just use Herder to open up LazyGit. So, these
+[14:35] Herder to open up LazyGit. So, these custom key commands are for sure useful.
+[14:38] custom key commands are for sure useful. Back in the config, we just have to look
+[14:40] Back in the config, we just have to look for a key.commands, and that's actually
+[14:42] for a key.commands, and that's actually where I set it up. It's just setting a
+[14:43] where I set it up. It's just setting a custom key map to run a custom command.
+[14:46] custom key map to run a custom command. But for commands, things like CD, LS,
+[14:48] But for commands, things like CD, LS, and echo won't work. It doesn't seem to
+[14:50] and echo won't work. It doesn't seem to run the command through the shell. It
+[14:52] run the command through the shell. It has to be an executable program in order
+[14:54] has to be an executable program in order to work. So, those are just some of the
+[14:56] to work. So, those are just some of the examples of what you can do with it, but
+[14:58] examples of what you can do with it, but it gets better because, believe it or
+[14:59] it gets better because, believe it or not, there is already a plugin called
+[15:02] not, there is already a plugin called HerderPlus that literally improves upon
+[15:04] HerderPlus that literally improves upon these custom key commands and adds even
+[15:06] these custom key commands and adds even more feature to it as well. This plugin
+[15:09] more feature to it as well. This plugin introduces two things: quick actions and
+[15:11] introduces two things: quick actions and projects. It puts all actions into one
+[15:13] projects. It puts all actions into one fuzzy list and projects into another.
+[15:15] fuzzy list and projects into another. Let me show you how it works first, so
+[15:17] Let me show you how it works first, so you can decide if you need this.
+[15:18] you can decide if you need this. Starting with quick actions, the first
+[15:20] Starting with quick actions, the first thing we need to add are the key
+[15:22] thing we need to add are the key commands for this plugin. The key you
+[15:24] commands for this plugin. The key you set here is going to trigger the action
+[15:25] set here is going to trigger the action fuzzy list. You can find this whole
+[15:27] fuzzy list. You can find this whole block in the documentation. Let's look
+[15:29] block in the documentation. Let's look at some examples. So, hit prefix Y to
+[15:32] at some examples. So, hit prefix Y to open that up. Right away, we can see
+[15:33] open that up. Right away, we can see that we are now in a quick actions list.
+[15:35] that we are now in a quick actions list. This is where we can fuzzy search and
+[15:37] This is where we can fuzzy search and select the actions. Like this script
+[15:39] select the actions. Like this script that is going to go ahead and update
+[15:40] that is going to go ahead and update NVIM nightly.
+[15:42] NVIM nightly. So, everything we set up with the custom
+[15:44] So, everything we set up with the custom commands can now be done here as well.
+[15:46] commands can now be done here as well. And actually, it's kind of better
+[15:48] And actually, it's kind of better because you don't actually need to waste
+[15:49] because you don't actually need to waste any key bindings. You just hit one key
+[15:51] any key bindings. You just hit one key bind and you get to run multiple
+[15:53] bind and you get to run multiple actions. We can also nest selections
+[15:55] actions. We can also nest selections into another selection. This can be
+[15:57] into another selection. This can be handy if you have some configurations
+[15:59] handy if you have some configurations that you open quite often. You can put
+[16:01] that you open quite often. You can put them all in this fuzzy list and just go
+[16:02] them all in this fuzzy list and just go to them.
+[16:04] to them. For projects, we're also doing the same
+[16:05] For projects, we're also doing the same thing. For this, I set the keys to
+[16:07] thing. For this, I set the keys to prefix capital O. Hitting prefix capital
+[16:10] prefix capital O. Hitting prefix capital O will now open up the projects list.
+[16:12] O will now open up the projects list. This will also allow us to jump to a
+[16:14] This will also allow us to jump to a different directory, but it also creates
+[16:16] different directory, but it also creates a new workspace for that directory as
+[16:18] a new workspace for that directory as well. If you're coming from tmux, this
+[16:20] well. If you're coming from tmux, this might actually feel very familiar. Also,
+[16:22] might actually feel very familiar. Also, when we navigate through these projects,
+[16:24] when we navigate through these projects, you'll also notice something at the
+[16:25] you'll also notice something at the bottom here. It's actually showing the
+[16:27] bottom here. It's actually showing the different workspaces that has different
+[16:29] different workspaces that has different tabs in it. So, let's jump into this
+[16:31] tabs in it. So, let's jump into this workspace and notice something here. We
+[16:33] workspace and notice something here. We have four tabs set up, each with
+[16:35] have four tabs set up, each with different names, and then agent is also
+[16:37] different names, and then agent is also being detected here. If I go to the
+[16:38] being detected here. If I go to the third tab, grok is already up and
+[16:40] third tab, grok is already up and running, ready to go. While the fourth
+[16:42] running, ready to go. While the fourth one has lazygit that can't open because
+[16:45] one has lazygit that can't open because it's not a git repository.
+[16:47] it's not a git repository. So, basically, you can set up all
+[16:49] So, basically, you can set up all workspaces with the tabs you want, with
+[16:51] workspaces with the tabs you want, with the panes you want, the directory you
+[16:53] the panes you want, the directory you want to have open for that workspaces,
+[16:55] want to have open for that workspaces, or the agents that you want to have
+[16:57] or the agents that you want to have running right away. This is definitely a
+[16:59] running right away. This is definitely a step up from workspaces with everything
+[17:01] step up from workspaces with everything that it has to offer, and now this. If
+[17:03] that it has to offer, and now this. If this is not goated, I don't know what it
+[17:05] this is not goated, I don't know what it is. Now, to install and actually set
+[17:07] is. Now, to install and actually set this plugin up, make sure that you're on
+[17:08] this plugin up, make sure that you're on the latest version 7.0. Installing a
+[17:11] the latest version 7.0. Installing a plugin is as easy as running a command.
+[17:13] plugin is as easy as running a command. You can then run her to plugin list to
+[17:15] You can then run her to plugin list to check if the plugin is successfully
+[17:17] check if the plugin is successfully installed. The path to the plug in
+[17:19] installed. The path to the plug in directory should be located in the
+[17:21] directory should be located in the Herder root directory. You can use this
+[17:23] Herder root directory. You can use this command to check for the path. From
+[17:24] command to check for the path. From here, you want to create two
+[17:26] here, you want to create two directories, which is quick actions and
+[17:27] directories, which is quick actions and projects. That is if you don't already
+[17:29] projects. That is if you don't already have one. Then from the root of your
+[17:31] have one. Then from the root of your Herder config, go to the plugins
+[17:32] Herder config, go to the plugins directory. That should already be there
+[17:34] directory. That should already be there once you install the plugin. Then go
+[17:36] once you install the plugin. Then go into config, and you should see the
+[17:38] into config, and you should see the plugin right here. And that is where the
+[17:40] plugin right here. And that is where the projects and quick actions is going to
+[17:42] projects and quick actions is going to be at. So, for all the quick action
+[17:44] be at. So, for all the quick action stuff, you can see that each tunnel file
+[17:46] stuff, you can see that each tunnel file represents each action. That is the same
+[17:49] represents each action. That is the same for projects as well. For example, in
+[17:51] for projects as well. For example, in the update nightly one, we basically
+[17:53] the update nightly one, we basically just have a name, a description, and the
+[17:55] just have a name, a description, and the command that is actually coming from the
+[17:56] command that is actually coming from the scripts. So, that's how you would add
+[17:58] scripts. So, that's how you would add your scripts into this. Let's actually
+[17:59] your scripts into this. Let's actually go take a look at listing main configs.
+[18:02] go take a look at listing main configs. So, we have the name, the description,
+[18:04] So, we have the name, the description, the command, but the thing that stands
+[18:06] the command, but the thing that stands out is the type. So, that's how you
+[18:07] out is the type. So, that's how you would do the nested selection. And for
+[18:09] would do the nested selection. And for the command here, it's the same thing.
+[18:11] the command here, it's the same thing. It has to be an executable program. So,
+[18:13] It has to be an executable program. So, we're going to run Nvim home/ . And that
+[18:15] we're going to run Nvim home/ . And that value is the path value we have in these
+[18:18] value is the path value we have in these options. So, those were the quick
+[18:19] options. So, those were the quick actions. Now, inside projects, it's also
+[18:21] actions. Now, inside projects, it's also the same case here. Each tunnel file for
+[18:24] the same case here. Each tunnel file for each workspace, like the one in zshrc,
+[18:26] each workspace, like the one in zshrc, we can see that we have the name, the
+[18:28] we can see that we have the name, the description, the working directory, and
+[18:30] description, the working directory, and then two tabs set up in here that runs
+[18:32] then two tabs set up in here that runs Nvim command and jump into the file
+[18:35] Nvim command and jump into the file directly.
+[18:36] directly. Here is another one from projects.toml.
+[18:38] Here is another one from projects.toml. It has about three tabs inside, but the
+[18:40] It has about three tabs inside, but the third tab has panes set up exactly how I
+[18:43] third tab has panes set up exactly how I want it. The first pane run codex, and
+[18:45] want it. The first pane run codex, and the second one just split to a shell.
+[18:46] the second one just split to a shell. So, yeah, you can see the multiple
+[18:48] So, yeah, you can see the multiple configurations and workspaces that you
+[18:50] configurations and workspaces that you can create with this. Also, if you use a
+[18:52] can create with this. Also, if you use a lot of git worktrees, they actually have
+[18:53] lot of git worktrees, they actually have integrations with git worktree as well,
+[18:55] integrations with git worktree as well, which is just crazy to me. Honestly, I
+[18:58] which is just crazy to me. Honestly, I do think that this plugin really makes
+[19:00] do think that this plugin really makes everything just serves as come together
+[19:01] everything just serves as come together and work better. I can totally just
+[19:03] and work better. I can totally just replace this with my tmux now and feel
+[19:05] replace this with my tmux now and feel just fine. But, I would really like to
+[19:07] just fine. But, I would really like to be able to customize more of my tabs.
+[19:10] be able to customize more of my tabs. It's just kind of hard locked at just
+[19:11] It's just kind of hard locked at just looking like this, but that's okay
+[19:13] looking like this, but that's okay though. I'm curious to know what you
+[19:15] though. I'm curious to know what you guys think about this. I'll leave the
+[19:16] guys think about this. I'll leave the whole config down below. If you guys
+[19:18] whole config down below. If you guys enjoyed the video, don't forget to like
+[19:20] enjoyed the video, don't forget to like and subscribe for more, and as always, I
+[19:22] and subscribe for more, and as always, I will see you guys in the next one.
+[19:24] will see you guys in the next one. Peace.
