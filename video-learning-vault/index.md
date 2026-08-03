@@ -7,8 +7,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
-### 🟢 Hôm nay (03/08/2026)
+### 🟢 Hôm nay (04/08/2026)
 *Video vừa được phân tích và đẩy lên hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `8c9cbc216c898efe` | Don't Ship Skills Without Evals | Agent Evals | [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) | 21:25 |
+
+### 🟢 Hôm qua (03/08/2026)
+*Video đã phân tích ngày hôm qua:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -32,7 +39,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 | `8a893f42dc4c486c` | Google OKF: The Simple Folder That Gives AI Agents Your Entire Company Data | Enterprise Context | [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) | 08:01 |
 | `15657c4a3940e9c7` | Self-Improving AI Agents \| Evolving the Harness, Not the Model | Self-Improvement | [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) | 35:19 |
 | `c4f8d23d5d2fdc59` | How I passed the NEW Claude Architect Certification Exam (CCA-F) | Claude Certification | [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) | 15:50 |
-| `579c8e471aee536c` | Harness Engineering：有時候語言模型 interrupt 團隊沒有引導 | Harness Design | [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) | 01:32:20 |
+| `579c8e471aee536c` | Harness Engineering：有時候語言模型 interrupt 團隊 nhầm lẫn | Harness Design | [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) | 01:32:20 |
 | `41056884ffb08d86` | Loop Engineering explained in 8min.. | Agent Loop | [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) | 08:53 |
 | `4b0f48e4f4ae6e02` | Me at the zoo | General / Test | (Ghi chú chung / Test) | 00:19 |
 
@@ -52,6 +59,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Cognee 1.0: Dynamic Graph Memory](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) - So sánh chi tiết bộ nhớ Vector phẳng và bộ nhớ Đồ thị động.
 * [In the Land of AI Agents, the Verifiers Are King](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) - Khung phát triển ACDC (Sonar) chống suy giảm năng suất do Technical Debt từ AI.
 * [AI Tools for Forward Deployed Engineering](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) - Quy trình tích hợp Agent lên hệ thống kỷ lục (Salesforce/SAP/NetSuite) và tối ưu hóa context retrieval.
+* [Don't Ship Skills Without Evals](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) - Hướng dẫn thiết kế kiểm thử tự động, kiểm định (ablation tests) cho skill của agent từ Google DeepMind.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -73,6 +81,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) (18:00)
     *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
 *   **🧠 Học sâu & Chi tiết (Trên 30 phút):**
+    *   [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) (21:25)
     *   [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) (35:19)
     *   [art_of_loop_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) (46:00)
     *   [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) (01:32:20)
