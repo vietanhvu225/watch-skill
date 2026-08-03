@@ -7,33 +7,30 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
-### 🟢 Hôm nay (27/07/2026)
+### 🟢 Hôm nay (03/08/2026)
 *Video vừa được phân tích và đẩy lên hôm nay:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
-| `cc024710b796fbf1` | Loop Engineering from First Principles | Control Loop | [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) | 18:00 |
+| `acbbc7f09f79f49d` | AI tools for Forward Deployed Engineering | AI FDE & Context | [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) | 20:00 |
 
-### 🟢 Hôm qua (26/07/2026)
-*Nhóm 5 video đã phân tích ngày hôm qua:*
+### 🟢 Tuần trước (26/07/2026 - 27/07/2026)
+*Nhóm 6 video đã phân tích tuần trước:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `cc024710b796fbf1` | Loop Engineering from First Principles | Control Loop | [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) | 18:00 |
 | `1ec0ace8cc80df05` | ASP.NET CORE DEEP-DIVE in .NET 11 ? 8 HOURS | Backend Web Dev | [aspnet_core_dotnet11.md](file:///f:/source/watch-skill/video-learning-vault/certification/aspnet_core_dotnet11.md) | 08:06:00 |
 | `fa6483c46d4119a1` | The Art of Loop Engineering: How to Build Agents That Improve Over Time | Loop & Evals | [art_of_loop_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) | 46:00 |
 | `987a000f8c3b275e` | In the Land of AI Agents, the Verifiers Are King | Evals & Quality | [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) | 18:00 |
 | `efaecd5b5991a381` | cognee 1.0: Self-improving memory for agents | Agent Memory | [cognee_memory.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) | 03:01 |
 | `143af38e605641db` | Why We Killed Our Multi-Agent Pipeline | Agent Architecture | [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) | 15:00 |
 
-### 🟡 Tuần trước (16/07/2026)
+### 🟡 Trước đó (11/07/2026 - 16/07/2026)
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
 | `8a893f42dc4c486c` | Google OKF: The Simple Folder That Gives AI Agents Your Entire Company Data | Enterprise Context | [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) | 08:01 |
 | `15657c4a3940e9c7` | Self-Improving AI Agents \| Evolving the Harness, Not the Model | Self-Improvement | [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) | 35:19 |
-
-### ⚪ Trước đó (11/07/2026)
-| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
-| :--- | :--- | :--- | :--- | :--- |
 | `c4f8d23d5d2fdc59` | How I passed the NEW Claude Architect Certification Exam (CCA-F) | Claude Certification | [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) | 15:50 |
 | `579c8e471aee536c` | Harness Engineering：有時候語言模型 interrupt 團隊沒有引導 | Harness Design | [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) | 01:32:20 |
 | `41056884ffb08d86` | Loop Engineering explained in 8min.. | Agent Loop | [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) | 08:53 |
@@ -54,6 +51,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Google OKF (Open Knowledge Format)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) - Định dạng nạp ngữ cảnh doanh nghiệp chuẩn hóa và tối ưu token.
 * [Cognee 1.0: Dynamic Graph Memory](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) - So sánh chi tiết bộ nhớ Vector phẳng và bộ nhớ Đồ thị động.
 * [In the Land of AI Agents, the Verifiers Are King](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) - Khung phát triển ACDC (Sonar) chống suy giảm năng suất do Technical Debt từ AI.
+* [AI Tools for Forward Deployed Engineering](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) - Quy trình tích hợp Agent lên hệ thống kỷ lục (Salesforce/SAP/NetSuite) và tối ưu hóa context retrieval.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -73,6 +71,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) (15:50)
     *   [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) (18:00)
     *   [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) (18:00)
+    *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
 *   **🧠 Học sâu & Chi tiết (Trên 30 phút):**
     *   [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) (35:19)
     *   [art_of_loop_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) (46:00)

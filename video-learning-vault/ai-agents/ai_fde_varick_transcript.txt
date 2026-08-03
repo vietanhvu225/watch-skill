@@ -1,0 +1,609 @@
+[00:13] &gt;&gt; All right, first and foremost, thanks so much for being here. Um it's uh been a
+[00:15] much for being here. Um it's uh been a great experience, you know, obviously
+[00:17] great experience, you know, obviously chatting amongst uh other industry
+[00:19] chatting amongst uh other industry giants like Cursor and Factory and
+[00:21] giants like Cursor and Factory and Anthropic. I'm sure you guys are mostly
+[00:23] Anthropic. I'm sure you guys are mostly here for them, but thanks for sticking
+[00:25] here for them, but thanks for sticking around for this talk. Uh my name is
+[00:26] around for this talk. Uh my name is Varick. I'm the CEO of Varick Agents. We
+[00:28] Varick. I'm the CEO of Varick Agents. We work with some of the largest companies
+[00:29] work with some of the largest companies on the planet transforming them from the
+[00:31] on the planet transforming them from the inside out with uh AI and agents.
+[00:34] inside out with uh AI and agents. Um and because of the nature of our
+[00:36] Um and because of the nature of our work, which is highly bespoke, we go
+[00:38] work, which is highly bespoke, we go very deep into our clients. It requires
+[00:40] very deep into our clients. It requires a lot of forward-deployed engineering.
+[00:42] a lot of forward-deployed engineering. And this conversation is around why
+[00:43] And this conversation is around why that's so important, how we approach it
+[00:45] that's so important, how we approach it at Varick,
+[00:46] at Varick, uh and some of the internal tooling that
+[00:47] uh and some of the internal tooling that we've created internally to allow us to
+[00:50] we've created internally to allow us to scale that forward-deployed motion
+[00:52] scale that forward-deployed motion without, you know, increasing head count
+[00:53] without, you know, increasing head count exponentially.
+[00:55] exponentially. And it's titled the next bottleneck
+[00:56] And it's titled the next bottleneck because I fundamentally believe the next
+[00:58] because I fundamentally believe the next bottleneck is how deep can you go into a
+[01:01] bottleneck is how deep can you go into a customer without scaling head count
+[01:03] customer without scaling head count uh exponentially? How can AI do that job
+[01:05] uh exponentially? How can AI do that job for you?
+[01:07] for you? So,
+[01:08] So, as stated previously, AI is solving the
+[01:10] as stated previously, AI is solving the execution of work. Um if you were to
+[01:12] execution of work. Um if you were to look back a couple of years ago before
+[01:15] look back a couple of years ago before uh you know, thinking agents and
+[01:17] uh you know, thinking agents and reasoning agents were a widespread
+[01:18] reasoning agents were a widespread phenomenon, uh and I had asked you, "How
+[01:20] phenomenon, uh and I had asked you, "How many of you have used AI to solve an
+[01:22] many of you have used AI to solve an end-to-end task?" The answer would be
+[01:24] end-to-end task?" The answer would be slim to none.
+[01:26] slim to none. But if I ask that same question to
+[01:27] But if I ask that same question to everyone today saying, "Has AI solved an
+[01:29] everyone today saying, "Has AI solved an end-to-end task for you today?" I'm sure
+[01:31] end-to-end task for you today?" I'm sure every single one of you would raise your
+[01:32] every single one of you would raise your hands. So, clearly execution is no
+[01:34] hands. So, clearly execution is no longer the core bottleneck. The models
+[01:37] longer the core bottleneck. The models are improving to the point where
+[01:38] are improving to the point where intelligence is no longer the
+[01:39] intelligence is no longer the constraint, and harnesses are being
+[01:41] constraint, and harnesses are being built in a way that allow us to use,
+[01:43] built in a way that allow us to use, whether it's browser use tooling or API
+[01:45] whether it's browser use tooling or API tooling, uh with very robust MCPs that
+[01:48] tooling, uh with very robust MCPs that allow us to execute work uh
+[01:50] allow us to execute work uh with near perfection.
+[01:52] with near perfection. The difference
+[01:54] The difference and the bottleneck that is still here is
+[01:56] and the bottleneck that is still here is how much can you understand the
+[01:59] how much can you understand the business? Because every business, every
+[02:00] business? Because every business, every consumer is different.
+[02:02] consumer is different. Uh one sales department for a healthcare
+[02:04] Uh one sales department for a healthcare company, for example, operates
+[02:06] company, for example, operates completely differently than the sales
+[02:07] completely differently than the sales department for a SaaS company. And this
+[02:09] department for a SaaS company. And this is something that we see with our work
+[02:10] is something that we see with our work today at Verkada agents. And if there
+[02:12] today at Verkada agents. And if there are any business operators in the room,
+[02:13] are any business operators in the room, you know exactly how hard it is to
+[02:15] you know exactly how hard it is to wrangle
+[02:16] wrangle uh the latest models to solve for your
+[02:18] uh the latest models to solve for your specific use cases. It's very difficult
+[02:21] specific use cases. It's very difficult to extract that context from your you
+[02:23] to extract that context from your you know, employees and from your team. And
+[02:25] know, employees and from your team. And it's very difficult to feed that into an
+[02:27] it's very difficult to feed that into an API call or a simple model call uh that
+[02:30] API call or a simple model call uh that doesn't break down very quickly.
+[02:32] doesn't break down very quickly. So, the bottleneck is
+[02:34] So, the bottleneck is how much can you process re-engineer,
+[02:36] how much can you process re-engineer, how much can you process understand? And
+[02:39] how much can you process understand? And that's the job that we do here at
+[02:40] that's the job that we do here at Verkada. So, right now operations are
+[02:42] Verkada. So, right now operations are fundamentally centered around the human.
+[02:44] fundamentally centered around the human. Uh right now, the work that you do today
+[02:46] Uh right now, the work that you do today is done by humans, whether it's on top
+[02:47] is done by humans, whether it's on top of software or completely agnostic to
+[02:49] of software or completely agnostic to software.
+[02:50] software. Uh but in the future, operations will be
+[02:52] Uh but in the future, operations will be centered around AI. And this means not
+[02:54] centered around AI. And this means not only, you know, providing companies with
+[02:56] only, you know, providing companies with AI tooling like a cursor, Claude Code,
+[03:00] AI tooling like a cursor, Claude Code, Codex, like a factory, like any of the
+[03:02] Codex, like a factory, like any of the other brilliant AI tools that you for
+[03:04] other brilliant AI tools that you for your experiencing here today, but also
+[03:07] your experiencing here today, but also changing the operations and the
+[03:08] changing the operations and the processes themselves.
+[03:10] processes themselves. And fundamentally, that is the role of a
+[03:12] And fundamentally, that is the role of a forward deployed engineer. It's going
+[03:14] forward deployed engineer. It's going into the company, understanding how
+[03:16] into the company, understanding how things run today, and re-envisioning
+[03:18] things run today, and re-envisioning what it could look like tomorrow. And we
+[03:20] what it could look like tomorrow. And we believe that is our job at Verkada and
+[03:22] believe that is our job at Verkada and why forward deployed engineering is such
+[03:23] why forward deployed engineering is such a core part of what we do.
+[03:30] So, a forward deployed agent, what does that really mean?
+[03:31] that really mean? So, why do we need FDEs? As I stated
+[03:32] So, why do we need FDEs? As I stated previously, I'm not going to, you know,
+[03:33] previously, I'm not going to, you know, go into this too much. I'm sure you've
+[03:34] go into this too much. I'm sure you've been hearing a lot of this today.
+[03:36] been hearing a lot of this today. Uh FDEs are responsible for a few
+[03:37] Uh FDEs are responsible for a few different things. One is they map the
+[03:39] different things. One is they map the way that humans are doing their work
+[03:40] way that humans are doing their work today. So, how we do that at Verkada is
+[03:42] today. So, how we do that at Verkada is several forward deployed engineers will
+[03:44] several forward deployed engineers will be embedded directly with the customer.
+[03:45] be embedded directly with the customer. You can imagine it's a
+[03:47] You can imagine it's a enterprise company with thousands of
+[03:48] enterprise company with thousands of employees, but we'll scope it down to a
+[03:50] employees, but we'll scope it down to a single department. In a finance
+[03:52] single department. In a finance department, for example, we'll have them
+[03:53] department, for example, we'll have them sit down with the process leads for AP,
+[03:56] sit down with the process leads for AP, AR, card reconciliation, banking,
+[03:58] AR, card reconciliation, banking, billing, FP&amp;A, etc. So, interviewing
+[04:02] billing, FP&amp;A, etc. So, interviewing every single one of these process leads
+[04:03] every single one of these process leads to understand not only how are things
+[04:05] to understand not only how are things running today, but more importantly,
+[04:07] running today, but more importantly, when things go wrong, what happens?
+[04:10] when things go wrong, what happens? You know, a lot of the documentation
+[04:11] You know, a lot of the documentation that you have at companies about the
+[04:12] that you have at companies about the golden path and maybe an edge case or
+[04:14] golden path and maybe an edge case or two,
+[04:15] two, but this is still fundamentally not the
+[04:16] but this is still fundamentally not the reality.
+[04:18] reality. Where when we talk to customers, it's
+[04:19] Where when we talk to customers, it's it's a lot of,
+[04:20] it's a lot of, you know, Sarah in AP handles the
+[04:23] you know, Sarah in AP handles the workflow today in this way, but when
+[04:25] workflow today in this way, but when things go wrong, she actually sends it
+[04:26] things go wrong, she actually sends it over to Chris, who then takes four days
+[04:29] over to Chris, who then takes four days of cycle time to handle reconciliations
+[04:32] of cycle time to handle reconciliations between a purchase order and an invoice.
+[04:34] between a purchase order and an invoice. Those are the realities that are one
+[04:35] Those are the realities that are one unique to every single company, the way
+[04:37] unique to every single company, the way that they handle things is different
+[04:38] that they handle things is different from one company to the next, and two,
+[04:41] from one company to the next, and two, the real bottleneck for why AI can't
+[04:43] the real bottleneck for why AI can't just run amok and handle end-to-end
+[04:45] just run amok and handle end-to-end processes without the hand-holding that
+[04:47] processes without the hand-holding that you see today in the enterprise.
+[04:49] you see today in the enterprise. Um so, this is the first section, which
+[04:50] Um so, this is the first section, which is mapping how humans do the work.
+[04:53] is mapping how humans do the work. The second is really re-engineering the
+[04:55] The second is really re-engineering the process around AI. So, what does this
+[04:57] process around AI. So, what does this mean?
+[04:58] mean? You know, there's a lot of talk being
+[04:59] You know, there's a lot of talk being given today in terms of
+[05:01] given today in terms of slapping AI onto broken processes, and
+[05:04] slapping AI onto broken processes, and that's fundamentally why you don't see
+[05:05] that's fundamentally why you don't see the ROI across the industry today.
+[05:07] the ROI across the industry today. There's a lot of, you know,
+[05:08] There's a lot of, you know, semi-outdated, but still very relevant
+[05:11] semi-outdated, but still very relevant statistics like the MIT review saying
+[05:13] statistics like the MIT review saying that 95% of generative AI pilots fail to
+[05:15] that 95% of generative AI pilots fail to reach production. Or the other
+[05:17] reach production. Or the other statistic, which is 87%, very similar
+[05:19] statistic, which is 87%, very similar thing, that most AI pilots don't produce
+[05:23] thing, that most AI pilots don't produce measurable ROI or they don't ship to
+[05:25] measurable ROI or they don't ship to production, period.
+[05:27] production, period. And the reason for that is
+[05:28] And the reason for that is a lot of the time, AI is being slapped
+[05:31] a lot of the time, AI is being slapped on top of broken processes in a way that
+[05:33] on top of broken processes in a way that the AI doesn't actually understand how
+[05:35] the AI doesn't actually understand how to do things.
+[05:37] to do things. Um you see that this at the simplest
+[05:38] Um you see that this at the simplest level with coding, where as an engineer,
+[05:41] level with coding, where as an engineer, it's very difficult, even with gold
+[05:43] it's very difficult, even with gold loops and the the latest technology
+[05:44] loops and the the latest technology there,
+[05:45] there, uh to just
+[05:47] uh to just say, "Go and solve this for me and have
+[05:49] say, "Go and solve this for me and have it run off and refactor entire code
+[05:51] it run off and refactor entire code bases without some degree of human
+[05:53] bases without some degree of human input.
+[05:54] input. Now, if you extrapolate that to a
+[05:56] Now, if you extrapolate that to a business context, these are very
+[05:57] business context, these are very non-technical operators in finance,
+[06:00] non-technical operators in finance, sales, marketing, procurement,
+[06:02] sales, marketing, procurement, logistics,
+[06:03] logistics, uh etc.
+[06:05] uh etc. So, giving them this AI tooling will not
+[06:07] So, giving them this AI tooling will not allow them to receive the same ROI that
+[06:08] allow them to receive the same ROI that a software engineer might be able to to
+[06:10] a software engineer might be able to to uh produce or create.
+[06:12] uh produce or create. Um so, what this means is you need
+[06:14] Um so, what this means is you need forward-deployed engineers to help them
+[06:17] forward-deployed engineers to help them re-engineer their current process around
+[06:18] re-engineer their current process around AI.
+[06:19] AI. It needs to be not too different to
+[06:21] It needs to be not too different to where they don't understand, you know,
+[06:23] where they don't understand, you know, how to operate the system. For example,
+[06:24] how to operate the system. For example, if they're used to an 11-step workflow
+[06:26] if they're used to an 11-step workflow and you come in and change that with a
+[06:28] and you come in and change that with a one-step, they might be taken aback, the
+[06:30] one-step, they might be taken aback, the adoption rates might suffer, etc. As was
+[06:32] adoption rates might suffer, etc. As was alluded to in previous presentations.
+[06:34] alluded to in previous presentations. Um but at the same time, it needs to be
+[06:35] Um but at the same time, it needs to be different enough to where you're
+[06:37] different enough to where you're actually capturing the ROI.
+[06:39] actually capturing the ROI. Meaning, you do say, all right, four out
+[06:42] Meaning, you do say, all right, four out of these eight steps will be handled
+[06:43] of these eight steps will be handled completely autonomously.
+[06:45] completely autonomously. The other three will be handled with
+[06:47] The other three will be handled with some human-in-the-loop intervention.
+[06:49] some human-in-the-loop intervention. And one step of that process will be
+[06:50] And one step of that process will be handled by a human, period. Either
+[06:53] handled by a human, period. Either because the risk is too high or because,
+[06:56] because the risk is too high or because, you know, it's it's not unique enough
+[06:58] you know, it's it's not unique enough for an agent to produce measurable value
+[07:00] for an agent to produce measurable value in that specific step of the process.
+[07:02] in that specific step of the process. So, that's the second major step of a
+[07:04] So, that's the second major step of a forward-deployed engineer. That's why we
+[07:05] forward-deployed engineer. That's why we need them.
+[07:06] need them. And third and finally, and this is what
+[07:07] And third and finally, and this is what I want to uh bring one of my heads of
+[07:09] I want to uh bring one of my heads of engineering to discuss in just a moment,
+[07:12] engineering to discuss in just a moment, is actually deploying these agents on
+[07:13] is actually deploying these agents on top of existing systems. So,
+[07:16] top of existing systems. So, fundamentally at Verity, we believe that
+[07:18] fundamentally at Verity, we believe that the AI wave left a lot of enterprise
+[07:20] the AI wave left a lot of enterprise behind.
+[07:21] behind. A lot of enterprises are married to
+[07:22] A lot of enterprises are married to their systems of record. Not everybody,
+[07:24] their systems of record. Not everybody, but most of them are.
+[07:26] but most of them are. Uh they've migrated to NetSuite, they've
+[07:27] Uh they've migrated to NetSuite, they've migrated to Dynamics,
+[07:29] migrated to Dynamics, uh they migrated to SAP and Salesforce.
+[07:32] uh they migrated to SAP and Salesforce. And when you pitch them AI solutions
+[07:34] And when you pitch them AI solutions that live completely disparate from
+[07:35] that live completely disparate from these systems,
+[07:36] these systems, uh you're ignoring the reality of
+[07:38] uh you're ignoring the reality of enterprise.
+[07:39] enterprise. One of the quotes from our clients said
+[07:41] One of the quotes from our clients said that they spent $5,000,000
+[07:43] that they spent $5,000,000 and 5 years migrating to uh NetSuite.
+[07:47] and 5 years migrating to uh NetSuite. That's a real quote. So, if you're
+[07:48] That's a real quote. So, if you're telling them, "Hey, I have this fancy AI
+[07:50] telling them, "Hey, I have this fancy AI tooling, but by the way, you have to
+[07:51] tooling, but by the way, you have to migrate off of NetSuite," they're going
+[07:53] migrate off of NetSuite," they're going to tell you to get out. They don't have
+[07:54] to tell you to get out. They don't have any appetite for that.
+[07:56] any appetite for that. So, what we believe in Varick believe in
+[07:58] So, what we believe in Varick believe in at Varick is we'll build the agents on
+[08:01] at Varick is we'll build the agents on top of your systems of record.
+[08:03] top of your systems of record. And the way that we do that is quite uh
+[08:04] And the way that we do that is quite uh unique. We have our own Varick OS
+[08:06] unique. We have our own Varick OS platform that allows us to spin up
+[08:07] platform that allows us to spin up agents, monitor them, uh etc. with the
+[08:09] agents, monitor them, uh etc. with the full governance and eval suite baked in.
+[08:12] full governance and eval suite baked in. But at the same time, it lives on top of
+[08:13] But at the same time, it lives on top of your systems of record. So, if you are
+[08:15] your systems of record. So, if you are on a Salesforce or a NetSuite or a
+[08:16] on a Salesforce or a NetSuite or a Dynamics or an SAP, we will not ask you
+[08:19] Dynamics or an SAP, we will not ask you to migrate off of that. And that is
+[08:20] to migrate off of that. And that is where enterprise needs AI the most.
+[08:23] where enterprise needs AI the most. Uh because they're too large to move up.
+[08:30] So, why build the FDE agent in the first place? As mentioned previously, I think
+[08:32] place? As mentioned previously, I think everyone is saying that 2026 and onwards
+[08:35] everyone is saying that 2026 and onwards is the year of the forward deployed
+[08:37] is the year of the forward deployed engineer. And to some extent, we believe
+[08:39] engineer. And to some extent, we believe that's completely correct. There's never
+[08:40] that's completely correct. There's never been more of a need to go deep into
+[08:42] been more of a need to go deep into customers and understand their business
+[08:44] customers and understand their business use cases and help them adopt the latest
+[08:46] use cases and help them adopt the latest in AI tooling.
+[08:48] in AI tooling. But at the same time, we realize that
+[08:49] But at the same time, we realize that it's actually very difficult to find
+[08:51] it's actually very difficult to find forward deployed engineers who are both
+[08:54] forward deployed engineers who are both the technical like top 1% who are really
+[08:56] the technical like top 1% who are really able to understand and speak AI
+[08:59] able to understand and speak AI uh
+[09:00] uh 10,000 times better than the average,
+[09:02] 10,000 times better than the average, you know, enterprise customer,
+[09:03] you know, enterprise customer, but also have the communication and
+[09:05] but also have the communication and human skills needed to be, you know, as
+[09:07] human skills needed to be, you know, as alluded to previously, very high IQ,
+[09:09] alluded to previously, very high IQ, high EQ, extracting the information from
+[09:11] high EQ, extracting the information from the customer and meeting them where they
+[09:13] the customer and meeting them where they are in real time.
+[09:14] are in real time. You know, typically, you'll have
+[09:16] You know, typically, you'll have consultants that you then train on the
+[09:17] consultants that you then train on the technical side or engineers that you
+[09:20] technical side or engineers that you then kind of train on the soft skill
+[09:21] then kind of train on the soft skill side, but it's very hard to find people
+[09:23] side, but it's very hard to find people who are, you know, the best of both.
+[09:25] who are, you know, the best of both. Um so, the FDE agent is our effort to
+[09:29] Um so, the FDE agent is our effort to bolster the existing forward deployed
+[09:30] bolster the existing forward deployed engineers that we do have.
+[09:32] engineers that we do have. So, for example, allowing one forward
+[09:35] So, for example, allowing one forward deployed engineer or forward deployed
+[09:36] deployed engineer or forward deployed strategist to manage and maintain
+[09:39] strategist to manage and maintain several client communications.
+[09:41] several client communications. I know that most of the folks in the
+[09:42] I know that most of the folks in the room are technical, but it's very easy
+[09:45] room are technical, but it's very easy to misunderstand how deeply involved you
+[09:47] to misunderstand how deeply involved you have to be with the client. They're
+[09:48] have to be with the client. They're emailing you 24/7.
+[09:51] emailing you 24/7. They're sending you hundreds of pages of
+[09:52] They're sending you hundreds of pages of documentation.
+[09:54] documentation. And every single process they will pull
+[09:56] And every single process they will pull you in a different direction.
+[09:57] you in a different direction. AP relies on AR relies on
+[09:59] AP relies on AR relies on reconciliation, relies on FP&amp;A, and they
+[10:02] reconciliation, relies on FP&amp;A, and they each have their own version of what they
+[10:03] each have their own version of what they think is the most important. So, being
+[10:05] think is the most important. So, being able to manage that context and being
+[10:07] able to manage that context and being able to serve them all equally while
+[10:09] able to serve them all equally while also not hiring 50 people to do so is
+[10:12] also not hiring 50 people to do so is fundamentally very important and it's
+[10:13] fundamentally very important and it's how we at Verek avoid being, you know, a
+[10:15] how we at Verek avoid being, you know, a traditional consultancy while also
+[10:17] traditional consultancy while also offering that handheld hand-holding and
+[10:20] offering that handheld hand-holding and like very human experience
+[10:21] like very human experience human-centered approach of consulting
+[10:23] human-centered approach of consulting that we think we do think is very
+[10:24] that we think we do think is very valuable.
+[10:25] valuable. Um so, in the past in 2024 and around
+[10:28] Um so, in the past in 2024 and around that time, execution work was still the
+[10:30] that time, execution work was still the bottleneck.
+[10:32] bottleneck. This was before the models gained the
+[10:33] This was before the models gained the intelligence and the harnesses gained
+[10:34] intelligence and the harnesses gained the integration abilities that allowed
+[10:36] the integration abilities that allowed them to move past the execution
+[10:37] them to move past the execution bottleneck.
+[10:39] bottleneck. Um now the AI models are trained to
+[10:41] Um now the AI models are trained to solve the execution of knowledge work. I
+[10:43] solve the execution of knowledge work. I will go as so far as to say that
+[10:44] will go as so far as to say that knowledge work is almost entirely
+[10:46] knowledge work is almost entirely solved.
+[10:48] solved. The difference is and what we're
+[10:49] The difference is and what we're realizing now is that designing how work
+[10:52] realizing now is that designing how work gets completed around AI is the next
+[10:55] gets completed around AI is the next bottleneck.
+[10:56] bottleneck. It's the ability to go deep with the
+[10:57] It's the ability to go deep with the customer, redesign the workflows,
+[10:59] customer, redesign the workflows, deciding what should be automated versus
+[11:01] deciding what should be automated versus shouldn't,
+[11:02] shouldn't, and building this in a robust and
+[11:04] and building this in a robust and scalable way on a platform that moves
+[11:07] scalable way on a platform that moves the needle for our clients.
+[11:08] the needle for our clients. You know, as opposed to doing a point
+[11:10] You know, as opposed to doing a point solution, which promises to transform
+[11:11] solution, which promises to transform just one part of your sales process for
+[11:13] just one part of your sales process for example,
+[11:14] example, uh maybe it's prospecting.
+[11:16] uh maybe it's prospecting. Uh that ROI might deliver 5 to 10% ROI
+[11:19] Uh that ROI might deliver 5 to 10% ROI for you as a sales function. Same thing
+[11:21] for you as a sales function. Same thing on finance. If you're just doing AP and
+[11:22] on finance. If you're just doing AP and no other part of your department, you
+[11:24] no other part of your department, you might have a 5 10% ROI.
+[11:27] might have a 5 10% ROI. But, at Verek we deliver department-wide
+[11:29] But, at Verek we deliver department-wide transformations, holistically
+[11:30] transformations, holistically transforming the entire department at a
+[11:32] transforming the entire department at a time. And that's how we get the ROI that
+[11:34] time. And that's how we get the ROI that we see for our clients which is 25% 50%
+[11:38] we see for our clients which is 25% 50% 75%
+[11:40] 75% truly giving them back you know the
+[11:41] truly giving them back you know the three things which is revenue uplift
+[11:43] three things which is revenue uplift cost savings and risk mitigation as was
+[11:45] cost savings and risk mitigation as was so eloquently stated previously.
+[11:48] so eloquently stated previously. And an AI FDE is trained to re-engineer
+[11:50] And an AI FDE is trained to re-engineer these necessary tasks around AI.
+[11:53] these necessary tasks around AI. So I want to invite my head of
+[11:54] So I want to invite my head of engineering
+[11:55] engineering JD Pruitt to come up and and share some
+[11:58] JD Pruitt to come up and and share some more of the deep technical stuff
+[12:00] more of the deep technical stuff on our FD agent
+[12:02] on our FD agent because I haven't written a line of
+[12:04] because I haven't written a line of production code in a while. So here's
+[12:05] production code in a while. So here's JD.
+[12:06] JD. &gt;&gt; Okay. Thanks Voss.
+[12:08] &gt;&gt; Okay. Thanks Voss. &gt;&gt; And maybe we can get his mic going.
+[12:16] &gt;&gt; All right, thank you. Thanks Voss. So
+[12:18] Thanks Voss. So this project to give tools to our FDEs
+[12:22] this project to give tools to our FDEs basically started with me. I lead the
+[12:23] basically started with me. I lead the platform team and we're over on one side
+[12:25] platform team and we're over on one side of the office. We're hanging out, we're
+[12:26] of the office. We're hanging out, we're chilling, having a great time.
+[12:28] chilling, having a great time. Codex, Claude, we're all hanging out.
+[12:29] Codex, Claude, we're all hanging out. And then I look over at the FDE side of
+[12:31] And then I look over at the FDE side of the room. They look stressed. They are
+[12:33] the room. They look stressed. They are sleep deprived. They're extremely
+[12:34] sleep deprived. They're extremely miserable. They've got clients emailing
+[12:36] miserable. They've got clients emailing them 24/7. I'm like, "Oh my god, you
+[12:37] them 24/7. I'm like, "Oh my god, you guys haven't slept at all." So I go and
+[12:39] guys haven't slept at all." So I go and I start talking to them and I'm like,
+[12:39] I start talking to them and I'm like, "Okay, what is your guys' process like
+[12:41] "Okay, what is your guys' process like right now? How are you actually engaging
+[12:43] right now? How are you actually engaging with these clients?" They're like,
+[12:44] with these clients?" They're like, "Well, we you know upload about 150
+[12:46] "Well, we you know upload about 150 pages of documentation to Claude and
+[12:48] pages of documentation to Claude and then we prompt Claude and then we wait
+[12:50] then we prompt Claude and then we wait like 2 minutes and then we get analysis
+[12:52] like 2 minutes and then we get analysis and then it's verbose and incorrect and
+[12:53] and then it's verbose and incorrect and it kind of sucks." And I was like, "All
+[12:55] it kind of sucks." And I was like, "All right, we got to fix this."
+[12:56] right, we got to fix this." So we have been working on an FD agent
+[12:59] So we have been working on an FD agent which is the Codex for our FDEs
+[13:01] which is the Codex for our FDEs basically.
+[13:02] basically. And there is three stages of it. The
+[13:04] And there is three stages of it. The last of which is certainly still in in
+[13:06] last of which is certainly still in in development. The first is what we call
+[13:09] development. The first is what we call the engagement. The first function is
+[13:11] the engagement. The first function is the is the engagement agent. And
+[13:13] the is the engagement agent. And essentially this is a better version of
+[13:15] essentially this is a better version of Claude built just for our FDEs. It's
+[13:18] Claude built just for our FDEs. It's their assistant. They have it pulls in
+[13:20] their assistant. They have it pulls in their granola notes. It synthesizes
+[13:22] their granola notes. It synthesizes documentation. It reads PowerPoint
+[13:23] documentation. It reads PowerPoint slides. It allows them to query and say,
+[13:25] slides. It allows them to query and say, "Who is responsible for this process?
+[13:27] "Who is responsible for this process? I got an email that mentioned Sarah
+[13:29] I got an email that mentioned Sarah spelled, you know, this way and I have
+[13:31] spelled, you know, this way and I have a, you know, a Slack message with a
+[13:33] a, you know, a Slack message with a different way. Are these the same
+[13:34] different way. Are these the same people? Cuz these are the questions that
+[13:36] people? Cuz these are the questions that our FDEs are asking all day, every day,
+[13:38] our FDEs are asking all day, every day, and they waste a ton of time just
+[13:39] and they waste a ton of time just waiting on on Claude to respond.
+[13:41] waiting on on Claude to respond. So, the engagement agent is their way of
+[13:44] So, the engagement agent is their way of It's their It's their assistant to build
+[13:46] It's their It's their assistant to build um to build the workflow. Then there's
+[13:48] um to build the workflow. Then there's the workflow agent. And what we did is
+[13:50] the workflow agent. And what we did is we took our engagement agent and we
+[13:52] we took our engagement agent and we embedded it inside of our platform so
+[13:53] embedded it inside of our platform so that when our FDEs go and they actually
+[13:56] that when our FDEs go and they actually build the workflow, the FDE agent is
+[13:59] build the workflow, the FDE agent is right there saying, "Oh, you forgot
+[14:00] right there saying, "Oh, you forgot about this edge case.
+[14:02] about this edge case. Um you should probably ask me uh you
+[14:05] Um you should probably ask me uh you know, who owns this process so I make
+[14:07] know, who owns this process so I make sure the email goes to the right place."
+[14:08] sure the email goes to the right place." And it lives It's basically a I can talk
+[14:12] And it lives It's basically a I can talk a little more of the details on the next
+[14:13] a little more of the details on the next slide, but
+[14:18] Whoops. It lives uh it lives on side of our
+[14:20] It lives uh it lives on side of our inside of our platform. It works next to
+[14:22] inside of our platform. It works next to Claude or Codex, whatever model you're
+[14:24] Claude or Codex, whatever model you're using, um and make sure that the
+[14:27] using, um and make sure that the workflow that the FDE is constructing is
+[14:29] workflow that the FDE is constructing is actually uh
+[14:31] actually uh it correctly shadows the process that we
+[14:33] it correctly shadows the process that we want to engineer. And then there's the
+[14:35] want to engineer. And then there's the final stage, which we're not at yet,
+[14:37] final stage, which we're not at yet, which is a um an autonomous assistant
+[14:41] which is a um an autonomous assistant for FDEs where it's receiving emails
+[14:43] for FDEs where it's receiving emails from clients who say, "Actually, I want
+[14:45] from clients who say, "Actually, I want to change, you know, where my QC report
+[14:48] to change, you know, where my QC report goes to. I want to, you know, change it
+[14:50] goes to. I want to, you know, change it to a different email, etc." And our
+[14:52] to a different email, etc." And our agent is able to process that
+[14:53] agent is able to process that information, query the understanding of
+[14:56] information, query the understanding of the company that we currently have, ship
+[14:58] the company that we currently have, ship an autonomous change to the workflow on
+[15:00] an autonomous change to the workflow on top of our platform, and then our FDE
+[15:03] top of our platform, and then our FDE never has to get involved, saving their
+[15:05] never has to get involved, saving their time for the much more high-value work
+[15:07] time for the much more high-value work of sitting down, interviewing with the
+[15:08] of sitting down, interviewing with the clients, really understanding what their
+[15:10] clients, really understanding what their process is, um and not dealing with all
+[15:12] process is, um and not dealing with all of the small little minutia that anyone
+[15:15] of the small little minutia that anyone who has been an FDE can tell you uh
+[15:17] who has been an FDE can tell you uh takes up a lot of their time.
+[15:24] So, how do we how do we build this? Um the first thing is we need some single
+[15:25] the first thing is we need some single source of truth, some representation of
+[15:28] source of truth, some representation of a company's
+[15:29] a company's uh functioning. There's a lot of
+[15:30] uh functioning. There's a lot of different ways to do this. If you were
+[15:32] different ways to do this. If you were at the booths downstairs this morning,
+[15:34] at the booths downstairs this morning, there was, you know, five companies
+[15:35] there was, you know, five companies trying to sell you a graph DB, and you
+[15:38] trying to sell you a graph DB, and you can just use Postgres, whatever it is.
+[15:39] can just use Postgres, whatever it is. Yes, I'm looking at you. Um
+[15:42] Yes, I'm looking at you. Um
+[15:42] &gt;&gt; [clears throat] &gt;&gt; doesn't really matter what you use, but
+[15:43] &gt;&gt; doesn't really matter what you use, but the point is we use a dependency graph.
+[15:45] the point is we use a dependency graph. Um most of these workflows inside of
+[15:47] Um most of these workflows inside of enterprise are remarkably linear. They
+[15:49] enterprise are remarkably linear. They just have a lot of cycles in them, but
+[15:51] just have a lot of cycles in them, but at the at the end of the day, the
+[15:52] at the at the end of the day, the process owners want things to be as
+[15:55] process owners want things to be as dependency-driven as possible. They
+[15:56] dependency-driven as possible. They don't want person C in the process to
+[15:59] don't want person C in the process to have to deal with something before A and
+[16:01] have to deal with something before A and B have approved it. So, a dependency
+[16:02] B have approved it. So, a dependency graph is a very nice representation of
+[16:04] graph is a very nice representation of this.
+[16:06] this. Um then we do our own model training. Um
+[16:09] Um then we do our own model training. Um and there's really two parts to this
+[16:10] and there's really two parts to this problem that we're trying to solve. The
+[16:12] problem that we're trying to solve. The first is, given extracted context for
+[16:15] first is, given extracted context for the FTE, do we get a good high-quality
+[16:19] the FTE, do we get a good high-quality output? And the answer is, with Claude,
+[16:21] output? And the answer is, with Claude, honestly, no, which is kind of
+[16:23] honestly, no, which is kind of surprising. But the really um and sure
+[16:25] surprising. But the really um and sure you guys have experienced this, when you
+[16:27] you guys have experienced this, when you are trying to do a long analysis,
+[16:29] are trying to do a long analysis, frontier models are extremely verbose,
+[16:31] frontier models are extremely verbose, and they lack the
+[16:33] and they lack the um
+[16:35] um you know, I would say the um
+[16:40] I only started believing in consultants once we started hiring them at Verek.
+[16:42] once we started hiring them at Verek. And the reason is they're so good at
+[16:44] And the reason is they're so good at figuring out what is the part of the
+[16:45] figuring out what is the part of the detail the client actually cares about,
+[16:48] detail the client actually cares about, and what is the part that can get
+[16:49] and what is the part that can get glossed over. And frontier models have
+[16:51] glossed over. And frontier models have absolutely no concept of this. So, we
+[16:53] absolutely no concept of this. So, we started post-training our own models on
+[16:55] started post-training our own models on top of on top of open-source models.
+[16:57] top of on top of open-source models. We're a fan of Kimiko 26, but a lot of
+[16:59] We're a fan of Kimiko 26, but a lot of these would do a lot of these would do
+[17:01] these would do a lot of these would do fine to really get that nice balance
+[17:04] fine to really get that nice balance between detailed and uh clarity that the
+[17:07] between detailed and uh clarity that the frontier models often often lack.
+[17:10] frontier models often often lack. So, that's a that's a bit about writing
+[17:12] So, that's a that's a bit about writing a good normalized process flow from
+[17:14] a good normalized process flow from extracted context. But there's the
+[17:16] extracted context. But there's the second half of the challenge, which is
+[17:20] second half of the challenge, which is getting good at traversing at extracting
+[17:22] getting good at traversing at extracting the right context. So, we might have
+[17:24] the right context. So, we might have this huge knowledge graph, but it's
+[17:26] this huge knowledge graph, but it's remarkably difficult to traverse this
+[17:29] remarkably difficult to traverse this knowledge graph in a reliable way that
+[17:31] knowledge graph in a reliable way that finds us the right context. So, once we
+[17:33] finds us the right context. So, once we have our post-trained model, we create
+[17:35] have our post-trained model, we create an RL environment where we have exposed
+[17:37] an RL environment where we have exposed our own custom tools specifically
+[17:40] our own custom tools specifically designed to traverse our knowledge
+[17:41] designed to traverse our knowledge graph. These tools are things like make
+[17:44] graph. These tools are things like make sure person A and person B are actually
+[17:46] sure person A and person B are actually the same person because a lot of you
+[17:48] the same person because a lot of you know, there's a lot of Mikes in every
+[17:49] know, there's a lot of Mikes in every company we work with and Claude gets
+[17:51] company we work with and Claude gets very confused by this. Um a second thing
+[17:54] very confused by this. Um a second thing might be something like
+[17:56] might be something like um
+[17:57] um uh identifying identifying redundancy
+[18:00] uh identifying identifying redundancy cycles or uh like violations of your DAG
+[18:03] cycles or uh like violations of your DAG inside of your knowledge graph. And so,
+[18:04] inside of your knowledge graph. And so, in our RL environment, we train really
+[18:06] in our RL environment, we train really good tools to do a good job of
+[18:08] good tools to do a good job of traversing this graph to extract the
+[18:10] traversing this graph to extract the right context. So, that's how we solve
+[18:12] right context. So, that's how we solve the two problems. Writing good analysis
+[18:15] the two problems. Writing good analysis from the context and extracting the
+[18:16] from the context and extracting the correct context in the first place. And
+[18:18] correct context in the first place. And then the third part, which we are um
+[18:21] then the third part, which we are um still building towards is an agent that
+[18:23] still building towards is an agent that operates autonomously
+[18:26] operates autonomously to do the kind of uh workflow management
+[18:29] to do the kind of uh workflow management on the small things that the FDA doesn't
+[18:31] on the small things that the FDA doesn't have to waste their time on.
+[18:33] have to waste their time on. I think that's all I've got. I'll hand
+[18:34] I think that's all I've got. I'll hand it back over to Vass.
+[18:35] it back over to Vass. &gt;&gt; Thanks, Petey.
+[18:37] &gt;&gt; Thanks, Petey. So, where does that leave us? And I want
+[18:39] So, where does that leave us? And I want to share a little bit more about Verica
+[18:40] to share a little bit more about Verica uh because obviously we're not the
+[18:42] uh because obviously we're not the cursor and throttle of the open eye of
+[18:43] cursor and throttle of the open eye of the world. Um when we started this
+[18:45] the world. Um when we started this company, we fundamentally believed that
+[18:47] company, we fundamentally believed that the way the puck was moving, you had to
+[18:50] the way the puck was moving, you had to get ahead of it and you had to start
+[18:52] get ahead of it and you had to start learning
+[18:53] learning how a business runs and building with
+[18:55] how a business runs and building with that in mind.
+[18:57] that in mind. I think a lot of Silicon Valley starts
+[18:58] I think a lot of Silicon Valley starts to go product product product, but what
+[19:01] to go product product product, but what we're building for cannot be solved for
+[19:02] we're building for cannot be solved for with just a product.
+[19:04] with just a product. We start off every single engagement
+[19:06] We start off every single engagement with an audit where we actually send our
+[19:08] with an audit where we actually send our forward deployed engineers, strategists
+[19:09] forward deployed engineers, strategists into a company to learn how it works
+[19:11] into a company to learn how it works from the inside out. That is what I
+[19:13] from the inside out. That is what I believe is the biggest bottleneck. And
+[19:16] believe is the biggest bottleneck. And after that, we go into implementation.
+[19:18] after that, we go into implementation. We build agents on top of our platform.
+[19:20] We build agents on top of our platform. And yes, you do still need all the bells
+[19:21] And yes, you do still need all the bells and whistles and the fancy technology
+[19:23] and whistles and the fancy technology that allows us to, you know, really
+[19:24] that allows us to, you know, really automate work
+[19:26] automate work in the future. But, again,
+[19:29] in the future. But, again, the bottleneck is the forward deployed
+[19:31] the bottleneck is the forward deployed motion, which is why we are so bullish
+[19:32] motion, which is why we are so bullish here at Verica on our AIFDE.
+[19:36] here at Verica on our AIFDE. And if you're interested in learning
+[19:37] And if you're interested in learning more about it, or if you're interested
+[19:38] more about it, or if you're interested in joining one of the fastest-growing
+[19:40] in joining one of the fastest-growing startups in Silicon Valley working with
+[19:42] startups in Silicon Valley working with some of the largest clients on the
+[19:43] some of the largest clients on the planet, come find us after and we'll
+[19:46] planet, come find us after and we'll have a chat because we are aggressively
+[19:47] have a chat because we are aggressively hiring. And if you are a company looking
+[19:50] hiring. And if you are a company looking to understand how AI can really move the
+[19:52] to understand how AI can really move the needle for you internally instead of
+[19:54] needle for you internally instead of just slapping a frontier model on top of
+[19:56] just slapping a frontier model on top of everything and watching it break in
+[19:57] everything and watching it break in production, come find me after as well.
+[20:00] production, come find me after as well. Thank you all so much for the time. I
+[20:00] Thank you all so much for the time. I really appreciate it. And cheers.
+[20:03] really appreciate it. And cheers. &gt;&gt; [applause]
