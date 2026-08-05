@@ -8,10 +8,11 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
 ### 🟢 Hôm nay (05/08/2026)
-*Nhóm 2 video vừa được phân tích và đẩy lên hôm nay:*
+*Nhóm 3 video vừa được phân tích và đẩy lên hôm nay:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `b415a03de5999a2b` | Advice from the Top 1% (in Tech) | Career Advice | [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) | 15:18 |
 | `a858c3708e06389d` | If you are ambitious but inconsistent (in tech), please watch this | Career Playbook | [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) | 12:51 |
 | `9acffc384b62f6a9` | I'm a Senior Google AI PM. Here's How I Build Loops | Loop Engineering | [senior_google_ai_pm_how_i_build_loops.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/senior_google_ai_pm_how_i_build_loops.md) | 34:23 |
 
@@ -72,6 +73,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Herdr: The Modern Terminal Multiplexer](file:///f:/source/watch-skill/video-learning-vault/ai-agents/herdr_terminal_multiplexer.md) - Multiplexer hiện đại hỗ trợ điều khiển chuột, cấu hình projects, phím tắt Vim và khả năng theo dõi trạng thái AI agent gốc.
 * [How to Build Loops](file:///f:/source/watch-skill/video-learning-vault/ai-agents/senior_google_ai_pm_how_i_build_loops.md) - Cẩm nang thiết kế hệ thống vòng lặp (Loop Engineering) từ Senior AI PM tại Google, chi tiết 9 thành phần cấu trúc, 5 case study và cách tránh các lỗi quá tải chi phí, lệch hướng (drift).
 * [Ambitious but Inconsistent in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) - Lời khuyên định hướng sự nghiệp, xây dựng tính nhất quán, trách nhiệm thay vì đuổi theo đam mê cảm tính, và playbook lập trình 5 bước trong kỷ nguyên AI 2026.
+* [Advice from the Top 1% in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) - Bài học từ Phil về cách định hình lộ trình thăng tiến thu nhập dài hạn, đầu tư tái phân bổ tài chính vào kỹ năng có lợi nhuận cao, tránh các công việc mang lại cảm giác ảo về năng suất, và tận dụng mạng lưới chia sẻ (generosity network) trong tech.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -88,6 +90,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) (08:53)
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
     *   [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) (12:51)
+    *   [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) (15:18)
     *   [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) (15:00)
     *   [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) (15:50)
     *   [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) (18:00)

@@ -1,0 +1,352 @@
+[00:01] Most people in tech are playing the wrong game. They obsess over landing the
+[00:04] wrong game. They obsess over landing the first job, the offer letter, the
+[00:07] first job, the offer letter, the starting salary, the LinkedIn update,
+[00:10] starting salary, the LinkedIn update, and then they stop. They coast. And 10
+[00:14] and then they stop. They coast. And 10 years later, they're wondering why
+[00:16] years later, they're wondering why they're stuck at the same level while
+[00:18] they're stuck at the same level while other people, people who aren't smarter,
+[00:21] other people, people who aren't smarter, aren't more talented, are pulling in
+[00:24] aren't more talented, are pulling in two, three, four times what they make.
+[00:27] two, three, four times what they make. I'm Phil. I wrote my first line of code
+[00:30] I'm Phil. I wrote my first line of code at 30 years old. No computer science
+[00:33] at 30 years old. No computer science degree, no connections. I became a
+[00:36] degree, no connections. I became a senior developer, then a lead, and now I
+[00:40] senior developer, then a lead, and now I run my own tech company and mentorship
+[00:42] run my own tech company and mentorship program where over 50 of my students
+[00:45] program where over 50 of my students have landed jobs in this industry. In
+[00:48] have landed jobs in this industry. In this video, I'm going to walk you
+[00:50] this video, I'm going to walk you through how the highest earners in tech
+[00:52] through how the highest earners in tech actually think about their career and
+[00:54] actually think about their career and their finances. Because those two things
+[00:58] their finances. Because those two things are completely connected, and almost
+[01:00] are completely connected, and almost nobody treats them that way. Before I
+[01:03] nobody treats them that way. Before I get into it, on May 30th, I'm hosting a
+[01:06] get into it, on May 30th, I'm hosting a free live webinar called how to break
+[01:08] free live webinar called how to break into tech in 2026. I'm going to cover
+[01:11] into tech in 2026. I'm going to cover what's actually working right now to get
+[01:13] what's actually working right now to get hired, how the market has shifted this
+[01:16] hired, how the market has shifted this year, and the exact steps I take if I
+[01:19] year, and the exact steps I take if I were starting from scratch today. I'll
+[01:21] were starting from scratch today. I'll also be taking your questions live. It's
+[01:24] also be taking your questions live. It's completely free. The link is in the
+[01:27] completely free. The link is in the description below. Go grab your spot
+[01:30] description below. Go grab your spot now, and then come right back. I'll be
+[01:33] now, and then come right back. I'll be here. All right, let's get into it.
+[01:36] here. All right, let's get into it. Here's what the internet tells you to
+[01:38] Here's what the internet tells you to do. Learn programming language, build
+[01:41] do. Learn programming language, build some projects, apply to 200 jobs, land a
+[01:44] some projects, apply to 200 jobs, land a 70K entry-level role. Congratulations,
+[01:48] 70K entry-level role. Congratulations, you made it. Except you didn't. That
+[01:51] you made it. Except you didn't. That 70K, which sounds great today, is going
+[01:54] 70K, which sounds great today, is going to feel a a smaller in 5 or 10 years if
+[01:57] to feel a a smaller in 5 or 10 years if you never level up. Rent goes up, cost
+[02:00] you never level up. Rent goes up, cost of living goes up. If your skills and
+[02:02] of living goes up. If your skills and your salary stay flat, you're actually
+[02:05] your salary stay flat, you're actually falling behind every single year. And
+[02:08] falling behind every single year. And here's what most people miss. A junior
+[02:11] here's what most people miss. A junior developer who stays in that junior to
+[02:13] developer who stays in that junior to mid-range for 5 years isn't just not
+[02:16] mid-range for 5 years isn't just not growing, they're actively losing ground.
+[02:20] growing, they're actively losing ground. The market shifts. New tools show up. AI
+[02:23] The market shifts. New tools show up. AI changes how teams are built. The longer
+[02:26] changes how teams are built. The longer you sit still, the harder it gets to
+[02:28] you sit still, the harder it gets to catch up. I see this constantly with
+[02:30] catch up. I see this constantly with people who come to me stuck. They got
+[02:33] people who come to me stuck. They got the job 2 or 3 years ago, felt relieved,
+[02:37] the job 2 or 3 years ago, felt relieved, and then just stopped pushing. And now
+[02:41] and then just stopped pushing. And now they're frustrated because they feel
+[02:43] they're frustrated because they feel like they've done everything right. They
+[02:45] like they've done everything right. They learned to code, they got hired, but
+[02:48] learned to code, they got hired, but they're not where they want to be
+[02:50] they're not where they want to be financially. The reason is simple. They
+[02:53] financially. The reason is simple. They treated the first job like the
+[02:55] treated the first job like the destination. It's not the destination.
+[02:58] destination. It's not the destination. It's the on-ramp. Strategy one, build
+[03:02] It's the on-ramp. Strategy one, build your earning trajectory. Let me show you
+[03:05] your earning trajectory. Let me show you what I mean with some real numbers.
+[03:08] what I mean with some real numbers. Let's say two developers both start at
+[03:10] Let's say two developers both start at 70k.
+[03:11] 70k. Developer A stays comfortable.
+[03:14] Developer A stays comfortable. Maybe they get a small raise here and
+[03:16] Maybe they get a small raise here and there, and after 5 years, they're at 80.
+[03:19] there, and after 5 years, they're at 80. After 10 years, maybe 90.
+[03:22] After 10 years, maybe 90. Over that decade, they've earned roughly
+[03:24] Over that decade, they've earned roughly 800k total. Developer B is intentional.
+[03:29] 800k total. Developer B is intentional. They pick up one high-value skill every
+[03:31] They pick up one high-value skill every single quarter.
+[03:32] single quarter. Not five skills, one. First quarter,
+[03:35] Not five skills, one. First quarter, they go deep on testing. Next quarter,
+[03:38] they go deep on testing. Next quarter, system design. The quarter after that,
+[03:40] system design. The quarter after that, they raise their hand to lead a project.
+[03:43] they raise their hand to lead a project. Each move is small, but each move raises
+[03:46] Each move is small, but each move raises their value.
+[03:48] their value. Developer B goes from 70 to 90, then
+[03:51] Developer B goes from 70 to 90, then 110, then 130, then 150 over the same 10
+[03:55] 110, then 130, then 150 over the same 10 years. Their earnings around 1.1
+[03:58] years. Their earnings around 1.1 million. That's 300k more from the same
+[04:01] million. That's 300k more from the same career, same industry, just by refusing
+[04:04] career, same industry, just by refusing to stay comfortable. Now, take that 300k
+[04:07] to stay comfortable. Now, take that 300k difference and do something smart with
+[04:09] difference and do something smart with it. Put even a portion of it into index
+[04:11] it. Put even a portion of it into index funds, retirement accounts, whatever
+[04:13] funds, retirement accounts, whatever your setup is.
+[04:15] your setup is. Over 20 or 30 years, that gap becomes
+[04:18] Over 20 or 30 years, that gap becomes massive.
+[04:19] massive. We're talking about fundamentally
+[04:21] We're talking about fundamentally different financial lives. And here's
+[04:24] different financial lives. And here's the thing that really matters.
+[04:27] the thing that really matters. Every new technical skill doesn't just
+[04:29] Every new technical skill doesn't just add to your value. It multiplies it.
+[04:33] add to your value. It multiplies it. A developer who can code and design
+[04:36] A developer who can code and design system and lead a team and communicate
+[04:39] system and lead a team and communicate with non-technical stakeholders,
+[04:41] with non-technical stakeholders, that person doesn't get a 10% bump.
+[04:44] that person doesn't get a 10% bump. They get put in a completely different
+[04:47] They get put in a completely different category.
+[04:48] category. Different roles, different offers,
+[04:50] Different roles, different offers, different leverage. That's what happened
+[04:53] different leverage. That's what happened for me.
+[04:54] for me. I went from junior to senior not because
+[04:57] I went from junior to senior not because I was some genius. I wasn't. I just
+[05:00] I was some genius. I wasn't. I just picked one thing to get better at every
+[05:02] picked one thing to get better at every few months.
+[05:03] few months. And each one stacked on top of my last.
+[05:07] And each one stacked on top of my last. My salary went up every year because by
+[05:09] My salary went up every year because by the time I walked into a review, I had
+[05:12] the time I walked into a review, I had already built the case. Strategy two,
+[05:15] already built the case. Strategy two, stop wasting your career hours. Now, let
+[05:17] stop wasting your career hours. Now, let me talk about the flip side because
+[05:20] me talk about the flip side because earning more is only half the equation.
+[05:23] earning more is only half the equation. The other half is what you stop doing.
+[05:26] The other half is what you stop doing. In tech, your most expensive mistake
+[05:28] In tech, your most expensive mistake isn't some purchase.
+[05:30] isn't some purchase. It's wasted time. And I see people waste
+[05:34] It's wasted time. And I see people waste time in the same three ways over and
+[05:37] time in the same three ways over and over again. First, tutorial purgatory.
+[05:40] over again. First, tutorial purgatory. You've been learning React for 8 months,
+[05:43] You've been learning React for 8 months, but you've never built anything real.
+[05:45] but you've never built anything real. You keep watching the next
+[05:48] You keep watching the next the next course, hoping it clicks.
+[05:50] the next course, hoping it clicks. Meanwhile, someone with half your
+[05:52] Meanwhile, someone with half your knowledge, but twice your output, is
+[05:55] knowledge, but twice your output, is getting interviews because they shipped
+[05:58] getting interviews because they shipped three projects while you were still
+[06:00] three projects while you were still taking notes. Second, optimizing things
+[06:03] taking notes. Second, optimizing things that don't move the needle. I've seen
+[06:05] that don't move the needle. I've seen people spend months perfecting the CSS
+[06:08] people spend months perfecting the CSS on their portfolio site. Custom
+[06:10] on their portfolio site. Custom animations,
+[06:12] animations, beautiful gradients,
+[06:14] beautiful gradients, and no hiring manager has ever once
+[06:17] and no hiring manager has ever once cared about that.
+[06:18] cared about that. That's months of career momentum you're
+[06:20] That's months of career momentum you're never getting back. Third, and this is
+[06:24] never getting back. Third, and this is the big one, staying in a comfortable
+[06:27] the big one, staying in a comfortable role for too long because it feels safe.
+[06:30] role for too long because it feels safe. Listen, stability is nice, but 3 years
+[06:33] Listen, stability is nice, but 3 years of stagnation in tech,
+[06:35] of stagnation in tech, the opportunity cost of that is
+[06:37] the opportunity cost of that is enormous. It's not just 3 years of flat
+[06:40] enormous. It's not just 3 years of flat salary. It's 3 years where your skills
+[06:43] salary. It's 3 years where your skills could have been compounding into
+[06:45] could have been compounding into something worth twice as much on the
+[06:48] something worth twice as much on the open market. Time is the engine of a
+[06:51] open market. Time is the engine of a tech career. Whether you're starting at
+[06:53] tech career. Whether you're starting at 22 or 32 or 42, the years you have left
+[06:58] 22 or 32 or 42, the years you have left in your career are your most valuable
+[07:00] in your career are your most valuable resource. You cannot afford to burn them
+[07:02] resource. You cannot afford to burn them on low leverage activity. For me,
+[07:05] on low leverage activity. For me, starting at 30 meant I didn't have years
+[07:08] starting at 30 meant I didn't have years to wander. I gave myself 6 months to be
+[07:11] to wander. I gave myself 6 months to be job ready. Some people thought that was
+[07:13] job ready. Some people thought that was unrealistic. But honestly, starting late
+[07:17] unrealistic. But honestly, starting late gave me an edge because it forced me to
+[07:19] gave me an edge because it forced me to be ruthlessly focused. I didn't have the
+[07:22] be ruthlessly focused. I didn't have the luxury of casual learning.
+[07:24] luxury of casual learning. Every hour had to count. Strategy three,
+[07:28] Every hour had to count. Strategy three, compress your timeline. All right, so
+[07:31] compress your timeline. All right, so you know you need to keep growing. You
+[07:33] you know you need to keep growing. You know you need to stop wasting time. The
+[07:35] know you need to stop wasting time. The next question is, how do you actually
+[07:38] next question is, how do you actually speed this up? I've got three approaches
+[07:40] speed this up? I've got three approaches that work. The first, set a baseline,
+[07:44] that work. The first, set a baseline, then stretch beyond it.
+[07:46] then stretch beyond it. Figure out the core skills your current
+[07:48] Figure out the core skills your current role demands, your baseline. Once you've
+[07:51] role demands, your baseline. Once you've got those locked in, everything beyond
+[07:53] got those locked in, everything beyond that should be invested in the next
+[07:55] that should be invested in the next level skill. Don't keep polishing what
+[07:58] level skill. Don't keep polishing what you already know.
+[07:59] you already know. Push into what scares you a little.
+[08:02] Push into what scares you a little. Second, block non-negotiable learning
+[08:05] Second, block non-negotiable learning time. I'm talking 5 to 10 hours a week,
+[08:08] time. I'm talking 5 to 10 hours a week, minimum,
+[08:10] minimum, that you treat like a bill. Not
+[08:12] that you treat like a bill. Not optional, not if I have energy.
+[08:14] optional, not if I have energy. When I was coming up, I was at my desk
+[08:17] When I was coming up, I was at my desk at 6:00 a.m. every morning, 2 hours
+[08:19] at 6:00 a.m. every morning, 2 hours before my kid woke up,
+[08:21] before my kid woke up, before my day job started, for 2 years
+[08:23] before my day job started, for 2 years straight. People asked how I found the
+[08:26] straight. People asked how I found the time. I didn't find it. I carved it out.
+[08:30] time. I didn't find it. I carved it out. Third,
+[08:31] Third, escalate your investment over time.
+[08:34] escalate your investment over time. Start with one new skill per quarter,
+[08:36] Start with one new skill per quarter, then add a real project, then add a
+[08:38] then add a real project, then add a mentor, then start writing about what
+[08:41] mentor, then start writing about what you're learning or speaking about it in
+[08:43] you're learning or speaking about it in a community. Grow the amount of energy
+[08:46] a community. Grow the amount of energy you put into your career development as
+[08:48] you put into your career development as your capacity grows. Treat it like
+[08:50] your capacity grows. Treat it like progressive overload. You don't start at
+[08:53] progressive overload. You don't start at the heaviest weight. And I'll add one
+[08:55] the heaviest weight. And I'll add one more thing that's specific to right now,
+[08:58] more thing that's specific to right now, 2026. Developers who learn to work
+[09:01] 2026. Developers who learn to work effectively with AI tools are operating
+[09:03] effectively with AI tools are operating at two or three times the speed of
+[09:06] at two or three times the speed of developers who don't. Every month you
+[09:08] developers who don't. Every month you delay getting good at AI augmented
+[09:10] delay getting good at AI augmented development is a month of career
+[09:12] development is a month of career advantage slipping away. This isn't a
+[09:15] advantage slipping away. This isn't a trend, it's a permanent shift. Strategy
+[09:17] trend, it's a permanent shift. Strategy four, spend money on skills that pay.
+[09:20] four, spend money on skills that pay. Okay, this is the part most people don't
+[09:23] Okay, this is the part most people don't want to hear. If you want to change your
+[09:26] want to hear. If you want to change your financial life through tech, at some
+[09:28] financial life through tech, at some point you're going to need to spend
+[09:31] point you're going to need to spend money on getting better, faster. I know,
+[09:34] money on getting better, faster. I know, it's uncomfortable.
+[09:36] it's uncomfortable. Free resources are everywhere.
+[09:38] Free resources are everywhere. YouTube, free CodeCamp, documentation,
+[09:41] YouTube, free CodeCamp, documentation, it's all there and you absolutely can
+[09:44] it's all there and you absolutely can learn from free content. I did early on.
+[09:47] learn from free content. I did early on. But here's what free content cannot give
+[09:50] But here's what free content cannot give you. Someone looking at your code, your
+[09:54] you. Someone looking at your code, your resume, your specific situation and
+[09:56] resume, your specific situation and telling you exactly what's missing. Let
+[09:59] telling you exactly what's missing. Let me put this in concrete terms.
+[10:02] me put this in concrete terms. Let's say you're currently earning 40K a
+[10:04] Let's say you're currently earning 40K a year in a non-tech role.
+[10:07] year in a non-tech role. You spend two to $5,000 on focused
+[10:11] You spend two to $5,000 on focused mentorship. Not just video content, but
+[10:14] mentorship. Not just video content, but real feedback from a real person.
+[10:16] real feedback from a real person. Within 6 to 12 months, you'll land a 75K
+[10:19] Within 6 to 12 months, you'll land a 75K tech job. That's a 35K per year raise
+[10:23] tech job. That's a 35K per year raise from a one-time investment. Over 10
+[10:26] from a one-time investment. Over 10 years, that's 350K in additional income.
+[10:29] years, that's 350K in additional income. Over a full career,
+[10:31] Over a full career, it's a completely different life.
+[10:33] it's a completely different life. And here's what the highest earners do.
+[10:37] And here's what the highest earners do. They take part of that new surplus and
+[10:39] They take part of that new surplus and reinvest it. Cloud certifications,
+[10:41] reinvest it. Cloud certifications, system design training, leadership
+[10:43] system design training, leadership coaching. Each reinvestment opens the
+[10:46] coaching. Each reinvestment opens the next door. Think of your tech skill set
+[10:49] next door. Think of your tech skill set like a path you're trying to build
+[10:51] like a path you're trying to build across a river.
+[10:53] across a river. You need the HTML plank, the JavaScript
+[10:56] You need the HTML plank, the JavaScript plank, the React plank, the system
+[10:59] plank, the React plank, the system design plank, the interview skills
+[11:01] design plank, the interview skills plank. If you bought a course on React
+[11:03] plank. If you bought a course on React and still can't land a job, React wasn't
+[11:06] and still can't land a job, React wasn't a waste. You just got gaps in other
+[11:09] a waste. You just got gaps in other spots.
+[11:10] spots. Maybe your portfolio doesn't show
+[11:12] Maybe your portfolio doesn't show impact. Maybe your behavioral interview
+[11:14] impact. Maybe your behavioral interview answers are weak. Maybe you've never
+[11:16] answers are weak. Maybe you've never practiced live coding under pressure.
+[11:18] practiced live coding under pressure. Keep filling the gaps. The path works
+[11:21] Keep filling the gaps. The path works when all the pieces connect. I know why
+[11:23] when all the pieces connect. I know why people resist this. First, the fear of
+[11:26] people resist this. First, the fear of spending and getting nothing back.
+[11:28] spending and getting nothing back. That's real. Second, the pride of saying
+[11:31] That's real. Second, the pride of saying I'll figure it out myself. And you can
+[11:33] I'll figure it out myself. And you can figure it out yourself. The question is
+[11:36] figure it out yourself. The question is whether the timeline that takes is
+[11:38] whether the timeline that takes is acceptable to you. I'd rather learn from
+[11:41] acceptable to you. I'd rather learn from someone who's already solved the problem
+[11:43] someone who's already solved the problem than rediscover the solution from
+[11:45] than rediscover the solution from scratch over 18 months. When I was
+[11:48] scratch over 18 months. When I was coming up, I spent on resources that
+[11:51] coming up, I spent on resources that gave me human feedback, not just
+[11:53] gave me human feedback, not just lectures.
+[11:54] lectures. An actual eyes on my code, my projects,
+[11:57] An actual eyes on my code, my projects, my resume. That feedback compressed
+[12:01] my resume. That feedback compressed months of wandering into weeks of
+[12:03] months of wandering into weeks of progress. Now I've seen it from the
+[12:05] progress. Now I've seen it from the teaching side. I've mentored over 160
+[12:08] teaching side. I've mentored over 160 students. The ones who progress fastest
+[12:11] students. The ones who progress fastest aren't always the most naturally
+[12:13] aren't always the most naturally talented. They're the ones willing to be
+[12:15] talented. They're the ones willing to be bad at something, ask for help, and act
+[12:18] bad at something, ask for help, and act on the feedback immediately. Over 50 of
+[12:21] on the feedback immediately. Over 50 of them are working in the industry right
+[12:23] them are working in the industry right now. There's one more piece to this that
+[12:26] now. There's one more piece to this that I think is actually the most underrated.
+[12:29] I think is actually the most underrated. Giving your time and knowledge to
+[12:31] Giving your time and knowledge to others. In my Discord community, I've
+[12:34] others. In my Discord community, I've noticed a pattern that repeats every
+[12:36] noticed a pattern that repeats every single cohort. The students who spend
+[12:39] single cohort. The students who spend the most time helping other students,
+[12:42] the most time helping other students, answering questions, reviewing code,
+[12:45] answering questions, reviewing code, explaining concepts.
+[12:47] explaining concepts. Those are consistently the ones who land
+[12:50] Those are consistently the ones who land jobs first. Every time. It's not a
+[12:53] jobs first. Every time. It's not a coincidence.
+[12:55] coincidence. When you explain something to someone
+[12:57] When you explain something to someone else,
+[12:58] else, you understand it twice as deeply. When
+[13:01] you understand it twice as deeply. When you review someone's code,
+[13:03] you review someone's code, you see patterns you'd never encounter
+[13:06] you see patterns you'd never encounter in your own work. And when you're known
+[13:09] in your own work. And when you're known as the person who always shows up to
+[13:11] as the person who always shows up to help, opportunities find you. Job
+[13:14] help, opportunities find you. Job referrals, introductions, advice from
+[13:17] referrals, introductions, advice from people further ahead. The highest
+[13:19] people further ahead. The highest performers in tech at every level, from
+[13:23] performers in tech at every level, from junior to CTO, are almost always the
+[13:26] junior to CTO, are almost always the most generous with their knowledge. Not
+[13:28] most generous with their knowledge. Not because they're saints, because they
+[13:30] because they're saints, because they figured out early that generosity
+[13:33] figured out early that generosity creates a network, and networks create
+[13:36] creates a network, and networks create careers. If you've got the time right
+[13:38] careers. If you've got the time right now, and if you're watching this video,
+[13:42] now, and if you're watching this video, you've got some time. Give it to other
+[13:44] you've got some time. Give it to other people who are on the same path. Help
+[13:47] people who are on the same path. Help someone debug their code. Review
+[13:49] someone debug their code. Review someone's portfolio. Answer a question
+[13:51] someone's portfolio. Answer a question in a form. You'll learn more from that
+[13:54] in a form. You'll learn more from that than another tutorial. I promise you.
+[13:57] than another tutorial. I promise you. Let me bring this together. The highest
+[14:00] Let me bring this together. The highest earners in tech treat their career and
+[14:02] earners in tech treat their career and their money as one connected system.
+[14:05] their money as one connected system. They don't stop growing after the first
+[14:07] They don't stop growing after the first job. They don't waste their years on
+[14:10] job. They don't waste their years on activities that feel productive but
+[14:12] activities that feel productive but aren't. They compress their learning
+[14:14] aren't. They compress their learning timeline by investing time, money, and
+[14:17] timeline by investing time, money, and ego into getting better as fast as
+[14:20] ego into getting better as fast as possible. And they build around
+[14:22] possible. And they build around themselves a community of people who
+[14:25] themselves a community of people who push each other forward. Whether you're
+[14:27] push each other forward. Whether you're starting at 20 or 30 or 40, the age
+[14:30] starting at 20 or 30 or 40, the age doesn't matter.
+[14:32] doesn't matter. The age doesn't determine the outcome.
+[14:34] The age doesn't determine the outcome. What determines the outcome is whether
+[14:36] What determines the outcome is whether you treat your career like something
+[14:38] you treat your career like something that compounds or something you just
+[14:41] that compounds or something you just show up to. Remember that free webinar
+[14:44] show up to. Remember that free webinar on May 30th, how to break into tech in
+[14:46] on May 30th, how to break into tech in 2026? If anything in this video
+[14:49] 2026? If anything in this video resonated with you, that's where we go
+[14:52] resonated with you, that's where we go deeper. Link is in the description. Go
+[14:55] deeper. Link is in the description. Go sign up if you haven't already. And if
+[14:57] sign up if you haven't already. And if you want to start surrounding yourself
+[14:59] you want to start surrounding yourself with other people on this path today, my
+[15:02] with other people on this path today, my free Discord community is also linked
+[15:05] free Discord community is also linked below. Developers at every level helping
+[15:08] below. Developers at every level helping each other daily. Hit subscribe if you
+[15:10] each other daily. Hit subscribe if you want more of this every week. I'll see
+[15:12] want more of this every week. I'll see you on May 30th. And remember, if I can
+[15:15] you on May 30th. And remember, if I can do it, you can do it, too. Coding saves
+[15:17] do it, you can do it, too. Coding saves lives.
