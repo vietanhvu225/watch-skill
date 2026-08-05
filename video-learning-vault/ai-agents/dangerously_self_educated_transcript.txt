@@ -1,0 +1,700 @@
+[00:01] I want to take you back to a morning that I still think about. I'd been
+[00:03] that I still think about. I'd been coding for maybe 8 months, self-taught,
+[00:06] coding for maybe 8 months, self-taught, no degree, no computer science, none of
+[00:09] no degree, no computer science, none of the things everybody online swears you
+[00:11] the things everybody online swears you have to have. And I'm sitting at this
+[00:13] have to have. And I'm sitting at this cheap desk before the sun's up because
+[00:15] cheap desk before the sun's up because that was the only time I had before the
+[00:18] that was the only time I had before the rest of my life started. And there's a
+[00:20] rest of my life started. And there's a problem on my screen that I cannot
+[00:22] problem on my screen that I cannot solve. And here's the thing that scared
+[00:25] solve. And here's the thing that scared me. It wasn't hard because it was
+[00:27] me. It wasn't hard because it was advanced. It was hard because it wasn't
+[00:29] advanced. It was hard because it wasn't in any tutorial. There was no video for
+[00:32] in any tutorial. There was no video for it, no course module, no Stack Overflow
+[00:35] it, no course module, no Stack Overflow answer I could paste in. It was just
+[00:37] answer I could paste in. It was just this weird, specific, tangled mess that
+[00:40] this weird, specific, tangled mess that only existed inside the thing I was
+[00:42] only existed inside the thing I was building. And the only person who was
+[00:44] building. And the only person who was ever going to untangle it was me. And I
+[00:46] ever going to untangle it was me. And I remember this cold little thought going
+[00:49] remember this cold little thought going through my head, "You're a fraud. You
+[00:51] through my head, "You're a fraud. You don't actually know how to do this. You
+[00:54] don't actually know how to do this. You just know how to follow along." I want
+[00:56] just know how to follow along." I want you to hold on to that feeling because
+[00:59] you to hold on to that feeling because everybody watching this has felt some
+[01:01] everybody watching this has felt some version of it. And in 2026, with AI
+[01:05] version of it. And in 2026, with AI writing most of the code on Earth, a
+[01:07] writing most of the code on Earth, a whole lot of developers are feeling it
+[01:09] whole lot of developers are feeling it again, way harder than before. That
+[01:11] again, way harder than before. That quiet voice going, "The machine is
+[01:14] quiet voice going, "The machine is better at this than me. So, what am I
+[01:16] better at this than me. So, what am I even for?" So, let me tell you what I
+[01:19] even for?" So, let me tell you what I figured out that morning and over the 5
+[01:22] figured out that morning and over the 5 years after it because it's the exact
+[01:25] years after it because it's the exact thing that took me from that scared guy
+[01:28] thing that took me from that scared guy at the cheap desk to a tech lead. And
+[01:31] at the cheap desk to a tech lead. And it's the exact thing that's about to
+[01:33] it's the exact thing that's about to separate the developers who thrive in
+[01:35] separate the developers who thrive in this AI mess from the ones who get
+[01:37] this AI mess from the ones who get quietly pushed out. And I promise you,
+[01:40] quietly pushed out. And I promise you, it is not learn AI. Everybody's yelling
+[01:43] it is not learn AI. Everybody's yelling that at you. It's almost the opposite.
+[01:46] that at you. It's almost the opposite. So, let's get into it. Let me actually
+[01:48] So, let's get into it. Let me actually rewind because I want to tell you my
+[01:51] rewind because I want to tell you my story so you can see the whole picture.
+[01:53] story so you can see the whole picture. I came to code late. I was 30. I had
+[01:56] I came to code late. I was 30. I had responsibilities. I had people counting
+[01:58] responsibilities. I had people counting on me, and I picked up programming not
+[02:01] on me, and I picked up programming not because I was some prodigy who loved
+[02:04] because I was some prodigy who loved computers as a kid. I picked it up
+[02:06] computers as a kid. I picked it up because I needed my life to change, and
+[02:09] because I needed my life to change, and this felt like that one door that might
+[02:11] this felt like that one door that might open if I pushed on it hard enough. So,
+[02:14] open if I pushed on it hard enough. So, I did what you probably did. I found the
+[02:17] I did what you probably did. I found the courses, I found the tutorials, and I
+[02:19] courses, I found the tutorials, and I was good at them. I want to be honest
+[02:21] was good at them. I want to be honest about that because it fooled me for a
+[02:23] about that because it fooled me for a long time. I could sit down with a
+[02:25] long time. I could sit down with a 12-hour course and follow every single
+[02:28] 12-hour course and follow every single step in two speed. The instructor types,
+[02:31] step in two speed. The instructor types, I type. The instructor explains, I nod.
+[02:34] I type. The instructor explains, I nod. At the end, the app works, and I feel
+[02:37] At the end, the app works, and I feel like a genius. And then I try to build
+[02:40] like a genius. And then I try to build something of my own, something nobody
+[02:42] something of my own, something nobody had made a tutorial for, and I just
+[02:44] had made a tutorial for, and I just freeze, blank. All that knowledge in my
+[02:47] freeze, blank. All that knowledge in my head, and the second there's no one
+[02:49] head, and the second there's no one telling me the next step, it was like
+[02:52] telling me the next step, it was like the lights went out. I did that for
+[02:54] the lights went out. I did that for months. I called it learning, it wasn't.
+[02:57] months. I called it learning, it wasn't. I was collecting. I was hoarding little
+[02:59] I was collecting. I was hoarding little facts and patterns and syntax, stacking
+[03:02] facts and patterns and syntax, stacking them up like if I just gathered enough
+[03:03] them up like if I just gathered enough of them, one day the pile would
+[03:05] of them, one day the pile would magically turn into skill. It never
+[03:07] magically turn into skill. It never turns into skill. Nobody tells you that.
+[03:10] turns into skill. Nobody tells you that. You can gather forever and stay exactly
+[03:12] You can gather forever and stay exactly as stuck as the day you started. And
+[03:15] as stuck as the day you started. And I've watched a thousand people do it
+[03:17] I've watched a thousand people do it since, and I did it myself first. The
+[03:20] since, and I did it myself first. The morning I told you about, the bug with
+[03:22] morning I told you about, the bug with no tutorial, that was the morning the
+[03:25] no tutorial, that was the morning the truth finally landed on me. Sitting
+[03:28] truth finally landed on me. Sitting there, sweating over a problem that only
+[03:30] there, sweating over a problem that only I could solve, I realized that
+[03:32] I could solve, I realized that everything I'd been learning wasn't the
+[03:35] everything I'd been learning wasn't the job. Following along wasn't the job.
+[03:37] job. Following along wasn't the job. Knowing the syntax wasn't the job. The
+[03:40] Knowing the syntax wasn't the job. The job was this. The job was the exact
+[03:43] job was this. The job was the exact thing I was worst at. The job was
+[03:45] thing I was worst at. The job was figuring out what to do when there is no
+[03:47] figuring out what to do when there is no answer look up. And once I saw that, I
+[03:50] answer look up. And once I saw that, I couldn't unsee it. It changed how I
+[03:52] couldn't unsee it. It changed how I learned. It changed how I worked, and
+[03:55] learned. It changed how I worked, and it's the reason I'm talking to you right
+[03:57] it's the reason I'm talking to you right now instead of still stuck at that
+[03:59] now instead of still stuck at that little cheap desk. So, let me ask you
+[04:02] little cheap desk. So, let me ask you something and really sit with it. Why
+[04:05] something and really sit with it. Why does a company pay a developer? Most
+[04:07] does a company pay a developer? Most people, if you catch them being honest,
+[04:10] people, if you catch them being honest, it's because you know things. You know
+[04:13] it's because you know things. You know the language. You know the framework.
+[04:15] the language. You know the framework. You can build the feature. So, the more
+[04:18] You can build the feature. So, the more you know, the more valuable you are. The
+[04:20] you know, the more valuable you are. The safer your job is. That's the mental
+[04:23] safer your job is. That's the mental model almost everybody's running, and
+[04:25] model almost everybody's running, and it's wrong. It's been wrong the whole
+[04:27] it's wrong. It's been wrong the whole time. We just got away with it because
+[04:30] time. We just got away with it because the machines couldn't do our jobs yet.
+[04:32] the machines couldn't do our jobs yet. Here's [snorts]
+[04:33] Here's [snorts] what a company is really paying for.
+[04:35] what a company is really paying for. They're paying for a bet. They're
+[04:37] They're paying for a bet. They're betting that when something goes
+[04:39] betting that when something goes sideways, something nobody planned for,
+[04:43] sideways, something nobody planned for, something that isn't in any specs
+[04:45] something that isn't in any specs because the specs hasn't been written
+[04:46] because the specs hasn't been written yet, you will be the person who figures
+[04:49] yet, you will be the person who figures it out. That's it. That's the whole
+[04:51] it out. That's it. That's the whole thing. They're not paying for what you
+[04:53] thing. They're not paying for what you know today. They're paying for their
+[04:55] know today. They're paying for their belief that you can handle what nobody
+[04:58] belief that you can handle what nobody knows tomorrow. Let me make that
+[05:01] knows tomorrow. Let me make that concrete because I lived it. When I
+[05:03] concrete because I lived it. When I finally got hired, the tickets that were
+[05:06] finally got hired, the tickets that were fully spelled out do exactly this.
+[05:08] fully spelled out do exactly this. Here's the design. Here's the endpoint.
+[05:11] Here's the design. Here's the endpoint. Those were the easy days. Anybody could
+[05:14] Those were the easy days. Anybody could close those. The days that mattered, the
+[05:16] close those. The days that mattered, the days that got me noticed and eventually
+[05:18] days that got me noticed and eventually got me leading a team, were the days
+[05:21] got me leading a team, were the days somebody dropped something vague and
+[05:24] somebody dropped something vague and ugly on my desk. The thing's slow and we
+[05:27] ugly on my desk. The thing's slow and we don't know why. The client wants this,
+[05:30] don't know why. The client wants this, but it kind of breaks everything else.
+[05:32] but it kind of breaks everything else. Nobody understands this legacy code, and
+[05:35] Nobody understands this legacy code, and we have to change it by Friday. No
+[05:37] we have to change it by Friday. No tutorial, no answer to look up. Just
+[05:40] tutorial, no answer to look up. Just terrain nobody had mapped. And the
+[05:42] terrain nobody had mapped. And the person who can walk into that fog and
+[05:45] person who can walk into that fog and come out the other side with a plan,
+[05:47] come out the other side with a plan, that person is worth almost anything to
+[05:50] that person is worth almost anything to a company. That person doesn't get laid
+[05:52] a company. That person doesn't get laid off. That person gets more. Now, sit
+[05:55] off. That person gets more. Now, sit with why that matter in 2026. Because
+[05:57] with why that matter in 2026. Because that fog, the machine can't do the fog.
+[06:00] that fog, the machine can't do the fog. Not yet. And not for a while. And let me
+[06:03] Not yet. And not for a while. And let me show you why. And the machine will
+[06:04] show you why. And the machine will create a lot of fogs.
+[06:06] create a lot of fogs. I've got a way I think about this. And
+[06:08] I've got a way I think about this. And it's helped a lot of people. So, let me
+[06:10] it's helped a lot of people. So, let me hand it to you. Think about the
+[06:12] hand it to you. Think about the difference between a GPS and someone who
+[06:15] difference between a GPS and someone who actually knows a city. The GPS is
+[06:17] actually knows a city. The GPS is incredible. Type in where you want to go
+[06:20] incredible. Type in where you want to go and it hands you every turn instantly.
+[06:23] and it hands you every turn instantly. Better than you could work out for
+[06:24] Better than you could work out for yourself. For getting from a known place
+[06:27] yourself. For getting from a known place to another known place on roads that
+[06:29] to another known place on roads that exist, nothing beats it. That is exactly
+[06:32] exist, nothing beats it. That is exactly what AI is for coding right now. You
+[06:34] what AI is for coding right now. You want a standard component, a common
+[06:36] want a standard component, a common function, a well-worn pattern. Ask and
+[06:40] function, a well-worn pattern. Ask and it appears. Faster and cleaner than most
+[06:42] it appears. Faster and cleaner than most humans can type it. That fight is over.
+[06:45] humans can type it. That fight is over. I'm not going to pretend it isn't. But
+[06:47] I'm not going to pretend it isn't. But now, picture the roads closed. Picture
+[06:49] now, picture the roads closed. Picture the GPS is confidently completely wrong.
+[06:52] the GPS is confidently completely wrong. And if you've used these tools, you know
+[06:54] And if you've used these tools, you know they get confidently completely wrong
+[06:57] they get confidently completely wrong all the time. Picture you're somewhere
+[06:59] all the time. Picture you're somewhere with no signal at all. In a part of the
+[07:01] with no signal at all. In a part of the map that isn't really mapped. Who gets
+[07:04] map that isn't really mapped. Who gets you home? The local. The person who
+[07:06] you home? The local. The person who actually knows the streets. Who's got
+[07:08] actually knows the streets. Who's got the whole city living in their head like
+[07:11] the whole city living in their head like the back of their hand. Not as a list of
+[07:13] the back of their hand. Not as a list of turns, but as a real understanding of
+[07:16] turns, but as a real understanding of how it all fits together. Where it
+[07:17] how it all fits together. Where it flows, where it jams up, what to do when
+[07:20] flows, where it jams up, what to do when the usual way is blocked. AI is the best
+[07:23] the usual way is blocked. AI is the best GPS that has ever existed. Your entire
+[07:26] GPS that has ever existed. Your entire job from today forward is to become the
+[07:29] job from today forward is to become the local. And here's the beautiful part.
+[07:31] local. And here's the beautiful part. The part I really need you to hear.
+[07:33] The part I really need you to hear. Becoming the local does not require the
+[07:35] Becoming the local does not require the machine to get any worse. It does not
+[07:37] machine to get any worse. It does not require you to out-type it. It's a
+[07:40] require you to out-type it. It's a different thing entirely. The machine
+[07:42] different thing entirely. The machine getting better means somebody has to
+[07:45] getting better means somebody has to invent whole new breakthroughs in a
+[07:47] invent whole new breakthroughs in a technology that's got real walls it
+[07:50] technology that's got real walls it keeps bumping into. You getting better,
+[07:53] keeps bumping into. You getting better, nothing has to be invented. You already
+[07:55] nothing has to be invented. You already own the equipment. Your brain can
+[07:57] own the equipment. Your brain can already learn a city. Most developers
+[08:00] already learn a city. Most developers just never make it do that because
+[08:03] just never make it do that because following the GPS is so much easier. So,
+[08:05] following the GPS is so much easier. So, stop imagining you're in some sprint
+[08:08] stop imagining you're in some sprint against the machine where it's faster
+[08:10] against the machine where it's faster and you're losing. You're not sprinting
+[08:12] and you're losing. You're not sprinting against it. You're building something it
+[08:14] against it. You're building something it can't build, a map of the terrain that
+[08:17] can't build, a map of the terrain that lives inside a human head. And it is
+[08:18] lives inside a human head. And it is standing at a wall it cannot climb while
+[08:21] standing at a wall it cannot climb while you're on the other side, more than able
+[08:22] you're on the other side, more than able to climb it, just not climbing yet.
+[08:25] to climb it, just not climbing yet. That's the whole game. Become the local.
+[08:27] That's the whole game. Become the local. Let me show you the ground you're
+[08:29] Let me show you the ground you're standing on first because 2026 is not a
+[08:32] standing on first because 2026 is not a gentle year to be a passenger. Let me
+[08:34] gentle year to be a passenger. Let me give you the real numbers because I
+[08:36] give you the real numbers because I won't lie to you about how this looks.
+[08:38] won't lie to you about how this looks. At Google, roughly three quarters of the
+[08:41] At Google, roughly three quarters of the new code is now generated by AI and then
+[08:44] new code is now generated by AI and then approved by an engineer. Across the
+[08:46] approved by an engineer. Across the whole industry, something like four in
+[08:48] whole industry, something like four in every 10 lines of new code is coming
+[08:50] every 10 lines of new code is coming from a machine. Nearly every working
+[08:53] from a machine. Nearly every working developer on the planet is using these
+[08:55] developer on the planet is using these tools every single day. That's not a
+[08:58] tools every single day. That's not a prediction. That's just Tuesday now. And
+[09:00] prediction. That's just Tuesday now. And here's the number that should sit you up
+[09:02] here's the number that should sit you up straight. Entry-level developers job
+[09:05] straight. Entry-level developers job postings are down almost 30% from where
+[09:08] postings are down almost 30% from where they peaked. Meanwhile, the pay data
+[09:10] they peaked. Meanwhile, the pay data tells this brutal little story.
+[09:12] tells this brutal little story. Entry-level salaries are basically flat,
+[09:15] Entry-level salaries are basically flat, barely moved while senior and staff pay
+[09:17] barely moved while senior and staff pay is climbing several points a year. The
+[09:20] is climbing several points a year. The money is walking up the ladder, away
+[09:22] money is walking up the ladder, away from the bottom, toward the top. The
+[09:24] from the bottom, toward the top. The World Economic Forum put out a piece at
+[09:27] World Economic Forum put out a piece at the start of this year about what makes
+[09:29] the start of this year about what makes a developer valuable now. And I want to
+[09:31] a developer valuable now. And I want to read you what was on their list. Speed
+[09:34] read you what was on their list. Speed of execution, thinking across different
+[09:36] of execution, thinking across different domains, being fluent with AI, adapting
+[09:39] domains, being fluent with AI, adapting fast, actually shipping things. And I
+[09:41] fast, actually shipping things. And I want you to notice what was not on that
+[09:43] want you to notice what was not on that list. Not code quality, not knowing a
+[09:46] list. Not code quality, not knowing a specific language inside out, not
+[09:47] specific language inside out, not framework expertise, not years of
+[09:50] framework expertise, not years of experience. Those four things used to be
+[09:52] experience. Those four things used to be the entire top of every job posting.
+[09:54] the entire top of every job posting. That's what we all thought we were
+[09:57] That's what we all thought we were building. And they've been quietly
+[09:59] building. And they've been quietly shoved off the list and replaced with a
+[10:01] shoved off the list and replaced with a completely different kind of thing. If I
+[10:04] completely different kind of thing. If I were starting today at 30, at that cheap
+[10:07] were starting today at 30, at that cheap desk, this is the world I'd be walking
+[10:09] desk, this is the world I'd be walking into. And I'll tell you straight, if I
+[10:12] into. And I'll tell you straight, if I did today what I did back then, if I
+[10:14] did today what I did back then, if I spent my first year just collecting
+[10:16] spent my first year just collecting syntax and following along, I would not
+[10:18] syntax and following along, I would not make it. That door I pushed on, it's a
+[10:21] make it. That door I pushed on, it's a lot heavier now for the person doing it
+[10:23] lot heavier now for the person doing it the old way. But it's actually easier
+[10:25] the old way. But it's actually easier for the person who understands what I'm
+[10:27] for the person who understands what I'm about to tell you. So, let me keep
+[10:29] about to tell you. So, let me keep going. There's a trap here, and I have
+[10:32] going. There's a trap here, and I have to warn you about it because I watch
+[10:34] to warn you about it because I watch sharp hard-working developers walk
+[10:37] sharp hard-working developers walk straight into it with a smile on their
+[10:39] straight into it with a smile on their face. The trap sounds like this. I use
+[10:42] face. The trap sounds like this. I use these AI tools and I get my work done in
+[10:44] these AI tools and I get my work done in a fraction of the time now. I close my
+[10:47] a fraction of the time now. I close my tickets twice as fast. I'm [&nbsp;__&nbsp;]
+[10:49] tickets twice as fast. I'm [&nbsp;__&nbsp;] crushing it. Stop. That feeling of
+[10:52] crushing it. Stop. That feeling of winning, that's the trap closing on you.
+[10:54] winning, that's the trap closing on you. Walk the logic all the way out. If the
+[10:56] Walk the logic all the way out. If the work that used to fill your whole week
+[10:59] work that used to fill your whole week now takes you a day and a half, why
+[11:01] now takes you a day and a half, why would anyone keep paying you for the
+[11:03] would anyone keep paying you for the whole week? And when the tool gets a
+[11:05] whole week? And when the tool gets a notch better next quarter, and the notch
+[11:07] notch better next quarter, and the notch after that, why keep paying you at all?
+[11:10] after that, why keep paying you at all? The exact thing you're proud of, I made
+[11:13] The exact thing you're proud of, I made myself faster at my current work, is the
+[11:15] myself faster at my current work, is the exact math your company uses to decide
+[11:18] exact math your company uses to decide it needs fewer people doing that work.
+[11:20] it needs fewer people doing that work. You didn't make yourself safer. You made
+[11:23] You didn't make yourself safer. You made your current work cheaper. And then you
+[11:25] your current work cheaper. And then you tied yourself to it. I'm not telling you
+[11:27] tied yourself to it. I'm not telling you to stop using the tools. Use them. I use
+[11:30] to stop using the tools. Use them. I use them every day. I'm telling you that
+[11:32] them every day. I'm telling you that speeding up the stuff you already do is
+[11:35] speeding up the stuff you already do is not a strategy. It's a countdown. The
+[11:37] not a strategy. It's a countdown. The real question, the only question that
+[11:40] real question, the only question that keeps you employed, is what you do with
+[11:43] keeps you employed, is what you do with the time the machine just handed you
+[11:46] the time the machine just handed you back. Because if the answer is the same
+[11:48] back. Because if the answer is the same low-level work, just more of it, you're
+[11:51] low-level work, just more of it, you're still on the countdown. You just get to
+[11:53] still on the countdown. You just get to the end a little later. The developers
+[11:56] the end a little later. The developers who win take the freed-up time and pour
+[11:59] who win take the freed-up time and pour straight into becoming the local.
+[12:00] straight into becoming the local. Everybody else takes that freed-up time
+[12:03] Everybody else takes that freed-up time and races the GPS. Guess who the company
+[12:06] and races the GPS. Guess who the company keeps. Let me break the work itself into
+[12:08] keeps. Let me break the work itself into two piles. Because once you can see the
+[12:11] two piles. Because once you can see the two piles clearly, everything I'm
+[12:13] two piles clearly, everything I'm telling you snaps into focus. There's
+[12:16] telling you snaps into focus. There's the coding you can look up, and there's
+[12:18] the coding you can look up, and there's the coding you have to figure out. The
+[12:20] the coding you have to figure out. The lookup kind is anything with a known
+[12:22] lookup kind is anything with a known answer sitting out there in the world.
+[12:24] answer sitting out there in the world. The syntax, the boilerplate, the
+[12:26] The syntax, the boilerplate, the standard CRUD screen, the ticket that's
+[12:29] standard CRUD screen, the ticket that's already fully specified, where somebody
+[12:31] already fully specified, where somebody smarter already made every decision and
+[12:34] smarter already made every decision and you're just the hands. Memorizing the
+[12:36] you're just the hands. Memorizing the API, grinding a coding puzzle pattern so
+[12:39] API, grinding a coding puzzle pattern so you can spit it back in an interview,
+[12:40] you can spit it back in an interview, converting some old code from one
+[12:43] converting some old code from one framework to another, all of that has an
+[12:45] framework to another, all of that has an answer that already exists somewhere.
+[12:48] answer that already exists somewhere. And the machine can fetch and reshape
+[12:50] And the machine can fetch and reshape existing answers faster and cleaner than
+[12:52] existing answers faster and cleaner than you ever will.
+[12:53] you ever will. That entire pile now belongs to the GPS.
+[12:56] That entire pile now belongs to the GPS. If your value lives in that pile, you
+[12:58] If your value lives in that pile, you are right now competing with something
+[13:00] are right now competing with something that works for free, never sleeps, and
+[13:02] that works for free, never sleeps, and gets better every few months. That's not
+[13:04] gets better every few months. That's not a fight, that's a wood chipper. Then
+[13:07] a fight, that's a wood chipper. Then there's the figure-it-out kind. This is
+[13:09] there's the figure-it-out kind. This is where there's no answer sitting out
+[13:11] where there's no answer sitting out there, because the answer depends
+[13:13] there, because the answer depends entirely on your situation. This is
+[13:16] entirely on your situation. This is deciding what to build in the first
+[13:18] deciding what to build in the first place and why, and what to leave out.
+[13:20] place and why, and what to leave out. This is looking at how a whole system
+[13:22] This is looking at how a whole system fits together, where the data moves,
+[13:25] fits together, where the data moves, where it'll strain, where it'll crack
+[13:27] where it'll strain, where it'll crack the day you get real users. This is
+[13:29] the day you get real users. This is sitting across from a product manager
+[13:31] sitting across from a product manager and telling them the plan is wrong and
+[13:34] and telling them the plan is wrong and being right because you can see three
+[13:36] being right because you can see three moves ahead and they can't. This is
+[13:38] moves ahead and they can't. This is dropping into a codebase that's a
+[13:41] dropping into a codebase that's a haunted house nobody wants to touch and
+[13:43] haunted house nobody wants to touch and slowly building a picture of it in your
+[13:45] slowly building a picture of it in your head until it stops being scary. This is
+[13:48] head until it stops being scary. This is reading what the AI just confidently
+[13:50] reading what the AI just confidently wrote and feeling in your gut and it's
+[13:53] wrote and feeling in your gut and it's subtly broken and knowing exactly where
+[13:56] subtly broken and knowing exactly where to look. That pile is the moat and
+[13:59] to look. That pile is the moat and here's why it pays like it pays. It's
+[14:02] here's why it pays like it pays. It's hard for the machine. The machine hits
+[14:04] hard for the machine. The machine hits the wall, but it's also hard for us.
+[14:06] the wall, but it's also hard for us. Humans get overwhelmed by it, too. Too
+[14:08] Humans get overwhelmed by it, too. Too many pieces all connected, all pushing
+[14:11] many pieces all connected, all pushing on each other and most people's brains
+[14:13] on each other and most people's brains just brown out and shut down. Yeah, they
+[14:15] just brown out and shut down. Yeah, they [&nbsp;__&nbsp;] in their brains. So, the handful of
+[14:18] [&nbsp;__&nbsp;] in their brains. So, the handful of developers who can hold all of it at
+[14:20] developers who can hold all of it at once and stay calm in the fog get paid a
+[14:23] once and stay calm in the fog get paid a fortune because everyone else taps out
+[14:26] fortune because everyone else taps out and hands them the hard problem. That's
+[14:28] and hands them the hard problem. That's the pile you want to live in. That's the
+[14:30] the pile you want to live in. That's the local. Now, here's where I made my
+[14:32] local. Now, here's where I made my biggest mistake and I don't want you
+[14:35] biggest mistake and I don't want you making it. So, let me confess it. For a
+[14:37] making it. So, let me confess it. For a long time, I believed these two piles
+[14:39] long time, I believed these two piles were a staircase. I thought you started
+[14:42] were a staircase. I thought you started at the bottom, memorize the syntax,
+[14:45] at the bottom, memorize the syntax, grind the puzzles, follow the tutorials,
+[14:47] grind the puzzles, follow the tutorials, collect, collect, collect and that if I
+[14:50] collect, collect, collect and that if I just climbed high enough on that bottom
+[14:52] just climbed high enough on that bottom stuff, I'd eventually arrive at the good
+[14:54] stuff, I'd eventually arrive at the good stuff. The figuring out, the system
+[14:56] stuff. The figuring out, the system thinking. I thought it was a journey
+[14:59] thinking. I thought it was a journey with a bottom and a top and you walked
+[15:01] with a bottom and a top and you walked up. It's not a staircase and this and
+[15:04] up. It's not a staircase and this and this cost me real time to learn. The
+[15:07] this cost me real time to learn. The bottom pile does not lead to the top
+[15:09] bottom pile does not lead to the top pile. They're two different skills that
+[15:11] pile. They're two different skills that live in two different places and being
+[15:13] live in two different places and being incredible at the first one does not
+[15:16] incredible at the first one does not carry you 1 in toward the second. I've
+[15:18] carry you 1 in toward the second. I've met developers who can recite framework
+[15:20] met developers who can recite framework internals like scripture and still
+[15:22] internals like scripture and still freeze solid the moment you hand them
+[15:25] freeze solid the moment you hand them something undefined. I was one of them.
+[15:27] something undefined. I was one of them. I could follow any tutorial on Earth and
+[15:30] I could follow any tutorial on Earth and still stared at that bug like it was
+[15:31] still stared at that bug like it was written in another language. Because
+[15:33] written in another language. Because knowing a lot and figuring things out
+[15:36] knowing a lot and figuring things out are just not the same muscle. So, when
+[15:38] are just not the same muscle. So, when you spend all your energy down in the
+[15:41] you spend all your energy down in the lookup pile, you don't slowly rise into
+[15:43] lookup pile, you don't slowly rise into the figured out pile. You just get
+[15:46] the figured out pile. You just get really, really, really good at the exact
+[15:48] really, really, really good at the exact thing the machine is here to eat. You
+[15:50] thing the machine is here to eat. You max out. And the ceiling on that pile is
+[15:53] max out. And the ceiling on that pile is dropping every single year. Because the
+[15:55] dropping every single year. Because the GPS keeps getting better at lookup work.
+[15:57] GPS keeps getting better at lookup work. And it will not stop. The developers who
+[16:00] And it will not stop. The developers who make it aren't climbing the bottom
+[16:01] make it aren't climbing the bottom staircase faster than everybody else.
+[16:04] staircase faster than everybody else. They stopped climbing it. They walked
+[16:06] They stopped climbing it. They walked over to a completely different
+[16:08] over to a completely different staircase. The one almost nobody's on
+[16:11] staircase. The one almost nobody's on and started there. I'll show you how to
+[16:14] and started there. I'll show you how to get on that other staircase in a second.
+[16:17] get on that other staircase in a second. But first, I have to be straight with
+[16:19] But first, I have to be straight with you about the AI itself. Because this is
+[16:21] you about the AI itself. Because this is where the word in the title comes in.
+[16:23] where the word in the title comes in. The dangerous part. Here's the thing
+[16:26] The dangerous part. Here's the thing nobody's telling you clearly enough. AI
+[16:28] nobody's telling you clearly enough. AI for developer is a double-edged blade.
+[16:31] for developer is a double-edged blade. Used one way, it is the fastest tool
+[16:33] Used one way, it is the fastest tool ever invented for becoming the local.
+[16:35] ever invented for becoming the local. Used the other way, it is the fastest
+[16:37] Used the other way, it is the fastest way to make sure you never do. Same
+[16:39] way to make sure you never do. Same tool, opposite endings. And that's
+[16:41] tool, opposite endings. And that's exactly what makes it dangerous. Because
+[16:44] exactly what makes it dangerous. Because both ways feel productive while you're
+[16:46] both ways feel productive while you're doing them. Let me show you it cuts both
+[16:49] doing them. Let me show you it cuts both ways. Because I don't want you taking my
+[16:52] ways. Because I don't want you taking my word for it. There was a study this year
+[16:54] word for it. There was a study this year where researchers watched experienced
+[16:56] where researchers watched experienced developers work. Real, seasoned people.
+[16:59] developers work. Real, seasoned people. And some with AI tools and some without.
+[17:02] And some with AI tools and some without. And the findings shocked a lot of folks,
+[17:04] And the findings shocked a lot of folks, including me. A lot of the experienced
+[17:07] including me. A lot of the experienced developers using AI actually got slower,
+[17:09] developers using AI actually got slower, not faster. Slower. Why? Because they
+[17:12] not faster. Slower. Why? Because they stopped holding the map. They let the
+[17:13] stopped holding the map. They let the machine do the thinking. Took whatever
+[17:16] machine do the thinking. Took whatever it handed back and spent their day
+[17:18] it handed back and spent their day cleaning up after it instead of steering
+[17:20] cleaning up after it instead of steering it. They traded their own understanding
+[17:22] it. They traded their own understanding for speed, and it didn't even make them
+[17:24] for speed, and it didn't even make them fast. That's the rot, and it's quiet,
+[17:27] fast. That's the rot, and it's quiet, and it's comfortable, which is what
+[17:29] and it's comfortable, which is what makes it so dangerous. Every time you
+[17:32] makes it so dangerous. Every time you let the machine do the reasoning, not
+[17:34] let the machine do the reasoning, not the typing, the reasoning, the deciding,
+[17:36] the typing, the reasoning, the deciding, the figuring, a little bit of your own
+[17:38] the figuring, a little bit of your own ability to do that goes soft. You feel
+[17:41] ability to do that goes soft. You feel like you're flying. You're actually
+[17:43] like you're flying. You're actually shrinking. I felt it in myself on lazy
+[17:46] shrinking. I felt it in myself on lazy days, where I let the tool drive, and
+[17:48] days, where I let the tool drive, and then realize I couldn't have explained
+[17:50] then realize I couldn't have explained my own code to save my life. That's the
+[17:52] my own code to save my life. That's the warning sign. If you can't explain what
+[17:55] warning sign. If you can't explain what you shipped, the machine isn't helping
+[17:57] you shipped, the machine isn't helping you. It's replacing you, one decision at
+[17:59] you. It's replacing you, one decision at a time, with your permission. Now, the
+[18:02] a time, with your permission. Now, the other edge, the good one, when I use
+[18:04] other edge, the good one, when I use these tools well, I don't ask them for
+[18:06] these tools well, I don't ask them for answers. I use them to attack my own
+[18:09] answers. I use them to attack my own thinking. I'll make it hand me three
+[18:11] thinking. I'll make it hand me three different ways to build something, and
+[18:13] different ways to build something, and then I make it argue against each one.
+[18:15] then I make it argue against each one. I'll describe my plan and tell it to try
+[18:17] I'll describe my plan and tell it to try to tear it apart, find where it breaks,
+[18:19] to tear it apart, find where it breaks, tell me what I'm not seeing. I'll take a
+[18:22] tell me what I'm not seeing. I'll take a piece of a system I don't understand and
+[18:25] piece of a system I don't understand and have it walk me through the terrain
+[18:27] have it walk me through the terrain until the map in my head gets sharper. I
+[18:30] until the map in my head gets sharper. I stay the local. The machine just makes
+[18:32] stay the local. The machine just makes me a faster, sharper local than any
+[18:35] me a faster, sharper local than any human mentor could. At 3:00 in the
+[18:37] human mentor could. At 3:00 in the morning, might I add. For free. That's
+[18:39] morning, might I add. For free. That's the whole difference between a developer
+[18:41] the whole difference between a developer who's dangerously self-educated and one
+[18:45] who's dangerously self-educated and one who's quietly getting replaced. One
+[18:47] who's quietly getting replaced. One keeps the reasoning and uses the machine
+[18:50] keeps the reasoning and uses the machine to sharpen it. The other hands the
+[18:51] to sharpen it. The other hands the reasoning over and slowly forgets how it
+[18:53] reasoning over and slowly forgets how it felt to think. So, how do you actually
+[18:55] felt to think. So, how do you actually get on the right staircase and stay on
+[18:58] get on the right staircase and stay on the right edge of the blade? Three
+[18:59] the right edge of the blade? Three things. They're the three things I'd go
+[19:02] things. They're the three things I'd go back and grab my younger self by the
+[19:04] back and grab my younger self by the collar and force him to do. You can
+[19:06] collar and force him to do. You can start every one of them today. The first
+[19:09] start every one of them today. The first one broke my brain when I finally got
+[19:11] one broke my brain when I finally got it, Because it's the opposite of
+[19:13] it, Because it's the opposite of everything school taught me. Stop trying
+[19:16] everything school taught me. Stop trying to understand it all before you build. I
+[19:18] to understand it all before you build. I know exactly how you learn right now
+[19:20] know exactly how you learn right now because it's how I learned for way too
+[19:23] because it's how I learned for way too long. New tool, new framework, new
+[19:25] long. New tool, new framework, new concept, and the instinct is, "Okay,
+[19:28] concept, and the instinct is, "Okay, first I'll understand it. I'll finish
+[19:30] first I'll understand it. I'll finish the course. I'll read the docs. I'll
+[19:32] the course. I'll read the docs. I'll really get it. And then I'll build
+[19:34] really get it. And then I'll build something with it." It feels
+[19:36] something with it." It feels responsible. It feels like the adult
+[19:38] responsible. It feels like the adult careful way to do it. It's the slowest
+[19:41] careful way to do it. It's the slowest possible path. And worse than that, it's
+[19:44] possible path. And worse than that, it's a fantastic way to forget everything you
+[19:46] a fantastic way to forget everything you just read. I'd spend a week
+[19:47] just read. I'd spend a week understanding something and then sit
+[19:50] understanding something and then sit down to use it and my head would be
+[19:52] down to use it and my head would be empty, wiped. Because understanding that
+[19:55] empty, wiped. Because understanding that isn't attached to anything real. If a
+[19:58] isn't attached to anything real. If a piece of information doesn't connect to
+[20:01] piece of information doesn't connect to something you're actually doing, your
+[20:03] something you're actually doing, your brain decides it's junk and throws it
+[20:05] brain decides it's junk and throws it out. Usually within minutes. So, flip
+[20:08] out. Usually within minutes. So, flip the whole thing around. Pick the thing
+[20:10] the whole thing around. Pick the thing you want to build, the real thing, the
+[20:13] you want to build, the real thing, the ugly first version, and start building
+[20:15] ugly first version, and start building it right now before you're ready, before
+[20:18] it right now before you're ready, before you understand it. Let the machine hand
+[20:21] you understand it. Let the machine hand you the boring scaffolding so your
+[20:24] you the boring scaffolding so your actual brain power goes where it
+[20:25] actual brain power goes where it matters. How do these pieces connect?
+[20:28] matters. How do these pieces connect? Why is it shaped this way? What happens
+[20:30] Why is it shaped this way? What happens when this part fails? Here's what
+[20:32] when this part fails? Here's what happens when you build first. The
+[20:34] happens when you build first. The understanding shows up on its own and it
+[20:36] understanding shows up on its own and it shows up stuck because now every piece
+[20:39] shows up stuck because now every piece of knowledge has a job. It's not
+[20:41] of knowledge has a job. It's not floating. It's load-bearing. You needed
+[20:44] floating. It's load-bearing. You needed it to make the thing work. So, your
+[20:46] it to make the thing work. So, your brain keeps it. When I stopped learning
+[20:48] brain keeps it. When I stopped learning frameworks and started building broken,
+[20:50] frameworks and started building broken, embarrassing little versions of real
+[20:52] embarrassing little versions of real things with them, my progress went
+[20:55] things with them, my progress went vertical. Not because I got smarter,
+[20:57] vertical. Not because I got smarter, because I finally gave my brain a reason
+[21:00] because I finally gave my brain a reason to hold on. Build the broken version
+[21:02] to hold on. Build the broken version first. Understanding is what you get on
+[21:04] first. Understanding is what you get on the way, not the toll you pay to start.
+[21:07] the way, not the toll you pay to start. The second one is going to sting a
+[21:09] The second one is going to sting a little and I say it with love because I
+[21:12] little and I say it with love because I did it, too. You do not need the perfect
+[21:15] did it, too. You do not need the perfect setup. You don't need the immaculate
+[21:17] setup. You don't need the immaculate notes, the color-coded folders, the five
+[21:19] notes, the color-coded folders, the five monitors, the second brain app with
+[21:21] monitors, the second brain app with everything tagged and linked, the 40
+[21:23] everything tagged and linked, the 40 open tabs, the dream workspace before
+[21:26] open tabs, the dream workspace before you're ready to really learn. That's not
+[21:28] you're ready to really learn. That's not learning. That's decorating and
+[21:30] learning. That's decorating and decorating feels so good because it
+[21:32] decorating feels so good because it looks like progress and it never makes
+[21:34] looks like progress and it never makes you feel stupid, which is exactly why we
+[21:36] you feel stupid, which is exactly why we hide it. Let me tell you the difference
+[21:39] hide it. Let me tell you the difference because it matters. There's a huge gap
+[21:42] because it matters. There's a huge gap between being able to find something and
+[21:45] between being able to find something and actually knowing it. Beautiful notes
+[21:47] actually knowing it. Beautiful notes just mean you can find things.
+[21:49] just mean you can find things. Bookmarks, save snippets, a tidy folder.
+[21:52] Bookmarks, save snippets, a tidy folder. All that gets you is nicer filing
+[21:54] All that gets you is nicer filing cabinet. But when the fog rolls in and
+[21:57] cabinet. But when the fog rolls in and something's broken at midnight, nobody's
+[22:00] something's broken at midnight, nobody's got time to go rummaging through a
+[22:02] got time to go rummaging through a filing cabinet. You need the city living
+[22:05] filing cabinet. You need the city living in your head. Knowing means you can shut
+[22:08] in your head. Knowing means you can shut your eyes and see how the whole thing
+[22:10] your eyes and see how the whole thing fits. Where the data comes in, where it
+[22:13] fits. Where the data comes in, where it goes, what leans on what, where the
+[22:15] goes, what leans on what, where the cracks are. It means somebody asks you
+[22:18] cracks are. It means somebody asks you how the system works and you can draw it
+[22:20] how the system works and you can draw it on a napkin from memory and explain it
+[22:23] on a napkin from memory and explain it to a five-year-old. That's the local.
+[22:26] to a five-year-old. That's the local. That's the head you're trying to build
+[22:28] That's the head you're trying to build and you don't build that head by filing
+[22:31] and you don't build that head by filing things neatly. You build it by wrestling
+[22:34] things neatly. You build it by wrestling with how the pieces connect until it
+[22:36] with how the pieces connect until it clicks. So, grab a whiteboard or a scrap
+[22:39] clicks. So, grab a whiteboard or a scrap of paper or the back of a receipt and
+[22:42] of paper or the back of a receipt and draw the system out from memory. I use
+[22:44] draw the system out from memory. I use draw.io. The boxes, the arrows, this
+[22:47] draw.io. The boxes, the arrows, this talks to that, this depends on this,
+[22:50] talks to that, this depends on this, this is where it'll fall over. And when
+[22:52] this is where it'll fall over. And when you get it wrong, you will and you have
+[22:54] you get it wrong, you will and you have to wipe it and draw it again. That's not
+[22:56] to wipe it and draw it again. That's not you failing. That's the exact moment
+[22:58] you failing. That's the exact moment your understanding is upgrading in real
+[23:00] your understanding is upgrading in real time. That redraw is the skill. That's
+[23:03] time. That redraw is the skill. That's the reps that matter. The messy map in
+[23:06] the reps that matter. The messy map in your head beats the gorgeous notes in
+[23:08] your head beats the gorgeous notes in your app every single time. Every time.
+[23:11] your app every single time. Every time. Stop decorating and start knowing. [&nbsp;__&nbsp;]
+[23:13] Stop decorating and start knowing. [&nbsp;__&nbsp;] up, mess it up, do it again. It's where
+[23:15] up, mess it up, do it again. It's where you're leveling up. The third one is the
+[23:18] you're leveling up. The third one is the smallest and it might be the most
+[23:20] smallest and it might be the most powerful. And it's the one that unlocks
+[23:22] powerful. And it's the one that unlocks the most people when I teach it in a
+[23:24] the most people when I teach it in a room. When you're staring at a hard
+[23:26] room. When you're staring at a hard design problem and you freeze, I want
+[23:28] design problem and you freeze, I want you to understand why you're freezing.
+[23:30] you to understand why you're freezing. Because it's almost never the reason you
+[23:32] Because it's almost never the reason you think. You think you freeze because
+[23:34] think. You think you freeze because you're not smart enough or you don't
+[23:36] you're not smart enough or you don't know enough. Usually it's the opposite.
+[23:38] know enough. Usually it's the opposite. You freeze because you can see it too
+[23:40] You freeze because you can see it too many ways it could go. This connects
+[23:43] many ways it could go. This connects here or here or over there. Five roads,
+[23:47] here or here or over there. Five roads, all of them may be okay and you can't
+[23:49] all of them may be okay and you can't tell which one's right. So you just sit
+[23:51] tell which one's right. So you just sit there spinning. Trying to solve the
+[23:53] there spinning. Trying to solve the whole thing in your head at once. Stop
+[23:55] whole thing in your head at once. Stop trying to solve it in your head. Your
+[23:56] trying to solve it in your head. Your head is a terrible place to solve it.
+[23:59] head is a terrible place to solve it. Get it out. Here's the move. Sketch one
+[24:01] Get it out. Here's the move. Sketch one version. It's probably wrong. Sketch it
+[24:03] version. It's probably wrong. Sketch it anyway. Fast, ugly, no pride. Then
+[24:06] anyway. Fast, ugly, no pride. Then sketch another one next to it. Then, and
+[24:09] sketch another one next to it. Then, and this is where the machine earns its
+[24:11] this is where the machine earns its keep, make the AI throw two or three
+[24:13] keep, make the AI throw two or three more designs at you and pick them all
+[24:16] more designs at you and pick them all apart. Now you're not staring at a fog.
+[24:18] apart. Now you're not staring at a fog. You're looking at four ugly options
+[24:20] You're looking at four ugly options sitting side by side where your eyes can
+[24:22] sitting side by side where your eyes can compare them. And I promise you, half
+[24:25] compare them. And I promise you, half the time the answer jumps out the second
+[24:27] the time the answer jumps out the second it's in front of you. The answer you can
+[24:29] it's in front of you. The answer you can never ever find while it was trapped
+[24:31] never ever find while it was trapped inside your skull. Your sketch isn't the
+[24:33] inside your skull. Your sketch isn't the final answer. It's your thinking
+[24:35] final answer. It's your thinking partner. It's the thing that lets you
+[24:37] partner. It's the thing that lets you have the argument with yourself out
+[24:39] have the argument with yourself out loud, on paper, instead of drowning in
+[24:42] loud, on paper, instead of drowning in it silently. And the developers who look
+[24:44] it silently. And the developers who look like geniuses at system design, they're
+[24:47] like geniuses at system design, they're not the ones who nail it on the first
+[24:49] not the ones who nail it on the first try. They're the ones who aren't scared
+[24:51] try. They're the ones who aren't scared to be wrong, ugly, and fast 10 times in
+[24:55] to be wrong, ugly, and fast 10 times in a row until the right shape falls out.
+[24:57] a row until the right shape falls out. You have to look at it from a bird's eye
+[24:59] You have to look at it from a bird's eye view, sketch it, argue with it, throw it
+[25:01] view, sketch it, argue with it, throw it away, do it again. That's not a lack of
+[25:04] away, do it again. That's not a lack of talent. That's what the talent actually
+[25:07] talent. That's what the talent actually looks like up close. A while back, I
+[25:10] looks like up close. A while back, I made a video where I told you your bad
+[25:12] made a video where I told you your bad memory doesn't matter in coding, and I
+[25:14] memory doesn't matter in coding, and I know some of you didn't fully buy it. I
+[25:17] know some of you didn't fully buy it. I could feel it. Now, you can see why I
+[25:19] could feel it. Now, you can see why I meant it. Memory, recall, holding syntax
+[25:23] meant it. Memory, recall, holding syntax in your head, being a walking reference,
+[25:25] in your head, being a walking reference, that's the deepest, lowest part of the
+[25:28] that's the deepest, lowest part of the lookup pile. It's the first thing the
+[25:30] lookup pile. It's the first thing the machine took. It was never where your
+[25:32] machine took. It was never where your value lived. It just took the GPS
+[25:35] value lived. It just took the GPS showing up and doing it perfectly for
+[25:37] showing up and doing it perfectly for the rest of us to finally admit it out
+[25:39] the rest of us to finally admit it out loud. Your bad memory was never the
+[25:41] loud. Your bad memory was never the problem. Trying to win at the one thing
+[25:44] problem. Trying to win at the one thing that rewards memory, that was the
+[25:46] that rewards memory, that was the problem. You've been ashamed of the
+[25:48] problem. You've been ashamed of the wrong weakness this whole time. So, let
+[25:50] wrong weakness this whole time. So, let me bring it back to that cheap desk.
+[25:54] me bring it back to that cheap desk. So, let me bring it back to that cheap
+[25:55] So, let me bring it back to that cheap desk. Before the sun was up, 5 years and
+[25:58] desk. Before the sun was up, 5 years and a whole life ago, the thing that saved
+[26:00] a whole life ago, the thing that saved me that morning wasn't knowing more. I
+[26:03] me that morning wasn't knowing more. I didn't know more. The thing that saved
+[26:06] didn't know more. The thing that saved me was deciding to stay in the fog
+[26:08] me was deciding to stay in the fog instead of running from it. Deciding to
+[26:10] instead of running from it. Deciding to be the person who figures it out, even
+[26:12] be the person who figures it out, even when it's uncomfortable, even when
+[26:14] when it's uncomfortable, even when there's no tutorial, even when the
+[26:17] there's no tutorial, even when the scared little voice is calling me a
+[26:19] scared little voice is calling me a fraud. That decision is the entire
+[26:22] fraud. That decision is the entire reason I went from that desk to leading
+[26:24] reason I went from that desk to leading a team. It's the whole thing. Coding
+[26:27] a team. It's the whole thing. Coding saved my life, and it wasn't the syntax
+[26:29] saved my life, and it wasn't the syntax that did it. It was learning to think in
+[26:31] that did it. It was learning to think in the fog and in the dark. For years,
+[26:33] the fog and in the dark. For years, being a self-taught developer meant you
+[26:35] being a self-taught developer meant you could survive on grind. Follow tutorial,
+[26:38] could survive on grind. Follow tutorial, close the ticket, keep your head down,
+[26:40] close the ticket, keep your head down, stay useful. That floor is gone now. The
+[26:42] stay useful. That floor is gone now. The machine has it. I'm not going to pretend
+[26:44] machine has it. I'm not going to pretend otherwise, and anyone who does is
+[26:47] otherwise, and anyone who does is selling you something. But the ceiling,
+[26:49] selling you something. But the ceiling, the figuring out the system in your
+[26:51] the figuring out the system in your head, the calm in the fog, the local who
+[26:54] head, the calm in the fog, the local who knows the streets, that ceiling is wide
+[26:57] knows the streets, that ceiling is wide open. And it is worth more today than it
+[27:00] open. And it is worth more today than it has ever been in history of this field.
+[27:03] has ever been in history of this field. The developers who own that are the last
+[27:05] The developers who own that are the last ones the machine touches. And right now,
+[27:09] ones the machine touches. And right now, this month, they're the ones getting the
+[27:11] this month, they're the ones getting the offers while everybody else refreshes
+[27:13] offers while everybody else refreshes the job board. You already have the
+[27:15] the job board. You already have the equipment for this. You're born with it.
+[27:17] equipment for this. You're born with it. I'm not asking you to become something
+[27:19] I'm not asking you to become something you're not. I'm asking you to switch on
+[27:21] you're not. I'm asking you to switch on the part of you that's been sitting
+[27:23] the part of you that's been sitting there the whole time. Following the GPS
+[27:25] there the whole time. Following the GPS when it could have been learning the
+[27:26] when it could have been learning the city. Get in the fog on purpose. Build
+[27:29] city. Get in the fog on purpose. Build the broken thing. Draw the ugly map. Use
+[27:32] the broken thing. Draw the ugly map. Use the machine to sharpen your thinking,
+[27:34] the machine to sharpen your thinking, not to do it for you. Do that starting
+[27:36] not to do it for you. Do that starting today, and none of this AI wave leaves
+[27:39] today, and none of this AI wave leaves you behind. You become the one the wave
+[27:42] you behind. You become the one the wave can't touch. You become the local
+[27:44] can't touch. You become the local everybody comes looking for. I'll see
+[27:46] everybody comes looking for. I'll see you in the next one. And just remember,
+[27:48] you in the next one. And just remember, if I can do it, you can do it, too.
+[27:49] if I can do it, you can do it, too. Coding saves lives.
