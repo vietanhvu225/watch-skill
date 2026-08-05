@@ -1,0 +1,850 @@
+[00:02] Running the same prompt 10 times is not a loop. That is a slot machine and
+[00:03] a loop. That is a slot machine and you're just re-rolling, hoping to get a
+[00:05] you're just re-rolling, hoping to get a better result. Most people still use AI
+[00:08] better result. Most people still use AI like a chatbot. You open a tool, you
+[00:10] like a chatbot. You open a tool, you write a prompt, you look at the output,
+[00:12] write a prompt, you look at the output, you correct it, you run it again. You're
+[00:14] you correct it, you run it again. You're doing by hand what a well-designed loop
+[00:16] doing by hand what a well-designed loop actually does on its own. Because a
+[00:18] actually does on its own. Because a system can do every part of it. It can
+[00:20] system can do every part of it. It can take an action, check the result,
+[00:23] take an action, check the result, identify what failed, adjust its
+[00:25] identify what failed, adjust its approach, try again, and stop when the
+[00:27] approach, try again, and stop when the outcome is good enough, or escalate when
+[00:29] outcome is good enough, or escalate when it needs to human. That is loop
+[00:31] it needs to human. That is loop engineering, and it is quietly becoming
+[00:33] engineering, and it is quietly becoming one of the most important skills for
+[00:35] one of the most important skills for anyone building with AI. Loops are not
+[00:37] anyone building with AI. Loops are not just for product teams. Anything with a
+[00:39] just for product teams. Anything with a follow-up and a deadline is a loop
+[00:41] follow-up and a deadline is a loop waiting to be filled. By the end, you
+[00:43] waiting to be filled. By the end, you should be able to look at almost any
+[00:45] should be able to look at almost any repetitive AI workflow and know how to
+[00:47] repetitive AI workflow and know how to turn it into a well-designed loop.
+[01:00] Before we start, I want you to get familiar with one phrase, because the
+[01:02] familiar with one phrase, because the entire session hangs on it. Loop
+[01:05] entire session hangs on it. Loop engineering.
+[01:06] engineering. You might have heard people talking
+[01:07] You might have heard people talking about it, and honestly, if you ask 10
+[01:10] about it, and honestly, if you ask 10 folks what it means, you'll get 10
+[01:12] folks what it means, you'll get 10 different answers. So, today, I'm going
+[01:15] different answers. So, today, I'm going to keep it really simple and show you
+[01:17] to keep it really simple and show you exactly what it is, why it matters, and
+[01:19] exactly what it is, why it matters, and how to build one yourself.
+[01:22] how to build one yourself. Most people still use AI like a chatbot.
+[01:25] Most people still use AI like a chatbot. You open a tool, you write a prompt, you
+[01:27] You open a tool, you write a prompt, you look at the output, you correct it, you
+[01:29] look at the output, you correct it, you run it again.
+[01:31] run it again. And if you think about that for a
+[01:32] And if you think about that for a second, you're doing by hand what a
+[01:35] second, you're doing by hand what a well-designed loop actually does on its
+[01:38] well-designed loop actually does on its own.
+[01:39] own. You are the quality checker, you are the
+[01:40] You are the quality checker, you are the memory of what already went wrong, you
+[01:42] memory of what already went wrong, you are the off switch, and all of that is
+[01:45] are the off switch, and all of that is running in your head.
+[01:47] running in your head. That's a job.
+[01:48] That's a job. And the good news is, it's a job you can
+[01:51] And the good news is, it's a job you can design your way out of.
+[01:53] design your way out of. Because a system can do every part of
+[01:55] Because a system can do every part of it. It can take an action, check the
+[01:57] it. It can take an action, check the result, identify what failed, adjust its
+[02:01] result, identify what failed, adjust its approach,
+[02:02] approach, try again, and stop when the outcome is
+[02:05] try again, and stop when the outcome is good enough, or escalate when it needs a
+[02:07] good enough, or escalate when it needs a human.
+[02:08] human. That is loop engineering.
+[02:10] That is loop engineering. And it is quietly becoming one of the
+[02:12] And it is quietly becoming one of the most important skills for anyone
+[02:15] most important skills for anyone building with AI.
+[02:16] building with AI. So, here's how we'll do this. First, the
+[02:19] So, here's how we'll do this. First, the difference between a prompt, an agent,
+[02:21] difference between a prompt, an agent, and a loop. Then, the anatomy of a
+[02:23] and a loop. Then, the anatomy of a reliable loop.
+[02:25] reliable loop. Then, we'll build two loops together and
+[02:27] Then, we'll build two loops together and quickly walk through three more, so you
+[02:29] quickly walk through three more, so you can see the different architectures at
+[02:31] can see the different architectures at their core.
+[02:32] their core. By the end, you should be able to look
+[02:34] By the end, you should be able to look at almost any repetitive AI workflow and
+[02:37] at almost any repetitive AI workflow and know how to turn it into a well-designed
+[02:40] know how to turn it into a well-designed loop.
+[02:41] loop. Now, let's get into it.
+[02:43] Now, let's get into it. So, why does a one prompt at a time stop
+[02:46] So, why does a one prompt at a time stop working? I would say three core reasons:
+[02:49] working? I would say three core reasons: quality,
+[02:50] quality, volume, and drift. Let's understand a
+[02:52] volume, and drift. Let's understand a little bit of what they mean one by one.
+[02:55] little bit of what they mean one by one. First, a real work has quality bar. So,
+[02:59] First, a real work has quality bar. So, when I ask a model to draft a reply to a
+[03:02] when I ask a model to draft a reply to a customer,
+[03:03] customer, pretty good is not the bar. The bar is
+[03:06] pretty good is not the bar. The bar is very specific. It acknowledges what they
+[03:08] very specific. It acknowledges what they asked. It does not promise anything we
+[03:11] asked. It does not promise anything we haven't committed to yet. It sounds like
+[03:13] haven't committed to yet. It sounds like us, not like a press release or a
+[03:16] us, not like a press release or a marketing fluff.
+[03:18] marketing fluff. And one prompt gets you a draft. It does
+[03:21] And one prompt gets you a draft. It does not get you over the bar reliably.
+[03:24] not get you over the bar reliably. So, what do you do? You read the output,
+[03:26] So, what do you do? You read the output, you catch the problem,
+[03:28] you catch the problem, you fix the prompt, you run it again.
+[03:31] you fix the prompt, you run it again. Now, notice what happened there. You ran
+[03:33] Now, notice what happened there. You ran a loop manually, but in your head.
+[03:37] a loop manually, but in your head. Second,
+[03:38] Second, real work has volume. 30 interview
+[03:40] real work has volume. 30 interview scripts, 200 support tickets, backlog of
+[03:43] scripts, 200 support tickets, backlog of 500 feature requests. A prompt handles
+[03:46] 500 feature requests. A prompt handles one item. The other 39, that's on you.
+[03:50] one item. The other 39, that's on you. Remembering what the first 12 said, also
+[03:53] Remembering what the first 12 said, also you.
+[03:54] you. And third, and this is the one nobody
+[03:56] And third, and this is the one nobody likes admitting, your attention drifts
+[03:59] likes admitting, your attention drifts because of the number of things that you
+[04:00] because of the number of things that you have to do. On one item, you're
+[04:02] have to do. On one item, you're rigorous. By item 25 or maybe 35, you're
+[04:05] rigorous. By item 25 or maybe 35, you're just skimming because you just want to
+[04:06] just skimming because you just want to get done with the task.
+[04:09] get done with the task. Your consistency drops exactly when the
+[04:12] Your consistency drops exactly when the consistency matters the most.
+[04:14] consistency matters the most. So, now here's the part I really want
+[04:17] So, now here's the part I really want you to sit with. When you correct a
+[04:19] you to sit with. When you correct a model's output by hand, you're doing
+[04:21] model's output by hand, you're doing four jobs. Without naming them, you
+[04:24] four jobs. Without naming them, you judge the output. That's evals. You
+[04:28] judge the output. That's evals. You carry lessons from last attempt into the
+[04:30] carry lessons from last attempt into the next one. That's memory. You know the
+[04:32] next one. That's memory. You know the lines the model never cross. Those are
+[04:35] lines the model never cross. Those are your guardrails. And you decide when
+[04:37] your guardrails. And you decide when it's done, that's stopping decision.
+[04:39] it's done, that's stopping decision. That's the stop condition.
+[04:41] That's the stop condition. Evaluation, memory, guardrails, stop
+[04:45] Evaluation, memory, guardrails, stop condition. Remember these four because
+[04:48] condition. Remember these four because the entire video is basically
+[04:50] the entire video is basically about these four conditions.
+[04:53] about these four conditions. And loop engineering is nothing but the
+[04:55] And loop engineering is nothing but the discipline of writing these four jobs
+[04:58] discipline of writing these four jobs down and handing them to a system. Call
+[05:00] down and handing them to a system. Call it your AI agent or call it an LLM,
+[05:03] it your AI agent or call it an LLM, whatever.
+[05:04] whatever. And trust me, this is not rocket
+[05:06] And trust me, this is not rocket science. The rest of this video is all
+[05:09] science. The rest of this video is all about learning how to write them down
+[05:11] about learning how to write them down well enough so an agent can take over
+[05:15] well enough so an agent can take over and run it in a loop and be the system
+[05:18] and run it in a loop and be the system that you can reliably depend on. Okay.
+[05:21] that you can reliably depend on. Okay. So, if you are hand handing our judgment
+[05:24] So, if you are hand handing our judgment to a system, what does the system
+[05:26] to a system, what does the system actually need? Before the checklist,
+[05:29] actually need? Before the checklist, let's have one mental model. And I want
+[05:31] let's have one mental model. And I want you to use this as your reference for
+[05:33] you to use this as your reference for the next rest of the session.
+[05:36] the next rest of the session. Think of a loop like a junior employee.
+[05:40] Think of a loop like a junior employee. Lot of patience, but zero judgment
+[05:43] Lot of patience, but zero judgment because lack of experience.
+[05:45] because lack of experience. Infinite patience means it will happily
+[05:49] Infinite patience means it will happily they will happily do
+[05:50] they will happily do the same task 400 times.
+[05:53] the same task 400 times. They do not get bored. They do not get
+[05:55] They do not get bored. They do not get tired. They do not get sloppy.
+[05:59] tired. They do not get sloppy. Zero judgment means it has no idea what
+[06:02] Zero judgment means it has no idea what good looks like unless you tell it.
+[06:04] good looks like unless you tell it. So, the onus is on you to tell what good
+[06:07] So, the onus is on you to tell what good looks like.
+[06:09] looks like. Everything we are about to go through is
+[06:11] Everything we are about to go through is basically what you would give a new hire
+[06:13] basically what you would give a new hire on their first day.
+[06:16] on their first day. And one thing I want to make very clear
+[06:17] And one thing I want to make very clear because I see this a lot. Running the
+[06:20] because I see this a lot. Running the same prompt 10 times is not a loop.
+[06:23] same prompt 10 times is not a loop. That is a slot machine and you are just
+[06:24] That is a slot machine and you are just re-rolling and hoping to get a better
+[06:27] re-rolling and hoping to get a better result.
+[06:28] result. A real loop has nine parts. Yes, you
+[06:31] A real loop has nine parts. Yes, you heard that right.
+[06:33] heard that right. I know, nine sounds a lot, but bear with
+[06:35] I know, nine sounds a lot, but bear with me. Each one is simple and together this
+[06:38] me. Each one is simple and together this list is your checklist for everything
+[06:40] list is your checklist for everything else today and going forward when you
+[06:42] else today and going forward when you will run the loop.
+[06:44] will run the loop. Part one, the goal.
+[06:46] Part one, the goal. A finish line you can measure. So, an
+[06:48] A finish line you can measure. So, an average score of 4.5 out of five on our
+[06:52] average score of 4.5 out of five on our rubric is a goal. Great replies, good
+[06:55] rubric is a goal. Great replies, good answers is not really a goal. It's more
+[06:58] answers is not really a goal. It's more like a wish.
+[06:59] like a wish. Part two, context.
+[07:01] Part two, context. What the loop knows going in
+[07:04] What the loop knows going in is what the context is. The style guide,
+[07:06] is what the context is. The style guide, the past example, the constraints,
+[07:08] the past example, the constraints, anything that you would give to your
+[07:10] anything that you would give to your intern or a new employee to let them
+[07:12] intern or a new employee to let them understand what has happened before or
+[07:15] understand what has happened before or what's happening in the background is
+[07:16] what's happening in the background is the context. Think of these as
+[07:19] the context. Think of these as onboarding documents. If the onboarding
+[07:22] onboarding documents. If the onboarding is thin, what you get is confident
+[07:24] is thin, what you get is confident garbage, but this time at scale.
+[07:28] garbage, but this time at scale. Part three, actions. The moves it is
+[07:30] Part three, actions. The moves it is allowed to make
+[07:32] allowed to make during each round. Edit a small file,
+[07:34] during each round. Edit a small file, draft a reply, propose a change, small
+[07:37] draft a reply, propose a change, small but defined moves.
+[07:39] but defined moves. Part four, tools.
+[07:41] Part four, tools. What it can actually touch, a browser, a
+[07:43] What it can actually touch, a browser, a spreadsheet, an inbox, like things that
+[07:45] spreadsheet, an inbox, like things that it has access to.
+[07:47] it has access to. Uh things it can use to actually do
+[07:49] Uh things it can use to actually do certain things instead of just talking
+[07:51] certain things instead of just talking about those things.
+[07:53] about those things. Part five is evals, evaluation, and this
+[07:56] Part five is evals, evaluation, and this is the one most people skip.
+[07:58] is the one most people skip. So, please do not skip this one.
+[08:00] So, please do not skip this one. Something that judges each round's
+[08:02] Something that judges each round's output against the goal.
+[08:05] output against the goal. Uh is a super important thing to have. A
+[08:07] Uh is a super important thing to have. A rubric, a test suite, a second model
+[08:09] rubric, a test suite, a second model with strict criteria. This is the
+[08:11] with strict criteria. This is the performance review for your agent. And
+[08:14] performance review for your agent. And without it, your new hire is just
+[08:16] without it, your new hire is just guessing, but this time very
+[08:18] guessing, but this time very confidently.
+[08:19] confidently. Part six is memory. What carries between
+[08:22] Part six is memory. What carries between rounds, what was tried, what worked,
+[08:24] rounds, what was tried, what worked, what failed. And the reason this matters
+[08:27] what failed. And the reason this matters is simple. If the failure is not in the
+[08:29] is simple. If the failure is not in the loop's history, the agent cannot look at
+[08:32] loop's history, the agent cannot look at it and say, "Okay, that did not work.
+[08:35] it and say, "Okay, that did not work. Let me try something different."
+[08:37] Let me try something different." It will just keep making the same
+[08:39] It will just keep making the same mistake, or worse, try to work around
+[08:41] mistake, or worse, try to work around it.
+[08:42] it. Part seven is your guardrails. The lines
+[08:46] Part seven is your guardrails. The lines your agent or LLM cannot cross while
+[08:49] your agent or LLM cannot cross while running the loop.
+[08:50] running the loop. For example, it can never email a
+[08:53] For example, it can never email a customer directly. It cannot touch a
+[08:56] customer directly. It cannot touch a pricing page. It cannot make any
+[08:58] pricing page. It cannot make any specific design decisions which will
+[09:01] specific design decisions which will impact the end user.
+[09:04] impact the end user. So, every company has things a new hire
+[09:06] So, every company has things a new hire needs to do or sign off for.
+[09:09] needs to do or sign off for. Similarly, every loop does too, and we
+[09:11] Similarly, every loop does too, and we call we are calling it here as
+[09:13] call we are calling it here as guardrails.
+[09:15] guardrails. Part eight, and the most important one,
+[09:17] Part eight, and the most important one, is the escalation. A good loop needs to
+[09:20] is the escalation. A good loop needs to know when to escalate things to a human
+[09:22] know when to escalate things to a human and when to make a decision.
+[09:24] and when to make a decision. Also, it needs to know that if something
+[09:28] Also, it needs to know that if something is there which it does not understand,
+[09:30] is there which it does not understand, the job is not to crash and fail. The
+[09:33] the job is not to crash and fail. The job is to escalate
+[09:35] job is to escalate and wait for the human. This is the
+[09:36] and wait for the human. This is the human in the loop part. So, let me give
+[09:39] human in the loop part. So, let me give you my own example here. I maintain a
+[09:41] you my own example here. I maintain a large open-source repo on the side.
+[09:44] large open-source repo on the side. Every day I get 15 to 20 pull requests,
+[09:47] Every day I get 15 to 20 pull requests, just me, no team. My agent reviews all
+[09:50] just me, no team. My agent reviews all of them in the morning and gives me a
+[09:52] of them in the morning and gives me a summary with suggestions. But it is not
+[09:54] summary with suggestions. But it is not making decisions for me. It is making
+[09:56] making decisions for me. It is making suggestions. It is giving me
+[09:58] suggestions. It is giving me suggestions. I approve it, then it acts,
+[10:01] suggestions. I approve it, then it acts, or I reject them, and then it closes
+[10:04] or I reject them, and then it closes those PRs. But it does not do anything
+[10:06] those PRs. But it does not do anything before or without my approval. That is
+[10:09] before or without my approval. That is the escalation working exactly as it
+[10:12] the escalation working exactly as it should.
+[10:13] should. And part nine, the stopping condition. A
+[10:15] And part nine, the stopping condition. A loop can run infinitely, but that will
+[10:18] loop can run infinitely, but that will cost you a lot of money. So, it is very
+[10:20] cost you a lot of money. So, it is very important to have the right stopping
+[10:22] important to have the right stopping condition. When is the loop done? And
+[10:25] condition. When is the loop done? And when does it quit even if it isn't done?
+[10:28] when does it quit even if it isn't done? What does target reached mean? What's
+[10:30] What does target reached mean? What's the budget of a loop? What happens when
+[10:33] the budget of a loop? What happens when a progress is stalled? Without this, a
+[10:35] a progress is stalled? Without this, a loop will happily keep burning tokens
+[10:38] loop will happily keep burning tokens and money, never actually finish thing.
+[10:43] and money, never actually finish thing. If you take one line from this section,
+[10:45] If you take one line from this section, take this one.
+[10:47] take this one. Without evals, a loop is automated
+[10:50] Without evals, a loop is automated guessing, and without a stopping con-
+[10:52] guessing, and without a stopping con- condition, it is just a billing machine
+[10:55] condition, it is just a billing machine that can bankroll that can keep
+[10:57] that can bankroll that can keep bankrolling your tokens.
+[11:00] bankrolling your tokens. Okay, enough theory. Let's build one.
+[11:03] Okay, enough theory. Let's build one. Everything I build today comes from a
+[11:05] Everything I build today comes from a public loop library, which I'll link
+[11:08] public loop library, which I'll link below.
+[11:08] below. The first loop is called self-improving
+[11:11] The first loop is called self-improving champion loop, and it is the one I will
+[11:13] champion loop, and it is the one I will build first. Because the thing it
+[11:15] build first. Because the thing it improves is your prompts themselves. Fix
+[11:18] improves is your prompts themselves. Fix this layer, and every other loop you'll
+[11:20] this layer, and every other loop you'll build after it gets better.
+[11:22] build after it gets better. I'll tell you this honestly, and this is
+[11:25] I'll tell you this honestly, and this is not some tutorial trick. When we are
+[11:27] not some tutorial trick. When we are building the evaluation skills for agent
+[11:30] building the evaluation skills for agent development, this exact pattern, Run the
+[11:33] development, this exact pattern, Run the evals, feed the failures back into the
+[11:35] evals, feed the failures back into the build, run again. That was the eval fix
+[11:38] build, run again. That was the eval fix loop.
+[11:39] loop. Same idea.
+[11:41] Same idea. What we are doing today is just smaller,
+[11:43] What we are doing today is just smaller, cleaner version of it that anyone can
+[11:45] cleaner version of it that anyone can run.
+[11:47] run. Now, the name tells you how it works.
+[11:49] Now, the name tells you how it works. Your current prompt is a champion.
+[11:51] Your current prompt is a champion. Every proposed change is a challenger.
+[11:54] Every proposed change is a challenger. And a challenger only takes the title if
+[11:57] And a challenger only takes the title if it beats the running champion in a fair
+[11:59] it beats the running champion in a fair fight.
+[12:00] fight. That too with specific numbers. So, we
+[12:02] That too with specific numbers. So, we aren't guessing anymore. So, here is my
+[12:05] aren't guessing anymore. So, here is my actual prob- problem. I have a prompt
+[12:07] actual prob- problem. I have a prompt that drafts replies to a customer
+[12:09] that drafts replies to a customer feature request. It's a solid
+[12:11] feature request. It's a solid six, maybe seven out of 10.
+[12:14] six, maybe seven out of 10. Sometimes it over promises. Sometimes
+[12:16] Sometimes it over promises. Sometimes it's super generic.
+[12:18] it's super generic. And I want it consistently good without
+[12:21] And I want it consistently good without me babysitting every single draft.
+[12:25] me babysitting every single draft. We'll build this in four simple steps.
+[12:27] We'll build this in four simple steps. Dataset, rubric, baseline, and then the
+[12:31] Dataset, rubric, baseline, and then the loop itself.
+[12:33] loop itself. Step one, the dataset. You can also call
+[12:36] Step one, the dataset. You can also call it context. I pulled 40 real feature
+[12:39] it context. I pulled 40 real feature requests from our support inbox into a
+[12:41] requests from our support inbox into a spreadsheet.
+[12:43] spreadsheet. Uh again, as I mentioned, you can call
+[12:45] Uh again, as I mentioned, you can call this context or this is also your golden
+[12:48] this context or this is also your golden dataset, which acts as a context for
+[12:50] dataset, which acts as a context for your agent for the loop, which is and it
+[12:53] your agent for the loop, which is and it is nothing but real cases you trust
+[12:55] is nothing but real cases you trust enough to grade against.
+[12:57] enough to grade against. And this is the important part. I split
+[12:59] And this is the important part. I split it. 25 cases go in the improvement set,
+[13:02] it. 25 cases go in the improvement set, and this might sou- sound very similar
+[13:04] and this might sou- sound very similar if you have fine-tuned or trained a
+[13:07] if you have fine-tuned or trained a classical machine learning model before.
+[13:10] classical machine learning model before. Uh it's like train test split. 25 cases
+[13:13] Uh it's like train test split. 25 cases go in the improvement set, which is what
+[13:15] go in the improvement set, which is what the agent works with,
+[13:17] the agent works with, and 15 go in a holdout set, which the
+[13:20] and 15 go in a holdout set, which the agent never sees while it's improving.
+[13:23] agent never sees while it's improving. If you take one thing from this build,
+[13:25] If you take one thing from this build, take the holdout. Take the train test
+[13:28] take the holdout. Take the train test split
+[13:29] split from here. If you haven't
+[13:32] from here. If you haven't been a part of classical machine
+[13:33] been a part of classical machine learning before,
+[13:35] learning before, this was a classic practice which we
+[13:37] this was a classic practice which we used to do before.
+[13:39] used to do before. Uh the moment your agent optimizes
+[13:41] Uh the moment your agent optimizes against the same cases you grade it on,
+[13:44] against the same cases you grade it on, your scores go up, and your quality
+[13:46] your scores go up, and your quality doesn't.
+[13:47] doesn't. So, it looks like progress, but it is
+[13:49] So, it looks like progress, but it is really not.
+[13:51] really not. Step two, the rubric. Five binary
+[13:53] Step two, the rubric. Five binary checks, one point each.
+[13:56] checks, one point each. Does the reply restate specific request?
+[13:58] Does the reply restate specific request? Is the stated status true? Does it avoid
+[14:02] Is the stated status true? Does it avoid over-promising anything that Does it
+[14:04] over-promising anything that Does it avoid promising anything
+[14:06] avoid promising anything uh not on our committed road map? Does
+[14:08] uh not on our committed road map? Does it match our tone guide? Is it under 120
+[14:11] it match our tone guide? Is it under 120 words?
+[14:12] words? Each reply scores zero to five.
+[14:15] Each reply scores zero to five. And the number that matters is the
+[14:16] And the number that matters is the average across those 15 holdout cases.
+[14:19] average across those 15 holdout cases. Because those are the cases that the
+[14:21] Because those are the cases that the agent hasn't seen before.
+[14:25] agent hasn't seen before. Not rate this reply between one to 10.
+[14:29] Not rate this reply between one to 10. Why? Because
+[14:31] Why? Because honestly, nobody has fully figured out
+[14:33] honestly, nobody has fully figured out evals yet, and vague judges are the
+[14:36] evals yet, and vague judges are the first thing that gets gamed. Keep the
+[14:38] first thing that gets gamed. Keep the judge simple, keep the judge concrete,
+[14:41] judge simple, keep the judge concrete, and you got the evals right.
+[14:43] and you got the evals right. Step three, the baseline. Before
+[14:46] Step three, the baseline. Before improving anything, measure what you
+[14:48] improving anything, measure what you have.
+[14:49] have. So, I tell the agent,
+[14:51] So, I tell the agent, "Run the current prompt on all 15
+[14:53] "Run the current prompt on all 15 holdout cases. Score every output with
+[14:56] holdout cases. Score every output with the rubric in a separate eval pass.
+[14:59] the rubric in a separate eval pass. Write the scores to a baseline file, and
+[15:02] Write the scores to a baseline file, and do not touch the prompt itself."
+[15:04] do not touch the prompt itself." What came back was an average of 3.4 out
+[15:08] What came back was an average of 3.4 out of five, which honestly was a little
+[15:10] of five, which honestly was a little lower than I expected. The weakest check
+[15:13] lower than I expected. The weakest check was the over-promising one.
+[15:15] was the over-promising one. 10 of the 15 replies actually failed it.
+[15:19] 10 of the 15 replies actually failed it. But now, at least I have a number, and I
+[15:22] But now, at least I have a number, and I have a champion.
+[15:23] have a champion. The current prompt holds the title until
+[15:26] The current prompt holds the title until something beats it.
+[15:27] something beats it. Step four, the loop rules.
+[15:30] Step four, the loop rules. Uh the full instruction is on screen and
+[15:33] Uh the full instruction is on screen and it's in the library. So, let me just
+[15:36] it's in the library. So, let me just give you the shape of it.
+[15:38] give you the shape of it. Each round, the agent proposes exactly
+[15:41] Each round, the agent proposes exactly one change to the prompt.
+[15:43] one change to the prompt. One change, not three. Why one? Because
+[15:46] One change, not three. Why one? Because when the score moves, I need to know
+[15:49] when the score moves, I need to know which change moved it. That's it. The
+[15:51] which change moved it. That's it. The challenger gets tested on the 25k
+[15:54] challenger gets tested on the 25k improvement set first.
+[15:57] improvement set first. If it doesn't look better, reject it and
+[15:59] If it doesn't look better, reject it and log why. If it does look better, then
+[16:02] log why. If it does look better, then run it against the 15 holdouts and it
+[16:04] run it against the 15 holdouts and it gets promoted to champion only if it
+[16:08] gets promoted to champion only if it beats the champion's holdout average.
+[16:11] beats the champion's holdout average. Ties go to the champion. Every round,
+[16:14] Ties go to the champion. Every round, the change,
+[16:15] the change, both scores, and the decision gets
+[16:18] both scores, and the decision gets appended to a log.
+[16:20] appended to a log. And the loop stops in one of three ways.
+[16:23] And the loop stops in one of three ways. The holdout average hits 4.5
+[16:26] The holdout average hits 4.5 or 12 rounds pass or three rounds in a
+[16:29] or 12 rounds pass or three rounds in a row produce no promotion or no uptick.
+[16:33] row produce no promotion or no uptick. So, that is a target, a budget, and a
+[16:36] So, that is a target, a budget, and a stall detector. And all three are
+[16:38] stall detector. And all three are written down before I press run.
+[16:46] Then, I let it run. Round one, the challenger adds one line.
+[16:49] challenger adds one line. Open by re- restarting the customer's
+[16:51] Open by re- restarting the customer's request in your hands. Improvement set
+[16:54] request in your hands. Improvement set looks better.
+[16:55] looks better. Holdouts
+[16:57] Holdouts come back 3.8 against the champion's
+[16:59] come back 3.8 against the champion's 3.4, just promoted. And because there
+[17:03] 3.4, just promoted. And because there was only one change, I know exactly what
+[17:05] was only one change, I know exactly what earned it.
+[17:07] earned it. Round two is the round I really want you
+[17:10] Round two is the round I really want you to watch.
+[17:11] to watch. The challenger adds three example
+[17:13] The challenger adds three example replies to the prompt. On the
+[17:15] replies to the prompt. On the improvement set, it looks great. Up
+[17:17] improvement set, it looks great. Up almost half a point.
+[17:19] almost half a point. Uh and I'll be honest with you, when I
+[17:22] Uh and I'll be honest with you, when I saw that number, I was tempted to just
+[17:24] saw that number, I was tempted to just stop the run and ship it myself.
+[17:26] stop the run and ship it myself. Then comes the title fight, holdouts.
+[17:28] Then comes the title fight, holdouts. 3.6 against the champions 3.8. Rejected.
+[17:33] 3.6 against the champions 3.8. Rejected. That log line is the entire reason why
+[17:35] That log line is the entire reason why this architecture exists.
+[17:38] this architecture exists. What happened is the example taught the
+[17:40] What happened is the example taught the prompt to mimic those 25 practice cases
+[17:44] prompt to mimic those 25 practice cases and it got worse on request it had not
+[17:46] and it got worse on request it had not seen before.
+[17:47] seen before. Uh without the holdout split, I would
+[17:50] Uh without the holdout split, I would have shipped that change and felt very
+[17:52] have shipped that change and felt very good about it.
+[17:54] good about it. Round three, replace the vague tone
+[17:56] Round three, replace the vague tone instruction with three concrete rules.
+[17:58] instruction with three concrete rules. Promoted, but barely 4.0.
+[18:01] Promoted, but barely 4.0. Honestly, I expected more from that one.
+[18:04] Honestly, I expected more from that one. Round four adds one line. If the feature
+[18:07] Round four adds one line. If the feature is not on the committed road map, say we
+[18:10] is not on the committed road map, say we are tracking demand and do not estimate
+[18:13] are tracking demand and do not estimate a date.
+[18:14] a date. That attacks attacks.
+[18:16] That attacks attacks. Promoted to 4.4, a big jump which makes
+[18:19] Promoted to 4.4, a big jump which makes sense because that was the weakest check
+[18:21] sense because that was the weakest check in the baseline.
+[18:23] in the baseline. Now again, round five and six both get
+[18:25] Now again, round five and six both get rejected, small rewording that
+[18:27] rejected, small rewording that basically did nothing. And by the way,
+[18:29] basically did nothing. And by the way, this is completely normal. You should
+[18:32] this is completely normal. You should not expect
+[18:33] not expect uh the score to keep moving in with
+[18:36] uh the score to keep moving in with every iteration.
+[18:38] every iteration. Most challengers lose and that's
+[18:40] Most challengers lose and that's completely fine.
+[18:42] completely fine. If every challenger was winning, I would
+[18:44] If every challenger was winning, I would be suspicious of the judge, not
+[18:46] be suspicious of the judge, not impressed by the agent.
+[18:48] impressed by the agent. Round seven tightens the closing line.
+[18:51] Round seven tightens the closing line. Promoted because the score is now 4.6,
+[18:53] Promoted because the score is now 4.6, that clears the 4.5 target. So the loop
+[18:56] that clears the 4.5 target. So the loop stops on its own and writes a summary.
+[19:00] stops on its own and writes a summary. Here you see, we did not do anything
+[19:02] Here you see, we did not do anything specifically to stop the loop because
+[19:04] specifically to stop the loop because the stop condition was clearly written
+[19:06] the stop condition was clearly written before, it stops on its own.
+[19:10] before, it stops on its own. So the loop is done, but I do not trust
+[19:12] So the loop is done, but I do not trust it yet. Before I trust any loops result,
+[19:15] it yet. Before I trust any loops result, I always check three things.
+[19:18] I always check three things. Always.
+[19:19] Always. First, I read the log top to bottom,
+[19:22] First, I read the log top to bottom, seven rounds, four promotions each with
+[19:24] seven rounds, four promotions each with a reason attached. Second, I read the
+[19:27] a reason attached. Second, I read the holdout replies replies myself with my
+[19:30] holdout replies replies myself with my own eyes.
+[19:31] own eyes. Against the actual customer request. The
+[19:33] Against the actual customer request. The evaluator sees 4.6. I want to confirm if
+[19:37] evaluator sees 4.6. I want to confirm if it is
+[19:38] it is that it is not grading on wipes.
+[19:40] that it is not grading on wipes. Third, I check spend. This run was, I
+[19:43] Third, I check spend. This run was, I want to say, around $2 and about 40
+[19:46] want to say, around $2 and about 40 minutes of unattended time.
+[19:48] minutes of unattended time. The final prompt ended with something
+[19:50] The final prompt ended with something like 30% different from where it
+[19:53] like 30% different from where it started.
+[19:55] started. And every one of those changes is in the
+[19:57] And every one of those changes is in the log, and each one had to prove itself
+[20:00] log, and each one had to prove itself before it went in.
+[20:02] before it went in. So that's the champion loop.
+[20:04] So that's the champion loop. Real cases, one change at a time,
+[20:06] Real cases, one change at a time, nothing gets promoted without beating
+[20:08] nothing gets promoted without beating the holdout.
+[20:09] the holdout. Propose, test, promote, log.
+[20:13] Propose, test, promote, log. Quick pause.
+[20:14] Quick pause. If the loop clicked for you, the next
+[20:17] If the loop clicked for you, the next step is not another folder of videos. It
+[20:19] step is not another folder of videos. It is building systems like this under real
+[20:22] is building systems like this under real constraints. This is what the Product
+[20:24] constraints. This is what the Product Faculty AI Builder Fellowship is built
+[20:27] Faculty AI Builder Fellowship is built for. One annual membership gives you
+[20:29] for. One annual membership gives you five life certifications. You learn life
+[20:32] five life certifications. You learn life from practitioners, you build capstones,
+[20:35] from practitioners, you build capstones, you get faculty reviews, and you can
+[20:37] you get faculty reviews, and you can retake cohorts as the field changes.
+[20:39] retake cohorts as the field changes. The part relevant here is, and the part
+[20:41] The part relevant here is, and the part that I'm most excited about, is agentic
+[20:44] that I'm most excited about, is agentic engineering, which I teach. And you do
+[20:47] engineering, which I teach. And you do not finish there with just a demo. You
+[20:50] not finish there with just a demo. You build a production agent fleet
+[20:52] build a production agent fleet and run it unattended for 72 hours and
+[20:55] and run it unattended for 72 hours and keep an incident log. That is the
+[20:57] keep an incident log. That is the difference between understanding agents
+[20:59] difference between understanding agents and learning what actually survives in
+[21:01] and learning what actually survives in production.
+[21:02] production. If you already are shipping with LLM
+[21:04] If you already are shipping with LLM APIs and want to get better at building
+[21:06] APIs and want to get better at building production agent systems, use the link
+[21:09] production agent systems, use the link in the comment to access the fellowship
+[21:11] in the comment to access the fellowship and see if it fits for you.
+[21:13] and see if it fits for you. Okay, back to the loops.
+[21:15] Okay, back to the loops. So, that's one loop built end-to-end.
+[21:18] So, that's one loop built end-to-end. Now, four more, but much faster. Think
+[21:21] Now, four more, but much faster. Think of them as four more hires, each with a
+[21:24] of them as four more hires, each with a different job. And for each one, just
+[21:27] different job. And for each one, just watch for the same three things. What is
+[21:29] watch for the same three things. What is the evaluator? What is the memory? And
+[21:32] the evaluator? What is the memory? And what makes it stop?
+[21:35] what makes it stop? Loop two is called the empathy
+[21:37] Loop two is called the empathy simulation loop. Interesting [snorts]
+[21:39] simulation loop. Interesting [snorts] name. Yes.
+[21:41] name. Yes. This is the researcher on the team,
+[21:43] This is the researcher on the team, and the whole idea is that it reads
+[21:45] and the whole idea is that it reads until it stops hearing anything new. I
+[21:48] until it stops hearing anything new. I pointed to a folder, 60 interview
+[21:50] pointed to a folder, 60 interview transcripts, 300 tickets, a batch of
+[21:53] transcripts, 300 tickets, a batch of survey responses. The instruction is
+[21:55] survey responses. The instruction is super simple. Process them in batch of
+[21:58] super simple. Process them in batch of 20.
+[21:59] 20. Each pass, extract the pain points,
+[22:02] Each pass, extract the pain points, cluster them, and attach evidence to
+[22:04] cluster them, and attach evidence to every cluster.
+[22:06] every cluster. And evidence means the verbatim quote
+[22:09] And evidence means the verbatim quote source file it came from, not a summary
+[22:11] source file it came from, not a summary of quotes.
+[22:13] of quotes. Then comes the check that turns this
+[22:16] Then comes the check that turns this from a summarizer into a loop.
+[22:19] from a summarizer into a loop. After each batch, it asks,
+[22:21] After each batch, it asks, "Did the batch create any new clusters?
+[22:24] "Did the batch create any new clusters? Or did it only add weight to the
+[22:26] Or did it only add weight to the clusters we already have?"
+[22:28] clusters we already have?" That check is called saturation.
+[22:31] That check is called saturation. And it comes straight from qualitative
+[22:33] And it comes straight from qualitative research.
+[22:35] research. When new data stops changing, the
+[22:38] When new data stops changing, the picture is done.
+[22:41] picture is done. Two consecutive batches with nothing
+[22:42] Two consecutive batches with nothing new, and the loop stops.
+[22:45] new, and the loop stops. There's also a cap of 10 batches, so it
+[22:48] There's also a cap of 10 batches, so it cannot just run forever. When it
+[22:49] cannot just run forever. When it finishes, I pick three clusters and
+[22:52] finishes, I pick three clusters and click through the quotes myself. If I
+[22:54] click through the quotes myself. If I cannot trace a cluster back to actual
+[22:56] cannot trace a cluster back to actual quotes, it does not go in the deck.
+[22:58] quotes, it does not go in the deck. That's a simple rule.
+[23:00] That's a simple rule. Loop three is devil's advocate loop. And
+[23:04] Loop three is devil's advocate loop. And it comes in really handy when you are
+[23:07] it comes in really handy when you are thinking through a concept and not sure
+[23:10] thinking through a concept and not sure if to proceed with that or not.
+[23:12] if to proceed with that or not. Or thinking through a decision and not
+[23:14] Or thinking through a decision and not sure if you want to proceed with that or
+[23:15] sure if you want to proceed with that or not. And this one is two hires, not one.
+[23:19] not. And this one is two hires, not one. A builder and a critique. And together
+[23:21] A builder and a critique. And together they harden a PRD before other people
+[23:23] they harden a PRD before other people find the holes or poke holes into that.
+[23:26] find the holes or poke holes into that. The builder writes and revises the
+[23:27] The builder writes and revises the document. The critique has exactly one
+[23:30] document. The critique has exactly one job, argue that it is wrong. Attack the
+[23:32] job, argue that it is wrong. Attack the assumptions, the edge cases, the success
+[23:35] assumptions, the edge cases, the success metrics, the risks.
+[23:37] metrics, the risks. The critique never fixes anything.
+[23:40] The critique never fixes anything. The builder cannot ignore anything.
+[23:42] The builder cannot ignore anything. Every objection ends one of two ways,
+[23:45] Every objection ends one of two ways, fixed in the document or explicitly
+[23:47] fixed in the document or explicitly accepted with a written reason.
+[23:50] accepted with a written reason. The rule that makes this work is rule
+[23:53] The rule that makes this work is rule separation.
+[23:54] separation. So, never let one model create its own
+[23:58] So, never let one model create its own work.
+[23:59] work. And here is a pro tip from my own
+[24:01] And here is a pro tip from my own workflow. Use different models for two
+[24:03] workflow. Use different models for two roles. One model generates, another
+[24:06] roles. One model generates, another model verifies. Every model has a
+[24:07] model verifies. Every model has a different personality. And you will see
+[24:09] different personality. And you will see it in the type of objections you get. It
+[24:12] it in the type of objections you get. It is exactly like taking a PRD to two
+[24:15] is exactly like taking a PRD to two different reviewers instead of asking
+[24:17] different reviewers instead of asking the writer to create their own homework.
+[24:20] the writer to create their own homework. The stop is also interesting. The loop
+[24:23] The stop is also interesting. The loop ends when no high impact objection
+[24:26] ends when no high impact objection remains or when the critique starts
+[24:28] remains or when the critique starts repeating objections it already raised.
+[24:31] repeating objections it already raised. Repetition is useful signal here. It
+[24:34] Repetition is useful signal here. It means the loop has extracted everything
+[24:36] means the loop has extracted everything it can.
+[24:38] it can. And that accepts table is the artifact I
+[24:41] And that accepts table is the artifact I go back to most. And this is where tools
+[24:43] go back to most. And this is where tools really earn their keep. The agent opens
+[24:46] really earn their keep. The agent opens my product in an actual browser,
+[24:50] my product in an actual browser, fresh session, no cookies, basically a
+[24:52] fresh session, no cookies, basically a first time, like a first time user. It
+[24:54] first time, like a first time user. It walks through a real task, sign up or
+[24:57] walks through a real task, sign up or create a first project, and it captures
+[24:59] create a first project, and it captures every screen along the way.
+[25:02] every screen along the way. Each screen gets scored against a
+[25:04] Each screen gets scored against a rubric.
+[25:06] rubric. Is the next step obvious? Is the copy
+[25:08] Is the next step obvious? Is the copy clear? Do errors explain themselves?
+[25:11] clear? Do errors explain themselves? Does it load fast? Then the loop takes
+[25:14] Does it load fast? Then the loop takes the weakest screen, proposes a fix,
+[25:17] the weakest screen, proposes a fix, applies it, and walks the same task
+[25:19] applies it, and walks the same task again. It stops when the target score is
+[25:22] again. It stops when the target score is reached or after two full passes with no
+[25:25] reached or after two full passes with no gain.
+[25:26] gain. And that second stop matters because
+[25:29] And that second stop matters because flat scores for two rounds is
+[25:31] flat scores for two rounds is diminishing returns telling you you're
+[25:33] diminishing returns telling you you're done.
+[25:35] done. And here is the guardrail, and this is
+[25:37] And here is the guardrail, and this is important. Any change touching pricing
+[25:40] important. Any change touching pricing or legal copy halts the loop and
+[25:42] or legal copy halts the loop and escalates to me with a diff.
+[25:45] escalates to me with a diff. The agent can polish an empty state on
+[25:48] The agent can polish an empty state on its own. That's fine. It does not get to
+[25:50] its own. That's fine. It does not get to re-word the thing customers pay for or
+[25:53] re-word the thing customers pay for or any important decision in that document.
+[25:57] any important decision in that document. That one always comes to me,
+[25:59] That one always comes to me, escalated to me, and I get to decide. On
+[26:03] escalated to me, and I get to decide. On my last run, it found out that
+[26:06] my last run, it found out that our error message on step three just
+[26:08] our error message on step three just said, "Invalid input."
+[26:11] said, "Invalid input." It rewrote it to name the field and the
+[26:13] It rewrote it to name the field and the format.
+[26:14] format. Uh that screen went from two to a four
+[26:17] Uh that screen went from two to a four on the rubric. Small fix that made a
+[26:20] on the rubric. Small fix that made a real and a big difference. The refund
+[26:22] real and a big difference. The refund follow-up loop. This is back office
+[26:25] follow-up loop. This is back office admin who never drops a follow-up. An
+[26:27] admin who never drops a follow-up. An airline owed me owed me a refund. The
+[26:30] airline owed me owed me a refund. The loop files the claim, and person follows
+[26:33] loop files the claim, and person follows up on every reply.
+[26:36] up on every reply. Airline says, "Processing. Allow us 15
+[26:38] Airline says, "Processing. Allow us 15 days." The loop notes the date and
+[26:41] days." The loop notes the date and follows up on day 16.
+[26:43] follows up on day 16. Generic response, it replies citing
+[26:46] Generic response, it replies citing uh the claim number and the relevant
+[26:49] uh the claim number and the relevant policy and figures out things from the
+[26:51] policy and figures out things from the internet to use against that.
+[26:54] internet to use against that. It tracks every deadline. It does not
+[26:56] It tracks every deadline. It does not get tired. It does not get frustrated.
+[26:59] get tired. It does not get frustrated. It does not forget.
+[27:02] It does not forget. Following up costs it nothing. And the
+[27:06] Following up costs it nothing. And the stopping condition here is pretty
+[27:07] stopping condition here is pretty realistic. It runs until the refund
+[27:10] realistic. It runs until the refund actually arrives or until the situation
+[27:13] actually arrives or until the situation is genuinely blocked, meaning it needs a
+[27:15] is genuinely blocked, meaning it needs a legal step or a human decision. And
+[27:18] legal step or a human decision. And genuinely blocked is escalation as a
+[27:21] genuinely blocked is escalation as a stopping condition. Which honestly is
+[27:23] stopping condition. Which honestly is the right stop for a lot of business
+[27:25] the right stop for a lot of business operations.
+[27:27] operations. The lesson from this one, loops are not
+[27:28] The lesson from this one, loops are not just for product teams.
+[27:30] just for product teams. Anything with a follow-up and a deadline
+[27:33] Anything with a follow-up and a deadline is a loop waiting to be built. All five
+[27:36] is a loop waiting to be built. All five of these comes from that public loop
+[27:38] of these comes from that public loop library I mentioned.
+[27:40] library I mentioned. 85 loops across engineering, e-vals,
+[27:44] 85 loops across engineering, e-vals, operations, content, design.
+[27:46] operations, content, design. Go and explore it. These five are the
+[27:49] Go and explore it. These five are the on-ramp I would hand any product person.
+[27:51] on-ramp I would hand any product person. Okay. So far everything worked. Now
+[27:54] Okay. So far everything worked. Now let's break things because every loop I
+[27:56] let's break things because every loop I just showed you fails in very
+[27:58] just showed you fails in very predictable ways.
+[28:00] predictable ways. There are five common failure modes. For
+[28:02] There are five common failure modes. For each one, I'll show you what it looks
+[28:04] each one, I'll show you what it looks like and then the fix for that.
+[28:08] like and then the fix for that. Failure one is drift. The loop slowly
+[28:10] Failure one is drift. The loop slowly wanders off goal. My champion loop one
+[28:13] wanders off goal. My champion loop one started optimizing replies to be shorter
+[28:16] started optimizing replies to be shorter and shorter
+[28:17] and shorter because short replies pass the rubric
+[28:19] because short replies pass the rubric slightly more often.
+[28:21] slightly more often. By round nine, they were very polite and
+[28:24] By round nine, they were very polite and said almost nothing. The fix is to
+[28:27] said almost nothing. The fix is to restate the goal in every round's
+[28:29] restate the goal in every round's context and check the log for direction,
+[28:32] context and check the log for direction, not just score.
+[28:34] not just score. Failure two is weak e-vals and this is a
+[28:36] Failure two is weak e-vals and this is a big one. If your judge is easier to fool
+[28:39] big one. If your judge is easier to fool than the task
+[28:41] than the task to do, the loop will optimize for the
+[28:43] to do, the loop will optimize for the judge.
+[28:45] judge. For example, rate this reply from one to
+[28:47] For example, rate this reply from one to 10 is a weak eval and the models learn
+[28:50] 10 is a weak eval and the models learn to praise it very, very fast.
+[28:53] to praise it very, very fast. The fix here is binary checks on
+[28:55] The fix here is binary checks on specific facts plus your own spot
+[28:57] specific facts plus your own spot checks. This is exactly why I read three
+[29:00] checks. This is exactly why I read three holdout replies myself. Trust the
+[29:02] holdout replies myself. Trust the number, but then actually go and verify
+[29:05] number, but then actually go and verify it.
+[29:06] it. Failure three is the cost.
+[29:08] Failure three is the cost. Loops multiply spend significantly. My
+[29:11] Loops multiply spend significantly. My champion run was seven rounds and even
+[29:13] champion run was seven rounds and even the rejected rounds ran 25 cases each.
+[29:17] the rejected rounds ran 25 cases each. Plus the evaluation pass.
+[29:19] Plus the evaluation pass. That was a couple of dollars. Now, scale
+[29:21] That was a couple of dollars. Now, scale that data set to 500 or 5,000 cases and
+[29:25] that data set to 500 or 5,000 cases and a bigger model, the same decision is
+[29:27] a bigger model, the same decision is real money.
+[29:29] real money. The fix here is really putting a cap on
+[29:31] The fix here is really putting a cap on the dollar amount that you would want to
+[29:33] the dollar amount that you would want to spend and put it in a stopping
+[29:35] spend and put it in a stopping condition, in the stop condition that
+[29:37] condition, in the stop condition that you define beforehand. Because
+[29:40] you define beforehand. Because I'll keep an eye on it is not a cap.
+[29:42] I'll keep an eye on it is not a cap. Even if you put these kind of weak
+[29:45] Even if you put these kind of weak things in your instruction, that would
+[29:47] things in your instruction, that would not stop the loop from spending more
+[29:50] not stop the loop from spending more dollars. Uh, failure four is the
+[29:52] dollars. Uh, failure four is the latency. Some loops should run
+[29:55] latency. Some loops should run overnight, not while you watch.
+[29:57] overnight, not while you watch. Saturation loop takes about 40 minutes
+[30:00] Saturation loop takes about 40 minutes and watching it run is the worst of both
+[30:02] and watching it run is the worst of both worlds.
+[30:03] worlds. Your time plus the machines. So, kick it
+[30:06] Your time plus the machines. So, kick it off, close the laptop, read the log with
+[30:08] off, close the laptop, read the log with your coffee next morning. This is
+[30:10] your coffee next morning. This is exactly how my morning automations work.
+[30:12] exactly how my morning automations work. They run on schedule, I read the output.
+[30:15] They run on schedule, I read the output. That's it.
+[30:16] That's it. And failure five is endless free tries.
+[30:19] And failure five is endless free tries. Either no stop condition or a stop that
+[30:22] Either no stop condition or a stop that never gets triggered.
+[30:24] never gets triggered. Stop at a perfect score on a task where
+[30:27] Stop at a perfect score on a task where perfect is unreachable is the same as no
+[30:30] perfect is unreachable is the same as no stop at all.
+[30:31] stop at all. The fix here is every threshold needs a
+[30:34] The fix here is every threshold needs a companion. A round cap, a dollar cap, or
+[30:37] companion. A round cap, a dollar cap, or a stall rule. My default is the trio
+[30:40] a stall rule. My default is the trio from the champion loop. Target, budget,
+[30:43] from the champion loop. Target, budget, and stall. If you only remember one of
+[30:46] and stall. If you only remember one of those, remember stall. Three rounds with
+[30:48] those, remember stall. Three rounds with no promotion means you're done learning
+[30:51] no promotion means you're done learning or something wrong is happening there.
+[30:54] or something wrong is happening there. And here's the good news about all five.
+[30:57] And here's the good news about all five. Every one of them is a design gap, not a
+[31:00] Every one of them is a design gap, not a model gap. Every fix that I just gave
+[31:02] model gap. Every fix that I just gave you is editing a document or editing
+[31:06] you is editing a document or editing your instruction.
+[31:07] your instruction. None of them is waiting around for a
+[31:09] None of them is waiting around for a smarter model. So, if these failure
+[31:11] smarter model. So, if these failure modes felt a little scary, honestly,
+[31:15] modes felt a little scary, honestly, take it as a good sign. It means you now
+[31:17] take it as a good sign. It means you now exactly know what to check.
+[31:20] exactly know what to check. So, with all that on the table,
+[31:23] So, with all that on the table, how do you decide what belongs in a
+[31:25] how do you decide what belongs in a loop?
+[31:26] loop? Three simple questions.
+[31:28] Three simple questions. Keep these three and you can evaluate
+[31:30] Keep these three and you can evaluate any task on your plate.
+[31:32] any task on your plate. First, automate what's checkable.
+[31:36] First, automate what's checkable. If you can write down how would you
+[31:38] If you can write down how would you judge the output,
+[31:39] judge the output, a loop can run it for you. A rubric, a
+[31:42] a loop can run it for you. A rubric, a test, a saturation check, and a
+[31:45] test, a saturation check, and a deadline.
+[31:46] deadline. If you can check it, you can loop it.
+[31:49] If you can check it, you can loop it. Second,
+[31:50] Second, escalate what's consequential. Anything
+[31:53] escalate what's consequential. Anything customer-facing, anything that deals
+[31:55] customer-facing, anything that deals with money,
+[31:57] with money, anything irreversible, always gets a
+[32:00] anything irreversible, always gets a human gate or escalation.
+[32:02] human gate or escalation. And again,
+[32:04] And again, the escalation is not the loop failing.
+[32:06] the escalation is not the loop failing. A loop that raises its hand at the right
+[32:08] A loop that raises its hand at the right moment is working exactly as designed.
+[32:11] moment is working exactly as designed. It is suggesting you are deciding.
+[32:15] It is suggesting you are deciding. Third
+[32:16] Third is to define the stop before you press
+[32:19] is to define the stop before you press run. Target, budget, stall.
+[32:22] run. Target, budget, stall. Writing it down first is honestly the
+[32:24] Writing it down first is honestly the whole difference between a system and a
+[32:26] whole difference between a system and a gamble.
+[32:28] gamble. And now you can see why I gave you that
+[32:31] And now you can see why I gave you that junior employee model at the start.
+[32:33] junior employee model at the start. Infinite patience is the superpower.
+[32:37] Infinite patience is the superpower. It will run 15 holdout cases at 3:00
+[32:40] It will run 15 holdout cases at 3:00 a.m. or 5:00 a.m. and follow up on week
+[32:43] a.m. or 5:00 a.m. and follow up on week six. And it genuinely does not mind.
+[32:47] six. And it genuinely does not mind. Zero judgement is the constant. It does
+[32:50] Zero judgement is the constant. It does not know what matters unless you encode
+[32:53] not know what matters unless you encode it.
+[32:54] it. The goal, the evaluator, the guardrails,
+[32:57] The goal, the evaluator, the guardrails, the stop.
+[32:58] the stop. All of that
+[33:00] All of that is you encoding your judgement into the
+[33:03] is you encoding your judgement into the system once instead of exercising it
+[33:06] system once instead of exercising it manually forever.
+[33:08] manually forever. And I think the shift is bigger than it
+[33:10] And I think the shift is bigger than it sounds. At some point, you're not really
+[33:12] sounds. At some point, you're not really writing prompts anymore.
+[33:15] writing prompts anymore. You're staffing a team.
+[33:17] You're staffing a team. And here is your homework and it fits on
+[33:20] And here is your homework and it fits on one page. Pick one task you did three or
+[33:22] one page. Pick one task you did three or more times this month. Write four lines.
+[33:26] more times this month. Write four lines. The goal as a number, the evals as a
+[33:29] The goal as a number, the evals as a check you would actually trust,
+[33:31] check you would actually trust, the memory, meaning what has to carry
+[33:34] the memory, meaning what has to carry between rounds, and the stop. All three
+[33:36] between rounds, and the stop. All three parts.
+[33:37] parts. The one page is
+[33:40] The one page is a loop spec. It is also honestly a job
+[33:42] a loop spec. It is also honestly a job description for your next hire.
+[33:44] description for your next hire. Most people can build their first one in
+[33:47] Most people can build their first one in the same afternoon. So, don't just watch
+[33:50] the same afternoon. So, don't just watch this. Go and build it. The loop library
+[33:53] this. Go and build it. The loop library is linked in the description.
+[33:55] is linked in the description. All 85 loops, including everyone from
+[33:59] All 85 loops, including everyone from this video with full prompts. Pick one
+[34:02] this video with full prompts. Pick one or better spec your own and build it
+[34:04] or better spec your own and build it this week. And if you do, tell me what
+[34:06] this week. And if you do, tell me what you looped in the comments. I actually
+[34:09] you looped in the comments. I actually read them and a lot of this library
+[34:11] read them and a lot of this library started as someone telling me about
+[34:13] started as someone telling me about their most annoying weekly task.
+[34:16] their most annoying weekly task. See you in the next one. Thank you.
