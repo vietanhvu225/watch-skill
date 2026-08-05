@@ -8,10 +8,11 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
 ### 🟢 Hôm nay (05/08/2026)
-*Nhóm 4 video vừa được phân tích và đẩy lên hôm nay:*
+*Nhóm 5 video vừa được phân tích và đẩy lên hôm nay:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `93bc609ba570beb4` | New Skills! v1.2 brings /wait-what, /writing-for-agents, and fixes /grill-me | AI Agent Skills | [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) | 11:37 |
 | `660ad16b80b7845a` | How to Become Dangerously Self Educated (Complete Plan for A Developer) | Self-Education | [dangerously_self_educated.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) | 27:51 |
 | `b415a03de5999a2b` | Advice from the Top 1% (in Tech) | Career Advice | [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) | 15:18 |
 | `a858c3708e06389d` | If you are ambitious but inconsistent (in tech), please watch this | Career Playbook | [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) | 12:51 |
@@ -76,6 +77,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Ambitious but Inconsistent in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) - Lời khuyên định hướng sự nghiệp, xây dựng tính nhất quán, trách nhiệm thay vì đuổi theo đam mê cảm tính, và playbook lập trình 5 bước trong kỷ nguyên AI 2026.
 * [Advice from the Top 1% in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) - Bài học từ Phil về cách định hình lộ trình thăng tiến thu nhập dài hạn, đầu tư tái phân bổ tài chính vào kỹ năng có lợi nhuận cao, tránh các công việc mang lại cảm giác ảo về năng suất, và tận dụng mạng lưới chia sẻ (generosity network) trong tech.
 * [How to Become Dangerously Self Educated](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) - Triết lý học lập trình thời đại AI: Phân tách nhóm kĩ năng "tra cứu" và "tự giải quyết", thoát khỏi bẫy "AI Passenger", học qua xây dựng trước hiểu sau, vẽ sơ đồ hệ thống napkin từ trí nhớ và so sánh visual thiết kế.
+* [AI-Hero Skills v1.2.0](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) - Tài liệu các kỹ năng mới của Matt Pocock trong bản phát hành v1.2.0: kỹ năng chống dài dòng `/wait-what`, local wizard an toàn `/wizard`, `/questionnaire` cho cộng tác dự án, và cập nhật đồ thị `/grill-me`.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -91,6 +93,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) (08:01)
     *   [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) (08:53)
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
+    *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
     *   [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) (12:51)
     *   [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) (15:18)
     *   [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) (15:00)
