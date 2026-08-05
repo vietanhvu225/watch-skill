@@ -1,0 +1,298 @@
+[00:02] This is a video for two people. The first is the 20some year old who I
+[00:04] first is the 20some year old who I recently had the pleasure of talking to
+[00:06] recently had the pleasure of talking to recently after one of my Q&amp;A sessions.
+[00:09] recently after one of my Q&amp;A sessions. He had told me that he just graduated
+[00:10] He had told me that he just graduated with the CS degree. He had told me at
+[00:12] with the CS degree. He had told me at first he had started coding because he
+[00:14] first he had started coding because he wanted to build cool things and
+[00:16] wanted to build cool things and eventually help his mom's local street
+[00:18] eventually help his mom's local street food business take off with an app and a
+[00:20] food business take off with an app and a website. However, that was the original
+[00:23] website. However, that was the original intent. But he said he kind of lost
+[00:25] intent. But he said he kind of lost steam. He said he didn't have the
+[00:27] steam. He said he didn't have the passion to pursue this anymore because
+[00:29] passion to pursue this anymore because he felt inadequate in this era of AI. He
+[00:33] he felt inadequate in this era of AI. He said after he graduated there was no
+[00:35] said after he graduated there was no help, no support, just silence. Then
+[00:38] help, no support, just silence. Then there is another person. He is in his
+[00:40] there is another person. He is in his 40s and he is a mentee of mine. We've
+[00:42] 40s and he is a mentee of mine. We've been building a SAS product recently. He
+[00:45] been building a SAS product recently. He started off really hot, even landing an
+[00:47] started off really hot, even landing an interview or two in which we feel we
+[00:49] interview or two in which we feel we came close to landing a junior role. But
+[00:52] came close to landing a junior role. But maybe the holidays hit and I feel like
+[00:54] maybe the holidays hit and I feel like we lost some momentum we used to have.
+[00:57] we lost some momentum we used to have. You told me that perhaps programming
+[00:59] You told me that perhaps programming isn't really for you. I'm going to guess
+[01:01] isn't really for you. I'm going to guess here that you feel too late, too behind.
+[01:04] here that you feel too late, too behind. There's talks about AI and layoffs every
+[01:06] There's talks about AI and layoffs every day. The competitiveness.
+[01:09] day. The competitiveness. Maybe you're thinking maybe I missed my
+[01:11] Maybe you're thinking maybe I missed my window. I wanted to make this video
+[01:13] window. I wanted to make this video because I didn't really have time to
+[01:15] because I didn't really have time to answer each of you for a few weeks now,
+[01:17] answer each of you for a few weeks now, but I have some time now and I wanted to
+[01:20] but I have some time now and I wanted to give you both a longer answer. So, in
+[01:23] give you both a longer answer. So, in both cases, you guys both lost your
+[01:25] both cases, you guys both lost your passion in coding, especially when
+[01:27] passion in coding, especially when things got a bit stale, maybe a bit
+[01:29] things got a bit stale, maybe a bit boring, and when results stopped
+[01:31] boring, and when results stopped happening. The reason I wanted to record
+[01:33] happening. The reason I wanted to record this is because I was in your position.
+[01:37] this is because I was in your position. Before coding, I wanted to be a
+[01:39] Before coding, I wanted to be a musician. I wanted to be a guitarist for
+[01:41] musician. I wanted to be a guitarist for a band. In my teens and in my 20s, I
+[01:44] a band. In my teens and in my 20s, I worked really hard to be a lead
+[01:45] worked really hard to be a lead guitarist for multiple bands. I put
+[01:47] guitarist for multiple bands. I put college on hold and went all in on
+[01:50] college on hold and went all in on something I was passionate about.
+[01:52] something I was passionate about. Eventually, I lost passion for music
+[01:55] Eventually, I lost passion for music because I was surrounded by too much
+[01:57] because I was surrounded by too much competition. I didn't get the results I
+[01:59] competition. I didn't get the results I was looking for in my band and the
+[02:02] was looking for in my band and the obvious reason which was I didn't make a
+[02:04] obvious reason which was I didn't make a dime for a whole year. Then I tried
+[02:06] dime for a whole year. Then I tried cooking and well, for those of you who
+[02:09] cooking and well, for those of you who are new to my channel, I didn't end up
+[02:10] are new to my channel, I didn't end up being a guitarist or chef. I actually
+[02:13] being a guitarist or chef. I actually ended up becoming a programmer and took
+[02:15] ended up becoming a programmer and took that all the way to six figures every
+[02:17] that all the way to six figures every year, working as a senior dev and tech
+[02:19] year, working as a senior dev and tech lead for multiple 7 to eight figures in
+[02:21] lead for multiple 7 to eight figures in revenue companies. Along the way, I
+[02:24] revenue companies. Along the way, I failed here and there, succeeded here
+[02:26] failed here and there, succeeded here and there, but eventually this was the
+[02:29] and there, but eventually this was the one thing that I was able to take from
+[02:31] one thing that I was able to take from the bottom all the way to the top. So, I
+[02:33] the bottom all the way to the top. So, I wanted to share with you how I ended up
+[02:35] wanted to share with you how I ended up here today. The short answer is if
+[02:38] here today. The short answer is if you're ambitious but inconsistent, it's
+[02:40] you're ambitious but inconsistent, it's because chasing passion is probably
+[02:42] because chasing passion is probably sabotaging you. Coding did start out as
+[02:45] sabotaging you. Coding did start out as my passion at first. I chose it because
+[02:48] my passion at first. I chose it because I felt if I choose this career, I will
+[02:51] I felt if I choose this career, I will be doing something I enjoy, which is
+[02:53] be doing something I enjoy, which is building and creating. So, I technically
+[02:56] building and creating. So, I technically would feel like I wouldn't have to work
+[02:58] would feel like I wouldn't have to work a day in my life. But let me tell you
+[03:01] a day in my life. But let me tell you that passion is a terrible decision
+[03:03] that passion is a terrible decision filter because passion is emotional.
+[03:06] filter because passion is emotional. It's vague. It's a vibe. And your
+[03:08] It's vague. It's a vibe. And your feelings don't ship software. Here's
+[03:11] feelings don't ship software. Here's what passion sounds like in tech. You
+[03:13] what passion sounds like in tech. You might have experienced it firsthand.
+[03:16] might have experienced it firsthand. I'll code when I feel inspired. I'll
+[03:18] I'll code when I feel inspired. I'll quit this stack because it's not fun
+[03:20] quit this stack because it's not fun anymore. This bug is annoying. Maybe I'm
+[03:24] anymore. This bug is annoying. Maybe I'm not built for this. And I'm not saying
+[03:26] not built for this. And I'm not saying that to roast you. I'm saying it because
+[03:29] that to roast you. I'm saying it because I lived it. When you're inconsistent,
+[03:31] I lived it. When you're inconsistent, it's usually not because you're lazy.
+[03:34] it's usually not because you're lazy. It's because you're letting your
+[03:35] It's because you're letting your feelings drive the car. And feelings are
+[03:38] feelings drive the car. And feelings are the worst driver in the world. Because
+[03:41] the worst driver in the world. Because the truth is, real mastery in coding is
+[03:44] the truth is, real mastery in coding is built on the boring stuff. Debugging
+[03:46] built on the boring stuff. Debugging when it's stale. Reading docs when it
+[03:48] when it's stale. Reading docs when it feels like eating cardboard. Fixing edge
+[03:51] feels like eating cardboard. Fixing edge cases nobody will clap for. Refactoring
+[03:54] cases nobody will clap for. Refactoring code that technically works, but is a
+[03:56] code that technically works, but is a mess. That's the job. And AI makes this
+[04:00] mess. That's the job. And AI makes this more obvious, not less. Because AI can
+[04:03] more obvious, not less. Because AI can write happy path code all day. But it
+[04:05] write happy path code all day. But it can't understand messy business logic.
+[04:08] can't understand messy business logic. Read vague requirements. Untangle legacy
+[04:11] Read vague requirements. Untangle legacy code written by three different devs who
+[04:13] code written by three different devs who hated each other. Debug a production bug
+[04:15] hated each other. Debug a production bug that only happens on Android or in Korea
+[04:18] that only happens on Android or in Korea or on Wi-Fi or after midnight. Or make
+[04:21] or on Wi-Fi or after midnight. Or make trade-offs between speed, scale, and
+[04:24] trade-offs between speed, scale, and safety. That's the part people don't
+[04:26] safety. That's the part people don't want to hear. Software engineering is
+[04:28] want to hear. Software engineering is basically a funnel for the hardest and
+[04:31] basically a funnel for the hardest and worst problems of the things you
+[04:33] worst problems of the things you supposedly love. So, if you're using
+[04:35] supposedly love. So, if you're using passion to decide whether you keep
+[04:37] passion to decide whether you keep going, you're going to quit the moment
+[04:39] going, you're going to quit the moment the work stops being romantic. And it
+[04:42] the work stops being romantic. And it always stops being romantic. Now, let's
+[04:45] always stops being romantic. Now, let's talk about the lie that God sold to all
+[04:47] talk about the lie that God sold to all of us. Do what you love and you will
+[04:49] of us. Do what you love and you will never work a day in your life. That
+[04:52] never work a day in your life. That sounds cute until you build something
+[04:54] sounds cute until you build something real. Because the only way to only do
+[04:58] real. Because the only way to only do what you love in coding is to stay small
+[05:00] what you love in coding is to stay small forever. If you want to only build fun
+[05:03] forever. If you want to only build fun little side projects, only write fresh
+[05:06] little side projects, only write fresh green field code and do UI, only do the
+[05:09] green field code and do UI, only do the cool stuff, then you also have to accept
+[05:11] cool stuff, then you also have to accept you won't scale, you won't be relied on,
+[05:13] you won't scale, you won't be relied on, you won't work on serious products, and
+[05:16] you won't work on serious products, and you won't earn serious money because
+[05:19] you won't earn serious money because real engineers deal with authentication
+[05:21] real engineers deal with authentication nightmares, database migrations, legacy
+[05:24] nightmares, database migrations, legacy refactors, security issues, performance
+[05:27] refactors, security issues, performance problems, CI/CD failures, and sometimes
+[05:30] problems, CI/CD failures, and sometimes the fun one. Getting cold at 2 a.m.
+[05:33] the fun one. Getting cold at 2 a.m. because production is on fire. Even with
+[05:36] because production is on fire. Even with AI, someone has to own the system.
+[05:39] AI, someone has to own the system. That's why do what you love only works
+[05:41] That's why do what you love only works if you're okay. Staying small forever.
+[05:44] if you're okay. Staying small forever. Now, here's the part that might staying
+[05:45] Now, here's the part that might staying a little. A lot of people aren't losing
+[05:48] a little. A lot of people aren't losing passion. They're using passion as an
+[05:51] passion. They're using passion as an excuse to avoid discomfort. I don't like
+[05:54] excuse to avoid discomfort. I don't like backend. I'm not into data structures.
+[05:57] backend. I'm not into data structures. DevOps isn't my thing. This is too hard.
+[05:59] DevOps isn't my thing. This is too hard. I'll switch stacks. Bro, that's not
+[06:02] I'll switch stacks. Bro, that's not preference. That's avoidance. Because
+[06:05] preference. That's avoidance. Because mastery comes from sitting with
+[06:07] mastery comes from sitting with confusion, wrestling with broken code,
+[06:09] confusion, wrestling with broken code, being bad publicly, shipping imperfect
+[06:12] being bad publicly, shipping imperfect things, debugging for hours. AI doesn't
+[06:15] things, debugging for hours. AI doesn't remove this. It just accelerates the
+[06:17] remove this. It just accelerates the people who can tolerate discomfort.
+[06:20] people who can tolerate discomfort. That's why some people are leveling up
+[06:22] That's why some people are leveling up fast right now and some people are
+[06:25] fast right now and some people are stuck. Same tools, different tolerance.
+[06:29] stuck. Same tools, different tolerance. And I'll say it straight. Proficiency
+[06:31] And I'll say it straight. Proficiency will take you further than passion ever
+[06:33] will take you further than passion ever will. So what do you replace passion
+[06:36] will. So what do you replace passion with? Responsibility. Because
+[06:38] with? Responsibility. Because responsibility is stable. Passion is
+[06:41] responsibility is stable. Passion is like a girlfriend in high school. It's
+[06:43] like a girlfriend in high school. It's obsessed with you one week and the next
+[06:46] obsessed with you one week and the next week it's like, "Yeah, I don't think
+[06:48] week it's like, "Yeah, I don't think this is working." Responsibility is
+[06:50] this is working." Responsibility is different. Responsibility is I said I
+[06:53] different. Responsibility is I said I was going to do it, so I'm doing it. In
+[06:56] was going to do it, so I'm doing it. In tech, real meaning doesn't come from
+[06:59] tech, real meaning doesn't come from syntax, frameworks, fancy side projects.
+[07:02] syntax, frameworks, fancy side projects. It comes from being useful, from solving
+[07:04] It comes from being useful, from solving real problems, supporting teammates,
+[07:07] real problems, supporting teammates, making systems reliable, being the
+[07:09] making systems reliable, being the person people trust. That's where
+[07:12] person people trust. That's where confidence comes from. That's where
+[07:14] confidence comes from. That's where income comes from. Not dopamine, not
+[07:17] income comes from. Not dopamine, not hype, not vibes. Pride comes from
+[07:20] hype, not vibes. Pride comes from reliability. Now, let's talk about the
+[07:23] reliability. Now, let's talk about the real killer. It's not difficulty, it's
+[07:26] real killer. It's not difficulty, it's boredom. Most aspiring devs don't fail
+[07:29] boredom. Most aspiring devs don't fail because they're dumb. They fail because
+[07:31] because they're dumb. They fail because they jump stacks every month, restart
+[07:34] they jump stacks every month, restart courses, abandon projects, never finish
+[07:37] courses, abandon projects, never finish anything. And AI has made this worse
+[07:40] anything. And AI has made this worse because now people start faster and quit
+[07:43] because now people start faster and quit faster. They chase novelty. They avoid
+[07:46] faster. They chase novelty. They avoid depth. But real mastery looks like one
+[07:49] depth. But real mastery looks like one stack for 6 to 12 months. One serious
+[07:51] stack for 6 to 12 months. One serious project, hundreds of iterations,
+[07:53] project, hundreds of iterations, thousands of tiny fix bugs. People don't
+[07:56] thousands of tiny fix bugs. People don't quit coding when it gets hard. They quit
+[07:59] quit coding when it gets hard. They quit when it gets boring. Which leads to the
+[08:01] when it gets boring. Which leads to the next truth. Motivation is unreliable. If
+[08:05] next truth. Motivation is unreliable. If you're waiting to feel like it, you're
+[08:07] you're waiting to feel like it, you're finished. What actually works is
+[08:09] finished. What actually works is reinforcement. Seeing progress, shipping
+[08:12] reinforcement. Seeing progress, shipping features, fixing bugs, helping real
+[08:15] features, fixing bugs, helping real users, solving problems. That's what
+[08:19] users, solving problems. That's what keeps you alive. Even pain becomes fuel
+[08:23] keeps you alive. Even pain becomes fuel when it's tied to meaning. Debugging
+[08:25] when it's tied to meaning. Debugging sucks, but it makes you competent.
+[08:28] sucks, but it makes you competent. Databases are confusing, but they make
+[08:31] Databases are confusing, but they make you dangerous. Tests are boring, but
+[08:34] you dangerous. Tests are boring, but they make you trusted. And AI should
+[08:37] they make you trusted. And AI should reinforce you, not replace you. Use it
+[08:40] reinforce you, not replace you. Use it to explain errors, generate test cases,
+[08:42] to explain errors, generate test cases, summarize docs, suggest refactors, not
+[08:45] summarize docs, suggest refactors, not think for you, support you. Now, let me
+[08:49] think for you, support you. Now, let me tell you the real skill. It's not React.
+[08:51] tell you the real skill. It's not React. It's not Python. It's not leak code.
+[08:53] It's not Python. It's not leak code. It's frustration tolerance. Can you fail
+[08:57] It's frustration tolerance. Can you fail 100 times, ship ugly things, look dumb
+[09:00] 100 times, ship ugly things, look dumb publicly, fix the same bug 10 times,
+[09:03] publicly, fix the same bug 10 times, stay when it's boring, because you are
+[09:06] stay when it's boring, because you are going to suck for a while. That's
+[09:08] going to suck for a while. That's normal. That's required. And I promise
+[09:11] normal. That's required. And I promise you, AI doesn't remove this face. It
+[09:14] you, AI doesn't remove this face. It compresses it for the people who stay.
+[09:16] compresses it for the people who stay. And let me hit you with something else.
+[09:19] And let me hit you with something else. You care too much about others opinions.
+[09:21] You care too much about others opinions. You're scared to post projects, ask
+[09:24] You're scared to post projects, ask questions, be wrong, look beginner,
+[09:27] questions, be wrong, look beginner, start late. And I get it. But the people
+[09:30] start late. And I get it. But the people you're worried about, they won't hire
+[09:32] you're worried about, they won't hire you. They won't mentor you. And they
+[09:34] you. They won't mentor you. And they sure as hell won't help you. and they
+[09:36] sure as hell won't help you. and they won't matter in five years. The only
+[09:39] won't matter in five years. The only voice that matters is the future version
+[09:42] voice that matters is the future version of you who either stuck it out or quit
+[09:45] of you who either stuck it out or quit early and regrets it. And listen,
+[09:47] early and regrets it. And listen, failure is mostly imaginary. You're not
+[09:51] failure is mostly imaginary. You're not behind. You're not too late. You are not
+[09:54] behind. You're not too late. You are not done. You're only out if you stop. Bad
+[09:58] done. You're only out if you stop. Bad interviews aren't failure. Bad projects
+[10:00] interviews aren't failure. Bad projects aren't failure. Bad code isn't failure.
+[10:04] aren't failure. Bad code isn't failure. Quitting is failure. AI didn't end
+[10:06] Quitting is failure. AI didn't end software careers. It ended lazy ones. It
+[10:09] software careers. It ended lazy ones. It ended the I don't have to understand it
+[10:12] ended the I don't have to understand it era. If you can build, you're safe. If
+[10:14] era. If you can build, you're safe. If you can't, you're vulnerable. All
+[10:17] you can't, you're vulnerable. All failure besides death is psychological.
+[10:20] failure besides death is psychological. So, here's what I want both of you to
+[10:22] So, here's what I want both of you to do. Pick a path and don't quit. Front
+[10:25] do. Pick a path and don't quit. Front end sucks. Backend sucks. DevOps sucks.
+[10:28] end sucks. Backend sucks. DevOps sucks. AI engineering sucks. Mobile sucks.
+[10:31] AI engineering sucks. Mobile sucks. Every path sucks. Every path takes
+[10:34] Every path sucks. Every path takes longer than you think. Winners aren't
+[10:36] longer than you think. Winners aren't smarter. They just don't stop. And
+[10:38] smarter. They just don't stop. And persistence makes you dangerous. Now,
+[10:42] persistence makes you dangerous. Now, let's get practical because I don't want
+[10:44] let's get practical because I don't want this to be a motivational TED talk. I
+[10:47] this to be a motivational TED talk. I want you to actually win. Here's the
+[10:49] want you to actually win. Here's the 2026 playbook. Step one, pick one stack,
+[10:53] 2026 playbook. Step one, pick one stack, not five. Nex.js, Postgress, Spring
+[10:56] not five. Nex.js, Postgress, Spring Boot, MySQL, Python, Fast API. Pick one
+[10:59] Boot, MySQL, Python, Fast API. Pick one and commit. for real. No stack hopping
+[11:02] and commit. for real. No stack hopping for dopamine. Step two, build one
+[11:05] for dopamine. Step two, build one serious project. Not tutorials, not
+[11:08] serious project. Not tutorials, not clones. A real problem, something you or
+[11:11] clones. A real problem, something you or your people actually need. Something you
+[11:13] your people actually need. Something you can explain like a story. Step three,
+[11:16] can explain like a story. Step three, use AI as a multiplier, not a crutch.
+[11:19] use AI as a multiplier, not a crutch. Use it to explain errors, generate
+[11:21] Use it to explain errors, generate tests, suggest refactors, explore
+[11:24] tests, suggest refactors, explore approaches, but never skip
+[11:26] approaches, but never skip understanding. If AI writes something
+[11:28] understanding. If AI writes something and you can't explain it, you didn't
+[11:31] and you can't explain it, you didn't build it. Step four, finish what you
+[11:34] build it. Step four, finish what you start. Shipping beats perfection. And
+[11:36] start. Shipping beats perfection. And step five, repeat for 12 months. That's
+[11:39] step five, repeat for 12 months. That's it. That's the game. And I'll end with
+[11:42] it. That's the game. And I'll end with this. The person you want to become is
+[11:46] this. The person you want to become is on the other side of the pain you're
+[11:47] on the other side of the pain you're trying to avoid. The boring reps, the
+[11:50] trying to avoid. The boring reps, the awkward early stage, the I don't get it
+[11:53] awkward early stage, the I don't get it phase, the nobody cares yet phase.
+[11:56] phase, the nobody cares yet phase. That's where the builders are made. So
+[11:58] That's where the builders are made. So to the 20-some grad, you didn't waste
+[12:01] to the 20-some grad, you didn't waste your time. You're just early now. Stop
+[12:04] your time. You're just early now. Stop looking for passion. Start building
+[12:06] looking for passion. Start building proof. And to my 40-year-old mentee,
+[12:10] proof. And to my 40-year-old mentee, you're not too late. You're just in the
+[12:12] you're not too late. You're just in the part where it's supposed to feel heavy.
+[12:15] part where it's supposed to feel heavy. Don't confuse heaviness with failure.
+[12:17] Don't confuse heaviness with failure. It's just the reps. You keep showing up
+[12:20] It's just the reps. You keep showing up and the world starts moving out of your
+[12:22] and the world starts moving out of your way. Now, close this video. Open your
+[12:25] way. Now, close this video. Open your laptop and go do that one thing that
+[12:27] laptop and go do that one thing that fixes inconsistency every time. One
+[12:30] fixes inconsistency every time. One stack, one project, one hour a day. No
+[12:33] stack, one project, one hour a day. No excuses. Let's go. And if you made it
+[12:35] excuses. Let's go. And if you made it this far into the video, comment below
+[12:38] this far into the video, comment below what sucks for you right now. What is
+[12:40] what sucks for you right now. What is your roadblock? Tell me. I am starting
+[12:43] your roadblock? Tell me. I am starting today and I will personally respond and
+[12:46] today and I will personally respond and advise you in the comment section. Just
+[12:48] advise you in the comment section. Just remember, if I can do it, you can do it,
+[12:50] remember, if I can do it, you can do it, too. Coding saves lives.
