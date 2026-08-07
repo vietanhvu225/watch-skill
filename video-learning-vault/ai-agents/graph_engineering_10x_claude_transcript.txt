@@ -1,0 +1,641 @@
+[00:01] I came on here to talk about a term I keep seeing going viral on Twitter. It's
+[00:04] keep seeing going viral on Twitter. It's graph engineering. You've seen it. I've
+[00:07] graph engineering. You've seen it. I've seen it, too. And I'll be honest, the
+[00:09] seen it, too. And I'll be honest, the first time I saw it, my reaction was,
+[00:11] first time I saw it, my reaction was, "Okay, is this a real thing, or did we
+[00:14] "Okay, is this a real thing, or did we just invent another phrase to make
+[00:16] just invent another phrase to make everyone feel behind?" Because AI has
+[00:19] everyone feel behind?" Because AI has this funny habit where every few weeks,
+[00:22] this funny habit where every few weeks, there's this new term that goes viral.
+[00:25] there's this new term that goes viral. Prompt engineering, context engineering,
+[00:27] Prompt engineering, context engineering, agent engineering, vibe coding, uh loop
+[00:31] agent engineering, vibe coding, uh loop engineering, and now graph engineering.
+[00:33] engineering, and now graph engineering. Some of these phrases are hype. Some of
+[00:36] Some of these phrases are hype. Some of them are actually useful. And graph
+[00:38] them are actually useful. And graph engineering is one of the useful ones,
+[00:40] engineering is one of the useful ones, because it gives you a much better way
+[00:42] because it gives you a much better way to think about how AI actually gets
+[00:45] to think about how AI actually gets done. So, in this episode, I'm going to
+[00:48] done. So, in this episode, I'm going to explain graph engineering in plain
+[00:50] explain graph engineering in plain English. By the end of this episode, I
+[00:53] English. By the end of this episode, I want you to be able to take one AI
+[00:56] want you to be able to take one AI workflow you already run, like customer
+[00:59] workflow you already run, like customer research, port triage, content
+[01:01] research, port triage, content production, or startup idea validation,
+[01:04] production, or startup idea validation, and turn it into a simple map of steps,
+[01:07] and turn it into a simple map of steps, checks, handoffs, loops, and human
+[01:09] checks, handoffs, loops, and human approvals. So, we're going to talk about
+[01:11] approvals. So, we're going to talk about all that and how you can do it. It's
+[01:12] all that and how you can do it. It's going to be clearly explained. So, let's
+[01:15] going to be clearly explained. So, let's get into it.
+[01:26] &gt;&gt; The simplest way to think about graph engineering is like this.
+[01:29] engineering is like this. Prompt engineering is how you ask the AI
+[01:32] Prompt engineering is how you ask the AI for a better question, and context
+[01:35] for a better question, and context engineering is how you give AI better
+[01:38] engineering is how you give AI better information. But graph engineering is
+[01:41] information. But graph engineering is how you design the work around the AI,
+[01:44] how you design the work around the AI, so the whole thing stops living inside
+[01:46] so the whole thing stops living inside inside one messy, giant AI chat.
+[01:51] inside one messy, giant AI chat. I'll give you an example. Imagine you're
+[01:53] I'll give you an example. Imagine you're researching a new new idea. The normal
+[01:56] researching a new new idea. The normal way most people use AI is they open up a
+[01:59] way most people use AI is they open up a chat and they say, "Should I build this
+[02:02] chat and they say, "Should I build this idea?"
+[02:03] idea?" The model will give you a confident
+[02:05] The model will give you a confident answer.
+[02:06] answer. It probably sounds pretty smart. It
+[02:08] It probably sounds pretty smart. It might give you the market size, a few
+[02:10] might give you the market size, a few competitors, maybe a go-to-market plan,
+[02:12] competitors, maybe a go-to-market plan, and you feel like you did the research.
+[02:15] and you feel like you did the research. But if you actually slow down, you
+[02:18] But if you actually slow down, you realize something a little uncomfortable
+[02:20] realize something a little uncomfortable happened.
+[02:22] happened. One model in one pass decided what
+[02:25] One model in one pass decided what mattered, researched the market,
+[02:27] mattered, researched the market, interpreted the evidence, wrote the
+[02:29] interpreted the evidence, wrote the recommendation, and graded it in its own
+[02:32] recommendation, and graded it in its own confidence. That's a lot of trust
+[02:35] confidence. That's a lot of trust to put into one blob of text. In some
+[02:39] to put into one blob of text. In some cases, you might spend years of your
+[02:41] cases, you might spend years of your life based on this one question that you
+[02:43] life based on this one question that you asked, and you might be working on the
+[02:45] asked, and you might be working on the wrong thing.
+[02:46] wrong thing. The graph version looks a lot different.
+[02:50] The graph version looks a lot different. So, a planner first breaks the question
+[02:54] So, a planner first breaks the question into angles. One research One researcher
+[02:57] into angles. One research One researcher looks at the customer,
+[02:59] looks at the customer, another looks at competitors, another
+[03:02] another looks at competitors, another looks at distribution, another looks at
+[03:04] looks at distribution, another looks at pricing, another looks at risks. Then a
+[03:06] pricing, another looks at risks. Then a skeptic will try to kill the weak
+[03:09] skeptic will try to kill the weak findings. Then a merger turns the
+[03:11] findings. Then a merger turns the surviving evidence into a one-page
+[03:13] surviving evidence into a one-page recommendation. And then you approve the
+[03:16] recommendation. And then you approve the decision before you act on it. The
+[03:19] decision before you act on it. The output might still be this written
+[03:20] output might still be this written report, but the work behind it is just
+[03:23] report, but the work behind it is just designed so much better. And that at its
+[03:26] designed so much better. And that at its core is graph engineering. You're taking
+[03:29] core is graph engineering. You're taking a messy AI task and turning it into a
+[03:32] a messy AI task and turning it into a workflow that you can actually manage.
+[03:35] workflow that you can actually manage. Now, let's define the basic vocabulary
+[03:38] Now, let's define the basic vocabulary without making this feel like a computer
+[03:40] without making this feel like a computer science lecture. By the way, I remember
+[03:42] science lecture. By the way, I remember learning about One of my first classes
+[03:44] learning about One of my first classes in university was
+[03:46] in university was graph theory and and and so it's a real
+[03:49] graph theory and and and so it's a real throwback for me. I will explain it to
+[03:50] throwback for me. I will explain it to you in the clearest way possible. When
+[03:53] you in the clearest way possible. When people say graph, they basically mean
+[03:56] people say graph, they basically mean jobs connected by arrows. Each job is a
+[04:00] jobs connected by arrows. Each job is a step in the workflow. The arrows show
+[04:03] step in the workflow. The arrows show what happens next. And the shared notes
+[04:06] what happens next. And the shared notes moving through the workflow are the
+[04:07] moving through the workflow are the state, which is just a fancy way of
+[04:10] state, which is just a fancy way of saying what does the system know so far?
+[04:13] saying what does the system know so far? So, that sounds technical for about 5
+[04:16] So, that sounds technical for about 5 seconds and then you realize that's
+[04:18] seconds and then you realize that's actually how work gets done in the real
+[04:20] actually how work gets done in the real world in in in reality.
+[04:23] world in in in reality. You know, think about customer support.
+[04:25] You know, think about customer support. When a customer writes in, the work is
+[04:27] When a customer writes in, the work is rarely just answer the ticket. First,
+[04:30] rarely just answer the ticket. First, you need to understand what kind of
+[04:31] you need to understand what kind of issue it is. Then you need to check the
+[04:34] issue it is. Then you need to check the customer's account history. Maybe you
+[04:36] customer's account history. Maybe you need to search for the docs for the
+[04:38] need to search for the docs for the right policy. Then you draft a response.
+[04:41] right policy. Then you draft a response. Then you decide whether this is risky
+[04:43] Then you decide whether this is risky enough that a human should review it
+[04:45] enough that a human should review it before going out. When you draw those
+[04:48] before going out. When you draw those steps out and connect them in an order,
+[04:50] steps out and connect them in an order, they actually depend on each other and
+[04:52] they actually depend on each other and that is a graph.
+[04:54] that is a graph. Take content for example. If I'm making
+[04:57] Take content for example. If I'm making a YouTube episode, the work isn't just
+[04:59] a YouTube episode, the work isn't just write a script. A good episode might
+[05:02] write a script. A good episode might start with research, a thesis, examples,
+[05:07] start with research, a thesis, examples, a hook, maybe a script,
+[05:10] a hook, maybe a script, then title ideas, then
+[05:13] then title ideas, then thumbnail uh directions, then I you
+[05:15] thumbnail uh directions, then I you know, an Excalidraw, and then a final
+[05:17] know, an Excalidraw, and then a final pass where I ask, "Does this sound like
+[05:19] pass where I ask, "Does this sound like a human being or does this sound like
+[05:21] a human being or does this sound like someone trapped inside a SaaS onboarding
+[05:23] someone trapped inside a SaaS onboarding flow?"
+[05:24] flow?" Some of those steps have to happen in
+[05:26] Some of those steps have to happen in order.
+[05:27] order. Some of those steps have have to happen
+[05:29] Some of those steps have have to happen in order. You probably want the thesis
+[05:32] in order. You probably want the thesis before the script. You probably want the
+[05:34] before the script. You probably want the script before the Excalidraw. But other
+[05:37] script before the Excalidraw. But other pieces can happen at the same time. One
+[05:40] pieces can happen at the same time. One re- One researcher can look for examples
+[05:43] re- One researcher can look for examples while another looks for
+[05:44] while another looks for counterarguments. One could study the
+[05:46] counterarguments. One could study the audience angle, while another looks for
+[05:49] audience angle, while another looks for practical workflows. Then, those outputs
+[05:52] practical workflows. Then, those outputs merge back into the script. And that's
+[05:55] merge back into the script. And that's where the graph starts paying because
+[05:57] where the graph starts paying because most people use AI in a straight line
+[06:00] most people use AI in a straight line because chat
+[06:02] because chat makes everything kind of feel
+[06:03] makes everything kind of feel sequential. You ask for research, then
+[06:06] sequential. You ask for research, then you ask for summary,
+[06:08] you ask for summary, then you ask for a draft, and then you
+[06:09] then you ask for a draft, and then you ask for edits, then you ask for titles.
+[06:12] ask for edits, then you ask for titles. That works for really simple things, but
+[06:14] That works for really simple things, but when the work has multiple pieces, the
+[06:16] when the work has multiple pieces, the straight-line chat starts to get slow
+[06:19] straight-line chat starts to get slow and fuzzy and actually hard to trust.
+[06:23] and fuzzy and actually hard to trust. What's cool about a graph is it lets you
+[06:25] What's cool about a graph is it lets you design the work more like a small team.
+[06:29] design the work more like a small team. One part plans, a few work in parallel,
+[06:32] One part plans, a few work in parallel, another checks the work, another merges
+[06:35] another checks the work, another merges it, and then the human approves the
+[06:38] it, and then the human approves the final step. And once that clicks in your
+[06:40] final step. And once that clicks in your head, uh it just gets a lot less
+[06:43] head, uh it just gets a lot less mysterious because there's two different
+[06:45] mysterious because there's two different things people mean when they say graph
+[06:48] things people mean when they say graph in AI. And this is actually where a lot
+[06:51] in AI. And this is actually where a lot of the confusion comes from. The first
+[06:53] of the confusion comes from. The first is what's called a knowledge graph.
+[06:56] is what's called a knowledge graph. A knowledge graph helps AI reason over
+[06:58] A knowledge graph helps AI reason over relationships over things.
+[07:01] relationships over things. For example, this customer works at this
+[07:04] For example, this customer works at this company, this company uses this product,
+[07:07] company, this company uses this product, this product connects to this tool, this
+[07:09] this product connects to this tool, this support issue relates to this feature,
+[07:12] support issue relates to this feature, and this feature is owned by this team.
+[07:15] and this feature is owned by this team. Knowledge graphs help because AI reason
+[07:19] Knowledge graphs help because AI reason across relationships in messy data. This
+[07:22] across relationships in messy data. This matters because normal rag often
+[07:25] matters because normal rag often retrieve chunks of text that looks
+[07:27] retrieve chunks of text that looks similar to the question, but it can
+[07:29] similar to the question, but it can struggle when the answer actually
+[07:31] struggle when the answer actually requires connecting different people
+[07:34] requires connecting different people across companies and topics and claims
+[07:37] across companies and topics and claims and events.
+[07:38] and events. You know, there's tools like you might
+[07:40] You know, there's tools like you might have heard of Microsoft graph rag,
+[07:42] have heard of Microsoft graph rag, because sometimes you just need AI to
+[07:44] because sometimes you just need AI to understand relationships inside a body
+[07:47] understand relationships inside a body of knowledge, not just to retrieve the
+[07:50] of knowledge, not just to retrieve the nearest paragraph. That is one version
+[07:53] nearest paragraph. That is one version of graph engineering. The second version
+[07:56] of graph engineering. The second version is what's called an agent graph. An
+[07:58] is what's called an agent graph. An agent graph is about how work moves. So,
+[08:01] agent graph is about how work moves. So, a planner hands work to researchers, the
+[08:04] a planner hands work to researchers, the researchers work in parallel, a skeptic
+[08:06] researchers work in parallel, a skeptic checks the findings, a synthesizer might
+[08:09] checks the findings, a synthesizer might merge the parts,
+[08:10] merge the parts, and a human will, you know, approve the
+[08:12] and a human will, you know, approve the final answer.
+[08:14] final answer. This episode is mostly about agent
+[08:16] This episode is mostly about agent graphs, actually, because that is the
+[08:17] graphs, actually, because that is the version you can start using today as a
+[08:20] version you can start using today as a founder, as a creator, as an operator,
+[08:22] founder, as a creator, as an operator, as a small team. So, I figured I'd do an
+[08:24] as a small team. So, I figured I'd do an episode focusing on that. Um the easiest
+[08:27] episode focusing on that. Um the easiest way to remember the difference, though,
+[08:30] way to remember the difference, though, is is kind of like this. Knowledge
+[08:32] is is kind of like this. Knowledge graphs help AI understand how
+[08:34] graphs help AI understand how information connects,
+[08:36] information connects, whereas agent graphs help AI understand
+[08:40] whereas agent graphs help AI understand how work should move. And eventually,
+[08:44] how work should move. And eventually, the truth is the best systems use both.
+[08:47] the truth is the best systems use both. The AI will understand relationships
+[08:49] The AI will understand relationships inside your business, and it will also
+[08:51] inside your business, and it will also know how to move through the right
+[08:53] know how to move through the right steps.
+[08:55] steps. Um but how can we make this tactical?
+[08:57] Um but how can we make this tactical? When should you use graph engineering?
+[08:59] When should you use graph engineering? Well, use it when the work has multiple
+[09:02] Well, use it when the work has multiple steps, multiple sources, maybe multiple
+[09:04] steps, multiple sources, maybe multiple paths, checks, risk, or approvals.
+[09:08] paths, checks, risk, or approvals. Honestly, if you're asking AI to
+[09:10] Honestly, if you're asking AI to brainstorm 10 names for a new project,
+[09:13] brainstorm 10 names for a new project, you probably don't need a graph. If
+[09:15] you probably don't need a graph. If you're asking AI to summarize a short
+[09:17] you're asking AI to summarize a short email, you probably don't need a graph.
+[09:20] email, you probably don't need a graph. But if you're using AI to do deep
+[09:23] But if you're using AI to do deep research, create a go-to-market plan,
+[09:25] research, create a go-to-market plan, triage support tickets, review code,
+[09:29] triage support tickets, review code, prepare for sales calls, synthesize
+[09:31] prepare for sales calls, synthesize customer feedback, or produce recurring
+[09:34] customer feedback, or produce recurring content workflow, that's when graph
+[09:36] content workflow, that's when graph thinking actually starts to matter a
+[09:38] thinking actually starts to matter a lot. And the rule is pretty simple. Use
+[09:41] lot. And the rule is pretty simple. Use a graph when the work has multiple
+[09:43] a graph when the work has multiple steps, some steps can happen at the same
+[09:46] steps, some steps can happen at the same time, and the final output needs
+[09:49] time, and the final output needs checking before it matters. A diamond
+[09:52] checking before it matters. A diamond starts with one question, splits into
+[09:54] starts with one question, splits into multiple parallel paths, checks the
+[09:56] multiple parallel paths, checks the work, and then merges everything into
+[09:59] work, and then merges everything into back into one answer. So, here's a
+[10:02] back into one answer. So, here's a here's the startup idea version. Let's
+[10:04] here's the startup idea version. Let's say the question is, "Should I launch an
+[10:07] say the question is, "Should I launch an AI bookkeeping product for Shopify
+[10:10] AI bookkeeping product for Shopify merchants?" The messy chat version is
+[10:13] merchants?" The messy chat version is one big question and one big answer.
+[10:16] one big question and one big answer. The graph version starts with a planner.
+[10:19] The graph version starts with a planner. So, the planner would say something
+[10:21] So, the planner would say something like, "To answer this well, we need to
+[10:23] like, "To answer this well, we need to understand the customer pain, the
+[10:25] understand the customer pain, the competitive landscape, the go-to-market
+[10:28] competitive landscape, the go-to-market wedge, the pricing pressure, and the
+[10:30] wedge, the pricing pressure, and the risks." And then the work splits. You
+[10:33] risks." And then the work splits. You have one researcher who studies Shopify
+[10:36] have one researcher who studies Shopify merchants and tries to understand the
+[10:39] merchants and tries to understand the bookkeeping pain. Are they using
+[10:41] bookkeeping pain. Are they using QuickBooks? Are they using spreadsheets?
+[10:44] QuickBooks? Are they using spreadsheets? Are they hiring bookkeepers? Are they
+[10:46] Are they hiring bookkeepers? Are they annoyed at tax time? Are they looking
+[10:48] annoyed at tax time? Are they looking for automation or do they just want
+[10:51] for automation or do they just want someone to clean up the mess once a
+[10:53] someone to clean up the mess once a month? You'll have another researcher
+[10:55] month? You'll have another researcher who's studying competitors.
+[10:57] who's studying competitors. Are there already Shopify bookkeeping
+[11:00] Are there already Shopify bookkeeping tools? Are there accounting firms
+[11:01] tools? Are there accounting firms building this manually? Are App Store
+[11:03] building this manually? Are App Store products solving this at all? Are
+[11:06] products solving this at all? Are freelancers on Upwork or Fiverr doing
+[11:09] freelancers on Upwork or Fiverr doing the work in a way that software could
+[11:11] the work in a way that software could partially replace?
+[11:13] partially replace? Maybe you have another researcher who's
+[11:15] Maybe you have another researcher who's studying the distribution. Where do
+[11:17] studying the distribution. Where do Shopify merchants actually hang out?
+[11:19] Shopify merchants actually hang out? What newsletters do they read? What
+[11:22] What newsletters do they read? What agencies already have trust with them?
+[11:24] agencies already have trust with them? What Shopify app categories do they
+[11:26] What Shopify app categories do they search? What search terms reveal buying
+[11:29] search? What search terms reveal buying intent? Those three jobs can happen at
+[11:32] intent? Those three jobs can happen at the same time because they don't depend
+[11:35] the same time because they don't depend on each other. Then comes the skeptic.
+[11:39] on each other. Then comes the skeptic. The skeptic asks, what claims are
+[11:41] The skeptic asks, what claims are actually supported? Which evidence is
+[11:43] actually supported? Which evidence is stale because you're going to have data
+[11:44] stale because you're going to have data that is just old. Which competitor is
+[11:47] that is just old. Which competitor is being ignored? Where are we confusing
+[11:49] being ignored? Where are we confusing pain with willingness to pay? Where did
+[11:52] pain with willingness to pay? Where did the AI sound confident without proving
+[11:56] the AI sound confident without proving anything? And this step matters more
+[11:59] anything? And this step matters more than people think. A lot of AI research
+[12:02] than people think. A lot of AI research fails because the same model that writes
+[12:05] fails because the same model that writes the answer also grades the answer.
+[12:10] the answer also grades the answer. That is like asking someone to write
+[12:12] That is like asking someone to write their own performance review and then
+[12:15] their own performance review and then being shocked when they describe
+[12:17] being shocked when they describe themselves as a vision- a visionary.
+[12:19] themselves as a vision- a visionary. Come on. In a good graph, checking is
+[12:23] Come on. In a good graph, checking is its own job. Then comes the merge. The
+[12:27] its own job. Then comes the merge. The merge step takes the surviving evidence
+[12:30] merge step takes the surviving evidence and turns it into a recommendation.
+[12:33] and turns it into a recommendation. Should we pursue this? Should we pause
+[12:34] Should we pursue this? Should we pause it? Should we kill it? What is the
+[12:37] it? Should we kill it? What is the wedge? Who's the first customer? What
+[12:40] wedge? Who's the first customer? What should we test this week? And what
+[12:43] should we test this week? And what evidence would actually change our mind?
+[12:45] evidence would actually change our mind? And finally, you have the human gate.
+[12:48] And finally, you have the human gate. That's where you decide what to do next.
+[12:50] That's where you decide what to do next. You might decide to record a landing
+[12:52] You might decide to record a landing page teardown of a Shopify merchants.
+[12:55] page teardown of a Shopify merchants. You might decide to interview 10 Shopify
+[12:58] You might decide to interview 10 Shopify uh agency owners. You might decide to
+[13:01] uh agency owners. You might decide to build a tiny calculator that estimates
+[13:04] build a tiny calculator that estimates bookkeeping cleanup costs. Or hey, you
+[13:06] bookkeeping cleanup costs. Or hey, you might decide the idea is way too crowded
+[13:09] might decide the idea is way too crowded and you just want to move on. But that
+[13:11] and you just want to move on. But that is the point. Graph engineering does not
+[13:14] is the point. Graph engineering does not magically make the decision for you. It
+[13:16] magically make the decision for you. It gives you a better way to produce the
+[13:19] gives you a better way to produce the evidence you use to make the decision.
+[13:22] evidence you use to make the decision. Now, this is where I think people get
+[13:24] Now, this is where I think people get too fancy too quickly.
+[13:27] too fancy too quickly. I would start way simpler than you see
+[13:30] I would start way simpler than you see on on Twitter people using LangGraph,
+[13:32] on on Twitter people using LangGraph, you see people using AutoGen, or some
+[13:34] you see people using AutoGen, or some custom agent framework on day one. For
+[13:37] custom agent framework on day one. For your first graph, you can actually run
+[13:40] your first graph, you can actually run it manually behind the scenes. I don't
+[13:42] it manually behind the scenes. I don't know why more people don't do this. I
+[13:44] know why more people don't do this. I could show you exactly how to do it, but
+[13:47] could show you exactly how to do it, but that just might be boring. The important
+[13:49] that just might be boring. The important thing is the structure. Give each job
+[13:52] thing is the structure. Give each job its own lane. One lane does customer
+[13:54] its own lane. One lane does customer research, another lane does competitor
+[13:57] research, another lane does competitor research, another lane does distribution
+[13:59] research, another lane does distribution research. Then the checker lane attacks
+[14:02] research. Then the checker lane attacks the evidence, then the merge lane turns
+[14:05] the evidence, then the merge lane turns the surviving evidence into a
+[14:07] the surviving evidence into a recommendation. That is already graph
+[14:10] recommendation. That is already graph engineering. It's like level one of
+[14:11] engineering. It's like level one of graph engineering. Yes, it's slower than
+[14:14] graph engineering. Yes, it's slower than a fully automated system, but it's way
+[14:17] a fully automated system, but it's way easier to understand. And if the manual
+[14:19] easier to understand. And if the manual version doesn't produce way better work,
+[14:22] version doesn't produce way better work, automating it, honestly, will just
+[14:24] automating it, honestly, will just produce mediocre work way faster.
+[14:28] produce mediocre work way faster. The first rep is to draw the graph
+[14:30] The first rep is to draw the graph before you automate the graph.
+[14:33] before you automate the graph. For me,
+[14:34] For me, I would do this with a blank Excalidraw
+[14:36] I would do this with a blank Excalidraw or TLDraw a TLDraw board.
+[14:40] or TLDraw a TLDraw board. I would write the final outcome at the
+[14:41] I would write the final outcome at the top.
+[14:43] top. Then I would draw the jobs,
+[14:45] Then I would draw the jobs, planner, customer researcher,
+[14:48] planner, customer researcher, competitor researcher, distribution
+[14:51] competitor researcher, distribution researcher, skeptic, merge, human
+[14:54] researcher, skeptic, merge, human approval.
+[14:56] approval. Then I would draw the arrows. The
+[14:57] Then I would draw the arrows. The planner feeds the three researchers. The
+[15:00] planner feeds the three researchers. The researchers feed the skeptic. The
+[15:03] researchers feed the skeptic. The skeptic feeds the merge.
+[15:05] skeptic feeds the merge. The merge feeds the human decision.
+[15:08] The merge feeds the human decision. And that's enough.
+[15:11] And that's enough. Now, once that works three times
+[15:13] Now, once that works three times manually, then I would think about all
+[15:15] manually, then I would think about all the tools. The beginner version is a
+[15:17] the tools. The beginner version is a manual run with with separate lanes. But
+[15:21] manual run with with separate lanes. But the intermediate version is Claude code,
+[15:23] the intermediate version is Claude code, code acts, or repo where each step
+[15:26] code acts, or repo where each step writes files. The planner writes
+[15:29] writes files. The planner writes plan.md,
+[15:30] plan.md, the researcher writes customer.md,
+[15:34] the researcher writes customer.md, competitors.md,
+[15:35] competitors.md, and distribution.md,
+[15:37] and distribution.md, and the skeptic writes review.md. The
+[15:40] and the skeptic writes review.md. The merge step writes recommendation.md.
+[15:43] merge step writes recommendation.md. What's cool about that is it leaves a
+[15:45] What's cool about that is it leaves a paper trail and that's that's really
+[15:47] paper trail and that's that's really nice. You can see what happened. You can
+[15:50] nice. You can see what happened. You can compare versions and you can actually
+[15:52] compare versions and you can actually and you can actually reuse the structure
+[15:53] and you can actually reuse the structure next week or a few weeks later. Now, the
+[15:56] next week or a few weeks later. Now, the advanced version is when you do use
+[15:58] advanced version is when you do use something like LangGraph,
+[16:01] something like LangGraph, AutoGen Graph Flow, n8n, make.com, or
+[16:06] AutoGen Graph Flow, n8n, make.com, or your own small scripts to actually
+[16:08] your own small scripts to actually orchestrate the graph.
+[16:10] orchestrate the graph. So, LangGraph is actually really useful
+[16:12] So, LangGraph is actually really useful when you want state checkpoints,
+[16:14] when you want state checkpoints, persistence, human-in-the-loop
+[16:16] persistence, human-in-the-loop approvals, and more reliable control
+[16:19] approvals, and more reliable control over how an agent workflow runs.
+[16:22] over how an agent workflow runs. Then you have something like AutoGen
+[16:24] Then you have something like AutoGen Graph Flow, and that's useful when you
+[16:27] Graph Flow, and that's useful when you want directed workflow with sequential
+[16:29] want directed workflow with sequential steps, parallel steps, conditional
+[16:32] steps, parallel steps, conditional branches, and loops.
+[16:34] branches, and loops. Tools like n8n, make.com are are useful
+[16:38] Tools like n8n, make.com are are useful when the graph touches everyday business
+[16:41] when the graph touches everyday business systems like Slack, email, airtable, or
+[16:44] systems like Slack, email, airtable, or your CRM.
+[16:46] your CRM. But again, the tool is not the point. Uh
+[16:49] But again, the tool is not the point. Uh the tool should come after the workflow.
+[16:51] the tool should come after the workflow. If you automate a workflow you do not
+[16:53] If you automate a workflow you do not understand, you get a mess. If you
+[16:56] understand, you get a mess. If you understand the workflow first,
+[16:57] understand the workflow first, automation then becomes super obvious,
+[17:00] automation then becomes super obvious, and I can do a graph engineering
+[17:02] and I can do a graph engineering advanced tutorial if people are
+[17:04] advanced tutorial if people are interested uh using things like
+[17:06] interested uh using things like LangGraph LangGraph or Claude code.
+[17:09] LangGraph LangGraph or Claude code. Uh but for the purpose of this episode,
+[17:11] Uh but for the purpose of this episode, I think we just want to get to level one
+[17:13] I think we just want to get to level one and level two. Okay, so you now
+[17:17] and level two. Okay, so you now hopefully understand what graph
+[17:19] hopefully understand what graph engineering is at a high level. But, how
+[17:22] engineering is at a high level. But, how can you actually integrate this into
+[17:24] can you actually integrate this into your startup, into your business
+[17:26] your startup, into your business to start making more money, or creating
+[17:29] to start making more money, or creating better products, or
+[17:31] better products, or just generating a lot of value.
+[17:33] just generating a lot of value. Uh the one that comes to mind uh first
+[17:37] Uh the one that comes to mind uh first is customer support. So, a simple
+[17:39] is customer support. So, a simple support graph
+[17:41] support graph might start by classifying the issue.
+[17:44] might start by classifying the issue. Is it billing? Is it product confusing?
+[17:46] Is it billing? Is it product confusing? Maybe it's a bug, or cancellation risk,
+[17:48] Maybe it's a bug, or cancellation risk, or maybe it's something else.
+[17:51] or maybe it's something else. Then the graph checks account context.
+[17:54] Then the graph checks account context. So, is it a new customer? Are they high
+[17:56] So, is it a new customer? Are they high value? Have they written in before? Are
+[18:00] value? Have they written in before? Are they frustrated?
+[18:01] they frustrated? Then it searches the docs, or internal
+[18:04] Then it searches the docs, or internal policies. You might have like a whole
+[18:06] policies. You might have like a whole wiki for your company, maybe a notion
+[18:08] wiki for your company, maybe a notion board, maybe it goes and explores that.
+[18:10] board, maybe it goes and explores that. Then it drafts a reply. Then a checker
+[18:14] Then it drafts a reply. Then a checker reviews the reply for accuracy, tone,
+[18:16] reviews the reply for accuracy, tone, and risk. Then a human approves anything
+[18:20] and risk. Then a human approves anything involving refunds, account changes,
+[18:22] involving refunds, account changes, angry customers, legal risk, or promises
+[18:26] angry customers, legal risk, or promises that a company just might regret later.
+[18:29] that a company just might regret later. And that's the graph. And it's better
+[18:31] And that's the graph. And it's better than saying AI answered the support
+[18:33] than saying AI answered the support ticket, because the support ticket is
+[18:35] ticket, because the support ticket is not the real workflow. The real workflow
+[18:38] not the real workflow. The real workflow is understanding, and researching, and
+[18:40] is understanding, and researching, and drafting, and checking, and approving.
+[18:43] drafting, and checking, and approving. It's probably starting to click now.
+[18:45] It's probably starting to click now. Content Content creation is just another
+[18:49] Content Content creation is just another uh example that comes top of mind. A
+[18:51] uh example that comes top of mind. A content graph might start with research,
+[18:53] content graph might start with research, then it creates a thesis, then it finds
+[18:56] then it creates a thesis, then it finds examples, then it writes a hook, then it
+[18:58] examples, then it writes a hook, then it drafts a script, then a checker asks
+[19:00] drafts a script, then a checker asks whether the examples are specific,
+[19:02] whether the examples are specific, whether the pacing works, whether the
+[19:04] whether the pacing works, whether the hook earns attention based on what's,
+[19:07] hook earns attention based on what's, you know, formats that are working, and
+[19:09] you know, formats that are working, and whether the writing sounds like a person
+[19:12] whether the writing sounds like a person something like the person actually would
+[19:14] something like the person actually would say. Then the graph can branch into
+[19:16] say. Then the graph can branch into title ideas, thumbnail concepts,
+[19:18] title ideas, thumbnail concepts, captions,
+[19:20] captions, B-roll, things like that. And that's
+[19:22] B-roll, things like that. And that's also closer to how a content lead, a
+[19:25] also closer to how a content lead, a real content lead that you would hire to
+[19:27] real content lead that you would hire to help you create content, would actually
+[19:29] help you create content, would actually do. Another great example is coding. A
+[19:33] do. Another great example is coding. A coding graph might start with a plan,
+[19:35] coding graph might start with a plan, then one agent edits the code, another
+[19:37] then one agent edits the code, another reviews the diff, another runs tests,
+[19:40] reviews the diff, another runs tests, another checks the UI in a browser,
+[19:42] another checks the UI in a browser, another looks for edge cases, and then
+[19:44] another looks for edge cases, and then you have a human being actually
+[19:46] you have a human being actually approving the final pull request. And
+[19:49] approving the final pull request. And that's basically where all these AI
+[19:51] that's basically where all these AI coding tools are going. The model
+[19:53] coding tools are going. The model writing the code is only one part of the
+[19:55] writing the code is only one part of the workflow, and there's leverage in all
+[19:57] workflow, and there's leverage in all the planning and testing and reviewing
+[20:00] the planning and testing and reviewing and inspecting and deciding what is
+[20:02] and inspecting and deciding what is actually safe to ship. And that's
+[20:05] actually safe to ship. And that's actually an important point. Like a big
+[20:06] actually an important point. Like a big reason why graph engineering matters is
+[20:10] reason why graph engineering matters is it makes quality less dependent on
+[20:13] it makes quality less dependent on summer someone remembering a perfect
+[20:15] summer someone remembering a perfect prompt to ask their LLM. It makes
+[20:18] prompt to ask their LLM. It makes reviews way more consistent. It makes
+[20:20] reviews way more consistent. It makes delegation in general way cleaner. It
+[20:23] delegation in general way cleaner. It makes approval way more explicit. It
+[20:26] makes approval way more explicit. It gives you a place to add tools and
+[20:29] gives you a place to add tools and memory and checks and permissions over
+[20:31] memory and checks and permissions over time, and it turns AI work from just
+[20:35] time, and it turns AI work from just like chat into this operating system.
+[20:38] like chat into this operating system. And that that really does feel like
+[20:39] And that that really does feel like you're living in the future once you get
+[20:41] you're living in the future once you get to that place. Now there is one mistake
+[20:43] to that place. Now there is one mistake that I want to warn against, which is
+[20:46] that I want to warn against, which is more agents don't automatically mean
+[20:49] more agents don't automatically mean better output. Sometimes actually more
+[20:52] better output. Sometimes actually more agents mean more noise.
+[20:55] agents mean more noise. Sometimes it means five AI workers
+[20:57] Sometimes it means five AI workers confidently repeating the same wrong
+[21:00] confidently repeating the same wrong idea. Sometimes it means the system
+[21:03] idea. Sometimes it means the system spends more time coordinating than
+[21:05] spends more time coordinating than thinking. So the goal is not to make the
+[21:07] thinking. So the goal is not to make the biggest graph possible. I've seen people
+[21:09] biggest graph possible. I've seen people on X,
+[21:10] on X, you know, go viral with these big big
+[21:12] you know, go viral with these big big graphs, but that's not the goal. The
+[21:14] graphs, but that's not the goal. The goal is actually to make the smallest
+[21:16] goal is actually to make the smallest graph that improves the quality of work.
+[21:19] graph that improves the quality of work. And that's a really important
+[21:20] And that's a really important distinction because a good graph should
+[21:22] distinction because a good graph should remove fake waiting and it should
+[21:25] remove fake waiting and it should separate workers from checkers. And
+[21:27] separate workers from checkers. And really it should be human approval where
+[21:30] really it should be human approval where mistakes are expensive. And it should
+[21:33] mistakes are expensive. And it should stop when the answer is good enough.
+[21:35] stop when the answer is good enough. Shouldn't need to continue. And it
+[21:37] Shouldn't need to continue. And it should leave behind the useful state,
+[21:39] should leave behind the useful state, the meeting notes, the evidence, the
+[21:41] the meeting notes, the evidence, the drafts, the sources, and the decision so
+[21:44] drafts, the sources, and the decision so that you can use it later. And the And
+[21:46] that you can use it later. And the And that By the way, the last point is
+[21:47] that By the way, the last point is underrated because the real compounding
+[21:50] underrated because the real compounding value of gra- graph engineering isn't
+[21:53] value of gra- graph engineering isn't just that one task gets better. It's
+[21:55] just that one task gets better. It's that your work starts producing memory.
+[21:58] that your work starts producing memory. What do I mean by that? I mean that
+[22:00] What do I mean by that? I mean that every customer research graph creates
+[22:02] every customer research graph creates better customer notes. Every content
+[22:05] better customer notes. Every content graph creates better examples and
+[22:07] graph creates better examples and audience insights. Every support graph
+[22:09] audience insights. Every support graph creates better product feedback. And
+[22:12] creates better product feedback. And that's where the context becomes the
+[22:13] that's where the context becomes the moat because the graph produces the
+[22:16] moat because the graph produces the work, but it also produces the memory
+[22:18] work, but it also produces the memory that makes the next graph smarter. So,
+[22:20] that makes the next graph smarter. So, it becomes this like asset for you. So,
+[22:23] it becomes this like asset for you. So, if you want to get into graph
+[22:24] if you want to get into graph engineering and you're like, "How do I
+[22:26] engineering and you're like, "How do I start?" Here's Here's a way to think
+[22:28] start?" Here's Here's a way to think about it.
+[22:29] about it. Um I would pick one workflow I already
+[22:31] Um I would pick one workflow I already run with AI every week. Maybe it's
+[22:34] run with AI every week. Maybe it's researching ideas or preparing podcast
+[22:37] researching ideas or preparing podcast episodes, uh reviewing landing pages,
+[22:40] episodes, uh reviewing landing pages, analyzing customer feedback.
+[22:43] analyzing customer feedback. Then I would write the final output in
+[22:45] Then I would write the final output in one sentence. For example, I want a
+[22:47] one sentence. For example, I want a one-page recommendation on whether this
+[22:50] one-page recommendation on whether this startup idea is worth testing.
+[22:52] startup idea is worth testing. And then I would list the jobs a great
+[22:55] And then I would list the jobs a great human would do.
+[22:57] human would do. They would clarify the question. They
+[22:59] They would clarify the question. They would research the customers. They would
+[23:02] would research the customers. They would research competitors. They would look
+[23:04] research competitors. They would look for distribution. They would look for
+[23:06] for distribution. They would look for risks. They would check the evidence.
+[23:09] risks. They would check the evidence. They would make the recommendation. And
+[23:11] They would make the recommendation. And then I would draw arrows where the work
+[23:14] then I would draw arrows where the work actually depends on another step.
+[23:17] actually depends on another step. So, what do I mean by that? Customer
+[23:19] So, what do I mean by that? Customer customer research and competitor
+[23:21] customer research and competitor research could happen at the same time.
+[23:24] research could happen at the same time. The skeptic needs the research before it
+[23:26] The skeptic needs the research before it can check it. And the final
+[23:28] can check it. And the final recommendation needs the skeptic pass
+[23:31] recommendation needs the skeptic pass before it can merge the evidence. Then I
+[23:34] before it can merge the evidence. Then I would add one human gate before the
+[23:36] would add one human gate before the expensive decision. If the output is a
+[23:39] expensive decision. If the output is a private memo, maybe the human gate is
+[23:42] private memo, maybe the human gate is light. If the output is a customer
+[23:44] light. If the output is a customer email, a public post, code deploys, a
+[23:47] email, a public post, code deploys, a refund, or anything touching production
+[23:50] refund, or anything touching production data, you got to have a human gate
+[23:52] data, you got to have a human gate that's stricter. Then I would run it
+[23:54] that's stricter. Then I would run it manually once. This is the whole first
+[23:58] manually once. This is the whole first rep that we want to get good at. You
+[24:00] rep that we want to get good at. You don't have to create this giant
+[24:01] don't have to create this giant automation project.
+[24:04] automation project. Just create the jobs and the arrows. And
+[24:07] Just create the jobs and the arrows. And after you do this once, you start seeing
+[24:09] after you do this once, you start seeing AI work differently.
+[24:11] AI work differently. Cuz you're not thinking about like,
+[24:13] Cuz you're not thinking about like, "Okay, I need to do the most perfect
+[24:14] "Okay, I need to do the most perfect prompt ever. What What is that What is
+[24:16] prompt ever. What What is that What is the perfect prompt for this task I'm
+[24:18] the perfect prompt for this task I'm trying to do?" You start thinking about,
+[24:20] trying to do?" You start thinking about, "Okay, what's the most perfect workflow
+[24:22] "Okay, what's the most perfect workflow for this?" And then uh you start
+[24:25] for this?" And then uh you start designing a path that produces that
+[24:28] designing a path that produces that answer. And that's why I think graph
+[24:30] answer. And that's why I think graph engineering in general is a a concept
+[24:33] engineering in general is a a concept that is worth paying uh attention to.
+[24:35] that is worth paying uh attention to. It's really like the next logical step
+[24:38] It's really like the next logical step after prompting. And I think the people
+[24:40] after prompting. And I think the people who get the most out of AI will be the
+[24:43] who get the most out of AI will be the people who know how to break down work
+[24:45] people who know how to break down work into the right pieces, give each piece
+[24:48] into the right pieces, give each piece the right context, check the output, and
+[24:50] the right context, check the output, and keep the human in the right place. So,
+[24:53] keep the human in the right place. So, now that, you know, we're towards the
+[24:55] now that, you know, we're towards the end of the episode, here's what I would
+[24:57] end of the episode, here's what I would do to try to learn this. I would pick
+[25:00] do to try to learn this. I would pick one workflow you already run, draw those
+[25:02] one workflow you already run, draw those jobs and arrows, delete the fake
+[25:04] jobs and arrows, delete the fake waiting, run the independent jobs in
+[25:06] waiting, run the independent jobs in parallel, add a skeptic, merge the
+[25:08] parallel, add a skeptic, merge the survivors, approve the final step
+[25:10] survivors, approve the final step yourself, and there you have it. That'll
+[25:12] yourself, and there you have it. That'll be your first graph.
+[25:14] be your first graph. And once you have one graph that works,
+[25:16] And once you have one graph that works, you're not just prompting AI anymore,
+[25:18] you're not just prompting AI anymore, you're managing AI work. It's sort of
+[25:20] you're managing AI work. It's sort of this like next level in uh
+[25:23] this like next level in uh being an agent manager and and really
+[25:26] being an agent manager and and really just like stepping yourself into this
+[25:28] just like stepping yourself into this new world uh deep into this new world
+[25:32] new world uh deep into this new world where
+[25:33] where uh you're getting the most out of AI to
+[25:34] uh you're getting the most out of AI to build out your dreams, to take ideas and
+[25:37] build out your dreams, to take ideas and put them out there, and getting, you
+[25:39] put them out there, and getting, you know, something I just think a lot about
+[25:40] know, something I just think a lot about now is just like how do I get the most
+[25:42] now is just like how do I get the most out of these platforms?
+[25:44] out of these platforms? Um and graph engineering is just a
+[25:46] Um and graph engineering is just a concept that helps you think about that.
+[25:49] concept that helps you think about that. So, there you have it, folks.
+[25:52] So, there you have it, folks. Uh graph engineering clearly explained.
+[25:55] Uh graph engineering clearly explained. Um hope that it got your creative juices
+[25:57] Um hope that it got your creative juices flowing. Hope it's been helpful. Um
+[26:01] flowing. Hope it's been helpful. Um My name's Greg Eisenberg. I'm the host
+[26:03] My name's Greg Eisenberg. I'm the host of the Startup Ideas podcast. For more,
+[26:06] of the Startup Ideas podcast. For more, uh you know, like, comment, and
+[26:08] uh you know, like, comment, and subscribe. Follow on on uh Spotify and
+[26:11] subscribe. Follow on on uh Spotify and Apple. And uh
+[26:14] Apple. And uh you know, I feel grateful that you're
+[26:16] you know, I feel grateful that you're here. Um that I I'm able to teach you,
+[26:19] here. Um that I I'm able to teach you, give you these concepts.
+[26:22] give you these concepts. Um
+[26:22] Um and I just can't wait to see what you
+[26:24] and I just can't wait to see what you build. I'm rooting for you. Have a
+[26:26] build. I'm rooting for you. Have a creative day, and I'll see you next
+[26:27] creative day, and I'll see you next time.

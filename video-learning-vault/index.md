@@ -7,8 +7,16 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
-### 🟢 Hôm nay (05/08/2026)
-*Nhóm 6 video vừa được phân tích và đẩy lên hôm nay:*
+### 🟢 Hôm nay (08/08/2026)
+*Nhóm 2 video vừa được phân tích và đẩy lên hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `1c9007f9afa7a4e0` | Anthropic Just Fixed Graph Engineering's Greatest Flaw | Validation Graphs | [anthropic_fixed_graph_engineering_flaw.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) | 14:06 |
+| `63f7bc690347a2eb` | Why Graph Engineering will 10x your Claude/Codex | Graph Engineering | [graph_engineering_10x_claude.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/graph_engineering_10x_claude.md) | 26:28 |
+
+### 🟢 Vài ngày trước (05/08/2026)
+*Nhóm 5 video đã phân tích hôm trước:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -19,23 +27,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 | `a858c3708e06389d` | If you are ambitious but inconsistent (in tech), please watch this | Career Playbook | [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) | 12:51 |
 | `9acffc384b62f6a9` | I'm a Senior Google AI PM. Here's How I Build Loops | Loop Engineering | [senior_google_ai_pm_how_i_build_loops.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/senior_google_ai_pm_how_i_build_loops.md) | 34:23 |
 
-### 🟢 Hôm qua (04/08/2026)
-*Nhóm 3 video đã phân tích ngày hôm qua:*
-
+### 🟢 Tuần trước (03/08/2026 - 04/08/2026)
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
 | `3decb06030d1bf87` | Herdr - The New Age of Modern Terminal Multiplexer | Terminal Tools | [herdr_terminal_multiplexer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/herdr_terminal_multiplexer.md) | 19:25 |
 | `7b31de6eea9c4516` | MCP Apps: Extending the Frontier | Interactive UI | [mcp_apps_extending_frontier.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/mcp_apps_extending_frontier.md) | 18:00 |
 | `8c9cbc216c898efe` | Don't Ship Skills Without Evals | Agent Evals | [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) | 21:25 |
-
-### 🟢 Tuần này (03/08/2026)
-| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
-| :--- | :--- | :--- | :--- | :--- |
 | `acbbc7f09f79f49d` | AI tools for Forward Deployed Engineering | AI FDE & Context | [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) | 20:00 |
 
-### 🟢 Tuần trước (26/07/2026 - 27/07/2026)
-*Nhóm 6 video đã phân tích tuần trước:*
-
+### 🟢 Tháng trước (11/07/2026 - 27/07/2026)
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
 | `cc024710b796fbf1` | Loop Engineering from First Principles | Control Loop | [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) | 18:00 |
@@ -44,10 +44,6 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 | `987a000f8c3b275e` | In the Land of AI Agents, the Verifiers Are King | Evals & Quality | [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) | 18:00 |
 | `efaecd5b5991a381` | cognee 1.0: Self-improving memory for agents | Agent Memory | [cognee_memory.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) | 03:01 |
 | `143af38e605641db` | Why We Killed Our Multi-Agent Pipeline | Agent Architecture | [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) | 15:00 |
-
-### 🟡 Trước đó (11/07/2026 - 16/07/2026)
-| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
-| :--- | :--- | :--- | :--- | :--- |
 | `8a893f42dc4c486c` | Google OKF: The Simple Folder That Gives AI Agents Your Entire Company Data | Enterprise Context | [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) | 08:01 |
 | `15657c4a3940e9c7` | Self-Improving AI Agents \| Evolving the Harness, Not the Model | Self-Improvement | [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) | 35:19 |
 | `c4f8d23d5d2fdc59` | How I passed the NEW Claude Architect Certification Exam (CCA-F) | Claude Certification | [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) | 15:50 |
@@ -80,6 +76,8 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [How to Become Dangerously Self Educated](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) - Triết lý học lập trình thời đại AI: Phân tách nhóm kĩ năng "tra cứu" và "tự giải quyết", thoát khỏi bẫy "AI Passenger", học qua xây dựng trước hiểu sau, vẽ sơ đồ hệ thống napkin từ trí nhớ và so sánh visual thiết kế.
 * [AI-Hero Skills v1.2.0](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) - Tài liệu các kỹ năng mới của Matt Pocock trong bản phát hành v1.2.0: kỹ năng chống dài dòng `/wait-what`, local wizard an toàn `/wizard`, `/questionnaire` cho cộng tác dự án, và cập nhật đồ thị `/grill-me`.
 * [Wayfinder Framework](file:///f:/source/watch-skill/video-learning-vault/ai-agents/wayfinder.md) - Khung lập kế hoạch đa phiên (multi-session) với AI agent thông qua việc chia nhỏ mục tiêu lớn thành biểu đồ phụ thuộc (frontier vs. fog) được đồng bộ hóa với issue tracker và thực thi đặc tả không persistent.
+* [Graph Engineering Core Strategy](file:///f:/source/watch-skill/video-learning-vault/ai-agents/graph_engineering_10x_claude.md) - Giải thích chi tiết về Graph Engineering: So sánh với prompt/context engineering, mô hình "Diamond Graph" (Planner ➔ Workers ➔ Skeptic ➔ Merger ➔ Human Gate), Context Moat tích lũy bộ nhớ và 3 mức độ triển khai thực tế.
+* [Verification in Graph Engineering](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) - Giải pháp chống lỗi dây chuyền (cascading errors) bằng mô hình Verification Graph: Kỹ thuật kiểm định độc lập "Second Opinion" qua shell `-p`, phân biệt Standalone/Embedded reviews, và kiến trúc Orchestrator Skill điều phối song song.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -97,6 +95,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
     *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
     *   [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) (12:51)
+    *   [anthropic_fixed_graph_engineering_flaw.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) (14:06)
     *   [wayfinder.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/wayfinder.md) (15:08)
     *   [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) (15:18)
     *   [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) (15:00)
@@ -108,6 +107,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
 *   **🧠 Học sâu & Chi tiết (Trên 30 phút):**
     *   [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) (21:25)
+    *   [graph_engineering_10x_claude.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/graph_engineering_10x_claude.md) (26:28)
     *   [dangerously_self_educated.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) (27:51)
     *   [senior_google_ai_pm_how_i_build_loops.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/senior_google_ai_pm_how_i_build_loops.md) (34:23)
     *   [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) (35:19)
