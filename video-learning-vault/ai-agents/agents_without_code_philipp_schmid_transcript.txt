@@ -1,0 +1,474 @@
+[00:12] Hi everyone. Uh thank you for coming. I
+[00:14] know it's the fourth day, last session
+[00:16] before the keynote starts again and we
+[00:18] are going to do something fun. Uh we're
+[00:20] going to look into how files are
+[00:22] basically replacing Python. And before
+[00:25] we begin, I would like to start with my
+[00:26] favorite definition of what is an agent
+[00:29] from Simon. An LLM agent runs tools uh
+[00:32] in a loop until it achieves a goal. And
+[00:34] what we are going to do is we are going
+[00:36] to build uh the same agent, the same
+[00:38] GitHub PR review agent in three
+[00:40] different ways. And we are going to
+[00:42] delete code on the way. Each new
+[00:44] version, less code, more files
+[00:46] basically. Um before we begin, I would
+[00:49] like to quickly introduce you to the
+[00:51] interactions API, which is our new
+[00:53] Gemini API. It's a unified interface for
+[00:56] um running models and agents. So you can
+[00:58] use the interactions API to call the
+[01:00] Gemini models directly or to call our
+[01:03] new agents, which also comes with
+[01:05] sandbox. It supports serverside state
+[01:07] management, background execution. So
+[01:09] it's perfectly suited for all that's
+[01:11] coming in the next years. and um the
+[01:15] capabilities it's the same API for tool
+[01:18] call multimodality understanding
+[01:20] multimodality generation so you always
+[01:22] have the same interface might look very
+[01:25] familiar if you're using other LLM
+[01:27] applications we really try to build
+[01:29] something for developers which you like
+[01:30] to use uh to build and that's something
+[01:32] we are going to do so something little
+[01:36] bit different in the interactions API to
+[01:38] other LLM applications or APIs is that
+[01:41] we moved away from this term based based
+[01:44] uh conversation history to steps. So
+[01:46] until I would say a few months ago, most
+[01:49] of the applications were really
+[01:50] turnbased. Normally you had a user in
+[01:52] input and then a model output, a user
+[01:54] input, a model output, which definitely
+[01:56] works for normal chat application. But
+[01:58] as soon as you start to build agents,
+[02:00] use reasoning model. We have more than
+[02:02] just a user role and a model role,
+[02:04] right? So we have like different inputs,
+[02:06] we have different types, we have
+[02:08] reasoning. So we decided to like make a
+[02:11] cut, make a change and build something
+[02:13] really for agents and that's what you
+[02:15] see on the flat steps timeline on the
+[02:16] right where you have a user input then
+[02:18] you have reasoning you have a function
+[02:20] call you have a function result and you
+[02:22] no longer need to like abuse the user
+[02:24] role for passing back data from an
+[02:27] environment. So
+[02:29] roughly a year one and a half years ago
+[02:32] writing agents mostly meant writing a
+[02:34] loop in Python. You needed to define a
+[02:36] JSON schema. You needed to define Python
+[02:39] functions. You needed to look at the
+[02:41] output from the LLM. Need to check if it
+[02:43] was a function call or if it was a text
+[02:45] response. And then needed to match it
+[02:47] against um the type and then like call
+[02:49] the tool
+[02:51] look of if you get an error and then
+[02:53] like go back and forth and let's look at
+[02:56] some some code example on how this would
+[02:58] look and also run it and hope that uh
+[03:01] the demo gods are great to us. So I
+[03:04] built or I let Gemini build a basic
+[03:06] implementation of this Python loop. So
+[03:09] we have our uh class. We have a run
+[03:12] function which uses the interactions
+[03:14] API. We have all of the weird complex
+[03:17] passing with function calling with uh
+[03:19] appending the errors checking if we get
+[03:21] an error and then we have uh the result
+[03:23] again. And what we need of course for an
+[03:25] agent is we also need a system
+[03:27] instruction. So there's a separate file
+[03:29] for the system instruction. Very basic.
+[03:31] QR GitHub PR reviewer and then of course
+[03:34] we need tools and for tools we needed to
+[03:36] write those um JSON schemas
+[03:39] specifications of description exactly
+[03:42] define which uh actions the agent can
+[03:44] take and then of course we need the
+[03:46] implementation in this case using the
+[03:48] the basic uh GitHub API just sending
+[03:51] some some requests. So we can run this
+[03:55] um in
+[03:58] and basically the main main
+[03:59] implementation is a very simple uh input
+[04:02] interface and we can say something like
+[04:04] hello
+[04:06] and
+[04:08] yes we get back hey I'm an agent and
+[04:10] then we yes ask it to review a pull
+[04:13] request on the Gemini skills repository
+[04:15] and what we should see is like the agent
+[04:18] should hopefully start soon sending
+[04:20] function calls function results function
+[04:22] calls function results but it's very
+[04:24] limited to yes uh great it works very
+[04:28] limited to the tools we define so if we
+[04:30] ask the agent to do something which it
+[04:32] does not have the capabilities to it
+[04:34] just says hey I cannot do this um which
+[04:37] is unfortunate but that's how we were
+[04:39] building agents um raw Python code a lot
+[04:42] of files a lot of things which can go
+[04:44] wrong a lot of code to manage so what
+[04:47] happened afterwards
+[04:49] um or what we we need to do we have like
+[04:51] a token generation We have the native
+[04:53] function calling and we must execute the
+[04:56] loop. We must handle the tool routing.
+[04:57] We must create a JSON schemas. We must
+[05:00] write the Python code. We need to
+[05:02] execute the Python code. We need to
+[05:03] manage the state. So there's a lot of
+[05:04] things we need to do to get an agent
+[05:06] running. And then we got agent
+[05:09] frameworks. There were many different
+[05:10] agent frameworks which abstracted away
+[05:12] some of that complexity. One example
+[05:15] here is the ADK framework um where you
+[05:17] have an agent class now which handles
+[05:19] all of the tool loops, the function
+[05:21] calling, the retries, the error handling
+[05:24] and it made it a little bit easier. We
+[05:27] basically removed all of the boiler
+[05:29] plate code which we always needed to
+[05:31] write for agents put it into a framework
+[05:34] and help people build with it. So back
+[05:37] to the demo and
+[05:40] um same example. So we go into the CR2
+[05:43] and what is very interesting if you let
+[05:46] me open both. So we still have our we
+[05:50] don't have our agent file anymore. So
+[05:51] the agent went away. We still have our
+[05:54] prompt same system prompt. We still have
+[05:57] our tools in this case also no JSON
+[05:59] definitions anymore because those agent
+[06:01] frameworks now use the uh signature of
+[06:05] our functions to create those JSON
+[06:07] schemas on the fly to provide the model.
+[06:10] So let's stop our um agent. Now let's
+[06:14] run our second agent.
+[06:17] Similar interface,
+[06:19] similar prompt and we should see a
+[06:22] similar expected behavior where we have
+[06:24] function calls. We try to get the PR
+[06:26] data. We try to get the diff, we try to
+[06:29] get all of the code we need and it works
+[06:33] and we wait for for the agent to yes
+[06:36] continue. But similar difficulty here.
+[06:38] If I ask it like what's the weather in
+[06:42] San Francisco
+[06:44] um
+[06:46] we should get back hopefully a result
+[06:48] like hey I cannot do this I don't have
+[06:50] access to the weather API which
+[06:51] obviously makes sense because we did not
+[06:53] define any tool still very unfortunate
+[06:55] because we need to be very explicit on
+[06:57] what our agent can do and we all know
+[06:59] nowadays that we just want to prompt
+[07:01] something and we wanted the agent to do
+[07:03] whatever it takes to to achieve that
+[07:05] goal. So what is left for us to do? What
+[07:08] does the framework solve? The framework
+[07:10] solves the turn taking loops, the
+[07:12] routing, the execution mapping, the JSON
+[07:14] schema creation for like the different
+[07:16] function calls, but we still own the
+[07:18] Python plumping. So we still need to
+[07:20] write those tools with Python code. We
+[07:23] still need to add specific rules or
+[07:26] requirements to like make sure whatever
+[07:28] we want the agent to do and we need to
+[07:30] provide the environment where all of the
+[07:32] tools are running, where we want to host
+[07:34] it. So what comes afterwards? Afterwards
+[07:38] hopefully comes remote agents and at
+[07:40] Google IO we launched the anti-gravity
+[07:42] remote agent on the Gemini API. The
+[07:45] anti-gravity agent uh is powered by the
+[07:48] same agent harness which powers the
+[07:50] anti-gravity IDE. Here the same harness
+[07:52] very important does not mean the same
+[07:54] agent because the anti-gravity agent is
+[07:56] a coding agent at the moment and the uh
+[07:58] agent available in the Gemini API is a
+[08:00] general purpose agent. So there might be
+[08:02] different system instruction, there
+[08:04] might be slightly different tools
+[08:05] because the Gemini API already has a
+[08:07] Google search tool. So we use that what
+[08:08] we have built and but very importantly
+[08:11] it comes with this new environment
+[08:13] parameter and this environment parameter
+[08:15] here allows the agent to get access to a
+[08:18] hosted isolated cloud sandbox where it
+[08:21] can run tools, where it can run bash
+[08:22] commands and where it can save files.
+[08:25] And those environments can be um
+[08:28] configured. So you can provide sources
+[08:30] and sources can be a GitHub repository,
+[08:32] it can be a GCS bucket, it can be inline
+[08:35] files and of course very important we
+[08:37] want to make sure that those agents are
+[08:39] secured and cannot use our credentials
+[08:42] in any way possible. So we created a
+[08:44] network proxy around the um agent
+[08:46] sandbox which basically injects the
+[08:49] credentials when the agent makes a
+[08:51] request from inside the sandbox to
+[08:53] outside the sandbox. So the agent never
+[08:55] really sees your credential. It just
+[08:56] knows hey I can call the GitHub API and
+[08:59] then on the fly we make sure that it
+[09:01] received the correct token which you
+[09:03] define and you can also limit which
+[09:05] domains the agent has access to. So if
+[09:06] you want to restrict the agent
+[09:08] completely on which network access it
+[09:10] can or which website it can access you
+[09:12] just leave it blank. By default the
+[09:14] agent can access all because I mean it's
+[09:16] a hassle if you first need to define
+[09:18] where to go. So we tried to stay simple
+[09:20] and of course making an API call is nice
+[09:23] but we thought hey people want to reuse
+[09:25] their configuration want to reuse their
+[09:28] agents. So we added the agents API where
+[09:30] you can define your own custom ID you
+[09:32] the same system instruction the same
+[09:33] base agent the same base environment and
+[09:36] then you can create that agent and then
+[09:38] you can use that agent in the same exact
+[09:40] way as you use Gemini models or as you
+[09:42] use the anti-gravity agent by providing
+[09:44] the ID. So all of the existing code can
+[09:46] be reused with your own custom agent,
+[09:48] with your own custom tools, with your
+[09:49] own custom uh credentials, environments,
+[09:52] whatever you need for it to to run. So
+[09:55] let's look at how this will look for SS
+[09:58] code and as a demo. And
+[10:01] okay, now 03. And what might be very
+[10:06] obvious is that we no longer have a
+[10:07] source directory. So the code went away.
+[10:11] We have now an agents M uh folder with
+[10:14] an agents MD file with system
+[10:16] instructions. So very similar system
+[10:19] instruction. The only difference here is
+[10:20] that we tell the agent, hey, you have
+[10:22] access to the GitHub CLI. So we no
+[10:26] longer create specific tools for reading
+[10:29] files from a GitHub pull request, for
+[10:31] accessing a GitHub pull request. We just
+[10:33] tell the agent, hey, you have a GitHub
+[10:34] CLI, you have a bash tool, you have file
+[10:37] systems. try to use it whenever you
+[10:39] think it's important. And since we don't
+[10:42] have the CLI installed, we have a very
+[10:44] basic bash script in this case which
+[10:45] checks, hey, if the GitHub CLI is
+[10:47] installed, please use it. If not,
+[10:49] download it and install it on the first
+[10:50] turn. So, we go into our terminal and we
+[10:54] run our agent here. In this case, maybe
+[10:57] important I use a stream version because
+[10:59] otherwise we would wait like a few
+[11:01] seconds and we not get back any we would
+[11:03] not get back any anything back. So same
+[11:06] prompt
+[11:07] and we should soon see um our function
+[11:11] calls and function results coming in.
+[11:13] Yes. So in this case since we run inside
+[11:15] a sandbox the agent first like explores
+[11:17] the sandbox to really make sure hey do
+[11:19] we have this GitHub CLI installed and
+[11:22] then tries to run it. It did not find it
+[11:24] on the first turn. So it installs it and
+[11:26] then we can see the agent doing its
+[11:28] work. And in this case it's not using
+[11:30] the predefined function calls. It's
+[11:31] using the GitHub CLI and it's already
+[11:34] existing knowledge about how it works. I
+[11:36] have a bash tool. I have like access to
+[11:38] the file system and I do all of that
+[11:40] work to see or to like review the the
+[11:43] pull request. Let's wait a little bit.
+[11:47] Okay. And I think the the amazing part
+[11:50] here is like if we ask the same question
+[11:52] as before, what's the weather in San
+[11:57] Francisco?
+[11:59] We should hopefully see that the agent
+[12:02] tries to use ah it uses Google search in
+[12:04] this case on 2nd of July. Let me quickly
+[12:07] check. Yeah, that's today. And we have
+[12:09] around 20° Celsius and it works. So the
+[12:13] agent became more of a general purpose
+[12:15] agent and we don't need to like specify
+[12:17] all of the tools. We basically trust the
+[12:19] model on understanding hey I have a
+[12:21] specific set of very atomic general
+[12:23] purpose tools to solve my task or the
+[12:26] task for the user. And if we look at the
+[12:28] the code uh for like the the input or
+[12:32] like the the sorry the the interface we
+[12:35] have our sources here. So we have the
+[12:38] the bash script which install the GitHub
+[12:40] CLI. We have the agents MD file and then
+[12:42] we say hey you can use the GitHub API
+[12:45] with credentials. So I want to access or
+[12:48] use GitHub credentials in a secure way.
+[12:50] So I created a token for the API and
+[12:53] also for github.com since you need both
+[12:55] URLs. one uses is used for the git uh
+[12:57] commands. The other one is used for HTT
+[12:59] commands and then domain all is
+[13:00] basically hey in addition to the GitHub
+[13:02] URLs you can use all of the web but you
+[13:05] don't have credentials for it and then
+[13:07] it's a it's a simple single API call to
+[13:10] the anti-gravity agent with your or user
+[13:12] input with the environment and then also
+[13:14] with the previous interaction ID that we
+[13:16] keep the multi-turn going and that
+[13:18] that's all it takes and it's a single
+[13:20] API call on the backend side we start
+[13:22] that cloud sandbox we load the agents MD
+[13:25] file and the skills from the environment
+[13:27] provided to the model and then the model
+[13:30] between the API and the sandbox does all
+[13:32] of the the looping calling the function
+[13:34] returning the function results calling
+[13:36] the function returning the function
+[13:37] results and that is all it takes. So
+[13:40] where does it leave us? We no longer
+[13:43] need to execute loops. We no longer need
+[13:46] to do two routing. We have a serverside
+[13:48] conversation and session state. So we
+[13:50] only need to provide new inputs. The
+[13:52] context window and the compaction is
+[13:54] also automatically managed by the agent.
+[13:56] So if we continue our conversation at a
+[13:58] certain point the context is compacted
+[14:00] and we can continue without the need to
+[14:02] manage anything and we also get an
+[14:04] isolated remote Linux sandbox which we
+[14:06] can use to run our code. So what is
+[14:09] still left for us? We need to define
+[14:11] instructions. We need to define rules
+[14:14] behaviors in an agent MD file. We need
+[14:16] to provide capabilities or context and
+[14:18] skills MD and we need to own the evils.
+[14:20] So all of the heavy lifting, the
+[14:23] infrastructure management, all of the
+[14:24] same code which probably every one of us
+[14:26] has written of us here like 20 times is
+[14:29] no longer needed. And you can start
+[14:30] really building your product instead of
+[14:32] like needing to rewrite the same code
+[14:34] over and over again. And very important
+[14:37] is like, hey, that's great, but what
+[14:39] about extending? And I think looking
+[14:41] into how extending previous agents to
+[14:44] like those new agents work. It's very
+[14:47] obvious that previously if we want to do
+[14:50] like some kind of security scanning on a
+[14:52] pull request, we would need to define or
+[14:53] write a Python function. We would need
+[14:55] to understand okay which CLI tools do we
+[14:57] need to use? We need to define a new
+[14:59] function schema and then we needed to
+[15:01] add it to our tools need to run it and
+[15:03] then so there's a lot of things we need
+[15:05] to do on on agents powered by files. We
+[15:08] write a skills MD file maybe with some
+[15:10] additional information on which CLI tool
+[15:11] to use or maybe provide the CLI tool
+[15:13] inside the environment and then we
+[15:15] extended the capabilities. we don't need
+[15:16] to change our code. We just provide more
+[15:18] files to the agent and the agent decides
+[15:20] on what we want to do. And I like to
+[15:23] bring up some very good examples. So at
+[15:25] a engineer in Europe, Cursor did a great
+[15:27] talk on how they replaced uh roughly
+[15:30] 12,000 lines of TypeScript code with a
+[15:32] 200 lines agent files to create
+[15:35] something similar. So they had a very
+[15:37] hard-coded code um orchestration for
+[15:40] doing git work trees and they were m
+[15:42] able to replace it with just a skill and
+[15:44] markdown files and there are more I
+[15:47] would say bitter lessons of ancient
+[15:48] engineering manos has refactored their
+[15:51] harness five times in six months last
+[15:53] year langen has rearchitected their open
+[15:56] deep research three times a year and
+[15:57] then also worsel has removed 80% of
+[16:00] their tools to achieve fewer steps
+[16:02] faster responses and better accuracy so
+[16:04] there's an obvious trend that with
+[16:07] better model capabilities, we can remove
+[16:09] orchestration code. But if your harness
+[16:12] is getting more complex as the model
+[16:14] improves, you are most likely
+[16:16] overengineering your harness. So if you
+[16:18] struggle with model improvements and
+[16:20] adding new capabilities which lead to
+[16:22] more complexity and more code, you might
+[16:24] need to rethink a little bit on how your
+[16:26] agent harness looks. And so where does
+[16:30] it end up? Agents are just files. We
+[16:33] write markdown files to extend
+[16:34] capabilities. Agents can learn from
+[16:37] those um can create their own files. So
+[16:40] if you have a session and tell the agent
+[16:42] to remember something to take notes of
+[16:44] rules of preferences, the agent just
+[16:46] writes it to this and then can reuse it
+[16:48] in the later session and you can also
+[16:51] externalize context. So if you have a
+[16:52] very long running session and during
+[16:54] that session you notice hey maybe I want
+[16:56] to additionally work on another feature
+[16:58] you can like just write that information
+[17:00] that hand off to a file and like tell
+[17:02] the agent to later pick it up. Uh so
+[17:05] what are the takeaways? We should not
+[17:07] fight the model like we should stop
+[17:09] micromanaging the execution paths
+[17:11] provide general tools to the agent and
+[17:12] let the model explore reason and
+[17:14] discover the right solution. Own what is
+[17:17] yours meaning focus on your domain
+[17:19] instructions. Focus on the workflows.
+[17:21] Focus especially on the evals, define
+[17:24] clean tools and verify the outcomes and
+[17:26] really build to delete. Like we have
+[17:28] seen in the past many many times, the
+[17:30] better the model get, the more code we
+[17:32] can remove and the more things we need
+[17:33] to change and obviously we all want to
+[17:35] benefit from better models. So what the
+[17:39] things for you to get to do on Monday,
+[17:41] you can scan that QR code which brings
+[17:43] you directly to EI studio where you can
+[17:45] immediately try out the anti-gravity
+[17:47] harness. So you can already start
+[17:49] prompting it. it will start your own
+[17:51] custom sandbox. If not, um, start or
+[17:54] create your API key. We are currently
+[17:56] working on a free tier for the API. So
+[17:59] hopefully you can start exploring faster
+[18:01] soon and then definitely start building
+[18:03] files and skills. And that's it. Thank
+[18:06] you for for coming.
+[18:09] [applause]
+[18:24] &gt;&gt; [music]

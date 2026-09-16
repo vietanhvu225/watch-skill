@@ -7,8 +7,17 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
-### 🟢 Hôm nay (08/08/2026)
-*Nhóm 2 video vừa được phân tích và đẩy lên hôm nay:*
+### 🟢 Mới phân tích (16/09/2026)
+*Nhóm video vừa được phân tích và lập chỉ mục:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `cce5d2c1f8389048` | Harness Engineering is not Enough: Why Software Factories Fail | Software Factories & Upfront Alignment | [why_software_factories_fail.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_software_factories_fail.md) | 19:17 |
+| `cfac3ef3ae9fd926` | How We Solved Agent Building | File System Agents & Eve Framework | [how_we_solved_agent_building.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_we_solved_agent_building.md) | 17:34 |
+| `c3d62b315a9f40c5` | Agents Without Code: Skills, YAML, and Filesystems Replaced Python | Antigravity & Files Over Code | [agents_without_code_philipp_schmid.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agents_without_code_philipp_schmid.md) | 18:27 |
+
+### 🟢 Trước đó (08/08/2026)
+*Nhóm 2 video phân tích trước:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -78,6 +87,9 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Wayfinder Framework](file:///f:/source/watch-skill/video-learning-vault/ai-agents/wayfinder.md) - Khung lập kế hoạch đa phiên (multi-session) với AI agent thông qua việc chia nhỏ mục tiêu lớn thành biểu đồ phụ thuộc (frontier vs. fog) được đồng bộ hóa với issue tracker và thực thi đặc tả không persistent.
 * [Graph Engineering Core Strategy](file:///f:/source/watch-skill/video-learning-vault/ai-agents/graph_engineering_10x_claude.md) - Giải thích chi tiết về Graph Engineering: So sánh với prompt/context engineering, mô hình "Diamond Graph" (Planner ➔ Workers ➔ Skeptic ➔ Merger ➔ Human Gate), Context Moat tích lũy bộ nhớ và 3 mức độ triển khai thực tế.
 * [Verification in Graph Engineering](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) - Giải pháp chống lỗi dây chuyền (cascading errors) bằng mô hình Verification Graph: Kỹ thuật kiểm định độc lập "Second Opinion" qua shell `-p`, phân biệt Standalone/Embedded reviews, và kiến trúc Orchestrator Skill điều phối song song.
+* [Why Software Factories Fail (19m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_software_factories_fail.md) - Phân tích của Dex Horthy về lý do nhà máy phần mềm AI thất bại, sai lầm từ reward RL ngắn hạn và quy trình 4 bước tiền hoạch định (Product, Architecture, Program Design, Vertical Slices).
+* [How We Solved Agent Building (17m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_we_solved_agent_building.md) - Hành trình tiến hóa 4 thế hệ agent của Vercel: Từ Mega-Prompt đến Chuỗi Multi-Agent thất bại, bước ngoặt File System Agent nhân đôi điểm eval, và khung làm việc Eve (Next.js for Agents).
+* [Agents Without Code: Skills, YAML, and Filesystems (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agents_without_code_philipp_schmid.md) - Bài diễn thuyết của Philipp Schmid (Google DeepMind): Thay thế code Python bằng tệp tin (Markdown, Skills, Sandbox, Credentials Proxy) và nguyên lý "Build to Delete" trên Antigravity Remote Agent.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -100,9 +112,12 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) (15:18)
     *   [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) (15:00)
     *   [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) (15:50)
+    *   [how_we_solved_agent_building.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_we_solved_agent_building.md) (17:34)
     *   [verifiers_are_king.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/verifiers_are_king.md) (18:00)
     *   [loop_engineering_first_principles.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) (18:00)
     *   [mcp_apps_extending_frontier.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/mcp_apps_extending_frontier.md) (18:00)
+    *   [agents_without_code_philipp_schmid.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agents_without_code_philipp_schmid.md) (18:27)
+    *   [why_software_factories_fail.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_software_factories_fail.md) (19:17)
     *   [herdr_terminal_multiplexer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/herdr_terminal_multiplexer.md) (19:25)
     *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
 *   **🧠 Học sâu & Chi tiết (Trên 30 phút):**

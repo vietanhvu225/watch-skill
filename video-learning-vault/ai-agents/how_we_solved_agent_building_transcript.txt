@@ -1,0 +1,476 @@
+[00:15] Hey everyone, thanks for coming. I'm Andrew. I'm the chief of software at
+[00:17] Andrew. I'm the chief of software at Verscell
+[00:19] Verscell and I'm here to talk to you about how we
+[00:21] and I'm here to talk to you about how we solved agent building at Verscell. I'm
+[00:24] solved agent building at Verscell. I'm the chief of software. So I work on a
+[00:26] the chief of software. So I work on a mix of internal engineering, external
+[00:28] mix of internal engineering, external experimentation, and generally being at
+[00:30] experimentation, and generally being at the frontier and building new libraries,
+[00:32] the frontier and building new libraries, frameworks, and technologies. For those
+[00:34] frameworks, and technologies. For those of you that don't know Verscell,
+[00:37] of you that don't know Verscell, Verscell builds a gentic infrastructure
+[00:39] Verscell builds a gentic infrastructure so people can build what's next. We get
+[00:42] so people can build what's next. We get started in the web world helping people
+[00:43] started in the web world helping people ship websites and web apps without
+[00:46] ship websites and web apps without having to worry about the infrastructure
+[00:47] having to worry about the infrastructure that doesn't make their app any better.
+[00:49] that doesn't make their app any better. It can scale to a million and scale down
+[00:50] It can scale to a million and scale down to zero effortlessly. But we're seeing a
+[00:53] to zero effortlessly. But we're seeing a change in what people want to build. You
+[00:55] change in what people want to build. You know, people started by building pages,
+[00:57] know, people started by building pages, but now we see them want to build
+[00:58] but now we see them want to build agents. And we've been embarking on a
+[01:00] agents. And we've been embarking on a similar journey to make it easy for
+[01:02] similar journey to make it easy for people to build agents and agentic
+[01:05] people to build agents and agentic applications easier. We built this thing
+[01:08] applications easier. We built this thing called the AIDK. So instead of needing
+[01:10] called the AIDK. So instead of needing to switch out 300 400 lines of provider
+[01:13] to switch out 300 400 lines of provider specific code, you're just going to
+[01:14] specific code, you're just going to switch out one line of code and we have
+[01:16] switch out one line of code and we have the same model interface underlying for
+[01:18] the same model interface underlying for all these different providers.
+[01:21] all these different providers. We built a lot of other tools to make it
+[01:22] We built a lot of other tools to make it easier to have model fallbacks, secure
+[01:25] easier to have model fallbacks, secure code execution, better pricing when it's
+[01:27] code execution, better pricing when it's inactive and waiting for responses, as
+[01:29] inactive and waiting for responses, as well as for durability and resumability.
+[01:32] well as for durability and resumability. And I'm here to talk to you about how I
+[01:35] And I'm here to talk to you about how I went on this crazy experiment roughly a
+[01:37] went on this crazy experiment roughly a year ago that led to a aentic explosion
+[01:41] year ago that led to a aentic explosion at Verscell and led to a really cool
+[01:43] at Verscell and led to a really cool thing that we built recently
+[01:46] thing that we built recently about uh this is 1980. Uh, Bill Gates
+[01:49] about uh this is 1980. Uh, Bill Gates before my time had this quote saying he
+[01:52] before my time had this quote saying he imagined there would be a computer on
+[01:53] imagined there would be a computer on every desk and in every home. You know,
+[01:55] every desk and in every home. You know, that was probably pretty contrarian then
+[01:57] that was probably pretty contrarian then and today it seems like very normal to
+[02:00] and today it seems like very normal to have that happen. And me and the CTO had
+[02:03] have that happen. And me and the CTO had this thought, you know, instead of a
+[02:06] this thought, you know, instead of a computer on every desk, could we
+[02:08] computer on every desk, could we potentially have an agent on every desk?
+[02:10] potentially have an agent on every desk? You know, today we only really use
+[02:13] You know, today we only really use agents for coding and technical
+[02:15] agents for coding and technical workloads, but we're starting to see
+[02:17] workloads, but we're starting to see expansion into things like design,
+[02:19] expansion into things like design, product management, and other verticals.
+[02:22] product management, and other verticals. And this was maybe about a year ago, so
+[02:23] And this was maybe about a year ago, so I would say I'm pretty early to this,
+[02:25] I would say I'm pretty early to this, but that was when it was like sonnet 4
+[02:27] but that was when it was like sonnet 4 and things weren't as sophisticated as
+[02:29] and things weren't as sophisticated as they were today. And I tried to actually
+[02:32] they were today. And I tried to actually explore this out, see what we could do
+[02:34] explore this out, see what we could do about it. I went around to various job
+[02:36] about it. I went around to various job functions at Verscell, marketing, sales,
+[02:39] functions at Verscell, marketing, sales, finance, legal, and I asked them, what
+[02:41] finance, legal, and I asked them, what do you hate most about your job? And the
+[02:45] do you hate most about your job? And the most compelling use case I heard was
+[02:47] most compelling use case I heard was that the data team, they were growing.
+[02:50] that the data team, they were growing. They were a very lean team, but Versel
+[02:52] They were a very lean team, but Versel was growing faster. You know, they had
+[02:54] was growing faster. You know, they had so much more data from customers,
+[02:56] so much more data from customers, analytics, metrics, sales. They just had
+[02:59] analytics, metrics, sales. They just had to keep on aggregating and keep on
+[03:01] to keep on aggregating and keep on making available for themselves to use.
+[03:05] making available for themselves to use. And at this time, if you think about
+[03:07] And at this time, if you think about what the data science people ever have
+[03:08] what the data science people ever have to do, whenever someone from marketing
+[03:10] to do, whenever someone from marketing or sales has a question about a customer
+[03:12] or sales has a question about a customer or product, the data science team has to
+[03:15] or product, the data science team has to drop everything they're doing, write the
+[03:17] drop everything they're doing, write the query, process it, do an analysis, and
+[03:19] query, process it, do an analysis, and come back with some recommendation on
+[03:21] come back with some recommendation on what to do. And this was really killer
+[03:24] what to do. And this was really killer to productivity. You know, the data team
+[03:25] to productivity. You know, the data team did not want to drop everything and just
+[03:27] did not want to drop everything and just write queries all day. And so I worked
+[03:29] write queries all day. And so I worked with our VP of data to try to build a
+[03:31] with our VP of data to try to build a better way for them to operate this way.
+[03:35] better way for them to operate this way. And so if you think about the very first
+[03:37] And so if you think about the very first thing you would ever do if you want to
+[03:39] thing you would ever do if you want to try to use AI to solve a problem, you
+[03:41] try to use AI to solve a problem, you may just build like a huge mega prompt.
+[03:43] may just build like a huge mega prompt. You know, you just have a question, you
+[03:46] You know, you just have a question, you pass into an LM, you have it respond,
+[03:48] pass into an LM, you have it respond, and that's it. You know, this was how
+[03:50] and that's it. You know, this was how the first version really looked.
+[03:51] the first version really looked. Honestly, I asked them for a dump of of
+[03:54] Honestly, I asked them for a dump of of the snowflake schema. I pasted it into a
+[03:57] the snowflake schema. I pasted it into a system prompt with a question and then
+[03:59] system prompt with a question and then when it generated SQL I actually copy
+[04:01] when it generated SQL I actually copy and pasted that in and just ran it
+[04:02] and pasted that in and just ran it myself. You know I just want to see are
+[04:04] myself. You know I just want to see are the models good enough today in order to
+[04:06] the models good enough today in order to write valid SQL given some decent
+[04:09] write valid SQL given some decent structure. And I would say this gave us
+[04:11] structure. And I would say this gave us a little bit of confidence that you know
+[04:13] a little bit of confidence that you know models today aren't that good but maybe
+[04:15] models today aren't that good but maybe we can harness engineer or make the
+[04:17] we can harness engineer or make the context around it a little better and
+[04:19] context around it a little better and give us some more guardrails to operate
+[04:21] give us some more guardrails to operate a little better.
+[04:22] a little better. And so if you actually think about what
+[04:23] And so if you actually think about what a data scientist actually needs to do
+[04:25] a data scientist actually needs to do when they get a question, you know, they
+[04:27] when they get a question, you know, they have to process the question, they may
+[04:29] have to process the question, they may have to explore the semantic layer and
+[04:31] have to explore the semantic layer and actually figure out what the join
+[04:32] actually figure out what the join patterns are. They will actually go and
+[04:34] patterns are. They will actually go and execute the SQL. They may go back and do
+[04:37] execute the SQL. They may go back and do that again if the SQL did not execute or
+[04:39] that again if the SQL did not execute or was too expensive. And they'll
+[04:40] was too expensive. And they'll eventually report on it, including
+[04:42] eventually report on it, including visualize the data, maybe write some
+[04:44] visualize the data, maybe write some paragraphs, maybe do a retro, maybe do
+[04:46] paragraphs, maybe do a retro, maybe do some other stuff.
+[04:48] some other stuff. And so if you think about those
+[04:49] And so if you think about those different phases, me and the VP of data
+[04:51] different phases, me and the VP of data tried to sit down and map those out into
+[04:53] tried to sit down and map those out into specific agent workloads. And so the
+[04:55] specific agent workloads. And so the second version of this data science
+[04:57] second version of this data science agent uh called D0. I'm going to
+[04:59] agent uh called D0. I'm going to reference D0 from now on is you ask a
+[05:02] reference D0 from now on is you ask a question. We have a query agent that
+[05:04] question. We have a query agent that passes on a query to the planning agent
+[05:06] passes on a query to the planning agent that will then have an execution agent
+[05:08] that will then have an execution agent etc. And if you chain all of these
+[05:11] etc. And if you chain all of these together, you actually get something
+[05:12] together, you actually get something that looks like this where each agent
+[05:14] that looks like this where each agent has a very dedicated system prompt
+[05:16] has a very dedicated system prompt focused to what that does with tools
+[05:18] focused to what that does with tools scoped to exactly that function. So
+[05:20] scoped to exactly that function. So example here, you can see that for the
+[05:23] example here, you can see that for the first one, the planning agent has a read
+[05:25] first one, the planning agent has a read entity YAML and a and a search schemas
+[05:29] entity YAML and a and a search schemas tool. And so it will only use those
+[05:32] tool. And so it will only use those capabilities until it has an answer to
+[05:33] capabilities until it has an answer to pass on to the planning agent and then
+[05:36] pass on to the planning agent and then to the SQL agent and then to reporting.
+[05:38] to the SQL agent and then to reporting. And this was getting better. You know,
+[05:40] And this was getting better. You know, we were able to get away from having to
+[05:42] we were able to get away from having to copy and paste a SQL and have to come
+[05:45] copy and paste a SQL and have to come back and report on it. It was now
+[05:46] back and report on it. It was now actually doing like the end to end loop
+[05:48] actually doing like the end to end loop from question to answer.
+[05:51] from question to answer. But we started hitting some walls with
+[05:54] But we started hitting some walls with this architecture. And around this time
+[05:56] this architecture. And around this time we came to the conclusion that you know
+[05:58] we came to the conclusion that you know what you actually need is you need one
+[05:59] what you actually need is you need one agent with all the mega context within
+[06:01] agent with all the mega context within it and for it to sort of manage its own
+[06:04] it and for it to sort of manage its own memory. You know this was around the
+[06:06] memory. You know this was around the time when we realized that you want to
+[06:09] time when we realized that you want to actually have the agent be able to look
+[06:11] actually have the agent be able to look back on what it's done sort of reflect
+[06:13] back on what it's done sort of reflect and figure out the steps that got to get
+[06:15] and figure out the steps that got to get here. And with the previous model you
+[06:17] here. And with the previous model you may have noticed that the only thing
+[06:18] may have noticed that the only thing that the next agent gets is a summary
+[06:21] that the next agent gets is a summary and a small snippet of the previous
+[06:22] and a small snippet of the previous thing that was done. Now this way you
+[06:24] thing that was done. Now this way you can imagine that you have one mega agent
+[06:27] can imagine that you have one mega agent and internally it manages its own state.
+[06:29] and internally it manages its own state. At some points it's planning, some
+[06:31] At some points it's planning, some points it's building, some points it's
+[06:32] points it's building, some points it's executing and some points it's
+[06:33] executing and some points it's reporting. And this is sort of what it
+[06:36] reporting. And this is sort of what it looked like. You know you have one big
+[06:38] looked like. You know you have one big AI call maybe max steps 100 and you give
+[06:42] AI call maybe max steps 100 and you give it the ability to manage its own state
+[06:44] it the ability to manage its own state based on where it's at inside of its
+[06:46] based on where it's at inside of its execution journey. And so you can see
+[06:48] execution journey. And so you can see similar tools, you can see a similar
+[06:50] similar tools, you can see a similar shape, but the best part about this is
+[06:51] shape, but the best part about this is if it ever ran to an error when
+[06:53] if it ever ran to an error when executing or joining, it could go back
+[06:55] executing or joining, it could go back and explore more or it could go and read
+[06:57] and explore more or it could go and read more and figure out what it was doing
+[06:59] more and figure out what it was doing wrong. And it was very good at this
+[07:01] wrong. And it was very good at this point. We were pretty confident in the
+[07:04] point. We were pretty confident in the actual system at hand and we actually
+[07:06] actual system at hand and we actually spread it to a few trusted members ever.
+[07:08] spread it to a few trusted members ever. You know, this is a very powerful tool
+[07:10] You know, this is a very powerful tool and we didn't really want to put in the
+[07:11] and we didn't really want to put in the hands of the wrong people or people that
+[07:12] hands of the wrong people or people that were using very critical workloads. So,
+[07:15] were using very critical workloads. So, we got to a few people's hands and the
+[07:17] we got to a few people's hands and the immediate response was it was awful. You
+[07:18] immediate response was it was awful. You know, we thought we were cooking. We
+[07:20] know, we thought we were cooking. We thought this was, you know, nailing 30%
+[07:22] thought this was, you know, nailing 30% of our evals, but we couldn't have
+[07:24] of our evals, but we couldn't have anticipated some of the questions that
+[07:25] anticipated some of the questions that were being asked. And for us to spend
+[07:27] were being asked. And for us to spend more time manually mapping out some of
+[07:29] more time manually mapping out some of these scenarios, it didn't seem like a
+[07:32] these scenarios, it didn't seem like a very scalable way to do this.
+[07:35] very scalable way to do this. And then claude code and opus 4.5 came
+[07:39] And then claude code and opus 4.5 came out. Well, more like Opus 4.5 came out
+[07:41] out. Well, more like Opus 4.5 came out and it in tangent with claw code which
+[07:43] and it in tangent with claw code which is so powerful. You know they sort of
+[07:46] is so powerful. You know they sort of unlocked the concept of a file system
+[07:48] unlocked the concept of a file system agent and we on the side were like wow
+[07:52] agent and we on the side were like wow clawed code and Opus 4.5 is basically
+[07:55] clawed code and Opus 4.5 is basically AGI compared to what we had before. You
+[07:57] AGI compared to what we had before. You know it would answer most of our
+[07:58] know it would answer most of our questions without even without even
+[08:01] questions without even without even missing a beat um compared to the
+[08:03] missing a beat um compared to the handgrown agent we had. And when we
+[08:05] handgrown agent we had. And when we tried to step back and wonder what we
+[08:07] tried to step back and wonder what we were doing wrong and why this was so
+[08:08] were doing wrong and why this was so much better, we realized that the big
+[08:11] much better, we realized that the big unlock was that it was just a file
+[08:13] unlock was that it was just a file system. You know, we it had a very
+[08:15] system. You know, we it had a very minimal set of tools, list file, read
+[08:17] minimal set of tools, list file, read file, run bash, and we gave a few more
+[08:20] file, run bash, and we gave a few more here for uh our own data agent use case.
+[08:24] here for uh our own data agent use case. But the biggest thing was it was able to
+[08:26] But the biggest thing was it was able to use the tools that agents are well
+[08:28] use the tools that agents are well trained on and was able to explore and
+[08:30] trained on and was able to explore and write work where it needs to. you know,
+[08:32] write work where it needs to. you know, we weren't giving it claw code was not
+[08:35] we weren't giving it claw code was not giving it a very prescriptive set of
+[08:36] giving it a very prescriptive set of tools. It was sort of just letting it go
+[08:38] tools. It was sort of just letting it go wild and explore emergent behavior. And
+[08:41] wild and explore emergent behavior. And so from this, we learned that you can
+[08:43] so from this, we learned that you can really just use a file system. You know,
+[08:45] really just use a file system. You know, we we saw the learnings from claw code
+[08:47] we we saw the learnings from claw code and how powerful it was given that it
+[08:49] and how powerful it was given that it just executes locally. And we tried to
+[08:52] just executes locally. And we tried to rebuild it in a way that was very cloud
+[08:54] rebuild it in a way that was very cloud codeesque. You know, it was now going to
+[08:56] codeesque. You know, it was now going to run in a sandbox. That sandbox would
+[08:58] run in a sandbox. That sandbox would dump the whole semantic layer into it.
+[09:00] dump the whole semantic layer into it. You could the agent would be able to
+[09:02] You could the agent would be able to grab, bash, read file, write file all
+[09:04] grab, bash, read file, write file all around to figure out what it needs and
+[09:06] around to figure out what it needs and we would just sprinkle a few tools on
+[09:07] we would just sprinkle a few tools on top to make sure it could do everything
+[09:08] top to make sure it could do everything that is versel specific.
+[09:12] that is versel specific. And this was actually the biggest unlock
+[09:14] And this was actually the biggest unlock ever. You know, the leap from single
+[09:17] ever. You know, the leap from single agent to cloud code SDK and then from
+[09:19] agent to cloud code SDK and then from cloud code SDK to file system agent in
+[09:22] cloud code SDK to file system agent in general, fine-tuned or purpose-built for
+[09:25] general, fine-tuned or purpose-built for our use case was an amazing leap. At
+[09:27] our use case was an amazing leap. At this point, we were starting to get
+[09:28] this point, we were starting to get ready to give it away to more people at
+[09:31] ready to give it away to more people at Versell.
+[09:32] Versell. And at this point, the eval score
+[09:35] And at this point, the eval score basically doubled. And I wrote this uh
+[09:37] basically doubled. And I wrote this uh this is basically how it looks. Um it's
+[09:39] this is basically how it looks. Um it's very simple. You just give it a bash
+[09:41] very simple. You just give it a bash tool. We have a nice helper called bash
+[09:42] tool. We have a nice helper called bash tool on npm and you attach it to a
+[09:45] tool on npm and you attach it to a sandbox and you can attach files to the
+[09:46] sandbox and you can attach files to the sandbox for it to read, write and
+[09:48] sandbox for it to read, write and execute.
+[09:50] execute. And after this revelation and after I
+[09:52] And after this revelation and after I saw that we were passing so many of the
+[09:54] saw that we were passing so many of the questions that we failed to do before, I
+[09:56] questions that we failed to do before, I wrote this banger blog post. It's uh
+[09:58] wrote this banger blog post. It's uh it's actually up today. And the week
+[10:01] it's actually up today. And the week that I wrote this, it was responsible
+[10:02] that I wrote this, it was responsible for 70% of our versel.com traffic. So
+[10:05] for 70% of our versel.com traffic. So you know it's a banger. And after that,
+[10:09] you know it's a banger. And after that, the next logical step was that we want
+[10:12] the next logical step was that we want to figure out the common use cases we
+[10:14] to figure out the common use cases we had. So by then we've already sort of
+[10:16] had. So by then we've already sort of let a leash on all of our cell and we
+[10:19] let a leash on all of our cell and we were getting thousands of queries a day
+[10:21] were getting thousands of queries a day from people wanting everything from
+[10:23] from people wanting everything from customer metrics sales metrics number
+[10:25] customer metrics sales metrics number metrics npm downloads and it turns out
+[10:28] metrics npm downloads and it turns out that a lot of these queries are actually
+[10:30] that a lot of these queries are actually the same in shape you know there's only
+[10:31] the same in shape you know there's only so many ways you can do an aggregation
+[10:33] so many ways you can do an aggregation only so many ways you can look up a
+[10:34] only so many ways you can look up a product only so many ways you can do
+[10:36] product only so many ways you can do billing info and so we actually have a
+[10:38] billing info and so we actually have a recurring job that takes the most recent
+[10:40] recurring job that takes the most recent queries and tries to distill them into a
+[10:42] queries and tries to distill them into a skill and right now we have roughly 100
+[10:44] skill and right now we have roughly 100 skills that do a mix of aggregation all
+[10:47] skills that do a mix of aggregation all the way through looking up specific data
+[10:49] the way through looking up specific data about certain people. And we found this
+[10:51] about certain people. And we found this very effective because if you think
+[10:53] very effective because if you think about every new agent run, it sort of
+[10:55] about every new agent run, it sort of just starts from nothing. You know,
+[10:56] just starts from nothing. You know, there's really no pre-established
+[10:58] there's really no pre-established context besides, you know, the semantic
+[11:00] context besides, you know, the semantic layer and the system prompt. But with a
+[11:02] layer and the system prompt. But with a skill, it already starts off with a lot
+[11:04] skill, it already starts off with a lot of contextual knowledge that has
+[11:05] of contextual knowledge that has otherwise already been done.
+[11:09] otherwise already been done. And this is roughly how it looks. It's
+[11:11] And this is roughly how it looks. It's very similar to the previous one, but
+[11:12] very similar to the previous one, but the inclusion of a skills folder is
+[11:14] the inclusion of a skills folder is actually very powerful. Um, we also
+[11:16] actually very powerful. Um, we also built this tool at Verscell called
+[11:17] built this tool at Verscell called Skillsh. It's the most popular way to
+[11:19] Skillsh. It's the most popular way to find agent skills and run them yourself.
+[11:23] find agent skills and run them yourself. And I I'm saying all this because this
+[11:25] And I I'm saying all this because this journey is something that most of you
+[11:27] journey is something that most of you may hit once in a while where you start
+[11:29] may hit once in a while where you start from something simple and you gradually
+[11:30] from something simple and you gradually add complexity and you eventually hit a
+[11:32] add complexity and you eventually hit a system in which you can ship to prod.
+[11:35] system in which you can ship to prod. And I'm telling you this because at
+[11:37] And I'm telling you this because at every step along building this agent,
+[11:39] every step along building this agent, someone Everell was agent curious and
+[11:42] someone Everell was agent curious and they tried to fork off of my DZero agent
+[11:45] they tried to fork off of my DZero agent and build their own. And at every step,
+[11:47] and build their own. And at every step, we sort of had a better way to do
+[11:49] we sort of had a better way to do something that was not previously known.
+[11:51] something that was not previously known. And we were wondering like what if
+[11:53] And we were wondering like what if people today could start from the very
+[11:55] people today could start from the very last insight and not have to ever start
+[11:57] last insight and not have to ever start from just a simple prompt or from
+[12:00] from just a simple prompt or from reinventing best principles from first
+[12:03] reinventing best principles from first principles.
+[12:04] principles. And so we actually thought what if we
+[12:06] And so we actually thought what if we built the Nex.js for agents. For those
+[12:09] built the Nex.js for agents. For those that don't know, Nex.js is a popular web
+[12:11] that don't know, Nex.js is a popular web framework that Verscell built that
+[12:13] framework that Verscell built that invented this thing of file system uh
+[12:16] invented this thing of file system uh framework defined infrastructure. You
+[12:18] framework defined infrastructure. You don't have to worry about where things
+[12:19] don't have to worry about where things go. You just have to write files in the
+[12:21] go. You just have to write files in the right conventions and it automatically
+[12:24] right conventions and it automatically declares where they should go. Your
+[12:26] declares where they should go. Your pages go to the CDN. Your serverless
+[12:28] pages go to the CDN. Your serverless functions go there. Your caching goes in
+[12:30] functions go there. Your caching goes in the middle. And we thought, you know,
+[12:32] the middle. And we thought, you know, building agents should be this simple.
+[12:34] building agents should be this simple. You should only have to create a skills
+[12:35] You should only have to create a skills folder, a tools folder, a channels
+[12:37] folder, a tools folder, a channels folder, and you should be able to just
+[12:39] folder, and you should be able to just declare these very easily. And the
+[12:40] declare these very easily. And the framework should know exactly how to
+[12:42] framework should know exactly how to make an agent out of it.
+[12:45] make an agent out of it. And that's why two weeks ago we released
+[12:46] And that's why two weeks ago we released Eve. Eve is a agent framework like the
+[12:49] Eve. Eve is a agent framework like the next.js GS for agents where it's very
+[12:51] next.js GS for agents where it's very easy from just starting with a sample
+[12:53] easy from just starting with a sample template to having a fully agent ready
+[12:56] template to having a fully agent ready and being able to add in your own custom
+[12:57] and being able to add in your own custom knowledge, your own custom tools and
+[12:59] knowledge, your own custom tools and even integrated into the channels that
+[13:01] even integrated into the channels that you are familiar with.
+[13:04] you are familiar with. This is roughly what we think an agent
+[13:05] This is roughly what we think an agent actually looks like. You know, an agent
+[13:07] actually looks like. You know, an agent has a runtime and it has channels. And
+[13:09] has a runtime and it has channels. And in that runtime, you're going to have
+[13:10] in that runtime, you're going to have durability. You're going to want to run
+[13:12] durability. You're going to want to run things in an isolate environment. You're
+[13:14] things in an isolate environment. You're going to want to call into different
+[13:15] going to want to call into different models. And you're going to want to have
+[13:16] models. And you're going to want to have connections. And we built this with open
+[13:19] connections. And we built this with open source in mind. You know, we built Eve
+[13:21] source in mind. You know, we built Eve so you can plug in your own open source
+[13:22] so you can plug in your own open source adapters for Postgress, OpenAI's uh
+[13:25] adapters for Postgress, OpenAI's uh responses API, Docker, other connectors.
+[13:28] responses API, Docker, other connectors. But we also made it incredibly easy to
+[13:30] But we also made it incredibly easy to deploy in Verscell. The only thing here
+[13:31] deploy in Verscell. The only thing here you see different is that everything
+[13:33] you see different is that everything here is using a Verscell product that
+[13:35] here is using a Verscell product that we've been building over the years in
+[13:36] we've been building over the years in order to make it easy to build these
+[13:38] order to make it easy to build these experiences. Versell workflows for
+[13:40] experiences. Versell workflows for durability, sandbox for secure
+[13:42] durability, sandbox for secure execution, and Verscell connect,
+[13:43] execution, and Verscell connect, something we just released to make it
+[13:45] something we just released to make it easy to generate short-lived ODC tokens
+[13:48] easy to generate short-lived ODC tokens for connections.
+[13:51] for connections. And we actually rewrote the whole D0ero
+[13:53] And we actually rewrote the whole D0ero agent in Eve as we were building Eve and
+[13:55] agent in Eve as we were building Eve and from the convoluted structures behind
+[13:57] from the convoluted structures behind the scenes that you did not see from the
+[13:59] the scenes that you did not see from the code. Um, this is roughly how the file
+[14:01] code. Um, this is roughly how the file system looks. It's very simple. You have
+[14:02] system looks. It's very simple. You have a bunch of system instructions, a couple
+[14:05] a bunch of system instructions, a couple skills, a couple tools, and it's very
+[14:07] skills, a couple tools, and it's very easy to compose this into a real agent,
+[14:09] easy to compose this into a real agent, and it's very easy to iterate on. We
+[14:12] and it's very easy to iterate on. We actually gave this out to a few beta
+[14:13] actually gave this out to a few beta customers before we actually fully
+[14:15] customers before we actually fully released it two weeks ago at our London
+[14:16] released it two weeks ago at our London event. And this one company that
+[14:18] event. And this one company that partners closely with us, Aura. They've
+[14:20] partners closely with us, Aura. They've rebuilt their agent that's sort of like
+[14:22] rebuilt their agent that's sort of like a mini claw to go and test people's
+[14:25] a mini claw to go and test people's services. It goes to websites, installs
+[14:27] services. It goes to websites, installs them, it tries to use them. And they've
+[14:30] them, it tries to use them. And they've seen incredible success on building
+[14:33] seen incredible success on building their own agent from the ground up using
+[14:35] their own agent from the ground up using Eve compared to using an off-the-shelf
+[14:37] Eve compared to using an off-the-shelf cloud code. Fewer steps, better
+[14:40] cloud code. Fewer steps, better successes, as well as better insights.
+[14:45] successes, as well as better insights. And when you deploy Eve to Verscell, you
+[14:47] And when you deploy Eve to Verscell, you get observability observability out of
+[14:49] get observability observability out of the box. You can see here that you get
+[14:50] the box. You can see here that you get all the agent runs, you see all the tool
+[14:52] all the agent runs, you see all the tool calls, you see each step it takes as
+[14:55] calls, you see each step it takes as well as maybe some estimated costs and
+[14:56] well as maybe some estimated costs and some optimizations you could potentially
+[14:58] some optimizations you could potentially take.
+[15:00] take. And you can get start today at eve.dev.
+[15:03] And you can get start today at eve.dev. You can just clone it and you can just
+[15:04] You can just clone it and you can just start a template, deploy easily,
+[15:06] start a template, deploy easily, self-host if you need. And the reason
+[15:08] self-host if you need. And the reason why I bring this up is because I hope
+[15:10] why I bring this up is because I hope that there will be more and more
+[15:12] that there will be more and more business specific use case agents. You
+[15:15] business specific use case agents. You know, before we built Ezero, we actually
+[15:17] know, before we built Ezero, we actually battle tested a lot of the industry
+[15:20] battle tested a lot of the industry well-funded startups that were doing
+[15:22] well-funded startups that were doing these vertical agents that were
+[15:24] these vertical agents that were dedicated to taking your Snowflake
+[15:26] dedicated to taking your Snowflake instance and making it so their agent
+[15:28] instance and making it so their agent could run Snowflake queries against it.
+[15:31] could run Snowflake queries against it. But we found out that what really makes
+[15:33] But we found out that what really makes this agent good is it has a lot of very
+[15:36] this agent good is it has a lot of very specific uh company knowledge. You know,
+[15:39] specific uh company knowledge. You know, the way that Versel is a web- based
+[15:41] the way that Versel is a web- based company. We have a lot of customers that
+[15:43] company. We have a lot of customers that have websites and web properties. That
+[15:45] have websites and web properties. That goes a lot deeper into when you should
+[15:48] goes a lot deeper into when you should query for what and what things link to
+[15:50] query for what and what things link to what. And so a lot of these
+[15:52] what. And so a lot of these off-the-shelf agents, they're great.
+[15:54] off-the-shelf agents, they're great. They're good to try, but I think if you
+[15:56] They're good to try, but I think if you really want to get the most juice out of
+[15:57] really want to get the most juice out of a squeeze, you should really try to
+[15:58] a squeeze, you should really try to build your own agent and add in as much
+[16:00] build your own agent and add in as much company specific knowledge as you can.
+[16:03] company specific knowledge as you can. Today, you know, we've had 20 roughly
+[16:06] Today, you know, we've had 20 roughly decently PMF agents adversel that range
+[16:09] decently PMF agents adversel that range from anything from marketing retros to
+[16:13] from anything from marketing retros to figure out who to reach out to to the
+[16:15] figure out who to reach out to to the first ever red line of a contract when
+[16:18] first ever red line of a contract when legal sees a new negotiation all the way
+[16:20] legal sees a new negotiation all the way to my data science agent helping with
+[16:22] to my data science agent helping with with data queries. And that goes to show
+[16:25] with data queries. And that goes to show that we ever have been very
+[16:27] that we ever have been very agent-filled. You know, all of this
+[16:30] agent-filled. You know, all of this stuff is actually saving us a lot of
+[16:32] stuff is actually saving us a lot of time. The data team has never been more
+[16:34] time. The data team has never been more productive. They have more time to go
+[16:36] productive. They have more time to go and improve the performance of
+[16:38] and improve the performance of Snowflake, to add new data sources that
+[16:40] Snowflake, to add new data sources that were missing, to fill in the gaps that
+[16:42] were missing, to fill in the gaps that they previously did not have time to
+[16:43] they previously did not have time to because they were so busy writing
+[16:45] because they were so busy writing queries. And I think it's never been
+[16:47] queries. And I think it's never been easier for you at your big, small,
+[16:50] easier for you at your big, small, medium-sized company to sort of automate
+[16:53] medium-sized company to sort of automate away some of the things that you do not
+[16:55] away some of the things that you do not want to do or some of the things that
+[16:56] want to do or some of the things that you're spending too much time doing. You
+[16:58] you're spending too much time doing. You know, I think a lot of HR, finance,
+[17:00] know, I think a lot of HR, finance, sales can be somewhat automated with
+[17:04] sales can be somewhat automated with agents. And I think Eve is the best way
+[17:06] agents. And I think Eve is the best way to build said agents today.
+[17:09] to build said agents today. And these are my socials. Thank you all
+[17:11] And these are my socials. Thank you all for coming and listening. I'm Andrew and
+[17:13] for coming and listening. I'm Andrew and I'll be around if you want to chat
+[17:15] I'll be around if you want to chat outside.
