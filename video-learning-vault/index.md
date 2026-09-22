@@ -2,6 +2,11 @@
 
 Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học tập từ video. Dưới đây là Master Index được tổ chức đa chiều giúp bạn dễ dàng theo dõi tiến độ học tập.
 
+## Decision report
+
+- [Spotify Portal `shunt` — context-routing finding](ai-agents/spotify-portal-shunt-context-routing-2026-09-07.md) — deferred: borrow enforced I/O routing, not Spotify Portal/AiKA; includes Windows argv blocker and future-trial criteria.
+- [AI Agents — adoption report for current work and game loops](ai-agents/adoption-report-work-and-game-loops-2026-08-21.md) — 21-note comparison, Herdr Windows smoke, and recommended Herdr/Orca/LoopX boundaries.
+
 ---
 
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
