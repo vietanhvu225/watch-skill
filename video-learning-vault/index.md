@@ -12,6 +12,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (23/09/2026)
+*Video vừa được phân tích hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `d1629c49a7a466a2` | Claude Code: The Complete AI-Native SDLC Guide | AI-Native SDLC & Committed Artifacts | [claude_code_ai_native_sdlc_guide.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) | 21:02 |
+| `2dfe3efe2675c615` | This New Open Source Tool Just Fixed Your Claude Code Workflow | agit: Version Control cho AI Agent Sessions | [agit_version_control_for_ai_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) | 12:24 |
+| `6c10d9d9043f21ab` | GitHub's #1 Trending Author's New Claude Skill Is Insane | unlazy: Depth Tree & Stop Hook Chống Lười Biếng | [unlazy_anti_laziness_depth_tree_skill.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) | 12:54 |
+
 ### 🟢 Mới phân tích (16/09/2026)
 *Nhóm video vừa được phân tích và lập chỉ mục:*
 
@@ -95,6 +104,9 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Why Software Factories Fail (19m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_software_factories_fail.md) - Phân tích của Dex Horthy về lý do nhà máy phần mềm AI thất bại, sai lầm từ reward RL ngắn hạn và quy trình 4 bước tiền hoạch định (Product, Architecture, Program Design, Vertical Slices).
 * [How We Solved Agent Building (17m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_we_solved_agent_building.md) - Hành trình tiến hóa 4 thế hệ agent của Vercel: Từ Mega-Prompt đến Chuỗi Multi-Agent thất bại, bước ngoặt File System Agent nhân đôi điểm eval, và khung làm việc Eve (Next.js for Agents).
 * [Agents Without Code: Skills, YAML, and Filesystems (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agents_without_code_philipp_schmid.md) - Bài diễn thuyết của Philipp Schmid (Google DeepMind): Thay thế code Python bằng tệp tin (Markdown, Skills, Sandbox, Credentials Proxy) và nguyên lý "Build to Delete" trên Antigravity Remote Agent.
+* [Claude Code: AI-Native SDLC Guide (21m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) - Cẩm nang toàn diện về AI-Native SDLC từ Boris Tane (Head of Claude Code, Anthropic): Chuỗi committed artifacts (intent.md, spec.md, plan.md, CLAUDE.md, REVIEW.md), Continuous Evals trong CI, và đóng vòng lặp giám sát bằng bands.yaml.
+* [agit: Version Control cho AI Agent Sessions (12m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) - Hướng dẫn công cụ mã nguồn mở agit (AgentGit): Quản lý phiên hội thoại AI agent theo dạng git branches, cherry-pick turns, handoff giữa Claude Code và OpenAI Codex, và cơ chế tự động filter/masking secrets trong conversation logs.
+* [unlazy: Depth Tree & Stop Hook Chống Lười Biếng (13m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) - Kỹ năng của Leon Lin (Leonxlnx): Phương pháp Depth Tree chẻ nhỏ task, sổ cái nghiệm thu GATES.md, chặn thoát bằng Stop Hook và kỹ thuật phân bổ disjoint files để chạy 10 subagents song song.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -111,6 +123,8 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) (08:53)
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
     *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
+    *   [agit_version_control_for_ai_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) (12:24)
+    *   [unlazy_anti_laziness_depth_tree_skill.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) (12:54)
     *   [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) (12:51)
     *   [anthropic_fixed_graph_engineering_flaw.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) (14:06)
     *   [wayfinder.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/wayfinder.md) (15:08)
@@ -125,7 +139,8 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [why_software_factories_fail.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_software_factories_fail.md) (19:17)
     *   [herdr_terminal_multiplexer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/herdr_terminal_multiplexer.md) (19:25)
     *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
-*   **🧠 Học sâu & Chi tiết (Trên 30 phút):**
+*   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
+    *   [claude_code_ai_native_sdlc_guide.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) (21:02)
     *   [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) (21:25)
     *   [graph_engineering_10x_claude.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/graph_engineering_10x_claude.md) (26:28)
     *   [dangerously_self_educated.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) (27:51)
