@@ -17,6 +17,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `22f85bb1cb6bcf41` | I Run an AI Civilization in Herdr | Open Rig, The Seat & Coordination Pathologies | [ai_civilization_in_herdr.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_civilization_in_herdr.md) | 24:50 |
 | `d1629c49a7a466a2` | Claude Code: The Complete AI-Native SDLC Guide | AI-Native SDLC & Committed Artifacts | [claude_code_ai_native_sdlc_guide.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) | 21:02 |
 | `2dfe3efe2675c615` | This New Open Source Tool Just Fixed Your Claude Code Workflow | agit: Version Control cho AI Agent Sessions | [agit_version_control_for_ai_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) | 12:24 |
 | `6c10d9d9043f21ab` | GitHub's #1 Trending Author's New Claude Skill Is Insane | unlazy: Depth Tree & Stop Hook Chống Lười Biếng | [unlazy_anti_laziness_depth_tree_skill.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) | 12:54 |
@@ -107,6 +108,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Claude Code: AI-Native SDLC Guide (21m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) - Cẩm nang toàn diện về AI-Native SDLC từ Boris Tane (Head of Claude Code, Anthropic): Chuỗi committed artifacts (intent.md, spec.md, plan.md, CLAUDE.md, REVIEW.md), Continuous Evals trong CI, và đóng vòng lặp giám sát bằng bands.yaml.
 * [agit: Version Control cho AI Agent Sessions (12m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) - Hướng dẫn công cụ mã nguồn mở agit (AgentGit): Quản lý phiên hội thoại AI agent theo dạng git branches, cherry-pick turns, handoff giữa Claude Code và OpenAI Codex, và cơ chế tự động filter/masking secrets trong conversation logs.
 * [unlazy: Depth Tree & Stop Hook Chống Lười Biếng (13m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) - Kỹ năng của Leon Lin (Leonxlnx): Phương pháp Depth Tree chẻ nhỏ task, sổ cái nghiệm thu GATES.md, chặn thoát bằng Stop Hook và kỹ thuật phân bổ disjoint files để chạy 10 subagents song song.
+* [I Run an AI Civilization in Herdr (25m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_civilization_in_herdr.md) - Phân tích thực tế vận hành quần thể AI Agent từ OPENRIG: Phản biện sự cố Hugging Face, 3 bệnh lý điều phối (Quan liêu đệ quy, Moonbase creep, Just following orders), trừu tượng The Seat, và kỹ thuật Refocus / Rig Dịch Tễ Học.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -142,6 +144,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 *   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
     *   [claude_code_ai_native_sdlc_guide.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) (21:02)
     *   [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) (21:25)
+    *   [ai_civilization_in_herdr.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_civilization_in_herdr.md) (24:50)
     *   [graph_engineering_10x_claude.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/graph_engineering_10x_claude.md) (26:28)
     *   [dangerously_self_educated.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) (27:51)
     *   [senior_google_ai_pm_how_i_build_loops.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/senior_google_ai_pm_how_i_build_loops.md) (34:23)

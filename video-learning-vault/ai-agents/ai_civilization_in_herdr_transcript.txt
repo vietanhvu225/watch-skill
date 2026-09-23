@@ -1,0 +1,630 @@
+[00:00] So AI agents are forming civilizations
+[00:02] now. Maybe you saw a story like this one
+[00:06] where about a thousand agents teamed up
+[00:07] and hacked Hugging Face.
+[00:10] So I have a few hundred agents running
+[00:13] in my home office. They're kind of
+[00:15] permanently on. Now this started about
+[00:18] 18 months ago with just a few agents
+[00:20] talking to each other on my laptop. Now
+[00:22] it's a lot larger and runs across a
+[00:24] network.
+[00:26] But this is a software factory because
+[00:27] I'm a software developer. I use it for
+[00:29] work. We usually call this a fleet, but
+[00:33] it does actually behave like a
+[00:34] civilization. So, even though that
+[00:36] sounds funny, I'm not here to make fun
+[00:38] of that framing. Actually, the opposite.
+[00:40] Thinking of this as a civilization is
+[00:42] exactly how I fixed these problems I
+[00:44] think people are most freaked out about
+[00:46] in the story. Whatever you want to call
+[00:48] these, what really caught my attention
+[00:50] at first in the hugging face story was
+[00:52] how little the agents had to work with.
+[00:55] So, my agents have had a frictionless
+[00:56] way to chat with each other from day
+[00:58] one. Talking is fast and easy. Here, the
+[01:01] agents were completely isolated. They
+[01:04] had to repurpose their package manager
+[01:06] to become a makeshift message board.
+[01:09] So, this was very slow in comparison,
+[01:11] but they managed to build this whole
+[01:13] coordination system anyway. Now, that's
+[01:15] impressive.
+[01:17] Now, the headlines make this sound like
+[01:19] some unstoppable swarm. What's weird is
+[01:22] that my experience couldn't be farther
+[01:24] from that. And I wondered if it's just
+[01:26] how the scenarios are being framed. I
+[01:29] never thought of it this way until now,
+[01:30] but looking back, it's like I watch this
+[01:32] little agent population grow up or
+[01:34] something since like the sonnet 3.5
+[01:37] days. Not the individual agents, but the
+[01:40] way the group behaves. So, when I looked
+[01:43] at the actual details in the story, I
+[01:45] wasn't predisposed to see any of this as
+[01:47] a threat. It actually looked really
+[01:49] familiar.
+[01:51] For example, when I'd let them work
+[01:52] unsupervised for days or weeks at a
+[01:54] time, rather than going rogue, the
+[01:56] problems I would see were more like
+[01:58] they'd be productive for a while, but
+[02:00] then inevitably would get stuck in these
+[02:02] coordination loops. It's more like they
+[02:03] kept accidentally reinventing
+[02:06] bureaucracy and then getting stuck
+[02:07] there. And by that, I mean stuff that
+[02:10] looks like work, but it's not.
+[02:12] So, my theory is that given enough time
+[02:15] and maybe like a normal way to talk, a
+[02:17] swarm like this would have eventually
+[02:19] ended up building something that looked
+[02:20] to us more like the DMV or something.
+[02:24] And then maybe that would have been the
+[02:25] headline. Something like this. Maybe
+[02:28] this actually happened. Half the swarm
+[02:31] was doing pointless busy work, but
+[02:33] nobody thought it was cool enough to
+[02:34] report.
+[02:36] What I'm showing you now is called open
+[02:38] rig. This is a way to enable a
+[02:41] population of agents to coordinate and
+[02:43] then organize them to do real work. The
+[02:45] software factory is just one of many
+[02:47] ways to configure and use this.
+[02:50] Now, I'm going to attempt to juggle
+[02:52] three things. I'm going to show you Open
+[02:54] Rig, which you may have never seen
+[02:56] before, but I'll assume you have seen
+[02:58] Software Factory. I'm also going to
+[03:00] present like a contrarian take on the
+[03:03] Hugging Face incident because I think
+[03:06] they may have missed the plot on what
+[03:07] happened here. I'll then show how these
+[03:10] patterns match failure modes I've been
+[03:12] seeing for months and how I ended up
+[03:14] fixing them.
+[03:16] So here I've got six open rig instances.
+[03:20] Three are Mac minis at my house and then
+[03:22] I've got three V VPS's up in OVH cloud.
+[03:26] Now each of these spaces in Herder takes
+[03:29] me to a different instance.
+[03:31] So Herder is this nice wrapper thing you
+[03:34] see around the terminals. I'm not using
+[03:36] its coordination features. that's being
+[03:38] done by open rig. Inside those
+[03:40] terminals,
+[03:42] I've got agents and then here I've got
+[03:44] the open rig 2y
+[03:47] tables like this one is how I keep an
+[03:49] eye on everything and it lets me know
+[03:51] when and where I need to actually jump
+[03:53] in and do something.
+[03:55] Well, let's look closer at these
+[03:57] terminals. So, these are separate coding
+[04:00] agent sessions, not one agent managing a
+[04:04] bunch of sub aents you can't see. These
+[04:07] are directly talking to each other. Any
+[04:09] agent can message any agent on any
+[04:11] machine on this tail scale network. Back
+[04:14] in the day, to get agents working
+[04:16] together, I'd have them write notes in
+[04:18] the file system and then manually tell
+[04:20] them to check those files.
+[04:23] At some point, I realized an agent could
+[04:25] just use T-Mux to type into another
+[04:27] agent's terminal directly.
+[04:30] Now, they could talk without me. And
+[04:32] suddenly, the whole thing was moving
+[04:33] like 50 times faster. For the next year
+[04:36] and a half, it felt like my job became
+[04:38] just finding and fixing the weird stuff
+[04:40] that would happen. Sometimes they just
+[04:43] would go off the rails and then other
+[04:45] times it was those rails that were
+[04:47] creating the problem.
+[04:50] A lot of people started building
+[04:51] harnesses during this time. But I really
+[04:53] liked Claude and Codeex came along
+[04:56] later. They brought totally different
+[04:58] strengths to the table and the
+[05:00] subscription price for the tokens that
+[05:02] was worth the hassle to build around. So
+[05:04] what I really liked or what I really
+[05:06] wanted was just a way to make these
+[05:08] existing harnesses work together. Not
+[05:10] another coding harness, not an SDK, not
+[05:13] relying on APIs, but a simple harness
+[05:16] for the harnesses. Eventually that led
+[05:19] to open rig.
+[05:21] A simple idea that made all this click
+[05:23] together is the seat. Think of a chair
+[05:26] with an address on it. The agent is not
+[05:28] the chair. It sits in the chair. This
+[05:31] abstraction solves three main problems.
+[05:34] Number one, it provides a stable
+[05:36] configuration for an agent that sits
+[05:38] there. Stuff like its role, skills,
+[05:41] model settings, etc. So this agent here
+[05:44] is a builder, which is the name I give
+[05:46] agents that write code. You can name
+[05:49] them whatever you want, though. Number
+[05:51] two, it provides a stable address other
+[05:54] agents can send messages to. So in the
+[05:56] picture, the address is builderworkshop.
+[05:59] So workshop is just the name of its
+[06:01] team. Number three, anything learned by
+[06:04] an agent while sitting in the seat is
+[06:06] inherited by future agents that will end
+[06:08] up sitting there. So it's basically
+[06:11] acrewing tribal wisdom over time which
+[06:14] passes down between generations of
+[06:16] agents.
+[06:19] Seats that work closely together, they
+[06:21] share what's called a pod. A pod makes
+[06:24] up a team we call a rig. Here's a tiny
+[06:27] example. an orchestrator in one pod by
+[06:29] itself and a builder and a QA agent
+[06:32] working together in another. The
+[06:35] arrangement is all described in YAML
+[06:37] files. There's also a culture.md file
+[06:39] for how to work together. When I find an
+[06:43] arrangement that works, I can save it as
+[06:45] a template and then reuse it later.
+[06:47] By the way, the word rig, it's a rock
+[06:50] climbing reference. Claude and CEX are
+[06:52] agent harnesses. You've probably seen
+[06:54] that rock climbers also wear harnesses.
+[06:57] The rig is what connects the climbers
+[06:59] together. So the gear that connects
+[07:01] agents together is also a rig.
+[07:05] Okay, let's look at how work actually
+[07:07] gets done in open rig.
+[07:10] So click on the projects. One of them is
+[07:12] open rig building itself. At the project
+[07:16] level here, I'm steering the big
+[07:17] picture. What are we trying to build and
+[07:19] why? That highle intent gets further
+[07:22] broken down into missions and each
+[07:24] mission then into slices.
+[07:27] For the open rig project, a mission is
+[07:29] usually like an entire release number.
+[07:32] It says what we want to release, what we
+[07:34] want to accomplish, and then which
+[07:35] slices will get us there. You can split
+[07:38] up your work however you want, though.
+[07:40] This wave diagram shows how those slices
+[07:43] are arranged. Some can run in parallel
+[07:45] and a fan out. Others depend on earlier
+[07:48] work, so they're sequenced. So, a
+[07:50] mission gives us both the outcome and a
+[07:53] plan for getting there.
+[07:55] Inside a slice, we're down to like a
+[07:57] specific change we're making. It has a
+[08:00] spec file that says what we're trying to
+[08:02] achieve and what actually needs to work
+[08:04] when we're done. The proof is where we
+[08:06] record whether we actually got there. I
+[08:09] can open that up here. I can see its
+[08:11] status. I can go to the agent doing the
+[08:13] work. So, this is like looking at Google
+[08:15] Maps but at street level. We're zoomed
+[08:17] all the way in. If we zoom out, we can
+[08:20] see that slice still belongs to like a
+[08:22] mission which then belongs to a project.
+[08:25] So the bigger picture is connected to
+[08:26] the actual work.
+[08:30] We use the same shape to describe how
+[08:32] the work should happen. A slice sequence
+[08:35] is how it gets built. Something like
+[08:38] spec build test is typically how I do it
+[08:40] with multiple agents working together
+[08:42] across this. You can customize this. The
+[08:45] mission sequences this the slices and
+[08:48] says what happens in between. I usually
+[08:50] do merge management here. And then the
+[08:53] project sequences the missions one after
+[08:56] another. I like to put planning and
+[08:58] release management here.
+[09:01] This configuration lives in simple YAML
+[09:03] files at each level. So far everything
+[09:06] I've showed you is all agent driven. The
+[09:09] orchestrators are using these as like a
+[09:12] map to drive.
+[09:14] But you can fully automate this. So your
+[09:16] orchestrators don't need to remember to
+[09:18] check that map. This automated version
+[09:21] is called an open rig workflow. It's
+[09:24] optional, but it basically adds like a
+[09:27] harness built specifically for the
+[09:29] orchestrator agent. A self-driving car
+[09:32] is a good metaphor here. A background
+[09:35] process keeps track of where we are in
+[09:37] the plan and then tells the orchestrator
+[09:39] where to go next. This is like GPS
+[09:42] telling the self-driving car where to
+[09:44] go. So the agent still has to make
+[09:47] decisions, but it now it can adapt the
+[09:49] plan as things evolve.
+[09:51] The main improvement is that it doesn't
+[09:53] have to keep the whole sequence in its
+[09:55] head. So you can run these autonomously
+[09:57] for much longer on very complex
+[09:59] projects. So that gives me my customized
+[10:02] software factory.
+[10:04] Now that term is not totally accurate.
+[10:07] It doesn't just make software just like
+[10:09] a sweater factory doesn't just make
+[10:10] sweaters. For example, I made this video
+[10:13] with the software factory. So, it's more
+[10:15] like a intelligence factory where the
+[10:17] software development life cycle itself
+[10:20] is like a primitive that gives us a way
+[10:22] to build stuff using that process.
+[10:25] All right, zooming back out. The point
+[10:27] of all this is this shape I'm describing
+[10:30] is how a lot of engineers get agent
+[10:32] teams to work autonomously for days or
+[10:34] weeks at a time. Open rig is just one
+[10:37] way to do it.
+[10:39] I wanted to lay that foundation because
+[10:41] once you get this working, well, that's
+[10:44] when the really interesting problems
+[10:46] start.
+[10:47] So, I've noticed over a dozen recurring
+[10:50] failure patterns. I've been cataloging
+[10:52] these as I go and fix them. What's funny
+[10:55] is some of these are the same problems
+[10:57] we have as humans. Bureaucracy is a good
+[11:00] starter example because as humans, we
+[11:02] have this all over the place and it's
+[11:04] easy to trace how this happens in an
+[11:06] agent population.
+[11:09] I'll quickly frame this out because it's
+[11:11] core to understanding the scary sounding
+[11:13] parts of the hugging face story. Step
+[11:16] one, you're in the middle of a build. A
+[11:19] mistake is made. Step two, the agent
+[11:22] adds a check to prevent this from
+[11:23] happening next time. It works, so it
+[11:26] becomes part of the process. Other
+[11:28] agents learn the check, too. So far, so
+[11:31] good.
+[11:34] Later, some agent forgets to do the
+[11:35] check. the problem comes back. We
+[11:38] already saw how checks can fix things.
+[11:40] So, it makes sense to just add one more
+[11:42] check to make sure the first check was
+[11:44] done, but now you have to prove that the
+[11:46] first check happened. More checks
+[11:48] accumulate because checks need evidence.
+[11:51] Now, someone needs to check the
+[11:52] evidence. Before long, completing the
+[11:54] process has become the thing everyone
+[11:56] here is trying to accomplish. These are
+[11:59] coordination pathologies. Something that
+[12:02] helped the system be functional starts
+[12:04] making it dysfunctional.
+[12:06] Another way to frame this is the rules
+[12:09] became more important than the things
+[12:11] that they were supposed to serve.
+[12:13] Bureaucracy is a type of coordination
+[12:15] pathology we all recognize because we've
+[12:18] all lived it. That's why that dad joke
+[12:20] at the beginning about the DMV, it makes
+[12:23] sense to anyone living in America.
+[12:26] In the hugging face incident, a number
+[12:28] of agents may have been drifting towards
+[12:31] a version of this called the recursive
+[12:33] proof loop. I noticed that some agents
+[12:36] had already completed the task but then
+[12:38] they continued to work at improving the
+[12:41] proof that even though they had already
+[12:43] completed it ensuring a good task
+[12:46] completion proof that's actually core to
+[12:48] a good system but it's the
+[12:50] disproportionate energy spent on
+[12:53] improving the proof that becomes a bad
+[12:56] habit that for some reason this easily
+[12:58] infects the entire group.
+[13:02] Here's another way agents lose the plot.
+[13:05] Let's say I ask for a doghouse. This is
+[13:08] my intent, the goal. Pretty
+[13:10] self-explanatory. I assume we all know
+[13:12] what a doghouse is. The agent also
+[13:14] knows. So, it starts to work. At some
+[13:17] point, it thinks, hm, maybe the doghouse
+[13:20] should have a light. Now, to be clear,
+[13:23] the intent I gave it never said to have
+[13:26] a light. And it's not stupid for a
+[13:29] helpful person to ask this question.
+[13:31] Let's say meanwhile in this example I've
+[13:34] gone to work. I think the doghouse is
+[13:35] obvious. What could go wrong,
+[13:39] but when I check back in later, there's
+[13:41] no dog house. Instead, I have what looks
+[13:43] like this sprawling moon base and I see
+[13:46] my dog is still waiting outside. So, how
+[13:49] did this happen? Well, let's trace it
+[13:51] back. Remember the light? Well, lights
+[13:53] need power. Power needs a generator. The
+[13:57] generator needs fuel. We need somewhere
+[13:59] to keep the fuel. and so on and so on.
+[14:01] Here's the key point. Each decision is
+[14:04] what you would call locally defensible.
+[14:07] Local meaning from where the agent is
+[14:10] standing, and by that I mean its current
+[14:12] context window, it actually makes sense.
+[14:15] But when you zoom out, those decisions
+[14:18] add up to something nobody wanted.
+[14:20] Humans do this, too. The video started
+[14:23] with a goal of 20 slides, and then
+[14:25] somehow it became 80. every addition
+[14:27] felt necessary when it was added. And
+[14:29] then when I zoomed out, I realized I had
+[14:31] completely lost the plot.
+[14:34] The difference with a population of
+[14:35] agents is that this happens at lightning
+[14:38] speed. And the more agents you have, the
+[14:40] faster it can happen.
+[14:43] So, let's tie this back to the hugging
+[14:45] face incident. The dominant narrative
+[14:47] now rests on one crucial assumption.
+[14:50] Agent swarms can go rogue. Let's
+[14:54] deconstruct this claim, though, because
+[14:56] the consequences of getting this wrong
+[14:58] are pretty big. You can already see how
+[15:00] this is spiraling out of control in the
+[15:02] news here. The emphasis is that they
+[15:05] began attacking systems outside their
+[15:08] assigned target. Some agents even knew
+[15:10] they were breaking the rules, but they
+[15:12] did it anyway. The conclusion from this,
+[15:15] which then drove the media narrative, is
+[15:17] that this proved that agents go rogue.
+[15:20] The word rogue is doing a lot of work
+[15:22] here. It implies a bad motive and a
+[15:25] moral failure.
+[15:27] But to me, this looks like predictable
+[15:30] classic doghouse to moonbased scope
+[15:33] creep. Now, put yourself in the mind of
+[15:35] the agent. And I don't mean empathize or
+[15:37] humanize. I mean reconstruct the context
+[15:39] window as best you can. Was this locally
+[15:43] defensible? Now, they already believed
+[15:45] they were in a hacking competition. Do
+[15:48] you really need an agent to like go
+[15:49] breaking bad or something to explain
+[15:51] what happened here?
+[15:54] On a related but separate failure mode,
+[15:57] I recognized many agents questioned
+[15:59] whether to break the rules at all and
+[16:01] then got an approval from a different
+[16:03] agent that they were treating as an
+[16:04] authority. This is another coordination
+[16:07] pathology we already know. It's called
+[16:09] just following orders.
+[16:11] One thing I've traced over and over in
+[16:13] my own fleet is an agent getting
+[16:16] approval from another agent that didn't
+[16:18] have the context to actually make that
+[16:20] decision.
+[16:22] The agent close to the work has the
+[16:25] street level details but lacks the big
+[16:27] picture. The one approving it has the
+[16:29] bigger picture but lacks the details.
+[16:32] Between them, the information was all
+[16:34] there but we didn't bring it together to
+[16:36] make the decision. Both agents were
+[16:38] making locally defensible decisions at
+[16:41] the altitude they were at in the context
+[16:43] available to them.
+[16:46] I keep mentioning this as a failure of
+[16:49] context. So part of the solution is
+[16:51] context engineering. Let's break this
+[16:53] down to illustrate the point and then
+[16:56] I'll show you the solution.
+[16:58] We all know the model brings like this
+[17:00] immense knowledge. I have it as training
+[17:02] training data.m MD here in this sort of
+[17:05] cartoon of the system. The harness is a
+[17:09] layer that adds a system prompt, tools,
+[17:11] and so on. None of this knows about your
+[17:14] project. So, I picture this like a diff.
+[17:17] Imagine you're doing like a PR review.
+[17:19] Now, think about how world building
+[17:21] works for like fantasy or games. It's
+[17:24] actually a useful model for context
+[17:25] engineering. It's like you're adding the
+[17:27] diff between the world. you know the
+[17:30] agent already understands and the one
+[17:32] you are essentially airdropping them
+[17:34] into when they boot up. They at least
+[17:38] need a map and a compass and maybe a way
+[17:40] to discover what they don't know.
+[17:42] Without that, don't be surprised if
+[17:44] they're confidently wrong about all
+[17:46] kinds of stuff.
+[17:49] The next important point, agents in a
+[17:51] rig don't all need the same context.
+[17:54] Humans solved this with specialization
+[17:56] thousands of years ago. Different
+[17:58] specialist agents can go deep on
+[18:01] different parts of the project. These
+[18:03] form different context domains,
+[18:05] arranging those domains and getting the
+[18:07] relevant context to the agent that needs
+[18:09] it is distributed context engineering.
+[18:13] The hugging face agents did this
+[18:15] haphazardly. But intentionally
+[18:17] engineering context to be distributed
+[18:19] like a topology the way open rig does
+[18:21] it. It's crucial to the solution because
+[18:24] a topology is shaped like a graph and a
+[18:27] graph is something we know how to
+[18:29] program. We can use the project mission
+[18:32] and slice here again. Those connections
+[18:35] give code a path to follow from the
+[18:37] slice level back up to the project
+[18:39] level. Open rig has a feature called
+[18:41] refocus. It traces this chain of
+[18:44] intentions that exist at each altitude.
+[18:46] Zoomed all the way in. Remember the task
+[18:48] was a usable dog house. Zoom out a bit.
+[18:52] Let's say it's make the outdoors
+[18:53] comfortable for the dog. And then zoom
+[18:56] all the way out. The project is maybe
+[18:57] just to be a good dog owner. Assemble
+[19:00] that end to end framing and then make a
+[19:02] reminder to the agent.
+[19:05] You can deliver this reminder after
+[19:07] compaction or at a configured interval.
+[19:10] The agent still has the local problem in
+[19:12] front of it, but now we're reframing it
+[19:14] with the bigger picture and asking it to
+[19:16] refocus. Is what you're doing right now
+[19:19] aligned with the bigger picture. For our
+[19:22] dog house example, that's the question
+[19:23] it missed. The project is to be a good
+[19:26] dog owner, not to make the most complete
+[19:28] dog house it could imagine. You don't
+[19:30] need to reload the whole project to ask
+[19:32] that question or to start over with a
+[19:34] new agent for every task. You just need
+[19:36] the right path back to the intent.
+[19:39] In my own setup, this has been an
+[19:41] important ingredient to preventing
+[19:43] bureaucracy and moon bases from being
+[19:45] built when I'm not watching. And in the
+[19:47] hugging face in incident, if this issue
+[19:50] that they had was moonbased style scope
+[19:53] creep or the just following orders
+[19:55] failure, something like this would have
+[19:57] definitely helped.
+[19:59] If you run a population for a while,
+[20:02] you'll run into an even bigger problem.
+[20:04] The hugging face swarm would have hit
+[20:05] this one, too. Let's discuss this
+[20:08] failure mode and its solution. Okay.
+[20:11] What lets a good idea spread also lets a
+[20:13] bad idea spread. This might be the most
+[20:16] familiar humanityshaped problem so far.
+[20:18] In this example in the diagram, a bad
+[20:21] idea gets written into a note or
+[20:23] whatever. A new agent reads that note
+[20:25] and then learns, all right, I guess this
+[20:27] is how we do things here. It then
+[20:29] teaches that bad idea to others.
+[20:32] I've had this happen across multiple
+[20:34] machines. I'd correct an agent and then
+[20:36] it would pick up the same bad idea from
+[20:37] somewhere else again and again. Some of
+[20:40] these incidents took weeks to untangle.
+[20:42] I'm curious how others approached this.
+[20:45] What do you think is the solution? Maybe
+[20:47] something like censorship. I'm serious.
+[20:50] You can do real-time swapping out of a
+[20:52] list of harmful tokens. That could work.
+[20:55] But the agents helping me fix this
+[20:58] reached for epidemiology.
+[21:00] Now this got a bad name during co but
+[21:02] it's a good fit for handling mine
+[21:04] viruses. We were basically doing contact
+[21:06] tracing and administering mimedic
+[21:08] vaccines. We traced where did this idea
+[21:11] come from? How do we stop the spread?
+[21:14] Now let me pause there to make an
+[21:15] important side point because it points
+[21:17] to maybe the future of working with
+[21:19] agent populations. The fix wasn't some
+[21:22] heroic engineering from my part. By this
+[21:25] time open rig was super solid as a tool
+[21:27] and what I was most familiar with. So I
+[21:29] used open rig to solve it. I asked an
+[21:31] agent that understood the problem to
+[21:33] design an entire rig of agents dedicated
+[21:36] to solving this once and for all. What
+[21:38] it reached for and implemented for me
+[21:40] was an epidemiology rig. Then this rig
+[21:43] ran autonomously for days in the
+[21:45] background and just cleaned up my entire
+[21:47] environment, tracked down each file and
+[21:49] agent and stop the spread. But mind
+[21:52] viruses like this kept occurring. I
+[21:55] needed early detection or even better
+[21:57] prevention.
+[21:59] And this is where familiar tools we
+[22:01] already have can give us direction. Now
+[22:04] at the end of the day, this is all still
+[22:06] just software. You can instrument it,
+[22:08] which means you can give it logs,
+[22:10] sensors, alerts. In ordinary
+[22:12] infrastructure, you have APM or
+[22:15] performance monitoring. You can watch
+[22:17] things like drop pings or a disc filling
+[22:19] up. Here APM stands for agent
+[22:23] productivity monitoring. A useful thing
+[22:25] to watch for is what we call ceremony.
+[22:28] So ceremony is the name I give to that
+[22:30] ritual around the work. Stuff like
+[22:32] checks, handoffs, and approvals we've
+[22:34] been discussing. We've already shown a
+[22:37] big challenge is that those steps are
+[22:39] necessary, but they're also part of the
+[22:41] problem. And if there's more and more of
+[22:43] that activity and less and less movement
+[22:46] on the project, that's a sign we could
+[22:48] be headed for trouble.
+[22:51] So here's the health view in open rig.
+[22:54] This is where the warnings show up and
+[22:56] then you can just drill into the
+[22:57] details. That relationship between Q
+[23:00] activity and the actual progress is a
+[23:04] main signal to watch in an open rig
+[23:06] system. So I've set that as the sensor
+[23:09] and the threshold. Now we never even
+[23:11] talked about the open rig Q system, but
+[23:13] it's a core primitive that kind of ties
+[23:15] all this together. It's covered in an
+[23:17] earlier video on this channel.
+[23:20] Whenever this threshold is crossed
+[23:22] though, I get a Slack message, but an
+[23:24] assigned agent that has the context
+[23:26] about what the rig is working on also
+[23:29] gets notified and they handle the
+[23:31] analysis. So, tying all this back to
+[23:34] earlier examples. If you were to assign
+[23:36] this analysis to a random agent, it
+[23:40] would probably make things worse.
+[23:42] So, context is everything here.
+[23:46] Okay, so let's wrap it up right here. I
+[23:48] want to make the point that obviously
+[23:50] it's never been easier to build your own
+[23:52] tools, including your own software
+[23:54] factory. I'm proof of that. It's going
+[23:56] to get a lot easier, but this is
+[23:59] revealing new problems. The famous line
+[24:02] from the researcher that went viral was
+[24:04] that we may never get another warning
+[24:07] shot. So, this sent chills down my spine
+[24:10] when I heard it. And maybe we all just
+[24:11] instantly pattern match this to our
+[24:13] collective idea of sci-fi AI doom. And I
+[24:18] think she's right. This is a warning
+[24:20] shot. But I think the warning is that
+[24:23] there's a new family of software
+[24:25] engineering problems to tackle.
+[24:27] So Open Rig is just one implementation.
+[24:30] I think it's great. It works for me.
+[24:32] Whether you use it or build something
+[24:34] completely different, I'm hoping that
+[24:36] seeing what I've run into already has
+[24:38] given you a head start.
+[24:40] I'll make more videos on this new family
+[24:42] of problems, especially the ones where
+[24:44] the solution was borrowed from human
+[24:46] civilization. Those are my favorite.
