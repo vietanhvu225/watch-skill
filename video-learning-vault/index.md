@@ -12,6 +12,20 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (24/09/2026)
+*Nhóm video vừa được phân tích và lập chỉ mục hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `b30f721a93ea5958` | Lauren Tan - SpaceX AI engineer | The Trust Curve, Closed-Loop Verification & Dune Architecture | [lauren_tan_spacex_ai.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/lauren_tan_spacex_ai.md) | 55:04 |
+| `27f9503c737f09e8` | Pstack Is Agent Overkill. Use It Anyway! | Kiến trúc Pstack, Potato Mode, Arena & Swarm | [pstack_agent_overkill_rob_shocks.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/pstack_agent_overkill_rob_shocks.md) | 12:57 |
+| `0c6ddaf19eb9f9b7` | How I Shipped 2000 PRs Last Month | Ẩn dụ Bếp Michelin & Vận hành 2,000 PRs tự chủ | [how_i_shipped_2000_prs_last_month.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_shipped_2000_prs_last_month.md) | 38:02 |
+| `8b06b98294ce7091` | [Vietsub] Cursor & Lauren Tan: AI Agent (xAI GrokBot) | Bản dịch Tiếng Việt toàn diện bài nói Lauren Tan | [cursor_lauren_tan_vietsub.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cursor_lauren_tan_vietsub.md) | 59:41 |
+| `2f9616fa0d42492c` | Toàn Bộ Quy Trình Tìm Ngách YouTube AI Trong 57 Phút | Lộ trình 187 độ, Thước đo 10 video & Outlier Hunting | [tim_ngach_youtube_ai_57_phut.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/tim_ngach_youtube_ai_57_phut.md) | 57:44 |
+| `fc62b7a5188244a4` | What Is Pstack? Better AI Coding Explained | Tóm tắt điều hành Pstack trong 90 giây | [what_is_pstack_1min.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_is_pstack_1min.md) | 01:30 |
+| `4e65c61d3aafe9bf` | SpaceX AI engineer Lauren Tan part 2 | Bản phát hành mở rộng / mirror bài nói Lauren Tan | [lauren_tan_spacex_ai.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/lauren_tan_spacex_ai.md) | 55:59 |
+| `668c4e7fcba582f7` | SpaceX AI Engineer Lauren Tan: Part 1 | Bản lưu trữ mirror bài nói Lauren Tan | [lauren_tan_spacex_ai.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/lauren_tan_spacex_ai.md) | 55:30 |
+
 ### 🟢 Mới phân tích (23/09/2026)
 *Video vừa được phân tích hôm nay:*
 
@@ -109,6 +123,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [agit: Version Control cho AI Agent Sessions (12m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) - Hướng dẫn công cụ mã nguồn mở agit (AgentGit): Quản lý phiên hội thoại AI agent theo dạng git branches, cherry-pick turns, handoff giữa Claude Code và OpenAI Codex, và cơ chế tự động filter/masking secrets trong conversation logs.
 * [unlazy: Depth Tree & Stop Hook Chống Lười Biếng (13m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) - Kỹ năng của Leon Lin (Leonxlnx): Phương pháp Depth Tree chẻ nhỏ task, sổ cái nghiệm thu GATES.md, chặn thoát bằng Stop Hook và kỹ thuật phân bổ disjoint files để chạy 10 subagents song song.
 * [I Run an AI Civilization in Herdr (25m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_civilization_in_herdr.md) - Phân tích thực tế vận hành quần thể AI Agent từ OPENRIG: Phản biện sự cố Hugging Face, 3 bệnh lý điều phối (Quan liêu đệ quy, Moonbase creep, Just following orders), trừu tượng The Seat, và kỹ thuật Refocus / Rig Dịch Tễ Học.
+* [How I Shipped 1,000+ PRs a Month: Lauren Tan (55m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/lauren_tan_spacex_ai.md) - Bài thuyết trình thực chiến của Lauren Tan (Cursor / xAI GrokBot / ex-SpaceX): Khái niệm The Trust Curve, Closed-Loop Verification qua CDP/Flame graph, Feature Map điều hướng UI, và kỷ luật kiến trúc Dune (cấm `useEffect`, cấm code comment rác).
+* [Pstack Is Agent Overkill. Use It Anyway! (13m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/pstack_agent_overkill_rob_shocks.md) - Phân tích kiến trúc Pstack của Rob Shocks: Potato Mode router, Arena Mode (đua 4 model) vs Swarm Mode (phân rã worktree), kỹ năng `/why` tra cứu Slack/Sentry/ADRs qua MCP, và nguyên lý Laziness Protocol.
+* [How I Shipped 2,000 PRs Last Month: The Michelin Kitchen (38m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_shipped_2000_prs_last_month.md) - Phân tích từ Raner: Phản biện ẩn dụ Software Factory, thay bằng Bếp Michelin (Head Chef, Line Cooks, Dishwashers), agent Benny chạy ngầm trên Cloud, và 3 trụ cột xây dựng lòng tin.
+* [[Vietsub] Cursor & Lauren Tan: AI Agent (60m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cursor_lauren_tan_vietsub.md) - Bản phụ đề Tiếng Việt chuẩn hóa từ Tech Bridge: Toàn bộ lộ trình tự động hóa quy trình phát triển phần mềm bằng AI Agent cho kỹ sư Việt Nam.
+* [What Is Pstack? Better AI Coding Explained (1.5m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_is_pstack_1min.md) - Tóm tắt điều hành trong 90 giây từ TonkaToyXL: Bản chất chứng minh mã nguồn (Prove their work) và rào cản môi trường kiểm thử.
+
+### 🎬 AI Content Creation & Automation
+*Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
+* [Toàn Bộ Quy Trình Tìm Ngách YouTube AI Trong 57 Phút](file:///f:/source/watch-skill/video-learning-vault/ai-agents/tim_ngach_youtube_ai_57_phut.md) - Lộ trình 187 độ của Hiếu Trương: 4 triết lý chọn ngách, thước đo sinh tử 10 video, công thức săn kênh đột biến (outlier channels) và pipeline tự động hóa kịch bản, âm thanh, hình ảnh.
 
 ### 💻 Backend & Certifications
 *Chứng chỉ công nghệ và hướng dẫn chuyên sâu lập trình backend.*
@@ -120,6 +143,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## ⏱️ 3. Phân loại theo Thời lượng học (Quick Study Route)
 
 *   **⚡ Đọc & Học nhanh (Dưới 10 phút):**
+    *   [what_is_pstack_1min.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_is_pstack_1min.md) (01:30)
     *   [cognee_memory.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) (03:01)
     *   [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) (08:01)
     *   [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) (08:53)
@@ -127,6 +151,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
     *   [agit_version_control_for_ai_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) (12:24)
     *   [unlazy_anti_laziness_depth_tree_skill.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) (12:54)
+    *   [pstack_agent_overkill_rob_shocks.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/pstack_agent_overkill_rob_shocks.md) (12:57)
     *   [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) (12:51)
     *   [anthropic_fixed_graph_engineering_flaw.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) (14:06)
     *   [wayfinder.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/wayfinder.md) (15:08)
@@ -149,6 +174,10 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [dangerously_self_educated.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) (27:51)
     *   [senior_google_ai_pm_how_i_build_loops.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/senior_google_ai_pm_how_i_build_loops.md) (34:23)
     *   [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) (35:19)
+    *   [how_i_shipped_2000_prs_last_month.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_shipped_2000_prs_last_month.md) (38:02)
     *   [art_of_loop_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) (46:00)
+    *   [lauren_tan_spacex_ai.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/lauren_tan_spacex_ai.md) (55:04)
+    *   [tim_ngach_youtube_ai_57_phut.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/tim_ngach_youtube_ai_57_phut.md) (57:44)
+    *   [cursor_lauren_tan_vietsub.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cursor_lauren_tan_vietsub.md) (59:41)
     *   [harness_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) (01:32:20)
     *   [aspnet_core_dotnet11.md](file:///f:/source/watch-skill/video-learning-vault/certification/aspnet_core_dotnet11.md) (08:06:00)

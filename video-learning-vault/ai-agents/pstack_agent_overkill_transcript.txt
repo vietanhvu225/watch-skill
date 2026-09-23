@@ -1,0 +1,239 @@
+[00:00] So this is Lauren Tan Ninja Engineer, she's worked at Netflix, she's a member of the
+[00:04] core React team, you might have heard of React, and Principal Engineer at SpaceX and
+[00:07] also Cursor.
+[00:09] If you're building coding agents or using any kind of software factory, you have to check
+[00:12] out her set of skills.
+[00:14] It's basically a senior engineer's brain extracted into one stack.
+[00:18] Even our friend Theo has done a deep dive on how awesome her skills are.
+[00:23] So even if you don't end up using PStack, just reading them will give you a breakdown
+[00:27] of how a serious agent practitioner works at scale.
+[00:30] So in just one afternoon, I created this skill manager called Moton Base to manage all
+[00:34] my skills across my various different agents.
+[00:36] I'll take you to some of that process and a breakdown of all the noteworthy skills.
+[00:40] This is a couple of minutes that's really going to help you improve your work with
+[00:43] agents.
+[00:44] PStack is broken down into all of her principles and engineering rules.
+[00:48] Then we've got the playbooks which you can think of as operating procedures, so the
+[00:51] agent knows what to do next.
+[00:53] And then all the individual skills and slash commands that do all the work.
+[00:57] Even after using agents for two years and building my own set of skills, there are a few
+[01:01] in here that are absolutely getting added to my default list.
+[01:04] So you can run PStack anywhere you want, cursor, cloud, code, codex.
+[01:08] You can find the official repo from cursor and Lauren at plug-ins, PStack at cursor.
+[01:13] I'll leave the link in the description down below.
+[01:15] And it's as simple as just typing in slash, add, plug-in, PStack when you're in cursor.
+[01:19] If you want to run this on cloud, code, codex, open code.
+[01:22] I found this not official repo by Michael Denier.
+[01:25] He's done the porting into each one of the agents.
+[01:28] So you can actually run that by installing it from the plug-in marketplaces.
+[01:34] So the heart of the PStack is potato mode.
+[01:37] It's essentially a router that helps you decide which one of the 20 plus skills you should
+[01:41] use first.
+[01:42] So what we've got here in our skill tree is essentially 22 playbooks.
+[01:46] To give a nice set of examples here for different use cases along with each one of the prompts.
+[01:50] I always love an opportunity to build some new software.
+[01:53] I haven't found a good skill manager that I like using.
+[01:56] So let's go and build our own.
+[01:57] So I've given potato mode a prompt here and let's see which one of its skills it uses to kick this off.
+[02:02] So the first thing we see here is potato mode.
+[02:04] I actually rooted this to a figure it out playbook.
+[02:07] If you're expecting something like be mad superpowers or open spec, this isn't necessarily
+[02:12] designed for spec and planning.
+[02:13] This is meant to be operated on an established code base.
+[02:16] Lauren's personal take on this is I don't believe in planning.
+[02:20] The best spec is the code.
+[02:22] So there's deliberately no planning skill baked into PStack.
+[02:26] Now you can already see the arena skill is in place.
+[02:29] So we have a design idea distributed between Claude, GPT, Grok and Claude Opus 5.
+[02:35] There goes the token budget.
+[02:36] If you have a critical feature to develop and tokens are not an issue, you can run arena.
+[02:41] It pits three or four different agents against the same problem.
+[02:44] And it takes the best parts of each and wraps them into a final commit.
+[02:49] And it's something the cursor had baked in six months ago and they later removed.
+[02:52] So basically having them all fight it out to give the best design and then picking the best parts of each design.
+[02:57] So based on what each one of the sub agents learned while working on the problem,
+[03:01] arena decides to either graft or reject.
+[03:04] Now similar to that we have the idea of swarm.
+[03:07] It's the idea that again you've got parallel workers,
+[03:09] but you give them different slices of the problem.
+[03:12] And then you pull it all back into one aggregated report.
+[03:15] Peaceback is designed so you get fearless parallelism.
+[03:17] If you're working across feature branches, work trees, et cetera.
+[03:20] Even if you're using arena or swarm, it's aggregating all of your work together,
+[03:24] making sure there's no overlaps.
+[03:26] Well, that's the idea in principle.
+[03:27] It is a big claim.
+[03:28] I haven't used it enough to say that that is actually the case,
+[03:31] but you can see how the principles are baked into allow for it.
+[03:34] Using its TDD skill or test driven development,
+[03:37] it went and created a bunch of unit tests first and then made sure they passed before proceeding.
+[03:41] So this skill, I particularly like why.
+[03:45] So the why scale is really cool.
+[03:46] Instead of just checking the transcript for the project,
+[03:49] it basically runs through all the different MCPs and CLIs that you have
+[03:53] that relevant to the project.
+[03:54] It might check product information in post-hug.
+[03:57] It might go to a conversation thread and slack about why a feature was implemented.
+[04:01] It might pull logs from Sentry to get a full big picture of decision records
+[04:06] or ADRs as to why something was done.
+[04:09] Definitely stealing this one.
+[04:10] So just like Pareto mode is a router for all the skills in Pstack.
+[04:14] Open router is pretty much a router for all the models you could possibly want to use.
+[04:18] Basically, one API key and one bill get you all the text, video, voice,
+[04:23] and image models you could possibly want under one API endpoint.
+[04:28] There are so many reasons why that is awesome, but for today, here's just one.
+[04:32] I get so tired of logging into different dashboards,
+[04:35] figuring out what API keys I have,
+[04:37] switching around providers for video and images.
+[04:40] And not to mention my poor agent has to manage so many different APIs.
+[04:43] So I went and built a CLI to interact so it open router's API.
+[04:46] I want to be able to generate images, videos, and voice using any provider,
+[04:50] using cloud code, cursor, or codecs, create a singular skill that can invoke the CLI.
+[04:54] So basically, I got my agent to build a CLI that connects to open router along
+[04:58] with a set of skills so I can generate images, video, text,
+[05:01] and even audio. I just need to grab one API key.
+[05:04] So then I can use my new skill in CLI via open router's API to do things like
+[05:09] generate a video of a lot of potatoes rotating around my head using seed dream.
+[05:13] And just like that, we have a head full of potatoes.
+[05:15] Rob Shocks viewers can check out open router via the link in the description down below.
+[05:19] Next up, in terms of usefulness, we have recall.
+[05:22] So recall is fantastic for when you want to pick up on a project that you've just left off.
+[05:26] Maybe it's been a week or so.
+[05:27] You're trying to remember where you're at.
+[05:29] It will scan through all the transcripts.
+[05:31] It'll even use the why skill to go and check your MCPs like notion linear
+[05:35] or post-doc to find out where we're at and what we need to do next.
+[05:39] To be honest, just reading through the skills themselves,
+[05:42] there's some great learning in here for developers.
+[05:45] Some fantastic patterns that are really worth knowing.
+[05:47] So once the code is actually developed, we're into the validation stage.
+[05:50] So we have interrogate.
+[05:52] So we'll interrogate you're basically getting two or three different models
+[05:55] to go and interrogate or double check the code against its standards.
+[05:59] Multiple different models review the same code and they all come back with their opinions.
+[06:03] Now you're going to burn a ton of tokens with some of these skills,
+[06:06] but inevitably if what you're looking for is the highest and strictest code quality,
+[06:10] the token count probably is known to matter to you here.
+[06:13] This one I absolutely love.
+[06:15] It's the create verification skill.
+[06:18] So basically it created its own scripted way to prove out the app behavior.
+[06:23] We have to delve into the root multiple different projects and setups.
+[06:26] We have to scan continuously to make sure that everything's updated.
+[06:30] There is a large surface area for this app to appear to be working,
+[06:33] but actually be fundamentally broken or giving us the wrong data.
+[06:37] So it went and created a set of verification scripts and crossjacks.
+[06:41] When you're dealing with non-deterministic agents,
+[06:43] this kind of verification step is just so valuable.
+[06:46] We also have a maintain verification skill.
+[06:49] So oftentimes as the app develops,
+[06:51] the script or verifier that you've set up is going to diverge from development.
+[06:56] So running this skill will actually go back and make sure that it gets updated.
+[06:59] The onslaught skill is an absolute gift if you use your agents to do any form of writing.
+[07:04] With the purpose of killing and removing all those annoying phrases like pivotal moment,
+[07:09] crucial, delve, enduring, and the controversial one getting rid of EM dashes entirely.
+[07:15] I actually like EM dashes.
+[07:16] I used them a long time before AI came along.
+[07:18] Sad to see them go, but inevitably it seems like a big tell for people that AI is used when you
+[07:23] see that little line.
+[07:24] Let's say I've been running a lot of agents in parallel all morning and my brain is just coming
+[07:28] to a halt.
+[07:29] This is just too much for me to grok.
+[07:31] I can actually run the bro skill, which basically restates the last message
+[07:35] in playing human language with no jargon.
+[07:37] So let's give it a go.
+[07:38] This bro skill is an absolute gift for clarity,
+[07:42] particularly when your brain has been burning hard on 10 different agents.
+[07:49] So we can learn an awful lot about Pstack how it works from the show me your work skill.
+[07:54] So I ran this on the first invocation of that one prompt.
+[07:57] Now remember, this whole thing was one shot of that one single prompt we started with.
+[08:02] So just like any good engineer, it started with some probing.
+[08:06] So a probe can be a quick test to see if what we're trying to achieve is even possible.
+[08:10] We're not going to build a whole app.
+[08:11] We're just going to write a small script and just investigate to see if it is actually possible.
+[08:16] So the initial frame is understanding the requirements and the constraints of the ask.
+[08:19] So in this case, we're saying that we wanted to operate on Mac,
+[08:22] but then eventually on other systems.
+[08:24] So it's able to create a frame around what needs to be built.
+[08:27] Next up, we did some basic scaffolding for the app before we moved into the arena stage
+[08:32] where we had four parallel agents working on the problem.
+[08:35] So this one is particularly interesting.
+[08:37] Design changes forced by reality.
+[08:40] Now this can sometimes be the problem with doing too much planning upfront.
+[08:44] When the agent creates this very detailed plan,
+[08:47] it hasn't actually dealt with reality yet.
+[08:50] It's only as we build and develop that our assumptions get broken
+[08:53] and we have to rework the problem and come up with a new plan on the fly.
+[08:57] In phase E here, we have all the verification testing and then we finish up with our audit.
+[09:03] Now this is why verification is so important.
+[09:05] The agent had realized it had hallucinated some of the details.
+[09:09] It caught three false claims that was able to correct.
+[09:15] So let's take a look at the key principles.
+[09:17] Number one, laziness protocol.
+[09:19] Absolutely love this one.
+[09:20] When refactoring our code, let's look to delete code if possible and make this a whole
+[09:25] lot simpler rather than adding more code.
+[09:28] And let's just aim for the smallest change to get the job done
+[09:31] because inevitably that leads to far more maintainable code later on.
+[09:35] So redesigning from first principles.
+[09:37] So as your project grows and you're adding more features,
+[09:40] the agent might decide to bolt on the next feature or functionality.
+[09:44] What redesigning from first principle is doing is basically saying that let's imagine
+[09:48] that we're adding this feature from day one.
+[09:50] How would you look at the code structure?
+[09:53] How would you have designed the scaffolding the database the structures in order to make sure
+[09:57] this was more of a native feature?
+[09:59] So this might actually involve removing some structures and some code in order to get to our
+[10:04] happy place.
+[10:05] So again, from learn, the goal isn't more code.
+[10:08] It's maximum impact with the least amount of code.
+[10:11] Minimizing reader load.
+[10:13] We're all getting so sick of these huge pors written by agents with disjointed code across
+[10:18] several abstractions and modules.
+[10:20] The idea here is that we minimize the reader load.
+[10:22] We keep things super simple with the minimum amount of abstractions.
+[10:26] Exhaust the design space.
+[10:28] So this is very much where the agent arena comes in.
+[10:30] We can have multiple different models and agents working on the same problem.
+[10:34] Come up with the best of all and then graft the best parts into our final commit.
+[10:38] In my course, I teach this thing called design mode,
+[10:40] where we actually just scaffold out a couple of different variations of what the interface
+[10:44] might look like without any database or code in the background.
+[10:47] So we can come up with the best option for design before we move forward.
+[10:50] The next principle is build a lever.
+[10:52] So if you're going to be doing something with your agent by hand multiple times,
+[10:56] why don't you build a tool for that?
+[10:58] It could be a CLI.
+[10:59] It could be a script that does the same verification over and over and again,
+[11:02] which we see via the verification skill.
+[11:05] Learn has also baked in some great disciplines here.
+[11:07] To be honest, you would hope that a model like Fable or Astra would start to
+[11:11] think about and bake these things in naturally.
+[11:13] But when it comes to verification steps,
+[11:15] there is no harm in having these kind of disciplines applied after the fact.
+[11:21] One of the biggest principles that flows through the entire stack is verification.
+[11:25] Having a compile and go green on tests is not the same as actually testing and proving
+[11:30] it works in terms of a real artifact by deeper verification,
+[11:33] whether that's via computer use or end to end testing.
+[11:36] Gared the context window and never blocked the human.
+[11:39] You can see this throughout the skills and the playbooks.
+[11:42] The central context window is key.
+[11:44] It's important.
+[11:45] How do we offload slices of the task to sub agents?
+[11:49] They've got their own unique context windows to do their work and then they report back to the
+[11:53] central thread.
+[11:54] The combined skills and methodology while costing a lot more in terms of time and tokens
+[11:59] have led to a much more hardened application using Fable 5.1 without any plan mode
+[12:06] and without any skills attached, it took about 30 minutes to get the project done.
+[12:10] Using the p-stack, it took one hour, so twice the amount of time.
+[12:15] However, the difference between the two projects is substantial.
+[12:19] Now let's be very clear, p-stack is a set of machinery and skills in your repo
+[12:23] is going to cost you a lot more money.
+[12:25] It's all of this validation verification and swarms means a lot of token burning.
+[12:30] You might not need to throw the potato at every single project that you have,
+[12:34] but at least you have an idea of what it's good at and where it can be used.
+[12:37] If you're making small design changes or working on the front-end UI,
+[12:40] you probably don't need to be using this.
+[12:43] So if you're subscribed and I hope you are, I've been building on a series of videos around
+[12:46] skills and the SDLC for a modern agentic developer.
+[12:50] I've got a course coming up on that soon, so if you want to get into the waitlist for the first
+[12:53] cohort, you can drop your interest at switchdimension.com.

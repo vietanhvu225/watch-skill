@@ -1,0 +1,41 @@
+[00:00] Lauren Tan says Pystack helped her ship
+[00:00] 2,000 production pull requests a month
+[00:00] with high confidence. That is an author
+[00:00] reported number, not an independent
+[00:00] benchmark. The useful part is how she
+[00:00] says it works. Pystack is Lauren's
+[00:00] MIT-licensed cursor plugin. It bundles
+[00:00] engineering playbooks, skills, and
+[00:00] agents behind one main command called
+[00:00] potato [music] mode. You give it a goal
+[00:00] and a way to check the result. The mode
+[00:00] picks a playbook, builds the change, and
+[00:00] pulls in the right tools as it works.
+[00:00] Part one of Lauren's guide focuses on
+[00:00] verification.
+[00:00] The agent needs a reproducible way to
+[00:00] control the real app, inspect what
+[00:00] happened, and prove the task passed. If
+[00:00] it fails, the agent uses the evidence
+[00:00] and tries again. That closes the loop
+[00:00] without making you approve every small
+[00:00] step.
+[00:00] Pystack also creates a feature map so
+[00:00] agents can find important parts of the
+[00:00] product without rediscovering the code
+[00:00] base each time.
+[00:00] Add parallel agents and the workflow can
+[00:00] handle more work without losing the same
+[00:00] verification standard. [music] There's a
+[00:01] catch. Pystack cannot rescue weak tests
+[00:01] or an app that is hard to run and debug.
+[00:01] It works best when your development
+[00:01] environment is reliable and your
+[00:01] acceptance checks are specific.
+[00:01] &gt;&gt; [music]
+[00:01] [music]
+[00:01] &gt;&gt; So, here's my view. Pystack is less
+[00:01] about writing more code. It makes coding
+[00:01] agents prove their work. Lauren Tan
+[00:01] created the guide and Pystack sources
+[00:01] are linked below.
