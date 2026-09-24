@@ -1,0 +1,75 @@
+[00:00] In this video I'm going to show you how you can use gener with your coding agents like Google
+[00:06] Antigravity, Cloud Code, or Codex. Standard LMs are built to write text which makes them
+[00:12] really great for a lot of things but for things like running agent hoops and really high frequencies
+[00:17] you'll start to see latency there.
+[00:20] gener on the other hand is a specialized model built for fast non-text positions in under 50
+[00:27] milliseconds. So today we'll cover exactly how that works and how and what people are building
+[00:33] with gener and also I'll show you exactly how you can wire it to Google Antigravity.
+[00:40] So how exactly does gener work? Here's a really simple example. When an agent loop needs to know
+[00:47] if a shell command is safe to run, it typically queries a general purpose LLM like Gemini,
+[00:54] Claude etc and then even with JSON mode or structured outputs turned on, the model still generates
+[01:02] hex token by token, right? So that means like brackets, quotes, fields, and values.
+[01:11] That generation introduces latency. After taking a second or more for a really simple boolean result,
+[01:18] gener is actually built completely different because it doesn't generate general text
+[01:22] instead it functions as a classification model. You supply the data, it evaluates your questions
+[01:29] about that data in a single pass and then it returns typed values either a boolean or numerical
+[01:36] scores and then it does this in roughly 15 milliseconds without requiring text parsing.
+[01:42] So essentially replacing that two second LLM call with maybe a 15 millisecond
+[01:49] position evaluation from gener actually helps to improve that loop latency. However,
+[01:56] gener is not designed to replace traditional large language models for reasoning.
+[02:01] It just can act as an evaluation layer alongside them. So that's actually a really important thing
+[02:07] to take away from this. So let's actually take a look at how gener works at a deeper level.
+[02:14] You pass two things to gener which is state and then questions and then gener actually returns
+[02:21] three different primitive types to you. First off is choice. Choice is essentially an option of
+[02:29] predefined list that it comes up with. Score is based on the questions that you're asking it,
+[02:36] it actually evaluates a task on a numerical score and then new is essentially a probability
+[02:44] between zero and one for true or false statements. And every time you pass a state to gener,
+[02:52] you can also ask and pass multiple questions in a single API call. So gener actually evaluates
+[02:58] them in parallel against both your context and then it returns all of these typed values
+[03:05] with confidence scores, etc. So because gener actually bypasses that token generation latency,
+[03:12] a lot of developers are using these primitives for fast, high frequency decision loops, right?
+[03:20] So someone called Gregor Sunik actually shared an example recently where he was able to create
+[03:26] an open source project that uses gener to navigate Google flights and he booked a ticket from
+[03:32] Zurich to London in under 7.1 seconds. And he did this by evaluating every possible click and input
+[03:41] action simultaneously within a 15 millisecond pass. So that's actually pretty cool. Now let's
+[03:47] take a look at exactly how you can use gener with Google anti gravity. So there are a bunch of
+[03:54] different ways that we can get started with. But one of the most easiest ways is to use the official
+[03:59] type safe skill, which is available. And you can do that super simply by just installing
+[04:06] the type safe skill into Google anti gravity codecs or even cloud code. The instructions are here.
+[04:13] So if you didn't want to manually install this into your terminal where you can actually just copy
+[04:17] and paste this prompt, which they have available into something like Google anti gravity. And it will
+[04:23] handle the download for you as well. And that's an amazing way to get started. So that's exactly
+[04:29] what I'm going to be doing. I'm going to copy this prompt. And I'm going to head into the anti gravity
+[04:35] ID. So in Google anti gravity, I'm going to paste the prompt that I got from type safe AI,
+[04:43] instrumentation, which essentially tells anti gravity to download the type safe AI skill.
+[04:49] So let's run this. And once that has run successfully, you should see the skill.mp file from type
+[04:56] safe AI in your project directory. And then you can start prompting it. So there's a couple of
+[05:01] different example prompts that you can use to test out Jeff in Google anti gravity. The first one
+[05:07] is actually a really good prompt to start a brainstorming project to help you figure out where type
+[05:12] safe can be best used in a project. You can also create an API key and give your agent permissions
+[05:20] to figure out the best way to use type safe by running cheap test queries. And you can find
+[05:26] your API key in the type safe console where there's a link to in the docs as well. And this is
+[05:32] what the type safe console looks like. And you can generate an API key really easily. And that's
+[05:37] what I've done. And I'm going to paste this into my dot EME file in Google anti gravity. Once you've
+[05:44] installed the skill and also you've saved your API key for type safe in the dot EME file.
+[05:51] Once we've done that, what I'm going to be doing is I am going to be using Jeff as a sort of model
+[05:57] router within anti gravity. So that's what I'm doing here. I've created a prompt of asking
+[06:04] anti gravity to create a Python script called router dot py. And it will make use of the type
+[06:11] skill in order to write this. And what it's going to do is whenever I ask anti gravity to do
+[06:18] something or to execute something, depending on the complexity, it is going to select Gemini Flash
+[06:26] or Gemini Pro. So that we can now see some test results from our model router powered by Jeff
+[06:34] within anti gravity. So we can see certain tasks being passed to Gemini Flash. And then more difficult
+[06:42] tasks are being passed to Gemini Pro. And we can also see the latency at which this is happening
+[06:48] in milliseconds and how incredibly fast it's moving. So I think this is like a super cool example
+[06:57] of what you can build with Jeff. There's also some constraints and limitations with Jeff. So
+[07:02] first of all, Jeff is not that great. And then it is also not great at literal evaluation.
+[07:09] So Jeff actually evaluates the exact text provided in a criteria rather than what you might be
+[07:17] implying. So it's very important that you're writing really explicit descriptions which are not
+[07:22] ambiguous. Jeff is also not great at state filtering. So dumping an entire giant state or context
+[07:29] is not that great. Also, Jeff handles structured classification really well. And that's where
+[07:37] the decisions should lie. And it's also really important to scope that well and not move into
+[07:44] more of text generations, writing essays or even conversational answers because obviously that's
+[07:50] going to fail. With that said, there are a ton of use cases for Jeff out there. And if you go on
+[07:56] to X or read it, you can see a ton of the different things that people are already building with
+[08:01] it. I'm going to be leaving everything I talked about in this video in the description box below.
+[08:06] Let me know what you guys thought. And thank you for watching.

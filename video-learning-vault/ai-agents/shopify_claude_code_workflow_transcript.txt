@@ -1,0 +1,262 @@
+[00:00] Shopify just rebuilt their main mobile app and in the process released an amazing AI coding workflow.
+[00:05] To make you understand why this is a big deal, you need to understand that this is a huge task.
+[00:10] They rebuilt a huge app with 300 screens and they did it all using AI coding agents.
+[00:15] But they didn't just give the whole job to an agent in one go.
+[00:19] They used a structured workflow all the way to the end.
+[00:22] So the apps stayed up to their standard.
+[00:24] But they just talked about the method and they never showed us how it was done.
+[00:27] So we retraced it and rebuilt the same workflow for ourselves.
+[00:30] The steps in Shopify's workflow give your agent a process it can't talk its way out of.
+[00:35] But even with their workflow in place, the agents still tried to mess up and a change that we made
+[00:40] fixes that problem entirely.
+[00:42] If you're new here, welcome.
+[00:43] We're a software company and this is our channel, AI Labs.
+[00:46] And in this video, we're going to show you Shopify's workflow and how we set it up
+[00:50] so that you can run the same AI coding loop on your own app as well.
+[00:54] Now Shopify calls the tool behind their loop Helix.
+[00:57] They built it because they were rewriting their app in a different way than it was built
+[01:01] originally.
+[01:02] To summarize what they did, they took one screen from the old app and asked the agent to
+[01:07] convert it to the new version.
+[01:08] Helix then read that screen and split the work into smaller tasks called checkpoints.
+[01:13] A person on their team then reviewed these checkpoints first.
+[01:16] Then after they were approved, each checkpoint had to pass four strict checks before Helix started
+[01:21] working on the next one.
+[01:22] These checks made sure that the app was up to their standards.
+[01:25] Helix uses sub agents to carry out most of the work.
+[01:28] The main reason they used sub agents for everything is the fresh context window.
+[01:32] If an agent is working on a very long task and keeps everything in the same context window,
+[01:37] this leads to problems.
+[01:38] When everything is collected in the same context window, all of that becomes too much for
+[01:43] the agent and it starts forgetting the important things in between.
+[01:46] So the quality of its work starts to go down.
+[01:49] Sub agents prevent that by keeping a separate context window for each task.
+[01:53] The whole loop is also built around two things.
+[01:55] The first is the checkpoints which are the small pieces of work we talked about.
+[01:59] The second is the four checks which Shopify calls gates.
+[02:02] A gate is a check the work has to pass and any work that fails the check is stopped from going
+[02:07] to the next task until that gate is cleared.
+[02:10] Now even though they use this workflow for changing an app from one form to another,
+[02:14] it can be used way beyond that.
+[02:15] This process lets you build huge features by making sure that what you build is up to your
+[02:20] app standards and also looks good.
+[02:21] Now Helix is actually still internal and we don't have access to it, but they released their
+[02:26] whole setup so we created our own workflow and tested it on a demo HR system project.
+[02:31] We had the whole app built and we were just adding features to it.
+[02:34] We are going to tell you what each step does in detail so that you can replicate the same workflow
+[02:39] when you are working on your app.
+[02:40] Since running every step of this loop ourselves would need a lot of our input,
+[02:44] we created a skill and called it the orchestrator.
+[02:46] The orchestrator is the only skill you need to prompt and it handles all the other parts itself.
+[02:51] Your input is just needed twice and the rest of the time the orchestrator handles everything
+[02:56] on its own.
+[02:57] But before we build with it, we're going to go to the core parts of the loop starting with checkpoints.
+[03:01] Just like how we mentioned before, checkpoints are actually small parts of a big feature.
+[03:06] Shopify worked this way that until one checkpoint is completed properly, the next checkpoint
+[03:11] cannot start.
+[03:11] They divided their work in checkpoints in order of increasing complexity.
+[03:15] What this means is that the smallest tasks should be the ones built first and then the next
+[03:19] more complex task and so on.
+[03:21] That's because each checkpoint is built on top of the one before it.
+[03:24] So if an early decision is wrong, you catch it while it's still small and cheap to fix.
+[03:29] So to split our feature into smaller parts, we created an agent called checkpoint planner.
+[03:34] The checkpoint planner takes the large feature we give to the orchestrator and splits it into checkpoints.
+[03:40] It writes these checkpoints into a JSON file format.
+[03:42] This is because its structure is easy for the agent to understand and it can easily find what it
+[03:47] needs in the file.
+[03:48] But there's one thing you need to do and that's review these checkpoints.
+[03:51] Even though JSON is structured, it's actually hard for you as a human to read that file and
+[03:56] understand it directly.
+[03:58] That's because the file becomes a huge block of structured text that is too much for a person
+[04:02] to follow.
+[04:03] So for that reason, we also built a simple web page viewer where we can easily see what the agent
+[04:08] planned.
+[04:09] Now what happens is that we tell the orchestrator about the feature we want to add to the app.
+[04:14] The orchestrator then starts two sub agents.
+[04:16] One sub agent checks the current state of the app and make sure it's running.
+[04:20] The other is the checkpoint planner agent that we created.
+[04:23] If the checkpoint planner has any questions, it will ask them from you.
+[04:26] Then it writes down all checkpoints and the orchestrator opens the viewer for you so that you can
+[04:31] review them.
+[04:31] The viewer shows you each step in order, which steps are in progress and what each task would need
+[04:36] to be called done.
+[04:37] We also instructed the checkpoint planner to keep the language simple so that you can understand
+[04:42] the wording easily.
+[04:43] At this point, the orchestrator also gives another sub agent the job of planning the tests.
+[04:47] That sub agent writes down in detail how each checkpoint will be tested so that everything is
+[04:52] documented from the get go.
+[04:53] This review is one of the steps you need to do thoroughly so that you know the plan isn't missing
+[04:58] any features and all the time agent spent implementing isn't going to be wasted.
+[05:02] Once you've reviewed the plan, you either ask for changes or approve it.
+[05:06] Once you approve the plan, the orchestrator starts building beginning with checkpoint one.
+[05:10] But before we see how checkpoint one gets built, you need to understand what a checkpoint has to
+[05:15] pass before it counts as done.
+[05:16] And before we discuss those, it would be great if you subscribe to the channel and hit the
+[05:21] height button.
+[05:21] This small gesture of support goes a long way for us.
+[05:25] Now, the thing that lets a checkpoint pass is actually a review point.
+[05:28] And Shopify calls these review points gates.
+[05:31] You usually give these review in forms of prompts.
+[05:33] But a gate is different from a rule in your instructions that you give in your prompts or files.
+[05:38] Because a rule is only advice.
+[05:40] The agent forgets the rule when it's working and you have to remind it again.
+[05:44] A gate is different because unless a gate is passed, it won't let the agent move to the next task.
+[05:49] To make sure that our setup didn't let the agent work on the next task until the gate is passed,
+[05:54] we created a hook.
+[05:55] The hook we created runs every time the agent tries to stop.
+[05:58] When it does try to stop, the hook throws an exit code too.
+[06:01] This exit code too is not used to show an error has occurred during work.
+[06:05] But it is just used to prompt the agent to do the thing so that it can continue working.
+[06:10] Our hook tells the agent that the work isn't done.
+[06:13] So it has to keep going until the gates are passed.
+[06:15] This is the same concept we borrowed from the Ralph Loop.
+[06:18] There are four gates that Shopify used in their workflow.
+[06:21] The first is the behavior gate which checks whether the feature works or not.
+[06:25] Then the UI gate checks if the screen looks like the design we wanted.
+[06:28] After that, the code review gate checks that the code underneath is good and the last gate
+[06:33] is your final review.
+[06:34] So we'll start by setting up the behavior gate.
+[06:36] But before we set it up, let's have a word by our sponsor.
+[06:39] Hedra.
+[06:40] Your agent already works right beside you in the editor.
+[06:42] But the moment your build needs real media, it stalls and you have to leave for a separate tool.
+[06:47] Hedra closes that gap.
+[06:48] We added the Hedra MCP server to Claude Code in about a minute.
+[06:52] And suddenly the agent could make the media itself without leaving the session.
+[06:55] It's the same Hedra models underneath just reached from inside our agent.
+[06:59] So we asked for what the build needed, a short clip for the landing page,
+[07:03] and instead of a silent spinner, Hedra streamed its real progress as it moved from
+[07:07] generating to finalizing.
+[07:09] So we could watch it genuinely render the clip in real time, not just hand over a file.
+[07:13] A moment later, the finished video landed right there in our session.
+[07:17] It's one more thing your agent can suddenly do without opening another tab.
+[07:20] If your agent's ever stalled out needing real media, Hedra closes that gap.
+[07:24] Try it for free at Hedra.com and use our code for 50% of your first month.
+[07:29] The link and code are in the description.
+[07:32] Now the behavior gate involves all the testing that can be done without using the browser
+[07:36] and agent at all.
+[07:37] Instead of checking the app by clicking through it, the agent writes small checks in the form
+[07:42] of code that use the feature the same way a person would.
+[07:45] These small checks are called tests and we already saw them planned in the viewer earlier.
+[07:49] The reason we planned the tests first, just like we've always mentioned in our previous videos,
+[07:54] is that we want the agent to have a clear standard to check its work against,
+[07:57] so it can verify that the feature is working as intended.
+[08:00] These tests make sure to cover as many cases as possible so that we can verify the workflow
+[08:06] underneath the app is working right with different inputs.
+[08:09] For making that easier, we modified our previous TDD planner skill so that it fits this workflow.
+[08:14] This skill basically plans and writes the tests for the feature that is given to it.
+[08:18] This skill makes sure that everything that can be verified without a browser gets tested at this point.
+[08:23] That's because a lot of things don't need a browser to be checked,
+[08:26] such as whether a manager is allowed to approve someone's leave.
+[08:29] For that, the agent can use a piece of code to verify that part directly,
+[08:33] and it doesn't need to press buttons to see if it's approved or not.
+[08:36] The sub agent that planned the tests earlier was following this skill.
+[08:40] This step comes after our last step where we created the checkpoints using the agent.
+[08:44] Once you approve the checkpoints that were showed to you,
+[08:47] the orchestrator starts working on the checkpoint one.
+[08:49] What the orchestrator does first is start a few sub agents to write the tests,
+[08:53] which are needed for the first gate.
+[08:55] They will all be failing at first because the feature that the test are written for isn't written yet.
+[09:00] Once the tests are done, the orchestrator starts another sub agent that actually writes the code
+[09:04] for this checkpoint.
+[09:05] Then the orchestrator uses one more sub agent to run the tests and make sure every one of them
+[09:10] passes.
+[09:11] And once every test passes, gate one is marked as passed for checkpoint one,
+[09:15] then the orchestrator moves on to the next round of review, which is the UI gate.
+[09:19] The UI review gate is one of the most important gates because it directly affects the user experience.
+[09:24] Since Shopify was converting one app into another form,
+[09:28] keeping the design exact same became really important.
+[09:31] For this gate, Shopify used Gemini models as a perfectionist design reviewer.
+[09:36] That's because when they were testing, they found that these models have very good spatial awareness,
+[09:41] which means the models can tell where things are on a screen and how big they are.
+[09:45] So Gemini can catch small differences in spacing and size between two screens.
+[09:50] But when you're working on your own projects or when you're building for clients,
+[09:54] you normally don't have anything to review against.
+[09:56] So in those cases, we create HTML prototypes first.
+[09:59] Creating prototypes lets us quickly demo the products visuals and experiment with directions
+[10:04] without worrying about affecting the main project.
+[10:07] The prototype is also what we show our clients to get their approval.
+[10:10] To create these prototypes, we use another skill called prototype.
+[10:14] The prototype skill builds the whole prototype as one file that we can open and click through,
+[10:19] so we can see if what we want is actually being created.
+[10:22] This skill follows the project's own guidance, like the design dot MD file.
+[10:26] It is a structured file listing all the design details for building the design.
+[10:30] We had already created one for our app by using the design dot MD planner skill
+[10:35] that we've provided in our AI labs design system in the community.
+[10:39] With that file in place, the prototypes get created before UI gets built.
+[10:43] To compare the prototype with the app we built, we use a separate skill.
+[10:47] This skill makes sure the visuals match and it also makes sure both of them behave the same way
+[10:51] when you interact with them.
+[10:53] Before comparing anything, the skill also checks that the prototype and the app are in the same state.
+[10:58] For example, a button that's not been submitted and has been submitted are in two different states.
+[11:03] So the skill makes sure the prototype and the app are both showing the form in the same state.
+[11:08] But we didn't use Gemini for this.
+[11:10] Instead, the skill hands the comparison to Claude in a new session by launching it from the session itself.
+[11:15] Not every checkpoint needs this gate because gate one already tests most things without a browser.
+[11:21] That's why only some of our checkpoints that were shown on the viewer earlier were missing this gate.
+[11:26] So when the orchestrator gets to a checkpoint that needs this gate,
+[11:29] it starts two separate Claude's sub agent side by side.
+[11:32] One reviews how the screen looks and the other reviews how it behaves.
+[11:35] Neither of them sees the project's instructions, so they judge the app only against
+[11:40] the prototype and the design.md file.
+[11:42] Each one returns a review of the differences and the orchestrator combines the two.
+[11:46] That combined review then decides whether this gate passes or fails.
+[11:50] Now the feature works and it looks like the prototype.
+[11:53] But the code underneath can still be a mess.
+[11:55] So that's where the next gate comes in.
+[11:58] The third gate is actually the adversarial review gate.
+[12:01] The adversarial review means it's set up to argue against the code.
+[12:04] Shopify has heavy review processes because they need to make sure what they ship
+[12:08] is up to their standards.
+[12:10] Their method uses two adversarial agents that check the code against a standard Shopify wrote down.
+[12:15] Every problem they find has to be fixed.
+[12:17] And only when both of the agents approve is this gate passed.
+[12:21] So we also did this with two agents.
+[12:22] But rather than having both of the agents criticize the code,
+[12:26] we went with an adversarial loop where one agent is criticizing and the other is fixing.
+[12:30] The first agent is the adversarial agent, which basically assumes that the code is wrong
+[12:34] and tries to find issues with it.
+[12:36] The second one is the fixer agent, which actually fixes the issues the adversarial agent finds.
+[12:41] To coordinate the workflow, we have a skill called adversarial loop that manages the
+[12:45] communication between the two agents.
+[12:47] When the behavior gate and the UI gate are passed,
+[12:50] the orchestrator starts the adversarial agent and waits for its review.
+[12:54] If the adversarial agent reports back with no issues,
+[12:57] the orchestrator just marks the gate as done.
+[12:59] Otherwise, the orchestrator starts the fixer agent to make the fixes
+[13:03] and then the adversarial agent checks the code again.
+[13:05] The two agents go back and forth like this and the gate is only done once the adversarial
+[13:10] agent approves the code.
+[13:12] The last step is the human in the loop and it's a really important step because even if
+[13:16] agents have standards and things to review against,
+[13:18] they won't be able to review from the perspective of a human.
+[13:21] You need to make sure that the feature works properly when a person actually uses it.
+[13:25] So when all of the checkpoints are done,
+[13:27] you need to test the feature to make sure it works the way you wanted.
+[13:30] You also check whether anything in it would work or look better,
+[13:34] so that you can ask for small changes to the feature.
+[13:36] When you ask for changes, the orchestrator turns them into new checkpoints that go through
+[13:41] all the same gates and it writes your feedback down in a learning file that every agent reads
+[13:46] before it starts work.
+[13:47] Now the whole workflow that we just went through is run by a single skill called the orchestrator
+[13:52] that we talked about earlier.
+[13:53] When you just prompt this skill, it runs it through the whole workflow from checkpoints
+[13:58] to giving you the end feature to review.
+[14:00] The orchestrator will only stop for you twice.
+[14:02] It stops once after it plans the checkpoints,
+[14:04] so you can approve them and again when it's done,
+[14:07] so that you can check the app and complete the cycle.
+[14:09] So the agent can get things wrong along the way,
+[14:12] but the gates never let unfinished work through.
+[14:14] Shopify puts it this way that an attempt is allowed to be wrong.
+[14:17] It is not allowed to ship until it isn't.
+[14:19] So the whole workflow is something you can create on your own by prompting Claude,
+[14:23] telling the task you want this skill to perform.
+[14:26] But if you want the skills that we have created in this workflow,
+[14:29] you can get them in AI Labs Pro, which is our community.
+[14:32] So if you found value in what we do and want to support the channel,
+[14:35] this is the best way to do it, the links in the description.
+[14:38] That brings us to the end of this video.
+[14:40] If you'd like to support the channel and help us keep making videos like this,
+[14:43] you can do so by using the super thanks button below.
+[14:46] As always, thank you for watching and I'll see you in the next one.

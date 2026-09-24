@@ -12,8 +12,17 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
-### 🟢 Mới phân tích (24/09/2026)
+### 🟢 Mới phân tích (25/09/2026)
 *Nhóm video vừa được phân tích và lập chỉ mục hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `863ef37300c836d1` | Shopify Just Released The Greatest Claude Code Workflow Ever | Helix, The 4-Gate Loop, Adversarial Review & Exit Code 2 Hook | [shopify_claude_code_workflow.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/shopify_claude_code_workflow.md) | 14:51 |
+| `f62aea0c858fb6c9` | Make Your Coding Agents Way Faster (Jev + Google Antigravity) | Tối ưu hóa độ trễ Agent Loop (15ms), Jev & Antigravity Model Router | [jev_google_antigravity_faster_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_google_antigravity_faster_agents.md) | 08:09 |
+| `fd49e02a8a62f86d` | Every Jev Concept Explained (use with Claude) | System 1 vs. System 2 AI, Speculative Fanout & 4 Architectural Patterns | [every_jev_concept_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/every_jev_concept_explained.md) | 37:22 |
+
+### 🟢 Mới phân tích (24/09/2026)
+*Nhóm video vừa được phân tích và lập chỉ mục hôm qua:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -128,6 +137,9 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [How I Shipped 2,000 PRs Last Month: The Michelin Kitchen (38m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_shipped_2000_prs_last_month.md) - Phân tích từ Raner: Phản biện ẩn dụ Software Factory, thay bằng Bếp Michelin (Head Chef, Line Cooks, Dishwashers), agent Benny chạy ngầm trên Cloud, và 3 trụ cột xây dựng lòng tin.
 * [[Vietsub] Cursor & Lauren Tan: AI Agent (60m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cursor_lauren_tan_vietsub.md) - Bản phụ đề Tiếng Việt chuẩn hóa từ Tech Bridge: Toàn bộ lộ trình tự động hóa quy trình phát triển phần mềm bằng AI Agent cho kỹ sư Việt Nam.
 * [What Is Pstack? Better AI Coding Explained (1.5m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_is_pstack_1min.md) - Tóm tắt điều hành trong 90 giây từ TonkaToyXL: Bản chất chứng minh mã nguồn (Prove their work) và rào cản môi trường kiểm thử.
+* [Shopify Helix: The 4-Gate Loop & Adversarial Review (15m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/shopify_claude_code_workflow.md) - Phương pháp luận viết lại 300 màn hình mobile tại Shopify: Checkpoint tăng dần độ phức tạp, Fresh Context Window bằng Sub-agents, 4 Gate kiểm soát nghiêm ngặt, Hook cưỡng chế Exit Code 2 và Orchestrator skill chỉ cần con người can thiệp 2 lần.
+* [Make Your Coding Agents Way Faster: Jev + Antigravity (8m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_google_antigravity_faster_agents.md) - Giải pháp phá vỡ nút thắt độ trễ của Smitha Kolan: Sử dụng mô hình phán đoán Jev (TypeSafe AI) xử lý câu hỏi phi văn bản trong 15ms, kết nối skill vào Google Antigravity và dựng router.py phân luồng Gemini Flash / Pro.
+* [Every Jev Concept Explained: Use with Claude (37m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/every_jev_concept_explained.md) - Cẩm nang toàn diện của Simon Scrapes về Jev: Hệ thống tư duy Nhanh & Chậm (System 1 vs System 2), 3 kiểu dữ liệu Bool / Choice / Score, 4 mẫu hình kiến trúc (Speculative Fanout, Confidence Gating, Decomposed Scoring, Intent Routing) và quy trình 5 bước thiết kế trigger cho agent.
 
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
@@ -146,6 +158,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [what_is_pstack_1min.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_is_pstack_1min.md) (01:30)
     *   [cognee_memory.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) (03:01)
     *   [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) (08:01)
+    *   [jev_google_antigravity_faster_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_google_antigravity_faster_agents.md) (08:09)
     *   [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) (08:53)
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
     *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
@@ -154,6 +167,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [pstack_agent_overkill_rob_shocks.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/pstack_agent_overkill_rob_shocks.md) (12:57)
     *   [ambitious_but_inconsistent.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) (12:51)
     *   [anthropic_fixed_graph_engineering_flaw.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) (14:06)
+    *   [shopify_claude_code_workflow.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/shopify_claude_code_workflow.md) (14:51)
     *   [wayfinder.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/wayfinder.md) (15:08)
     *   [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) (15:18)
     *   [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) (15:00)
@@ -174,6 +188,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [dangerously_self_educated.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) (27:51)
     *   [senior_google_ai_pm_how_i_build_loops.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/senior_google_ai_pm_how_i_build_loops.md) (34:23)
     *   [self_improving_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/self_improving_agents.md) (35:19)
+    *   [every_jev_concept_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/every_jev_concept_explained.md) (37:22)
     *   [how_i_shipped_2000_prs_last_month.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_shipped_2000_prs_last_month.md) (38:02)
     *   [art_of_loop_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) (46:00)
     *   [lauren_tan_spacex_ai.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/lauren_tan_spacex_ai.md) (55:04)

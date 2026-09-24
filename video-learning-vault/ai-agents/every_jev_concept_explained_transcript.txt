@@ -1,0 +1,533 @@
+[00:00] The most talked about AI model this month can't even write sentence.
+[00:03] You can't chat with it and it can't explain itself.
+[00:06] And this is what people built with it in the first week it was released.
+[00:09] We've got a browser that fills in Google flights in about seven seconds.
+[00:12] And if you've ever tried to use Claude with a browser, by the way,
+[00:15] you'll know that it's incredibly slow.
+[00:17] We've got three million website sessions, capturing lost customers,
+[00:20] abandoned checkouts, and more sorted in 40 seconds for about $2.
+[00:25] And then we've got someone else driving Chrome with their voice,
+[00:28] where it even takes actions before they finish their full sentence.
+[00:31] So it's called Jev, and I've been through all the official docs
+[00:34] so that you don't have to.
+[00:35] And by the end of this, you'll know what it is, why it matters if you use Claude already,
+[00:40] how to run it from Claude and ask it the right questions,
+[00:44] as well as how to get the most out of it.
+[00:46] So let's start by talking about what's different about Jev,
+[00:49] because some of this isn't new.
+[00:51] So every piece of software you already use is already full of if statements.
+[00:56] For example, if an order is over $10,000, we're going to flag it for review.
+[01:00] The catch, though, is that an if statement can only check things
+[01:03] that a computer can measure.
+[01:04] So we're comparing it to a number, a date, a tick box, a criteria,
+[01:08] but it can't check whether an email sounds angry,
+[01:10] or whether an order looks dodgy, because those aren't numbers.
+[01:12] They aren't checkable things.
+[01:13] They're not deterministic.
+[01:14] So Jev is doing exactly that.
+[01:16] It's turning those messy inputs from customers into numbers.
+[01:19] So the if statement then becomes,
+[01:21] if this order looks suspicious, okay, we're 95% sure,
+[01:25] flag it for review.
+[01:26] So now it can be read, and a decision can be made by a computer.
+[01:29] And we'll talk about how you determine what counts are suspicious,
+[01:32] because we're going to use Claude and you to write the questions,
+[01:34] and you are going to set the criteria for yes, the 95% confidence level, for example.
+[01:39] So we're going to send a bunch of questions to Jev.
+[01:41] Jev is going to answer each one with how sure it is,
+[01:43] and your code only flags the order when all of them come back
+[01:47] above that threshold that you've chosen, so that 95%.
+[01:50] And this might feel a little bit different to your traditional LLMs,
+[01:53] like your anthropic chat models.
+[01:54] And that's why I type, say, for the company behind Jev, call it a judgment model.
+[01:58] So it was built by a founder, Deogo,
+[02:00] who helped build the methods behind Chachi BT at open AI.
+[02:04] So this is a massive announcement.
+[02:06] And if you compare it to something like Claude on the surface,
+[02:08] you can absolutely ask Claude,
+[02:10] does this order email looks suspicious?
+[02:12] And you're going to get a text response from Claude.
+[02:13] Like, you're absolutely right.
+[02:15] This does look suspicious.
+[02:16] Would you like me to draw an email to the customer?
+[02:18] You're going to take about 10 to 15 seconds to get to that point.
+[02:21] Versus Jev on the other hand,
+[02:22] who's given a bunch of questions to look for upfront.
+[02:25] The answers to those questions are going to determine how suspicious it actually is.
+[02:28] Like, is there an address mismatch between the billing address and the delivery address?
+[02:33] And then it's given the information it's actually processing.
+[02:36] This is called the state.
+[02:36] And in this case, it will just be the individual order email that we're assessing.
+[02:39] And then the response from Jev is not going to be a text response.
+[02:42] It's only ever going to give you a number from the options that you've defined.
+[02:46] And the number is going to tell you the likelihood of it being suspicious
+[02:49] against the criteria that you defined.
+[02:51] So it's never going to write an output like Claude.
+[02:53] And there are certain advantages to this that we'll cover in a moment.
+[02:56] And this is totally different from the chat interfaces that we're used to
+[02:59] when we see things like LLMs, large-language models.
+[03:02] This is closer to this deterministic machine learning models
+[03:05] that is another style or type of AI.
+[03:07] And types say specifically call this what they call a system one model
+[03:10] after the book thinking fast and slow.
+[03:13] And system one is basically a quick name for a fast cut call.
+[03:16] As system two is sitting down and working out the reasoning, right?
+[03:20] So Claude, chat 50 and every other reasoning model,
+[03:22] a system two, but Jev sits in system one.
+[03:25] So why is it so special then compared to everything else
+[03:27] that we've seen today with our traditional LLM chat models?
+[03:31] So there's a few reasons why not writing as the output is advantageous in some use cases.
+[03:36] Firstly, it's cheap and extremely fast.
+[03:39] So it's suggested that it's 42 a thousand times cheaper than traditional LLMs
+[03:44] and 20 to 400 times faster.
+[03:46] So about 4 cents per million tokens in
+[03:49] and the output is practically free.
+[03:51] The second reason it's advantageous is it can't make up an answer.
+[03:54] So if you give it three options,
+[03:56] it comes back with one of those three options every time.
+[03:58] So this is actually a pro-encon which will come to later in the specific rules
+[04:02] that you need to give Jev when you're operating with it.
+[04:03] The third advantage then is it that gives the same answer or almost the same answer
+[04:08] to I Cinero.
+[04:08] So it's much more consistent than LLMs in answering the same question over the same
+[04:12] data set.
+[04:13] So the same test, they ask the same questions over and over
+[04:16] and the answers or the output from Jev moved less between runs
+[04:19] than any of the chat models they tried.
+[04:20] Even with the prompt set to be as repeatable as possible with the other models.
+[04:24] And then the entire point of this is the number that Jev gives you as the output
+[04:28] makes something that's usually uncertain like a fuzzy customer email that's messy.
+[04:33] It's got lots of text and it makes it actually usable by software.
+[04:36] So type safe have trained this model so that the probabilities are calibrated.
+[04:40] So in plain English it basically means it works like a weather forecast.
+[04:43] So when Jev says 0.8 is the output it should be right about 8 times out of 10.
+[04:48] And based on that 8 times out of 10 or the confidence in the output
+[04:51] that's what lets the software decide whether to act on it or not,
+[04:54] whether to root that query somewhere else.
+[04:55] The next actions are decided based on that number and Jev gives you the probability
+[05:00] of that specific question being true or false.
+[05:02] And we'll see the different types of options we're able to give to Jev in a little while.
+[05:06] Compare that to a chat LLM model which are trained to sound right
+[05:10] to a specific person and that's why we have that bias where it agrees with everything we said.
+[05:14] Jev is not built in the same way.
+[05:16] Now super important if you already use Claude or something like GPT it does not replace it.
+[05:21] It's going to work alongside it and it's going to add advantages to certain workflows.
+[05:25] So Jev replaces one entire category of work that Claude does today and whenever I say
+[05:30] Claude you can you know replace that with any of the LLM providers that you want here.
+[05:34] And that category of work is going to be the fast decisions that we need to make in bulk
+[05:38] inside software. So the code that you're going to pass the Jev hands Jev that information
+[05:42] like our customer email and a set of tightly defined questions which we want to know the answer to
+[05:47] and Jev is going to send back a probability, a category or a score and then your code
+[05:52] off the back of that is going to use that to root it to rank it in order to flag it to a human
+[05:57] or to carry on. So it's going to take actions off the back of that potentially but everything
+[06:01] that needs a conversation a chat back and forth or reasoning or writing is still going to stay
+[06:06] within our Claude interface. And Diogo the founder specifically said on the latent space podcast
+[06:12] that Claude is the conversation and Jev is the plumbing underneath that and it's important to
+[06:16] actually reflect on the fact it cannot do everything and in fact it can do very few things but the
+[06:21] things that it can do it can do them really really well. So we mentioned earlier that each question
+[06:25] answers can be split into one of three types. Now let's run through each of those types using
+[06:30] that angry customer example again for ease. So first we have yes no questions these are called a
+[06:36] and this might be does this customer sound angry? Let's say Jev gives us a 0.9 back so it
+[06:41] reckons it's a 90% chance of yes this customer is angry and then your code your script
+[06:47] important to note this isn't Jev this isn't your LLM it's a script that we can get Claude to write
+[06:51] then does the rest with a normal if statement. So if the result is above let's say 0.8 we're
+[06:57] going to escalate that to a manager so the manager can then directly respond to that customer
+[07:01] or if it's below 0.2 i.e they're definitely not angry or Jev is deemed and definitely not angry
+[07:05] then we're not going to escalate it we're going to defire ouritizer but it's important to
+[07:09] understand that Jev never actually escalates anything it just gives you the number which represents
+[07:14] the probability of it being a yes in this case by 0.9 is a confident yes the customer is angry
+[07:19] and 0.5 means it has no idea it's like a coin flip and then the code or the script is going to take
+[07:24] the decision based on that number it gets back. The second type we can give it is called a choice
+[07:29] it's exactly as it sounds you give it categories that you predefined and in the angry customer
+[07:33] case it's like which team should handle this query should it be billing technical sales and it's
+[07:39] going to come back with a probability for every single one of those options it's not going to say
+[07:42] yes it's billing yes it's sales it's actually going to say billing was an 85% chance of being
+[07:48] correct technical was a 10% chance sales were the 5% chance and the code off the back of those
+[07:53] results is then going to route the email to the winner so in this case it's going to be billing so
+[07:57] you're going to use choice when you're routing the output somewhere and when the options do have an
+[08:02] order we're going to use the third type which we'll talk about in a second now because we've got
+[08:05] more than one option there we've got billing technical and sales you actually get a second number
+[08:09] returned by jev called confidence and that's worked out from how spread out those probabilities are
+[08:14] so the 85% for billing is confident but let's say billing was at 40 technical at 35 sales at 25
+[08:20] then we're less confident about that or jev is less confident billing is still going to be the chosen
+[08:24] one but the confidence is going to come back low and that's the number your code is going to check
+[08:28] before it trusts that pick in the first place so it's going to check that confidence number two
+[08:31] and that's exactly what the browser demo that we showed at the start is doing every button in box
+[08:35] on that page for the flight booking is going to get a number and jev answers two choices at once
+[08:41] what to do with it so do we click type or scroll based on the action or the input from the voice
+[08:46] and which number to do it to and we basically ordered everything on the page to get a number
+[08:50] and we're going to pick element three or four or seven and there's no order to either of those
+[08:55] and so we know that this type is going to be a choice and the confidence then is going to be
+[08:59] that safety catch so if jev is confident i.e. puts it above that confidence level then the click
+[09:04] is going to happen with below it the agent is going to stop and ask the user and you can raise
+[09:07] or lower the threshold for confidence and what is acceptable based on a specific action if it's
+[09:12] something that's going to be detrimental or highly costly then we need a higher confidence level
+[09:16] to permit an action or a higher safety catch effectively and the third one then is a score so it's
+[09:21] the same idea as choice but the options have an order to them and you describe each one in words
+[09:26] so the question might be how angry is this customer and the results are going to be a score
+[09:30] and the score is going to be between calm and annoyed and furious those are the three options
+[09:34] so jev is going to come back with a position on that scale between calm and annoyed and furious
+[09:39] and it can actually land between the two levels so 2.4 out of 3 means they're mostly annoyed
+[09:43] because that's the second option but they're edging towards furious so when we're sorting entire
+[09:47] inbox of customer service emails we can actually rank them and this is what our code does or our
+[09:51] script the inbox by the worst first so the three out of three is on top the no out of three is one
+[09:56] out of three is right at the bottom so you'd use the score then on anything you'd put on a scale
+[10:00] this is why it's important between choice and score that there is an order two things here
+[10:04] so it's like how urgent is this ticket how good a fit is this lead for what we actually sell
+[10:09] how senior is this candidate on the scale how bad is this bug is it cosmetic bug is it an annoying
+[10:14] bug or is it a blocking bug for somebody taking an action on our page so use it when you want to rank
+[10:18] or sort and not root a response necessarily like choice and because it's got several different
+[10:23] levels it also comes with a confidence the same as choice starts but nor does not come with a
+[10:27] confidence it's either yes or no so the website session demo i showed at the start of the video
+[10:31] is mostly that first type a yes or no per event was this person rage clicking was this person
+[10:38] did something error on the page then we actually add this score as a layer on top of that so how
+[10:43] bad was this whole session for this user so that when we're sorting those sessions we can come
+[10:48] back and actually sort them from worst first and a person then can only open up the top ten
+[10:52] now you can of course do this whole process in a large language model but it's not optimized
+[10:57] for making these probabilistic decisions and therefore we can do an astounding amount of them
+[11:01] in a very short space of time for very very cheap and the way to choose between these three different
+[11:06] methods the null the choice or the score is working out what your code does with the answer
+[11:12] afterwards so if it needs to act or not act based on the answer that's going to be a yes or no
+[11:16] or a no if it needs to root the response somewhere that's going to be a choice or if we need to
+[11:20] sort or rank by it then that's going to be a score and most importantly all three of these types
+[11:24] can actually go into one request to dev so here's an example of one email going in with all three
+[11:29] questions attached and this is what comes back so we've got a null first a question that says does
+[11:34] this customer sound angry we've got the 0.9 so basically it's saying for the code to escalate this
+[11:39] to a member of staff then we've got the choice which team is this and it says billing is 85 likely
+[11:44] technical 10 sales five and we've got a high confidence level so it's going to root to the billing team
+[11:48] and then the score how calm angry annoyed or furious or a scale of four here and we've got a 2.4
+[11:54] with confidence of 80% or 0.8 so it's going to go near the top of the pile for the emails
+[11:59] that the billing team are going to answer and they're only going to see the ones where the customer
+[12:03] actually sounds angry so they've got a short list of answers because Jeff is actually processed
+[12:07] a huge amount that don't need to go to a customer service rep so we've got one email in
+[12:11] but three answers out we need very very short space of time so now let's move on to how to actually
+[12:16] pair this with claw code so that you can use both tools for their full advantages but first I'm about
+[12:21] 1000 subs from that magic 100k and that plaque on my wall so if you're enjoying this so far
+[12:27] make sure to sub down below so anyway there's two ways to pair it with claw to get the best
+[12:31] out of both tools and type say for really clear in their docs about what it's bad out and
+[12:35] therefore where you should use clawed and that's reasoning specialist knowledge and anything that
+[12:39] effectively need writing so the first way in which you compare it with clawed is actually using it
+[12:44] around clawed features for checking things so for clawed read something you're going to get
+[12:49] Jeff to decide whether claw should actually read it whether you should spend tokens on that thing
+[12:53] so type say for use a guardrails example which screens every single message that comes into clawed
+[12:59] for jail breaks and harmful requests on the way into clawed is then going to screen clawed
+[13:04] to reply on the way out before the user sees it so that's a good example of clawed in the middle
+[13:08] but using Jeff's guardrails on the before and after and you can also use the same idea after the
+[13:12] LLM processing so in their citation example an LLM wrote a document with eight citations in it
+[13:17] and Jeff checked each quote against the source four were found to be fine one quote was a non-existent
+[13:23] citation and one said the actual opposite and two were actually rooted to a person because
+[13:27] Jeff wasn't sure so that is like post-processing of clawed and LLM content gone through
+[13:32] Jeff to make sure that everything they were putting out was actually accurate and the second way
+[13:37] you can use it with clawed is actually using it instead of clawed for the bulk work for the task
+[13:42] that are larger in scale but also very deterministic so don't use clawed to sort 5000 rows tagging
+[13:48] every ticket in your inbox scoring every single lead clawed should only get the rows that
+[13:53] Jeff wasn't actually sure about or the ones that need something written if it's that deterministic
+[13:57] scoring and we should use Jeff instead of clawed for that stage in our workflow and this is the one
+[14:02] that you've probably seen all over X or Twitter here's someone scoring 700 sales leads in 40 seconds
+[14:08] for around nine cents so something that is bulk work would take significantly longer using clawed
+[14:13] and also cost a lot more to and actually both of those examples we're going to build together
+[14:17] in the next five or ten minutes using a customer service example so let's get that set up inside
+[14:22] so type safe actually shipped a skill for use in LLM's like clawed or harnesses like clawed
+[14:28] and it's two lines to install so you can either do this through the console once you've signed
+[14:31] up on type safe.ai you can copy this agent prompt or you can actually head to the docs.typesafe.ai
+[14:38] forward slash agent dash skill and you're going to run these two commands in your terminal
+[14:41] to get it inside to claw code and you can also take these commands directly from here or use it
+[14:45] with other agents there too now I recommend to actually use this that you need to make sure that
+[14:49] you name the skill in your prompt so when you're sending a command to dev for example we're going
+[14:54] to say use the type face skill and you'll see that in all of our prompts so we're going to run
+[14:57] those two commands it's going to add the marketplace we're then going to reload to make sure that
+[15:00] the plugins installed and you can see that that's now success so once we reload or load up a new
+[15:04] session with claw code we can run slash plugins and we can see if we go to install that we've got
+[15:10] the type safe plugin now enabled you're going to head into the API key section create a new key
+[15:15] and you're going to put that in a .env file under the name type safe API key then to check it's
+[15:19] working we're going to say use the type safe skill that's really important check my key works
+[15:23] ask Jeff one yes or no question about and this is our input as if it's a customer email right
+[15:28] we've been charged twice please fix this ASAP and we're going to ask Jeff to assess it on the
+[15:32] question the customer is reporting a billing problem and to tell us the raw answer from Jeff
+[15:38] that we get back so with this we should just get a yes or no in the form of a number that
+[15:42] that deems is this a billing problem or is it likely to be a billing problem now before we run the
+[15:46] output if you're not working in claw code directly you actually want to work in the desktop app
+[15:50] I haven't tested this yet but it should work exactly the same we need to do it is go to find
+[15:55] this skill to empty on GitHub you're going to open this page and then effectively download
+[15:58] and upload the skills in the customized section inside your skill so you're going to add upload
+[16:02] the file and then you should also have access inside the core desktop app to using Jeff as well
+[16:07] so let's run this prompt we're going to use the type safe skill and let's see what comes back
+[16:10] so you can see here this is the request based on the type safe skill that it's actually determined so
+[16:14] the state is the information with sending charge wise please fix ASAP that's the email
+[16:17] we're sending it to Jeff latest the question is is it a billing problem it's deemed that it's a yes
+[16:21] or no and given it a descriptive instructions so the customer is reporting a billing problem
+[16:26] exactly the criteria that we wanted to assess against the true criteria is the message reports
+[16:30] a problem with charges payments invoices refunds or subscription billing the false is the message
+[16:34] does not report a billing problem so you can see that these are very descriptive criteria that
+[16:38] Jeff can therefore determine is a message or the state likely to be a yes or no against that
+[16:44] criteria Claude has created this criteria based on the type safe skill so it's come back with an
+[16:49] answer then and the answer from Jeff was effectively this one number 0.99 where one means it was
+[16:55] absolutely a billing problem and zero means it was not a billing problem at all you can see that
+[17:00] this is the response that we get directly from Jeff the input tokens were 324 tokens the output
+[17:05] tokens were 24 and I also asked Claude to extract the time it took as well as the cost
+[17:09] Jeff's own share of that was 0.3 seconds and that's probably an overestimate based on the fact that
+[17:13] Claude actually had to make the connection in the first place and 324 input tokens is effectively
+[17:18] 0.190136 dollars so you can see how it could have done this for thousands of emails
+[17:24] and it barely scratched the surface on a couple of cents you'd need 73,000 calls like this to spend
+[17:29] a dollar extremely cheap extremely fast and then the 24 output tokens which was effectively just
+[17:34] telling us the number costs nothing to us and by the way if we jump back to what the skill
+[17:38] actually does the type safe skill it doesn't actually run anything itself it's basically a rule
+[17:43] book that Claude can use or another agent can use with three question types so it's able to determine
+[17:47] which question type it should be in how to write a question Jeff won't misread so it's about
+[17:52] specificity of a question when to batch questions together versus when to keep them separate
+[17:56] and we'll cover that later and where to keep the thresholds the confidence levels so if you're
+[18:00] working from Claude you never talked to Jeff directly you describe the job in plain English
+[18:04] Claude is going to read the skill Claude's going to write the scripts to assess it against
+[18:08] and the script is going to send your rows to Jeff and Claude is going to read you the results back
+[18:12] so this is how you use them in conjunction an alternative right is you could use something like
+[18:16] open router skip Claude code as a harness here and directly use the model from open router the
+[18:22] Jevelab model from open router but that would effectively mean that actually you need to make
+[18:25] up the questions you need to make up the descriptions you need to effectively structure that
+[18:30] input to Jeff there so you've seen now that the key works you've seen it's really quick you
+[18:33] can see we can scale this up so let's actually deconstruct how you would use this for yourself
+[18:38] use an example of 50 support emails that come in overnight so I've got this CSV or google
+[18:43] sheet here of 50 different support emails when they receive the idea of the email when that
+[18:47] customer has been a customer since which plan type they're on what invoice they'd asked
+[18:51] paid the subject the body so everything that we need to pass into Jeff we're going to deconstruct
+[18:56] on exactly how you turn this into a workflow that sorts them so that the easy ones are answered
+[19:00] the risky ones are sent to a member of customer support and that when they're queued they're
+[19:04] actually in priority order so they're ranked when somebody sits down in the morning to read
+[19:08] these customer service messages so these emails are in at emails.csv that we made earlier but
+[19:13] equally you could if you're using a harness like Claude code use the MCP to plug this directly
+[19:17] into your email inbox and process this in the same way so you can see we've got examples like
+[19:21] hi i've just seen two charges of $99 I signed up for a trial and the magic link never arrived
+[19:26] a feature request here can you add perplexity to it some customer complaints here like metrics
+[19:31] haven't been shown or metrics have gone down some questions about GDPR compliance all of that is
+[19:36] effectively data that we can go through and get Jeff to assess extremely quickly against the set
+[19:40] of questions now when deconstructing it the most important thing before we write a single question
+[19:46] is to decide what the code should do with each answer so the answers we're going to get back from
+[19:50] Jeff the probabilities the numbers should all be a trigger for an action so every question that we
+[19:56] make should be a trigger to a specific action we're going to talk about how to work out what
+[20:00] questions to ask in the first place and that's why we're going to go through and deconstruct
+[20:04] this step by step and when we consider the different actions that we will take off the back of
+[20:07] the results in this customer support case we've got four different actions effectively we're
+[20:12] going to answer the email with Claude directly or draft it with Claude we're going to put it in
+[20:15] the engineering queue as something that's a bug that needs fixing we're going to log it as a feature
+[20:19] request for the future or we're going to escalate it or send it to a person so that's then what
+[20:24] I need to give to Claude the job I want it to do the four different actions or routes it can take
+[20:29] and one instruction which has shown me the plan before you run anything and therefore we're going
+[20:33] to see effectively the structure plan that it's going to send to Jeff and we can go through and read
+[20:38] before we do this on a bulk set of data piece by piece what the questions are what set of data
+[20:43] it's going to run on etc so let's talk about the prompt and I've been quite specific here but
+[20:47] you can actually get Claude like I did to write a similar prompt for your exact use case so again
+[20:53] we've got use the type safe skill very important I've got 50 support emails and emails.csv
+[20:57] I'm going to say in my downloads every morning I want them sorted into four piles and these are
+[21:01] our four actions right reply with Claude engineering queue central person etc each pile sorted
+[21:07] with the angriest customer first so from that and using the type safe skill it's going to
+[21:11] understand the list of priorities and what questions we need to ask and it's going to understand
+[21:15] that we need a scoring question to score it by you know anger for example and because I've got
+[21:19] some idea of exactly what I want to understand for each I've actually specified it here but you
+[21:23] can leave this open for Claude to actually determine your questions and criteria too but for each email
+[21:27] want to know what it's about so this might be a choice billing technical feature request account
+[21:31] or none of those and it's really critical you put none of those in there because if it's not one
+[21:35] of those then Jeff is effectively going to just try and pick the most likely outcome whereas if
+[21:41] none of those is in there it effectively gives it an out I want to know if they're asking for
+[21:45] money back or refund I want to know if something is broken because therefore we want to send it
+[21:49] as the action to put in the engineering queue I want to know on a scale probably how angry they are
+[21:54] from calm annoyed or furious so like one to three and I want to know whether it's just something
+[21:58] quite routine and standard need some judgment or as unusual enough that person should handle it
+[22:02] and then I've added some rules for what the code does or what the code should do Claude code is going
+[22:06] to create the code that's going to process Jeff's answers anything about money should go to a person
+[22:11] never Claude and I basically want a high confidence level on that one if Jeff isn't confident about
+[22:15] the category or the cases unusual send it to a person if the product is broken so they can't use it
+[22:21] it should go to engineering feature requests are getting logged everything else Claude drafts reply
+[22:25] using a given reply guide a separate brand resource effectively and we're going to saw every pile
+[22:30] by a priority score that's mostly anger partly severity so it needs to score based on multiple
+[22:36] questions and Claude working with the type safe skill is going to understand that it needs to break
+[22:40] these down into individual deterministic or more deterministic questions that Jeff can then give
+[22:45] us a probability score on and a confidence score on and then we specified this because we want to
+[22:49] do an extra check so before any Claude draft is saved check it with Jeff in another request a
+[22:54] separate request asking different questions against these questions does it actually answer the
+[22:58] customs question and does it promise a refund or discount so we're doing an extra validation pass
+[23:03] after Claude for the ones that are going to be written by Claude and then we're only going to keep
+[23:08] drafts the pass both right the planning three sections the state which is you know the input information
+[23:12] the questions with their criteria and the routing with a threshold for every rule so this is the
+[23:16] confidence level that passes that given rule keep that in one file show me the plan before you run
+[23:21] anything and you could just ask see the scripts that it's going to send to type safe or Jeff
+[23:24] but this way we can copy this paste it into our Claude instance with type safe and actually start
+[23:30] running that and what it's going to do is effectively come back with a plan right so at this point
+[23:34] we're less concerned with how quick it's going to run because what we're actually just trying
+[23:38] to do is come up with a good plan with a good set of questions so that we can run it effectively
+[23:43] using Jeff Jeff is only going to be really powerful for these bulk workflows and useful if you
+[23:47] can ask good questions and Claude or an LLM is able to break down our requirements into those good
+[23:51] questions so we've now got Claude's plan back in the questions dot pi file and the first thing that
+[23:58] we can see in Claude's plan is the state or what each email looks like when it reaches Jeff so it's
+[24:02] used the skill to determine what this state should look like now you can see that we've got ID
+[24:07] received at plan subjects body all these different fields so what it said is actually we need one
+[24:12] object per email rather than a flat string where each part gets a descriptive name so the
+[24:16] relationship state clear so it's going to include customer facts like the plan or the customer they've
+[24:22] or when they've been a customer since because the founding customer on the top plan is a completely
+[24:26] different scenario from a day old trial and Jeff will want to treat that differently so it's
+[24:30] basically mapped out the CSV column to and given it some scripts so it's going to turn one CSV
+[24:35] row into a state or input for a triage request so every single row is going to have information
+[24:41] about the email which is going to be passed into Jeff and information about the customer so it's
+[24:44] going to be broken down into these specific sections and that's because the skill told it to
+[24:48] so that a question can point at a field by name and it's left everything that's irrelevant out
+[24:53] of that like the previous thread history because the more irrelevant text it could potentially bring
+[24:58] into the decision-making process and that brings us to kind of the limitation or the hard limit
+[25:02] of 64,000 tokens per request that you sense Jeff but you should never be near that it's not designed
+[25:08] like an LLM where you have a million tokens in the input it's very differently structured requests
+[25:13] are as they sound very structured to the point and minimal they ask very defined sets of questions
+[25:18] we've also got a state for the second pass which is actually based on the subject and body
+[25:23] of the email that's been drafted and we've also got a second state for that second pass that
+[25:28] we're going to do when Claude drafts a reply so it's going to contain information about the email
+[25:31] and the actual draft reply to see if we've answered the question which was the second
+[25:35] pass that we were going to do the second thing that it's broken down here are the questions
+[25:39] so we've got five questions per email in one single request so every single email
+[25:46] in that CSV is going to get all five questions answered in one single request and that's fine
+[25:51] because every single question we add to that we can have 10, 15 questions are basically free
+[25:56] so we can continue to add these defined questions for free and that's why we send them all at
+[26:00] once so we can have this parallel processing of all of the different criteria and in each response
+[26:04] we're going to get a score level and a confidence level back from Jeff and you can see it's built
+[26:09] out these different triage questions so the first one we've got is a choice question it says
+[26:13] what is the support email primarily about if it's about billing then the criteria is about charges
+[26:18] invoices payments subscription costs but it's not for things like login or access problems so
+[26:22] we're being very specific what it is and what it isn't and it's given some examples in there
+[26:25] then we've got technical feature requests account and none and like we said in every request we
+[26:30] want to give it an out we want to give it a none so that it can actually choose that rather than
+[26:34] trying to just pigeonhole it into one of these categories and then we've broken it down for things
+[26:37] like asking for money back and again we've got the criteria here for a null if it's true that
+[26:42] email asked for money to be returned or credited if it's false that email makes no claim on money
+[26:46] already paid and it says asking to cancel without mentioning a refund is false they're not going to
+[26:50] get that money back for that we've broken down how badly broken and that is a score so the score
+[26:54] gives the different criteria from effectively one to four nothing is broken it's a cosmetic damage
+[27:00] it's annoying and they cannot use the product now what's really important here is we're
+[27:03] really specific with the criteria so what does annoying actually mean it means a feature is degraded
+[27:08] or fails sometimes and there is a workaround so because we specified that Jeff can be more sure
+[27:13] in its determination of whether it's annoying or not annoying and it's important to remember that
+[27:18] every single email gets put through the same criteria so for example a billing email will still go
+[27:23] through and get asked these breakage severity questions so how badly is the product broken for this
+[27:28] customer judging by what the email describes it will basically come back and say it's not a tool
+[27:33] and therefore it will get ignored but by sending all the questions at once we can speed up their
+[27:36] all parallel process we can basically just understand that it's nothing to do with breaking and
+[27:41] therefore it's zero and the actions are not taken off the back of that score then for that email
+[27:46] and then for anger how angry is the customer we've got the score so how angry does this customer
+[27:50] sound we've got the store from carbonoid too furious and then we've also or it clawed is also
+[27:54] broken out how much judgment it needs how much human judgment does this answer need
+[27:58] is it a standard case is it a judgment or is it unusual and that is a choice there so it's an
+[28:02] option to choose any of those three then the second part we've got the verification questions
+[28:06] around does it answer the question does it promise a refund or discount and clawed is going to
+[28:09] basically use the type safe skill to turn all of this information into a request that then get
+[28:14] sent to Jeff in the Jason structure that we saw earlier but also inside here inside the plan we've
+[28:18] got the routing rules so is it going to get sent to a person engineering team is it going to be
+[28:24] put into a pile for clawed to actually go and draft it's got the different confidence levels
+[28:29] that when measuring this against and you can come in and change these and it defines those confidence
+[28:32] levels so if it's below this category confidence on rule number two then it's not going to be trusted
+[28:37] as a result and actually it's going to be rooted to a person and then we've actually got down here
+[28:41] all the different routines in terms of actual scripts and clawed has gone ahead and written
+[28:45] those scripts based on the type safe skill you can see like we said there's no LLM determination
+[28:50] here it's purely a script it will literally send all of the results from Jeff through these roots
+[28:55] to actually put them into the right piles and these are all if statements that are verifiable
+[28:59] against the numbers that Jeff has returned as the output so you see now how to write this using clawed
+[29:04] and that's going to be a lot quicker than writing it yourself but the harder bit actually is knowing
+[29:08] which questions to ask in the first place about your process and this is the bit that I couldn't
+[29:12] find online nobody has written up so decided to make my own checklist that you can grab
+[29:18] for free in the description below that you can go through to try and work out what questions you
+[29:21] need to ask of your process or how to come up the requirements that you can input as that initial
+[29:25] prompt so this isn't even available in this skill that they provide for you that's a very
+[29:29] specific set of criteria of how to structure the requests to Jeff but here's the checklist that I've
+[29:34] for the different five question areas and I've kind of pulled this together from the docs that
+[29:38] I've read and the videos I've seen around the use cases of Jeff here so always think about it
+[29:43] from what the software is going to do next not from the data point of view so every question
+[29:48] that you asked Jeff exists because an action or it needs to trigger an action and action depends
+[29:53] on it so you're going to list the actions first that's number one so as if you remember where
+[29:57] clawed replies you're going to put it into an engineering queue going to put into a feature log
+[30:01] or send it to a person route it to a person and then for each action you're going to write the
+[30:05] trigger as a sentence and that sentence is going to form your question effectively let's use the
+[30:10] example of send it to a person when it's about money and that sentence is the question and it
+[30:14] also tells you the action which tells you the type so if it's going to act or not act it's a
+[30:18] null or yes no if it's going to choose a different destination then it's a choice it's like a
+[30:23] routing problem or if it's sorting then it's a score thirdly we're going to write down what a
+[30:27] person would look at before making that call i.e. what is the input what's the state and in this
+[30:31] case it was an individual email or a list of emails and then before we're going to add what else
+[30:36] could be true that would change the routing so these are your edge cases even if they're super rare
+[30:41] and that's where bug severity came from we're going to reroute depending on bug severity and
+[30:45] we're going to actually then score that and then number five is deciding what a wrong answer is
+[30:49] going to cost you so that you can set those confidence levels or those tolerances so that's
+[30:53] going to set the threshold for each action and you saw that we had all of our different
+[30:56] confidence thresholds now i've gone ahead and run this on all 50 emails in that CSV it took
+[31:01] 4.2 seconds for all 50 to be run using eight concurrent workers so it's done that in parallel
+[31:06] it would have taken 31 seconds sequentially which is how you probably do it with an LLM it would have
+[31:09] taken 31 seconds sequentially so it's able to actually do those all at once and the cost was
+[31:15] not 0.026 for all 50 which is roughly equivalent to 19,000 emails equaling a dollar so if we ran
+[31:21] this every morning for 50 emails it's going to cost us about a dollar a year so extremely low
+[31:25] it's put it into this mark down file for us to easily digest the results and it's told us
+[31:29] it's sorted by priority so it's basically said 70% anger 30% severity in terms of the waiting it's
+[31:35] given it on priority you can see that 19 have been rooted to a person based on anger and severity
+[31:40] and it gives us you know the subject why it's been categorized as that so this for example is
+[31:45] somebody asking for their money back on a scale of 0 to 3 i think it was they are super angry
+[31:50] and it's clearly something severe or it's been deemed severe by jev and therefore our
+[31:55] customer support person or customer support rep has a prioritized list of cases to go through
+[31:59] every single morning and it took less than 10 seconds to work that out we've then got a bunch of
+[32:05] requesting the engineering queue that been rooted there some feature requests and 19 to actually
+[32:09] just be replied to by Claude stuff that is no longer a task for our customer service rep so now
+[32:14] you've seen how you compare jev with Claude here are the rules you need to follow to get the
+[32:20] most out of it these are the patterns taking directly from the docs so number one is actually
+[32:24] kind of counterintuitive but super interesting in sight which is ask everything at once we're going
+[32:29] to ask all five questions like we did earlier in one request so the problem this is going to solve
+[32:33] is waiting for it and this is why it's so incredibly quick so with a chat model you're going to
+[32:37] ask one thing wait then decide what to ask next but with jev every question in a request runs
+[32:42] in parallel like we saw and you only pay to read the text once so you ask everything up front
+[32:47] including questions that might not apply like the bugs severity for our billing scenario earlier
+[32:51] and then it ignores what you don't need and this is called speculative fanout so for example if it
+[32:55] comes back as a billing query the bug answers just get completely ignored in the processing and if
+[33:00] it was a bug you already have the severity and you don't have to make another call to understand
+[33:04] the severity so it's one request multiple questions in that request multiple types of requests nor choice
+[33:10] scored pattern two is gating decisions based on your confidence level for specific actions will help
+[33:16] you build systems that are both reliable and safe no I know that was quite wordy an example that
+[33:21] types of use directly in their docs is voice banking so let's say under 0.6 confidence so 60%
+[33:26] confidence nearly 50 50 is going to get redirected to a person so check my balance at 0.6 is fine
+[33:33] because the worst case in our is somebody hears their balance if it goes wrong but we need to
+[33:36] gate different actions differently so prove the transfer needs to be a lot more confidence say 0.85
+[33:43] and below that it asks you to confirm if that's the action you're wanting to take first and you
+[33:46] can see this in the demo from the voice browser from the start scroll down just happens it just
+[33:51] scrolls down immediately but anything destructive like closing a tab is going to stop and ask you to
+[33:55] confirm before it does so and that's because it falls in below the confidence threshold that they've
+[33:59] set so you have one confidence threshold per action set by what it costs you to actually be wrong
+[34:04] on the action now pattern three is basically scoring the individual parts by breaking it down into
+[34:10] individual questions and weighing them or adding them together and this rule or pan exists
+[34:14] because you're encouraged to break the judgment of these different things independent dimensions
+[34:19] into separate questions that we can score each one separately and then combine them with weights
+[34:25] so that we can then control the routing in the code and I'll give you an example to bring this
+[34:29] to life which is big messy judgments so we could have a bunch of cvs right and we could ask
+[34:35] is this a good candidate score at one to ten and you get one number from jev that you
+[34:41] can't question so it's hard to know what criteria is used to determine the outcome there but what
+[34:45] we might do instead is break that down into what good might look like so it might be for engineer
+[34:50] python depth and knowledge team leadership skills system design or how fast they pick up new things
+[34:56] so for a senior engineer you could wait the python skills and the design at 40% each as the threshold
+[35:03] but for a manager position maybe leadership gets 40% as the threshold now pattern four then and the
+[35:09] final pattern is rooting it to the best handler for that job or this is called intent routing so we're
+[35:14] going to classify incoming requests and route each to the optimal handler whether that's deterministic
+[35:19] logic inside a script like we saw a specialist LLM like Claude or a human so type safe can sit
+[35:25] in front of all these as a fast cheap classifier that determines which handler to invoke
+[35:31] whether to send it to our human customer support rep or not so like where's my order
+[35:34] is going to go to a database lookup that's not going to use a i it's not going to require
+[35:38] a human but a product question is going to go to Claude who has access to the product docs
+[35:42] and then a complaint is going to get a second question of how complex is this complaint
+[35:46] and then the messy ones are going to go completely to a person from the get go and then anything
+[35:50] with low confidence is not going to hit the threshold and it's going to go to a person anyway
+[35:54] and when you bring all those four patterns together you get the smart home demo that type safe
+[35:59] have directly on their docs that uses all of this at once so this is about controlling
+[36:03] your lights and your gadgets in your house using voice effectively or using typing commands
+[36:08] or using an app so you type in turn off all the lights in the house one request is going to ask
+[36:11] which kind of request is it which rooms which device and what action needs to take place
+[36:16] and then if you type two commands in one sentence jev is going to spot that it's a compound
+[36:20] request and actually hand it to an LLM to split that it's then going to judge the two house there
+[36:25] so it understands that it needs to actually split the request into multiple questions there
+[36:28] and then if you ask just a general question that's unrelated it knows to pass it to an LLM to answer
+[36:31] that and that is effectively pattern four and the whole point in that is that they put jev
+[36:36] next to the LLM and you basically jev work so quick on these deterministic actions where you've
+[36:41] got questions threshold confidence etc that you don't even notice is there it can make judgment calls
+[36:47] on things so quickly that decide the next most probable step to take depending on score
+[36:52] and confidence against your criteria so if you can't tell i am super excited about this because
+[36:56] when you pair it up with claw code or gpt astra you've got one hell of a combination jev can do
+[37:01] a lot of those deterministic or more deterministic categorizations in rapid time and for record
+[37:06] low cost whilst claw can do the chat back and forth the reasoning and the judgment where
+[37:10] extra thinking or looser requirements for example are required now if you want to see a video on
+[37:16] applying this combination to a domain like gio or browser use then drop a comment below and see
+[37:21] in the next video
