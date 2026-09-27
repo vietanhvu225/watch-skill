@@ -12,8 +12,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (27/09/2026)
+*Video vừa được phân tích và lập chỉ mục hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `d884350cc6bbb425` | How To Build A Harness With Jev \| A LangChain x TypeSafe Conversation | Machine-to-Machine AI, Auto Mode Middleware & Confidence Math | [how_to_build_a_harness_with_jev.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_build_a_harness_with_jev.md) | 48:04 |
+
 ### 🟢 Mới phân tích (25/09/2026)
-*Nhóm video vừa được phân tích và lập chỉ mục hôm nay:*
+*Nhóm video vừa được phân tích và lập chỉ mục trước đó:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -140,6 +147,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Shopify Helix: The 4-Gate Loop & Adversarial Review (15m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/shopify_claude_code_workflow.md) - Phương pháp luận viết lại 300 màn hình mobile tại Shopify: Checkpoint tăng dần độ phức tạp, Fresh Context Window bằng Sub-agents, 4 Gate kiểm soát nghiêm ngặt, Hook cưỡng chế Exit Code 2 và Orchestrator skill chỉ cần con người can thiệp 2 lần.
 * [Make Your Coding Agents Way Faster: Jev + Antigravity (8m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_google_antigravity_faster_agents.md) - Giải pháp phá vỡ nút thắt độ trễ của Smitha Kolan: Sử dụng mô hình phán đoán Jev (TypeSafe AI) xử lý câu hỏi phi văn bản trong 15ms, kết nối skill vào Google Antigravity và dựng router.py phân luồng Gemini Flash / Pro.
 * [Every Jev Concept Explained: Use with Claude (37m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/every_jev_concept_explained.md) - Cẩm nang toàn diện của Simon Scrapes về Jev: Hệ thống tư duy Nhanh & Chậm (System 1 vs System 2), 3 kiểu dữ liệu Bool / Choice / Score, 4 mẫu hình kiến trúc (Speculative Fanout, Confidence Gating, Decomposed Scoring, Intent Routing) và quy trình 5 bước thiết kế trigger cho agent.
+* [How To Build A Harness With Jev: LangChain x TypeSafe AI (48m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_build_a_harness_with_jev.md) - Hội thảo chuyên sâu giữa LangChain và TypeSafe AI: Nghịch lý đường vòng ngôn ngữ tự nhiên, tích hợp Auto Mode Middleware và Model Router vào LangChain, ứng dụng Real-Time AI (chơi game Doom, live filter), cạm bẫy toán học của Confidence Threshold và kỹ thuật Context Engineering cho Decision Models.
 
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
@@ -191,6 +199,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [every_jev_concept_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/every_jev_concept_explained.md) (37:22)
     *   [how_i_shipped_2000_prs_last_month.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_shipped_2000_prs_last_month.md) (38:02)
     *   [art_of_loop_engineering.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/art_of_loop_engineering.md) (46:00)
+    *   [how_to_build_a_harness_with_jev.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_build_a_harness_with_jev.md) (48:04)
     *   [lauren_tan_spacex_ai.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/lauren_tan_spacex_ai.md) (55:04)
     *   [tim_ngach_youtube_ai_57_phut.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/tim_ngach_youtube_ai_57_phut.md) (57:44)
     *   [cursor_lauren_tan_vietsub.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cursor_lauren_tan_vietsub.md) (59:41)

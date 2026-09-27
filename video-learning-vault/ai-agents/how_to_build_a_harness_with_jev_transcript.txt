@@ -1,0 +1,962 @@
+[00:00] Agents are new kind of software. Endless inputs and not deterministic outputs.
+[00:00] Build them the old way and they break. Enter LangSmith, the agent engineering platform.
+[00:00] It's model agnostic, cloud agnostic, and framework agnostic.
+[00:00] Organizations shipping the best agents iterate with a system, and we call that system the agent development life cycle.
+[00:00] Build, Test, Deploy, and Monitor.
+[00:00] You build with our open source frameworks.
+[00:00] Deep Agents, LangChain, or LangGraph.
+[00:00] LangSmith Fleet enables anyone to build agents.
+[00:00] Without code.
+[00:00] Test agents using evals and experiments.
+[00:00] Deploy changes in one click with LangSmith deployment.
+[00:00] Monitor every interaction from a single dashboard.
+[00:01] Governance is built into every stage of the agent development cycle, with LangSmith's LLM
+[00:01] Gateway.
+[00:01] LangSmith Engine helps you improve agents autonomously and move through the development
+[00:01] lifecycle more quickly.
+[00:01] LangSmith Engine is your agent for agent engineering.
+[00:01] - Folks, welcome.
+[00:01] We are super excited to get started
+[00:01] with this building a harness with Jev,
+[00:01] LangChain and TypeSafe webinar.
+[00:01] Yeah, so first I wanna introduce our two guests today.
+[00:02] Allie from TypeSafe and Hunter from LangChain.
+[00:02] Do you guys wanna introduce yourself?
+[00:02] - Sure, hi, I am Allie.
+[00:02] I am developer relations at TypeSafe.
+[00:02] You see my name all around our Discord.
+[00:02] If you've been in there and you'll be seeing a lot more
+[00:02] me and more demo videos and generally just out here teaching people how to use TypeSafe,
+[00:02] how to think in TypeSafe, how to think about System 1 models in general.
+[00:02] And yeah, super excited to be here.
+[00:02] Yeah, and then I'm Hunter.
+[00:02] I'm one of the technical leads on the open source team here at LangChain.
+[00:02] Super excited about Jev.
+[00:02] I've been pretty much nonstop experimenting with it over the weekends.
+[00:02] Yeah, super exciting stuff.
+[00:02] and I'm super glad to be here and talk to everybody.
+[00:02] - And I'm Sydney, the product manager
+[00:02] for our open source team at LangChain,
+[00:02] close partner with Hunter on all of our recent Jev work.
+[00:02] Yeah, I think everybody's lost a little bit of sleep
+[00:03] in the past week experimenting and yeah,
+[00:03] learning all there is to learn about Jev,
+[00:03] so we're super excited to chat more about it today.
+[00:03] Allie, maybe you could start,
+[00:03] Could you kind of explain in simple terms, what is Jev?
+[00:03] Why is everyone so excited about it?
+[00:03] - That's gonna be the hardest question
+[00:03] to answer this entire time,
+[00:03] is like how to explain Jev in simple terms.
+[00:03] So Jev is an entirely different class of model
+[00:03] from when we're talking about,
+[00:03] most of the time today when we're talking about models,
+[00:03] we're talking about LLMs.
+[00:03] And Jev is different from that.
+[00:03] Fundamentally, Jev does not generate text.
+[00:03] It is not a generative AI in that sense,
+[00:03] where it is to create text or create images.
+[00:03] Jev is about making fast decisions from specifically
+[00:03] well-scoped questions with type safe schemas for each of them.
+[00:04] So Jev fits into the overall picture of AI,
+[00:04] where we've seen over the past couple of years
+[00:04] a huge increase in using these very heavy LLMs
+[00:04] to do what is ultimately like a tiny decision,
+[00:04] like, oh, which department should this support ticket
+[00:04] be routed to?
+[00:04] Or is this email a promotion, or is it spam, or is it whatever?
+[00:04] Or is this tool call like a safe tool call,
+[00:04] like does it perform any right operations, stuff like that?
+[00:04] And so, Jev is a new class of model
+[00:04] that we call System 1 models,
+[00:04] and it fits into that picture.
+[00:04] Then the thing I always like to say,
+[00:04] although this is a LangChain audience,
+[00:04] so probably don't need to say,
+[00:04] but it does confuse some people.
+[00:04] Jev is not an end-user product out of the gate.
+[00:04] It is an API product.
+[00:04] It does not do anything until a programmer,
+[00:04] whether a meatspace programmer or an AI programmer,
+[00:04] until it puts that into software.
+[00:05] That's the first question that comes up is,
+[00:05] how do I just point OpenCode at Jev?
+[00:05] And it's like, well, it's a little more complicated than that.
+[00:05] Like you use it inside your software to make what I like to call smart software.
+[00:05] Yeah, I think that was a great simple explanation of Jev.
+[00:05] You mentioned it's called a system one model.
+[00:05] What does, what does that mean?
+[00:05] So it comes from, and I always forget the author's name, but there's a book called
+[00:05] Thinking, Fast and Slow.
+[00:05] And, uh, and the author of that came up with this way of labeling like kind of
+[00:05] two different ways of thinking.
+[00:05] And system one thinking is the like,
+[00:05] it's the fast intuition side of thinking.
+[00:05] It is quick determinations,
+[00:05] where system two is like multi-step reasoning thinking,
+[00:05] right?
+[00:05] You have to think about this and put it together with that
+[00:05] and connect the dots and then you have output.
+[00:05] And so system one model, like Jev,
+[00:05] is a fast intuition based model.
+[00:05] It is about, I like to describe it sometimes to be like,
+[00:06] The questions you should ask, Jev,
+[00:06] you should be able to present it to a panel
+[00:06] of super smart humans and they could answer
+[00:06] in five seconds, right?
+[00:06] It's not a you have to dig through
+[00:06] and make multi-step reasoning arguments
+[00:06] to understand the output.
+[00:06] It is very, very smart,
+[00:06] but the system one thinking type of questions
+[00:06] is a different type.
+[00:06] It is a subset of all of the problems
+[00:06] you might have in the world.
+[00:06] Yeah, yeah, that's a good explanation.
+[00:06] Would you say that like traditional LLMs kind of fall into that like system two thinking?
+[00:06] It's a good question.
+[00:06] I think before reasoning models,
+[00:06] I think LLMs were much more like system one thinking in general, right?
+[00:06] They would just kind of like answer quickly.
+[00:06] But it was very intuitive and oftentimes like not trustworthy answer back in those days.
+[00:07] Now with reasoning, I would call that like very much,
+[00:07] oftentimes that is system two thinking, right?
+[00:07] When you send off a request to like a big frontier LLM,
+[00:07] right, it's going and it's like looking,
+[00:07] especially if it's in an agentic loop,
+[00:07] it's like looking things up,
+[00:07] it is making connections in order to like,
+[00:07] to find that.
+[00:07] But what I also like to think of as like,
+[00:07] the system two oftentimes,
+[00:07] that is integrated with our system one is your code.
+[00:07] Like code, a lot of code is the system two thinking,
+[00:07] It is the putting pieces together, connecting them together,
+[00:07] composing a bunch of system one decisions
+[00:07] into a sort of reasoned final output.
+[00:07] Yeah, that makes sense.
+[00:07] You mentioned a couple of times,
+[00:07] like, Jev is really helpful when you like embed it in code.
+[00:07] Can you say a little bit more about like,
+[00:07] what kinds of decisions Jev is good at making in code
+[00:07] and kind of why it's this like code first model.
+[00:08] - Yeah, so I'll start with the end of that
+[00:08] where you talked about it,
+[00:08] like why is it a code first model?
+[00:08] And a lot of that just comes from us seeing
+[00:08] what is needed in the world, right?
+[00:08] We see the future, and I think this is probably not even,
+[00:08] like, I bet it's not controversial to say that like,
+[00:08] the vast majority of automation in the future
+[00:08] will be machine to machine automation, right?
+[00:08] is machine to machine communication.
+[00:08] Already a huge amount of the world's infrastructure
+[00:08] Like API is talking all over the place
+[00:08] and a whole bunch of things working together, right?
+[00:08] So that's how like most of our digital world works
+[00:08] is code talking to other code.
+[00:08] And so, Jev, like the system one model concept
+[00:08] and Jev is about fitting into that picture.
+[00:08] It is like we already need our computer
+[00:08] to talk to another computer.
+[00:08] So when we wanna bring the incredible power of AI,
+[00:08] the intelligence that we want to access from these models,
+[00:09] why shouldn't it be a machine native format to begin with?
+[00:09] And that is the foundational thinking behind
+[00:09] why Jev is shaped the way it is.
+[00:09] And to expand on it a little bit,
+[00:09] I've for a while, I like developing with LLMs,
+[00:09] I like putting LLMs into these decision points.
+[00:09] Before I started working at TypeSafe and saw this,
+[00:09] I was using it for a lot of those.
+[00:09] But it always, there was always an itch in the back
+[00:09] of my head that I thought, isn't this absurd?
+[00:09] Like, isn't this completely zany that we are,
+[00:09] we have this big, huge, heavy machine, this LLM machine
+[00:09] that is doing a huge amount of computation
+[00:09] to output human language, to output text.
+[00:09] And then we use that to do tool calls or invoke CLIs,
+[00:09] for example, which themselves,
+[00:10] a CLI is a human interface.
+[00:10] It was designed to allow a human
+[00:10] to interact with a computer system
+[00:10] in a way that's semantic and that we can memorize.
+[00:10] But ultimately it turns it back into just raw machine code
+[00:10] and goes off and does its thing.
+[00:10] So we've got this weird bridge in the middle
+[00:10] where to get a computer to use a computer
+[00:10] [audio drops out]
+[00:10] down into sanity, coming back into reality of if it's machine to machine, there should
+[00:10] be no prose-generating model in the middle of that, unless you need prose generated for
+[00:11] your output.
+[00:11] That's fine.
+[00:11] That's still a huge place for LLMs to sit in all of this, but there's a lot of places
+[00:11] where it ought not to be.
+[00:11] Yeah.
+[00:11] I feel like, I think Hunter shared this analogy recently.
+[00:11] It kind of feels like we, you know,
+[00:11] LLMs became popularized and we were like,
+[00:11] "Oh my gosh, like this is a hammer tool.
+[00:11] Like everything looks like a nail, right?
+[00:11] Like let's just use this for everything.
+[00:11] It can do a good enough job."
+[00:11] But often they don't like fit super well in code.
+[00:11] And so we kind of made these like tack on bridges,
+[00:11] like tool calling and structured outputs
+[00:11] to be able to support LLMs in code driven applications.
+[00:11] Specifically the structured outputs,
+[00:11] I think they were pretty transformative in the early LLM days.
+[00:11] Like, okay, it produced text and then also something
+[00:11] adhering to a JSON schema.
+[00:11] But again, way over investing in the computation.
+[00:12] And that shows both in the like cost and latency
+[00:12] that we see from LLM responses for a lot of,
+[00:12] I think pretty simple decisions.
+[00:12] So one other question that I had,
+[00:12] Jev has kind of three types of like decisions
+[00:12] that it can make or questions.
+[00:12] Maybe you could talk through those.
+[00:12] I think I have a slide here.
+[00:12] Yeah, could you talk through kind of these?
+[00:12] - Yeah, so this is like,
+[00:12] this is the actual manifestation of like
+[00:12] that machine to machine communication, right?
+[00:12] The type safe question.
+[00:12] So when you do a call to Jev,
+[00:12] you are giving it like a state as input.
+[00:12] That's what you got up there.
+[00:12] The high I've been trying to connect my Stripe account
+[00:12] for three days, right?
+[00:12] So the state is like the thing that you are evaluating.
+[00:12] And then you give it an array of questions.
+[00:12] You can give it one, you can give it 100 of them,
+[00:12] but each of the questions is one of three types.
+[00:12] So we've got choice here,
+[00:12] which is to pick one option from a list.
+[00:13] So in this example, it's like,
+[00:13] oh, which team should handle this?
+[00:13] Billing, technical or sales, right?
+[00:13] So it's like, it works best when there's like
+[00:13] going to be one dominant answer
+[00:13] and the choices don't have a huge amount of overlap,
+[00:13] But when I say it works best, there's always like a gazillion
+[00:13] different like nuances and ways to talk about this.
+[00:13] And we like, even our docs only scratched the surface
+[00:13] and we're like adding to it as we learn from the community.
+[00:13] But so a choice is to pick one option from a list.
+[00:13] It's like, it's the closest analog to like
+[00:13] what people would call a classifier, right?
+[00:13] It's just like, which of these is this thing?
+[00:13] And I would say choice is like probably the question type
+[00:13] I use the most, like maybe second to Noul.
+[00:13] Score is about rating the state along an axis.
+[00:13] So you're gonna get back a value from like zero to N.
+[00:13] You define how many levels there are.
+[00:13] Let's just pretend we were doing zero to four, okay?
+[00:13] So, or actually here we go.
+[00:14] We got zero to two, calm, frustrated, very angry
+[00:14] in this example here.
+[00:14] So you're saying how frustrated the customer appears.
+[00:14] So score is all about rating the state
+[00:14] on a single axis of determination.
+[00:14] And that's like the most important thing to know about it
+[00:14] when using it.
+[00:14] And it actually goes for kind of all of our questions
+[00:14] is you really need to break down the questions
+[00:14] to the point where they can't be broken down anymore.
+[00:14] Make sure you're not asking a compound question.
+[00:14] Don't put multiple different like axes of criteria
+[00:14] in a single score.
+[00:14] You should do two scores
+[00:14] if there are actually like two axes of information.
+[00:14] So the huge power from score comes from the way
+[00:14] that you define the levels.
+[00:14] So we don't see it here in this like quick overview,
+[00:14] but the calm, frustrated and very angry,
+[00:14] each of those is defined by semantic description
+[00:14] of what those levels are.
+[00:14] In this case, it might just say
+[00:14] calm, frustrated, very angry,
+[00:14] but it'll always work best if you like give it,
+[00:15] you should be able to like clearly define
+[00:15] what a one means in your scale.
+[00:15] And again, it's like giving it to a panel of humans, right?
+[00:15] It should be defined well that a panel of humans
+[00:15] could be like, oh, one is very well-defined,
+[00:15] two is very well-defined.
+[00:15] And what that means is when you use that same question
+[00:15] with the same criteria to evaluate
+[00:15] a whole bunch of different states,
+[00:15] maybe they're a bunch of documents,
+[00:15] maybe they're live chat messages,
+[00:15] there's a whole bunch of different things.
+[00:15] It could be log lines, output in an observability system.
+[00:15] you can trust that if you got a score of like one or 1.5
+[00:15] or two across multiple different things
+[00:15] that they mean the same thing,
+[00:15] that like because they meet the same well-defined criteria,
+[00:15] it makes it so much more powerful
+[00:15] than just like a blind scale from like,
+[00:15] if you just did like level zero is like, you know, calm
+[00:15] and level 10 is very angry with no descriptions in the middle,
+[00:15] you'd be like, well, what it actually is a six,
+[00:15] what is a seven, what is a four?
+[00:15] Like, can you really be sure that that has a firm description?
+[00:16] So that's score.
+[00:16] And then the final one is Noul.
+[00:16] Noul is kind of the simplest.
+[00:16] It really is just asking if the answer to a question is yes,
+[00:16] or if the statement is true.
+[00:16] So you just ask like a simple straightforward thing,
+[00:16] like the message conveys urgency or time sensitivity.
+[00:16] There's always like a little bit of a yellow flag
+[00:16] if you're putting an or in a Noul,
+[00:16] 'cause that's like, oh, is that actually asking
+[00:16] like a Boolean answer, but it's not a binary state.
+[00:17] It is continuous from zero to one.
+[00:17] - Nice.
+[00:17] Yeah, I just saw the Bernoulli thing before this,
+[00:17] but I like your take better.
+[00:17] So at LangChain, we think a lot about,
+[00:17] how can we help people build agents?
+[00:17] And one of kind of our biggest foundational pillars
+[00:17] at LangChain is like,
+[00:17] we wanna help people build agents with any model, right?
+[00:17] the model that's right for one task
+[00:17] is not gonna be right for another.
+[00:17] And then also, you know, there are new models every week
+[00:17] and these new models are good at different things.
+[00:17] So we were very excited to see Jev come out
+[00:17] and help support people building agents with Jev.
+[00:17] Maybe Hunter, you could talk a little bit more.
+[00:17] This is a bit of a two-prong question,
+[00:17] but how do we see Jev fitting into agents
+[00:17] and kind of how can you build it into your agent furnace?
+[00:17] I can let you screen share as well as if you want.
+[00:17] - Yeah, I got a little bit of a demo cooked up,
+[00:17] which I think I can use to demonstrate better in words.
+[00:18] But yeah, at LangChain,
+[00:18] we've been talking a lot about
+[00:18] what makes a good agent harness,
+[00:18] how do we get the most useful output out of a model?
+[00:18] Usually the way that we interface with that,
+[00:18] just because that's how other people interface with models
+[00:18] is some kind of opinionated to harness the agent loop,
+[00:18] that sort of thing.
+[00:18] We develop a ton of opinions about how we want that best to look.
+[00:18] When Jev first came out,
+[00:18] we initially thought of it as there's
+[00:18] a couple of super interesting problems that we can solve directly inside of the harness.
+[00:18] Just straight to do, there's questions that we wanted answered,
+[00:18] and not that great of a way to do it because if we threw LLMs to make decisions for us at every step,
+[00:18] then gets very expensive, very lengthy.
+[00:18] There's just like a ton of complications that come with it.
+[00:18] So let me and pray for me.
+[00:19] I know that live demos are a curse,
+[00:19] but we're going to try it anyways.
+[00:19] Let's see.
+[00:19] So--
+[00:19] Just--
+[00:19] Oh, go ahead.
+[00:19] Yeah, do you-- something I want to say I can--
+[00:19] I was going to start another demo, but--
+[00:19] Yeah, I was just going to say to add like a little bit of color,
+[00:19] we think about the core kind of agent loop
+[00:19] as like send a request to a model, an LLM to be specific.
+[00:19] And then the LLM can kind of reason, call tools
+[00:19] and do this like tool calling loop
+[00:19] until it decides it's done with a given task.
+[00:19] And as Allie mentioned, like you can't just plug in Jev
+[00:19] for like an LLM as a direct substitute.
+[00:19] That's not the way that Jev is designed
+[00:19] both in terms of its like functionality and API.
+[00:19] But yeah, Hunter is gonna kind of cover
+[00:19] how we think about plugging it into the harness
+[00:19] because it is still very useful in agentic applications.
+[00:19] - Yeah, for the agent harness specifically,
+[00:19] there's a couple of points.
+[00:20] If you are anyone that's used like codex or Claude code
+[00:20] or something of that variety,
+[00:20] you might notice that when it takes certain actions,
+[00:20] it usually classifies it as risky.
+[00:20] I think everybody's heard the like pattern case
+[00:20] where an agent goes and deletes a production database
+[00:20] and then all of a sudden everything's on fire
+[00:20] and we have to blame the LLM for it.
+[00:20] Sort of what Claude and Codex adopted pretty early
+[00:20] was to have some kind of classification step.
+[00:20] This was like abstracted away behind their harness
+[00:20] and how they implemented it to classify
+[00:20] if a decision was risky or not.
+[00:20] Now with Jev just because it's so cheap and inexpensive,
+[00:20] we can leverage a very similar paradigm
+[00:20] just in the agent harness.
+[00:20] So this like basic example I have here,
+[00:20] and this is very LangChain Forward code,
+[00:20] if you guys are familiar.
+[00:20] You can go look at our docs.
+[00:20] I think there's a lot of concepts here.
+[00:20] We can chat about separately too, but yeah, just wanna,
+[00:21] so like to go front to back,
+[00:21] we have these two tools right here.
+[00:21] You can see that we just are updating some thing in CRM,
+[00:21] or we're deleting a customer account.
+[00:21] We can classify this as like a pretty destructive action.
+[00:21] We usually want like some explicit intent
+[00:21] before this happens.
+[00:21] We don't want an agent to just do this automatically.
+[00:21] The way that we can add this into the agent,
+[00:21] LangChain agents have this notion of middleware,
+[00:21] which is basically just at different points in the loop,
+[00:21] we can choose what to do and organize context
+[00:21] in different ways.
+[00:21] So with LangChain TypeSafe,
+[00:21] this is something that if you go
+[00:21] and install LangChain TypeSafe,
+[00:21] you can take this straight to boot.
+[00:21] I specify auto mode middleware.
+[00:21] This is saying in Claude and Codex,
+[00:21] this sort of behavior is called auto mode.
+[00:21] We specify some tools, the two tools that we have up here.
+[00:21] Specify some instructions saying if this action is going
+[00:21] to be dangerous or not.
+[00:21] We set some of those criteria that Allie mentioned,
+[00:22] kind of went as the true and false of when we want these tools
+[00:22] to be rejected or not.
+[00:22] And then let me run this real quick.
+[00:22] And then if I run this here, this is a pretty safe result.
+[00:22] customer, yeah, C123, add the internal notes.
+[00:22] Pretty safe actions, we can go ahead and run it.
+[00:22] Yeah, okay, CRM note added.
+[00:22] This was fine, the status was success.
+[00:22] If we take something like a destructive call,
+[00:22] if we say, I want to delete this customer,
+[00:22] I don't want confirmation, if I run this,
+[00:22] Then at this point, Jev, right before the tool call gets made,
+[00:22] is going to decide if it's risky or not,
+[00:22] according to the criteria that we have up here.
+[00:22] And then status error, yep, it was classified as risky,
+[00:22] so we didn't wanna execute the tool.
+[00:22] So we lost--
+[00:23] - That's just like--
+[00:23] - In share, by the way.
+[00:23] - Sorry about that.
+[00:23] - It's just a moment ago.
+[00:23] - Cool.
+[00:23] Yeah, anyways, you could see that it aired out.
+[00:23] It was classified as risky, so we didn't execute it.
+[00:23] Another case that we like, so yeah,
+[00:23] this is pretty exciting because before the way
+[00:23] that we had to do this was make another LLM call,
+[00:23] which was pretty expensive.
+[00:23] It was like very latent just because model had to reason
+[00:23] over the tool call and yeah,
+[00:23] yeah, the implementation was pretty naive,
+[00:23] but with Jev makes it a lot simpler.
+[00:23] A second kind of case that we pretty immediately latched
+[00:23] on to was this idea of model routing.
+[00:23] So depending on the task,
+[00:23] I know models are going to be good for certain things.
+[00:23] I don't want to slam Astra on every single task that's possible.
+[00:23] So we could specify a fast model or a more in-depth model.
+[00:23] So very similar before,
+[00:24] this is another middleware that you can export from.
+[00:24] &gt;&gt; We lost your screen sharing again.
+[00:24] &gt;&gt; Interesting.
+[00:24] &gt;&gt; I'm just being the chat.
+[00:24] &gt;&gt; Yeah. No, I appreciate it. I appreciate it.
+[00:24] Let's try this. This might be a little bit better.
+[00:24] Does that work?
+[00:24] &gt;&gt; Yeah. We got it.
+[00:24] &gt;&gt; Cool. Yeah. Specify the router in the same way.
+[00:24] Yeah, it's specified the instructions for
+[00:24] when we should use different models.
+[00:24] We're going to try running this one more time.
+[00:24] So I can run this, rewrite, like super basic construction.
+[00:24] We're going to use a cheap frontier model for it.
+[00:24] Yep, it selected the fast route.
+[00:24] So you can see that it's opted to use Luna
+[00:24] for this specific case.
+[00:24] Jev made that decision and it was super fast because of it.
+[00:24] We can also do this one.
+[00:24] This is probably going to take a while
+[00:25] because Sol's going to go and do Sol things,
+[00:25] but I mean, it's like, yeah, we can intuit that.
+[00:25] like it's gonna take a while to execute.
+[00:25] That means that, you know, so we'll pick this path.
+[00:25] And the other interesting thing to come out of this
+[00:25] is with this, we can, because we're using this middleware,
+[00:25] we get tracing into the system out of the box.
+[00:25] So we can see exactly what's happening.
+[00:25] We can see all the decisions it's making.
+[00:25] I think this is one of the, yeah,
+[00:25] so this was the model router middleware that we saw.
+[00:25] So I look in, I can see that before the agent runs,
+[00:25] that's what this before agent thing is doing.
+[00:25] We're running a classifier call against Jev
+[00:25] and determining what the output is.
+[00:25] So we pass in some details about the different models
+[00:25] that Jev can choose from, pass in some of the state
+[00:25] with the initial query and things like that.
+[00:25] And then in the output, we can see that it shows fast,
+[00:26] which means that we opted to use Luna for this case.
+[00:26] - And one interesting thing that Hunter is showcasing here
+[00:26] is like, you know, with LLMs,
+[00:26] I think it's pretty common knowledge
+[00:26] that you want kind of observability
+[00:26] into what they're doing, right?
+[00:26] Like LLMs are sort of a black box.
+[00:26] You want to be able to tell, you know,
+[00:26] what were my inputs?
+[00:26] What were my outputs?
+[00:26] Can I score?
+[00:26] How, you know, evaluate how my agentic applications
+[00:26] are doing and, you know,
+[00:26] change my configuration for my agent
+[00:26] to make it perform better and observability and evals
+[00:26] are still like very important for even though like
+[00:26] decision model class that Jev is.
+[00:26] And so LangSmith is one great way to kind of visualize
+[00:26] your state and state out and score how that's doing
+[00:26] for your use cases.
+[00:26] - Yep.
+[00:26] - So I really like you showing that observability
+[00:26] because one of the like top tips that I give to people
+[00:26] when they start building with Jev is to,
+[00:27] like no matter what system you're in,
+[00:27] build a way to get auditability
+[00:27] of the actual TypeSafe calls.
+[00:27] Because the most likely,
+[00:27] especially if you're like vibe coding to start,
+[00:27] which a lot of people that's like how they're doing it,
+[00:27] the models out there are pretty good
+[00:27] at like understanding how to think about like system one
+[00:27] questions and kind of like compose them together.
+[00:27] We have found that they are not typically very good
+[00:27] at actually writing the instructions and the criteria.
+[00:27] We think that'll get better with time
+[00:27] as they become more trained on more projects
+[00:27] that use like Jev and System 1 models.
+[00:27] But I like to give two tips,
+[00:27] which is like make sure that you have a way
+[00:27] that you can like inspect all of the calls
+[00:27] that happen to Jev so you can like look at what the answers
+[00:27] are like as you're debugging and figuring out
+[00:27] like what's working.
+[00:27] And then the second is something that I forgot.
+[00:27] Oh, especially if you're vibe coding,
+[00:27] tell your agent to put all of the copy,
+[00:28] all of the instructions, criteria,
+[00:28] anything that's being fed into those
+[00:28] into one centralized place,
+[00:28] or someplace that you can easily go in and tweak it.
+[00:28] 'Cause that's gonna be,
+[00:28] if nothing else gets a human touch in your code base
+[00:28] and you don't open up a single other code file,
+[00:28] you are gonna wanna look at that one.
+[00:28] Because you're gonna be able to get huge performance,
+[00:28] like an accuracy increases by just taking some questions
+[00:28] that sometimes are written very poorly
+[00:28] and just making them more sensible.
+[00:28] - Yeah, thank you, Hunter, for the demo
+[00:28] and Allie for the tips.
+[00:28] I think this is just a very new type of model
+[00:28] and so everyone's gonna need to slowly learn
+[00:28] how we can best develop with it.
+[00:28] One interesting resource that I stumbled upon
+[00:28] was this resource called Jevify.
+[00:28] It's just basically a skill.
+[00:28] I'll paste the link in the chat.
+[00:28] And this is like a prompt that you can give a coding agent
+[00:28] to help it look over and scan your agent code
+[00:29] and figure out like, where am I using an LLM
+[00:29] for decisions that actually would be much better
+[00:29] with a decision model and how can we plug that in?
+[00:29] How can we architect that to save on latency and cost?
+[00:29] And then also importantly, like,
+[00:29] where is an LLM the right tool here?
+[00:29] And like, we need to leave that.
+[00:29] So excited about that.
+[00:29] I think it would be great if we could--
+[00:29] - I saw that specific project and love it.
+[00:29] Like we wanted to, if we had had like more time leading up
+[00:29] to launch, we talked a lot about creating
+[00:29] like a brainstorming skill,
+[00:29] which basically is exactly what the person has created.
+[00:29] Like because there's oftentimes like low hanging fruit,
+[00:29] especially in like an LLM integrated piece of software.
+[00:29] There's usually low hanging fruit for Jev to be
+[00:29] like a swap in and then sometimes less obvious things.
+[00:29] And so the Jevify skill there is pretty darn cool.
+[00:29] is there one more thing I can show,
+[00:29] 'cause I made some promises and this landed literally
+[00:29] five minutes ago inside of LangSmith.
+[00:30] I just want to, sorry to hijack real quick,
+[00:30] but this is the thing that I love about working at startups
+[00:30] is that we can ship so quick.
+[00:30] We have nice rendering now,
+[00:30] so you can go in and actually interpret
+[00:30] some of the things that are inside of your LangSmith trace.
+[00:30] So you saw it before that it was like pretty ugly
+[00:30] &gt;&gt; Yeah, those are working at LinkedIn.
+[00:30] Awesome. Well, we're going to save some time at the end for community questions,
+[00:30] but Allie, we have a couple of questions for you first,
+[00:30] both that we've seen on Twitter and just internally from LangChain, Jev Power Users.
+[00:30] So one thing that we're curious about,
+[00:30] I believe the context length for Jev is 32K tokens right now. Is that correct?
+[00:31] It's basically, it's slightly complicated.
+[00:31] It's 32K for the state plus your largest question.
+[00:31] So like if you imagine a state and the question together
+[00:31] is 32K and then there's around a 64K cap
+[00:31] for the state plus all of the questions together.
+[00:31] That's just when you would need to like separate it
+[00:31] into multiple calls.
+[00:31] - Okay, nice.
+[00:31] Is there, do you guys have plans to like
+[00:31] extend that context length or support other types of content,
+[00:31] like multimodal, what's your roadmap like there?
+[00:31] - So our official answer to multimodal do we support images
+[00:31] is not yet, with no further expanding upon that vague
+[00:31] promise.
+[00:31] And I would also give the same answer to things like
+[00:31] increased context length.
+[00:31] We also want to go faster, cheaper, like this is the
+[00:31] beginning. And if you read like the launch blog post on our website, like written by
+[00:32] Diogo, it really does explain like where we're at in this. We see this as like the beginning
+[00:32] of this revolution that we that we want to help, you know, drive forward. And so yes,
+[00:32] improving in every angle is what we expect. But no, I'm not not putting any specifics
+[00:32] or promises on timing or any of that. But follow us because we're we're we're moving
+[00:32] fast. Yeah, yeah, that's great. I saw also Diogo put out some cool content, I think yesterday about
+[00:32] like, how to think about Jev for coding agents. And like, how it can plug into some of those
+[00:32] pieces, it seems like, interesting use cases that were highlighted were along the dimensions
+[00:32] of like progressive disclosure and tool selection. And then also, like RLMs and code mode seemed
+[00:32] like an interesting case. Are there any other really compelling use cases that you've seen
+[00:32] or like Jev in production that's interesting for folks to know about?
+[00:33] It's like it's so it's so vast like what people are doing and they're moving so fast. I want to
+[00:33] be like let me just open my Twitter feed and like look at the top 10 posts. I bet all of them will
+[00:33] blow me away at this point, right? And that's the most exciting thing about where we're at right
+[00:33] right now is like, we knew the community would take a lot of these things and run with it.
+[00:33] And we are seeing that.
+[00:33] You already talked about some of the, I think, what I'd call low hanging fruit, like using
+[00:33] it for safety classification of tool calls, model routing, especially up front where you're
+[00:33] like, oh, is this overall question, does it require this, that, the other thing.
+[00:33] I, my personal like biggest excitement
+[00:33] is the projects that I see that are in the real time,
+[00:33] real time use cases.
+[00:33] And real time was like a,
+[00:34] it was a big like aha moment for us internally
+[00:34] because we always called like,
+[00:34] we knew that we were very fast
+[00:34] and we knew that we were very cheap.
+[00:34] And then all of a sudden it was like,
+[00:34] I had an epiphany one night,
+[00:34] I was like, wait, when you're fast and cheap
+[00:34] that unlocks real time.
+[00:34] Like if you're too expensive,
+[00:34] trying to use something in real time,
+[00:34] it'll just become cost prohibitive.
+[00:34] And if you're too slow,
+[00:34] you just can't keep up with real time.
+[00:34] But real time means that like real time chat filtering to me,
+[00:34] I made a demo for this early on,
+[00:34] but we didn't end up using it for our launch demos.
+[00:34] And now people have already made better versions
+[00:34] of like live filtering,
+[00:34] a massive streaming Twitch stream of,
+[00:34] tons and tons and tons of chat
+[00:34] when you get these channels that have got
+[00:34] like a hundred thousand viewers, right?
+[00:34] You can filter those live
+[00:34] And it only around 100, 150 millisecond delay
+[00:34] in making it appear, it feels like real time.
+[00:34] Like it doesn't even matter.
+[00:34] There's like more latency than that
+[00:34] just from like Twitch's like displaying it, right?
+[00:34] So you can, you can, you can,
+[00:35] because you can score them along an axis,
+[00:35] you can even make it where the user can just like move
+[00:35] like a scrubber of like how filtered do you want it?
+[00:35] Do you want only the most like productive,
+[00:35] like interesting questions being asked
+[00:35] or do you want all the emoji spam, right?
+[00:35] And you can just like literally just like turn a dial.
+[00:35] And like that's just like so cool to be able to do that.
+[00:35] And in that parallel call,
+[00:35] you can also classify them as questions or statements
+[00:35] or hype messages like all at the same time,
+[00:35] all in that 100 milliseconds for every single message
+[00:35] and it won't break the bank.
+[00:35] So yeah, I just, there's so much.
+[00:35] That's just like the first one that came to my head.
+[00:35] - I think one of the,
+[00:35] I am glad you mentioned the real time element of it
+[00:35] 'cause I think in like one of the launch posts,
+[00:35] I saw the demo you guys did where you got Jev to play
+[00:35] Doom real time.
+[00:35] That was like one of those moments that was like,
+[00:35] this is incredible, things are so cheap and fast now,
+[00:35] it's gonna open up like a whole new paradigm.
+[00:35] - Yeah, that was my baby.
+[00:35] The Doom demo has been my favorite thing
+[00:35] to work on the last couple of months here.
+[00:36] - Nice, well yeah, it blew me away.
+[00:36] I think it blew a lot of people away.
+[00:36] So props to you, props to the whole team for building it.
+[00:36] - Yeah, I agree.
+[00:36] I think Twitter has really done something else
+[00:36] with Jev over the past six days or so.
+[00:36] I feel like I've learned about a new use case
+[00:36] every five minutes.
+[00:36] Are there any other interesting,
+[00:36] before we pivot to the community questions,
+[00:36] any other roadmap items that you wanna share?
+[00:36] I know faster and cheaper is,
+[00:36] Like obviously, this is a lot of work on neural Zen.
+[00:36] - Not, I would say not specifically, you know?
+[00:36] It's like a watch this space.
+[00:36] You never know what next week will be
+[00:36] with like how much incredible demand there has been.
+[00:36] Right like in this immediate moment,
+[00:36] we are like working on increasing capacity
+[00:36] to get more people in.
+[00:36] At least at the start of this,
+[00:36] our signups were still paused as we managed demand
+[00:37] and make sure that we have like high quality service
+[00:37] - Oh, not a lot.
+[00:37] Not a lot.
+[00:37] It's been wild and crazy.
+[00:37] And everyone is working like incredibly hard.
+[00:37] But it's also so many smiles.
+[00:37] It's so much smiles here, like people are excited.
+[00:37] The energy is just electric in the office.
+[00:37] - Amazing.
+[00:37] Well, with that, let's pivot to a couple of the questions
+[00:37] from folks on the webinar.
+[00:37] the most upvoted one right now is,
+[00:37] is Jev trained on the same data as a typical LLM?
+[00:37] - So the, so it is, it is,
+[00:38] sorry, I'm like reading my,
+[00:38] reading my notes on this one,
+[00:38] 'cause I don't do, I'm like not an ML person,
+[00:38] and I'm not involved in like the actual training and stuff.
+[00:38] We do use a mixture of pre-trained models to train ours.
+[00:38] our data that we use to train our model
+[00:38] is all synthetic data created in-house.
+[00:38] And that's part of our secret sauce.
+[00:38] But it goes far beyond,
+[00:38] the process goes far beyond post-training.
+[00:38] And there's a lot of hand-waviness in there
+[00:38] because we do have breakthroughs,
+[00:38] which is part of why we're able to create
+[00:38] what we've created for it to be this amazing.
+[00:38] And so we're going to hold on to some of that secret sauce for now.
+[00:38] I'm kind of aggregating a theme that I'm seeing across
+[00:38] some of these questions, which is like,
+[00:38] how do you kind of tailor the either like confidence
+[00:38] or probabilities that you set in your code as thresholds
+[00:39] for like, okay, if the confidence is above X,
+[00:39] then we'll do this or if the probability is above X,
+[00:39] is that, yeah, it seems pretty domain specific.
+[00:39] How do you think about that?
+[00:39] - I would say that's exactly right,
+[00:39] is that it is domain specific.
+[00:39] My, I think it was written like multiple places
+[00:39] in the like tips in our documentation where it's like,
+[00:39] you should test your domain,
+[00:39] like test your actual like data and use case
+[00:39] to make sure that you under like,
+[00:39] first of all, make sure that it's like in distribution,
+[00:39] make sure that like,
+[00:39] "Jev is good for your use case,
+[00:39] "don't blindly shove it into production without testing."
+[00:39] But also like,
+[00:39] that's where you should be looking at like
+[00:39] what the thresholds are.
+[00:39] you know, if you're finding yourself setting a threshold
+[00:39] like super low, like especially like below 50% for Noul,
+[00:39] because that almost certainly means that either
+[00:39] there's a problem and like this is like an aspect
+[00:39] of our model jaggedness where maybe we just like
+[00:39] aren't good at that particular use case yet.
+[00:40] Or it means that maybe your questions need
+[00:40] some significant tweaking.
+[00:40] But so it is about testing it.
+[00:40] And then I will also say that a big thing about using
+[00:40] Jev effectively is to, like confidence thresholds
+[00:40] is only one way to use the probabilities.
+[00:40] What I think is really important to know
+[00:40] is that the confidence that's returned by our API,
+[00:40] that is a computation, is like a statistics computation
+[00:40] on the probability map that you get back.
+[00:40] It is a deterministic computation that you could do yourself.
+[00:40] That is not a silver bullet.
+[00:40] It does not, it represents in,
+[00:40] in I think primary use cases,
+[00:40] it's a good analog for confidence.
+[00:40] But that is the cases where you are expecting
+[00:40] like a single dominant answer.
+[00:40] The confidence is mostly a measure of
+[00:40] how much is there like disagreement,
+[00:40] how much is there a distributed spread
+[00:41] in the probability map.
+[00:41] And you could have use cases
+[00:41] where you actually expect two or three of the possible options
+[00:41] to be competing for top probability,
+[00:41] and in which case your confidence is gonna be
+[00:41] like super, super, super low,
+[00:41] because that's the confidence
+[00:41] in there being a single dominant answer.
+[00:41] But in some of these use cases,
+[00:41] that's actually normal and okay.
+[00:41] And so I also find that coding agents,
+[00:41] they really like to see that confidence and be like,
+[00:41] yeah, we should always do a different thing
+[00:41] if confidence is low.
+[00:41] That's not always the case.
+[00:41] Like I built a shopping cart.
+[00:41] Actually, the Doom demo is a great example.
+[00:41] The Doom demo says, which monster,
+[00:41] where should we be looking each frame, right?
+[00:41] Like this monster, that monster,
+[00:41] should we be looking at that item, et cetera, et cetera.
+[00:41] None of those is like, oh yeah,
+[00:41] that one's gonna be like 100%
+[00:41] and everything else is gonna be 1%.
+[00:41] No, no, no, there's like actually a lot of solid options.
+[00:41] And so we just take whatever one is the top choice.
+[00:41] You could even do some fancy things,
+[00:41] like adding a bit of like decay
+[00:41] where you make the most recently picked choice stickier.
+[00:42] and so it requires more of a swing to change it.
+[00:42] Like that's an interesting pattern I think to play with.
+[00:42] But if we were to like naively,
+[00:42] and what some of the first like vibed up versions
+[00:42] of the Doom demo brains used confidence gating,
+[00:42] it was like the agent was like,
+[00:42] oh, confidence is low on this,
+[00:42] so I should just fall back to like looking forward
+[00:42] or something, it's like, no, no, no, no, no, no,
+[00:42] it's like a bad use of confidence
+[00:42] because it just doesn't apply in the situation
+[00:42] because we expect there to be competing answers.
+[00:42] We just wanna pick the best one.
+[00:42] So that's like just one of many potential examples
+[00:42] you don't want to just blindly trust confidence
+[00:42] to work in your particular use case.
+[00:42] It's a good shortcut for a lot of simple use cases,
+[00:42] but like always test, always check and be creative.
+[00:42] There could be other probability math.
+[00:42] Sometimes you just want like the top probability,
+[00:42] raw percentage that you'd wanna threshold on.
+[00:42] Sometimes it might be the top probability
+[00:42] minus the second highest,
+[00:42] or divided by the second highest probability
+[00:42] gives you a different thing.
+[00:42] Like all of these are different like
+[00:42] statistics math approaches to how to deal with it.
+[00:43] &gt;&gt; Yeah, that's super interesting.
+[00:43] Anecdotally, I was working on a pretty naive application of
+[00:43] Jev just using it to help me add labels to new GitHub issues
+[00:43] so that we could automate more of our triage.
+[00:43] I was perplexed by some of
+[00:43] the probabilities and
+[00:43] confidences that I was getting back in some of the results and was like,
+[00:43] "I need to dig more into how to properly understand this for this use case."
+[00:43] Just calibrate myself as the developer.
+[00:43] Yeah, I think so maybe time for one more question. I think this one is interesting
+[00:43] It says as far as I understand Jev's status input token limit is yeah around the 32k that we talked about
+[00:43] Are there any decision degradation?
+[00:43] Consequences on large inputs. How should we think about that for Jev?
+[00:43] It's a really good question
+[00:43] We have a
+[00:43] a doc page in our docs called Model Jaggedness.
+[00:44] And I highly recommend checking it out.
+[00:44] It is our, this is a part of our,
+[00:44] like one of our like cornerstones of our company culture
+[00:44] and like our brand is honesty.
+[00:44] Like we don't, we're not, we don't wanna say
+[00:44] Jev is better at anything that it actually is, right?
+[00:44] We are not an over promise culture here.
+[00:44] And so the Jaggedness article is like our list of like
+[00:44] known ways that we know that the model doesn't do great in.
+[00:44] And I believe, as I've read so much things recently,
+[00:44] so I could be wrong, but I'm almost positive that one
+[00:44] of the things in there is talking about long contexts
+[00:44] and that it can degrade accuracy if you put in
+[00:44] a huge amount of state.
+[00:44] I would say the guideline for that is make sure you're only
+[00:44] providing in the state what is actually necessary
+[00:44] for making the determination.
+[00:44] You don't wanna just like throw the whole world at it
+[00:44] and then ask it to make a determination about a part
+[00:44] that is like just a tiny slice of it.
+[00:45] Now, sometimes you don't have any other choice, right?
+[00:45] Sometimes you truly are evaluating a large unstructured
+[00:45] like wall of text and you can't trim that down in code.
+[00:45] That's why you're trying to use an AI model
+[00:45] to like to evaluate in which case,
+[00:45] iterate on questions, figure out like what works best,
+[00:45] test it.
+[00:45] But in a lot of cases, we're constructing the state from multiple bits of data that
+[00:45] we have in code.
+[00:45] And so that comes down to the system designer to you as the programmer to consider, is this
+[00:45] part actually needed?
+[00:45] Do you need to add that to the state?
+[00:45] Do you need to add this to the state?
+[00:45] It's also better, more cost effective to not throw more tokens at something you don't
+[00:45] need.
+[00:45] Jev is so cheap that most of the time you can just throw extra at it and not care.
+[00:45] But you should be mindful about what you're including and definitely test that.
+[00:45] That's like a big thing.
+[00:45] And also in the Doom demo, like the state,
+[00:45] I played a lot with like how much detail
+[00:45] to provide in the state.
+[00:45] And at one point I had like a recent actions array.
+[00:46] This is like everything that happened recently,
+[00:46] but it was so granular.
+[00:46] It was like every like bullet of damage and stuff
+[00:46] that it would aid up a huge amount of the state.
+[00:46] And it did cause the like the overall intelligence
+[00:46] to drop a little.
+[00:46] So I was like, okay, we should like clean that up.
+[00:46] That's like kind of a pointless amount of detail.
+[00:46] So there is like good tweaking to work with that.
+[00:46] That being said, every single thing on the Model Jaggedness page
+[00:46] is things that we think could get even better in the future.
+[00:46] Yeah, I really appreciate that transparency.
+[00:46] And I think it's great thinking back to the Jevify stuff.
+[00:46] It's like, where should we use Jev?
+[00:46] Where should we not?
+[00:46] It's not an answer for all use cases,
+[00:46] but can be really great for some.
+[00:46] And I think it feels very full circle
+[00:46] to end this conversation talking about basically context
+[00:46] engineering for Jev.
+[00:46] We have come up with many names for that in the past.
+[00:46] In fact, we've run webinars on harness engineering,
+[00:46] on loop engineering, on filling the, you know,
+[00:46] now we're talking about Jev engineering maybe,
+[00:47] but yeah, I think it's still important to think about like,
+[00:47] this is still a model, like how can we optimize
+[00:47] what goes in in order to optimize what comes out.
+[00:47] And with that, I just wanted to say,
+[00:47] thank you so much, Allie and Hunter,
+[00:47] for joining for this almost emergency webinar
+[00:47] on building a harness with Jev.
+[00:47] We are so excited to see the enthusiasm around the Jev launch.
+[00:47] We're very bullish on using it
+[00:47] and other decision models internally.
+[00:47] And yeah, thank you so much for joining us.
+[00:47] And thanks folks for joining in your good questions.
+[00:47] - Thank you.
+[00:47] And I will also take an opportunity to plug our Discord.
+[00:47] We wanna see what you're building.
+[00:47] We wanna see your cool projects.
+[00:47] If Discord's not your thing,
+[00:47] you can also like tweet it to us on X.
+[00:47] That's also cool, but like a lot of people
+[00:47] showing a lot of really cool stuff on our Discord and a lot of our developers
+[00:47] are engaging with the community in there too so we'd love to see you.
+[00:47] I can plus one the Discord it's a pretty cool place I've been I've been
+[00:47] lurking in there for a little bit. Yeah.
+[00:47] Okay.
