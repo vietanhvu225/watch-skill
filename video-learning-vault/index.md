@@ -17,6 +17,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `8896b123a0749c05` | How I Review AI Code - (Meta Senior Staff Engineer) | Codebase Tree Topology (Trunk vs Leaf), 4 PR Proofs, Adversarial Review & Upfront Gating | [how_i_review_ai_code_meta_staff_engineer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_review_ai_code_meta_staff_engineer.md) | 20:31 |
 | `47ee6151d3451c4d` | I Built (And Shipped) a 3D Game With Claude Opus 5.5 (Full Workflow) | No-Engine Web Stack (WASM+WebGPU), Subagent Parallelism & Gray Box Gym | [built_and_shipped_3d_game_with_claude_opus.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) | 18:11 |
 
 ### 🟢 Mới phân tích (27/09/2026)
@@ -156,6 +157,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Every Jev Concept Explained: Use with Claude (37m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/every_jev_concept_explained.md) - Cẩm nang toàn diện của Simon Scrapes về Jev: Hệ thống tư duy Nhanh & Chậm (System 1 vs System 2), 3 kiểu dữ liệu Bool / Choice / Score, 4 mẫu hình kiến trúc (Speculative Fanout, Confidence Gating, Decomposed Scoring, Intent Routing) và quy trình 5 bước thiết kế trigger cho agent.
 * [How To Build A Harness With Jev: LangChain x TypeSafe AI (48m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_build_a_harness_with_jev.md) - Hội thảo chuyên sâu giữa LangChain và TypeSafe AI: Nghịch lý đường vòng ngôn ngữ tự nhiên, tích hợp Auto Mode Middleware và Model Router vào LangChain, ứng dụng Real-Time AI (chơi game Doom, live filter), cạm bẫy toán học của Confidence Threshold và kỹ thuật Context Engineering cho Decision Models.
 * [I Built (And Shipped) a 3D Game With Claude Opus 5.5 (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) - Toàn bộ quy trình xây dựng và phát hành tựa game 3D Pressure Washing trong 6.5 giờ: Kiến trúc No-Engine (Rust -> WASM + WebGPU 120Hz), quy tắc cấm One-Shot, tách rời pipeline Blender Assets, Gray Box Level Gym và điều phối subagents song song.
+* [How I Review AI Code: Meta Senior Staff Engineer (20m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_review_ai_code_meta_staff_engineer.md) - Phương pháp luận review code thời đại AI của John Kim: Phổ liên tục theo Bán kính thiệt hại (Blast Radius), Cấu trúc cây (Trunk vs Leaf Nodes), 4 loại bằng chứng PR (Unit Tests, Logs, Video UI, Gating), Adversarial Review Agent và quy tắc Upfront Feature Gating.
 
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
@@ -198,6 +200,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [herdr_terminal_multiplexer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/herdr_terminal_multiplexer.md) (19:25)
     *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
 *   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
+    *   [how_i_review_ai_code_meta_staff_engineer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_review_ai_code_meta_staff_engineer.md) (20:31)
     *   [claude_code_ai_native_sdlc_guide.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) (21:02)
     *   [dont_ship_skills_without_evals.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dont_ship_skills_without_evals.md) (21:25)
     *   [ai_civilization_in_herdr.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_civilization_in_herdr.md) (24:50)
