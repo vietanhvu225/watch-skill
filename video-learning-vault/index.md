@@ -12,8 +12,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
-### 🟢 Mới phân tích (27/09/2026)
+### 🟢 Mới phân tích (28/09/2026)
 *Video vừa được phân tích và lập chỉ mục hôm nay:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `47ee6151d3451c4d` | I Built (And Shipped) a 3D Game With Claude Opus 5.5 (Full Workflow) | No-Engine Web Stack (WASM+WebGPU), Subagent Parallelism & Gray Box Gym | [built_and_shipped_3d_game_with_claude_opus.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) | 18:11 |
+
+### 🟢 Mới phân tích (27/09/2026)
+*Video vừa được phân tích và lập chỉ mục trước đó:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
@@ -148,6 +155,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Make Your Coding Agents Way Faster: Jev + Antigravity (8m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_google_antigravity_faster_agents.md) - Giải pháp phá vỡ nút thắt độ trễ của Smitha Kolan: Sử dụng mô hình phán đoán Jev (TypeSafe AI) xử lý câu hỏi phi văn bản trong 15ms, kết nối skill vào Google Antigravity và dựng router.py phân luồng Gemini Flash / Pro.
 * [Every Jev Concept Explained: Use with Claude (37m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/every_jev_concept_explained.md) - Cẩm nang toàn diện của Simon Scrapes về Jev: Hệ thống tư duy Nhanh & Chậm (System 1 vs System 2), 3 kiểu dữ liệu Bool / Choice / Score, 4 mẫu hình kiến trúc (Speculative Fanout, Confidence Gating, Decomposed Scoring, Intent Routing) và quy trình 5 bước thiết kế trigger cho agent.
 * [How To Build A Harness With Jev: LangChain x TypeSafe AI (48m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_build_a_harness_with_jev.md) - Hội thảo chuyên sâu giữa LangChain và TypeSafe AI: Nghịch lý đường vòng ngôn ngữ tự nhiên, tích hợp Auto Mode Middleware và Model Router vào LangChain, ứng dụng Real-Time AI (chơi game Doom, live filter), cạm bẫy toán học của Confidence Threshold và kỹ thuật Context Engineering cho Decision Models.
+* [I Built (And Shipped) a 3D Game With Claude Opus 5.5 (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) - Toàn bộ quy trình xây dựng và phát hành tựa game 3D Pressure Washing trong 6.5 giờ: Kiến trúc No-Engine (Rust -> WASM + WebGPU 120Hz), quy tắc cấm One-Shot, tách rời pipeline Blender Assets, Gray Box Level Gym và điều phối subagents song song.
 
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
@@ -177,6 +185,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [anthropic_fixed_graph_engineering_flaw.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/anthropic_fixed_graph_engineering_flaw.md) (14:06)
     *   [shopify_claude_code_workflow.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/shopify_claude_code_workflow.md) (14:51)
     *   [wayfinder.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/wayfinder.md) (15:08)
+    *   [built_and_shipped_3d_game_with_claude_opus.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) (18:11)
     *   [top_1percent_tech_advice.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) (15:18)
     *   [why_we_killed_multi_agent_pipeline.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/why_we_killed_multi_agent_pipeline.md) (15:00)
     *   [claude_architect_exam_guide.md](file:///f:/source/watch-skill/video-learning-vault/certification/claude_architect_exam_guide.md) (15:50)

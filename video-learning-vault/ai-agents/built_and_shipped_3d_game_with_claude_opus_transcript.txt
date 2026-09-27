@@ -1,0 +1,661 @@
+[00:00] Hey everyone.
+[00:00] What you see here is a
+[00:00] little pressure washing game.
+[00:00] And the aim of the game is to
+[00:00] basically get through the entire
+[00:00] level by clearing up the entire space
+[00:00] before the time runs out And if you
+[00:00] make a mistake, such as watering the
+[00:00] plants, or shooting the owner's pets
+[00:00] you will end up losing the game.
+[00:00] if you do a good job, you will be
+[00:00] able to get through the level and
+[00:00] then continue to earn more upgrades
+[00:00] Now this entire game that you see
+[00:00] here was built completely with AI.
+[00:00] This includes the game logic, the
+[00:00] character models, the environment art,
+[00:00] As well as all of the other systems
+[00:00] that brought this game to life.
+[00:00] I posted about this game on X, and as you
+[00:00] can see, it got quite a lot of attention.
+[00:00] and just to show you some quick stats
+[00:00] over here, since posting this game,
+[00:00] I've got nearly a thousand players
+[00:00] spending about two minutes in this.
+[00:00] Now, this is all made possible
+[00:00] thanks to Anthropic's latest
+[00:00] release, Claude Opus 5.5,
+[00:00] And if you actually just search you
+[00:00] notice that people are no longer
+[00:00] posting about benchmarks, most of
+[00:00] them are just posting about the kind
+[00:00] of cool 3D games that they are able
+[00:00] to create now with this new model.
+[00:01] but rather than talking to you about
+[00:01] how it works in game engines, this
+[00:01] was made entirely with no engine.
+[00:01] It was just using something
+[00:01] called WebAssembly and WebGPU.
+[00:01] and this allows me to run this game
+[00:01] entirely on the web, so you don't have
+[00:01] to do any installs or anything like that.
+[00:01] It has also allowed me to very
+[00:01] quickly ensure that this works
+[00:01] for mobile devices as well.
+[00:01] Because it's so easy to distribute,
+[00:01] I've been putting up my games up on
+[00:01] WaveDash, And anybody can just go on
+[00:01] right to the website And play it right
+[00:01] in their browser, whether it's on their
+[00:01] desktop or on their mobile phones.
+[00:01] I really like this workflow because
+[00:01] it allows me as a solo developer to be
+[00:01] able to very rapidly create games and
+[00:01] have a way to host them, distribute
+[00:01] them, and allow many people to play it.
+[00:01] so in today's video, I'll be walking you
+[00:01] through the entire process that I took,
+[00:01] starting from how I brainstormed this
+[00:01] game idea, all the way to creating all
+[00:01] of the different art assets, including
+[00:01] this character that you see over here,
+[00:01] creating the initial prototype and then
+[00:01] finally landing onto this final version
+[00:01] that you see over here, which I think is
+[00:01] a lot of fun and I'm getting some really
+[00:01] good feedback about so if you've ever
+[00:01] dreamt about building games on your own
+[00:01] and then having a platform for you to be
+[00:01] able to ship it This video is for you now,
+[00:02] before we jump right into today's video,
+[00:02] If you're interested in keeping up with
+[00:02] the latest news in AI game development,
+[00:02] you wanna check out my free insiders club.
+[00:02] I send out regular emails that cover
+[00:02] my thoughts on the latest news and
+[00:02] experiments as it relates to AI and game
+[00:02] development you'll also get access to free
+[00:02] resources accompanying many of my videos,
+[00:02] including asset packs, prompts, source
+[00:02] code, and various other things that will
+[00:02] help you on your game development journey.
+[00:02] but if you wanna take things a
+[00:02] step further, you might wanna
+[00:02] check out vibegamedev.com.
+[00:02] This is my all-in-one toolkit to help
+[00:02] you to be able to design, build, and
+[00:02] then ship that game that you've always
+[00:02] dreamed about, thanks to the power of
+[00:02] AI it contains various resources to help
+[00:02] you on your journey, including this full
+[00:02] set of game development agent skills
+[00:02] that I constantly update step-by-step
+[00:02] tutorials to take you from a blank screen
+[00:02] all the way to a finished project members
+[00:02] also get exclusive access to resources
+[00:02] including full project source codes,
+[00:02] prompts, assets, and everything that I
+[00:02] took to build and ship games using AI
+[00:02] it also includes a Discord community.
+[00:02] It also includes an exclusive
+[00:02] Discord community many of whom have
+[00:03] leveraged the power of AI to be able
+[00:03] to ship their very first games, so
+[00:03] head on over to vibegamedev.com.
+[00:03] Link is in the description below.
+[00:03] And without further ado, let's get started
+[00:03] with today's video where you will learn
+[00:03] how I went about building this entire game
+[00:03] that you see here on screen All right,
+[00:03] so the very first thing that I'm gonna
+[00:03] talk about is something that a lot of you
+[00:03] have asked me about and that is how much
+[00:03] did it actually cost to build this game.
+[00:03] And let me just tell you something.
+[00:03] I don't really keep track of the cost.
+[00:03] Part of the reason is that I've
+[00:03] never found myself having to
+[00:03] do things like having multiple,
+[00:03] Claude subscriptions or whatever.
+[00:03] I'm basically on the Claude Max plan.
+[00:03] I recently updated from the 5X plan
+[00:03] to the 20X plan because I've been
+[00:03] doing a lot of experimentation.
+[00:03] But, but I do know that this matters
+[00:03] to a lot of you, so I asked Opus 5.5 to
+[00:03] actually generate this information for me.
+[00:03] so from the beginning, it took
+[00:03] about six and a half hours in total.
+[00:03] And it's not just me sitting in front.
+[00:03] Actually, what I did was that I just
+[00:03] fire off the prompts, and then I
+[00:03] leave it in the background, and then
+[00:03] I check things as they are, And I just
+[00:03] come back whenever things are done.
+[00:04] and like I said, I'll be showing
+[00:04] you the exact prompts that I use,
+[00:04] so that if you want to go and
+[00:04] replicate it, you can do so yourself.
+[00:04] but here's a bunch of things
+[00:04] that it generated, okay?
+[00:04] And I don't know which of these matters
+[00:04] to you, so the information's here.
+[00:04] I make use of several sub-agents, but
+[00:04] one thing to note is that you may see
+[00:04] that there are a lot of sub-agents here.
+[00:04] Now, this does not mean I run
+[00:04] twenty-one sub-agents simultaneously.
+[00:04] What I tend to do is that For
+[00:04] any given task, I'll usually have
+[00:04] one main agent and then If it is
+[00:04] parallelizable, I will then ask it to
+[00:04] create one or two other sub-agents.
+[00:04] the other thing that I do is that I
+[00:04] have a lot of sub-agents running in the
+[00:04] background to capture the prompts that
+[00:04] I use, as well as take screenshots This
+[00:04] effectively generates this page that you
+[00:04] see here, which I often use to go through,
+[00:04] these videos when I talk through them.
+[00:04] and you can see right here I used
+[00:04] the Sonnet five agent just to do the
+[00:04] commits, the capturing of information,
+[00:04] taking screenshots and stuff like that.
+[00:04] But then for the main task of
+[00:04] building the entire game, you can
+[00:04] see I use Opus five point five.
+[00:04] There are a bunch of other
+[00:04] things that I do use.
+[00:04] I made use of Triple3D file for my image
+[00:04] generation and ElevenLabs, And just
+[00:04] scrolling up, by the time it took me to
+[00:04] wavedash it cost me about two hundred
+[00:04] and thirty-three dollars at API pricing.
+[00:05] And then everything so far, because
+[00:05] I've been continuing to add more
+[00:05] stuff and, do some bug fixes,
+[00:05] it's roughly double that price.
+[00:05] but then this is just an estimate.
+[00:05] Like I said, I'm on the Claude Max plan.
+[00:05] I did not use any resets, and
+[00:05] I've still got plenty of usage.
+[00:05] All right, so that's
+[00:05] really about the cost.
+[00:05] I just want to get that out of the way
+[00:05] because I get this question a lot, and
+[00:05] most of the time I have no idea myself.
+[00:05] So how did I go about doing this?
+[00:05] I do have a starting boilerplate that
+[00:05] I have been using to build all of my
+[00:05] games that make use of WebAssembly,
+[00:05] and WebGPU, as well as Rust.
+[00:05] this is a template that I use that
+[00:05] effectively has all the skills that I
+[00:05] need, in order for me to build my game.
+[00:05] And all these skills that you see over
+[00:05] here are part of vibegamedev.com which I
+[00:05] continue to update every time I make new
+[00:05] videos or I make new projects and like
+[00:05] I said, the thing that I've been working
+[00:05] a lot for browser-based projects right
+[00:05] now is just using WebAssembly and WebGPU.
+[00:05] and a lot of people have also asked why,
+[00:05] you wanna make use of something like this.
+[00:05] I was inspired by a
+[00:05] post by Eric Provencher.
+[00:05] he's a developer at OpenAI.
+[00:05] And he recently posted about why
+[00:05] you might wanna make use of WASM and
+[00:05] WebGPU, given that, most of the people
+[00:05] are not looking at the code anymore.
+[00:06] If you're using something like
+[00:06] Three.js, which, provides a lot of
+[00:06] like human-readable APIs, LLMs are
+[00:06] really so good right now that these
+[00:06] abstraction layers may not be necessary.
+[00:06] It's obviously a lot more nuanced,
+[00:06] and there are a lot of different
+[00:06] reasons why you wanna make use of it.
+[00:06] But for me, it's been working very
+[00:06] well, and I'll probably do a much longer
+[00:06] video about this entire pipeline and the
+[00:06] ways that it works really well for me.
+[00:06] But in essence, it's allowed me
+[00:06] to get really good results, in the
+[00:06] browser as well as it running on
+[00:06] mobile devices and the iteration
+[00:06] speed is really quick for me.
+[00:06] all right, so what did I do here is
+[00:06] I said, "Let's make a game that's
+[00:06] inspired one of those casual games
+[00:06] like mowing the lawn, but I wanna
+[00:06] focus on pressure washing driveways."
+[00:06] And then I gave a description of, this,
+[00:06] being like mission-driven and you're not
+[00:06] supposed to damage things, you get paid.
+[00:06] And I said, "I want to focus on a vertical
+[00:06] slice on this pressure washing element.
+[00:06] I want it to be fun and juicy." And then
+[00:06] this is where you can see I said that I
+[00:06] want it to be a web browser game, WASM
+[00:06] and WebGPU, no need for any Three.js.
+[00:06] And then I want to adopt my game dev
+[00:06] best practices, which is the process
+[00:06] which I always use, which is to not
+[00:06] try to build the characters and the
+[00:07] environments within the game itself,
+[00:07] but to have it separated out such that
+[00:07] you have your environment and your props
+[00:07] as well as your character in different
+[00:07] Blender files and only then do you bring
+[00:07] it into the game once you're ready.
+[00:07] so the first thing I always do is I
+[00:07] always generate different mock-ups.
+[00:07] so you can see here, once I've given
+[00:07] this prompt, I always add, "Do you
+[00:07] understand?" So that the, AI just
+[00:07] pauses for a while to make sure that it
+[00:07] understands the direction I wanna go.
+[00:07] and I say, "Let's use GPT Images
+[00:07] 2.5 to create the mock-ups for the
+[00:07] game." And you can see here that I
+[00:07] did advise it that I wanted it to work
+[00:07] for both mobile as well as desktop.
+[00:07] So you can see a bunch of these different,
+[00:07] art styles and how it would turn out
+[00:07] if it looks on different devices.
+[00:07] And I've always emphasized this.
+[00:07] It's really important not to skip this
+[00:07] step because you want to align on what
+[00:07] direction you want to go to before you
+[00:07] ask your AI to go ahead and just build it.
+[00:07] I'm sure you see all these one-shot videos
+[00:07] where people just give it one prompt and
+[00:07] leave it running for twelve, thirteen,
+[00:07] fourteen hours, or even two days.
+[00:07] but the problem is that you don't really,
+[00:07] have much creative control over these.
+[00:08] They are really great tech demos,
+[00:08] and they serve a purpose, but if
+[00:08] you're trying to build a game that's
+[00:08] in your head, you always want to
+[00:08] make sure that you are aligned with
+[00:08] the AI about like what exactly.
+[00:08] It's always in the details.
+[00:08] Stop one-shotting games.
+[00:08] They serve a purpose to show capability of
+[00:08] the model, but if you're trying to build a
+[00:08] game that you're trying to call your own,
+[00:08] you definitely do not want to one-shot it.
+[00:08] So after this step, the AI actually
+[00:08] said to take a mixture of some of these
+[00:08] styles and then put it together, and
+[00:08] then build the game based on that.
+[00:08] So that's why I said, "Let's go
+[00:08] with your call." And now this is
+[00:08] where I do things in parallel.
+[00:08] what I want to do is I want to make
+[00:08] sure that I start to create the
+[00:08] character models and then start to do
+[00:08] the environment, and I want it to be
+[00:08] done separately because, like I said,
+[00:08] I want my character models to be in
+[00:08] its own file, so that I can then rig
+[00:08] it and then animate it, separately.
+[00:08] And then my environments would be
+[00:08] in a separate file because these
+[00:08] are more like static props that
+[00:08] don't really need much animation.
+[00:08] this is the way that I like to set up
+[00:08] my process, and this allows me to create
+[00:08] and run both of these at the same time.
+[00:09] So you can see here, before doing any
+[00:09] modeling, given that we have some concept
+[00:09] art, what we wanna do now is to create
+[00:09] a turnaround sheet for the character and
+[00:09] then- use an image generation model to
+[00:09] create any, additional props or angles
+[00:09] of the environments that you might need.
+[00:09] So this is what, a
+[00:09] turnaround sheet looks like.
+[00:09] So basically it has a
+[00:09] front side and back facing.
+[00:09] And then for a different use case this
+[00:09] time, I actually make use of Tripo,
+[00:09] which is very similar to another tool
+[00:09] that I use called Meshy, but I wanted
+[00:09] to try something different this time.
+[00:09] it basically works the same.
+[00:09] You just need to supply a bunch
+[00:09] of reference images, and it
+[00:09] also supports multi angles.
+[00:09] and I don't use the website, I
+[00:09] make use of the API to, pass it in.
+[00:09] So you can see here with this
+[00:09] turnaround image, it was able to
+[00:09] generate the model, and then, I made
+[00:09] use of Blender to then go ahead and
+[00:09] rig it, so that it's able to animate.
+[00:09] and then for the other props with
+[00:09] the reference images, it was able to
+[00:09] determine that it needed to create the
+[00:09] trees, and then to create the cars,
+[00:09] and then you can see this is a first
+[00:09] pass version of what it looked like,
+[00:09] and it's already looking really good.
+[00:09] So I think Opus five point five is
+[00:09] excellent at getting this right.
+[00:10] If you actually look a couple
+[00:10] of weeks ago, when I was already
+[00:10] trying to do animations, they
+[00:10] required a little bit of fixing.
+[00:10] weight painting and
+[00:10] moving the bones around.
+[00:10] in this case, Opus five point five
+[00:10] got the rigging and, weight painting
+[00:10] correct, pretty much on its own.
+[00:10] I didn't have to do anything.
+[00:10] This just, worked right off the box
+[00:10] the first time, and it was really good.
+[00:10] so let me just show this to you here.
+[00:10] So I kicked off these two things in
+[00:10] parallel using sub-agents, So these were
+[00:10] run in the background, and then I said,
+[00:10] "While these are happening in parallel,
+[00:10] I want you to work on building a gray box
+[00:10] level gym that will allow us to test out
+[00:10] the key mechanics of the pressure washing.
+[00:10] Use placeholder art." And I said that
+[00:10] I want, to focus on the mechanics.
+[00:10] I wanted the core gameplay
+[00:10] to feel just right.
+[00:10] Okay?
+[00:10] So I want the exaggerated motion, I
+[00:10] wanted the physics of the water, and then
+[00:10] I said, "Take a chance to think about
+[00:10] how the art direction can be fulfilled
+[00:10] using shaders, post-processing, and
+[00:10] effects." all right, and so let me just
+[00:10] show you where it basically got to.
+[00:10] So you can see this is
+[00:10] actually the gray box level.
+[00:10] All right?
+[00:10] Because these were still running in
+[00:10] the background, but it was able to
+[00:10] create this, And if you look very
+[00:10] closely, it's just using primitives
+[00:11] over here, and it was already able to
+[00:11] get really far with the, water spraying
+[00:11] mechanics, which was the key thing
+[00:11] for me 'cause I really wanted it to
+[00:11] feel fun and it was able to do that.
+[00:11] So this was all done, by Opus 5.5,
+[00:11] and having all three of these things
+[00:11] running in parallel is effectively
+[00:11] what contributes to having all
+[00:11] these multiple sub-agents running.
+[00:11] So Let me just show you the gray
+[00:11] box that you have over here.
+[00:11] So it managed to capture a video of
+[00:11] it, and this is all done automatically
+[00:11] by my background sub-agents.
+[00:11] And it just makes it a lot easier for me
+[00:11] whenever I'm doing these videos because
+[00:11] I can just, look at what was done.
+[00:11] I don't have to record it myself.
+[00:11] And you can see the pressure
+[00:11] washing mechanics are really
+[00:11] looking really good, right?
+[00:11] So by having gray boxes, it means that you
+[00:11] can get started on play testing the game,
+[00:11] making sure it feels right while the art
+[00:11] assets are being done in the background.
+[00:11] And this is how game
+[00:11] development works, right?
+[00:11] You always have an artist, you have
+[00:11] a gameplay prototyper, and then
+[00:11] you have your environment artist.
+[00:11] But now with thanks to the power of
+[00:11] AI, you can run all these things.
+[00:11] You have this entire
+[00:11] team at your disposal.
+[00:11] with that done, the next thing I did is
+[00:11] said that I want to create a new scene for
+[00:12] previewing the imported, models So that
+[00:12] it allows us to check, how things are.
+[00:12] So if you actually look over here,
+[00:12] you can see this is the mechanics
+[00:12] gym that you have over here.
+[00:12] And then and so with that, It was
+[00:12] able to preview the model, so then
+[00:12] it is able to adjust the different,
+[00:12] size and weight such that when it
+[00:12] animates, it actually looks correct.
+[00:12] not only was it able to import, the
+[00:12] models and make sure that everything
+[00:12] loaded correctly, but you can see
+[00:12] here it was really focusing on how
+[00:12] to make sure that the spout, of
+[00:12] the hose that you see over here is
+[00:12] connected to the rig of the character.
+[00:12] And this resulted in a really good result
+[00:12] That you can see in the final game is
+[00:12] that, when he's walking around without the
+[00:12] spout, he's just holding it, but when he
+[00:12] starts shooting it, you get the fact that
+[00:12] h- the spout is now connected to his hand.
+[00:12] And this was not something that I
+[00:12] expected it to get right off the bat,
+[00:12] but it was able to do so because it
+[00:12] had all of these test scenes as well.
+[00:12] in fact, one of the things that I actually
+[00:12] did was I said, "Hey, I'm actually
+[00:12] really interested to understanding
+[00:12] how you got the jet aiming to work."
+[00:12] And I asked Opus 5.5 to
+[00:12] create this page for me.
+[00:12] And this, talks a little bit
+[00:12] about how, it works, right?
+[00:13] because everything is running
+[00:13] in Rust and WebAssembly, this
+[00:13] can happen really quickly.
+[00:13] It happens at one
+[00:13] hundred and twenty hertz.
+[00:13] That's one hundred and
+[00:13] twenty times a second.
+[00:13] And so this allows it to actually
+[00:13] compute, a lot of what is required
+[00:13] in order to make the models, turn and
+[00:13] face the right direction, allowing the
+[00:13] water to spray correctly automatically.
+[00:13] And you can see it even went ahead
+[00:13] and showed me the code snippets.
+[00:13] And I know you're thinking
+[00:13] to yourself, "Wait a minute,
+[00:13] this is all about AI coding.
+[00:13] Like, why am I looking at code?
+[00:13] Aren't we in twenty twenty-six now?
+[00:13] Nobody looks at code."
+[00:13] And yes, you technically don't have
+[00:13] to, but I think it's really important
+[00:13] to use AI as a tool, not just to
+[00:13] blindly, create, whatever is in your
+[00:13] head and then, just leave it there.
+[00:13] But I think it's really important to
+[00:13] sometimes just take the chance to use
+[00:13] it as an education tool for yourself.
+[00:13] Because if it were me trying to
+[00:13] build this from scratch without AI, I
+[00:13] would be, searching and researching,
+[00:13] different ways to do it, But this AI
+[00:13] helps you to, get the end result that
+[00:13] you want and then allows you to then
+[00:13] look back at how, it was done, right?
+[00:13] It's like a teacher.
+[00:13] right?
+[00:13] It actually shows you how it does the,
+[00:13] calculations, and if you want to go into
+[00:13] detail, you can actually look, into this.
+[00:13] And it does it in a pretty accessible way.
+[00:13] It says "Hey, this nozzle is actually
+[00:13] just a spring, and all it does is that it
+[00:14] Tries to swing it from one point to
+[00:14] the other where the cursor is, right?"
+[00:14] and then because it's a spring, it like
+[00:14] replicates what the water would look like.
+[00:14] This was actually just very informative
+[00:14] for me, and this is something
+[00:14] I'm gonna try to do a little bit
+[00:14] more because it really gives you
+[00:14] a view into how things are done.
+[00:14] So that was pretty much it.
+[00:14] The rest of the things that I did
+[00:14] was really focused around polish.
+[00:14] So you can see, I had, this issue
+[00:14] here where the hand and the hose
+[00:14] was not completely connected.
+[00:14] I had a couple of other issues
+[00:14] where I didn't really like how
+[00:14] there was just this gray background.
+[00:14] So I actually said, "Create a
+[00:14] sky box," and you can see here.
+[00:14] So it just uses an image generation tool
+[00:14] to create a sky box And this automatically
+[00:14] gives your game a much better atmosphere.
+[00:14] So this is the other tip that I have
+[00:14] for you is, always add a sky box.
+[00:14] It just makes your game feel way
+[00:14] more polished just by having a single
+[00:14] image that's sitting at the back,
+[00:14] that is wrapping around your world.
+[00:14] and then the next thing I did is I
+[00:14] said, "Hey, the world was actually
+[00:14] pretty bare." So if you look over here,
+[00:14] previously, it looked like he was just
+[00:14] living in this random, grass patch.
+[00:14] So I said, fill up the rest of
+[00:14] the neighborhood," and you can
+[00:15] see that this is the neighborhood
+[00:15] that it was able to generate.
+[00:15] And I think this just leaves
+[00:15] a lot of room for, creativity.
+[00:15] you can create different neighborhoods,
+[00:15] and I think that's the plan I'm gonna be
+[00:15] doing as I continue to work on this game.
+[00:15] so that was pretty much what, got
+[00:15] me to where we are with this game.
+[00:15] The next stage that I did as I prepared
+[00:15] to release it was focusing on what you
+[00:15] call a first-time user experience or FTUE.
+[00:15] And the idea here is that you want
+[00:15] to, introduce the game mechanics
+[00:15] in an easy way for your users.
+[00:15] So you can see, the difference here
+[00:15] is that for this kind of leaves,
+[00:15] you can use this fan head of the
+[00:15] spout, which kind of sprays around.
+[00:15] But then actually I want to teach people
+[00:15] that you are able to use a jet spray for
+[00:15] slightly more difficult, to remove stains.
+[00:15] And you can see, as I try to,
+[00:15] switch to it here, it doesn't allow
+[00:15] me, and it actually told me that
+[00:15] I will need to, pass this lesson.
+[00:15] All right, so I'm just gonna quit
+[00:15] the tutorial, and I'm just gonna
+[00:15] show you what I mean over here.
+[00:15] So you can see as we go to
+[00:15] slightly more harder jobs, th-
+[00:15] these are oil stains over here.
+[00:15] You're not gonna be able to
+[00:15] clean it with just this jet.
+[00:15] So you have to switch, you have to
+[00:15] switch to this jet-powered mode, and
+[00:15] this will allow you to work better.
+[00:15] Now, these are things
+[00:15] that, came to my mind.
+[00:16] I just continued to iterate on it,
+[00:16] and the idea here is that I said
+[00:16] I wanted a tutorial, in addition
+[00:16] to just this how to play thing.
+[00:16] I can say we need a, much more
+[00:16] tailored first-time user experience.
+[00:16] So I want to have a simple first level
+[00:16] where they have the fan, and then
+[00:16] they have to learn to avoid the stuff.
+[00:16] And then after that they have
+[00:16] the oil spill, and then the
+[00:16] third level of the timer.
+[00:16] So that basically just teaches you
+[00:16] the entire game, and it does it in a
+[00:16] manner so that people don't have to
+[00:16] start reading things on their own.
+[00:16] So then the rest of it was really
+[00:16] about just polishing it So this shows
+[00:16] you how I got from this, gray box
+[00:16] prototype that you see over here,
+[00:16] running All the way to this full game
+[00:16] that has a job system, that has level
+[00:16] progression, and I'm really impressed.
+[00:16] And if you actually saw, This
+[00:16] took the AI basically about six
+[00:16] hours running in the background.
+[00:16] I was able to do other stuff while this
+[00:16] was running, and, Thanks to the pipeline
+[00:16] that I have and the skills that I have,
+[00:16] I was able to steer it in the
+[00:16] direction that I want it and
+[00:16] get it to this level of polish.
+[00:16] given the attention that this game
+[00:16] has had, I'm thinking of, putting in a
+[00:16] little bit more content for this game
+[00:16] and then, bringing it to completion.
+[00:16] So it's one thing to create a tech demo.
+[00:16] Another thing to create like a vertical
+[00:16] slice of this game, which already has,
+[00:17] different jobs, different upgrades.
+[00:17] But I'm thinking of taking
+[00:17] this a little bit further.
+[00:17] maybe having different neighborhoods,
+[00:17] having even more jet types maybe
+[00:17] having a lot of different modes.
+[00:17] Let me know what you think about how
+[00:17] I should take this game further, but
+[00:17] the main thing that I want to show
+[00:17] you is that Thanks to the power of AI,
+[00:17] you are now able to get from an idea
+[00:17] in your head into a playable version.
+[00:17] But not only that, into a version that
+[00:17] you can then host and then distribute
+[00:17] and get many other people to play it.
+[00:17] all right, so that's it for today's video.
+[00:17] I really hope you enjoyed it.
+[00:17] if you found this video in any way
+[00:17] helpful, useful, or inspiring, Give it
+[00:17] a like, hit that subscribe button, and
+[00:17] don't forget to turn on notifications
+[00:17] so that you always be the first to
+[00:17] know when new content like this drops.
+[00:17] Now, if you want to learn more about
+[00:17] building games, but not just browser
+[00:17] games, you want to use something that's
+[00:17] a little bit more traditional like Unity
+[00:17] or Unreal Engine, I actually did a whole
+[00:17] video about how I built the same game
+[00:17] in both Unity and Unreal using AI tools
+[00:17] without, writing a single line of code.
+[00:17] It was able to handle everything
+[00:17] within both editors, and it
+[00:17] gave a really good result.
+[00:17] it uses pretty much the same workflow
+[00:17] that I use over here creating
+[00:17] mockups, generating assets in Blender,
+[00:17] and then importing into the game.
+[00:18] but there are a bunch of useful tips
+[00:18] and tricks that you might want to know
+[00:18] about when working with Unity and Unreal.
+[00:18] so if you're interested in
+[00:18] that, definitely check out this
+[00:18] video that you see over here.
+[00:18] So till next time, I'll see ya.
