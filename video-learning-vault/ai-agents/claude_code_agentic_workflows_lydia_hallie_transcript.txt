@@ -1,0 +1,640 @@
+[00:00:00] Hi, I'm Lydia, I'm on the Cloud Code team at Anthropic.
+[00:00:03] I created this course because I want to give you a better understanding of how
+[00:00:06] Cloud Code works behind the scenes, so that you can truly personalize it to your
+[00:00:10] code base and your workflows. In this course, we'll be talking about the
+[00:00:14] agent glue, how your prompt is assembled, and what the model actually sees,
+[00:00:18] and then we'll be talking about the features in Cloud Code and why we use them.
+[00:00:22] Cloud MDIC, before that I was at Vercel and it was a bun, a bun is the JavaScript
+[00:00:28] runtime that Cloud Code uses, so we got acquired by Anthropic and now I'm in the
+[00:00:33] Cloud Code world at Anthropic. Not going to lie, it was a bit scary. Of course,
+[00:00:37] I don't have an AI background. I did use a lot of Cloud Code during my time at
+[00:00:41] bun, but I felt like it's such a new world. I felt like kind of an
+[00:00:45] imposter not knowing how even AI works and I was working on this AI tool, but
+[00:00:49] hopefully in this workshop, I want to cover some of the fundamentals and as you'll
+[00:00:54] see from Cloud Code, like the stuff that we can use, like skills and plugins, but I
+[00:00:57] also want to go a little bit deeper just to give you a better like mental
+[00:01:01] model of how Cloud Code works because that always really helps for me and I feel
+[00:01:04] like with self-regionering, that was so much easier to do. It was a bit more
+[00:01:08] deterministic in that way, but Cloud Code is a new beast. I want to talk about
+[00:01:12] some of the foundational fundamental things that I'm sure if you've worked with
+[00:01:15] Cloud Code, you've already used like Cloud MD, maybe some skills, but also subagents
+[00:01:19] and plugins, and as I said, a little bit behind the scenes of to give you a
+[00:01:24] better mental model. My goal is to kind of have each section build on top of the
+[00:01:29] other one. I feel like it builds up pretty nicely. It's easy to just, you know,
+[00:01:35] get prompting with Cloud Code, but not really understanding what's going on, so
+[00:01:38] hopefully that works out my change of. But first, like, what is Cloud Code for those
+[00:01:43] of you who haven't used it yet? It's not just a CLI. I know most of us are using
+[00:01:47] it in the CLI, but really it's an agent that you can use in your terminal, but
+[00:01:51] you can also use it in your IDE, in VS Code or JetBrains. You can use it directly
+[00:01:56] in the browser, and we also have the Cloud Desktop app. The only difference, like on
+[00:02:00] our Desktop app and of course in the CLI, you can run it locally in your
+[00:02:04] device. But you can also use Cloud Code on the web, and it's really nice if you have
+[00:02:08] like a GitHub repo, you can just connect to it, and you can just use it in the
+[00:02:10] browser. In the workshop, I'll mainly be using the CLI just because that's what
+[00:02:13] I'm used to, but you can also definitely follow along. I kind of want to talk about
+[00:02:17] here. I'm sure you've heard of it as Cloud MD, and this is the first thing that
+[00:02:21] gets added to our user prompt. We have this little demo here in GitHub. You can
+[00:02:25] clone it if you want, if you have another project running locally that you
+[00:02:29] prefer that's also completely fine. I do have it open here. I just quickly want to
+[00:02:39] show you just the easiest way to get a Cloud MD file in an already existing
+[00:02:43] project. You may have used it, it's just init. And what it does is Cloud Code
+[00:02:49] behind the scenes, see it's trying to explore the code base and understand all
+[00:02:53] your conventions and structures, and then it creates a Cloud MD file based on that.
+[00:02:57] Well, you can basically see it as if you feel like you have to repeat something in
+[00:03:01] a prompt multiple times, put it in the Cloud MD file.
+[00:03:04] Question for what model on the init. Is there any advantage using Opus here?
+[00:03:09] Would Sonnet do just fine since it's already known? Yeah, I mean, that's kind of,
+[00:03:13] kind of how I see it. Everything that it's trying to generate here is stuff that's
+[00:03:17] already in the code base. It doesn't have to think critically about a deeper
+[00:03:21] task that you're trying to ask it. The answer is already here, so using Sonnet
+[00:03:24] here is completely fine. Yeah. Okay, so now we can see that it generated our
+[00:03:30] Cloud MD file for us. So I just want to see what it actually generated.
+[00:03:35] So you can see that it talks about the entire project overview. It can see that,
+[00:03:40] or it sees the technologies that we've used, all of our commands, the architecture,
+[00:03:46] drag and drop, or using D&D kit, the data flow, which is very nice, any state management.
+[00:03:54] So all of this is extremely useful for the model to know because if it didn't know this,
+[00:03:59] it might send even more tool calls where it's like, hey, you're asking to add a component to the
+[00:04:04] dashboard, but I don't quite understand where the dashboard is, or like what other components
+[00:04:09] might depend on that. So in order to reduce the amount of tool calls, this Cloud MD file is
+[00:04:14] very helpful just to give the model even more context. Something that is important to understand
+[00:04:19] is the usefulness of the Cloud MD file. It kind of depends on the model. I think as models get
+[00:04:27] better, they also get much better at understanding intent. So I feel like a Cloud MD file was very
+[00:04:34] important in our, it still is, but it was especially more important in our prior models like
+[00:04:40] Opus 4.5, which was very good, but it didn't quite understand intent as much as our newer models do.
+[00:04:46] So my overall kind of workflow for Cloud MD is sometimes I just try to remove as much as possible
+[00:04:53] and then see what happens. I still just want to see where does the model still kind of get tripped.
+[00:05:01] Then I'll add it back. But what you should understand is that this entire file, it does get added
+[00:05:06] to the assembled prompts and this also gets added to your context. Meaning if we have a really
+[00:05:11] large Cloud MD file and most of it isn't even used by the model or it's useless, you will go through
+[00:05:16] your usage much faster. You can also see your current context by using context. And this is the
+[00:05:25] context window that a specific model has. So for example, here we can see that we haven't used
+[00:05:29] that many tokens yet. We've used like 21,000 out of a million tokens. You can use that. The
+[00:05:35] system prompt is using some of it. We cannot change that. So we just got to accept that. Later on,
+[00:05:40] we'll see like skills, but also our messages. And the messages is what we've sent back and forth to
+[00:05:45] the model so far. This is only 0.5%. So so far it's fine. We'll see a bit more about the plugins and
+[00:05:51] the skills later on these will also kind of fill the context. But sometimes it's good to know like,
+[00:05:56] okay, am I adding stuff unnecessarily to the context? Yeah, so right now we have our Cloud MD file.
+[00:06:04] But another thing before I want to start kind of implementing the first thing is that we can use
+[00:06:09] plan mode. And I kind of how I see Cloud is just as any other coworker. Like before we start to
+[00:06:15] implement something, you would always ask your coworker like, hey, what do you think about it? How
+[00:06:19] should we do it? What are your thoughts? Again, you kind of become more of the product manager.
+[00:06:24] So in Cloud Code, you can either turn on plan mode by heading shift tab and CLI or like one of those
+[00:06:29] select drop downs and then desktop app or whatever you're using. Or you can just ask a cloud because
+[00:06:35] honestly all the plan mode does is just add a little thing to the prompt being like, don't code
+[00:06:38] anything yet. Like you're in plan mode now. You can also just ask it. Just prompt it.
+[00:06:45] So I kind of want to start with a quick demo I guess because something that I also want to make
+[00:06:51] sure is that it's important to have verification in the loop of Cloud Code. So this simple demo,
+[00:06:58] let me first just start it back up. I'm just going to open a new one.
+[00:07:06] So this is just very ugly now. Again, one shot it with Cloud. I made sure that or I see
+[00:07:11] asset like just make it ugly, make it nothing special. But it's kind of like a to do list app.
+[00:07:15] We can just drag it around things like that. But now if we want to make it prettier,
+[00:07:20] like how would you ask it that? Like, okay, I want to change the design. How can you make sure
+[00:07:25] the cloud understands what you mean by pretty and what it means by design? So in this specific case,
+[00:07:30] I've actually used our new Cloud AI design. I don't know if you've checked it out yet. It's extremely
+[00:07:35] good. So I just asked one prompt. I took a screenshot. I was like, hey, make this beautiful dark mode
+[00:07:42] modern design. It's not even like a good product because I have no design skill. I don't know what to
+[00:07:46] ask it. But cloud or cloud design, it just created this entire thing, which I think looks pretty good
+[00:07:53] in like no time. But now from our cloud code, well, we can either share it in a cloud code session.
+[00:07:59] But what I prefer is if I have a task, we need again verification in the loop and this can
+[00:08:04] be an image, it can be a test, something that you can verify against. So I kind of want to see
+[00:08:10] if I can just export this. Actually, I'm just going to take a screenshot. Actually, I'm going to
+[00:08:16] present full screen, take a screenshot. So now in cloud code, I'm going back to this one.
+[00:08:26] I'm going to do that. Actually, I'm just going to start a new one just to have a clear.
+[00:08:31] So I can just ask it like, I want to implement this design. How would you do that?
+[00:08:40] Like, don't code anything yet planned first. I'm just going to hopefully there's nothing weird.
+[00:08:47] Drop this screenshot in here. So again, this is just a nice part of the verification loop.
+[00:08:52] It can see the image, it can read the image even though in the CLI, nothing will render.
+[00:08:56] Yes, Mark. What's the strategy for mono-repos if you have multiple projects in one repo,
+[00:09:04] which you have like, cloud MD files? Yeah, so there is hierarchy. So you can have a root
+[00:09:12] cloud MD file even in your user directory. And that cloud MD file will be used for pretty much every
+[00:09:18] project. And then it goes all the way down. And it depends on where you initialize cloud,
+[00:09:24] which file it will use if that makes sense. So in our code base, like the cloud MD file here is
+[00:09:31] in the repo, like the main repo, but if I had something like mono repo one, or like this would be
+[00:09:37] like as a sub repo, and I added cloud MD file here, you can also do that. But if I initialize,
+[00:09:43] or if I start cloud in this directory, it will use this cloud MD file, otherwise it will use that.
+[00:09:48] It will kind of like move its way up that makes sense. So if you have any projects,
+[00:09:53] like share projects, settings, like definitely just keep it in your project MD file. But if you have
+[00:10:00] any that you want to keep local, you can just add them to your roots, like to dash, you use
+[00:10:04] your Erylidia, cloud MD stuff like that. So right now, it just first added an implementation plan.
+[00:10:13] And right now, the role of software engineering changed from okay, writing code to kind of just
+[00:10:19] being the reviewer and being the PM. It's like, hey, does this plan match what we had in mind? So
+[00:10:23] it noticed, like, oh, there are some new fields. I can need an issue number, some labels,
+[00:10:26] priority, all this stuff that honestly, I hadn't even thought of because I just took the screenshot.
+[00:10:31] I didn't like, oh, yeah, I guess there's new functionality in there. It needs to add some stuff
+[00:10:35] to the store to actually make this design work. We need some new API routes, new components.
+[00:10:40] It all looks good, but if it didn't, I could just go back and forth with cloud here. I could be like,
+[00:10:45] like, does this match what you had in mind? Like, I could say, like, no, not really. Things like that.
+[00:10:49] Just, yeah, treat it as your coworker. So just to get hands-on a little bit, because I know
+[00:10:56] otherwise it's a kind of theoretical. If you want to try this out, if you want to try in it and
+[00:11:00] then something with plan mode, have something with verification, you can use this design thing if
+[00:11:05] you want. So let's see if I can actually open it up and just see how cloud reacts with to you.
+[00:11:11] The thing is like, this workshop, okay, all the works that I've given, it was so deterministic.
+[00:11:14] Because it was just easy. I had an exercise, and it was always the same. This was right. This was wrong.
+[00:11:18] I think everyone's cloud code is going to do something different. And that's why I'm like,
+[00:11:21] just try it out yourself. We'll see what happens, but if something kind of behavior with Cloud MD
+[00:11:26] and how we can guarantee it with permissions, but both of these are kind of passive.
+[00:11:32] There's often like a lot of workflows or a lot of steps that we want to take in cloud code,
+[00:11:36] and we kind of want to do it multiple times. In that case, we can use skills. So a skill
+[00:11:44] is just a markdown file with a specific procedure. So something you'd otherwise have to like
+[00:11:49] re-explain the cloud every time. It's just repeated, multi steps. And in this case, it's just
+[00:11:55] specific to our project. So there's going to be anything like deployment or integrations,
+[00:12:01] a Q&A loop, anything that you want to do multiple times, but you just don't want to keep typing
+[00:12:07] the same prompt over and over. So in our, or actually, before I start typing it myself,
+[00:12:14] a really nice prompt that I like to use is skill creator. I believe this is built into cloud code.
+[00:12:22] Sometimes I add different plugins to my environment, and then I forget whether this was built in,
+[00:12:27] or if I added it, I believe this one is built in. And this one makes it super easy to add your
+[00:12:32] custom skills. So for this one, let's say what skill would you like to have worked on? I might
+[00:12:38] just see like a very simple code reviewer skill. I don't want it to do too much. I just want to see
+[00:12:47] what it ends up with. Also, what I want to show here is like if you have a question or an example,
+[00:12:53] the first thing that should come to your mind is like has cloud code already automated this,
+[00:12:56] or do I really have to go into the code base and code it myself. For a lot of these questions,
+[00:13:01] you could just ask cloud and let it do it for you. So it's kind of like updating your mindset.
+[00:13:06] It's like how much of my daily life can I codify that way? Watch the review. The simple,
+[00:13:13] the current, SRC code base. It's asking me too many questions. I forgot which model I'm on now,
+[00:13:19] which effort level. This feels like opus max. There's always so much downtime or not downtime,
+[00:13:27] but like wait time when it's generating something. Effort level. Can you manage that at like the
+[00:13:34] organizational settings to set that for everybody? You can. I don't know the exact that's also in,
+[00:13:39] I believe it's also in managed settings, but yes, you can also set the max, like the highest it should
+[00:13:46] go. So if you don't want people on your team to use like max effort, you can set that. You have a
+[00:13:52] lot of control as an enterprise over what your team members can do and not do within cloud code.
+[00:13:57] Okay, it's it's honestly trying too much. I'm just going to
+[00:14:02] copy this and I'm just going to do it myself. I think we're still in like plan mode here.
+[00:14:06] So we can do that by adding a skills folder. It's not skill skills. My name.
+[00:14:14] And then we add a skill.md and this is just the expected. Like it should be in a skills folder
+[00:14:20] and in skill md. This is what cloud code expects. So here this is just generated with cloud
+[00:14:26] itself. So like name is review. And then it says I description. So review the src
+[00:14:30] copase of the current project report bugs and so on. So when we saw or when we looked at the
+[00:14:36] assembled prompt, you could see that we also sent a list of skills and had the name and the
+[00:14:40] description. So by default, this skill that marked down in the skills also sensitive prompts,
+[00:14:45] but it's only the name and the description. So if we had like a lot of mark down here for the skills
+[00:14:50] should actually do that doesn't matter. That's not by default added to a prompt. So also not our usage.
+[00:14:55] That will only be disclosed when the skill is actually used. And when is the skill used? That
+[00:15:00] is based on the description. So if in our prompt, we say something like review this code base and
+[00:15:05] the model is like, okay, I don't know what to do. But I do see that we have a skill called review
+[00:15:10] it might call it. But we can also call it explicitly as a user. We used to have separate skills
+[00:15:19] and then we use have commands. Now we've merged them into one. So skills is also commands.
+[00:15:25] So just to see, honestly, I'm not sure if this skill will do very well. But first I'm going to do
+[00:15:29] reload plugins, which is required if we've added a new skill. Just a clock code understands we've
+[00:15:33] added something new. So now we see review. And this is the new skill that we've just added.
+[00:15:41] So now we only have to run this instead of typing the entire prompt. Well, I mean, this is short,
+[00:15:46] but you can imagine this might be something a little bigger. We just have to say this. And now it's
+[00:15:51] running this open pull request. Why is it opening a pull request? Oh, maybe because this is the
+[00:15:58] built in one. I'm not sure if like it just overwrote like an existing. I did. Okay, wait, I'm just
+[00:16:06] going to do I'm going to call it code reviewer. So that one definitely doesn't exist. Okay, you might
+[00:16:13] see that I haven't used manual cloud code in a while. New code reviewer, skill empty. There.
+[00:16:19] So now it should work. Okay. We load plugins, code reviewer. Okay, so now we have it. So this is
+[00:16:28] our custom skill. And this again could have been anything. But right now I just said like okay,
+[00:16:32] review this code real quick. And the nice thing also is that we have a lot of configuration options
+[00:16:36] within a skill. We can also set the model here. So in this case, it's just reviewing code. So I
+[00:16:42] can just sell it always. You saw it. Even though I'm on opus whenever this specific skills invoked,
+[00:16:46] I want to use on it. Or hike in some cases. What's also nice is, for example, if we never want
+[00:16:55] our model to review a code, we just want to do it like a slash command. We can also like use
+[00:17:00] disable model invocation. True. And in this case, by setting that, we're not sending into the model.
+[00:17:07] We're only keeping it locally. So the model can never invoke this skill only us using it as a
+[00:17:12] slash command. If we want the opposite, if we only ever want the model to do it, we can set user
+[00:17:19] invocable false. And I know we honestly, this should just be one front-matter setting. It's two
+[00:17:25] and they're kind of like negating each other just except it for now. We might change it. But by
+[00:17:30] doing that, just adding this one, now it's no longer a slash command like we've just run,
+[00:17:36] only the model can do it. So that's kind of how you get more control over skills as well.
+[00:17:42] Another thing that's kind of nice is that you can pass arguments to it. And that's just with the
+[00:17:47] normal arguments syntax. So maybe if we had a skill like find, I don't know, arguments bugs.
+[00:17:57] Or maybe if we had like a deploy skill, maybe we could have site deploy. And this is like
+[00:18:03] deploys our code base to either staging or production. Yeah, we can use standard for that. And we
+[00:18:12] can just have like deploy. Maybe first, it's like around the tests, bundle the app deploy to our
+[00:18:22] environment. Again, nothing is set up. So I know when I will ask, it will be like, what am I supposed
+[00:18:28] to do? There are no tests and I can't deploy. But here you can also say like deploy to, for example,
+[00:18:34] arguments. And now what I can do is if I ran, I'm just going to rename this real quick,
+[00:18:43] rename this to deploy, going to reload plugins. If I run deploy, I can just do like deploy staging,
+[00:18:53] for example. And now in our skills, it will always deploy to staging. So this is, I found
+[00:18:57] very useful. You have a lot of control over skills. Another thing you can do, and I didn't add
+[00:19:02] to the slides, but I do want to show that in a clock code. I do because of clock code, my typos
+[00:19:11] have gotten so bad. I don't know if I'm the only one, but I just don't care about typos anymore.
+[00:19:16] I'm like, clock will understand it. It's not, it's not good. But another thing you can do that I
+[00:19:22] wanted to point out is that you can add these, these commands. So you can inject dynamic context.
+[00:19:30] And this is incredibly useful. So what happens is that this syntax, it will run this shell command
+[00:19:37] before this skill content, as you can see here, is sent to clock. So if we had like the GitHub
+[00:19:42] CLI installed and we just want to add that to the skill, injected before it gets sent, this is
+[00:19:48] really nice syntax using your skill. If you ever want to like share this with your team,
+[00:19:52] stuff like that, super useful. We've also just added a setting that can disallow this, because as
+[00:19:58] you can imagine, we're running something, you know, people can install your skill, and we're now running
+[00:20:04] random code on their device. If you want to disallow that, that's also, that's also a setting.
+[00:20:10] But it's good to know that this is a thing
+[00:20:18] that you can do.
+[00:20:23] Someone asked me like how I create most skills, is it manual, or is it with a skill creator? I almost
+[00:20:28] always use skill creator. The nice thing also with skill creator that I actually should have shown.
+[00:20:34] Let's see, I feel like it's not going to do very much for this specific skill.
+[00:20:40] For the art deploy skill, I'm just going to delete it. But I still want to show it, is that you can
+[00:20:45] use skill creator to check if your skill actually makes your workflow better. When you run this,
+[00:20:55] it will also automatically, and it's just not set up correctly now, but it will also automatically
+[00:20:59] run e-vows on your skill. So it will test like, okay, how does your code base perform with and
+[00:21:04] without the skill? Just to make sure that the skill you've just added will actually improve your
+[00:21:08] code. Otherwise, we're just adding a bunch of extra tokens that we don't want to use. So definitely a
+[00:21:13] very useful one. That's if you run that skill, it'll do e-vows on what skills you've used in that
+[00:21:19] session, or is it? No, no, no. So it will run the skills that you have in your repository.
+[00:21:24] So you can run it on a specific one, and it has a little e-vout. Let me just see if I can
+[00:21:30] actually show it in GitHub. So this is a skill creator skill. Either you can just clone our skills repo,
+[00:21:35] and then you can just copy paste whatever is in here. But yeah, so here we have certain e-vows scripts
+[00:21:42] that all run alongside your skills to see how that works. It also generates a little report
+[00:21:50] to tell you with HTML, how well the skill works, so check it out. Another little report is,
+[00:21:56] oh, what is it called? I always forget this one, but you get a little report of how well you've
+[00:22:02] been doing with Cloud Code. So you're going on insights, and if you ever want to see how well you're
+[00:22:08] doing with Cloud Code, I will wait until it's generated a little HTML. This is super useful. It's
+[00:22:13] almost like your Myers-Briggs peripheral Cloud Code. You can see where you're good at, or do you
+[00:22:17] still need to improve all of that. Also, if you're very new to Cloud Code, I just want to show you
+[00:22:22] real quick. There's also, I believe, what's new. I should keep up more with all of the little commands
+[00:22:29] that we're adding. It's a very nice, oh yeah, here it's power up. So with power up,
+[00:22:37] you kind of onboard yourself with Cloud. So it's like, talk through your code base. You can like
+[00:22:41] tell it like, oh, type at anywhere in your prompts, know like automatically attach a file.
+[00:22:46] This specific one is actually very useful, because if you want Cloud Code, sorry, I'm like off-track
+[00:22:52] now, but this one's very useful. If you want Cloud Code to reference a specific file, use at in your
+[00:22:57] prompts because that way it already includes it. It attaches it in the prompt itself. Like we just
+[00:23:02] saw with our test prompts, we like add calc and utils.ts. It was like, where is utils? It wasn't added.
+[00:23:08] So if you have specific files, make sure to add mention it, because then it's, it just reduced,
+[00:23:13] or it removes one tool call, like reading right all that. Yeah, anyway, if you ever feel like you
+[00:23:18] want to, you want to teach what's up with Cloud. Use, use power up. It's actually very nice.
+[00:23:24] I believe we also, and I don't know this one, but we just added a new one that will tell you what's
+[00:23:29] new in Cloud Code ever since you last used it, but I still have to use that one. We also just launched a
+[00:23:35] new Twitter account called Cloud Devs. If you want to keep up with all that we're shipping, and
+[00:23:40] we added what's new to our docs as well. I'm like going completely up-track now, but Cloud Code docs.
+[00:23:46] So we just added what's new for every week. So if you ever feel like, oh, I don't know what's new,
+[00:23:50] this is a super easy kind of page to see what else you can now do in Cloud Code.
+[00:23:55] Anyway, back to skills. Yeah, are there any more questions around skills or how you can configure it,
+[00:24:05] or the permission levels with skills? One thing I also still want to add is that if in permissions,
+[00:24:12] you can also add like allowed tools. So if you, and this is almost like permissions per skill,
+[00:24:18] so if you only ever want it to use like, I don't know, like bash and pm run something, you can add
+[00:24:26] that here as well in your allowed tools. So then it won't allow anything else. Similarly, we haven't
+[00:24:33] talked about hooks yet, but if you want to add specific hooks to your skill, so only to that skill,
+[00:24:38] you can also have like a hooks array in here, and then it would like, first you'll use all that
+[00:24:43] stuff, but this is only if you've already used hooks and you understand it. There's a lot of like
+[00:24:46] configuration you can do within your skill. When we talk about sub agents, you can also see how it,
+[00:24:52] how you can use context fork in a skill, so it runs within a sub agent, so it doesn't clutter your
+[00:24:56] main context. Yeah, all of that stuff. Yes, Mark. Are skills making a new context or using the main
+[00:25:06] one when using them? But default, they're using the main one, unless you use context fork.
+[00:25:12] And this now runs your skill in a sub agent, and yeah, we'll quickly cover sub agents in a moment,
+[00:25:18] but basically so far everything we've been doing has just been in the main context. So when we
+[00:25:24] use a skill and when this is going back and forth, this is all dependent to our user messages,
+[00:25:30] like user one, assistant one. If you don't want that, like if you're kind of just like getting
+[00:25:35] sidetracked or like a side quest where it's like also quickly do this, you can instead run a skill
+[00:25:43] in a sub agent and a sub agent just runs parallel to your main conversation, but it's a brand new
+[00:25:49] context. So in that case, your sub agent will run, actually, I think we're going to cover sub agents
+[00:25:55] after this. I mean, it's pretty much the same explanation out first, we have hooks. But yeah, in that
+[00:26:00] case, a sub agent will run in its own context with that skill, and the only thing that your main
+[00:26:05] agent, so your main conversation gets back is the results. So everything in between all the tool
+[00:26:10] calls and everything that happened, that's not added to your conversation. And this can definitely
+[00:26:14] help improve the quality of your, of the model output, because now the context isn't cluttered with
+[00:26:20] like stuff that didn't matter to the original task. Yeah, that makes sense.
+[00:26:25] So are skills basically tool calls? No, a tool calls different. A tool call
+[00:26:35] allows the model to call for a specific, like this is more of what a tool call looks like. So
+[00:26:44] this is just the model being like, hey, I need to read something or I need to edit something.
+[00:26:49] We can also add to tool calls if you want to, you don't have to. So the idea around tool calls
+[00:26:55] is very different. Skills is just for you, and they kind of like a more of a user experience thing,
+[00:27:02] that you don't have to retype the same prompts, you don't have to like, remind the model to keep certain
+[00:27:08] things in mind. Whereas a tool call is necessary without tool calls, we would not have an agent,
+[00:27:13] we would just have a chatbot that would just respond with text. So it's essentially a packaged prompt?
+[00:27:20] Yeah, it's just marked down. It's a packaged prompt, not much else. I mean, I guess the only
+[00:27:26] difference is that with a prompt, you cannot define like, oh, this should run in a sub-agent
+[00:27:32] specifically if you haven't updated your cloud code session before typing that. But yeah, it's
+[00:27:37] pretty much just like a repackaged prompt that you can then with plug-ins share with teammates
+[00:27:42] and with anyone in the world. And is there a way to have cloud
+[00:27:47] determine which skill to invoke automatically? No, this also really depends on the model.
+[00:27:54] Some models are really good at invoking skills. Others you kind of have to remind them.
+[00:27:59] I saw this a bunch myself with Opus 4.6. I had a bunch of skills and the model just didn't use it.
+[00:28:06] The important part here is the description. So as long as our description
+[00:28:11] is very, I mean, like this one isn't too bad, or it's pretty bad, but like the one that
+[00:28:17] cloud generated first. So this is why I even really like using our, you can't see it anymore. But
+[00:28:23] our skill creator tool, it will create a description that is super like precise. I mean, I can still,
+[00:28:30] let me see if I can, I can skill creator. Maybe it can make a better one for deploy. I feel like
+[00:28:39] it's almost still in, like it's now it's reading the existing deploy skill. So another field that we
+[00:28:45] have in the front matter, and I have to, is besides description, we also have skills,
+[00:28:56] cloud code. Let's see where is it. When to use. And this is even more additional context for
+[00:29:06] cloud for when to invoke that skill. So the description is already really helps the model,
+[00:29:12] but this is also more like user-facing. You can see that description when you load it in the CLI.
+[00:29:19] But if you want even more precision just for the model, and like you don't want to clutter your
+[00:29:23] users with it, you can also have the when to use field here, which helps the model even more to
+[00:29:29] understand, okay, we want to use this skill for this specific task. I want to see if
+[00:29:41] I said demo on these stuff. I feel like I'm in the wrong, like, repo for this one.
+[00:29:50] Yeah, it's drafting it again. Yeah, I feel like, okay, I'm just in the wrong, like, session here.
+[00:29:55] But it's fine. What I wanted to show is just the front matter fields for our skill. They allow
+[00:30:01] a lot of, like, personalization for your skills as well. Also, if we do use the arguments here,
+[00:30:07] like we saw staging in a deploy, you can even have like an argument hand here. This is just
+[00:30:12] like CLI-facing. So whenever your users are using that skill, they might get that little hints,
+[00:30:18] for example, like, deploy in the staging or production. Again, yet what we saw here with disabled
+[00:30:23] model invocation and then user invocable to, you know, either make it a command or what the model
+[00:30:28] can do. You can even add effort levels to skills as well. So this is all like new because we just,
+[00:30:34] effort levels are still pretty new. Yeah, skills are, again, like, there's a lot of tweets about
+[00:30:42] how many SaaS companies could have been skills. And that sounds really sad, but honestly,
+[00:30:47] it's not entirely false. I think skills, when you have it set up correctly, they are extremely
+[00:30:53] powerful. And you do have these repeating workflows that have access to the content that you want to
+[00:30:57] give it. So I feel like we've gone more from, like, prompt engineering to, like, skill engineering.
+[00:31:04] If you want to be useful in the industry now, great skills that we will, that a lot of people can
+[00:31:09] find useful and then share it through plugins. Just, yeah. I don't know. I like skills. They're great.
+[00:31:17] And also, yeah, if you want to, these are just, again, please read the documentation for skills.
+[00:31:22] There's a lot of really valuable content in here because if you want to add like a path,
+[00:31:26] like you can add like cloud skill, dare, all of these little things that make your skills super
+[00:31:31] like configurable and reuse about hooks. So everything you've seen so far, it's still kind of
+[00:31:38] been the model. And of course, I was permissioned, but the kind of the model deciding like when
+[00:31:43] something's going to happen. But with hooks, almost the same as GitHub hooks, we can run this
+[00:31:47] custom logic at specific points in this agentic loop in the agentic lifecycle. You don't have to
+[00:31:54] remember all of them, but you can configure this in your settings and you can make sure that a
+[00:32:01] specific event happens at a specific point again in the loop. And this could be you can define a
+[00:32:06] prompt or an HTTP endpoint or just a shell command doesn't matter. So for example, here at session
+[00:32:12] start fires, when you open cloud code, a user prompts to submit whenever you press enter.
+[00:32:18] But I think the most useful ones are like pre-tool use. So after the model emits a tool call,
+[00:32:22] but before it runs and then post tool use all of that. So pre-tool use, for example, you can add even
+[00:32:29] more details of whether you want that tool to run or not. Because again, a tool called could
+[00:32:36] do a lot in your machine. So if you want to block certain things, hooks are great.
+[00:32:41] I also like post tool use maybe after like a specific tool succeeds. So again, this could be
+[00:32:47] formatting or linting. There you go. It's a lot of them and we're only adding more I think.
+[00:32:53] Yeah, you can see that here at session start, again, when the CLI start, then each turn. And then
+[00:32:57] this is with the agentic loop. So here, this is the first time we get some tool call back.
+[00:33:02] The permission request that we saw earlier where it's like, do we want to do anything whenever
+[00:33:07] the user denies their permission, mcp, all of that. This is actually what it executes in your machine
+[00:33:13] after the tools has succeed at subagents. If we have any subagents, if we created a task stop,
+[00:33:19] so yet we have control over the entire lifecycle. And where we can do this is
+[00:33:29] first, yeah, if you want to see which hooks are available, there's this nice little hooks thing.
+[00:33:34] This doesn't create new hooks for you. Honestly, I feel like we should
+[00:33:38] add that here because it makes it so much easier, but you don't have to remember all the hooks just
+[00:33:43] by heart. You can just see them here. And you can also see like when it starts, if you press
+[00:33:47] enter, you just get a bit more information so you get more insights into the hooks that are available.
+[00:33:53] But you can add a hook in your settings JSON. So for example, here, we have the permissions that
+[00:33:59] we just added, but maybe also after postal use, like maybe if there was an edit or write to any of
+[00:34:08] our files, we want to run the run type check. And this is what Claude added for me, but honestly,
+[00:34:14] it can just be like this. So again, it's just a very simple prompt with a command run type check.
+[00:34:22] So this is how we can really, again, personalize and make sure that Claude doesn't do anything
+[00:34:28] that we don't want. So I do, like, let's just try to be a bit hands-on and try first the hooks
+[00:34:35] command. And my demo repo has set up like this run run type check. Just try to edit yourself or try
+[00:34:42] to find a way to ask Claude to do it and see what Claude comes up with. Like let's see if you can
+[00:34:48] just ask Claude like, hey, please create a tool that runs the type check after, you know, after
+[00:34:55] tool use or just make it your own. Like, how would you have asked Claude and see if something good comes
+[00:35:00] out of that? Is there a best practice for sharing hooks across your company? Plugins. Plugins,
+[00:35:14] there are skills, hooks, MCP. So plug-ins just packages everything. So also you have the next one here
+[00:35:20] and also in the docs we have plugins reference. I don't know if it's loading or not.
+[00:35:28] So just to already kind of show you, do we have plugins here? I create a plugin, create plugin
+[00:35:40] here. Yeah, so a plugin, we just talk about it real quick. Like it is a separate repo
+[00:35:50] or a separate folder and you can add something called .clot-plugin and this is pretty much almost
+[00:35:57] like what we see in a package JSON. Like it has the name of your plugin that version, the author,
+[00:36:02] all that kind of stuff. And in the same directory where your plugin is, you can add skills and hooks
+[00:36:09] and all of that. And then that would just be packaged within that plugin. And to currently to
+[00:36:15] like publish that to a marketplace, it just has to go through like a form. We don't have like
+[00:36:21] an NPM like thing set up. But if you want to get added to like the cloud code marketplace so
+[00:36:28] the thing that we saw when we ran like plugins, you just have to be accepted into the marketplace.
+[00:36:35] I think here we see submit your plugin. So here you can see more information about that. But that's
+[00:36:42] still pretty manual. I just wanted to make sure people understand that there is no like distributed
+[00:36:47] kind of system out there yet to make it easier for plugins. There is for skills. I know
+[00:36:54] and I think that was like the Versacell skill thing, the skill to sh I think.
+[00:37:00] Because then you can run like npx skills at which makes it a lot easier to just add specific
+[00:37:05] skills over like plugins and this is like industry wide. So whether you're in cloud code or
+[00:37:09] okay. So now I want to talk a little bit about sub agents. We've already kind of talked about it
+[00:37:14] before with skills and everything. But again, everything that we've covered so far has been in
+[00:37:19] the same loop in the same conversation. So every tool result, every user message gets appended
+[00:37:25] to that to that message's array that we saw in the assembled prompt. And as you can imagine,
+[00:37:31] like the more kind of random content that we have in there, the less detail the model can be. You
+[00:37:38] know, it has all these tool call results now. It has like random files in there which all kind of
+[00:37:43] deviate from our original task which might have been like just added button or something.
+[00:37:48] So to kind of minimize the amount of like context pollution in that case, we can use sub agents
+[00:37:54] and just make a quick overview. So a sub agent is a separate loop and it has its own context,
+[00:38:00] its own tools, its own system prompt. So the main agent can spawn a sub agent
+[00:38:07] and kind of this just runs in the background in its own little like forked environments.
+[00:38:14] And it will only return to the main agent with the result. So this makes sure that in the meantime,
+[00:38:19] all of these tool call results, everything else won't get added to like the main conversation.
+[00:38:25] And you can also spawn them in parallel which is very nice. So you can have multiple processes
+[00:38:29] in parallel. They could be like touching the same file at once and then they just come back with
+[00:38:34] the same result. And then the main loop can be like, okay, which ones do I actually want?
+[00:38:41] Yeah, you can see agents with the dash agents command as well. We have a couple of builds in
+[00:38:47] ones. I'm just going to run this again. Agents. So here you can see that we have a couple of builds
+[00:39:01] in ones. We have claw code guide which has access to our docs. So whenever you ask claw code about
+[00:39:07] claw code, it will actually use that sub agent to know what it's doing. We have explore general
+[00:39:13] purpose plan and then set a sign set up. So you can see that the explorer agent, honestly,
+[00:39:17] you will find that pretty often in your sessions. And you can also see that it's haiku and explore
+[00:39:22] will just kind of like try to find something in the code base. There's no reasoning required. So we
+[00:39:26] might as well just use haiku. And it's also, of course, very fast. And yeah, if you're not sure
+[00:39:34] even what an agent is, each sub agent has its own context, got some system problem specific tools.
+[00:39:39] And even like try creating like code reviewer, code simplifier, tech lead, all that stuff. So we can
+[00:39:44] create a new agent just in here as well. Let's see, create new agents. So where do I want to create
+[00:39:49] this agent in my project or just personal? So here I'm going to say project, if I do personal,
+[00:39:54] that just means that this agent will be reused across multiple projects, multiple repositories,
+[00:39:59] and so on. Yeah, I'm going to generate it with claw code. So for example, I want an agent that's like,
+[00:40:05] yeah, code, write an agent that performs code review. And we're going to see what it generates.
+[00:40:18] And again, also this could be a skill, but if we just run like a code review skill in the middle of
+[00:40:24] a session, and it was a session that initially started as like add a button, and now we're also
+[00:40:29] doing code review, it just adds so much like clutter to the context that it's sometimes better to have
+[00:40:34] these agents for these kind of one-off tasks that we want to run. So here you can even be more like
+[00:40:40] but tools should just agent have to honestly, I'm just going to keep it like easy. Sure, this is
+[00:40:44] all good, which model do we want to use for code review? Sonets? Probably fine. Do we want a little
+[00:40:51] color? I was just pink. The memory itself, I'm just going to keep that for now. All right, let's see,
+[00:40:58] let's just look good. So description uses agent when code has been written or modified needs to be
+[00:41:03] reviewed. Yeah. Okay, so now we have code reviewer. I just want to see what it added to my.
+[00:41:09] So now it generated this this agent, and as you can see, it added a really good description
+[00:41:18] because it knows that the model might sometimes just need this much to actually have a good agent.
+[00:41:22] So it has like code reviewers that use this agent when code has been written or modified,
+[00:41:26] it needs to be reviewed for quality, correctness, all that kind of stuff. It has the sonet model,
+[00:41:32] the memory itself, I won't talk too much about memory right now, but yeah, my just will move that,
+[00:41:37] and I'll color pink. So you can see that almost like creates a new little system problem. Like,
+[00:41:43] you're an expert code reviewer, all that kind of stuff. We wouldn't really do that in a skill too much,
+[00:41:49] but a sub agent is really just like its own little tool that runs alongside it.
+[00:41:55] So let's see if this agent, I mean, we can also invoke it manually if we want to,
+[00:42:03] with like this syntax code reviewer, oh, not that one. See,
+[00:42:16] code reviewer agent, like analyze code. So now it's launching an agent. Let's see one second.
+[00:42:29] So it's scary to demo this. Now we have it. And it's also using our little pink color if you want
+[00:42:33] to. So now you can see that it's reading all of these things, but again, and even though this looks
+[00:42:39] like it's happening in the main thread, this is not appending to our main conversation, like our main
+[00:42:44] messages array, if that makes sense. So everything that's happening here, the code reviewer itself,
+[00:42:49] here you can see it's just like running in that sub agent itself. Only when it gets a result will
+[00:42:54] they go back to the main agent. Also running the background if you want to see it. Then we can go to
+[00:43:04] one local agent. You can see it's still running. You can see like little agents is doing its thing.
+[00:43:12] You can see the amount of tokens is used, all the tool calls.
+[00:43:16] So now the code reviewing is just running like nice in the background and you can,
+[00:43:20] you can keep coding here if you want. So you can just keep going on the main thread or in the main
+[00:43:25] conversation. I kind of want to finish this now to see how it performs. If you don't want that,
+[00:43:33] you can use the control X and control K to stop any agents if you have to, but I feel like at this
+[00:43:37] point that's like. So the context is not shared between your main conversation and the agent.
+[00:43:44] No, there's another thing called dash fork and in that case with fork or it's called branch now
+[00:43:55] apparently. We didn't have a conversation yet, but if you had like a conversation before and
+[00:44:00] then you do like branch or fork, then that will inherit the other conversation but still running
+[00:44:04] in the sub agent. If that makes sense, so it still runs in parallel, but by default sub agents don't
+[00:44:10] have that. They get their own custom system prompt from the main agents that is a summarization
+[00:44:17] of what the project is and what it needs to do, but it doesn't share the same messages array as
+[00:44:27] the main agent if that makes sense. So it's kind of like a customized, it still has the information
+[00:44:33] that it needs to know for the code base, but not everything. Okay, this is running, there's a lot
+[00:44:41] of code to review apparently. Oh. Yeah, try that yourself. Just try running like agents and ask it to,
+[00:44:54] I mean, I kind of like this code reviewer one. It was pretty good at it. And then also,
+[00:45:00] just because this is so slow, the next thing we could try to find out is if this agent will run
+[00:45:04] automatically and ideally we have that right. So we have that in the description here, we say that's,
+[00:45:10] you know, use this agent when code has been written or modified. So in that case, the model would
+[00:45:14] need to know, okay, okay, I've just modified some code. So I need a sub agent to run and where does
+[00:45:22] how does the model know that we have these sub agents, but also has like agent tool calls.
+[00:45:26] So for an agent to run from the model, really what all that is is an agent tool call from the model
+[00:45:33] to the harness. And that is when the harness decides like, okay, I'm going to run this sub agent.
+[00:45:41] Is it still running? My goodness.
+[00:45:48] How is it going? How can we see the tokens that it's
+[00:45:56] using as it's running? You can. It's right there. If that was the question. Yeah, so, I mean,
+[00:46:05] of course, like sub agents will also use a lot of tokens. And actually sub agents, we've seen this
+[00:46:09] sometimes. Let me see if I can use usage. No, it doesn't. Okay. We've just added a new thing.
+[00:46:16] Actually, I can share that in what's new cloud code docs. Sub agents use a lot of tokens. And
+[00:46:24] sometimes people don't know that they are running sub agents. And that's where a lot of their usage
+[00:46:31] goes. Let's see. Oh yeah. Is it in usage? Or was it, I guess it's not merged yet.
+[00:46:43] We just tweeted about it. This one. So, and you can only really see this like, summarization. If
+[00:46:57] you've had like a conversation where you could analyze. So that's why it's not working for me
+[00:47:00] because I just started it. But if you have a pretty like long going session, it can say things like,
+[00:47:05] you know, where did most of my usage go? Well, 98% of your usage was in like four plus sessions,
+[00:47:10] random parallel. But you can also see this one say sub agents. Yeah, like your usage can
+[00:47:16] form sessions that rent three plus sub agents. And then each sub agent runs its own requests,
+[00:47:20] all that kind of stuff. So it's important to like remember that sub agents are very good. But if you
+[00:47:28] are kind of like token conscious, you don't want to use too many. Sometimes you run usage and see
+[00:47:36] if there might be sub agents running in the background that you actually don't want to be running.
+[00:47:39] Also, when you're creating one, make sure that you're using the appropriate model for it. Don't
+[00:47:43] just use opus with effort max for a code review. You really don't need that in opus. Well, opus
+[00:47:49] will do its thing. It loves just going for it, but you're paying for it. So yeah.
+[00:47:55] Why do sub agents use a lot of tokens? Is it because they're reestablishing the base context?
+[00:48:01] Yeah, pretty much. That's the main thing. Yeah, because kind of you're almost starting from
+[00:48:06] scratch with less, but you're still starting from scratch. So we don't have any cashed prompts
+[00:48:12] at that point. Yeah. And if you have multiple running, especially without knowing it,
+[00:48:20] and you don't know what these sub agents are calling because sometimes especially I want to have
+[00:48:23] like sub agents running for longer running tasks because like I don't want to wait in my
+[00:48:27] main conversation because then I'm blocked. So that's also mainly what sub agents are for. And
+[00:48:33] it's it's good, but just make sure that they aren't running when you don't want them to run,
+[00:48:37] especially if they're easily invoked by the model. You know, like if in this case, you know,
+[00:48:45] if the if code has been written or modified and needs to be reviewed for quality,
+[00:48:49] if we didn't add maybe this one, any to be reviewed for quality, and I'm just saying something
+[00:48:53] now, but like then this code reviewer might run on every single file edit. And unless we like check
+[00:48:59] the CLI or something else to see like, oh, do we see any sub agents running? You don't always know.
+[00:49:07] Oh, here. So now our agent has completed. So again, in the main conversation doesn't know much,
+[00:49:13] it just gets this this result from the sub agents. And then it can do something with it or not.
+[00:49:18] Doesn't matter. Is it better to spin up sub agents or multiple sessions or work trees? I'm unsure
+[00:49:26] what are the roles for the differences between sub agents versus sessions versus work trees.
+[00:49:33] Well, sub agent, the nice thing is that it goes back to your main conversation. So if it does relate
+[00:49:39] somewhat and you want your main agent to do something with it, like for example, the code review,
+[00:49:42] like this could have been a new session in this specific case, it really depends on the type of sub agent.
+[00:49:48] Mike, I think the nice thing is that you can run so many in parallel within the same session. So part
+[00:49:53] of it might also just be UX or like developer experience or user experience is now same, I guess.
+[00:49:59] When it comes to get work trees, I don't I know a lot of people use work trees. I still have to use
+[00:50:06] them too much. We use them a default in a desktop app and it's kind of nice. What I don't like about
+[00:50:11] work trees is that you just have to like, so for yeah, I don't even know how to like explain work trees
+[00:50:16] if you haven't really worked with it. It pretty much is like crazy. A small clone of your
+[00:50:21] of your your directory in your directory in a different like a branch and get, but that also
+[00:50:27] includes your no modules. So this can be pretty heavy. It has to reinstall all your dependencies
+[00:50:33] every time in a work tree. I don't I don't know. I don't find the user experience to be that good
+[00:50:38] for a work tree, but maybe I'm missing something. I know a lot of people do use work trees, but I
+[00:50:44] knew it's to get back to your point. I think I enjoy sub agents over a new session. Well,
+[00:50:50] when it's like a repeatable task, like if it's a new session and you might have to run a skill
+[00:50:55] every time, I find that to be there's more friction there. Like I'd rather the model decides like,
+[00:51:01] okay, this should the sub agent could run and then come back to the main thread, which we can't
+[00:51:05] do in a main session. Where I was going earlier is I feel like a lot of claw code is also building
+[00:51:12] your own intuition. So a lot of what I'm teaching here, I'm not trying to be like this is best practices,
+[00:51:17] this is what you should do, but I've noticed that a lot of clot is really just talking to it,
+[00:51:21] seeing what it's good at and what works for you. And I know that's such an unsatisfying answer,
+[00:51:27] and it's so stupid, but it really has been the case for me, and I feel like it has been the case
+[00:51:31] for many people. The more you use clot as a really friendly coworker that loves to work, and you
+[00:51:36] understand the difference that opus is like your senior step researcher MVP engineer that knows
+[00:51:42] everything and really likes to do things, and Haiku is more like the intern that's really good
+[00:51:49] at repeatable tasks, that has just changed my entire mindset to worst claw code. And also often kind
+[00:51:57] of reassessing your setup, as I said earlier with clot MD, but it could also be with skills whenever
+[00:52:03] a new model comes out. Like I said, we're just released opus 4.7, maybe you've noticed that it's
+[00:52:09] better at certain things than others. For example, it is in this specific case with opus 4.7,
+[00:52:14] we've noticed that it's much better at following instructions. And your clot MD file,
+[00:52:20] what I saw a lot of people do is exclamation marks, I do not do this, do this exclamation,
+[00:52:25] I just really, because opus 4.6 wouldn't always have done that, and opus 4.7 does, but how would
+[00:52:32] you know? Even we don't know, often after a model's been released, we're also still kind of like,
+[00:52:36] okay, how are people using it, what, like issues are they're running into. So it's unfortunately,
+[00:52:43] with a lot of claw code and models, it's also just growing with the product and growing with the models.
+[00:52:49] So yeah, a setup that worked two months ago might still work, it might just not be as efficient.
+[00:52:57] So yeah, a question like, oh, should I use sub agents or work trees? It can depend on so many
+[00:53:02] different things that, unfortunately, the answer is it depends, and then whatever. This is pretty
+[00:53:09] much the same graph that you just saw, right? Like the main agent can spawn a sub agent, they do some
+[00:53:14] work independently, then they get a result, and that gets fed back to the main agent. We've also
+[00:53:20] recently released agent teams, and this is very different. Let me see if I can show you a video from
+[00:53:26] my, I created a demo for it at some point. Media, sorry, there's a lot of, oh yeah, this is agent
+[00:53:36] teams. And it's, it's might look very similar, but we have a main agent here, and it is running
+[00:53:44] all of these different teammates on the side. Now you might think like, okay, this sounds a lot like
+[00:53:51] sub agents like that, the main thread is launching something, and it's true, but the difference here
+[00:53:58] is that with a teammate, they don't just get spawned from the main agent, and then they run independently,
+[00:54:04] they actually talk to each other, which is very cute. So like you can have, for example, a code
+[00:54:09] reviewer team agent, and you can have an implementer agent, and then sometimes the code reviewer is like,
+[00:54:14] oh, I'm waiting on the implementer agent, and then like they really communicate with each other,
+[00:54:18] they do work, and only when they, when they have like a shared task list that's created by the main
+[00:54:24] agent, and only when the task list is complete, which they kind of check every time, then they end it.
+[00:54:31] So I don't know if that makes sense, it's a different mental model. Sub agents, they run independently.
+[00:54:36] If we have multiple parallel sub agents, they cannot communicate with each other. All we see,
+[00:54:40] all the main thread sees is the final results, with agent teams, and you can just enable this by
+[00:54:45] just asking Cloud Code, use a team of five agents to run this. They really, they do communicate,
+[00:54:52] and then you get kind of this almost like AGI moment. I'm not sure if maybe I can pause it.
+[00:54:59] Like, let's see if we see any. So you can see like where messages come from. So like this is a
+[00:55:06] message from Team Lead, to build a new model now. So in that case, like the Team Lead is like the
+[00:55:13] main agent that's really just running as a as a PM tool, these like team agents. I can't let's see if
+[00:55:19] I can, I kept on zooming in when you could like see. Is it kind of the same mental model as like
+[00:55:26] promised at all? Sort of. I mean, I guess the main value just comes from the fact that this happens,
+[00:55:35] and of course with promises, they can't like communicate with each other. It's more that
+[00:55:43] yeah, I don't know why this arrow is broken. We should fix that arrow as well, I'm just
+[00:55:46] see that. Yeah, it's more than with sub agents. What we saw is like you can have them in parallel,
+[00:55:52] and then either they like, yeah, I've wrote to the same file, and then we run into like merging
+[00:55:58] conflicts, all that stuff with teammates. You just have that a lot less, and also they can really
+[00:56:01] be specialized. So we don't like with agents. Okay, sorry. Another thing is that of course an agent
+[00:56:08] is part of like the folder structure. Team mates on the other hand are just kind of like
+[00:56:14] created on the spot. So you can just ask, like, hey, create a team of five agents to like
+[00:56:19] maybe one like PR agent, one implementer agent, one UI or designer, and then it will just do that
+[00:56:24] for you. And it will kind of understand what the system prompt to these teammates should be
+[00:56:31] with sub agents. We need like a specific markdown file in the code base. Anyway, I just wanted to show
+[00:56:37] if you ever hear the term team agents again, for most things, it's kind of like too much.
+[00:56:44] This also of course uses a lot of tokens. And in most cases, a sub agent would do just fine,
+[00:56:48] but it's a nice little feature. Like, I like you really get the AGI feel when you see like multiple
+[00:56:53] panels will talk to each other, and then eventually you get the result. It feels really good, and
+[00:56:57] it looks really good. But it's, yeah, depends on your implementation, I guess. Do you think like if
+[00:57:03] you were to create a team, has there been any success in creating almost like a QA teammate to
+[00:57:08] like go and make sure everything is still working? Because I feel like when I've built next JS
+[00:57:11] applications, it'll have something get worked on and then it'll like break something else, but it's
+[00:57:16] self-catching it versus. I think QA is a QA reviewer thing that is like the most
+[00:57:22] that like used, like people use skills for that the most. Yeah, it's very straightforward.
+[00:57:27] We want to super nice and also for your specific QA process, like it's not because it's almost like
+[00:57:31] subspace, right? It's like it needs to do this and this and this. So having a QA skill,
+[00:57:38] yeah, and making sure that that gets invoked after every like change or whatever, you can even use
+[00:57:43] high coup for that if you want to, you know, if it's just like a specific setup, but a QA is perfect
+[00:57:47] for that. What the team agent, I'm just curious, how would you like validate the output of the agent
+[00:57:54] because they're checking against each other. Kind of reminds you of like a aura Boris situation.
+[00:57:58] Yeah. No, it's a good question. Would you make another agent?
+[00:58:03] Yeah, you just keep going like this forever and then you're out of token.
+[00:58:05] No, no, no, no. Okay. So I think, no, it's a good question. I think a lot of this, again,
+[00:58:12] also depends on plan mode. Make sure that your plan is accurate and then you can still see the
+[00:58:16] shared task list. And I think that is kind of your main point where it's like, do I agree with
+[00:58:22] this task list? Because that's what all the teammates will be running against and making sure
+[00:58:25] that that's accurate. The output itself, that's honestly just like any other sub agent or any other
+[00:58:32] task, like whether you like it or not, that depended a lot on what your plan, like how much context
+[00:58:37] did you give them before starting this task? And also how much verification did you add to the loop?
+[00:58:43] Like if we talk about design, did we add an image? Did we tell it to run against certain tests
+[00:58:48] that we already have? So I think when it comes to like verification, that's still just manual,
+[00:58:53] but you definitely set yourself up for success if you have more verification in the loop itself.
+[00:58:58] And then you can again check with the shared task list. And also if you see teammates going off
+[00:59:05] the rails, you can of course always stop them as well individually. Sometimes your main team
+[00:59:11] lead will freak out because it's like, oh no, my teammate quit. It's like, it's very cute because
+[00:59:16] it doesn't, it's not in the same process, but it does notice that the process quit. Also in some cases,
+[00:59:21] it notices that teammates are too idle and then it would quit them on his behalf.
+[00:59:28] It's very fun to just see that work. It truly is like a team. But yeah, as you can imagine,
+[00:59:33] for some cases, you don't need a whole team. You just need one good developer which could be a sub
+[00:59:37] agent. And there's also the Asian SDK. I'm not sure if people are familiar with that, but if you
+[00:59:41] ever want to use the Cloud Code runtime without using any of our tools or to CLI or anything else,
+[00:59:47] we do have the Asian SDK. It's still the same runtime. It's still the Cloud Code runtime.
+[00:59:53] runtime being like the runtime against the model. So it can still query. It can still, you know,
+[00:59:58] do everything that we're used to in Cloud Code. You can just programmatically create tools around this.
+[01:00:04] You just need API key for it. So it's pretty nice. Asian SDK is also what
+[01:00:11] co-work uses internally. So this is all running the Asian SDK. This is also pretty nice.
+[01:00:17] What I really like to use in plan mode is like, use, like, wait, which repo am I in now?
+[01:00:28] Just say that I want to add. Actually, let me go back to
+[01:00:32] demo issue tracker. Cloud. When I'm planning, I kind of intentionally ask Cloud to use the
+[01:00:40] ask user question tool. So like, I want to create a system where what do I want to create?
+[01:00:49] Where each issue has multiple owners, priority, and so on. Use the ask user question tool to
+[01:00:58] interview me thoroughly. Think about edge cases. I may not have thought of yet. There's probably
+[01:01:05] a better way to ask it. But the ask user question tool, this is a specific tool call that will,
+[01:01:10] you know, show that I'm sure you've seen it, but that's like in the UI that shows up like this.
+[01:01:14] This is a ask user question tool, but we also see that in the CLI. And to me, this is a really
+[01:01:19] nice way to go back and forth with Cloud and really brainstorm your plan with it, especially when
+[01:01:25] you ask it yet. So this is like, they use ask user question tool. And it sometimes, like, it
+[01:01:31] just pops up by on its own, but it doesn't always do that to create a plan. So like, which owner should
+[01:01:36] be identified? I don't know. I'm just going to go through it real quick. Oh, yeah, okay, next.
+[01:01:43] Like, it thinks about a lot of things that I may not have thought of yet, which I kind of like
+[01:01:49] UI placement. Yeah, sure. Check about this. I don't want to do that.
+[01:01:57] Come on. How do I? Okay, I just escaped it. Well, anyway, I could have submitted it by press
+[01:02:02] escape and that apparently escapes the whole thing. Oh, yeah, I declined to answer questions.
+[01:02:07] But yeah, just like this overall, this kind of workload of plan, whenever you create a plan,
+[01:02:12] ask it to use the ask user question tool is very nice. But you just need to know that this
+[01:02:17] exists. I guess. I mean, I'm sure that if you ask it, like, ask me about the brand, like,
+[01:02:22] thoroughly about any edge cases, it would just do it naturally as well. But I still like to be
+[01:02:26] intentional to make sure I'm not wasting any.
