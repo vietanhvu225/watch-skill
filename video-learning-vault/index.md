@@ -17,6 +17,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `df84a40038087d90` | How to Run 100+ Claude Agents at Minimum Cost - Lydia Hallie | Prompt Cache Prefix Physics, Cache Invalidation Triggers, Warm Compacting & Managed Settings | [claude_code_low_cost_100_agents_lydia_hallie.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_low_cost_100_agents_lydia_hallie.md) | 26:35 |
 | `ec8ec278c38667ce` | Claude Code & Agentic Workflows Masterclass - Lydia Hallie (Anthropic) | Agentic Glue, Prompt Assembly, CLAUDE.md Hierarchy, Skills & Hooks, Subagents vs Agent Teams | [claude_code_agentic_workflows_lydia_hallie.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_agentic_workflows_lydia_hallie.md) | 01:02:30 |
 | `8896b123a0749c05` | How I Review AI Code - (Meta Senior Staff Engineer) | Codebase Tree Topology (Trunk vs Leaf), 4 PR Proofs, Adversarial Review & Upfront Gating | [how_i_review_ai_code_meta_staff_engineer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_review_ai_code_meta_staff_engineer.md) | 20:31 |
 | `47ee6151d3451c4d` | I Built (And Shipped) a 3D Game With Claude Opus 5.5 (Full Workflow) | No-Engine Web Stack (WASM+WebGPU), Subagent Parallelism & Gray Box Gym | [built_and_shipped_3d_game_with_claude_opus.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) | 18:11 |
@@ -160,6 +161,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [I Built (And Shipped) a 3D Game With Claude Opus 5.5 (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) - Toàn bộ quy trình xây dựng và phát hành tựa game 3D Pressure Washing trong 6.5 giờ: Kiến trúc No-Engine (Rust -> WASM + WebGPU 120Hz), quy tắc cấm One-Shot, tách rời pipeline Blender Assets, Gray Box Level Gym và điều phối subagents song song.
 * [How I Review AI Code: Meta Senior Staff Engineer (20m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_review_ai_code_meta_staff_engineer.md) - Phương pháp luận review code thời đại AI của John Kim: Phổ liên tục theo Bán kính thiệt hại (Blast Radius), Cấu trúc cây (Trunk vs Leaf Nodes), 4 loại bằng chứng PR (Unit Tests, Logs, Video UI, Gating), Adversarial Review Agent và quy tắc Upfront Feature Gating.
 * [Claude Code & Agentic Workflows Masterclass: Lydia Hallie (62m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_agentic_workflows_lydia_hallie.md) - Bài giảng chuyên sâu từ kỹ sư Anthropic: Giải phẫu Agentic Glue, kỹ thuật Prompt Assembly, phân cấp CLAUDE.md, kỹ thuật phỏng vấn ngược với `ask_user_question` trong Plan Mode, vòng đời Hooks, và so sánh thực chiến Subagents vs. Agent Teams (Teammates).
+* [How to Run 100+ Claude Agents at Minimum Cost: Lydia Hallie (26m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_low_cost_100_agents_lydia_hallie.md) - Cẩm nang tối ưu hóa chi phí token và quản trị Prompt Cache từ kỹ sư Anthropic: Bản chất vật lý 3 loại token, 4 lỗi phá vỡ tiền tố cache, nghệ thuật compact khi cache còn ấm, subagents cách ly nhiễu và kiểm soát doanh nghiệp qua managed-settings.json.
 
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
@@ -202,6 +204,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [herdr_terminal_multiplexer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/herdr_terminal_multiplexer.md) (19:25)
     *   [ai_fde_varick.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ai_fde_varick.md) (20:00)
 *   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
+    *   [claude_code_low_cost_100_agents_lydia_hallie.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_low_cost_100_agents_lydia_hallie.md) (26:35)
     *   [claude_code_agentic_workflows_lydia_hallie.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_agentic_workflows_lydia_hallie.md) (01:02:30)
     *   [how_i_review_ai_code_meta_staff_engineer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_review_ai_code_meta_staff_engineer.md) (20:31)
     *   [claude_code_ai_native_sdlc_guide.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_ai_native_sdlc_guide.md) (21:02)
