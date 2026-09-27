@@ -1,0 +1,336 @@
+[00:00] Hello, everyone. First off, it's been absolutely amazing to see the speakers before me.
+[00:12] I want to give one more round of applause for the incredible amount of content and preparation.
+[00:16] I've been inspired. I've written in my speech three times.
+[00:20] I learned how to do storytelling, and so here's a story for you.
+[00:23] I ran for known about velocity. We love speed. I love speed.
+[00:29] I love speed so much that I once signed up to race cars at Le Mans.
+[00:35] I'm just kidding. Lemons, 24 hours of Lemons.
+[00:39] It's a race where you buy a $500 car and you race around for 24 hours hoping to win.
+[00:46] Unfortunately for me, my car did not make it.
+[00:54] I crashed. I crashed hard. I was okay. The car unfortunately was not.
+[01:01] Now this crash was entirely my fault as the driver.
+[01:05] But in real professional racing, the driver is rarely the problem.
+[01:11] In fact, the driver is only 15% of the impact on the race.
+[01:16] The real impact is the interaction between the driver and the car, between the car and the team.
+[01:23] In other words, winning isn't just about driving faster.
+[01:28] The best drivers in the world can only perform up to the level of the system.
+[01:33] Winning the race is about removing the bottlenecks around the driving.
+[01:39] That's the key point I want to drive today.
+[01:42] Take for example the pit stop. In the 1950s, it took 67 seconds to change tires.
+[01:48] Today, 1.8 seconds.
+[01:52] How does 67 seconds turn into 1.8?
+[01:56] Certainly not by asking the mechanic to work 37 times harder.
+[02:00] All you leaders, you know what I'm talking about.
+[02:02] They found the bottleneck and they iterated to remove them.
+[02:06] Specialized functions, better technology, more practice.
+[02:10] And F1 is relentless. 90% of the parts of a car change every year.
+[02:18] Only 10% of the 16,000 parts of an F1 vehicle carry over to the next year.
+[02:23] I want you to also think about what if 90% of your code changed every year?
+[02:29] Because that is the bar. Why am I telling you all this?
+[02:33] We're in a race. Speed is everything. Execution is everything.
+[02:38] And we're going to race the build with the eye.
+[02:41] For the race car, it starts when the car comes in for new tires.
+[02:46] And the clock stops when it leaves. For us, the clock starts when there's pain.
+[02:51] And it leaves when the customer has a product that solves it.
+[02:55] AI simply removes the bottleneck, but moves it.
+[03:00] And the best team, the winning team, is the team that can find the bottleneck faster,
+[03:04] remove it, and move on to the next one.
+[03:06] Now, we all know the product development lifecycle.
+[03:08] We identify, we define, we spend a lot of time building, and then we improve.
+[03:14] Now, the engineers, fantastic engineers, they've been able to automate a lot of their work.
+[03:20] And coding is now much easier.
+[03:23] So here's a tip. Be more like engineers.
+[03:26] Be as lazy as engineers.
+[03:29] Because the reality is that the bottleneck has now shifted to us.
+[03:32] We need more things to define. We need more things to collaborate.
+[03:36] We need more things to coordinate. More things to ship.
+[03:38] More things to test. More things to release.
+[03:40] The bottleneck has shifted to us. And so we need to invest in our own factory.
+[03:45] The speed of this loop determines the outcome of the race.
+[03:48] And the question becomes, how quickly can you identify the bottleneck and redesign the factory around it?
+[03:53] What I'm going to show you today are five of these steps and how ramp has gone far in iterating and automating through it.
+[04:01] The first step is identify the problem. Identify the pain, right?
+[04:06] The issue is that that pain lives somewhere.
+[04:09] And there's a lot of pain, a lot of data, gongs and desks, log rocket, a survey, very angry email to an executive.
+[04:18] The problem is that context lives all over the place. Too many silos, too many opinions.
+[04:22] And so the first bottleneck to identify is how to sift through the noise.
+[04:27] And elements are great. But a 1 million token window, that's less than 0.5% of gong transcripts at ramp.
+[04:35] So we start small. We created a hate channel, every day it posts all the lovely things that our customers say.
+[04:43] And yes, these are real quotes. That got out of hand really quickly.
+[04:52] Yes, I know. I am not proud of it. No one's perfect.
+[04:56] And so we had to redesign from scratch.
+[04:59] We built an actual customer's insight agent that agent pulls from all the data sources at a company.
+[05:07] It uses traditional ETL and pipelines. It uses actual vector search.
+[05:13] It has clustering around the same context and understands our product and understands our teams and understands the features that we have.
+[05:21] And it's accessible to the rest of the organization.
+[05:24] Once we had this working, we asked ourselves how do we get this to as many hands as possible.
+[05:30] And so we, again, experimented. A Slack agent where you can ask questions.
+[05:35] A nice HTML dashboard that people can log in and read.
+[05:39] My favorite one was the podcast. The hate podcast. Great way to start your day.
+[05:45] You listen in. A hundred customers yelling at you, but all the ways your product is broken.
+[05:50] The concept is simple, right? Get people access to this data as fast as possible.
+[05:55] That doesn't mean don't talk to customers. It means you actually identified exactly which customers to talk to.
+[06:00] Because the data is traceable. Once you found what to focus on, the next step is to define your product.
+[06:07] How do you go from your concept to a fully scoped idea?
+[06:11] And so we turned to AI.
+[06:15] And the AI is all kind of look the same. They ask you what do you want to build?
+[06:20] And you stare. You have this super intelligent being asking you what you want to build.
+[06:26] Is that really the best question to ask? Is that really the best starting point?
+[06:30] The goal with AI is to connect it to your systems.
+[06:33] That is how you're going to make AI extremely, extremely actionable.
+[06:37] And so we did that. We built our own AI agent called Glass.
+[06:40] And we gave it all the context it needs to do the work.
+[06:44] It connects to all our systems. So it understands both the data with snowflake.
+[06:49] It understands our user research. And it can nail exactly the job to be done that our customers are asking for.
+[06:55] That gives us specificity with both qualitative and quantitative data.
+[06:59] Glass also understands our product strategy.
+[07:02] It understands how we define product specs.
+[07:05] It understands our code base. And so instead of a PM bothering an engineer asking them,
+[07:10] is this possible with this break something? What am I missing?
+[07:13] You ask AI. AI can be your best thought partner.
+[07:17] So now AI is your tech lead.
+[07:20] And finally, you can build a prototype.
+[07:23] Because it understands our product principles. It understands our design system.
+[07:27] It understands our code base. You can actually define and build a prototype.
+[07:30] That actually works within your product.
+[07:32] Your engineering team don't want any of these individual things.
+[07:36] They don't want your prototype. It's useless.
+[07:39] They don't want your long spec. That's useless.
+[07:42] They want the combination of qualitative and quantitative data to convince them that this is a problem.
+[07:48] The actual requirements that they can use for their coding agents.
+[07:51] And a prototype that they can actually get inspired by.
+[07:54] That is the next contract.
+[07:57] So now you have a strong foundation for wish to go.
+[08:00] The next step is to build.
+[08:01] I mentioned that building is no longer the bottleneck.
+[08:03] Obviously, it's a bit more nuanced than that.
+[08:05] When we focus on one bottleneck, the next one appears.
+[08:08] The first bottleneck was coding.
+[08:10] Everyone should have a coding agent at this point.
+[08:12] We built inspect.
+[08:13] Inspect is our own coding agent.
+[08:15] And the reason why we built it ourselves was because we wanted to have a strong harness.
+[08:19] And we wanted to make sure that our coding agent really understood our code base.
+[08:23] It works inside a Slack.
+[08:25] It's fully provisioned.
+[08:27] It can run under five seconds.
+[08:29] And it can return an actual product in a deploy preview.
+[08:33] So that the actual product manager can actually use and interact with the code that's being built.
+[08:37] Anyone at ramp can now code.
+[08:40] Inspect has a million sessions.
+[08:42] 75% of our PRs is actually built by inspect.
+[08:46] And a thousand of those PRs over the last month was submitted by a non-engineer.
+[08:51] One tip here though is that coding agents are really good when you have a strong architecture and a strong code base.
+[08:58] This expands how much of your company can actually use AI.
+[09:02] You now are shipping a lot of code.
+[09:04] The next step is code reviews.
+[09:05] It becomes the next bottleneck.
+[09:07] Engineers are just constantly coming through a ton of code.
+[09:10] And so we focused on that.
+[09:12] We built review buddy.
+[09:14] Review buddy fully understands our code base.
+[09:16] Fully understands our actual quality checks or security concerns.
+[09:20] It finds the right human reviewer to loop in.
+[09:23] And it also understands the context.
+[09:25] All the prompts that led you to build that code.
+[09:27] So it can actually audit how you used AI in the first place.
+[09:30] So the review and the collaboration is now grounded in visible context.
+[09:33] 93% of our PRs are now automatically handled by review buddy.
+[09:39] So that the highest quality engineers are spending time on the 7% of PRs that truly matter.
+[09:44] That have a lot of questions around how are we building this correctly.
+[09:48] Are there any risks?
+[09:50] The next bottleneck is testing.
+[09:53] Previously PMs, I'm sure you're familiar with this.
+[09:56] We spin up a QA environments.
+[09:58] We try to tweak different fixtures.
+[10:00] We click through the screens.
+[10:02] We make sure that the engineer didn't skip out on that one feature we really liked.
+[10:05] We automated that.
+[10:07] We built test though.
+[10:08] Test though is a browser-based QA agent.
+[10:10] It spins up the product in 100 different combinations based on the actual production data that we have access to.
+[10:17] And it runs in the product like a user.
+[10:20] We give it instructions.
+[10:21] We say, hey, pay an invoice.
+[10:24] But amortize it.
+[10:27] And it clicks around and actually gives us feedback, both blocking feedback, bugs, issues, blockers.
+[10:32] And honestly, extremely thoughtful design and qualitative feedback around things that we're confusing.
+[10:38] Things that break our design system or breaks our design language.
+[10:40] And that goes back into the product development lifecycle.
+[10:44] Test though in the last 30 days, caught 425 bugs.
+[10:48] I think these are bugs that are caught by us and our customers.
+[10:52] And they send it back through the loop to fix.
+[10:54] So now you're shipping a lot of product.
+[10:57] The next step is to coordinate.
+[11:00] How do you make sure that everyone in your company is in the loop?
+[11:04] Things are moving so fast.
+[11:05] They're shipping so many different things.
+[11:07] The next bottleneck becomes human attention.
+[11:09] We've all been there.
+[11:10] PMs being undated with notifications.
+[11:13] And so our job becomes coordination.
+[11:16] I see a few people coordinating right now.
+[11:19] Too much process.
+[11:21] Right?
+[11:22] And slows down the builders.
+[11:24] Too little process and everyone is confused.
+[11:27] And so human attention becomes bottleneck.
+[11:30] How do you solve this?
+[11:31] Well, every question is an API.
+[11:33] Every question is an API.
+[11:35] And you architect a system.
+[11:36] We build gadgets.
+[11:38] The gadget essentially understands the intent of these questions and connects it to the formal record.
+[11:45] The roadmap and notion.
+[11:47] The specs and notion.
+[11:49] The customer calls in notion.
+[11:51] Slack.
+[11:52] Linear.
+[11:53] Our tickets.
+[11:54] The principle here is simple.
+[11:55] For you to empower an agent, the agent needs to be able to understand and read the organization.
+[12:01] And the organization needs to be legible to your agents.
+[12:05] I'll give you an example.
+[12:06] A question is like, what's the status of this project?
+[12:08] What's the status of this launch?
+[12:09] Are we on track?
+[12:10] Agent handles that.
+[12:12] It understands the full picture.
+[12:14] It understands who owns the next steps.
+[12:16] And answers with evidence.
+[12:17] But not only that, the agent updates our roadmap.
+[12:20] The agent gives status updates.
+[12:22] The agent pings people who are late on their deliverables.
+[12:25] There's a lot of fun ways you can actually scale.
+[12:28] Or another question.
+[12:29] Sales.
+[12:30] Asking questions about, you know, what is this feature?
+[12:33] How do I sell it?
+[12:34] Is it available in Brazil?
+[12:36] What's the use case?
+[12:38] What's the price?
+[12:40] All of these things are fully understood.
+[12:42] And gadget, if it does not understand, routes it to the right person.
+[12:45] But we can take a step further.
+[12:46] A launch.
+[12:47] Gadget understands the product.
+[12:49] And so, it can write the help center article.
+[12:52] It can help write the blog post.
+[12:54] It can help write the customer email.
+[12:56] So on and so forth.
+[12:58] Again, start one place.
+[12:59] And you'll see how far it expands.
+[13:01] 85% of questions that are being asked to pms now are fully answered with AI.
+[13:07] And those that are not are answered and fed back into the system.
+[13:10] So you're shipping a lot of products now.
+[13:12] Everyone's fully aware and coordinated.
+[13:14] Everything is perfect.
+[13:16] But that's just the start, right?
+[13:18] You are constantly improving on the product.
+[13:20] And the loop starts again.
+[13:22] Now, pms, we naturally gravitate towards the small reactive things.
+[13:26] The things that we have high confidence in.
+[13:28] The things that are easy.
+[13:29] That are visible.
+[13:30] The dopamine hit.
+[13:31] Oh, we've solved something.
+[13:32] I think that is a huge mistake.
+[13:34] Claire, I think how to great talk around how to be ambitious.
+[13:37] You're not ambitious because you're focusing on small things.
+[13:40] You need to automate your way out of these small loops.
+[13:44] And so we did just that.
+[13:46] For most small things.
+[13:48] An AI fully runs the loop.
+[13:50] It routes it to the right team.
+[13:52] It matches it with your backlog and linear.
+[13:54] It dedoops.
+[13:55] It counts.
+[13:56] It ranks.
+[13:57] It runs the plan.
+[13:58] It has a few minutes of loop through Slack around.
+[14:00] Hey, is this ready to go?
+[14:01] I'm ready to code.
+[14:02] It writes the code.
+[14:03] It runs through test and cicd.
+[14:05] Just like we talked about.
+[14:06] And when it launches, it runs through the knowledge base.
+[14:09] These are small loops.
+[14:11] And humans are in the loop only just barely.
+[14:14] Thousands of little loops.
+[14:15] With thousands of little things.
+[14:17] So you can focus on the big ones.
+[14:19] Thanks to these autonomous loops, 60 percent.
+[14:21] 60 percent of UX issues.
+[14:22] That are identified by either a customer or a salesperson or a cx person
+[14:28] or ourselves are fixed within 24 hours.
+[14:30] So at this page, you're probably asking yourself three questions.
+[14:33] The first question is, okay, how do we know we're moving faster?
+[14:38] How do we move faster with quality?
+[14:40] After all, we talked about product velocity.
+[14:42] How do you measure it?
+[14:44] It's certainly harder than a lap time out of racetrack.
+[14:48] Well, some things are not easily quantifiable.
+[14:52] Nikki Lauda in 1974 took a lap with the Ferrari car.
+[14:58] This car is a piece of shit.
+[15:00] It drives poorly.
+[15:01] It handles poorly.
+[15:02] It breaks poorly.
+[15:03] Got out of the car.
+[15:04] Went to the engineer.
+[15:05] Fixed it.
+[15:07] That is not dissimilar to the culture at ramp.
+[15:09] I'll start there.
+[15:10] But the point I'm trying to make here is that you will know if you're moving fast enough.
+[15:16] If you actually hire a driver that knows what speed looks like.
+[15:20] And you put them in charge.
+[15:22] And you actually allow them to challenge you.
+[15:25] That might be hard for some leaders, but that's what we need to do to be challenged by people who know what great speed looks like.
+[15:33] The second question might be, what about our budget?
+[15:37] We have limited resources.
+[15:39] We have limited resources into those engineers or simply tokens.
+[15:43] How do we compete with companies with no constraints?
+[15:46] In 2006, Audi asked Audi had a bad car, a very slow car.
+[15:51] And so they asked themselves, how can we win if we can't go faster than anyone else?
+[15:57] Their answer?
+[15:59] Fuel efficiency?
+[16:01] Fewer stops?
+[16:03] More time on the track.
+[16:05] And they won them all three years in a row.
+[16:08] So constraints force you to choose a dimension in which you can be world class.
+[16:13] So embrace your constraints.
+[16:16] But not your bottlenecks.
+[16:17] Find the one thing that you're really, really good at.
+[16:20] Find that one bottleneck that you think can 10X your company and just start there.
+[16:25] And the last question, something that we've talked a lot about today, is the future role of product.
+[16:30] Are we automating our jobs?
+[16:32] What's going to happen if these loops are running without PMs?
+[16:36] Well, the first thing I'll say is, I think it's amazing for product managers to be out of the loop for a lot of things that engineers can drive.
+[16:45] This helps us get a ton of leverage.
+[16:48] And I don't think we should be scared about that.
+[16:50] Our jobs, though, I think we'll evolve in three ways.
+[16:53] There are three tracks that I see for product managers.
+[16:56] The first track is the technical track.
+[16:59] And something that I don't think we are investing nearly enough.
+[17:02] It's the PM that's building the actual factory, the technical product manager that is identifying bottlenecks and removing the drag in your organization.
+[17:09] They're not shipping products for the customer.
+[17:12] They're shipping the product that helps you build the product for the customer or helps AI do so.
+[17:17] The second role, arguably one of the most important roles, certainly the one that gets the most line light, is a taste maker.
+[17:24] It's the driver. Ultimately, you need someone who's holding the steering wheel and doing things that AI cannot do and holding the bar for what great product, great taste looks like.
+[17:33] And finally, the GM.
+[17:36] I think PMs will absolutely evolve and expand their role to not just the product organization, but the marketing organization, the sales organization, the growth organizations, the operational organizations.
+[17:46] PMs will become GMs and they will own the actual business outcome and lead the entire function.
+[17:52] So we walk through a lot.
+[17:55] I'll recap three main takeaways. The first is that speed is not about just coding faster.
+[18:01] It's identifying and removing the bottleneck in your build process.
+[18:06] And everyone has one. Scientifically, there is always one.
+[18:10] Two, as you, as you actually saw that first bottleneck, the next one appears and your job is to move through them as fast as possible.
+[18:19] And lastly, as this product leaders, we need to obsess a little bit less about the product that we're delivering and a little bit more about the factory that helps us build products faster.
+[18:30] Now, I just walked through a lot here. A lot of great things that we built.
+[18:37] And I did so because the reality is that everything you've seen here is outdated.
+[18:42] Like F1 teams will copy each other. I want you to copy us. I want you to actually hopefully surpass many of the things you see today.
+[18:49] And I'm sure people here have gone much further. The reality is that it's all about the next season.
+[18:57] And so I'll leave with this. And so Ferrari said the best Ferrari ever built is the next one.
+[19:06] The product you'll ever build is the next product that you'll launch. That begins in the factory. That begins in the software factory that you built today.
+[19:14] I hope you copy us. I hope we get to copy you, but share more together as a community around how we're building these products.
+[19:21] So we can deliver more for our customers. And I hope you all stay, stay safe out there. Thank you.
+[19:27] Thank you.
