@@ -1,0 +1,970 @@
+[00:00] Hi everyone, or should I say hi captains?
+[00:03] Many of you might have already watched my previous videos because they got more than
+[00:07] a million views.
+[00:08] If you haven't yet, my name is Kuhn, I was an L8 principal engineer previously at Meta
+[00:13] Microsoft and Atlassian.
+[00:15] My previous videos shared a lot of the basics about agentic engineering, so this time I'm
+[00:21] hoping to share a more advanced workflow, focusing on high throughput multitasking through
+[00:27] a large number of agents.
+[00:29] I walk through it by just showing you how I get some real work done.
+[00:33] Let's jump in.
+[00:34] As always, we will start with a clean terminal, and the first thing I'm going to launch
+[00:38] is herder.
+[00:39] Herder is basically my new T-mux, it's a multiplexer, it manages all my agent sessions, and allows
+[00:45] me to easily navigate between the sessions, you will see that in a bit in this video.
+[00:49] And then I'm going to go into my first mate directory.
+[00:53] If you haven't heard of first mate yet, it is an open source project that I created.
+[00:58] It's got quite some popularity, a lot of people are using this.
+[01:02] This is basically my workflow.
+[01:04] First mate is the essence of my workflow, and the core idea is that I only talk to one
+[01:10] agent, which is the first mate, and the first mate will orchestrate all the other agents
+[01:14] for me, so that I don't have to juggle between other sessions and context switch all the time.
+[01:20] It's first mate doing that, and you will see that in a bit.
+[01:23] The way to set up first mate is super easy, just clone this repo and launch your agent
+[01:28] in this repo.
+[01:29] So now that I'm in the first mate directory, I just launch my agent.
+[01:33] I use pi.
+[01:34] I use both pi and cloud code.
+[01:37] I basically use cloud code for whenever I want to use an anthropic model, like opus and
+[01:42] fable, and I use pi for everything else, because pi basically, it can use any other model
+[01:48] allows me to switch between models very easily as well.
+[01:52] I actually, right now, I'm using grog 4.5.
+[01:56] Right now, as of this day, grog 4.6 is already available, but I actually like 4.5 better,
+[02:03] because grog 4.5 is faster and more efficient and more straight to the point.
+[02:09] 4.6 is a little bit like opus 5.
+[02:12] It's got this weird personality where it doesn't quite speak like a human.
+[02:18] So I like 4.5 better, and that's something I recommend in general that's when the new
+[02:23] model comes out.
+[02:24] Don't assume the new model is always better than the last.
+[02:28] Just use it for a bit and get a sense for how the model behaves by yourself, and look
+[02:34] at how other people have summarized their learnings as well.
+[02:37] So yeah, this is first mate, and this agent session is where I literally do everything.
+[02:43] All my projects, all my tasks, I just use this single agent session to do it.
+[02:47] And maybe to show you what that looks like, I'll just ask first mate.
+[02:51] Just all the projects that we manage through this fleet.
+[02:55] Yeah, and you notice that I use voice input by default, and that's how I work.
+[03:03] Voice input is just faster than typing most of the time, like this kind of natural language
+[03:07] prompts.
+[03:08] The only case where I don't use voice is when I have to type a URL or something like that.
+[03:14] Yeah, and you can see first mate has already listed all the projects that I currently
+[03:17] manage through first mate is a lot of projects, right?
+[03:21] This is like how many, 36 projects in total.
+[03:25] So this is, I do everything across this 36 projects, I do a lot of tasks.
+[03:30] Most of these are open source projects that I published.
+[03:33] Some of them are private projects as well.
+[03:35] And I do everything just through first mate.
+[03:37] And to show you how I do that, maybe I just like walk through some real tasks.
+[03:41] The first thing I probably want to do is this project called BackPass.
+[03:46] BackPass is a tool that you can use to help you improve your agents, agents.md or cloud.md.
+[03:55] The way these two works is that it will analyze all your agent sessions in the past.
+[04:00] And use that to detect what can we improve about your agents.md and cloud.md so that your
+[04:07] agents can work better next time.
+[04:09] And this tool, I will probably do a dedicated video about this in the future.
+[04:14] But right now, I just want to do one improvement, which is something I'll just tell first mate.
+[04:19] Hey, first mate, previously we planned an idea for BackPass, which is to allow BackPass
+[04:25] to collect agent sessions across multiple remote machines.
+[04:30] I think the plan is already there.
+[04:32] Can we pull that out and then dispatch a crewmate to work on that?
+[04:36] Alright, so that's how I asked first mate to do one task.
+[04:43] And first mate will look into the project and figure out which project this is about and
+[04:49] how to find the previously already made plan and use that to dedicate to another implementer
+[04:56] agent to do it.
+[04:58] You will notice that first mate agent is already working, but we don't see any tool cause.
+[05:04] We don't see anything in this pie agent terminal.
+[05:09] And the only thing we see is this little boat that is like floating around and sometimes
+[05:14] the agent chain of thoughts is showing up as well, but it quickly gets dismissed.
+[05:19] This is done by a custom pie extension that I built.
+[05:24] It comes with the first mate repo.
+[05:27] And the reason I do this is that I really don't need to look at what the agent is doing.
+[05:32] It's making all those tool cause, it's reading files, it's doing this and that.
+[05:37] I don't actually need to know that.
+[05:39] Most of the time those things are distractions and noise.
+[05:42] So I built this little custom extension called COM.
+[05:48] And this COM command in pie will basically allow me to hide all those noise and just show
+[05:54] this little boat that I can allow me to know the agent is working, it's not stuck.
+[06:00] If I do want to see what kind of tool cause were being made, I can just type COM, stash
+[06:06] COM to toggle these details.
+[06:09] So now I can see, oh, it's making this tool call, it's spawning a crewmate.
+[06:14] So yeah, that's what the agent is doing.
+[06:16] But most of the time I just turn on COM mode and I just don't need to look at all those
+[06:22] noise.
+[06:23] And then that allows me to focus, that allows me to actually think about what do I actually
+[06:28] need to do next.
+[06:30] So that's what's important, not looking at the tool cause and everything.
+[06:34] So one thing I do want to show here, okay, first made said it's found the plan and dispatched
+[06:43] it.
+[06:44] So now we can see there is a crewmate here in the left hand side panel where we can look
+[06:49] at all the sessions or the agents.
+[06:52] We can see here there is a back pass, this is basically another terminal tab where another
+[06:59] agent has spun up in stranding opus 5.
+[07:02] It's got the requirements and it's now building the thing, it's building what I asked.
+[07:08] This is basically a crewmate that spun up by first made earlier.
+[07:13] And the reason we're using opus 5 here is that if we toggle COM mode off and let's see
+[07:22] if we can find the previous tool cause.
+[07:28] We can probably see that before first made decided to launch the crewmate, it caught a
+[07:35] few things, it caught this quota axi and it used a skill called quota array dispatch.
+[07:42] This is something that's really important and that's why I want to talk through this.
+[07:47] First made, when first made is about dispatch a crewmate to do something, it will look at
+[07:54] a bunch of rules to decide which agents and which LLM to use for that crewmate.
+[08:00] So let me turn this back off and let me show you.
+[08:04] Let me go find the config file.
+[08:06] It's a config file in the config directory called crew dispatch.json.
+[08:11] This is my dispatch rules.
+[08:14] You can configure yours and I actually don't write this rule file by hand, I asked first
+[08:20] made to do this.
+[08:22] I just tell first made what my preferences are and first made will configure this file
+[08:26] for me.
+[08:27] And the rules we can look through this.
+[08:29] For new feature development work on this iOS app that I have, always use Fable.
+[08:36] Fable is really good at building good UI and this iOS app actually is a paid app.
+[08:42] I really want to ensure it's taken good care of.
+[08:45] So I use Fable for that.
+[08:47] And the task requires generating images.
+[08:51] If it needs images, then I use codex as the harness and then GPT 5.6.
+[08:56] So codex has a native tool for generating images because OpenAI has the image generation
+[09:03] model.
+[09:04] So I use codex to do that.
+[09:07] There is also when the task is technical, product design, architecture, or planning work.
+[09:13] That is like generating very difficult.
+[09:15] So it's a difficult planning work.
+[09:17] I use Fable.
+[09:18] I use Kimmy K3.
+[09:20] I use Astra.
+[09:22] So I basically allowed these three models to do this kind of very complex and ambiguous planning
+[09:27] for me.
+[09:28] And there's like why as well.
+[09:30] So it helps the model make the decisions.
+[09:33] And then if the task is a simple bug fix whose root cause and expected behavior is already
+[09:38] well defined, then I use Luna.
+[09:40] I use Sonnet.
+[09:41] I use Cursor Glock 4.6.
+[09:46] And then the default, if a task doesn't fall under any of those rules, then the default
+[09:51] is Cloud Open and this cursor and Glock 4.6 high.
+[09:57] So that's basically my rules for how I dispatch the crewmates.
+[10:02] And when you see, I have multiple models defined here, right?
+[10:06] So when this rule matches, there is three models that's available.
+[10:11] And when this happens, the first mate will look at which model has the most quota available
+[10:20] and choose the one that has the most quota.
+[10:22] So I'll show you how I look at my quota as well.
+[10:26] I use this tool called QuotarXC.
+[10:28] That's another project I build.
+[10:30] It can give us this data where I can just easily monitor how my quota is doing.
+[10:36] I have a subscription from Cloud.
+[10:38] I have a codex.
+[10:40] I have a cursor.
+[10:40] I have a Glock as well.
+[10:42] And this is where they sit currently.
+[10:45] I actually took a vacation right before this and I have a ton of quota available, which
+[10:50] is awesome.
+[10:51] So I can build a lot of stuff.
+[10:53] And this QuotarXC is actually, this TUI is for human, but the default CUI is for
+[10:59] agents to use.
+[11:01] So first mate will call QuotarXC to get access to all my quota information and use the model
+[11:07] that has the most quota available.
+[11:09] So that I don't waste any quota.
+[11:12] So this is really useful, because otherwise I have to constantly look at this myself.
+[11:17] And with people like Tibo constantly resetting QuotarXC, it's really hard to keep track
+[11:23] of that, right?
+[11:24] So that's why I use this way.
+[11:28] Let's first mate to manage all this dispatching for me.
+[11:32] And first mate for this case, it decided to use an Opus 5.
+[11:35] So that's why it launches this Opus 5 crewmates under this first mate structure.
+[11:41] So I don't actually look at the crewmates most of the time.
+[11:47] I just think about what I want to do next.
+[11:50] There is another project that I want to make some improvements on.
+[11:54] I will show you.
+[11:56] There is a project I recently built I really find quite interesting, it's called Fly
+[12:01] with Me.
+[12:02] And this project is a game, basically.
+[12:07] And let me show you.
+[12:08] I launched a new seed.
+[12:10] It's basically a game, but it's kind of, it's something to help me relax.
+[12:14] I usually put this on my second monitor when I'm coding.
+[12:20] And it's just like, I turn off sound.
+[12:23] It's just like a really relaxing bird that is flying across the world.
+[12:29] And this whole world is procedurally generated.
+[12:32] So it's always different.
+[12:33] And I can just put this on the second monitor and keep focusing on my work.
+[12:39] So the thing I want to do with this game right now is that I want to improve some of the
+[12:44] visuals in this game.
+[12:46] So I'll just go back to my first mate and tell first mate some of the ideas.
+[12:54] Hey, I want to make some improvements to Fly with Me.
+[12:59] I have three ideas.
+[13:01] One is that I want to prototype some better looking snowy mountains.
+[13:07] So when there is a mountain with snow, right now it doesn't look as good.
+[13:12] I want to prototype a feel really good looking mountains that we can render.
+[13:19] So that's one.
+[13:21] Another idea I have is that at night right now we just show a night sky, we have the Milky
+[13:28] Way, which is good.
+[13:29] But I also want to have Northern lights.
+[13:32] They should show up kind of randomly, not always.
+[13:36] But they should look like realistic Northern lights.
+[13:40] The third idea is that right now there's only one bird and we cannot choose between different
+[13:45] kind of birds.
+[13:46] I want to prototype a few different kind of birds that people can choose.
+[13:52] So yeah, for each of these ideas, I want you to prototype three different variants.
+[13:59] So I can choose which one I like.
+[14:03] And once the prototypes are ready, ask the crewmates to give me that in lavish for me to review.
+[14:12] And each idea should be done by a fable crewmate in parallel.
+[14:19] All right, so basically I gave a long ramble of ideas that I have.
+[14:24] I like to do this a lot.
+[14:27] And you can see I asked for prototypes and I asked the prototypes to be given to me through
+[14:33] lavish, which will look at it in a bit.
+[14:36] It's a really good way to visually validate the ideas and just pick very easily and give
+[14:41] feedback as well.
+[14:43] And I specifically ask for fable because the reason was like I was looking at the quota,
+[14:50] right?
+[14:51] We have a whole bunch of fable quotas available.
+[14:53] So why not use that?
+[14:55] So I use fable to do these prototypes and they usually can give really good results.
+[15:00] Yeah, so this is basically why the previous back pass task is still ongoing.
+[15:07] The crewmate is still working on that.
+[15:09] I just keep giving more and more ideas to first mate.
+[15:12] And first mate is not, because first mate is not the one that's actually doing the work.
+[15:18] It's always available to talk to me.
+[15:20] And whenever there is some more work, first mate will just spin up more crewmates to do
+[15:24] that and then come back to me and I can talk to it as well.
+[15:28] If I have more like more ideas, although first mate is working like this bullet is still moving,
+[15:33] that's saying like first mate is working, I can just keep typing more ideas here.
+[15:37] I can just talk to first mate type more and more prompts and queue those prompts.
+[15:41] Right?
+[15:42] So I don't actually have to wait for first mate to finish up or anything.
+[15:46] I just keep giving more and more prompts.
+[15:50] And that's how I work with first mate to like get a lot of tasks spun up in parallel.
+[15:57] Something else that I also like to do is when I work through so many projects, there's
+[16:02] usually a lot of decisions that were previously discussed but haven't been made, right?
+[16:08] And sometimes it's really easy to like lose track of which things we talk about that have
+[16:13] been done versus have not been done yet.
+[16:17] In first mate, there is a built-in skill called bearings that can do this.
+[16:21] This will basically allow first mate to collect a snapshot of all the active tasks across
+[16:28] the fleet and give me a snapshot.
+[16:31] But the default bearings will give me that in the terminal, which sometimes is like a
+[16:36] little bit hard to read.
+[16:38] So I actually have a variance of that called bearings lavish, which will get first mate
+[16:42] to give me that report in lavish.
+[16:45] So I'll just show you.
+[16:47] I use the follow up prompt to queue this right behind the current actions.
+[16:52] So first mate will not run this yet.
+[16:55] It's queued as a follow up.
+[16:56] So only when first mate has done the current set of actions, then it will do the follow up
+[17:02] prompt.
+[17:03] This is a good way to make sure first mate is not being distracted.
+[17:07] It's actually doing things one by one.
+[17:09] If I need to actually steer first mate to do something, I can also steer instead of follow
+[17:14] up.
+[17:15] So follow up, I think is out enter and steer is just enter.
+[17:19] So if I type a prompt and enter, it will become a steer that will immediately send to first
+[17:24] mate.
+[17:25] That's a pie feature actually.
+[17:28] And it's very handy to have a distinction between follow up and steer.
+[17:32] So we can see here, first mate has spun up back pass, this crewmate, and three other fly
+[17:39] something crewmates, right?
+[17:41] These are the three ideas that I asked just now.
+[17:44] And first mate is just finishing up dispatching all the crewmates.
+[17:48] And we can check, right?
+[17:49] It's using Fable.
+[17:50] So just as we asked.
+[17:52] That is something that's very useful is like I can specifically ask for a certain agent
+[17:58] harness or a certain model to be used for the task that I am about to do.
+[18:05] This is useful when I have some opinion or judgment on what is the right model.
+[18:11] And yeah, for different tasks, I can just easily get the right model to work on them.
+[18:17] And right right now, first mate said, all those three fly with the me prototypes underway.
+[18:23] And now the follow up prompt bearing establish just got sent, right?
+[18:27] So that's how a follow up prompt work.
+[18:29] All right, first mate just brought up this lavish reports, this bearings report in lavish.
+[18:36] And it's a really nicely structured like interactive HTML that has what's what's charted
+[18:44] next, what is currency underway, these are the things that's already happening.
+[18:49] And what's recently landed as the top, there is like all these captains call, these are
+[18:53] decisions I have to make.
+[18:55] So let me look through this.
+[18:58] These were usually like things that were previously discussed and haven't been done.
+[19:02] So it's good to make a decision on.
+[19:05] So there is a workaround for lavish on board.
+[19:09] This one, yeah, I remember this one, but I don't want to do that right now.
+[19:12] I just decide, cloud exit confirmed dialogue.
+[19:16] This is for first mate.
+[19:17] And cloud recently introduced a new dialogue where when you try to exit cloud, when some background
+[19:23] tasks are running.
+[19:25] It will show up a dialogue that blocks the exit, which is really annoying.
+[19:29] So I think we actually have to do this.
+[19:32] Treat as non-wedge, yep.
+[19:37] This leaves profs up.
+[19:39] Yeah, this one I remember, I don't want to do that right now.
+[19:43] And I'll just look through like all these decisions, these were usually like things that
+[19:46] we previous discovered, herder missing and points recreate, yep, that's a bug.
+[19:52] He prefuse escalates, yep, that's the right behavior.
+[19:59] URL wrap, this is for the ship app and this is a bug we'll fix now, ship a follow-up.
+[20:08] This is another improvement for ship for a first time user experience to teach user about
+[20:14] the multiplexer.
+[20:16] This is quite complex, so I'm going to keep that held and discuss that a little bit deeper.
+[20:22] This is the dialogue banner, yeah, this one I actually want to build now.
+[20:26] So I'll do that design kit mock removal, yep, I remember this one needs to be done, I'll
+[20:33] decide as well.
+[20:35] Yeah, you can see there are quite some decisions, right?
+[20:38] Because I'm walking through a lot of different projects and these projects as I walk through
+[20:43] them, I usually have like a lot of discussions with first made and some of the decisions I
+[20:48] just haven't made.
+[20:49] So it's good to have this like first made keeping track of that for me.
+[20:55] Dial nested fan editor, yep, I need that now, what else?
+[21:00] Drag into group, yeah, this is where like users can customize the dial in the ship app,
+[21:10] I will do that later.
+[21:12] So okay, so all the decisions we have recorded the follow-up, so I'll just send this back.
+[21:18] Yeah, we can see here this walking spinner that means the feedback was sent back to first
+[21:23] made and I can actually just end the session now.
+[21:27] If I go back first made, yep, first made is now having a boat, which means first made
+[21:32] is working, so it's likely that first made just receive the feedback and it's now acting
+[21:37] on them.
+[21:38] We will give first made a bit of time to see what first made does.
+[21:42] Okay, here we can see first made just got back to us.
+[21:45] It said the four decisions about first made is listed here, actually there is like nothing
+[21:53] needed.
+[21:54] The one thing I decided to build was actually already released, it's already in the code
+[21:58] base.
+[21:59] So ship, we decided to build this now, build this now and fix that and prioritize this.
+[22:07] So there's a lot of work on this ship project and we can see the work is actually being
+[22:13] routed to this second made.
+[22:15] We can see there's a crew made under here, that's currency running.
+[22:20] Second made is basically a way to scale up first made charter, so you can see as we give
+[22:26] more and more tasks to first made, we already have four tasks, right?
+[22:30] If we keep giving more and more tasks to first made, at some point, you will realize, oh, first
+[22:36] made is like way too busy because it's always orchestrating those tasks and have no time
+[22:40] to even talk to me.
+[22:42] So at some point, you will have to scale up and this is what I did.
+[22:46] I basically created a whole bunch of second made to own different domains of the charter.
+[22:52] So this second made ship owns everything related to this ship app.
+[22:57] So every piece of work that's on this ship app will get routed to this second made.
+[23:02] So first made doesn't have to orchestrate all that.
+[23:05] It can just send the ask to this second made and second made will do it.
+[23:10] And we can see here first, this second made has already spun up this crew made for the
+[23:15] URL wrap bug fix.
+[23:17] There's a few more that will likely be spun up soon as well.
+[23:22] Every second made is actually a first made by itself.
+[23:25] So I can actually just go into this second made and see what it's doing.
+[23:29] I can talk to it just like a normal first made and maybe let me show one example.
+[23:36] This is a second made for the edit wallet app.
+[23:39] This app was the app I built in my last video.
+[23:42] This app is actually already released in the app store.
+[23:45] But I actually forgot which features got in versus not.
+[23:49] So I'll just ask which features have already landed.
+[23:54] That's not released to the app store yet.
+[24:00] So I can just talk to this second made every second made is also a first made.
+[24:04] So it will manage its own crew mates.
+[24:07] It has its own memory and instructions and everything.
+[24:10] So I can just talk to it.
+[24:12] I can also talk to it through first made right.
+[24:16] I can ask first made the same question here and first made will route the question to
+[24:20] that second made whenever appropriate.
+[24:23] Most of the time I actually go with the easy routes where I just talk to first made.
+[24:28] Yeah, so this second made is now trying to answer our question and we can let it do its
+[24:33] work.
+[24:34] And you can see here, there is a local versus mini.
+[24:38] This is a herder feature.
+[24:40] So herder has the ability to manage all the agent sessions across multiple machines.
+[24:46] So this mini is my Mac mini, which is actually on my shelf right now.
+[24:52] It's running headlessly.
+[24:54] So I don't connect any monitors or mouse or keyboards to the Mac mini.
+[24:58] I just let it run headlessly.
+[25:00] And this mini actually manages a lot of, have a lot of second made running on it.
+[25:06] So the mini has the second made for first made development for ship, for edit wallet, for
+[25:11] Axi, for, there's a default one as well.
+[25:14] So the mini has basically more hardware resources than my MacBook.
+[25:20] This current local machine is a MacBook.
+[25:22] It has a little bit less power than what my mini has.
+[25:26] So I assigned a lot of domains to the Mac mini so it can do more work.
+[25:32] Okay, there's actually a lavish board that's just brought up to me.
+[25:36] And we can see the bird kinds for fly with me.
+[25:39] This is what I asked earlier, right?
+[25:42] And it's done by Fable.
+[25:43] So now it's ready for review.
+[25:45] It's really nice to have this lavish interactive artifact you will see.
+[25:49] The current bird, right?
+[25:51] This is the current bird.
+[25:52] It took screenshots so that I can see what's the current bird looks like.
+[25:57] And board-soring raptor.
+[26:00] Okay, this is a prototype, right?
+[26:01] So this is a new kind of bird.
+[26:04] And it's giving me this preview.
+[26:06] This is really nice.
+[26:07] I really like looking at this previews.
+[26:11] So I actually like this one.
+[26:13] This is okay.
+[26:15] What is this?
+[26:16] Slender swallow.
+[26:18] What is a, what is a slender swallow?
+[26:21] I don't know either of those words.
+[26:24] But it looks nice.
+[26:26] It's okay.
+[26:27] This one I probably will also keep.
+[26:30] There is a large ocean glider.
+[26:32] Okay, this is just like the current one, right?
+[26:35] Like it's a little bit different, but very similar.
+[26:38] Okay.
+[26:40] There's a long necked crane.
+[26:42] Oh, cranes.
+[26:43] I like cranes.
+[26:44] They are good.
+[26:46] What is this?
+[26:47] Soft night owl.
+[26:48] Wow.
+[26:49] It has so many prototypes.
+[26:50] It's done a lot of work for us.
+[26:52] So okay.
+[26:53] So there's an owl.
+[26:54] I kind of like this owl as well.
+[26:56] It's like round and cute.
+[26:59] So what do we need to look at here?
+[27:02] Each kind closer.
+[27:03] Okay, closer.
+[27:05] Okay, that's closer.
+[27:08] It actually explained like the key features
+[27:11] of each bird.
+[27:13] That's really nice.
+[27:14] But I think I already like have seen enough about this bird
+[27:18] to know what I like.
+[27:19] Usually at the bottom, it will list the decisions
+[27:22] for me to make, right?
+[27:23] So recommendations.
+[27:24] Carry forward, carry forward.
+[27:27] Oh, it actually recommended to iterate before deciding.
+[27:33] Okay, so let's pick, right?
+[27:37] Currents bird.
+[27:39] Currents birds, we don't need to do anything, right?
+[27:43] Broad this raptor.
+[27:45] Yes.
+[27:46] Swallow, I like it.
+[27:52] The glider is kind of like the same as the current one.
+[27:55] So I'm not going to want it.
+[27:57] I need the crane.
+[27:58] I need the owl.
+[27:59] Okay.
+[28:00] So yeah, these are our decisions
+[28:03] and we'll just kill this and send it back.
+[28:06] I'll just say like let's build the birds we decided.
+[28:13] And send it and end.
+[28:14] And that's it.
+[28:15] That's my feedback back to Fable.
+[28:17] And Fable, that crewmate who prototype this
+[28:21] should receive my feedback
+[28:23] about which birds that we wanted to forward.
+[28:27] And that's it.
+[28:28] So that's the only thing we had to do with that prototype.
+[28:33] We can see here, ship has already spun up three ship crewmates,
+[28:37] right?
+[28:38] Working on three things in parallel.
+[28:40] So right now, how many do we have?
+[28:41] We have one, two, three, four, five, six, seven.
+[28:45] We have seven crewmates working in parallel.
+[28:48] And we can keep giving more.
+[28:49] Like first made is idle right now, right?
+[28:51] First made is not doing anything.
+[28:52] We can just keep giving more ideas.
+[28:55] That's what I will typically do.
+[28:57] I just keep giving more and more.
+[29:00] And at this wall, it's just answered our question as well.
+[29:03] The second made.
+[29:04] It's landed since this not released.
+[29:07] There's a few, okay.
+[29:08] There's a few new user facing features
+[29:10] that's landed but not released.
+[29:12] Auto, pay, local.
+[29:14] Oh, these are not released yet.
+[29:15] Okay.
+[29:16] Yeah.
+[29:17] So now I can decide, do I want to release those features?
+[29:21] But I'll probably put that aside for now.
+[29:23] We have enough to work through here.
+[29:26] Yeah, so while we wait for this current work items to finish,
+[29:30] something I want to show you that's really cool
+[29:32] is that I have a Discord channel here, built with CUN.
+[29:36] We actually have a lot of cool people in this server now.
+[29:39] There is a lot of people online.
+[29:41] And I think there's more than 1,000, 2,000 people now in the server.
+[29:46] So we have constant discussions about first made about models
+[29:51] and harnesses as well.
+[29:53] It's a really cool community.
+[29:55] And if you want to build with agents,
+[29:58] you enjoy discussing tips and tricks with others.
+[30:01] This Discord server is a really good place.
+[30:04] But the thing I want to show you is
+[30:05] I have this bug reports channel that I usually come here
+[30:09] to look at what things I should be fixing.
+[30:12] Let me see what I haven't looked at yet.
+[30:16] I think this one I probably haven't looked at yet.
+[30:19] So this one, what is this?
+[30:22] It's a tree house.
+[30:23] Tree house is another project I have.
+[30:26] And it's a bug report saying this hook is not firing.
+[30:30] Okay.
+[30:31] So it seems there's a lot of debug information already available.
+[30:35] So something I will show you here is that I can actually
+[30:38] add my first mate.
+[30:40] So I can just there's a bot here.
+[30:42] That's my first mate.
+[30:43] I can just ask my first mate to investigate this.
+[30:48] Right.
+[30:49] So I can just add my first mate here.
+[30:51] And this bot is actually relay relaying this message
+[30:57] back to my actual first mate here running this local session.
+[31:01] So this boat that's moving is slightly from that mention.
+[31:06] So I can just like basically summon my first mate
+[31:10] this single agent session that I have from different places.
+[31:14] I can right now it supports discord and X as well.
+[31:19] Maybe I can also show you that.
+[31:20] So on X, I also sometimes when people report problems, right?
+[31:25] So this a person reporting something saying confused
+[31:30] by settings send feedback in this ship app.
+[31:33] Okay.
+[31:34] So here I can also just add my first mate, right?
+[31:39] And say let's improve this confusing message.
+[31:52] All right.
+[31:54] Yeah, so this at this mention will also get relayed
+[31:58] to my first mate session.
+[32:00] Yeah.
+[32:01] So now if we come back to this discord thread,
+[32:03] we should see first mate reply very soon.
+[32:06] Now, yeah, it's just replied.
+[32:08] I captain looking into the tree house pre destroy hook
+[32:11] not firing on destroy will report back.
+[32:14] Yeah.
+[32:14] So now if we come back to this act thread,
+[32:16] first mate also replied saying I captain clarifying
+[32:19] that send feedback version message, right?
+[32:21] So that's pretty good.
+[32:22] This is just like how I work across different surfaces.
+[32:26] It's so nice to have all these messages
+[32:29] from all these different channels and surfaces
+[32:31] all funneled into this single agent session, right?
+[32:34] So this first mate agent session literally holds
+[32:37] all my intents and all the context across every project
+[32:40] that we have.
+[32:41] So it can play a really good role
+[32:43] in coordinating across everything
+[32:45] and orchestrating all the crew to get things done for us.
+[32:49] Okay.
+[32:50] While we wait for the other crew mates to come back to us,
+[32:53] maybe one thing that I want to quickly talk through here
+[32:56] is the context window.
+[32:58] So here you can see the GROC 4.5,
+[33:01] the default context window limits is 500 K tokens.
+[33:04] So here sets we already used more than 40% of that.
+[33:08] And a lot of people ask me whether they should manually
+[33:12] manage this context window and when they should compact,
+[33:16] when they should reset and everything
+[33:18] to keep the context window efficient and optimized.
+[33:22] So my take on this is that there's a lot of things
+[33:26] you can do to manage this context window
+[33:29] and optimize that and get some savings.
+[33:32] Sometimes you can get the agents to use less context
+[33:35] to do the same things and get things done with less cost.
+[33:38] Sometimes you can also optimize this
+[33:42] so that the agent is a little bit smarter
+[33:45] because if you have a lot of context loaded,
+[33:47] it can degrade your agents performance as well.
+[33:50] So there's a lot of things you can do.
+[33:52] But my take is that I actually
+[33:54] have a device against managing that to yourself manually.
+[33:57] The reason is that our most precious resource right now,
+[34:01] the biggest bottleneck across everything we do
+[34:04] with agents is our attention and time,
+[34:07] our human attention and time.
+[34:09] So if you use your mental bandwidth
+[34:12] to deal with this like little optimizations here and there,
+[34:16] then you don't have enough time and enough energy
+[34:19] to think about what should we build.
+[34:21] And that is actually the most important thing.
+[34:24] So I actually think you can just waste a little bit.
+[34:27] It's okay to not be optimal about everything, right?
+[34:31] There's gonna be tools, there's gonna be things
+[34:34] that will help us manage that automatically
+[34:37] and eventually things will just catch up
+[34:40] and those features will get built into the harness
+[34:43] and we don't have to worry about that anymore.
+[34:45] So right now, I actually suggest what you do
+[34:48] is that you set a constant threshold.
+[34:51] So 500K for GROC is actually a very reasonable threshold
+[34:55] for Cloud code maybe a little bit different
+[34:59] because Cloud code has a default of one million tokens
+[35:03] as the context window limits.
+[35:04] That is a little bit too high, I would say.
+[35:07] So Cloud code, there is different settings.
+[35:09] I think there is a environment variable you can set
+[35:13] to limit your context window size.
+[35:15] Let me see if I can find it actually.
+[35:17] I have that in my .files, if I search for auto compaction.
+[35:26] Yeah, so this is the environment variable
+[35:28] you can set Cloud code auto compact window.
+[35:31] And I have that set to 500K.
+[35:34] So that means every time the session reaches 500K tokens,
+[35:38] it will automatically compact.
+[35:40] And that's all I suggest right now.
+[35:43] You just set a threshold that allows the agent
+[35:46] to automatically compact the session.
+[35:49] So it doesn't become too expensive and too inefficient.
+[35:53] Otherwise, just forget about it.
+[35:55] Don't think about the context window too much.
+[35:57] If your brain is thinking about the context window all the time,
+[36:00] you don't have enough time to think about what to build.
+[36:03] So I want you to optimize your time and attention
+[36:08] on what is the right thing to build
+[36:10] because that is the most important thing.
+[36:12] If you do that right, you will get back
+[36:15] much, much more value than what you can save
+[36:18] with these little tricks.
+[36:20] I hope that makes sense.
+[36:21] Oh, and here actually first made reported
+[36:24] the tree house finding, right?
+[36:25] So tree house investigation is done.
+[36:28] Finding is here, not a destroy bug.
+[36:30] Real defect is hooks intentionally discarded for safety.
+[36:34] What?
+[36:35] And that drop is silent.
+[36:38] We dropped hooks.
+[36:41] Okay.
+[36:42] Oh, so hooks in the repo is being discarded.
+[36:46] Destroy, never run.
+[36:48] Keep ignoring repo hooks.
+[36:50] I now remembered that is the security thing.
+[36:53] Yes.
+[36:54] So it met a one time warning.
+[36:58] Okay.
+[37:01] Yes, let's ship the warning fix and also reply
+[37:04] to that discord thread for what is happening here.
+[37:08] Yeah.
+[37:12] So we will do that.
+[37:13] And that is the closure for the tree house bug reports.
+[37:18] So there is a lot of bug reports coming
+[37:20] in this court in GitHub issues.
+[37:22] I just funnel them all into my agent session
+[37:25] here in the first made and that first made
+[37:27] help me do the investigations and all the stuff.
+[37:31] I didn't even have to look into the crewmates
+[37:33] that did the investigation here, right?
+[37:35] So that is the benefit of first made.
+[37:37] I just talked to first made and first made
+[37:39] will orchestrate everything for me.
+[37:41] I don't have to actually juggle between all these sessions.
+[37:44] How many sessions?
+[37:45] I think at some point we had nine sessions or 10 sessions.
+[37:49] And most of the time, I don't really look at any of them.
+[37:52] Oh, first made gave another update.
+[37:54] So there's this tree house warning fix is dispatched.
+[37:58] This quote update is posted.
+[38:01] Fry with me, Bert Kines merged.
+[38:02] Okay.
+[38:04] If you missed it, I did miss it.
+[38:05] So there's a PR.
+[38:07] And we can see this PR didn't even ask for my review.
+[38:11] And I'll show you why.
+[38:12] It's because I told first made to do that.
+[38:16] I'll show you the rules.
+[38:18] So in first made, I think it's in config.
+[38:24] Config or in data in data projects.
+[38:29] MD.
+[38:31] So in this project, there is a policy
+[38:34] being set on every single project.
+[38:36] So if I search for fly with me, this is a policy that I set.
+[38:41] It's called direct PR plus YOLO.
+[38:45] So this basically says, first made, you make your judgment
+[38:48] cause on this.
+[38:49] And every change should raise a PR without going through no
+[38:54] mistakes and just YOLO merge if it looks good.
+[38:58] So this is for projects where I don't think a problem will
+[39:03] actually cause any harm.
+[39:04] Because this fly with me project is just like a toy.
+[39:08] No one is actually depending on it.
+[39:10] So yeah.
+[39:10] So you can see every project has a different policy here.
+[39:13] For most of the project I have, I have no mistakes on.
+[39:18] And some of them have YOLO.
+[39:20] Some of them don't have YOLO.
+[39:21] The ones that have YOLO on is usually the projects where a code
+[39:25] change will not get released immediately.
+[39:28] And we have a chance to test them out before we release them.
+[39:32] So yeah, this is where the policies are being managed.
+[39:35] And you can tell your first made as well.
+[39:37] Which projects actually need no mistakes?
+[39:40] Which projects actually need your eyes before emerging a PR?
+[39:44] So this is very helpful for managing
+[39:47] different levels of God rails.
+[39:50] Not everything need no mistakes.
+[39:52] Not everything need a human review, depending
+[39:55] on how high stake that is.
+[39:57] And for no mistakes, for those of you who are already
+[40:01] familiar with that, no mistakes is a very strong validation
+[40:06] pipeline that will do adversarial review
+[40:08] and make sure the code change is really safe to merge.
+[40:12] That takes a long time and use a lot of tokens.
+[40:15] So I don't actually always use no mistakes for every change I do.
+[40:19] A good way to think about this is like for this code change,
+[40:22] would you have asked another human to review this code?
+[40:26] If you would not have another code reviewer,
+[40:29] then you probably don't need no mistakes.
+[40:32] If the code change is risky and high stake enough,
+[40:35] that you would otherwise ask a human peer to review,
+[40:38] then it's probably worth activating no mistakes
+[40:41] to make sure that's really good.
+[40:44] And I'll probably show you an example of a PR that's
+[40:47] merged through no mistakes for you to see what that looks like.
+[40:50] There's actually another ship change that's landed as well.
+[40:54] The design kit mock removal.
+[40:56] Good, that's good.
+[40:58] I think we just had another lavish artifact ready for review as well.
+[41:04] This is the snow-capped mountains that I asked for.
+[41:07] I'm very excited to look at what this looks like.
+[41:10] What the snow does today, yeah, I don't need to know that.
+[41:14] Yeah, today is good for you to see that.
+[41:17] It's like this.
+[41:18] And it's not like very mountain looking, right?
+[41:22] That's the reason I asked for a better snowy mountain.
+[41:26] Fable is like really careful here.
+[41:30] It's like done some calculations and everything.
+[41:33] And it's got a good climate model.
+[41:38] Interesting.
+[41:39] Three shading studies, I did a lot of studies.
+[41:42] That's why it took so much time.
+[41:44] So there is this painted alpine.
+[41:48] There is this storybook cap.
+[41:51] Interesting.
+[41:52] There is this glacial jade.
+[41:58] How is this different from the other ones?
+[42:01] It looks like kind of similar.
+[42:04] And what's this?
+[42:06] Carved peaks, the terrain study.
+[42:08] Oh, okay.
+[42:10] Oh, this looks good.
+[42:14] This is like it'll go above the cloud.
+[42:17] That is also nice.
+[42:19] Compare.
+[42:21] We can actually preview these different variants.
+[42:26] Ooh.
+[42:29] This is so nice.
+[42:30] Like, it's just really good to have this visual validation
+[42:37] for what this is actually going to look like.
+[42:39] It's a really good way to discuss prototypes.
+[42:43] I actually quite like this carved peaks.
+[42:46] This look pretty nice.
+[42:48] But I don't want to accept this just yet.
+[42:52] I think I actually want the mountain peaks
+[42:57] to look more like Mount Everest, that kind of mountain,
+[43:00] if you know what I mean.
+[43:02] So I will give some feedback here.
+[43:06] This is mostly good.
+[43:08] This is a good improvement.
+[43:09] But I actually want the mountain peaks
+[43:12] to look more like Mount Everest.
+[43:14] Can you go find some photos of Mount Everest and K2?
+[43:20] Those mountain peaks.
+[43:21] And try to get our mountains to be closer to that looking?
+[43:28] All right.
+[43:29] So that feedback goes back to the Facebook roommates.
+[43:32] So that's my feedback.
+[43:34] And let's come back here.
+[43:36] And we can see a tree house warning fix is also underway.
+[43:40] Maybe one thing I'll show you is like, you can see,
+[43:43] we went to the lavish artifacts to review stuff.
+[43:47] And while we are reviewing, the first made
+[43:49] has already printed a lot of information.
+[43:52] It's got so many things.
+[43:54] And across this whole session, did I miss something?
+[43:58] Did I actually look through everything first made
+[44:00] told me?
+[44:01] It's really unclear.
+[44:02] And this is where the chat UX is a little bit limiting.
+[44:06] So what I have here is in first made repo,
+[44:09] there is a built-in skill called Ahoy.
+[44:12] It's just a really good way to catch up on things.
+[44:15] So Ahoy basically tells first made to summarize
+[44:18] what first made has told you since your last message.
+[44:22] And also pulled out any open decisions
+[44:25] that you haven't made yet.
+[44:26] Right?
+[44:27] So here we can see it told us, it's landed.
+[44:31] These bird kinds, this mock removal.
+[44:34] There's a bunch of things still underway.
+[44:36] And there's still some things waiting for me.
+[44:39] And these things, I actually directly gave feedback
+[44:42] to the crewmate, so it should be okay.
+[44:45] There is an open call, snowy mountains, yeah.
+[44:48] So the reason first made doesn't know
+[44:52] we already made a decision on snowy mountains.
+[44:54] I already gave feedback to the crewmates.
+[44:57] It's because I gave that directly through lavish.
+[45:00] And that goes straight to the crewmates
+[45:02] and doesn't go through first made.
+[45:05] So first made thinks is the open, which is okay.
+[45:08] And very soon the crewmate will give an update
+[45:11] and first made will catch up as well.
+[45:13] So this is basically a good way for me to get a sense
+[45:17] that I miss something is everything okay.
+[45:20] Just Ahoy.
+[45:21] And I can just keep spamming Ahoy.
+[45:23] It's a very cheap call.
+[45:25] It's this skill doesn't cost too many tokens.
+[45:28] It's basically a summarization across the previous session.
+[45:31] Just make it a lot easier for me to keep getting
+[45:36] a very clear sense of what is the next step.
+[45:39] Yeah, I think for now I just want to wait
+[45:40] for at least one PR that went through no mistakes pipeline.
+[45:45] So I can show you what does a PR that went through no mistakes
+[45:49] and has done the more rigorous validation looks like.
+[45:53] It's very different from the YOLO PR
+[45:55] that we merged earlier.
+[45:56] Oh, here we can see something interesting is happening.
+[45:59] The tree house warning fix is already validated,
+[46:02] push to this commit, but we couldn't create a PR
+[46:05] because GitHub seems to be returning internal server error.
+[46:09] So first mate received this update
+[46:12] and it's basically authorized a retry
+[46:15] asking the crew mates to just try again.
+[46:17] It seems it's healthy now and gave me this update
+[46:20] and I didn't have to do anything.
+[46:22] I may not even be looking at this message right now.
+[46:25] So this is one of the values that you can get from first mate
+[46:29] which is that it's an orchestrator
+[46:31] that will take care of these things for you.
+[46:33] So you don't have to worry about all of this.
+[46:34] There is a GitHub error and I need to retry.
+[46:38] You don't need to think about that.
+[46:39] First mate will just take care of it.
+[46:41] Okay, we have a new lavish board to review.
+[46:44] Let's take a look.
+[46:47] Five kinds.
+[46:48] This is a follow up on the five birds.
+[46:52] I think, yeah, so it's figuring out
+[46:56] how do we let people choose the birds
+[46:59] and it proposed all these different colors as well.
+[47:02] So each kind of bird can have
+[47:04] many, many different kinds of colors.
+[47:06] This is pretty cool.
+[47:08] Okay.
+[47:11] Yeah, it looks nice, right?
+[47:12] Looks really nice.
+[47:14] Okay, so this is pretty straightforward.
+[47:16] I would say we just do it.
+[47:18] The word opens.
+[47:20] Oh, how does it open?
+[47:22] Okay.
+[47:26] I think that's pretty straightforward.
+[47:29] Yeah.
+[47:33] Let's see what decisions do we have.
+[47:34] Oh, it's even made sure
+[47:36] that UI will work well on the phone.
+[47:39] That's very thorough.
+[47:42] Cool.
+[47:43] So decisions, recommendations.
+[47:46] Decisions for the captain.
+[47:47] What does the corner word do?
+[47:51] Open the strip, yeah.
+[47:54] Grouped by kind on colors first.
+[47:57] Keep cycling kinds.
+[47:59] Yeah, I think we should do A, yeah.
+[48:01] Just a straightforward trusser.
+[48:04] Who's colors fly when nobody chooses?
+[48:08] Each kind has its own color.
+[48:10] Yeah, that's good.
+[48:12] What should be promoted from this scout?
+[48:14] We want to build this.
+[48:18] And together with the list under, yeah, everything.
+[48:21] Okay, send it back.
+[48:24] Let's build it.
+[48:26] Oh, another board.
+[48:27] The snowy mountains.
+[48:28] Okay, that's also ready for review.
+[48:31] Okay, so it looked at some real photos of Mount Everest, right?
+[48:36] That's what I asked.
+[48:37] And it's got these reference images.
+[48:40] It's like this made sure the agent actually understood
+[48:44] what I mean by like good looking mountains.
+[48:47] So this is good.
+[48:51] So okay.
+[48:54] Oh, yeah, this is starting to look better
+[48:57] because it's got like the rocks and the snow.
+[49:01] Oh, yeah.
+[49:05] Okay.
+[49:08] What else do we need to review?
+[49:11] Okay, so these are the previous variants, right?
+[49:14] And I think the agent just introduced this new variants.
+[49:18] The here.
+[49:22] Okay, cool.
+[49:24] I think this is better.
+[49:25] So let's probably make a decision on this as well.
+[49:31] Here.
+[49:35] Okay, let's see.
+[49:37] I think the variance D is the new one.
+[49:40] And yeah, I think it's like better than the other ones.
+[49:45] So let's do it.
+[49:49] Let's do it, let's do it.
+[49:51] D.
+[49:53] Wait.
+[49:56] Yeah, it's just straightforward D, right?
+[49:58] Okay, let's just choose D.
+[50:01] Should the mountains themselves change?
+[50:07] What?
+[50:07] How does the mountain change pyramid peaks as shown?
+[50:12] Taller.
+[50:13] Yeah, I do want the shapes to change.
+[50:17] Taller and sharper.
+[50:22] Okay, cool.
+[50:23] That's it as well.
+[50:25] So yeah, this is basically how I make decisions.
+[50:27] The agents will bring these decisions to me with a lot of context,
+[50:31] with a lot of the homework that I can see and the visuals,
+[50:36] the prototypes as well.
+[50:37] This process really helps me understand what the agent has done.
+[50:41] Well, we are actually choosing between.
+[50:43] And also helps the agents get to a good implementation that I will be happy with as well.
+[50:49] So let's get back to this.
+[50:51] Yeah, the choices are locked in.
+[50:53] I think I might have made a mistake in the beginning and I didn't actually get
+[50:57] the northern lights prototype to start because there's no crewmates that's doing the northern lights.
+[51:04] Yeah, I guess that's okay.
+[51:05] I'll do that later for now.
+[51:07] We'll just ignore that.
+[51:08] Okay, we just have two more pears landed.
+[51:10] The bird variance selector and the tree house one in fix.
+[51:14] Let's look at the tree house one.
+[51:17] Because I think this one went through no mistakes.
+[51:19] And I also let first made do yolo merge for this one because tree house does not automatically release.
+[51:26] Every time I create a new release, I will test things out as well.
+[51:29] But even at this PR level, no mistakes does a lot of heavy lifting for us.
+[51:35] So I'll just walk through the PR structure here.
+[51:37] The intent was basically my requirements for this task.
+[51:41] And what changed, there is a quick summary, the duplicate is warning.
+[51:47] Yep, that's what we asked.
+[51:49] And there's a risk assessment.
+[51:51] This is very helpful because usually when the PR is having a
+[51:55] big blast radius or having some kind of unresolved problem,
+[52:00] it will have a medium or high risk assessment for me.
+[52:03] When I see this is low, I already know I probably don't need to take too much look.
+[52:08] And there's a testing section.
+[52:10] These are the live validation that no mistakes the agents in the no mistakes pipeline did.
+[52:17] So it did nine out of 10 scenarios.
+[52:20] And these scenarios are basically the things that prove this change does work.
+[52:25] According to our intent, right?
+[52:27] So I said get this, this lease will once on STD error.
+[52:34] Repository level hooks remain untrusted, not executed.
+[52:37] Yeah, so it basically validated everything that we care about this live with the product end to end.
+[52:44] And there's evidence as well.
+[52:46] And I think there's like, yeah, there is further logs that we can look at
+[52:51] to understand what was retested.
+[52:54] There was one scenario skipped and this one was untested.
+[52:59] Repository configuration documentation directs user to place this.
+[53:04] Oh, documentation.
+[53:05] Okay.
+[53:05] Yeah, documentation does not need a live testing.
+[53:08] So that's probably it.
+[53:09] Yeah, so this risk assessment and testing this validation is basically how I develop confidence
+[53:16] in a code change without having to look through every single line of code.
+[53:20] Usually when the risk assessment is not low,
+[53:22] then I will go take a look at the code as well.
+[53:25] But when it's low and it's well tested,
+[53:27] I don't even look at the code.
+[53:28] I seriously just good.
+[53:29] Okay, we are probably not going to wait for every single
+[53:33] crewmate to finish.
+[53:34] Hopefully this video so far has already given you a look into how I work,
+[53:38] how I direct a large number of agents to work in parallel without going insane.
+[53:43] I will drop a link to everything I mentioned in the description of this video.
+[53:47] And if you have any questions, please just leave a comment or join my discord server
+[53:51] and I'll try to get back to you.
+[53:53] Thank you for watching and see you next time.

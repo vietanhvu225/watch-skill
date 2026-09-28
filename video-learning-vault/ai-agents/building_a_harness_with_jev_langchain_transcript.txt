@@ -1,0 +1,191 @@
+[00:00] Hey folks, my name is Sydney.
+[00:01] I'm the product manager for the open-source team at Linkchain.
+[00:04] Today, I'm super excited to share with you how you can build a harness with
+[00:08] GIV, this new model that just came out from Type-CFAI.
+[00:12] So before we dive into what GIV is, why it's so exciting,
+[00:15] I want to do a quick recap of the core agent loop that we're all used to.
+[00:20] So a request comes in, we send that to an LOM,
+[00:24] and it's able to take action by using tools.
+[00:27] So it will call a tool, get some results back, process those,
+[00:32] and then it can continue in this tool calling loop,
+[00:34] or it can decide that it's done with a given task and return a result.
+[00:39] This loop is super powerful, but LOMs are a little bit unpredictable, right?
+[00:44] They get text in and then produce text out.
+[00:47] And so when LOMs first came out,
+[00:49] we decided that we needed ways to impose a little bit more structure on them
+[00:53] so that they could work well in code-driven applications
+[00:56] that inherently depend on structured types, not just the raw text.
+[01:02] So enter tool calling and structured outputs.
+[01:05] Again, tool calling, a model can send a structured request.
+[01:09] In this case, a get order request with a given ID,
+[01:12] and then the tool returns a result with structured data.
+[01:16] The other primitive we added, again, is structured outputs.
+[01:19] The idea here is that you can bind an output type to your model,
+[01:23] and so it produces a final result that adheres to a given JSON schema
+[01:27] rather than just raw text.
+[01:29] And so these two primitives made it a lot easier
+[01:32] to take advantage of this really powerful loop in code-based applications.
+[01:38] Okay, so now to the exciting piece, what is Jev?
+[01:41] There's so much buzz right now on Twitter about this new model.
+[01:44] Why is everyone talking about it?
+[01:45] So Jev is what we call a system one model
+[01:48] from this new startup that just emerged called Type Safe AI.
+[01:52] So according to their docs, system one models
+[01:54] are a class of AI models built to make fast structured decisions
+[01:58] that software can use directly.
+[02:01] A system one model evaluates a state and questions
+[02:04] and returns typed answers and probabilities.
+[02:08] You can see an example of state and questions
+[02:11] and then typed answers here on the slide.
+[02:14] The interesting thing here is that Jev actually doesn't take text in
+[02:18] and then generate text out like the traditional LLMs
+[02:21] that we're used to.
+[02:23] Part of the reason why Jev is so popular right now
+[02:25] is it can be 20 to 200 times faster
+[02:29] and 40 to 400 times cheaper on classification style tasks
+[02:33] compared to LLMs.
+[02:35] So Jev is not a drop-in substitute for an LLM
+[02:39] but it can do specialized tasks that we currently ask LLMs to do
+[02:43] much faster and much cheaper.
+[02:46] In case you're curious where this system one phrase is coming from,
+[02:50] it actually comes from psychologist Daniel Connemon's book
+[02:53] Thinking Fast and Slow.
+[02:55] And in this book, he described two ways that minds think.
+[02:58] Fast and cheap system one intuition versus slow and expensive
+[03:03] system two reasoning.
+[03:05] And so Type Safe borrowed this sentiment
+[03:07] for its new model called Jev calling it a system one model.
+[03:10] That's fast and cheap, returning almost instant type decisions
+[03:14] instead of generating text, which is in deliberate contrast
+[03:17] to standard LLMs, which behave more like system two,
+[03:20] slower and pricier, but adhering to more of this step-by-step reasoning
+[03:25] over open-ended problems.
+[03:27] All right, I'm going to show a quick demo here
+[03:29] on how an LLM answers a question versus how Jev answers.
+[03:36] So the question is, is there PII in this text?
+[03:40] And so an LLM produces this text result
+[03:43] and then also structured output.
+[03:46] It takes about five seconds.
+[03:48] Jev almost immediately.
+[03:50] Chance that there's PII is 98%.
+[03:54] And so you can see kind of from this demo
+[03:56] for simple classification style tasks.
+[03:59] Jev is super useful.
+[04:00] And there are a lot of classification
+[04:02] or kind of decision style tasks that we currently
+[04:05] ask agents to do with LLMs that could be more optimal in terms
+[04:09] of speed and cost.
+[04:11] All right, so let's talk a little bit more
+[04:12] about the types of questions that Jev can help answer.
+[04:15] There's three types of questions
+[04:17] and we'll look at them through the lens of this example.
+[04:20] So the state says, hi, I've been trying
+[04:22] to connect my Stripe account for three days
+[04:24] and it keeps failing.
+[04:25] I'm losing sales.
+[04:26] Please help ASAP.
+[04:28] So question type one is a choice.
+[04:30] Multiple choice, pick one option.
+[04:32] So for example, which team should handle this?
+[04:36] The score shows 0.84 for billing
+[04:40] with a competence of 0.596.
+[04:43] The second question type is a score.
+[04:45] So somewhere on a scale, how frustrated
+[04:48] the customer appears from calm to frustrated to very angry.
+[04:51] And the score here is 1.035.
+[04:54] So the customer seems frustrated, but not very angry.
+[04:58] And then the third question type is a dual.
+[05:01] So this is a Boolean type answer, a yes or no.
+[05:04] So the message conveys urgency or time sensitivity
+[05:07] returns 0.999.
+[05:09] This is on a scale of 0 to 1.
+[05:11] So certainly a high urgency probability for this case.
+[05:16] One other thing to note, you can actually
+[05:18] send a single state with many questions
+[05:20] that Jeb answers in parallel.
+[05:22] So Jeb is actually very efficient with many questions
+[05:25] at a time.
+[05:28] This is, again, in contrast to OOMs, which
+[05:30] do more sequential reasoning, rather than parallel processing.
+[05:35] All right, so how can you use Jeb in Lengchene?
+[05:38] We just released a Lengchene typesafe integration.
+[05:41] So from Lengchene typesafe, you can import this typesafe
+[05:44] classifier.
+[05:46] First, you'll need to acquire a typesafe API key.
+[05:49] And then you can use this classifier to invoke Jeb
+[05:52] with a state and questions.
+[05:54] And then the response has answers to each question
+[05:57] that you send it.
+[06:00] Let's walk through just a couple of use cases that
+[06:02] are super great for Jeb.
+[06:04] The first is model routing.
+[06:06] So if you have an agent that does both simple and complex
+[06:10] work, you probably don't want to use
+[06:12] the most powerful model for everything that the agent does.
+[06:17] An example of this that we've been exploring at Lengchene
+[06:19] recently is that we actually want our internal coding
+[06:22] agents to switch between fast and cheap models
+[06:25] and more expensive and powerful models,
+[06:28] depending on the complexity of a given question or coding
+[06:31] task.
+[06:32] And so Jeb is great for this model routing step.
+[06:35] You can assess a given prompt against given criteria
+[06:39] to help decide whether or not you should use a fast or more
+[06:42] powerful model.
+[06:43] And Jeb decides almost instantaneously.
+[06:47] Another interesting case is what we call auto mode.
+[06:50] So from Lengchene, we already offer this as a prebuilt auto
+[06:52] mode middleware.
+[06:54] And the idea here is that you can ask Jeb to analyze
+[06:57] whether or not given tool calls are risky.
+[06:59] And then you can block those at runtime.
+[07:02] And so anecdotally, I actually turned off auto mode
+[07:04] in my coding agent recently because the classification step
+[07:09] of whether a given tool call was risky was too slow
+[07:12] for my coding agent to feel productive.
+[07:14] But it's back on now that Jeb can make these decisions
+[07:16] so quickly.
+[07:18] So a quick example here is like if a tool call was issued
+[07:21] that would delete a database or delete important files,
+[07:24] Jeb would certainly classify that as risky and then
+[07:27] block that tool call.
+[07:28] All right, the third interesting case here,
+[07:30] maybe the one I'm most excited about,
+[07:32] is using Jeb as a judge for online e-vails.
+[07:36] So the idea with this is that you often want some sort
+[07:39] of model to help you identify whether or not
+[07:42] your agent has done a good job with a given task.
+[07:45] But when you're running e-vails at scale,
+[07:47] it's not super reasonable to have human oversight
+[07:50] over every single trace.
+[07:52] But you often need more than just code style evaluators
+[07:55] to decide whether or not your agent is doing a good job.
+[07:58] And Jeb is really great at this.
+[08:00] So you have your input for a given e-vail.
+[08:03] So the initial question and then the answer from the agent.
+[08:07] And then you also have a rubric that you provide
+[08:09] so creating criteria.
+[08:11] Like, is this answer correct?
+[08:13] Does it match the reference?
+[08:15] Is it grounded?
+[08:16] Was there a cited source?
+[08:17] And then Jeb can score the given answer
+[08:19] along these different rubric criteria.
+[08:22] This is kind of an evolution of LLM as a judge
+[08:25] online e-vails, which are currently certainly very useful,
+[08:28] but also very expensive.
+[08:31] We just wrote a blog on how to use Jeb as a judge.
+[08:33] And it has some really interesting results
+[08:35] about Jeb being surprised, surprised, much cheaper,
+[08:38] and much faster, but also interestingly,
+[08:40] much more reliable and consistent across e-vails
+[08:42] than the LLM alternative.
+[08:47] All right, so I'll leave you with this.
+[08:48] It's time to go build something cool with Jeb.
+[08:51] You can get started with UVPIP install,
+[08:53] link chain type safe.
+[08:55] You can read our accompanying blog post at the link here.
+[08:59] Easily get an API key from typesafe.ai,
+[09:02] tag us at link chain AI on X.
+[09:04] We'd love to see what you're working on.
+[09:05] Thanks, folks.

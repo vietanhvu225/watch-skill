@@ -1,0 +1,102 @@
+[00:00] Hi. Welcome to another video. So, if you're using an expensive coding model, a lot of your usage can go into pretty ordinary work, reading files, writing repetitive code, fixing imports, and making small changes.
+[00:19] I don't think every part of a project needs your most expensive model. Today, I want to show you an architect and worker set up in a tool called Bambood, a stronger model plans the project and reviews the result, while more affordable models handle the individual assignments.
+[00:33] And we're going to add Jeff to help with a few decisions along the way, including choosing workers, checking changes, and testing the app in a browser.
+[00:40] The idea comes from a Reddit post where someone paired Astra with a deep seek 4.1 sub-agents. They reported spending 94 cents on the workers, while Astra used about 10% of their weekly subscription allowance. Those are their figures. The entire setup didn't cost 94 cents, and we need to measure our own run.
+[00:54] Their expanded explanation uses MCP to connect deep seek to Codex with Codex Leading Development and reviewing the workers. I'll link that below. I'm using Bambood because the team set up is built in, and I want to choose the models and follow their work through an interface.
+[01:08] Jeff is an optional addition to that workflow. You can use Bambood, run teams, and review your changes without a Jeff API key. I'll show where the extra assistance fits, so you can decide which parts are useful to you. So let's get right into it. First, just look at the workspace.
+[01:21] A lot of coding tools give you this dark, plain window, and that's fine, but I like the nature backgrounds and translucent panels here. It feels a lot less dull when you're spending hours looking at agent responses. You can change the wallpaper, adjust its visibility, and add blur.
+[01:35] I like having the scenery there, but I still want the text to be readable. You can tone it down as much as you want.
+[01:40] Bambood is $20 a month with model subscriptions and API usage build separately. It's also still in alpha. So yes, it's another subscription, and there will be rough edges.
+[01:52] What interests me is having the team controls, conversations, browser, and changes together in a workspace that feels good to use.
+[02:00] Now, the architect keeps track of the overall objective. It decides what needs to be built, breaks that into assignments, and checks whether the pieces fit together.
+[02:10] The workers implement those assignments with clear file ownership and a clear description of the expected result.
+[02:18] Jev has a smaller role. It's TypeSafe's decision model. It can look at supplied information and make a focused judgment, such as which configured worker fits an assignment, or whether the evidence supports a completion claim.
+[02:30] The coding models still plan, write code, and fix problems. The potential saving comes from dividing the work sensibly. A cheaper worker can handle implementation while the architect concentrates on coordination and review.
+[02:42] Jev gives us another way to handle focused checks, but every extra call has a cost, so we'll use it selectively.
+[02:47] First, install and activate Bambood using the download and license from your website account. I'm showing the Mac OS version here. You'll also need your chosen coding tools installed and signed in.
+[02:58] The Bambood subscription doesn't include access to their paid models. For this example, I'm using codecs for the architect and open code for the workers.
+[03:06] You can also choose from other supported connections, including Claude code, Kimmy code, and GLM through Claude code. The models available depend on the harness and account you've connected.
+[03:16] For deepseek through open code, open open code first, use slash connect, choose deepseek, and enter your provider key in the connection prompt. Then use slash models to see what's available.
+[03:26] Use the actual model listed in your account. This workflow doesn't depend on the exact version in the Reddit post.
+[03:32] Click in Bambood, open settings, then agents, find open code models, click choose models, select the entries you want, and save them.
+[03:41] These become available in the main model drop down and the team selectors. If you only see default, refresh the catalog after connecting your provider and choose an explicit model.
+[03:51] Now, while we're in settings, let's set up the optional Jeff part. Under agents, open setup, Jeff, and enable decision assistance.
+[03:58] Add your type safe API key and save. That's enough for the worker suggestions, context, look up, and review checks. They don't need a browser runtime or another text model.
+[04:07] Browser testing has its own switch labeled let your agents test their apps. For that part, enable the switch, add the text model API key as well, and click save settings again.
+[04:16] Then install the Jeff runtime using the button and check the setup. You'll need Chrome and either the UV package manager or Python version 3.12 or newer available for the installation.
+[04:25] The browser helper model can be configured separately. If you only want the decision features, leave browser testing off and skip that extra setup.
+[04:32] Both parts start disabled and your normal coding workflow continues without them.
+[04:36] The information used for a requested Jeff check goes to type safe and browser text entry can use the configured helper provider. Reports stay on your device.
+[04:44] So this is an additional provider connection with separate usage and you control whether to enable it.
+[04:49] Now open a project and create a new task. Bambooed uses your last active project, but check the name and change it if needed.
+[04:56] In the message box, click team to open the compact architect and workers panel. Choose codex and your planning model for the architect.
+[05:04] If Astra is available, you can use it to follow the reddit idea or choose another model you trust for this project.
+[05:10] Set the reasoning effort where supported I wouldn't automatically put every agent on its highest setting.
+[05:15] For the workers, select open code and the deep seek model you added.
+[05:20] Let's create two profiles called logic and interface. They can use the same model or different ones.
+[05:26] The names describe the roles we intend to give them. We'll still need to provide the actual assignments.
+[05:31] Set at once to two. Bambooed currently supports up to three simultaneous worker assignments.
+[05:36] So this is a smaller team than the eight agents in the post. Under run limits and context, you can also limit assignments and architect rounds and control how much worker output is summarized.
+[05:46] Those are workflow limits, not a hard dollar budget. Save this combination as a profile called budget coding, then apply it with save setup.
+[05:54] The setup is remembered and profiles let you switch teams without selecting all the models.
+[05:59] Again, this is our first place to try Jev. Let's also give the review a couple of concrete rules.
+[06:05] From task actions, open Jev assistance, then project rules. I'll save two.
+[06:10] The game engine must not read or modify the browser interface and changes to game rules must include meaningful tests for the affected behavior.
+[06:17] Saving those rules doesn't call a model. We'll check them against saved changes later.
+[06:23] I'll include them in the task request as well. So the workers know the expectations before they start coding.
+[06:29] Now let's build the minesweeper game. It has a useful split between game rules and interface work.
+[06:35] And we can test the behavior instead of judging only a screenshot. I'll give the architect this request.
+[06:40] Build a browser-based minesweeper game with difficulty levels, a timer, flags, a safe first click, keyboard controls, and saved best times.
+[06:48] To find the engine interface and file ownership first, assign the engine and its tests to logic and the layout and controls to interface,
+[06:55] run independent work in parallel, ask for checkpoints and blockers, then review and integrate the results.
+[07:01] I'm also adding the project rules and a short Jev instruction. If the tools are available, use them selectively for worker suggestions and checking saved changes.
+[07:10] Use relevant context excerpts when needed. Treat the results as advice, continue normally if Jev is unavailable and verify the game with actual tests.
+[07:17] The complete prompt will be linked below including the browser checks, so let's send it and see how the work gets divided.
+[07:23] First, watch whether the architect actually delegates. We want separate assignments with an agreed interface.
+[07:28] The game engine needs to expose the board state and game actions, and the interface worker needs to know how to use them.
+[07:33] Otherwise, both workers can produce reasonable code that doesn't fit together. The team uses a shared checkout, overlapping declared file scope's weight, which helps coordinate edits, but sensible boundaries still matter.
+[07:43] Two agents shouldn't both be rewriting the same page because they were each told to build the entire game.
+[07:48] Open architect and workers on the right of the conversation. You can see the assignments and status, then click a worker to read its response, tool activity and latest checkpoint.
+[07:59] The main conversation stays manageable while the detailed work remains available. Workers can also communicate with the architect and teammates.
+[08:07] If the interface needs a different engine response, it can raise that issue and the architect can coordinate the change.
+[08:12] A checkpoint records progress, next steps and blockers, which is useful when a task takes several rounds. Here's another place, Jev fits.
+[08:20] Suppose we've discussed the engine contract and now need to find that agreement.
+[08:24] In Jev assistance, open find context and ask what contract we agreed on between the engine and interface, preview the excerpts, then run the lookup.
+[08:33] It returns relevant original text from the recent task conversation. This doesn't rewrite the history and it isn't a search across every file or every worker transcript.
+[08:41] If the agreement is outside that recent window, open the original worker conversation. I like this as a focused way to retrieve an earlier decision.
+[08:48] The normal checkpoints and conversation history still do the main job of keeping a longer task coherent.
+[08:53] We aren't making the agent depend on Jev remembering everything. Bambooed can bring the architect back when teammates send messages
+[09:00] or when worker results are ready for review. You also have pause, resume, and stop controls.
+[09:06] If the same blocker keeps returning, check what's happening before spending more on another round. Once a worker settles, open its saved changes.
+[09:14] This is where I want to see the diff and the actual test output, not just a confident paragraph saying everything is done.
+[09:20] From that worker or from its saved diff, click review with Jev, ask it to assess whether the available evidence covers the requested behavior and point out missing verification.
+[09:30] Preview evidence shows what will be assessed before you run it.
+[09:33] The report can flag unsupported claims or uncertainty. For example, if a worker says best times persist, but there's no relevant test or browser evidence, that's something to investigate.
+[09:45] The check doesn't run the test itself, and I would keep the architect responsible for deciding what to do next. Review a settled worker here.
+[09:52] If you review a task while agents are still running, active work will be called out as unresolved. That makes sense, and there's no reason to keep calling the checker until it agrees to finish.
+[10:02] Then check the saved changes against our project rules. We want to know whether the engine stayed separate from browser code and whether the changed rules have meaningful tests.
+[10:11] These are file-level judgments about the saved patch, so open the source diff when something gets flagged. Use report in prompt adds the result to your draft.
+[10:20] You can ask the architect to investigate a finding and give the relevant worker a focused follow-up. Nothing gets sent just because you open the report.
+[10:27] Now, let's test the actual app. Ask the architect to start the local preview. Then open it from Bambood's browser panel and its list of local servers.
+[10:35] With the optional browser integration enabled, click test with Jev. Give it a specific journey, start a game, reveal a cell, place, and remove a flag. Restart and change the difficulty.
+[10:44] Finish on the game screen and report any interaction that fails. Jev drives a separate Chrome session, so it isn't using your personal browser tabs or signed in cookies.
+[10:52] For this demo, the build prompt asks for the title, mine sweeper, and visible labels for difficulty and new game. We can use the title and visible text as independent final checks. Then watch the actions stream into the report and inspect the screen shot.
+[11:04] There's an important distinction in the result. Agent finished means the browser agent reported that it finished.
+[11:10] Checks past means those specific assertions past. A correct page title doesn't prove that the mind placement or time or logic is correct, so keep the engine tests and inspect the gameplay too.
+[11:20] You can also ask the architect to run these browser tests through its tools. Tell it to wait for the reports, read any failed checks, and inspect the screenshots before ending the turn.
+[11:29] That lets it use the findings in the review without you copying every browser action into the conversation. Run a second check with the mobile preset to look at the narrower layout.
+[11:38] I would still test the keyboard controls manually and verify saved best times across a reload. Browser automation can get stuck on unsupported interactions and I want those limitations reported rather than counted as success.
+[11:50] If the timer keeps running after changing difficulty, for example, give that exact behavior back to the architect. It can assign a focused fix, rerun the affected tests, and repeat that browser journey.
+[12:01] You can check the revised saved diff with Jeff again when there's new evidence to assess. That's the loop we're aiming for, clear assignments, implementation, useful evidence, and a focused fix when something is wrong.
+[12:13] Jeff helps at selected points while the architect and workers continue doing the development. Without a Jeff key, you can follow the same process using the normal worker conversations, diffs, tests, and browser panel.
+[12:24] You can also enable only decision assistance and keep testing the interface yourself. There's no requirement to add another model service just to use the team feature.
+[12:32] Now about keeping this economical start with work that can actually be separated. Two independent components can justify a team. A one line change probably doesn't need two workers in several review rounds.
+[12:42] Keep the assignments specific and the checkpoints concise. If a cheaper model repeatedly gets stuck, a stronger worker might finish the job for less overall.
+[12:52] The cheapest token price doesn't necessarily give you the cheapest completed task. Include the architect workers, retries, bamboo subscription, and any Jeff or browser helper usage when comparing costs.
+[13:04] I would use the extra checks where they save repetitive investigation, then measure the complete run.
+[13:09] Adding another model doesn't automatically save tokens or time. You can still use the MCP approach from the post if you prefer putting together your own setup.
+[13:17] What appeals to me here is selecting the team in one place following its progress and reviewing the work in an interface that looks and feels much better than another plain coding window.
+[13:27] It is still $20 a month and it's still alpha. But the architect and worker workflow is built in. The profiles are easy to reuse and Jeff adds some interesting optional checks around it.
+[13:38] You can start with your existing models and add the extra pieces only when they help. Overall it's pretty cool.
+[13:44] Anyway, let me know your thoughts in the comments. If you liked this video, consider donating through the super thanks option or becoming a member by clicking the join button.
+[13:52] Also, give this video a thumbs up and subscribe to my channel. I'll see you in the next one. Until then, bye.

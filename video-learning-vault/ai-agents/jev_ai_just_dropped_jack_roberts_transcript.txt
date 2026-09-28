@@ -1,0 +1,358 @@
+[00:00] Jeff just robbed and it is the world's fastest model
+[00:03] and 400 times cheaper than GPT-6 Astro.
+[00:06] It is a fundamentally different type of AI
+[00:08] that you need to understand.
+[00:10] And we're gonna cover exactly what it is
+[00:11] and five incredibly powerful use cases
+[00:13] that you can use two day to get light is ahead
+[00:15] even if you're completely beginner
+[00:17] and also when you definitely shouldn't use it.
+[00:19] Now, first thing to understand is that it is
+[00:21] significantly cheaper than the front-end models.
+[00:25] I'll show you what that looks like
+[00:26] in a second throughout this video.
+[00:27] Now, six reasons why we actually care about this.
+[00:29] Number one, it gives you unbelievably fast decisions.
+[00:34] Of course, guys, grab the coffee.
+[00:35] Very, very, very cheap,
+[00:36] soon pointed by our mind.
+[00:38] It's outputs are 100% free.
+[00:40] Yeah, exactly, 100% free.
+[00:42] You can do power log questions
+[00:43] so everything at the same time.
+[00:45] It can actually also measure certainty
+[00:48] as well as give you a very specific output.
+[00:50] And also it looks at typed answers.
+[00:52] Now, to really understand how Jeff actually works,
+[00:56] it was created by the founder,
+[00:57] one of the co-founders of TrackGP2
+[00:59] and they've been building in silence with the doors locked
+[01:02] and the windows closed for a couple of years
+[01:05] and then Jeff popped out
+[01:06] and a company called Typecept.
+[01:07] It's a fundamentally different way of thinking about AI.
+[01:11] Obviously, we only care about what is actually mean
+[01:13] and therefore what changes.
+[01:14] Now, essentially, it can give you an output
+[01:17] in three different ways.
+[01:18] It can give you a very simple yes do it, no don't do it.
+[01:21] It can give you a choice if you preload it
+[01:24] with different things that it could choose from
+[01:26] and it can also give you a score.
+[01:28] So a rank from one to 100 and many different ways.
+[01:30] So these are the three ways that it can decide what to do.
+[01:33] But the core thing here is that when we combine it
+[01:35] with GPT-6, after it with called Fable 5.1
+[01:39] and Jeff by using some rules and a free skill
+[01:42] and what down below you can grab completely free,
+[01:43] it'll be the second link in the description.
+[01:45] We can effectively supercharge
+[01:47] get results way faster
+[01:49] that are gonna be significantly cheaper.
+[01:50] Now, with this, Jeff can do some crazy stuff.
+[01:52] It can play games.
+[01:53] It can play anything because all it's doing
+[01:55] for him by frame is deciding
+[01:56] off from these different buttons,
+[01:57] W-A-S-D, which is where to move and also jump.
+[02:00] What is the most optimum decision for me to make?
+[02:03] So you can use Jeff to do anything like this
+[02:05] like play games in real time.
+[02:06] You can, for example, use something like this
+[02:08] where it's lightning fast
+[02:10] where it can actually, based on many different class
+[02:12] fine criteria, decide what the best image would be
+[02:16] or what the best message would be.
+[02:17] Now, on top of that, what else can you do?
+[02:19] This is an internal link dealer and look at how fast
+[02:22] it's actually fulting it through.
+[02:24] But guys, I'm not here just to show you video games.
+[02:26] I'm here to show you real life use cases
+[02:28] that are gonna blow your mind.
+[02:29] Now, let's kick off with five levels.
+[02:30] We're gonna hear from inbox community, slot.
+[02:32] We're gonna through loads of really interesting stuff.
+[02:34] But let's begin with level one.
+[02:36] So I pull together a specific test
+[02:38] and what we're gonna do here is we're gonna have
+[02:40] YouTube comments and we're gonna have a series
+[02:42] of different tests.
+[02:43] I'm gonna compare this with Astrid
+[02:44] to show you how this works.
+[02:45] So this is a spam and scam filter.
+[02:48] So effectively, what we do is connect Jeff to,
+[02:51] let's say it could be anything, right?
+[02:53] It could be, for example, our agentic operating system here.
+[02:56] I can ask questions, power up and see everything I want to
+[02:59] or it could just literally connect it to chat GPT
+[03:01] or codify what I want to.
+[03:03] Now, what I'm gonna do here is give it 20 different emails
+[03:06] and some are scams and some are spam
+[03:08] and you're gonna see how quickly they are identifying.
+[03:10] That's gonna run both models.
+[03:11] We can see the time here.
+[03:12] Look how fast Jeff is going.
+[03:14] That was complete in 3.41 seconds.
+[03:16] Astro, it took what's still going to be found.
+[03:19] And I put the scores here so we can identify it.
+[03:21] 9.93 seconds.
+[03:22] So it was three times faster.
+[03:24] And if we look at the cost, for Jeff,
+[03:26] that was about one cent.
+[03:28] I guess it finished three times faster.
+[03:30] And for Astrid, that was significantly more expensive.
+[03:33] I want to say about it.
+[03:34] It's one cent if you were to do this over 1,000 emails
+[03:37] and over 1,000 emails for Astrid,
+[03:39] you're looking at just under $5.
+[03:40] Let's take a look at this one.
+[03:41] This is ownership.
+[03:43] Again, let's run both models and see how it does that.
+[03:45] This one is essentially saying go through my emails
+[03:47] and identify who should earn what.
+[03:49] Again, Jeff is just significantly faster
+[03:52] and it has once again a perfect score.
+[03:54] It would have cost you two cents with Jeff
+[03:56] and seven and a half dollars with Astrid.
+[03:58] You get the idea.
+[03:59] They've got ones for urgency.
+[04:00] Got ones kind of identified.
+[04:02] Good buying signal and look at how fast that is guys.
+[04:05] 2.57 seconds, over 1,000 emails
+[04:09] that will cost you a cent.
+[04:11] What can you buy with the cent?
+[04:12] And again, Astrid comes in at 10 seconds and 31.
+[04:15] So the point here is that we can actually now
+[04:17] just connect and give Astrid hands.
+[04:20] So essentially with the skill that I built,
+[04:21] we just give it to Astrid
+[04:23] and effectively when that task could be done by Jeff,
+[04:25] we can do it significantly faster
+[04:27] and in a way cheaper rate,
+[04:29] which takes us nicely onto level two.
+[04:31] So could it, for example, in a customer environment?
+[04:33] Could it identify, I don't know,
+[04:35] I've remember post exactly how risky they are
+[04:39] at potentially churning based on what they're saying.
+[04:41] So say, for example, you have a CRR on with your client
+[04:43] and you want to give it loads of data,
+[04:45] loaded from data and insights.
+[04:46] It could actually calculate a score
+[04:48] about how likely it is that an individual is going to leave,
+[04:51] that employee is going to hand out a resignation,
+[04:54] anything that you want to.
+[04:55] So this here is a churn risk.
+[04:56] I've given loads of stuff like,
+[04:57] hey, I've got my first automation ship.
+[04:59] This is a message and it's just going to quickly identify
+[05:02] how likely it is to do it.
+[05:03] This is all fictitious stuff.
+[05:05] And again, it was done in 2.82 seconds
+[05:07] and significantly cheaper.
+[05:08] You can do the same thing with member intakes
+[05:09] with support rooting, anything that you want to,
+[05:12] you can see effectively we're getting the right ticket
+[05:15] to the right queue.
+[05:15] So we have people dropping messages asking questions
+[05:19] and that's just said that we need to triage this
+[05:20] and say, hey, great, this is a building question.
+[05:22] This is an access question.
+[05:23] This is a tech question we can use,
+[05:26] Jeff and Ashtray together to go ahead and solve that.
+[05:28] Same with intake forms, all right?
+[05:30] It's cool.
+[05:31] I want to build something useful.
+[05:32] What's their goal?
+[05:33] Are they vague?
+[05:33] Are they build it in one clients?
+[05:34] And again, Jeff can do that for you straight away.
+[05:37] And again, the big time safe here guys is speed and cost.
+[05:40] That's basically it, speed and cost.
+[05:42] And the reason why it works is because Astro
+[05:45] and other models like it, like anything else, like Claude
+[05:48] have been designed to give you words.
+[05:50] Now, Jeff doesn't give you language like that.
+[05:52] It's not been optimized in that way.
+[05:54] Hence why it can do things in a completely different way.
+[05:56] Now, level three is a completely different one.
+[05:58] This is going to be the ability for it to identify AI Slop.
+[06:01] And by the way, if you're wondering,
+[06:02] Jeff is accessible via open route.
+[06:05] So all we're going to do is just ask for to do that.
+[06:07] You give it your open to key
+[06:08] and it can call jab effectively whenever you want to.
+[06:10] That practically is how you're going to use it.
+[06:13] Unless you're doing something like this
+[06:14] where you have say, an agent operating system
+[06:16] and you ask in questions, I can come down in,
+[06:18] I have a conversation.
+[06:19] If you've just come down to free link down below,
+[06:21] just give this over to Astro or Claude.
+[06:23] And effectively, it tells you when you should bring in Jeff,
+[06:25] when not, and just give it your API key
+[06:27] and then you'll be fully connected.
+[06:28] So let's actually test its ability to identify Slop.
+[06:31] Now, this was one of my favorite use cases.
+[06:32] So check this one out, for example.
+[06:34] This guy built a real-time Slop detected.
+[06:36] So you know about LinkedIn's been overtaken by Slop
+[06:39] a little bit, right?
+[06:39] Well, this will scroll through Twitter
+[06:41] and you can actually say great.
+[06:42] If you identify anything that sounds like
+[06:44] it was written by Claude Faber 5.1,
+[06:46] just add Slop and remove it from my feed.
+[06:48] You could do this for ads.
+[06:50] And the reason why this is so revolutionary
+[06:51] is because it can do it at a rate
+[06:52] that know the model can in terms of its speed
+[06:55] and it's so cheap to do that.
+[06:56] Now, when you make something very cheap and very fast,
+[06:59] you genuinely unlock new use cases like this.
+[07:01] So you could just say, hey, has it been written by a person?
+[07:04] If so, keep it, if not, get rid of it at the same time.
+[07:07] So for example, what we can do here is identify
+[07:09] if something is Slop or not.
+[07:11] You could do this to identify AI attacks and everything.
+[07:13] So I'm using the Slop monster, which is a get rid of
+[07:15] that I built.
+[07:16] It's free to popling down below.
+[07:17] It's like built off all the best Slop detectors
+[07:19] with some additional bells and whistles
+[07:20] that make it really cool.
+[07:21] So what we're going to do here is let's look at
+[07:23] illustrative costs.
+[07:24] Now, for Ashford to do this, you're looking at $15,
+[07:26] Jeff is four cents, which is crazy.
+[07:28] We're looking at words, phrases, punctuation,
+[07:30] rid of them, and proof.
+[07:31] So let's see if it can identify Slop, okay?
+[07:34] I've given it a same taxi.
+[07:35] Let's run this comparison real quick and see,
+[07:37] look at this, reads as Slop.
+[07:40] And it correctly identified the punctuation
+[07:42] cadence and it came down using my Slopology framework, okay?
+[07:46] And it did a lightning fast speed.
+[07:48] Let's give it another example.
+[07:49] Okay, so here's another one, for example.
+[07:50] Let's run this comparison and see, again,
+[07:52] reads as Slop.
+[07:53] Then we come down and test whether or not it's written
+[07:55] by human or was it written by an AI?
+[07:57] Let's go ahead and see if this one works there.
+[07:59] And again, we can try this one more time.
+[08:01] Now, as you can see, it's likely AI assisted.
+[08:03] Astra itself can't tell you.
+[08:05] So this is another really cool use case.
+[08:07] Let's say that you have a website.
+[08:08] I'm just going to throw it in here
+[08:09] to my agentic OS for a second run.
+[08:11] This website here, we built with GPT-6 Astro.
+[08:15] Now let's say that you're doing this for a client.
+[08:17] Maybe you want to go ahead and do different things.
+[08:18] You can edit it.
+[08:19] Whatever you want to do here is fine.
+[08:20] But let's say, for example, you have this design library
+[08:23] and we have a brief.
+[08:25] And we wanted to identify, okay,
+[08:26] I've fed this guys over 300 design systems.
+[08:29] And I'm basically assessing their ability
+[08:31] to identify what the best one would be.
+[08:32] Well, let's run the comparison check.
+[08:34] And we can pick any of the Astra reasoning.
+[08:36] I'm going with medium just to keep it fair.
+[08:39] I'm not even going to extra high.
+[08:40] Bam, it's found one immediately
+[08:42] off the different references.
+[08:43] It's gone through over 300 pages.
+[08:46] That would only cost you $1.94.
+[08:48] If you do 1000, whereas Astra, for example,
+[08:51] $500 to do the same thing, which is crazy.
+[08:55] Let me give you another brief example here.
+[08:57] If I had a studio portfolio, okay.
+[08:58] And I run the comparison.
+[08:59] Let's see what Jeff does.
+[09:00] Jeff found it.
+[09:01] And let's see what Astra does.
+[09:02] Jeff found it a second, ridiculous.
+[09:05] Astra is still going.
+[09:06] And look, it found the exact same thing.
+[09:08] If you look at the difference, $1.95 per $1,500,
+[09:13] you get the idea.
+[09:14] We could use Jeff itself to classify anything you want.
+[09:17] But if this all sounds, guys, like I'm speaking
+[09:19] design Spanish, I'm going to put a link down below for you
+[09:21] to my full Cloud Code and Astra Masterclass.
+[09:24] You get full access to my entire agentic operating system,
+[09:28] as well as my entire courses on learning this technology,
+[09:30] building direct system, building beautiful websites.
+[09:33] Have to use it to get light user hair of everybody else.
+[09:36] I'll put a link down below before you
+[09:37] compare it to actually grab it.
+[09:39] So for example, if it just needs simple and straightforward tasks,
+[09:41] it goes to a light model.
+[09:43] If it's general tasks with a little more context,
+[09:45] we send it to a balanced model, like an Opus 5, 5.1,
+[09:48] something like that.
+[09:49] But then if it needs complex reasoning,
+[09:51] we can send it to front set.
+[09:52] Well, what we can do is add Dr. Jeff in the middle of it
+[09:55] when you get his doctorate somewhere between the beginning
+[09:57] and this part of the video.
+[09:58] Let's try this out.
+[09:59] What I've done here, for example, as I've given a query,
+[10:02] we're going to run it.
+[10:03] And we're going to see basically which models
+[10:05] it would rank it and push it through to.
+[10:07] And as you can see, it's identified.
+[10:09] And if you look guys, the exact thing,
+[10:11] so what I did with this is I basically
+[10:13] added a bit of a description.
+[10:14] I did all the models, Don Hazy, GBT Astro 6,
+[10:17] Gemini 3.0 Flash, Chemo K3, and all of them
+[10:19] had a brief route to this model under these circumstances.
+[10:23] And you'll notice that it did that exact thing for us
+[10:26] and the exact same order perfectly.
+[10:28] It's really crazy.
+[10:29] Let's give it another example.
+[10:30] A 650K video research pack, I run it again.
+[10:33] Let's see how fast Java does.
+[10:34] Again, under half a second,
+[10:36] Astro is going all the way through.
+[10:37] Now, the idea here isn't to have Jeff solve anything.
+[10:40] What I'm demonstrating with this is that Jeff itself
+[10:43] is the hands.
+[10:44] It's a tool that we're going to use with Astro.
+[10:47] And when you give it his prompt,
+[10:48] you're able to set that up.
+[10:49] Now, in terms of Jeff's intelligence
+[10:50] and this is really important in this time,
+[10:51] it's about as smart as like a Sonnet 5.
+[10:54] So it's like smart.
+[10:55] It's quite smart.
+[10:56] It's not frontier level, but we're not using it for that.
+[10:59] So the times what we do want to use it is whenever.
+[11:02] And this is the key distinction, guys.
+[11:03] It is one of these three things.
+[11:05] Whenever there is a yes or whenever it can pick an option
+[11:08] and whenever there's a score.
+[11:09] Now, you could use any of the models you want to for this.
+[11:11] What we're saying here is it's significantly faster
+[11:13] and significantly cheaper.
+[11:15] It's not something that is a chat model.
+[11:18] This is a model that's optimized
+[11:19] to make an incredibly fast micro decisions.
+[11:22] And people are blowing it with a creativity on this.
+[11:25] As you can see, people are generating UIs very quickly.
+[11:28] Effectively, you're only really limited by imagination.
+[11:30] But what I would say to you is really simply this.
+[11:33] If you can actually reduce anything down
+[11:35] to a series of decisions
+[11:36] and you can quantify those decisions,
+[11:38] you can accomplish some pretty spectacular things.
+[11:40] But it just brings us into an interesting question.
+[11:42] And that's the speed and price of one thing.
+[11:45] But capability is something completely different
+[11:47] which is why the next thing we need to do
+[11:49] is learn how to 10 extra capability
+[11:51] by watching this video here together.

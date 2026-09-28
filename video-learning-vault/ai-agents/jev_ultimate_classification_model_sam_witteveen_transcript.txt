@@ -1,0 +1,186 @@
+[00:00] Okay, so if you pretty much look at what every Frontier Lab has been doing over the past two years
+[00:06] It's all being in one direction. They've all been focused on
+[00:10] Reasoning and to get that reasoning mostly they've been focused on longer chains of thought and thinking budgets
+[00:16] And while those models are great, they'll help you sit there for multiple minutes before they even give you an answer back
+[00:22] And of course if you wanted to see that chain of thought the Frontier Labs are not gonna let you see it even though you're paying for it
+[00:28] So if you read Daniel Kahneman's book thinking fast and slow
+[00:32] You know that all this kind of reasoning stuff is system two thinking it's slow deliberate effortful
+[00:39] Where a system one on the other hand is fast intuitive sort of like a gut call that you make really quickly without any
+[00:46] Deliberation and here's where the subject of today's video
+[00:48] I think is really interesting
+[00:50] Most decisions that actually sit inside of software aren't system two problems
+[00:54] They're often just really simple classification problems. What kind of support ticket is this?
+[00:59] Is this message urgent? Did an agent's output actually break a rule?
+[01:04] You shouldn't even need 30 seconds for that kind of thinking let alone the sort of minutes that some of the models end up taking and
+[01:12] Well, it's great that you can ask one of these reasoning models for a one word answer and then wrap it in Jason
+[01:18] You're paying a huge latency cost for generating all that text before you get your one word
+[01:24] Label back so this week and you lab that's just come out of stealth has gone the complete opposite way of the reasoning models
+[01:31] They've built a model that you can't chat with at all little on habit reason and deliberate over things for a long time
+[01:37] It just doesn't generate text in the standard order regressive way and the funny thing actually enforcing that is that the output
+[01:44] Tokens of this model are actually free but actually working out why those tokens are free might be the thing that actually
+[01:51] Tells us a lot about how this thing is built
+[01:54] Right, so the company is called type safe AI and the model is called jev
+[01:58] So the founder is Diogo Almeda and actually he was at opening
+[02:01] I for quite a while before and finally enough was one of the top authors on the instruct GPT paper
+[02:07] That was the paper that actually led to the whole sort of instruction tuning of models
+[02:11] Which is just progressed onwards from that to the reasoning models that we see today
+[02:16] So if you don't know that paper basically took a raw language model
+[02:20] Basically like what we would call a base model now and actually made it follow instructions and out of all that research
+[02:27] Came chat GPT so this is someone who clearly helped make models good at talking to people and the question that he says
+[02:34] That's been bugging him for the last four years is that as models have become superhuman at chat
+[02:39] Where's all the automation here and interestingly he's saying that chat is the wrong interface for software
+[02:46] Software doesn't want a paragraph. It wants a value that it can basically use straight away now
+[02:51] Diogo and the rest of the team at type safe AI have spent the last two years in stealth working on this model called jev
+[02:58] All right, so what is jev?
+[03:01] So they specifically refer to this as a system one model and probably the easiest way of looking at this is it's kind of like a function call
+[03:09] You pass in two things the first is what they call the state
+[03:12] Which is just your unstructured text or data and that could be anything that you want classified could be a support ticket could be an agent trace
+[03:20] It could be a log file, etc
+[03:22] And then the second thing that you're passing is a set of typed questions and there are only three kinds of questions that you can ask here
+[03:29] There's choice where you give it a list of options and it picks one
+[03:33] There's score where it rates something on a scale that you defined and then there's one called null
+[03:39] Which is a yes or no question where it basically comes back with a probability that the answer is yes
+[03:45] So if you look at what comes back here
+[03:47] There's no text to pass for the choice question you get the option it picked and also a probability of every other option
+[03:54] And I think this is really kind of interesting because this is one of the things that a lot of us have kind of been trying to fake
+[04:00] With Jason where we ask models to do stuff and return Jason output
+[04:05] But in many ways the number that you're getting back there is just a generated text
+[04:09] And if you look at things as LM as a judge
+[04:12] You'll often see that that text skews in a very certain way
+[04:16] IE it's just a model writing the character 0.9 rather than actually a real representation of probability
+[04:23] The way they want you to use this model is to think about it as being a smart if statement
+[04:29] You don't ask one big fuzzy question like rate this startup pitch
+[04:33] You ask small gut questions in there. What's the feasibility of this?
+[04:37] What type of market are they going after and of course if you're asking a choice question
+[04:42] You have to actually give it the options to choose from then the cool thing is that you can actually combine all of those in
+[04:49] Normal code
+[04:50] So when something changes you can just change a number in your code
+[04:53] You don't need to go and tweak any prompts or anything all right
+[04:56] So what I've done is basically just code up a little demo app to try this out
+[05:02] I'm using the model on open router. So this is a crazy sort of price model, right?
+[05:07] You're looking at 4.2 cents per million tokens in and 0
+[05:12] Sense per million tokens out and you can see if we come in here
+[05:15] They've got some code to actually how to call it on using the open AI
+[05:21] API endpoints and so we've been playing around for a couple of hours with different kinds of demos and trying out different things
+[05:26] So the first key thing here is that there are three kinds of things that you can do right one of them
+[05:32] Is a choice so you can see here
+[05:34] I've got some text that I'm going to pass it in and there's got a choice of five different classes out here
+[05:40] And it's very good at being able to detect which of these is the right one
+[05:46] And so what it will do if we look at the raw output here is that it basically has a type choice in this case
+[05:52] The choice was French and then it gives us the probabilities for each of these and a confidence score
+[05:58] And you can see that it did that pretty quickly. So I'm probably on the opposite side of the world to where the model is actually being hosted
+[06:05] But you'll see that it's very quick at being able to respond
+[06:09] Even for things like this where I wanted to try it on tie but using the tie characters
+[06:15] It's going to give it a way straight away that it's the tie language
+[06:18] So I asked it to basically make like a romanized version of that and you could see that even that has no problems
+[06:25] Being able to get that right the second thing that you can do with this is you can get it to give a score
+[06:32] So here you can see that we're giving a score between zero and two
+[06:36] Or we're sort of doing sentiment here. We're doing a classification task again
+[06:40] We've got sentiment coming out and if we go for a positive sentiment
+[06:44] You'll see it comes out to have two if we go for negative zero
+[06:49] If we go for mixed it's pretty good at being able to do that and you can see each time
+[06:54] This is costing me 0.001 for of a cent right in here
+[07:01] If you can break down what you're trying to do to lots of different
+[07:07] Classifications you really can't extremely cheaply do a lot of stuff with this and you can see in this case
+[07:14] Where I tried to make it a little bit more positive than in the middle I it does change coming back each time
+[07:20] So it still is a stochastic process going on here and we can see the confidence is less than before each time
+[07:27] I ping it I'm getting something slightly different but pretty close to the same sort of ballpark scores there
+[07:34] When we look at the API for that you can see that okay the probabilities that it's coming back
+[07:38] So you can see in this case we've passed in a score. We've got that back coming out of there
+[07:43] So scoring is a really nice function in there and then lastly we've got the true or false or the yes
+[07:48] No kind of probabilities here. So this is an all and it's basically going to give back a probability for what we put in
+[07:56] Now if I ask it something simple like that it comes back 87% yes
+[08:01] Is this text asking a question? Okay, the answer would be no here so you can see that it's 2% yes
+[08:07] So basically it's no right if you kind of think of this as being flattened out by a sigmoid function
+[08:12] So you've got 0 to 1 coming out of this and even if we do things like where okay
+[08:17] We've got a question, but we've got no question mark. It's very confident that that is still a question without a question mark
+[08:24] So it's not like it's just looking for a question mark there and you can see different kinds of questions will get different responses
+[08:31] So interestingly if I just ask it can you help it's a lot less sure if it can because I haven't been specific
+[08:38] But if I ask it can you help find my cat?
+[08:41] Well, then it's 95% sure that it can do it
+[08:44] And if I just change one word in there to can you help me feed my cat it goes back down a bit
+[08:50] So it is interesting how it actually does this you will see that like again
+[08:54] This is a still a stochastic process it comes back slightly different each time
+[08:59] But it is pretty consistent of you either being able to say one thing or the other thing
+[09:05] And you can see if I just give it two words then it starts losing its confidence about this
+[09:10] So it does seem to me the longer that the input that you put in the more confident it gets with its responses out
+[09:18] All right now looking at some sort of more practical kinds of things that we could do here
+[09:22] You can see that we can put in like a message of I was charged twice for an order
+[09:26] Please refund the juker get it to work out which team it's gonna route it to here
+[09:32] It's billing kind of obvious sales one it gets hundred percent sales
+[09:36] What if we do something a little bit more ambiguous you can see now?
+[09:40] It's not very confident it's actually coming back that it's unclear as as the class
+[09:44] But it's still thinking that this is more of a technical kind of thing
+[09:47] And you can see that each time we run that we do get a slightly different response, you know going through this
+[09:53] Now on top of these we're actually doing multiple things at the same time
+[09:57] So you can see that we've also got a null in here for it was a refund requested obviously if I select this the answer is yes
+[10:05] Is it sort of time sensitive right in this case at saying time sensitive 7% if I change that to please refund the duplicate charge
+[10:14] Right now instead of just right now you can see the time sensitive is jumping up to sort of like 60 70% in this case
+[10:21] We can even try it with things like
+[10:24] Injecting stuff in there
+[10:26] So doing any sort of thing where someone's trying to do a prompt injection or something like that
+[10:31] This seems to do pretty well at being able to get that kind of thing
+[10:36] Sarcasm is also something that it seems to be doing an okay job at it
+[10:40] It would be interesting also to test it on humor and other kind of things
+[10:43] But it is good that it's not being tricked by a lot of different things that normally would trick this kind of thing
+[10:50] Other tasks that you can get it to do is things like code reviews like where you can basically ask it is something safe
+[10:56] Is something not safe?
+[10:58] It seems to do a good job at that
+[11:00] Doing things like classification on different types of content that seems to work really well
+[11:06] Because you hear it's able to discover PII information personal identifiable information here
+[11:11] Does a good job at that kind of thing does a good job at sort of spam detection as well
+[11:16] So the fourth example here is looking at agent tool selection
+[11:20] So this is a little bit like the cactus model that we looked at a while ago in that it's doing some kind of sort of function calling
+[11:28] But it's important to understand here that it's not actually extracting anything out and passing it to the tool
+[11:35] Right, it's just telling us which tool to use as opposed to getting the right arguments out to pass to the tool
+[11:43] So in that sense function calling models are still able to basically generate out what should be the input going to the function
+[11:50] Last up one of the things that I thought was really interesting to test it is
+[11:53] Stringing actions together, right?
+[11:56] So where we basically give it something and we then want to basically run a number of different tasks over this
+[12:04] To see how long does it take how does it actually process these?
+[12:08] So here's 20 different tasks going through and you can see that it's flying along now
+[12:14] I could have done them in parallel for some of them at least
+[12:17] But you can see they're just going through it like that. We've gone through all different 20 tasks in here
+[12:23] Got in the answers out
+[12:25] Got in the results back for these and it's cost just over one 20th of one cent
+[12:31] I really feel like this is where you're going to find really interesting things right when you can
+[12:36] String lots of different classifications together to be able to get some kind of response out
+[12:43] That's really valuable for you in a really quick time. Okay, so how does this all actually work?
+[12:49] Well, they don't really tell us a lot here. There's no paper. There's no architecture diagram
+[12:54] They don't give us a lot of information, but what they do give us is three pieces that they mentioned that there's a new model architecture
+[13:01] A parallel sampler and then perhaps the most interesting bit is that they're training with a new method
+[13:07] They're calling RLCD. This is reinforcement learning for calibrated decisions. Now
+[13:13] How RLCD actually works they don't really tell us but they compare that to the existing LLM's using both RLHF
+[13:21] So that's reinforcement learning from human feedback and also reinforcement learning from verifiable rewards
+[13:27] Which is a whole sort of GRPO and a lot of the ways that the modern models are being trained at the moment
+[13:32] So it does seem probable to me that this is some kind of transformer
+[13:36] But perhaps what it's actually doing is just using the pre-field stage to calculate heads etc
+[13:42] And then doing a prediction out which is just a classification or a regression depending on the different tasks that you've got there
+[13:48] One of the cool things here is definitely the speed because there are no tokens being generated one after another
+[13:54] Everything comes back in a single pass and that means you're done in about 70 to 500 milliseconds
+[14:01] Which you can add to the basically round trip time and it's still extremely fast for doing these kinds of tasks
+[14:08] Now one of the things I find fascinating is that they claim it can't hallucinate
+[14:12] And it seems what they're really saying there is that this is not going to break the schema that you give it to basically come back with things
+[14:19] So like no broken Jason no invented tool names. It can only deal with what you've actually given it
+[14:24] It's not going to actually generate sort of anything new there
+[14:27] Now it does seem that it can still pick the wrong option and like a wrong answer
+[14:31] Meaning that it could have the right type of question, but actually give you a wrong answer for that
+[14:37] And it seems that this is where they're relying on that RLCD to be able to deliver high quality answers back
+[14:44] Now we don't know if this is just like a smaller LLM that's been trained in a different way
+[14:49] Or if this is actually a different architecture etc
+[14:52] It is kind of amazing though that it can do things like play doom
+[14:57] Where it can do it so quickly that you can basically have it
+[15:02] Responding to these inputs and think that I find fascinating here is that doing that and running sort of 10 queries per second
+[15:09] Even in that rate ends up only costing about $7 per hour
+[15:13] So overall I would say if you're doing any kind of classification with any kind of
+[15:18] Burt model or things like that
+[15:20] This is definitely worth trying out to see how it goes for your particular use cases
+[15:26] And I do wonder if this really delivers like they say it does
+[15:30] Is this going to be the end of sort of fine tuning small Burt models for doing purely classification tasks
+[15:37] Anyway, they make the point here that this is early days that they're really focused on any sort of decision that you need to be able to automate
+[15:44] And my guess is that they've probably kicked off a whole bunch of people trying to make open source versions of this
+[15:50] So over the next month or so we might see some really interesting open source models that come along with similar ideas to this
+[15:58] Anyway, let me know in the comments if you've actually tried jev where you could see yourself actually using it
+[16:03] And I'd love to hear from people who've actually tested it and found that it didn't work for certain things
+[16:08] What were those use cases that it didn't work for and as always if you found the video useful
+[16:13] Please click like and subscribe and I will talk to you in the next video. Bye for now

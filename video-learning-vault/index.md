@@ -12,6 +12,21 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (29/09/2026)
+*Nhóm 9 video chuyên sâu về Jev AI, Hệ thống phản xạ System 1 và Kỹ nghệ tác nhân đa nhiệm:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `dfeda6082b840242` | High Throughput Agentic Engineering with Kun | Herder Multiplexer, First/Second Mates, Calm Mode, QuotaRX, Lavish Visual Validation, Ahoy & YOLO/No-Mistakes PR Policies | [high_throughput_agentic_engineering_kun_chen.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/high_throughput_agentic_engineering_kun_chen.md) | 53:57 |
+| `b14c5995731f05b3` | Jev + Claude Code = The Cheapest Agentic Coding Loop Yet | Jevons Paradox, System 1 vs 2, Real-Time Minecraft, Hermes 182-Skill Router, 28M Tokens Smells Audit ($1.19), 10x Token Savings Code Review | [jev_claude_code_cheapest_agentic_loop_ray_amjad.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_claude_code_cheapest_agentic_loop_ray_amjad.md) | 27:28 |
+| `ebdbe87e4051447b` | Jev: The Schema-Safe AI That Could Change Automation Forever! | The String is the Bottleneck, 0% Type-Error Guarantee, RLCD, System 1 Single Pass, $0.04/1M In & Free Out | [jev_schema_safe_ai_repochad.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_schema_safe_ai_repochad.md) | 08:10 |
+| `6e791157208837c6` | Jev AI Just Dropped, And...? | Brain vs Hands Duality, 3 Primitives (Yes/No, Choice, Score), 5 Use Cases (Slop Monster, Email Triage, 300 Design Matcher, Dr. Jev Router) | [jev_ai_just_dropped_jack_roberts.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_ai_just_dropped_jack_roberts.md) | 11:53 |
+| `28e972df4be755e2` | Building a Harness with Jev | Core Agent Loop Evolution, `langchain-typesafe`, Model Routing, Auto Mode Middleware & Jev-as-a-Judge Online Evals | [building_a_harness_with_jev_langchain.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/building_a_harness_with_jev_langchain.md) | 09:14 |
+| `f57a1a757f5c59f2` | Jev explained in 7min.. | Schism in Orthodox AI, Application Layer Downward Pressure, Logic Gates & Registers, Parallel Sampling vs Autoregressive | [jev_explained_in_7min_caleb_writes_code.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_explained_in_7min_caleb_writes_code.md) | 07:11 |
+| `e1ee2457de8f2e43` | Jev - The Ultimate Classification Model? | Smart If Statement, Multilingual Thai/French, Sigmoid Probabilities, Prompt Injection Immunity, 20 Chained Tasks for $0.0005 | [jev_ultimate_classification_model_sam_witteveen.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_ultimate_classification_model_sam_witteveen.md) | 16:18 |
+| `7d658d49b79f5c1e` | I Tested Jev on 12 Real Use Cases. My Honest Thoughts. | 1,000 Emails in 6s ($0.09), Real-Time X Extension "Jev Judged", 20k Requests Console ($0.85), $2/day BTC Paper Trader, Golden Dataset Evals | [i_tested_jev_on_12_real_use_cases_nate_herk.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/i_tested_jev_on_12_real_use_cases_nate_herk.md) | 16:08 |
+| `5c6560c87b06aebd` | Astra + Jev + DS V4.1 Flash: SUPER FAST & CHEAP Worker Setup! | Bambood Multi-Agent IDE, Architect (Codex) & Workers (DS V4.1), Jev Decision Harness, E2E Browser Testing ("Checks Passed" != "Agent Done") | [astra_jev_ds_v4_1_flash_aicodeking.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/astra_jev_ds_v4_1_flash_aicodeking.md) | 14:12 |
+
 ### 🟢 Mới phân tích (28/09/2026)
 *Video vừa được phân tích và lập chỉ mục hôm nay:*
 
@@ -166,6 +181,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [How to Run 100+ Claude Agents at Minimum Cost: Lydia Hallie (26m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_low_cost_100_agents_lydia_hallie.md) - Cẩm nang tối ưu hóa chi phí token và quản trị Prompt Cache từ kỹ sư Anthropic: Bản chất vật lý 3 loại token, 4 lỗi phá vỡ tiền tố cache, nghệ thuật compact khi cache còn ấm, subagents cách ly nhiễu và kiểm soát doanh nghiệp qua managed-settings.json.
 * [What Product Looks Like When Coding Is Solved: Ramp CPO (20m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_product_looks_like_when_coding_is_solved_ramp.md) - Bài phát biểu của Geoff Charles (CPO Ramp): Nút thắt F1 dịch chuyển từ Coding sang Spec/Review/Test/Coordination, 5 AI Agents tự động hóa tại Ramp, 75% PRs do AI tạo, và giải quyết 60% lỗi UX trong 24 giờ.
 * [Orchestras, Not Factories: How the Fastest Builders Work (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/orchestras_not_factories_charlie_holtz.md) - Bài diễn thuyết của Charlie Holtz (Conductor): 6 nguyên tắc STICK-FOE của các kỹ sư tốc độ cao, phân định Slop-Free Zones (DB migration), nạp dữ liệu CIA vào Postgres, Free Range Agents trên Cloud Sandboxes và ẩn dụ Nhạc trưởng chỉ huy dàn nhạc.
+* [High Throughput Agentic Engineering with Kun (54m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/high_throughput_agentic_engineering_kun_chen.md) - Bài giảng thực chiến từ cựu L8 Principal Engineer (Meta/MSFT): Vận hành hạm đội 36 dự án qua Herder multiplexer đa máy, mô hình phân cấp First Mate & Second Mates, Calm Mode, QuotaRX điều phối quota và Lavish visual validation.
+* [Jev + Claude Code: The Cheapest Agentic Coding Loop (27m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_claude_code_cheapest_agentic_loop_ray_amjad.md) - Hướng dẫn từ Ray Amjad: Nghịch lý Jevons, phân chia System 1 & System 2, Minecraft real-time, Hermes 182-skill router giảm 10k context tokens, quét 28M tokens code smell chỉ $1.19 và cắt giảm 10x token code review.
+* [Jev: The Schema-Safe AI That Could Change Automation Forever (8m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_schema_safe_ai_repochad.md) - Phân tích của RepoChad: Luận điểm "chuỗi ký tự là nút thắt cổ chai", bảo đảm toán học 0% Type-Error, huấn luyện RLCD hiệu chuẩn độ tự tin, System 1 Single Pass và mô hình định giá $0.04/1M in, $0 out.
+* [Jev AI Just Dropped, And...? (12m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_ai_just_dropped_jack_roberts.md) - Đánh giá thực nghiệm của Jack Roberts: Mô hình Brain vs. Hands, 3 nguyên mẫu Yes/No, Choice, Score, và 5 cấp độ ứng dụng đối đầu GPT-6 Astra (Slop Monster, email triage 1 xu/1k, 300 design matcher, Dr. Jev router).
+* [Building a Harness with Jev: LangChain (9m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/building_a_harness_with_jev_langchain.md) - Hướng dẫn chính thức từ LangChain Open Source PM: Tiến hóa Agent Loop, thư viện `langchain-typesafe`, Dynamic Model Routing, Auto Mode Middleware bảo vệ tool call runtime dưới 100ms và Jev-as-a-Judge cho online evals.
+* [Jev Explained in 7min: Caleb Writes Code (7m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_explained_in_7min_caleb_writes_code.md) - Góc nhìn triết học và kiến trúc của Caleb: Sự rạn nứt trong dòng chảy AI chính thống, áp lực dồn từ tầng ứng dụng, Jev như cổng logic & thanh ghi, lấy mẫu song song thay vì tự hồi quy.
+* [Jev: The Ultimate Classification Model? (16m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_ultimate_classification_model_sam_witteveen.md) - Phân tích kỹ thuật của Sam Witteveen: Khái niệm "Smart If Statement", phân loại đa ngữ Thái/Pháp, xác suất Sigmoid, miễn nhiễm prompt injection và chuỗi liên hoàn 20 tác vụ với $0.0005.
+* [I Tested Jev on 12 Real Use Cases: Nate Herk (16m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/i_tested_jev_on_12_real_use_cases_nate_herk.md) - Thử nghiệm 12 kịch bản của Nate Herk: 1,000 email trong 6s ($0.09), Chrome extension "Jev Judged" thời gian thực trên X feed, bảng điều khiển 20k requests chỉ $0.85, bot trade Bitcoin 24/7 $2/ngày và kỷ luật Golden Dataset Evals.
+* [Astra + Jev + DS V4.1 Flash: Worker Setup (14m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/astra_jev_ds_v4_1_flash_aicodeking.md) - Hướng dẫn từ AICodeKing: Kiến trúc Architect (Codex/Astra) & Workers (DeepSeek 4.1 qua OpenCode) trong IDE Bambood, Jev làm trọng tài kiểm tra bằng chứng ("Checks Passed" khác "Agent Done") và test game Minesweeper trên Chrome headless.
 
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
@@ -186,8 +210,15 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) (08:01)
     *   [jev_google_antigravity_faster_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_google_antigravity_faster_agents.md) (08:09)
     *   [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) (08:53)
+    *   [jev_schema_safe_ai_repochad.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_schema_safe_ai_repochad.md) (08:10)
+    *   [building_a_harness_with_jev_langchain.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/building_a_harness_with_jev_langchain.md) (09:14)
+    *   [jev_explained_in_7min_caleb_writes_code.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_explained_in_7min_caleb_writes_code.md) (07:11)
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
     *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
+    *   [jev_ai_just_dropped_jack_roberts.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_ai_just_dropped_jack_roberts.md) (11:53)
+    *   [astra_jev_ds_v4_1_flash_aicodeking.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/astra_jev_ds_v4_1_flash_aicodeking.md) (14:12)
+    *   [i_tested_jev_on_12_real_use_cases_nate_herk.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/i_tested_jev_on_12_real_use_cases_nate_herk.md) (16:08)
+    *   [jev_ultimate_classification_model_sam_witteveen.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_ultimate_classification_model_sam_witteveen.md) (16:18)
     *   [agit_version_control_for_ai_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/agit_version_control_for_ai_agents.md) (12:24)
     *   [unlazy_anti_laziness_depth_tree_skill.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/unlazy_anti_laziness_depth_tree_skill.md) (12:54)
     *   [pstack_agent_overkill_rob_shocks.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/pstack_agent_overkill_rob_shocks.md) (12:57)
@@ -210,6 +241,8 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [orchestras_not_factories_charlie_holtz.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/orchestras_not_factories_charlie_holtz.md) (17:44)
     *   [what_product_looks_like_when_coding_is_solved_ramp.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_product_looks_like_when_coding_is_solved_ramp.md) (19:31)
 *   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
+    *   [jev_claude_code_cheapest_agentic_loop_ray_amjad.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_claude_code_cheapest_agentic_loop_ray_amjad.md) (27:28)
+    *   [high_throughput_agentic_engineering_kun_chen.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/high_throughput_agentic_engineering_kun_chen.md) (53:57)
     *   [claude_code_low_cost_100_agents_lydia_hallie.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_low_cost_100_agents_lydia_hallie.md) (26:35)
     *   [claude_code_agentic_workflows_lydia_hallie.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/claude_code_agentic_workflows_lydia_hallie.md) (01:02:30)
     *   [how_i_review_ai_code_meta_staff_engineer.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_i_review_ai_code_meta_staff_engineer.md) (20:31)

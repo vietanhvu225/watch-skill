@@ -1,0 +1,346 @@
+[00:00] Okay, so I almost never make videos about brand new models, but this one was far too good to not
+[00:04] make a video about. So I want to go over a model called Jav, named after Javans paradox, what it
+[00:09] is, and how we can combine it with agent according tools like cloud coding codecs to become even better
+[00:15] engineers. So if you already know what Javans by now, then you can skip to timestamp shown on the
+[00:18] screen right now. Otherwise, I'll first go over what Javans. So one of the simplest and
+[00:22] standard videos about what Javans is this one over here. So for a normal LLAM, you'd basically give it
+[00:27] a prompt as well as some data. So for example, is this invoice fraud alongside the invoice itself,
+[00:33] and then it would generate you a sentence kind of like, hey, this appears to be a legitimate token
+[00:37] by token. And because of the architecture of LLAMs, this can take quite some time. Whereas in the
+[00:42] case of Jav, you can give it the same prompt alongside the same data itself, and then also give it
+[00:47] options as well. Okay, these are the options you can pick from fraud, clean, or doesn't need human
+[00:53] review. And then it would score your options for you by probability. So for example, in this case,
+[00:58] it says 88% probability that this is clean, and you can kind of pass this data into if statement,
+[01:04] so you can quickly make decisions about this. And because of the way that the architecture works,
+[01:08] it is really fast. So often you can get a response in less than 200, 300 milliseconds. So one way of
+[01:14] thinking about it is that Jav does not generate any text. You can give it some text input like a prompt,
+[01:19] and then it will give you probabilities from a set of answers that you provide it. So because you're
+[01:24] then taking these probabilities and then doing some action based on them, you can imagine it as a
+[01:28] really small switch statement. And as we will be seeing later in the video, this has a whole bunch
+[01:32] of use cases. So you can make AI powered workflows, make decisions over massive amounts of data for
+[01:38] really, really cheap, unlock real-time applications like real-time moderating, for example, and also
+[01:43] build really good verification systems for your agent coding setups. So on the website down below,
+[01:48] there is a waitlist, but once you're off the waitlist, then you can go to console.typesafe.ai,
+[01:53] and then go over to Playground over here to kind of experiment around with it, and then play around
+[01:57] with the free primitives inside the Jav. So I quickly go over what exactly they are, because even
+[02:01] though we will be using our agents to implement Jav for us, and they will be using the skill
+[02:06] over here, it still helps to understand how exactly Jav is working behind the scenes. So we basically
+[02:11] have the primitive of null to evaluate how true something is, a score so we can set up a rubric
+[02:16] to grade against, and then we have a choice so asking a multiple choice question. And each of
+[02:21] these comes back with probabilities, so we are defining the answers up front and then giving it
+[02:25] something to evaluate. So if I go for null over here, I can edit this part over here, so I can say
+[02:30] is this invoice fraud? So is this invoice fraud? From earlier, then in the left hand side, I can give
+[02:35] it some unstructured data. So pasting this in over here, this is basically a fraud invoice that I
+[02:40] made up, and if I then press a run request, then it will say 85% true, because when you're reading for
+[02:45] an invoice, it is kind of sus. And pressing run request over and over again, I will see that the
+[02:50] probabilities are roughly the same, so varies by about two, three percent. Now I can add something
+[02:55] over here to change my criteria, what is true, so it says matches the following, and then pasting
+[03:00] some fraud signals, for example, this one over here, and then press run request. And I can see
+[03:04] that it's changed in 94% true. And running it over and over again, it will roughly hover around
+[03:09] that figure. Now this is great, because in an application, we can basically say if the probabilities
+[03:14] greater than like 85% of 90%, then automatically rejected it invoices and think. So the nice thing is
+[03:19] that we can define what true and false actually means by adding additional information over here.
+[03:24] And also we're getting an answer really fast, so often in about 100 milliseconds, that is reliable,
+[03:29] because it's roughly the same every time. Now if I go for a multiple choice option, then I can
+[03:32] pick one from here. So basically, add some instructions, such as we're evaluating invoices for
+[03:37] fraud, fraud signals are this, is it fraud? And I can change these options to, for example, like
+[03:43] human review, fraud, clean. And then I can remove the descriptions, because I think their names are
+[03:50] like self explanatory. And now I can see that after running it, I get 90% fraud in less than 100
+[03:55] milliseconds, with 2% human review as well. So this is better than true or false, because now I can
+[03:59] define multiple options that I can pick from. And inside of the list over here, I can provide up
+[04:03] to 255 options. And when it comes to score over here, you can basically imagine it kind of like a
+[04:09] spectrum. So for example, if I was asking a question of how good is this inbound lead for our sales
+[04:14] team, I could have my own spectrum defined that I can give to jab. So for example, I can say that zero
+[04:20] is a student or a hobbyist, someone with no budget, then we have a small team, we have a company
+[04:25] with a named problem and a timeline, and then we would have some kind of enterprise over here.
+[04:28] So if I quickly define all this inside of Jeff, then it will look something kind of like this.
+[04:32] So for example, this is zero, this is one, and then this is two and three. And then I could put a
+[04:37] lead in on the left hand side, which is a pretty big enterprise lead, press a run request, then it
+[04:42] will give a score of 2.91. So basically, along the spectrum, it would sit kind of over here. So it
+[04:48] would be kind of like this over here, so 2.91. And then when it comes to your own logic, you can kind
+[04:52] of define different things that would happen. So greater than 2.5, the founder would reply the same day
+[04:57] between 1.5 and 2.5, a sales rep would reply this week between 0.5 and 1.5, for example, they'd
+[05:04] get an automated reply. And I could also define another rubric, such as how serious is this log
+[05:09] line for a on-call engineer, and number zero would be basically a routine request happening,
+[05:14] and number three would be like a outage, for example. And if I paste it in something over here,
+[05:18] and press run request, then it would be like 2.99, for example, because this is a connection
+[05:23] pool being exhausted. And if I define it to be like greater than 2.5, would call a on-call
+[05:27] engineer immediately, then they'd be pinged immediately. And if you wanted to, because Jeff is
+[05:32] really cheap and also really fast as well, you could have it monitoring a critical system in
+[05:37] almost real time, and then letting you know if something bad happens. Now when scoring, you can
+[05:42] only define up to 11 rubrics, which means you get a score between 0 and 10. So you can't populate
+[05:47] this list with like 255, but when it comes to options, and you could populate it with 255, for
+[05:53] example. And if I wanted to, then I can ask multiple questions at the same time by pressing add question
+[05:58] and choosing another primitive. So I can paste in a bunch of questions over here. So this is about
+[06:02] four questions. So for example, this is a state whereby I give a coding agent a task, it then
+[06:07] gives me a different back of what changed. And then Jeff can answer all of these questions super
+[06:11] quickly. So for example, it says I address as a task, it hasn't weakened a test. It tells me how
+[06:17] strong the verification is on a spectrum with a rubric that I've defined. And then the risk surface
+[06:22] area is well over here. And if you are interested in what makes it so fast, then this tweak kind of
+[06:27] goes into over here. I won't bother explaining it because the video will get too long. So when
+[06:30] deciding which primitive to use, I think this is pretty handy. Basically, is it a yes or a no
+[06:35] question? If it is a yes or no, then you can use no. If you can sort it along some kind of spectrum
+[06:39] like I showed, then you can use a score. If you can't, then you can basically use choice instead.
+[06:44] Okay, so now I want to talk a bit about system one and system two thinking and also how it applies
+[06:49] to Jeff. So type say for the company basically called Jeff a system one model and you class
+[06:54] a frontier models built to make fast structure decisions. And I guess this is inspired by the book
+[06:59] thinking fast and slow. That was published 15 years ago, which basically says if you haven't
+[07:04] already had about it, you have two distinct modes of cognitive processing system one, which is
+[07:09] the fast automatic and reflexive thinking that operates with little to no conscious effort.
+[07:14] And then you have system two, which is much more slow and deliberate. And one of the important
+[07:18] ideas is that you can move something from system two into system one through practice and training.
+[07:23] So for example, when you were first learning to drive a car, that was a very system to accept
+[07:27] to because you were checking your mirror signals, your gear and stuff like that all the time. And then
+[07:32] with enough practice on familiar roads, it became a system one activity. Now this does not mean
+[07:37] that driving a system one all the time. If you encounter an unfamiliar road, then in the
+[07:42] switch into system to activity, but essentially with enough practice, something can go from being
+[07:46] a system two into system one activity. And going back to this, we can kind of imagine that cloud
+[07:50] fable 5.1 and GPT 6 Astra or system two models because it's slower and deliberate, whereas
+[07:56] Jeb is more of a system one model because of how fast it is, which means that you can have it
+[08:00] being always on and running continuously in the background on some kind of task. Now what this
+[08:05] becomes really interesting is that if you combine system one and system two models together.
+[08:09] So for example, if Jeb is your system one model, then it would be giving decisions with a whole
+[08:13] bunch of probabilities back. And then you can assign if statements to the probabilities. So for
+[08:18] example, if it's greater than like 0.5, then this action happens automatically. Kind of like what
+[08:23] this guy did over here, whereby he built a trading bot with Jeb. Of course, I don't think it's
+[08:28] profitable, but basically it can quickly decide whether to buy and sell because it gives a probability
+[08:32] and then you quickly execute a function with a if statement. So for example, that will look
+[08:37] something kind of like this over here. We have a state, then we have the questions that we're
+[08:40] giving, which is a simple null as we talked about before. We send the request over to Jeb's
+[08:45] servers with our API key. And then depending on the probability that it gave back, we would decide
+[08:50] whether to place a order. Now if we started recording all the decisions that we made and the
+[08:54] outcome as well, we could then set up a regular process where a system two deeper model would be
+[08:59] thinking about like, Hey, what is the strategy we're doing here? Can we improve it in some kind of way?
+[09:04] And then it would basically rewrite any of the criteria, the examples or the threshold for us,
+[09:09] and then now pass back into system one model. So for example, for this wording over here for the
+[09:14] criteria or the instructions, it could be rewriting that. Now of course, I don't think that you should
+[09:18] be trading with this, but given Jeb is really fast, I think it's a pretty good example of real time
+[09:24] AI. And I actually thought that this was a much better example where this guy basically asked
+[09:28] to Jeb and GPT 5.6 Astero to play Minecraft in real time. So Jeb would make quick decisions about
+[09:33] what to do next and then Astero would plan ahead. And after seeing this myself, I was like, wow,
+[09:38] I got to try this as well. I don't think that I replicated his exact setup, but essentially I asked
+[09:43] Astero like, Hey, can you basically say a long term objective and monitor Jeb's strategy,
+[09:49] whilst Jeb actually plays a game itself? So I can see that Jeb is playing Minecraft right now.
+[09:53] I told her, Hey, can you go ahead and build a shelter and then get a diamond pickaxe? So Astero
+[09:58] is planning the high level strategy and Jeb is actually going ahead and executing out. So this was
+[10:03] running for about like 10, 20 minutes and it's actually doing pretty well in the very beginning.
+[10:08] And I think this is very similar to how many people play games whereby their system one is doing
+[10:12] most of the work when it comes to playing the game itself and their system two often reflects
+[10:17] on like, Okay, what exactly caused me to like fail that particular mission? And then it's kind of
+[10:21] retraining the system one to be better at the game itself. So I can see that now once I had
+[10:26] a made a door for itself and it's going to go back and actually put the door on the shelter that
+[10:30] it made. And essentially what Jeb does anytime it requires any feedback about what it should do next,
+[10:35] it poses a game and then Astero is like, Okay, let me assess the situation and give a Jeb the next
+[10:40] set of many goals. So it's saying over here that the house and refile complete and Jeb has installed
+[10:45] a door and checking the entrance and then moving on to stone tools and lighting towards their iron
+[10:50] pickaxe and eventually diamonds. So I will leave that running in the background during the rest of
+[10:54] the video and then see how far it gets. So I'll have it continue playing the game in the top right
+[10:57] whilst I explain what is happening. So I had it set a overall goal which was build a house and then
+[11:01] obtain a diamond pickaxe. So this is what I handled over here. And then GPT 5.6 Astero is handling
+[11:07] the strategy which is one level below. So it's prioritizing shelter before nightfall and like
+[11:12] starting mining once food and tools are ready. So that would be an example of something you decide to
+[11:16] do. And then Codex is reviewing every two minutes and after significant setbacks and milestones. So
+[11:22] for example if Jeb died in the game Minecraft then Astero would be reviewing like okay what exactly
+[11:27] led to Jeb dying and how can we make this better for next time. Any immediate tasks Jev is doing
+[11:32] such as gathering more wood, crafting a furnace or finishing a roof and Jev is basically choosing
+[11:37] and switching tasks based on the state. And Jev is also using local tactics so it's like okay use
+[11:42] that tree over there try a different approach. Stop mining and retreat because there is like a creep
+[11:46] in it by. So any frequent decisions from fresh observations Jev is automatically waiting making and
+[11:51] then for the physical execution itself that's happening via a controller model that I have installed.
+[11:56] So this would be one example of the input that would actually be given to Jev of like hey this is
+[12:01] your intermediate goal. So it has a goal over here the current state so the health the hungry
+[12:06] govern stuff like that the time of day the mining progress a recent history of what exactly happened
+[12:11] as well and then available tasks that it can pick from and then this is what it would look like in
+[12:16] JavaScript. So we have the objective over here the state and then it's picking from all of these with
+[12:21] a multiple choice. You can see it's already gotten a stone pickaxe it made one for itself right
+[12:26] right at the top so I have Jev continue to play Minecraft in the top right for the rest of the video
+[12:30] but essentially this unlocks a bunch of use cases. So for example when you make a bunch of skills
+[12:36] you usually know which skills are most relevant because you made them and during that process
+[12:40] of making them in your system too you kind of trained your system one in a way. Now one of the
+[12:44] problems that people have with cloud code is that when they use the skills they may have dozens
+[12:48] of skills inside of their projects and at their user level and essentially the skill description
+[12:53] is being fed into context window every single time and each of them are using tokens. So some people
+[12:59] who have a lot of skills installed like over 100 or 200 they have all these extra tokens inside of
+[13:05] their context window that they don't really need. So what if the Jev could look at your prompt
+[13:09] look at the context so far and then automatically decide which skill is most relevant for you right now
+[13:14] and this is what they also mentioned in the official Jev cookbook as well so they basically say
+[13:18] for the Hermes agent. Jev can pick the most relevant skill out of 182 skills that you may have
+[13:24] installed inside of your agent so they have a whole example over here of which skill is the most
+[13:28] relevant and they find that with the agent alone it would load the wrong skill 17% of the time
+[13:34] and with Jev suggesting it it would load the wrong skill 7.3% of the time and this is with high
+[13:39] Q4.5 for example. So this means that I can probably put all my skills behind some kind of like proxy
+[13:45] or behind Jev and then Jev would decide which skill is most relevant so I can then remove about
+[13:50] 10,000 tokens from my context window from all these skills I have installed. Next up we know a lot
+[13:55] of people mention that you should give your agent a good feedback loop when it comes to writing code
+[13:59] and your output will be 10x better and just as a quick aside I will be talking even more about
+[14:03] giving your agents good feedback loops to build even better software inside of my upcoming
+[14:08] agents engineer cohorts so essentially this will be a 2 week cohort where we'll have about 200
+[14:14] lessons and it will be starting in around 11 days and the price will be increasing in about 7 days
+[14:19] so if you do want to get in before the price increase then there will be a link down below.
+[14:23] There will be around 233 lessons with about 8 hours of live Q&A so you can show up with your own
+[14:29] questions as well and there will be around the clock Q&A happening on Discord as well so if you do
+[14:34] want to get in on the most comprehensive agent coding class that you will find online then the link
+[14:39] will be down below and if you have any questions about it then you can also email me my email will
+[14:43] also be down below as well. For my previous classes engineers from some of the world's biggest
+[14:47] companies have taken this including many of your favorite engineers and have gotten a lot of
+[14:52] value out of them. Anyways one of the ways I'm making our feedback loops even faster for our
+[14:56] agents is doing something kind of like this so for example what they did is they used browser use
+[15:01] wave jav to basically find flights in about 7 seconds and it costed about 4 tenths of a single
+[15:07] sense so they basically talked a bit about their approach and the open source state it will be down
+[15:10] below but you can kind of watch it over here it quickly finds a flight from Zurich to London
+[15:15] for particular dates so this means that if we have jav running locally on our machine doing some
+[15:20] kind of browser use then they can quickly validate like hundreds of different user flows for our
+[15:24] application and quickly find all the defective ones so I guess you could describe what we're seeing
+[15:29] over here as a system one agent so a really fast agent built on a system one model that would be
+[15:35] navigating a website kind of like you would navigate a website that you're already familiar with
+[15:39] so when you go to a website that you're not very familiar with you may be using a system too quite a
+[15:43] but on a website that you're really familiar with like Google flights you would be using your
+[15:47] system one now this means that you can build really tight and really fast and cheap feedback loops
+[15:52] that can take seconds and cost fractions of a cent into your genticoating workflows so that as soon
+[15:58] as a feature has been implemented for example then it could quickly verify if that feature works for
+[16:03] really cheap so this means that if you're running opus or fabled to build a future when it comes
+[16:07] to verification step you can quickly have it handed over to a browser use agent powered by jav
+[16:12] it'll quickly verify everything give the feedback being like hey this is broken and then your
+[16:17] main system to agent would actually go ahead and fix it and if the system to agent decides like
+[16:21] oh you know what the choice that jav gave actually wasn't that useful maybe I should add a bit more
+[16:26] choices maybe I should change a criterion some kind of way it can rebuild the system one agent
+[16:31] to give even better feedback to the system two one and if we take this jav based browser use agent
+[16:36] just a little bit further then we can do something very similar to these guys whereby they said
+[16:40] thanks to jav we now have a massively parallel browser based adversarial testing suite that
+[16:45] tries to break each release and it costs pennies so they have dozens of browsers running in parallel
+[16:50] over here click around for the website randomly probably or behaving like a real user would
+[16:55] trying to notice anything that they think has often some kind of way so this means that for every
+[16:59] single PR you could probably spin up a dozens hundreds maybe even thousands of agents and parallel
+[17:04] all based on jav that are clicking around trying to break your application in some kind of way
+[17:09] and with the feedback that they can give back to cloud for example it can quickly make all those
+[17:13] fixes and then we can verify those fixes again now I will be trying this myself over the coming
+[17:17] week and then sharing all my learnings in my upcoming cohorts as well that will be linked
+[17:22] down below if you're interested now this is really great because it means up for my own applications
+[17:26] I can do something like having massive amounts of adversarial testing happening around the clock
+[17:31] trying to find bugs and it would probably cost like five or ten dollars every single day for like
+[17:35] thousands or even tens of thousands of browsers sessions and if you do something very similar then
+[17:39] you will find that your limiting cost is no longer your tokens because your tokens have become
+[17:43] really cheap and instead your computes so if you're running your agents on sandboxes and you want
+[17:48] to save up to 90% of the cost on your sandboxes then my agent sandboxing service will be down below
+[17:53] it is 10 to 15 times cheaper than other leading providers now another example that I really liked
+[17:58] over here is jav is coming for your garbage comments so this guy basically used jav to like
+[18:03] determine how accurate and how useful are the code comments so for example this is really accurate
+[18:08] because it says multiply the value by two which is exactly what is happening but it's not very useful
+[18:13] because that is very obvious from the code itself so let's actually go ahead and do this right now
+[18:18] so there will be a link down below to the type safe AI skill so you can just download this skill
+[18:22] but I'm just going to quickly copy it over for the sake of this demo and then go to projects which
+[18:26] I know has a lot of garbage comments because a lot of older models had used this and then paste
+[18:30] the scene over here and then it will quickly get an API key so I'm just going to do test and this
+[18:35] will not be working by the time you're watching this pissed it back over here alongside the skill
+[18:39] and then say hey so my goal is to improve the comments from my entire code base can you use jav
+[18:44] to identify all of them based on criteria that you think will be useful confirm with me before
+[18:49] actually going ahead with the criteria and then make a short list of all the comments that you think
+[18:53] are worth improving and then you can find that out to like high-cute agents which will actually go
+[18:57] ahead and prove them do it on a small sample first and then tell me how much it will cost
+[19:00] for all the comments my code base so I can press enter over here and then see what it comes up with
+[19:04] so whilst we're waiting I'm going to check what jav and astro are doing together so basically they
+[19:09] decided to put jav into a hole in the ground and wait until daylight comes back to avoid the
+[19:14] monsters and then it will like prioritize healing before containing you on to diamond peckaxe
+[19:20] so we managed to do 150 comments in 9.3 seconds for about one sense and it said that it can analyze
+[19:26] all the comments in the code base for about 57 cents and it expects the short list to be about
+[19:31] 1,700 comments that would need to be rewritten in some way to make them better now this is actually
+[19:36] insane because it means that we can analyze entire code bases really quickly for things that we
+[19:41] care about with a pretty smart classifier so one of the things that we can do here is because jav is
+[19:46] a fast cheap and pretty smart classifier we can now make AI qualitative lenses so instead of
+[19:52] defining like a really long lenser code that may not capture everything and can opt in breaking
+[19:56] pretty complicated code for example we can now define rules kind of like this instead so for
+[20:01] example a qualitative lenser could be doesn't name describe everything this function does including
+[20:06] the side effects or for example for all our logging inside of our code base we could ask something
+[20:11] like what kind of value is being logged and if it is a secret or a financial value then we will
+[20:17] basically for an era if it is personally identifiable information then we may want to add some kind
+[20:22] of warning instead and then we can have these lenses running on basically every single PR for
+[20:26] incredibly cheap never really interesting example as I can have jav analyze my entire code base
+[20:31] for really cheap and then identify all the code smells inside of a code base so if you don't know
+[20:36] of the idea of code smells then it's mentioned in the book by Martin Fowler called a refactoring
+[20:41] improving the design of existing code and a quick example of a hey would be something like duplicate
+[20:45] code another would be dead code for example a number one would be having magic numbers and strings
+[20:50] for example you can basically look for the entire list of code smells online but I could go over to
+[20:54] Claude and then say something like hey so can you use jab to basically find all the code smells in
+[21:00] my entire code base give me this strategy that you would follow here and then it will do a really
+[21:04] fast and cheap job at analyzing my entire code base for code smells and then basically pointing
+[21:08] towards any smelly code of course there are certain types of code smells that it would not be able to
+[21:13] find given the way that jav works but I think the meta point stands whereby we can have things
+[21:18] that we want to enforce inside our entire code base whether they're invariants or like
+[21:22] removing smelly code finding potential security vulnerabilities for example and we can do for
+[21:27] really cheap as well so you can kind of imagine it like this we have jav being the instant reflex
+[21:32] the system one where it looks at code and automatically decides whether it's a code smell we then
+[21:36] create a short list from the probability that jav gave back about that being a code smell
+[21:40] and then for anything above the value we would redirect it to another model to basically give
+[21:44] it more deliberate thoughts so actually if I go back to Minecraft over here then I can see that
+[21:48] jav finally got his hands on a diamond which is really good so it's making good progress
+[21:52] and now when it comes to code smells I have a measure on my code base right over here
+[21:55] it then told me that I can use static analysis for these code smells over here and then the questions
+[21:59] that it would actually ask a jav on these ones over here instead so we have a bunch of questions
+[22:04] that would be asked to jav and it said that doing an exhausted pass of the entire code base
+[22:10] would be 28 million input tokens and only cost a $1.19 for all those code smells that it listed
+[22:17] right over here that I can actually check now one of the things that we can do is have system two
+[22:22] train system one to do a small pass then look at the results and then readjust and change a
+[22:27] criteria of system two so for example jav is making hundreds of thousands of decisions for us
+[22:32] really fast decisions look at the decisions that we got back get a system two model to analyze it
+[22:37] revise a criteria and the rules and then get jav to continue until it does a better job at
+[22:42] identifying the things that we care about and what's interesting is that it led to some people
+[22:46] making jav based code review tools so you could have like a hundred questions asked about a dip
+[22:52] for really cheap and then score all of them and then pass the most important ones over to
+[22:56] actual coding agent to resolve and then maybe fix and after seeing that I basically thought to
+[23:01] myself if I made a jav based code review how many tokens would I actually save so I pass that over
+[23:07] to my slack agent running opus five and it basically said to me over here while state cannot replace
+[23:11] the default code review tool bills inside of cloud code it can code what it reads by 10 times and
+[23:16] it previously had a cloud analyze my past sessions to see where my costs are going and it basically
+[23:20] said your output tokens are 10% of the cost so if I can reduce the amount of tokens for my code
+[23:25] review by 10 times that is like a huge win on cost alone so I will be experimenting around more
+[23:30] with making a jav based code review tool and I will be sharing any of those learnings inside of my
+[23:35] agents engineer co-host coming up as well so if you do want to learn those as well then they
+[23:38] will be linked down below okay to see how jav is doing on minecraft this is really cool because
+[23:43] it now has a diamond pickaxe and it's going all the way to another now random idea that I just
+[23:47] had on the spot right now is basically getting your coding agent to build its own system one
+[23:52] understanding of your code base so basically has a whole bunch of invariants that need to be followed
+[23:56] any code smells any rubrics and stuff like that and then for every PR it automatically checks your
+[24:01] entire PR against a checklist of like 50 100 or even 500 things so basically have the intuition of
+[24:07] a senior engineer reviewing a similar PR for the code base of like hey I think this is potentially
+[24:13] a problem and those problems would be passed over to your main system to agent that could make any
+[24:17] fixes so imagine a really fast good check review from a hundred or a thousand different angles
+[24:23] of any PR that you have and it could probably start off with a pretty broad search at the very
+[24:27] beginning such as like security or compatibility or something like that and then your coding agent
+[24:31] can rank the severity and anything that are severe goes to specialized agents instead so for example
+[24:37] anything security related could go to glem 5.3 because the Claude and the gpt models right now
+[24:42] refuse any security related thing or you could probably do something very similar whereby you
+[24:46] have a broad search happening at the very beginning and then you have additional asks that are
+[24:50] generated depending on which category that it falls into so if it's like security you could have
+[24:56] 100 more questions being asked and then the things that are ranked to their most high get passed
+[25:00] over to a specialized agent so I guess it could look something kind of like this we have really
+[25:04] cheap screening happening across our entire code base our entire diff then only the strongest
+[25:08] few require the most amount of attention from system two models so I guess from one lens we could
+[25:13] give our system to coding agent like cloud code really cheap system one reflexes specialized
+[25:19] to our particular code base with tons of tiny questions from a really smart classifier and this
+[25:24] could be running in the background entire time before the coding agent is about to make some kind
+[25:28] of grave mistake and I think that this jav based code review could be really promising because of
+[25:32] this tweet over here whereby one of the engineers at century basically said these are the results
+[25:37] of using jav on one of our security pipelines so they say that they already use smaller doma models
+[25:43] to make it economical and this model does it over five times cheaper faster and whilst
+[25:48] maintaining a high accuracy so they basically showed a bunch of models over here including gpt oss
+[25:53] 120b and it is more accurate faster and also cheap as well so that is a really surprising and sure
+[25:59] they'll probably develop on it and build even better security pipelines but I think for code review
+[26:03] pipelines it could be really powerful okay so it seems that jav actually got all the weights
+[26:07] are never which is really impressive and I can probably get it to slay the end of dragon as well
+[26:11] so yeah honestly this is super surprising so yeah I haven't been this excited about a brand new
+[26:16] model in a really long time I think the last time I remember being this excited was when chaggb2
+[26:21] was released for the first time four years ago but I really think this is going to be a pattern
+[26:24] that we see going forwards whereby we have system one models like jav or maybe even others released
+[26:29] by open AI or in front pic working alongside system two models like cloud fable to achieve even
+[26:35] better outcomes when it comes to agent coding I think that jav has many use cases in the AI
+[26:40] software development lifecycle that I will be talking more about in detail inside of my agents
+[26:45] era engineer cohort that will be starting in just a week like dumble if you're interested
+[26:49] but I think that some of the ones we're already seeing right now is even better more robust
+[26:53] security pipelines cheaper and better code review as well massive amounts of adversarial testing
+[26:58] happening around the clock qualitative lenses as well quickly analyzing our code bases to make them
+[27:03] even more agent friendly and maybe even giving our system two agents reflexes as well so imagine
+[27:08] that if this actually does work really well in many benchmarks then most coding agents going forwards
+[27:12] will be combination of system two models and system one models so yeah that is pretty much all for
+[27:17] the video and finally I will be sharing even more thoughts and learnings that I have through my
+[27:21] experimentation with jav inside of my agente coding school newsletter there will be a link down
+[27:26] below if you're interested

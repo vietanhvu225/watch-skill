@@ -1,0 +1,80 @@
+[00:00] Jeff is a new type of model that makes us question how we should really think about optimizing LLMs.
+[00:05] When we follow the orthodox path in AI from ChatGPT that was released in 2022,
+[00:09] models have been optimized to assist humans in chat applications. Of course, as coding agents
+[00:14] like Cloud Code and Codex became mainstream around 2025, we also optimized the models for this as well.
+[00:21] But when we look at the AI stack, how AI actually gets end up being used in the application layer
+[00:26] often puts a downward pressure on the layers below, and as a consequence, they tend to morph
+[00:31] themselves to optimize for the best outcome in the application layer. And models continue to
+[00:36] optimize to be more helpful to humans and also optimize to be more helpful in coding agents.
+[00:42] But one area that always felt short in use cases was workflow automation. Even a highly
+[00:48] intelligent model like Astra and Fable couldn't really cross a threshold here without a huge
+[00:53] cost on the way. And Typesafe AI that made Jeff is making an assertion here that the reason why
+[00:59] this threshold is notoriously difficult to cross even for highly intelligent models is because
+[01:04] the state of the art models are optimized for different things. The way that they articulate
+[01:09] this is a schism in the orthodox line where optimizing the model for human preference and further
+[01:15] optimizing them for verifiable reward doesn't really carry over when decisions need to be quick
+[01:20] given the uncertainty. Now what we're talking about here isn't that one path is ultimately
+[01:25] superior than the other, but Jeff is sort of this anti-thesis to our current trajectory in AI
+[01:31] and arguing that we really have neglecting the use cases that stand to make a huge difference
+[01:37] in automation. And Typesafe AI is arguing that trying to force a model that's optimized for
+[01:42] human interaction and agent use cases into automation is fundamentally wrong way to go about it.
+[01:48] When we look at all the different projects that people are showing off on social media using Jeff,
+[01:53] a lot of them are actually more showing off the speed of execution rather than the depth of
+[01:58] understanding. Sorting emails, improving rag, playing games, model routing are all tasks that
+[02:04] current LLMs can do, but certainly not at the speed of Jeff that according to them are 40 to 200
+[02:10] times faster where end to end response time is 70 to 500 milliseconds. Functionally, current LLMs
+[02:16] can do everything that Jeff offers, including mimicking the response so that it returns a result
+[02:21] just like Jeff would, but matching the latency of 70 to 500 milliseconds is not something that
+[02:27] auto regressive models can easily do, especially since tokens are generated one after another
+[02:33] until completion. But Jeff is inherently designed to do parallel sampling and typed probably
+[02:38] decisions which is something that LLMs don't do in the architecture. So it's less about what Jeff
+[02:44] is functionally capable of, but what we're optimizing the models so that we can cover more ground
+[02:49] in the application layer so that automation, game playing, mass sorting, these types of
+[02:54] tasks are practically possible. Now let's take a closer look at the model Jeff and see how it
+[02:59] actually works. But before we do that, we have to talk about coding agents which can be complicated
+[03:04] to use. And that's by Juni CLI, an AI coding agent from JetBrains could be perfect for you. Juni
+[03:09] is what scored near the top right here on Sweet Reabanche leaderboard as you can see at 61.8%
+[03:15] resolved. So I can bring this very coding agent directly into my terminal right here and ask Juni
+[03:21] to work on complex coding tasks. For example, here I'm asking Juni to keep my website up to date
+[03:26] and since there's a lot of information to update, I can hit shift tab and put Juni into plan mode first.
+[03:31] Instead of immediately changing code, Juni will then break their tasks down into these multiple
+[03:36] requirements as you can see the design, the implementation stages and the tests that it wants to run.
+[03:41] And now this plan is actually saved inside the folder dot Juni slash plans. So now I can review it
+[03:47] before actually proceeding with Juni to start implementing the code. I can also bring my own API key
+[03:53] and choose which model I want to use per task, which means I have more control over the usage limits
+[03:58] and pick and choose the models I want for the job. For a limited time, Gemini 3.8 Flash runs at 75%
+[04:03] off base price in Juni, while your daily driver can still be Gemini 3.7 as a default.
+[04:08] You can open the ID plugin or Juni CLI, run a real task and see how much you might save.
+[04:12] Link in the description below. Unlike traditional LLMs where we give them an instruction and the
+[04:17] model responds in text, Jeff is different because it basically forces you away from raw text as
+[04:24] input but putting them in a structured format that looks something like this. And Jeff responds
+[04:29] back in a similar structured format but with a probability distribution. Okay, what do I do with this?
+[04:34] And that's where a lot of people who are used to interacting with AI through traditional LLMs
+[04:39] sort of get stuck because our rules of engagement is totally different now with Jeff.
+[04:44] The basic primitive types of Jeff are choice, score, and no. And you can ask Jeff a categorical question,
+[04:51] score based on order choices or a probability of yes or no question. And these are sort of these
+[04:57] building blocks that software can now use to build on top. It almost feels like we're back to
+[05:01] logic gates and registers and now we have to build many abstractions on top to build more
+[05:06] complicated application as an abstraction. For example, I can take this long list of plans to
+[05:11] sort through and running them through auto-regressive models like cladop with 5 would inherently be
+[05:16] different than asking Jeff to do the same task which is done in a matter of a second or two.
+[05:20] And of course, you can also follow different design patterns given different permutations of
+[05:25] these building blocks. So when we look at the period of frontier, Jeff is competing closer to
+[05:30] flash or nano models like GPT 5.6 Luna, deep sick V4 flash or son at 5, but only on use cases
+[05:36] like workflow specific tasks. So what I hope to see going forward is more coverage in this
+[05:41] periodo that not only allows us to use models that are optimized to assist humans in solving
+[05:47] complex and creative tasks and also daily driver models that helps us assist in mundane tasks.
+[05:53] But now with models like Jeff, an explosion of use cases in this section as well as more models
+[05:59] continue to pop up and help us make actual automation possible from companies that
+[06:04] build on top of these primitives to create something useful and valuable. And as long as demand and
+[06:09] use cases continue to exist, we'll likely see more models in this section here. While TypeSafe
+[06:15] hasn't really disclosed their details around how RLCD method actually works, we've had many similar
+[06:20] ideas in the past around the same idea. In fact, someone on Reddit had already made a very similar
+[06:26] model using bi-directional birth. And this 421 million parameter model that's open source can
+[06:31] easily run on consumer hardware. So how I process this entire news around Jeff is really more about
+[06:37] our use cases growing horizontally than about the novelty of Jeff itself. Since narrow models that
+[06:44] are specialized like this is something that we've had before generative AI completely took over
+[06:49] the public narrative. And I do think that this is a net positive for the ecosystem to now appreciate
+[06:54] a more wider landscape of models that doesn't necessarily brute force a general purpose foundation
+[07:00] model for all tasks. And as we hit constraints that are made by the architecture and the training
+[07:06] objectives, we can now start building models that are optimized for the right constraints instead.

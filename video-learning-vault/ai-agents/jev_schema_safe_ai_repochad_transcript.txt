@@ -1,0 +1,161 @@
+[00:00] Every production pipeline running a language model today is stuck under the exact same duct tape.
+[00:05] You send a request, wait three seconds for autoregressive tokens to stream back,
+[00:10] run a rejects parser, pray the JSON does not break your schema,
+[00:13] and retry when the output hallucinates a field that does not exist.
+[00:17] Yesterday, Diogo Almeida, who previously worked on instruction tuning at OpenAI,
+[00:22] launched Typesafe AI and announced an early access model named Jeff.
+[00:26] Their thesis is that the fundamental bottleneck in software automation is the string itself,
+[00:32] and their solution is ditching text generation entirely.
+[00:35] Jeff is not an LLM, Typesafe explicitly rejects calling it a distilled or smaller language model.
+[00:41] It is what they categorize as a system one model,
+[00:44] borrowing Daniel Kahneman's distinction between fast intuitive execution and slow deliberation.
+[00:50] Instead of predicting the next token in an open sequence,
+[00:53] Jeff takes unstructured state, like raw text, code traces or program logs,
+[00:58] along with a strictly predefined output schema.
+[01:00] In a single parallel pass, it returns typed values, discrete decision paths,
+[01:05] and calibrated probability scores.
+[01:07] Latency sits between 70 and 500ms end to end.
+[01:12] The core engineering trade here is stark.
+[01:14] Jeff cannot write an essay.
+[01:16] It cannot write code, it cannot generate arbitrary strings,
+[01:19] and direct choice cardinality caps at 255 options.
+[01:23] If you need free form text, Jeff is completely useless.
+[01:26] But in exchange for dropping text generation,
+[01:29] Typesafe claims schema violations are mathematically impossible.
+[01:33] The model samples in parallel directly into the allowed types.
+[01:36] In their internal telemetry, Type-era is 0%.
+[01:40] Not because the model makes no mistakes,
+[01:42] but because the interface physically refuses to output a shape outside the schema defined by the developer.
+[01:47] That distinction matters a lot, because claiming an AI cannot hallucinate
+[01:51] usually sounds like marketing noise.
+[01:53] Jeff cannot hallucinate an invalid schema or invent an illegal enum,
+[01:57] but it can still make an incorrect decision.
+[01:59] If you ask it to classify a count-chern between low, medium, and high,
+[02:03] it will never return a corrupted string or broken JSON,
+[02:07] but it could still mark a churning customer as low risk.
+[02:10] That is why the model outputs a calibrated probability alongside every single decision.
+[02:15] To generate those probabilities, Typesafe built a training method
+[02:18] called reinforcement learning for calibrated decisions, or RLCD.
+[02:22] Most frontier models rely on RLHF,
+[02:25] which trains for human conversational preference,
+[02:28] or RLVR, which optimises against deterministic code verifiers
+[02:32] like math proofs or compiler outputs.
+[02:34] The problem in production software is that fuzzy business logic,
+[02:38] like moderation, rooting, or risk scoring, rarely has a cheap programmatic verifier.
+[02:43] Typesafe argues that running RLVR on unverified business logic
+[02:48] makes models brittle and over-confident.
+[02:50] RLCD is designed to train the network so its stated confidence
+[02:54] matches actual statistical accuracy.
+[02:57] Now, the catch is that Typesafe keeps the RLCD loss formulation.
+[03:02] The network architecture, the parameter scale,
+[03:04] and the compute budget completely secret.
+[03:07] They state their training data is proprietary and synthetic,
+[03:10] but outside of high-level descriptions,
+[03:12] we have zero visibility into the underlying weights.
+[03:14] On paper, the pricing numbers they published are aggressive.
+[03:18] Input tokens run at 4 cents per million,
+[03:20] which works out to $42 per billion tokens.
+[03:24] Output tokens are listed as free,
+[03:26] because Typesafe claims the parallel sampler
+[03:28] makes decision extraction too cheap to meter.
+[03:31] In their highlighted workflow evaluation,
+[03:33] they report that JevRan 193.6 faster,
+[03:37] and 444.6 times cheaper than Frontier baselines,
+[03:41] like GPT 5.6 Terra, GPT 6 Astra, and Fable 5.1.
+[03:46] But we have to look at how those numbers were measured.
+[03:49] Published evaluations were run from laptops on the US West Coast,
+[03:52] pinging servers physically close to the author,
+[03:55] comparing Jev against LLMs wrapped in a custom open-source probability adapter.
+[03:59] If you run production workloads today,
+[04:01] I want to hear you're taking the comments.
+[04:03] Given that Jev caps direct choices at 255 options,
+[04:07] and requires you to define strict schemas in code ahead of time,
+[04:11] do you see this replacing your existing LLM routing layers,
+[04:14] or does the lack of free form generation
+[04:16] make your pipelines too rigid?
+[04:17] By the way, if you want direct technical breakdowns
+[04:20] on backend, inference pipelines, and local hardware setups,
+[04:23] consider joining as a channel member.
+[04:25] Perks include member-exclusive videos,
+[04:27] priority comment replies, and exclusive shout outs
+[04:30] on upcoming projects.
+[04:32] It is a great way to support independent engineering coverage here.
+[04:35] The launch material includes two live demos,
+[04:38] starting with a bot playing Doom.
+[04:40] They hooked Jev directly into the game loop,
+[04:42] making about 10 queries per second,
+[04:44] at an estimated operating cost of $7 an hour.
+[04:47] Jev does not read pixels here,
+[04:49] it consumes structured text representing game state,
+[04:52] like player health, coordinates, and nearby enemies,
+[04:55] then outputs movement and combat actions.
+[04:58] Typesafe openly admits that a simple handwritten script
+[05:01] or a basic reinforcement learning agent plays Doom better.
+[05:05] The demo exists to test whether an instruction following model
+[05:08] can handle 10 discrete decisions a second
+[05:10] without stalling a real-time loop on latency.
+[05:13] Their other demo is wiki racing,
+[05:15] where the model starts on a random Wikipedia page
+[05:18] and attempts to navigate to a target page by selecting links.
+[05:21] A single page can contain thousands of hyperlinks,
+[05:24] which exceeds Jev's direct choice limit of 255 options.
+[05:29] To solve that, typesafe uses a two-stage approach.
+[05:32] Jev scores candidate links across parallel batches,
+[05:35] then makes a discrete selection from the filtered set.
+[05:38] In their side-by-side run against models like GPT 5.6 Terra
+[05:42] running in default reasoning mode,
+[05:44] Jev reached destinations in fewer steps
+[05:46] without inventing links.
+[05:48] But, um...
+[05:49] Typesafe explicitly noted that they ran competing LLMs
+[05:52] without reasoning or on minimal reasoning settings
+[05:55] to keep the comparison watchable on video.
+[05:58] That choice naturally makes the competing models perform worse
+[06:00] than they would with full reasoning enabled.
+[06:03] This brings up what is missing from the announcement
+[06:05] and it is substantial.
+[06:07] Typesafe deliberately published zero numbers
+[06:09] on standard public benchmarks.
+[06:12] Their stated policy is that public leaderboards
+[06:14] encourage data set contamination and prompt gaming
+[06:17] instead of measuring real utility.
+[06:19] While benchmark skepticism is understandable,
+[06:22] it also means independent developers
+[06:24] cannot verify how Jev performs on generalized tasks.
+[06:27] Everything presented so far comes from vendor-designed workflows
+[06:31] written by Typesafe's own capabilities team.
+[06:34] They did compare outputs against GPT 6 Astra
+[06:37] and Fable 5.1 as reference baselines,
+[06:39] but internal tests always reflect the creator's best case conditions.
+[06:44] Because Typesafe has not shared the parameter size or model weights,
+[06:47] we do not know the memory footprint
+[06:49] or whether local self-hosting will be possible.
+[06:52] If Jev can run locally on consumer cards,
+[06:54] like an RTX 4090 or an RTX 3090 with 24GB of VRAM,
+[07:00] it could become a practical utility for local automation stacks.
+[07:04] If it requires data center clusters to maintain
+[07:06] that 70 millisecond latency,
+[07:08] developers remain dependent on a proprietary managed API.
+[07:12] Right now, access is strictly limited
+[07:14] to an early access wait list.
+[07:16] If you enjoyed this technical breakdown,
+[07:18] drop a like and subscribe to RepoChad.
+[07:20] It keeps the channel independent
+[07:22] and focused on real systems engineering
+[07:24] without the sponsored fluff.
+[07:26] The underlying bet behind Jev points back to Jevon's paradox,
+[07:29] which gave the model its name.
+[07:31] When a resource becomes radically cheaper and faster,
+[07:34] demand for it does not shrink, it multiplies.
+[07:37] In modern software, we treat model inference
+[07:39] as an expensive, slow bottleneck
+[07:42] that we isolate behind cues, caches, and fallbacks.
+[07:45] If dropping inference down to 70 milliseconds
+[07:48] and fractions of a cent holds up in real-world deployments,
+[07:51] software architecture starts shifting away
+[07:53] from massive prompt wrappers
+[07:55] toward dozens of small, typed probabilistic decisions
+[07:58] embedded directly in code.
+[08:00] Whether Jev delivers on that shift depends entirely
+[08:03] on how it handles messy edge cases
+[08:05] once developers get their hands on the API.

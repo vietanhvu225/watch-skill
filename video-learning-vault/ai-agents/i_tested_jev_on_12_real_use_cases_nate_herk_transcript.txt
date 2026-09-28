@@ -1,0 +1,222 @@
+[00:00] So, Jev is literally everywhere, and I think it's going to change how AI
+[00:02] automations are built. So I came in here and tested it on 12 use cases and
+[00:06] compared it with other AI models on things like speed and cost. I was even able
+[00:10] to build this Chrome extension that will label X tweets as breaking or, you know,
+[00:14] golden nuggets or AI Slop in real-time for me. On the back end, you can see that it uses Jev
+[00:18] to actually instantly categorize all the stuff as soon as it enters my screen.
+[00:22] It's not doing very well in the first hour, but I also made this Jev Trader,
+[00:25] which is literally every single second analyzing if Bitcoin's going to go up
+[00:29] or go down or stay. And then it basically places trades in real-time for me.
+[00:33] Because this model is so good at quick decisions. But anyways, by the end of this video,
+[00:36] you'll understand how Jev works and where you should actually use it in your life.
+[00:39] So let's not waste any time and just get straight into this one.
+[00:41] All right, we're going to start off with just like what is Jev. I'm not going to do a super,
+[00:44] super deep dive just enough for you to understand how it works and what we're looking at in today's
+[00:48] video. So the interesting thing about Jev is that it's an AI that makes decisions, but it doesn't
+[00:52] write anything. It doesn't output tokens. It's not anything that you could actually have a
+[00:55] conversation with. It just makes decisions. So here was kind of the announcement tweet from
+[01:00] Diego. He co-invented Chat Gbt, and then he has been building in the past two years this new
+[01:06] way to train models, RLCD. And you can see what that stands for is reinforcement learning for
+[01:11] calibrated decisions. And this is on TypeSafe's blog. And by the way, if you want to actually
+[01:16] get in here so that you can start playing around with Jev, then go to TypeSafe AI and join the
+[01:21] wait list. And then hopefully in a few hours, you're able to sign in. But also, this is available
+[01:24] through like for sales gateway, as well as open router. So if you're not in the wait list yet,
+[01:29] then you can still go out and play with Jev. But anyways, essentially what happens is instead of a
+[01:33] normal chat model where you would send in a message like this, this is some sort of support ticket,
+[01:37] and the AI model would read it, would reason, would think, and then output like a message or
+[01:41] output some sort of classification. It basically just outputs these types of things, which are a
+[01:46] yes or no confidence level, a category, and sort of a score. So for the first one, is it urgent?
+[01:52] 99% confidence is yes, it is urgent, which team there were probably multiple routes like technical
+[01:57] or billing or support and it labeled it as technical. And then how frustrated it gave it a one out of
+[02:01] two on the frustration score or scale. But you're fully in control. You basically will set up Jev with,
+[02:06] hey, this is essentially how you're supposed to make decisions. And here is sort of like the classification
+[02:11] criteria. So it's three types of decisions, like I said, the yes or no is called a null.
+[02:16] The pick one is a choice. And then we have an actual score. And I'm going to show you guys real
+[02:20] examples of all of these being run on these 12 use cases. So don't worry. But I just wanted to sort of
+[02:24] lay the foundation here. So like I said, in this example, it's yes or no. And there's a confidence score.
+[02:29] And the team or categorization example, it's different categories as well as a confidence score.
+[02:34] And then a score from zero to 10 on some sort of scale. And in here, one meant that they were
+[02:39] frustrated. And the reason why this is getting so much traction is because Diogo said that this is
+[02:43] 20 to 200 times faster and 40 to 400 times cheaper with output tokens being free. And so if we look
+[02:50] at the speed here, compared to models like Tara and Luna and soul, this thing is going to be a lot
+[02:55] faster. This was just one very quick test I ran. This doesn't mean that Tara is always faster than Luna.
+[03:00] But this was just one quick example of how significantly faster Jeff is once again, it doesn't have
+[03:05] to output all these tokens or reason. It just boom makes the decision and outputs it in like this
+[03:09] JSON format. And same thing from a cost perspective, if you were running thousands and thousands of
+[03:13] decisions per day, this is what it could actually end up looking like. Now, obviously the important
+[03:18] thing is you're paying a lot less. So you want to make sure that the quality is the exact same as
+[03:21] what you'd be getting here or here to justify it. If we're just looking at the cost right now, it
+[03:26] is significantly cheaper and it is proven that it's significantly cheaper. So what it cannot do is
+[03:30] write or summarize or find themes or do deep analysis. It basically just outputs decisions.
+[03:37] And one other limitation right now is that it has a very small input context window. It's 64,000
+[03:41] tokens, whereas a lot of the models that we're used to using today, whether that be cloud or GBT are
+[03:46] more on the side of a million tokens. So if we look at this on a use case like YouTube comments,
+[03:51] if I fed in 5,000 YouTube comments, Jeff could sort them for way cheaper and way faster than any
+[03:56] AM model could. And then it could categorize them as like, hey, these need to reply, these are stuck,
+[04:00] these people want to buy. And then what you could do is feed at a more intelligent AM model, an AM
+[04:05] model that actually responds to things and outputs things. And you could say, hey, Chad GBT,
+[04:09] could you read just these now and then help me like analyze themes or help me respond to these
+[04:14] ones or something like that. And that way you're not using a slower and more expensive model to
+[04:18] actually categorize all of those comments in the first place. Because Jeff isn't a frontier AI
+[04:22] model. It's not even in the same bucket as Astra or Fable. It's a completely different type of model.
+[04:27] So when to use it, if you have thousands of things, if you have a corpus of data, if you need to classify
+[04:31] things, make decisions or you're running some sort of decision-based or classification-based workflow
+[04:35] at scale and production, if you need like very quick real-time decisions, because it's really,
+[04:39] really fast. And stay with Chad GBT. If you need things like handful of items, you need to
+[04:43] understand why, you need to brainstorm, you need to chat, things like that. Anyways, let's just
+[04:47] get straight into some use cases here. So I know this might look a little bit intimidating of a
+[04:51] screen, but what I want to show you is a little bit of a playground of how this actually works.
+[04:56] By the way, guys, I've got this completely free SOP for you about getting your first AI
+[04:59] automation client. It's going to go over the exact steps that has been proven for hundreds of
+[05:03] our AIS plus members to get their first paid gigs. It goes over the one-sentence service
+[05:07] pitch that can get you started today, while your first client should cost you money. The five-minute
+[05:11] video that answers can this person actually deliver before you've actually received any money.
+[05:15] What to do when you have zero-case studies? There's so many good things in here that are going to
+[05:19] help you out. Even if you already do have clients, I would recommend grabbing this because, like I
+[05:23] said, it's yours completely free. So if you want to grab this, there's a link for it down in the
+[05:26] description. Let's get back to the video. So the first one we're looking at is emails. Now,
+[05:31] real quick, you can see that I've got a bunch of different categories set up or a bunch of
+[05:34] different questions set up. The first one is invoice or receipt. This is a yes or no. The second one
+[05:38] is brand deal. This is yes or no. Scamer fishing, yes or no. We also have email type. We also have
+[05:42] urgency, and we also have sponsor fit. So we've got different types of scoring and different types
+[05:46] of categorization. And you can see here, if I run this real quick, if I go to redo everything and I
+[05:51] hit run, we're currently using the model Jev. And this is a thousand emails. Like, look how quick
+[05:56] this is able to classify a thousand emails. So it did that in about 70 seconds for nine cents.
+[06:01] Now, obviously, that's not like super super fast, like lightning fast, but this was not parallelized.
+[06:06] If we were to run all of those individually in parallel, it would have been so much faster. But I
+[06:10] just wanted to show the difference here. Let's even go to something like GBD 5.6 Luna, and we'll run
+[06:14] this again on everything. So all a thousand. I mean, this feels like it took forever with Luna that
+[06:20] took five minutes, and it was 62 cents compared to 70 seconds. And I think it was nine cents. And
+[06:25] also think about it wasn't just doing one sort of classification. It was doing all seven of these
+[06:29] rules. And I actually just changed the back end to make this actually process things more in parallel
+[06:33] with bigger payload. So I'm just going to run this now and we'll see how much quicker this really is.
+[06:37] Boom, look how fast that went. That took six seconds, and it once again was nine cents. So that just
+[06:42] shows how you can optimize that back end to make Jev go even faster. And yes, you can do the same
+[06:46] thing with Luna, but it's just not going to be as fast as six seconds for a thousand emails across
+[06:50] seven categories. So I know that this interface may be a little overwhelming. Let's just get rid
+[06:54] of everything here except for invoice or receipt. So this is literally just us saying, okay,
+[06:58] we want to set up some sort of classification for all of these a thousand emails. We're going to give
+[07:02] it a name. We're going to ask the question, is this email a receipt invoice payment confirmation
+[07:06] or billing notice? And then we just define like what counts as yes. So it has a charge, a payment,
+[07:11] a payout, or some sort of failed payout. And we call it a yes when Jev is at least 50% confidence. So
+[07:16] that's kind of the thing that we're running here. And I would just go ahead and choose redo everything.
+[07:19] And so when we run this, it's basically going to look at all a thousand of those emails and just
+[07:22] decide, is that an invoice or receipt? It comes back in four seconds for five cents. And it where it
+[07:28] landed was no on 763 of them, but yes, on 237 of them. Here is a category example where we actually
+[07:34] set up the email type, whether it's notification newsletter billing opportunity. And you can see if I
+[07:38] edit this, what we did is we actually had to choose the options and define each of them. So this is
+[07:42] a pretty standard AI classification type of automation. But then if we look at the scoring. So for
+[07:47] example, if we look at the sponsor fit, if I go to what this one looks like, this is rating it on
+[07:51] a scale. And we basically choose from lowest to highest what that looks like as far as not a sponsorship
+[07:57] inquiry at all, or if it's a strong fit. And it will choose the level. So you can see here,
+[08:01] it shows that 942 of them were one. And then it, you know, we didn't have any that were strong fits.
+[08:06] You can see there was another score when I was urgency about if there was action needed or
+[08:11] nothing needed at all. And this was a little bit more even across the board. The average was 2.8 out of
+[08:15] five. So anyways, email classification is one example. And obviously when you're looking at the
+[08:21] actual cost and speed here, that first example we ran, Luna was 12 times the cost and 46 times the
+[08:26] time. And that was also just Luna. What if we went up to Tara and soul? How much more expensive that
+[08:30] would have been and how much more that would have cost us? So a lot of these use cases are kind of
+[08:34] on the classification side. I did the exact same thing here with YouTube comments where I can
+[08:37] choose categories or yes and no and score. And I can analyze thousands of comments at a time
+[08:43] on things like comment type. If they're worth a reply, if it gives me a video idea, what the sentiment is,
+[08:48] what the question difficulty is. And once again, if I run Jeff on all a thousand of these,
+[08:52] look how quick that actually goes. It would be so much longer if we used any other sort of AI
+[08:56] model five seconds for five cents. And if we actually go to my Jeff console real quick and I go
+[09:01] ahead and refresh, this is going to show that I've used 85 cents with Jeff. But look how many requests
+[09:06] I've done. I've done almost 20,000 requests. Think about what 20,000 requests on a different AI
+[09:10] model would have cost us. And I can also do the exact same thing with my school posts. I can set up
+[09:14] my custom categories or my custom classification criteria to see what type of questions we have if they
+[09:19] need help. If we need a team answer, if there's churn risk, member experience level, testimonial strength.
+[09:25] And yes, this is kind of like a dashboard playground view. But what if you had this in an
+[09:29] actual automation where every single time a new post got made, you updated the database, every
+[09:33] single time a new YouTube comment came in, you updated the database every time there's a new
+[09:37] internal CRM entry or every time there's a new lead that submitted a form on your website. There's
+[09:41] so many things you can do here. And even though the speed might not matter a ton when it comes to like
+[09:46] actually having automations and production, what does add up really quickly is the cost. Because once
+[09:50] again, when you start to run thousands and thousands of requests through, it's going to add up big time.
+[09:55] So when you talk about AI economics and model routing, this is definitely going to be a game changer.
+[09:59] Now, here's another interesting one where the speed really did matter. I have this one called x-feed
+[10:03] where it basically like pulls in a bunch of posts on my feed. And it will tell me are they on topic or
+[10:08] you know, like what's the category is it breaking news? Is there a video idea potential? So similar
+[10:13] classification as we saw in these first three, but look what else I did. If I give my x a hard
+[10:17] refresh real quick, you'll see that in the bottom left, I have this thing called jev judged. And you
+[10:22] can see that it judged that one a slap. And as I scroll through, this is a Chrome extension that
+[10:25] it built for me where it's looking at the x-posts and really quickly reading them and classifying them
+[10:30] as breaking or golden nuggets or AI slop. It's basically going to help me keep me more focused while
+[10:37] I'm scrolling through x to see, you know, like highlighting what might be good to read and what are
+[10:41] things that I should probably just ignore because of AI slop. And those are just a Chrome extension
+[10:45] that I built where it has jev on the back end powering all of this. So that is a pretty cool use case
+[10:50] and it shows how fast this thing actually happens in production. I mean, look how fast it's reacting to
+[10:54] these posts as they come onto my screen. It's basically instant. I also thought about what you could do
+[10:58] with your meetings here. You could analyze meetings as they get transcribed in fireflies or granola or
+[11:02] whatever you use. And as soon as they come in, you can categorize them by what type of call it was. If
+[11:06] you had decisions made, if you had like action steps, I thought this one was an interesting one because
+[11:10] let's say you see that in a lot of your calls, you have no next steps discussed or defined clearly
+[11:15] with ownership and timelines. Then you can use the data to change how you're conducting your calls.
+[11:19] So what I think is interesting is jev on its own doesn't analyze things for you. But if you're
+[11:24] strategic with the way that you set up the questions, you can get analysis from it. You can have this
+[11:28] data tell a story. You can't have jev look at thousands of transcripts and say, hey, tell me what I
+[11:32] need to do better about these meetings or tell me common themes. But what you can do is you can give it
+[11:36] categories and you can give it scores. And then from all of these different types of questions that
+[11:40] you set up, you tell your own story with that data. You can see that there's not much tension in
+[11:45] some of our calls. I mean, this one has someone says they're frustrated or overloaded. But all of these
+[11:50] questions that I created for jev here, there's some sort of takeaway from each of these. Are things
+[11:55] waiting on Nate? Is there revenue relevance? Things like that. And I also tried this use case with
+[11:59] video clips where I basically had jev or had, you know, astra break up a bunch of my YouTube videos
+[12:04] into clips. And then I had jev look at those clips and tell me, you know, is this possible to be
+[12:08] posted on its own as a clip? A lot of them know what is the hook strength of these clips? What type of
+[12:13] clips are these? Do I need the screen on them? Is there a quotable line inside of this clip? And then
+[12:17] I could start to have it pull out things that might be worth reposting somewhere else or might be worth
+[12:22] me thinking about the way that I actually speak in these videos and things like that. And so these
+[12:25] were a lot of ways that I would think about how do I take a corpus of information? A ton and ton of
+[12:30] data that I want to have AI analyze, but instead of paying more for it and waiting longer, let's
+[12:35] figure out how we can use the right questions to have jev do it for us. And then not only can we
+[12:40] maybe have some sort of dashboard view, but how do we build jev into our actual back end automations
+[12:45] where it's really going to benefit us to having a really cheap and fast model as we increase the
+[12:50] throughput. Now, I will say don't just plug in jev and trust what it says automatically,
+[12:54] which you're really going to want to do is run e-vals, meaning you're going to have a golden data set
+[12:58] of 100 use cases and 100 correct answers. And then you're going to run jev through those
+[13:02] and you're going to run opus through those and you're going to run soul through those and you're
+[13:05] going to see which model gives you the best balance of accuracy and cost. And if you care about speed
+[13:10] in that use case, then also speed as well. But here's some other things you could do. You could have it
+[13:14] vet contracts for you as they come in. You could see the type of risk, you could see the type of
+[13:18] clause, you could create any sort of questions that actually matter to you when you're vetting contracts.
+[13:23] Same thing with jobs and leads, you can get red flags, you can get lead quality, you can get next steps.
+[13:28] You can also do something like a brain dump router, where you're constantly just talking into
+[13:32] your phone or you're talking into something and then you're feeding that into jev and it can tell
+[13:35] you what type of things you're talking about. If there are ideas or tasks or journals,
+[13:40] if you have things that have deadlines, if you have things that are high priority, what area of
+[13:44] your life they're in, there's so many ways to use this because a big part of what we do with AI,
+[13:48] like I said, is just figuring out what to do with all of our data. And jev can do that really well.
+[13:52] And then I think one of the best examples here is customer support. Just routing emails around,
+[13:56] figuring out sentiment, urgency, what we need to do, how we categorize these sorts of things.
+[14:02] I think that this is going to be a huge game changer for customer support because there's
+[14:06] so many different decisions that have to be made. And jev is really good and really fast and
+[14:10] really cheap at making decisions. So here's another use case that I thought would be cool to just
+[14:14] sort of like POC. So this is paper trading. This isn't very vetted. There's a lot that's like
+[14:20] wrong with this, but I think that jev being so real time and making decisions so fast,
+[14:24] it's going to be really interesting to see how it affects things like day trading or trading crypto
+[14:29] in real time. So you can see every single second, jev is basically predicting, is this going to go up?
+[14:33] Am I unclear? Is it going to go down? You can see these confidence scores jumping around every
+[14:38] single second. And that's how it decides what to do. That's how it decides down here to place
+[14:42] trades to buy things or to sell things. Now, unfortunately, there's a lot of these fees here. So the
+[14:46] fees are way more expensive than jev actually making decisions for us. So that's one issue where
+[14:50] it's like, okay, well, how much would we actually have to be able to profit to make this worth it?
+[14:54] But right here, you can see just the cost of running these decisions. Look how much more this would
+[14:58] have cost us per day with other models. Whereas jev would just be costing us about two bucks a day
+[15:02] to run this 24 seven and soul and opus and fabled would be significantly more than jev. Now,
+[15:08] I've also seen people on x doing things like having jev play video games and having jev like do
+[15:12] different creative fun things. And I think it's really cool. Like the browser use and all that.
+[15:16] It's cool to see what's possible. But I think you have to think about where's the handoff because with
+[15:19] browser use, it was unable to like actually type things in. It would basically make decisions
+[15:23] than it would have to route to a different model that's better with actually controlling the browser
+[15:26] to do things. And that's why I wanted to show what this looks like for these examples. Because I
+[15:30] think building dashboards or automations where you have jev powering it on the back end for things
+[15:34] that you actually care about in your life, like these sorts of things is where you'll start to play with
+[15:39] jev and actually get some return and then later figure out how you can expand or extend your workflows
+[15:44] with other models on the back. But anyways, I hope seeing these examples, even though all of these
+[15:48] were very similar in the realm of classification. I hope that it helps you understand how you can
+[15:53] start to ask the right questions in here and how you can start to work it into things that you're
+[15:56] doing to actually make sense out of it. But that is going to do it for this one. So if you guys
+[16:00] enjoyed, you learned something new, please give it a like and helps me out a ton. And as always,
+[16:03] I appreciate you guys made it to the end of the video and I'll see you on the next one. Thanks, everyone.
