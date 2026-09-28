@@ -1,0 +1,576 @@
+[00:00] All right, Web MCP, you've seen it around. It's blowing up. This is going to change how people interact on the internet with websites and applications.
+[00:09] So, of course, people these days are using their AI agents to do all sorts of things for them.
+[00:15] People actually do not want to go to a website and learn about a new UI and learn about which buttons to click and do all these things themselves.
+[00:24] They just want to hand off that task to an AI agent, like ChatGPT or Clot.
+[00:29] If you have a website or app, you probably want to give those agents that the users are using some help in interacting with your website or app.
+[00:39] So, that is what Web MCP can do. In this video, I'm going to show you how it works, how to set it up on your own website.
+[00:45] I'll give you some examples here as well. But let me actually demo this to you.
+[00:50] So, I have this app, Groceries, but some kind of to-do app. Let's say I want to add an item.
+[00:55] So, super simple, of course, I can add it myself. I want to buy sourdough bread. So, I can type it here and I can add an item.
+[01:02] Now, as simple as this may seem, a lot of people actually don't want to learn about a new UI.
+[01:07] This is a simple UI, but a lot of apps are more complex. Websites can be really complex actually.
+[01:11] Also, not everybody is on the internet all the time. They are not familiar with the standard UX patterns.
+[01:16] So, for a lot of people interacting with websites and web apps is quite mentally taxing.
+[01:21] The point is, I'm a user here and I have to do things here. I don't really want to do it myself.
+[01:25] Ideally, I can have an AI agent that can do it on my behalf.
+[01:28] So, what's going to happen is people will use apps like ChatGPT or Clot, and they will do it through those AI chats.
+[01:35] And they will do something like add sourdough bread to my list.
+[01:38] Okay, so, I'm going to hand off that task to my AI agent now.
+[01:42] So, you can see it's going to add sourdough bread to the list.
+[01:46] And here we go. The agent just added this to the list and it used WebMCP for that.
+[01:51] We can even see that here in the Codex browser, by the way.
+[01:54] So, we can see that Codex shows the site tools.
+[01:57] So, we can see that this website here exposes an add grocery item tool.
+[02:02] This is what WebMCP allows you to do on your websites and apps.
+[02:05] You can expose tools to AI agents so that the AI agent can just invoke a tool like that to interact with the website.
+[02:15] And of course, this is a super simple example, but don't underestimate it.
+[02:18] A lot of people are not really comfortable interacting with websites or web apps.
+[02:22] They don't want to learn new UX.
+[02:24] But what's going to happen is more and more of the things that people will do,
+[02:27] they will do it through some kind of AI agent.
+[02:29] So, if you enable WebMCP tools on your site, the AI agent can just invoke those tools.
+[02:35] Now, you could say AI agents can already interact with WebSense and apps.
+[02:38] Right? They even have this browser capability these days.
+[02:41] So, if I'm a user and I would ask, hey, what's the first course that's byte-grat-ever-published?
+[02:47] The AI agent is capable of opening up my website here.
+[02:51] It can take a screenshot and it can analyze the screenshot.
+[02:55] It can see, okay, so there's a courses page.
+[02:57] Maybe we should try that one.
+[02:58] Right? So, it clicks on that one.
+[02:59] It takes another screenshot.
+[03:01] It can analyze that there's a few courses here.
+[03:04] Maybe it wants to click on each of them to see the published date on the individual pages.
+[03:08] Right? So, it has to take more screenshots.
+[03:10] So, yes, technically, it's able to interact with my website already,
+[03:13] but this is not efficient at all.
+[03:15] It has to take a bunch of screenshots.
+[03:16] It has to do a bunch of navigation.
+[03:18] It might calculate where it should click.
+[03:20] It has to interpret all these screenshots.
+[03:22] It may click on the wrong link.
+[03:23] It may have to click on another one.
+[03:24] So, just very inefficient.
+[03:25] It may take longer.
+[03:26] It may be more expensive.
+[03:27] Instead, I could just expose a tool,
+[03:29] something like getCoursesInfo tool.
+[03:32] And the agent can just call the tool.
+[03:35] Agents are really good at tool calling.
+[03:36] Right? That's what these models are trained on.
+[03:38] Tool calling.
+[03:39] That's an agent loop, essentially.
+[03:40] Just calling tools in a loop.
+[03:42] If I just expose a tool, getCoursesInfo.
+[03:45] And it returns information about the courses,
+[03:47] including published dates.
+[03:49] It can just call that tool.
+[03:50] It doesn't have to do all the screenshots and navigation.
+[03:52] So, that is the promise here of WebMCP.
+[03:55] It's simply a much more efficient way for AI agent
+[03:59] to interact with your website and app.
+[04:01] And it's basically just JavaScript.
+[04:03] So, it's going to be some JavaScript script on your website.
+[04:08] So, you can read through the entire readme here.
+[04:10] But basically, the motivation of WebMCP
+[04:12] is to provide a lightweight way to adapt
+[04:15] WebContent for use by AI agents.
+[04:18] And here, I talk a little bit about
+[04:20] the other alternative that we already have, which is MCP.
+[04:23] So, of course, you can also expose tools
+[04:26] with an MCP server.
+[04:27] And I could add an MCP server to my server.
+[04:31] And it could also expose a tool similar like that.
+[04:34] So, they call it a back-end integration
+[04:35] because an MCP server is a server-side or back-end capability.
+[04:40] Back-end integrations bypass the web UI or browser experience.
+[04:45] And sometimes, all I want to do as a user
+[04:47] is just do something in the app in the UI,
+[04:49] which may not get saved.
+[04:51] It's just something I want to do.
+[04:52] Maybe I want to rotate the globe in some map type of app.
+[04:56] Rotating the globe, that's not a server-side thing.
+[04:59] It's just a client-side thing.
+[05:01] It's not going to get saved in a database or anything.
+[05:03] So, replication of state and auth,
+[05:05] you have to met so with MCP, you have to deal with
+[05:08] potentially authentication credentials.
+[05:10] There's also more developer burden.
+[05:11] You have to set up additional things on the server-side, perhaps,
+[05:14] even though you already have the UI logic already to go
+[05:18] and just reusing that.
+[05:19] So, Web MCP introduces a client-side alternative.
+[05:22] It allows web developers to define tools directly
+[05:25] in the browser pages script.
+[05:26] So, this enables cooperative interplay between a user,
+[05:30] a web page, and an agent with shared context.
+[05:33] But the agent can use Web MCP tools to achieve the user's goals
+[05:36] more directly, reliably, and quickly,
+[05:39] as the tools are in a format more suited to the agent.
+[05:42] I should have a diagram here.
+[05:43] It's a bit much to go over here,
+[05:45] but they compare it here with the MCP flow,
+[05:47] basically server-side flow as well.
+[05:49] We give a few examples here.
+[05:50] Let's do one, and then I'll show you some of the examples
+[05:52] of the demos that I created.
+[05:53] But let's say a user is shopping for dresses on a website.
+[05:58] Okay?
+[05:58] The user could have a prompt for chatchipity or for cloth.
+[06:02] Remember, they don't want to interact with websites themselves.
+[06:04] It's too complex.
+[06:04] These e-commerce websites can be huge.
+[06:06] Also, they've all sorts of categories and other buttons.
+[06:09] So, they're just going to go to their AI agent and they say,
+[06:11] hey, show me only the addresses available in my size
+[06:14] and also show only the ones that would be appropriate
+[06:17] for a cocktail attire wedding.
+[06:19] Right?
+[06:20] So, they can also get more fine-grained
+[06:21] with what they're actually looking for
+[06:23] rather than using the out-of-the-box UI that a website offers.
+[06:27] They can get very fine-grained with exactly what they want
+[06:30] with their AI agent.
+[06:31] And now that agent does not have to go to that website themselves
+[06:34] and take screenshots and learn to navigate it.
+[06:36] Instead, that website can use WebMCP
+[06:39] and it has exposed tools for the agent.
+[06:42] So, one tool that it could have registered is get dresses.
+[06:46] It does the name of the tool.
+[06:48] And you can pass in optional dress sizes
+[06:52] and perhaps optional colors.
+[06:54] Right?
+[06:54] So, that website code, this is client-side code.
+[06:58] It can create a tool, if I scroll down a little bit here.
+[07:01] So, that website can use a register tool.
+[07:03] Right?
+[07:04] So, this is something that you can use now
+[07:06] in the browser.
+[07:07] Registered tool, given name, a description,
+[07:10] and an input schema
+[07:11] so that the agent can also input additional information.
+[07:15] So, basically, just describing the tool,
+[07:18] a tool's just a function, essentially.
+[07:19] Think of it as a function.
+[07:20] So, the agent will discover that these tools are available on the website.
+[07:24] It sees out-get dresses.
+[07:25] This is probably what we want to use for this query that the user has.
+[07:28] We can optionally pass in some properties here.
+[07:31] So, size and color.
+[07:32] Okay, so it makes sense.
+[07:33] Right?
+[07:34] So, in particular size and particular color
+[07:36] because it needs to be appropriate for wedding.
+[07:38] So, it will invoke the tool.
+[07:40] Okay, and then what does the tool actually return or do?
+[07:44] Well, here's the meat of that tool.
+[07:46] It will just call fetch dresses
+[07:49] with some size and color
+[07:51] and just return it in JSON format.
+[07:53] So, the agent now only has to call one tool
+[07:56] and it gets structured data and back.
+[07:58] So, we can see what the agent ends up doing.
+[08:00] The agent calls, get dresses, puts in the number six for her size.
+[08:04] Right?
+[08:05] And receives a JSON array of detailed product listings.
+[08:08] So, this is what the agent gets back.
+[08:10] Right?
+[08:10] All structured data about a different product.
+[08:13] So, the agent processes the list,
+[08:15] fetches each image,
+[08:16] and uses the user's criteria to filter for the dresses.
+[08:19] Right?
+[08:19] So, here, there's still a lot of dresses.
+[08:21] It can then use another tool.
+[08:23] Right?
+[08:23] So, show dresses.
+[08:24] So, this website also has created show dresses
+[08:27] and filter products on additional tools.
+[08:30] So, by calling the tool show dresses,
+[08:33] the UI of the website gets manipulated.
+[08:35] So, this updates the UI on the page
+[08:37] to show only the requested dresses.
+[08:40] Right?
+[08:40] Agent only has to call one tool essentially
+[08:42] to manipulate the UI.
+[08:44] Right?
+[08:44] And then,
+[08:45] it can get even better Maya uploads a photo
+[08:47] of a favorite summer dress she owns.
+[08:49] And she can ask,
+[08:50] are there any dresses similar to the color and style
+[08:52] of the one in this photo?
+[08:54] And the agent may call filter products,
+[08:56] which will then update the UI with relevant dresses.
+[08:58] This way, the user gets a way more collaborative,
+[09:02] a gentle way of interacting with your website or app.
+[09:05] Right?
+[09:05] And we don't lose anything.
+[09:06] I can still add things here myself.
+[09:09] Right?
+[09:09] So, I can still add things here.
+[09:11] But I can also ask my AI agent to do it for me.
+[09:14] So, I can say,
+[09:14] hey, add oatmeal.
+[09:16] Right?
+[09:16] So, now my agent is going to do it on my behalf.
+[09:18] You can see the agent has now done it.
+[09:20] By using that one tool,
+[09:22] add grocery item.
+[09:24] We can also see the input schema.
+[09:25] So, this is what the agent has to provide
+[09:27] to actually call the tool.
+[09:29] This is a next to as website.
+[09:31] How was it able to implement this web mcp?
+[09:34] Let's take a look at the code.
+[09:35] Right?
+[09:35] So, we can see here in codex browser,
+[09:37] it will show you the site tools.
+[09:38] How did it get that?
+[09:40] So, here, if we take a look at the code for that page,
+[09:42] it's just one page.
+[09:43] It's just a regular next to as app.
+[09:46] So, we have just plain react codes here.
+[09:49] We just have this one home page component.
+[09:52] There is one difference though.
+[09:54] If we scroll down here,
+[09:55] there is use a fact here.
+[09:56] And here, we are registering the tool.
+[09:59] We're doing it in use effect
+[10:00] because we need access to the document,
+[10:03] document.modelcontext.
+[10:04] So, in next to as it may do some service site rendering,
+[10:08] right, in an initial pre-rendering phase, for example.
+[10:10] But, this is a browser API.
+[10:12] So, we only want to run this in the browser.
+[10:14] So, we're doing it in use effect.
+[10:15] We get model context.
+[10:17] We can check, right?
+[10:18] If it's supported or something.
+[10:19] Right?
+[10:19] So, if it is supported, we continue here.
+[10:22] And here, we can then actually register the tool.
+[10:24] So, here, it registers the tool with the information,
+[10:26] the name, the title, the description.
+[10:29] Right?
+[10:30] The agent will take a look at name and description,
+[10:32] for example, to decide if it should invoke the tool.
+[10:35] We can describe input schema.
+[10:36] The agent, when it costs the tool,
+[10:38] should also pass along this information
+[10:40] when it wants to add an item to the list.
+[10:42] Right?
+[10:43] So, it should be a string with at least one length,
+[10:46] with the maximum and some description
+[10:48] for that particular parameter.
+[10:51] Right?
+[10:51] We can make it required.
+[10:52] We just specify this item.
+[10:54] Now, if the agent calls that function,
+[10:55] we have to decide what we want to do.
+[10:57] Right?
+[10:57] So, in this case, we want to add the item to the list.
+[11:02] That list is just, you know,
+[11:04] you state here, just some client-side react state.
+[11:06] When I click on add item,
+[11:08] there's just an on-click or on-submit for the form.
+[11:12] Right?
+[11:12] In there, we can just call the add item function for that.
+[11:16] Right?
+[11:17] But this add item function can also be called
+[11:20] for when the web MCP tool is invoked by the agent.
+[11:24] Right?
+[11:24] So, we can just reuse the same function here,
+[11:27] the same logic.
+[11:28] So, that's how easy it is to register.
+[11:30] Now, there are a few other things here as well,
+[11:31] so there's also additional properties as false.
+[11:34] So, we don't want the agent to supply
+[11:37] additional things like quantity, for example.
+[11:39] So, it's only this particular parameter
+[11:41] that it should use.
+[11:42] There's also something here with annotations.
+[11:45] So, for example, we're saying,
+[11:46] is this a read-only hint?
+[11:48] Like, is this only reading data?
+[11:51] Well, no, because when you call this,
+[11:53] you're going to add an item to a list.
+[11:54] You're actually creating something or changing something.
+[11:57] So, it's not only reading.
+[11:58] It also says,
+[11:59] untrusted content hint is true.
+[12:02] So, this will return the grocery item,
+[12:05] and it should not take that as instructions.
+[12:08] It should just be treated as data, basically.
+[12:11] It's basically a security thing.
+[12:13] And, there's also here with signal, controller, signal.
+[12:15] So, we also have to clean up the tool
+[12:17] when the component gets unmounted, for example.
+[12:19] In use-effect, we may want to run some clean up logic as well.
+[12:22] So, that grocery list was very simple,
+[12:24] but it can be a little bit more complex.
+[12:26] So, let's say we have an app
+[12:27] which is like a can-band board or something
+[12:29] where we have different columns here for some tasks
+[12:33] that we have or ideas.
+[12:34] And, yes, I could still manually do things.
+[12:36] So, I could click on this one.
+[12:38] It would move this cart into the next column.
+[12:40] So, as a human, I can still interact.
+[12:42] I don't lose anything here.
+[12:44] However, maybe I'm new to this.
+[12:46] Maybe I'm just a bit lazy or just, you know,
+[12:48] it's just a better experience to do it here through the agent.
+[12:50] So, let's say I want to do three things, actually.
+[12:53] So, I want to move agent-friendly checkout
+[12:55] so this cart here to the building column.
+[12:58] Then, I want to set that cart to high priority.
+[13:01] So, not just normal, it should be high priority like that one.
+[13:04] And, I want to add a new idea here
+[13:06] for keyboard shortcuts.
+[13:09] Right? So, I want to do multiple things, essentially.
+[13:11] And, now the idea is that the agent should be able
+[13:14] to combine multiple tools.
+[13:16] Right? So, this one, this app, if we take a look here
+[13:19] in Codex Browser, exposes four side tools.
+[13:22] There's one read tool and three write tools.
+[13:24] Right? So, there is add an idea.
+[13:26] There is move an idea.
+[13:27] We can set an idea priority.
+[13:30] We can get a board summary.
+[13:31] And, as let's see, if it's able to do that.
+[13:33] And, ideally, of course, I don't have to specify to,
+[13:36] as a user that it should use WebMCP.
+[13:38] Right? Users are not even going to understand
+[13:40] or know that it exists.
+[13:42] So, it should pick up on the fact
+[13:43] by itself that it has side tools.
+[13:45] Let's see if it can do that.
+[13:46] It's GPT-6, Astra, Light.
+[13:48] So, still pretty powerful.
+[13:50] You'll be able to do it.
+[13:51] So, let's see what happens.
+[13:52] So, inspecting the current board,
+[13:54] inspecting board actions.
+[13:55] Right? So, we don't want to see it use the brow.
+[13:59] Okay. So, here, actually, we can already see something.
+[14:00] Here, we can see it moved it into this column here.
+[14:04] It's already finished.
+[14:05] Right? Superfast.
+[14:06] It was not using browser interaction tools.
+[14:08] Like, using a cursor to do that for us.
+[14:11] Right? So, it was just calling the tools.
+[14:13] You can see also recently used increased that number.
+[14:16] And so, this is way more efficient than if the agent
+[14:19] has to use browser use or something to interact with it.
+[14:22] So, we talk a lot about tools for AI agents.
+[14:25] So, I do want to shout out Arcade,
+[14:27] which is today's sponsor.
+[14:28] So, if you are building an AI agent,
+[14:31] right, the other side of the conversation here,
+[14:33] the AI agent is going to need tools.
+[14:36] Right? If you want to build sophisticated agents,
+[14:38] they, for example,
+[14:40] have to be able to access the users
+[14:43] accounts in other places.
+[14:44] Right? So, let's say you want to build an agent,
+[14:46] and that agent needs to be able to draft a email,
+[14:50] like we just saw on behalf of the user,
+[14:52] but maybe it should be done in Gmail.
+[14:54] Well, that's not so easy,
+[14:55] because now you run into a whole authentication authorization
+[14:58] type of problem, right?
+[15:00] You cannot just get access to a user's Gmail account.
+[15:03] So, if you want to build agents that can access
+[15:05] while a lot of these different types of tools
+[15:08] that your users may be using,
+[15:10] then I highly recommend you check out Arcade
+[15:12] with a link in the description,
+[15:13] because they are that runtime MCP layer for your AI agents.
+[15:18] It makes it much easier for your agents
+[15:21] to interact with the tools that your users are using.
+[15:23] For example, if they have Figma,
+[15:25] your agent does something with the user's Figma account or data.
+[15:28] You can set it up.
+[15:29] It has a bunch of tools here
+[15:31] that your agent gets access to.
+[15:33] Your users will be able to approve or reject that.
+[15:36] They can decide to allow it or not.
+[15:37] But let's say your agent does have to write
+[15:39] a draft email in Gmail.
+[15:41] There is this tool,
+[15:43] write draft email that Arcade can give your AI agent.
+[15:47] And if you take a look here,
+[15:48] this one can compose a new email draft
+[15:51] using the Gmail API,
+[15:52] even with file attachment.
+[15:54] Arcade is the actions runtime between your agents
+[15:57] and every system they reach.
+[15:59] So, you get one centralized point
+[16:01] to enforce, execute, and govern every action.
+[16:04] So, you can just focus on building out
+[16:05] the core competencies of your AI agent
+[16:08] while Arcade takes care of the security related aspects.
+[16:10] So, they have a huge catalog of tools
+[16:12] that you can give to your AI agents.
+[16:14] You can see it here on the website.
+[16:16] I will place a link in the description
+[16:18] for you to check it out for yourself.
+[16:19] But it's very important for effective AI agents
+[16:22] that it can interact with the services
+[16:24] that your users are already using.
+[16:26] Right, you typically want your AI agent
+[16:28] to be able to do things
+[16:30] in the other services
+[16:32] or get information from the other services.
+[16:34] That's when your AI agent can become really valuable.
+[16:37] And you only have to set up Arcade
+[16:38] to get access to all of that.
+[16:40] Of course, some popular ones are Google Calendar.
+[16:43] There is also Slack here.
+[16:45] There's also GitHub and many more.
+[16:47] The useful thing here is that
+[16:48] you don't have to build every service integration
+[16:51] and authorization yourself.
+[16:52] So, I would say check out Arcade with a link in the description.
+[16:55] All right, what about more like a SaaS dashboard
+[16:58] or some kind of e-commerce type of dashboard
+[17:01] where you have a lot of data?
+[17:02] These are typically quite complex for users.
+[17:05] You have to navigate a bunch of different components here.
+[17:07] It's quite information-based.
+[17:08] Side exposes a few tools, five.
+[17:11] And so, you can request a custom chart, essentially.
+[17:14] It can get data, it can query metrics,
+[17:18] basic, more complex actions.
+[17:20] So, I can have a bunch of things in my prompt now
+[17:23] like build a revenue chart
+[17:24] comparing the channels across both periods.
+[17:27] Not just quite a few things,
+[17:28] just to show you that it at least,
+[17:31] you know, GPT-6 astralight is pretty good
+[17:33] at combining the tools here
+[17:34] and understanding what it needs to do.
+[17:36] Even without me specifying
+[17:38] that it has to use Web MCP tools.
+[17:40] And so, we can see already in here
+[17:41] that it has used tools, right?
+[17:43] So, it's going to show you that in the progress.
+[17:46] And actually, we have the final result now.
+[17:48] And notice, it did not use like a cursor in the browser.
+[17:51] It was just using those tools.
+[17:53] So, we can see recently used also increased.
+[17:55] So, here we can see the UI was manipulated
+[17:59] based on the tools
+[18:00] that the website developer has exposed to our agent.
+[18:05] One more example here.
+[18:06] So, maybe there's an email type of application here.
+[18:10] There's a bunch of conversations here.
+[18:12] I can write a reply.
+[18:15] That's why I can see the different conversations here.
+[18:17] So, this site exposes a few tools for to help the user.
+[18:22] So, one thing is actually,
+[18:23] let's say I want to see all the refund requests.
+[18:26] Yes, I could find the right buttons and filter it on.
+[18:29] But it's mentally a bit taxing perhaps.
+[18:31] Or maybe I'm going to combine it with some other task
+[18:33] I need to do.
+[18:34] So, I can just get more fine-grained with a prompt.
+[18:36] That exposes a few tools.
+[18:38] So, I can have a very complex prompt.
+[18:40] I can say find the unresolved refund request
+[18:43] with the highest requested refund amount.
+[18:46] Open that one and market high priority
+[18:48] and then draft a helpful reply.
+[18:50] Right? So, I can get very fine-grained
+[18:52] with exactly what I want,
+[18:54] which is much easier for me as a user
+[18:56] to express in natural language
+[18:58] than it would be to express in some UI in an app.
+[19:02] So, also my agent simply could have more information
+[19:06] about me than the app or other information.
+[19:08] My AI agent can also reach out to my email, let's say.
+[19:12] Right now we can see that it has opened the right refund request.
+[19:16] It has marked it as high priority
+[19:18] and it has drafted a reply for me
+[19:21] all by using a combination of these site tools.
+[19:24] Now, the web MCP examples that I showed you here
+[19:27] are of course quite simple.
+[19:28] But you can imagine in a real world,
+[19:30] some of these apps can get really complex.
+[19:32] And actually, OpenAI has a really nice set of examples here.
+[19:36] So, there is actually a photo editing app.
+[19:38] So, let's actually try these out.
+[19:40] So, there's webroom agent compatible photo editing.
+[19:43] So, if I click on that,
+[19:43] they show the site tools that they have in this app.
+[19:47] You can just open it up here in the desktop app.
+[19:49] So, this app here exposes a lot of tools, 28 tools,
+[19:53] such as set brightness and set contrast.
+[19:56] So, all of these things where traditionally,
+[19:59] I would have to learn about how this app would work.
+[20:03] The agent can now do a lot of these things for me on my behalf.
+[20:06] So, actually, I just uploaded some fake image here.
+[20:08] But I could say something like,
+[20:10] this photo is way too dark,
+[20:12] make it brighter or something.
+[20:13] Right, so maybe it can use the brightness tool.
+[20:17] So, let's see if it can do something with that.
+[20:19] It says I'll brighten the photo.
+[20:21] We can see this is animating now.
+[20:23] And we can see agent set exposure to plus 0.8.
+[20:27] So, this app by OpenAI is web MCP ready
+[20:30] and it's actually showing what the agent is doing.
+[20:32] Of course, now it's much brighter.
+[20:34] Let's also check out this WebNative 3D modeling studio.
+[20:39] So, here also has a bunch of tools.
+[20:40] Let's open this up.
+[20:42] Okay, so quite a heavy app here.
+[20:46] And now I have this here in my browser.
+[20:48] It has a bunch of tools, 39 tools to be precise.
+[20:52] Adding a part or removing a part.
+[20:54] And I'm actually not a 3D expert.
+[20:56] So, I'm not sure what I should prompt,
+[20:58] but maybe something like make this a stack of blocks.
+[21:02] Okay, so let's see if it can use some of those tools.
+[21:06] So, we can see it's reading the controls.
+[21:08] And we can see it is doing something here with site tools.
+[21:13] We can also, we should see that here as well.
+[21:15] Yeah, seeing that.
+[21:16] So, it's invoking those tools.
+[21:17] Right, so you can see that here.
+[21:19] Right, so now it's doing things.
+[21:20] It adds a part.
+[21:21] So, it adds parts to make it a stack of blocks.
+[21:24] Invoking a bunch of tools.
+[21:26] It can figure out for itself what it's doing.
+[21:28] Okay, so this is what I don't want to see.
+[21:29] I don't want it to use the cursor,
+[21:31] because then it's actually interacting with the app
+[21:34] with browse reuse.
+[21:35] But I actually think it didn't use that.
+[21:37] It only used that to change the view here, I guess.
+[21:40] But you can see it was invoking a lot of those site tools.
+[21:43] Right, I don't have to learn myself now,
+[21:45] which buttons to click to get this result.
+[21:47] So much easier to use complex applications.
+[21:49] All right, unfortunately, WebMCP is not broadly supported everywhere yet.
+[21:53] So, what I was using in this video
+[21:55] was the JetGPT desktop application.
+[21:58] It seems to be fully supported as far as I can see.
+[22:00] It was actually really easy to develop with this app.
+[22:04] But it seems that in the other browsers,
+[22:06] this is not completely supported yet.
+[22:09] So, it seems to be in some kind of testing phase
+[22:11] for some of them.
+[22:12] Hopefully, the other major browsers
+[22:14] will completely support it soon.
+[22:16] That's all I have to say about WebMCP for now.
+[22:19] We'll keep an eye on this and see how it develops.
+[22:21] We need to know as Web developers,
+[22:23] what is going on with WebMCP.
+[22:25] But I think it's generally useful.
+[22:26] It's going to help a lot of people
+[22:28] that are not comfortable navigating complex websites and apps
+[22:31] have a much better time interacting with your websites and app.
+[22:35] Thank you for watching and I hope to see you in the next one.
+[22:37] Bye.
