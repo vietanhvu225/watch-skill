@@ -1,0 +1,626 @@
+[00:00] I can usually tell inside about 10 minutes of watching someone code,
+[00:04] whether they're going to have a job in a year.
+[00:07] And it's got nothing to do with their code.
+[00:09] I'm not looking at their variable names.
+[00:11] I'm not looking at whether they use tabs or spaces.
+[00:14] I'm looking at the five seconds after something breaks.
+[00:18] Because something always breaks.
+[00:20] And that's the actual job.
+[00:22] You run it and it doesn't do the thing you thought it would do.
+[00:26] And in the five seconds after that,
+[00:28] everybody splits into two groups.
+[00:30] Group one runs it again.
+[00:32] Same code, same button, and there's a weird hope
+[00:35] that the computer changed its mind.
+[00:37] Then they scroll back up in the tutorial, find the timestamp,
+[00:41] copy the line again, run it again.
+[00:44] And then there's group two.
+[00:46] Group two goes quiet.
+[00:48] They sit back and they say something like, wait,
+[00:51] why did that print twice?
+[00:53] The second person is going to be genuinely dangerous
+[00:56] in about eight months.
+[00:58] The first person is going to be in this exact same spot
+[01:00] next year in a different course with a nicer setup.
+[01:04] Still stuck.
+[01:06] I've watched this play out with people
+[01:08] who have a computer science degree,
+[01:10] who sent out 300 or 400 applications
+[01:12] and couldn't get a single interview.
+[01:15] And I've watched it with 34-year-olds
+[01:17] who've never written a line of code in their life
+[01:20] and had two kids and a job that they hated.
+[01:24] Same pattern, both directions.
+[01:26] It has nothing to do with talent
+[01:28] and nothing to do with your background.
+[01:30] But there's one habit sitting underneath it.
+[01:33] I called the break point
+[01:35] and I'm going to tell you exactly how to use it.
+[01:38] But I also want to show you something
+[01:39] at the end that most people haven't caught up to yet.
+[01:43] The kind of programmer companies are actually paying for,
+[01:46] changed.
+[01:47] And it changed so fast
+[01:49] the coders companies are looking for today
+[01:51] in the fall of 2026.
+[01:53] It's different from the coders companies are looking for
+[01:56] or we're looking for at the beginning of the year.
+[01:59] And the people who learned this way
+[02:00] are accidentally sitting on exactly
+[02:02] what the market wants right now.
+[02:04] But let me start with how badly I got this wrong.
+[02:09] I started coding at 30.
+[02:11] Before that, I was teaching English in Korea.
+[02:13] That was my whole life.
+[02:15] Whiteboard, maybe chalkboard, worksheets,
+[02:19] a room full of students.
+[02:20] And me trying to explain why we say,
+[02:23] I've been to Japan, but not I've went to Japan.
+[02:26] And when I decided to switch,
+[02:28] I did what everyone does.
+[02:30] I found a course and I was good at the course.
+[02:33] I'd sit down at night after teaching all day
+[02:36] and I'd follow along and it made sense.
+[02:38] Every single line made sense.
+[02:40] He typed something, explained it, I nod,
+[02:43] I typed it to, it worked, we'd move on.
+[02:46] I felt like I was flying.
+[02:48] Honestly, some nights I felt smart.
+[02:50] I remember thinking, why does everyone say this is hard?
+[02:53] Then, one Saturday I opened a blank file
+[02:56] and tried to build the simplest thing
+[02:58] you can imagine on my own.
+[02:59] And nothing.
+[03:01] Not, I made a few mistakes.
+[03:03] Not, I got most of the way.
+[03:05] I mean, I sat there and I could not produce the first line.
+[03:08] I couldn't even remember what the first line was supposed to be.
+[03:12] 90 minutes, blank screen, and that specific feeling.
+[03:16] I still remember where I was sitting.
+[03:19] So I did what made sense at the time.
+[03:21] I decided I hadn't watched enough.
+[03:23] I went back and I did the course again.
+[03:26] And I bought another one and another.
+[03:29] And I found a YouTube playlist and I got a book
+[03:32] with a really nice cover.
+[03:34] I lost most of a year like that.
+[03:36] Not a couple of weeks, a year.
+[03:38] I picked it up too late, but I finally found the issue.
+[03:42] Every night, falling along, I felt good, smooth, clear.
+[03:46] Everything made sense as it went by.
+[03:48] That feeling was the problem.
+[03:50] That feeling was the evidence that nothing was going in.
+[03:54] Ask most people how they know a study session went well.
+[03:57] And they'll describe the smooth one.
+[04:00] It clicked.
+[04:00] It flowed.
+[04:01] I got it.
+[04:02] I didn't get stuck.
+[04:03] And ask them about a bad session
+[04:05] and they'll describe the one where they were
+[04:07] stuck for two hours on a semicolon.
+[04:10] Now flip those seriously.
+[04:12] Flip them completely because there's a thing
+[04:15] that happens in your head when you learn.
+[04:17] And it's not absorbing.
+[04:19] Your brain isn't a bucket.
+[04:21] What your brain is actually doing
+[04:23] is running a little model of how the machine behaves.
+[04:27] A prediction engine.
+[04:28] You look at code and some part of you goes, OK, when this runs,
+[04:33] this will happen.
+[04:35] Learning is what happens when that prediction turns out
+[04:38] to be wrong.
+[04:39] That's it.
+[04:40] That's the whole thing.
+[04:42] The gap between what you expected and what actually happened
+[04:47] is the only place learning lives.
+[04:51] Everything else is watching.
+[04:53] When you follow a tutorial, you never make a prediction.
+[04:56] You can't be wrong.
+[04:57] The guy tells you what's going to happen.
+[05:00] Then it happens.
+[05:01] And your brain goes, yep, agreed.
+[05:04] And files, nothing.
+[05:06] You feel great.
+[05:06] You learn nothing.
+[05:08] That smooth feeling is your brain.
+[05:10] Not being challenged.
+[05:11] And we've been trained our whole lives
+[05:13] to read it as competence.
+[05:15] So when your code breaks and you
+[05:16] feel that hot little drop in your stomach,
+[05:19] that's not you failing.
+[05:21] That's the exact moment the machine is telling you where
+[05:24] your model of the world is wrong.
+[05:27] That's the most valuable 90 seconds of your entire day.
+[05:30] And most people spend it rerunning the same file.
+[05:33] I call that moment the break point.
+[05:36] Not because the code broke, because your model broke.
+[05:40] The code breaking is just the notification.
+[05:43] Here's the annoying part.
+[05:45] I already knew this.
+[05:46] I've been watching it for years
+[05:48] and I didn't recognize it.
+[05:50] Back in Korea, in every class I taught,
+[05:53] there are two kinds of students.
+[05:55] The first kind nodded.
+[05:57] They nodded at everything.
+[05:59] Perfect posture, pen moving, copying the sentence
+[06:03] off the board.
+[06:04] Lovely students, easiest people in the world to teach.
+[06:08] And their English did not move.
+[06:11] Six months, 12 months, same level.
+[06:15] The second kind interrupted me.
+[06:17] Mid sentence.
+[06:18] Teacher, wait.
+[06:20] Why is it information and not information?
+[06:23] Because you said apples, and that student was annoyed.
+[06:27] You could see it on their face.
+[06:29] Something in their head had a rule.
+[06:32] And my sentence just violated it.
+[06:34] And it bothered them.
+[06:36] Those students got fluent every time.
+[06:39] Not the polite ones, the bothered ones.
+[06:42] I spent five years watching that happen in front of me.
+[06:45] And then went home and learned to code
+[06:48] like the nodding students.
+[06:50] Don't be a nodding student in your own editor.
+[06:52] So here is what you need to do if you're starting out today.
+[06:56] First off, get used to this feeling.
+[06:59] If your code breaks or something confuses you
+[07:02] and I'm telling you, that's the good part.
+[07:05] This is going to happen for the rest of your career.
+[07:08] But you can't do anything with a feeling.
+[07:11] A feeling of, oh, I don't get this, is not a plan.
+[07:16] If you just sit in that confusion and depression,
+[07:19] you'll just sit in it for a month.
+[07:21] So we convert that feeling into three moves.
+[07:24] Move one.
+[07:25] Say the mismatch out loud in one sentence.
+[07:29] Not, it's not working.
+[07:31] Never, it's not working.
+[07:33] That sentence has never helped a single person.
+[07:36] What you need to say from now on is,
+[07:38] I expected this and I got this.
+[07:42] I expected the list to have three items.
+[07:45] I got an empty array.
+[07:46] I expected this to wait for the data.
+[07:49] It ran before the data got there.
+[07:51] I expected clicking the button to change the name at the top.
+[07:55] Nothing moved.
+[07:56] Sounds too simple to matter.
+[07:59] It's not because half the time,
+[08:01] you can't even finish this sentence.
+[08:03] You get to, I expected and realized
+[08:06] you didn't actually expect anything.
+[08:08] You just typed what the video told you to type
+[08:10] and hit run.
+[08:12] That's information.
+[08:13] That tells you you're not learning.
+[08:15] You're transcribing.
+[08:17] And when you can't finish it,
+[08:18] you've just turned a mood into a target.
+[08:21] Move two.
+[08:22] Turn the mismatch into questions small enough to answer today.
+[08:26] Take this sentence and break it into real questions.
+[08:28] Real ones, the test for a real question
+[08:31] is that you could plausibly find the answer in 20 minutes.
+[08:34] Why doesn't my code work?
+[08:36] It's not a question.
+[08:38] It's a complaint wearing a question mark.
+[08:40] Compare these.
+[08:42] Bad.
+[08:43] Why is Acing confusing?
+[08:45] Good.
+[08:46] When the function hits this line,
+[08:48] does the rest of the file keep running
+[08:49] or does it stop and wait?
+[08:51] What is actually sitting inside the variable
+[08:54] at the exact moment I try to use it?
+[08:56] Who runs first?
+[08:57] This or that?
+[08:58] Write them down.
+[08:59] Physically, in a file, in your notes app,
+[09:03] on the back of an envelope,
+[09:04] I keep mine in a scratch file in the project
+[09:07] and I delete it at the end of the week.
+[09:09] Two things happen when you write them down and both matter.
+[09:12] The first is that the act of forming the question forces you
+[09:16] to locate the whole.
+[09:17] You can't ask a specific question
+[09:18] about something you're vague on
+[09:20] without the vagueness being visible.
+[09:22] It's like the difference between saying,
+[09:25] my car makes a noise and having to describe the noise.
+[09:29] The second one requires you to actually listen.
+[09:32] The second is that now you have a list, not a mood.
+[09:35] A list, this get done, moods get avoided.
+[09:39] Move three.
+[09:40] This is the one nobody does.
+[09:43] Verify by predicting the next break.
+[09:46] You go answer your questions, docs, and experiment,
+[09:50] a person, AI, whatever is fastest.
+[09:53] Fine, here's where everybody almost, everybody stops.
+[09:57] They read an answer, they get that little,
+[09:59] oh, okay, feeling and they move on.
+[10:03] That feeling is unreliable.
+[10:05] That's the same feeling I had every night
+[10:07] in Korea watching that course.
+[10:09] So before you move on, you take your new understanding
+[10:14] and you make it make a prediction.
+[10:17] Out loud, before you run anything,
+[10:20] if what I just learned is true,
+[10:22] then if I move this line above that one,
+[10:24] it should break in this specific way.
+[10:27] Then you do it on purpose.
+[10:29] And see if it breaks the way you said.
+[10:32] If it does, you actually own it now.
+[10:35] That's a real piece of knowledge, permanently.
+[10:38] And it took you 40 seconds to confirm, maybe less.
+[10:43] And if it doesn't break, how you said, congratulations.
+[10:46] You just found another break point
+[10:48] and you're back at move one.
+[10:50] And this is the good outcome.
+[10:53] This is the loop break, name it, question it,
+[10:56] answer it, predict, test, break, name question,
+[10:59] answer, predict test.
+[11:01] And the speed of that loop is your learning speed.
+[11:04] That's all fast learner ever means.
+[11:07] Nobody's downloading information faster than you.
+[11:10] They're just running this cycle eight times an hour
+[11:13] while you run it twice a week.
+[11:14] Now, the flip side.
+[11:16] Sometimes you sit down, you're reading through something
+[11:19] and you feel nothing at all.
+[11:21] Not stuck, not confused, not curious.
+[11:24] Just kind of flat.
+[11:26] You're reading and your eyes are moving
+[11:27] and it's going nowhere and you're waiting for it to end.
+[11:30] That's not a sign, you already know it.
+[11:32] That's a sign you're not making any predictions.
+[11:35] So nothing can be wrong.
+[11:37] So nothing's happening.
+[11:38] You're watching a screensaver when that happens.
+[11:41] You have to manufacture the break yourself.
+[11:44] This is what you do.
+[11:46] One, close it and rebuild.
+[11:49] Whatever you just went through, close the tab
+[11:51] and rebuild the last 10 minutes from an empty file.
+[11:55] You will fall on your face immediately
+[11:57] and every place you fall is a break point
+[12:00] with a flag on it.
+[12:01] This is the single fastest thing in this whole video.
+[12:05] And it's the one people skip because it feels bad.
+[12:08] Two, change the requirements.
+[12:11] Take whatever the tutorial built
+[12:13] and make it do one thing that tutorial never did.
+[12:16] If it lists five items, make it list 500.
+[12:19] If it's a to-do app, make the to-do's have due dates.
+[12:23] The instant you go one inch off the path,
+[12:26] the guy walked, you find out how much of it was yours.
+[12:29] And three, explain it to somebody who doesn't care.
+[12:32] This is my favorite one because I did it for a living.
+[12:36] When you teach, you find out in about eight seconds
+[12:39] which parts you actually understand
+[12:42] because the parts you don't
+[12:44] are the parts where your voice speeds up
+[12:47] and you start using the exact words from the documentation.
+[12:51] That speeding up is the tell.
+[12:53] Anytime I hear myself doing that,
+[12:55] I stop because I've just found the thing I don't know.
+[12:58] These are the three things that I require my mentees
+[13:01] to get into the habit of doing from day one.
+[13:04] These are the three habits I train my mentees on
+[13:07] because these are the things companies
+[13:09] are particularly looking for.
+[13:12] Not just your skills.
+[13:14] So now, let me tell you what tutorial hell actually is
+[13:17] because everyone talks about it
+[13:19] like it's a motivation problem.
+[13:20] It's not.
+[13:21] Some of the people most deeply stuck in it
+[13:24] are the hardest workers I know.
+[13:26] Tutorial hell is unpaid question debt.
+[13:30] Every time you nod at something you didn't really follow,
+[13:34] every, I'll come back to that, every,
+[13:37] I don't know why this works, but it works.
+[13:40] You take out a small loan and a loan is fine.
+[13:44] One is fine, but you take out 400 of them across six months
+[13:49] and then you sit down to build something on your own
+[13:52] and the whole bill comes due at once.
+[13:54] That's what my blank file Saturday was.
+[13:57] It wasn't that I couldn't code.
+[13:59] It's that I'd spent nine months quietly agreeing to things
+[14:02] I didn't fully understand.
+[14:04] And the moment there was nobody typing on the screen
+[14:07] in front of me, all of it came back at the same time.
+[14:11] And the trap is that the cure feels like the disease.
+[14:14] It feels like you don't know enough,
+[14:17] so you go get more, more chorus, more playlist,
+[14:20] more framework, but you're not short on material.
+[14:24] You've got more material than any programmer
+[14:26] in history had access to.
+[14:27] You're short on answered questions,
+[14:29] adding more unexamined stuff to a pile of it.
+[14:32] Unexamined stuff doesn't get you out of it.
+[14:35] It just makes the pile taller.
+[14:37] And then the feeling stops being, I'm stuck
+[14:40] and starts being, maybe I'm not built for this.
+[14:43] Nobody's not built for this.
+[14:46] You're just carrying 400 loans.
+[14:48] The breakpoint is how you pay them down
+[14:51] in $10 increments every single day.
+[14:54] Let me give you an example through one of my mentees, Julian.
+[14:58] Julian had the degree, computer science,
+[15:01] four years, walked that graduation, the whole thing.
+[15:05] And when he came to me, he could barely write Python,
+[15:08] barely write JavaScript.
+[15:10] I'm not exaggerating for the video.
+[15:13] I sat with him and watched him try.
+[15:16] And it was rough.
+[15:17] I've asked him since what he was actually doing for four years.
+[15:21] And he couldn't really answer it either.
+[15:23] And I want to be careful here.
+[15:26] Because it'd be easy to turn this into, he was lazy,
+[15:30] which he wasn't.
+[15:31] Julian is one of the more diligent people I've worked with.
+[15:34] He did the work, he passed the classes,
+[15:37] his knowledge was just in pieces.
+[15:40] A bit of Python from one semester, some JavaScript
+[15:44] from an elective two years later, data structures,
+[15:47] he could have recite from a whiteboard,
+[15:50] and none of it touched any of the rest of it.
+[15:53] It was a drawer full of parts from different machines.
+[15:57] And he had never built a single real thing, not one.
+[16:01] Nothing that ran anywhere.
+[16:02] Nothing a stranger had ever opened.
+[16:04] Nothing that had ever gone down on a Tuesday night
+[16:08] and had to be fixed by him.
+[16:10] Four years and not one break point.
+[16:13] And I don't think that's unusual.
+[16:15] Because think about what breaking looks like in school.
+[16:19] The thing that breaks is a grade.
+[16:21] It comes back with a number on it a week and a half later.
+[16:25] After the deadline's gone, when there's nothing left
+[16:28] to fix and nothing writing on it.
+[16:30] You look at the number, you feel bad for an afternoon,
+[16:33] you move to the next unit.
+[16:36] Nothing snaps in your head.
+[16:38] Because you were never predicting anything in the first place.
+[16:42] You were just submitting.
+[16:44] Then he graduated and did what you're supposed to do.
+[16:46] Three, 400 applications a year through years.
+[16:51] Do that math with me.
+[16:53] Roughly a thousand interviews, roughly a thousand.
+[16:57] Interviews from those thousand applications zero.
+[17:01] By the time I met with him,
+[17:03] he wasn't even upset anymore, which is worse.
+[17:06] He was flat.
+[17:07] He decided the market was broken and he'd missed his window.
+[17:11] And that was that.
+[17:12] So we stopped applying, completely stopped.
+[17:16] And we didn't start with the course either,
+[17:18] which is what he expected.
+[17:20] He built one thing and interview prep platform with AI in it.
+[17:25] One, he'd actually use himself.
+[17:27] He'd been to a thousand front doors
+[17:29] and he had opinions about them.
+[17:31] And here's the part I need you to catch.
+[17:34] Because it's the whole point of this video.
+[17:37] He learned Python and JavaScript properly inside that project.
+[17:41] Not before.
+[17:42] He didn't go get ready and then build.
+[17:45] He built and it broke on him.
+[17:47] And the breaking is what taught him.
+[17:49] Two months in, he understood more about how JavaScript
+[17:52] actually behaves than four years of course
+[17:56] where it had given him.
+[17:57] Because for the first time,
+[17:59] there was something on the line that he cared about.
+[18:02] And it broke constantly.
+[18:04] Every day, for weeks, off broke.
+[18:07] The AI responses came back in a shape.
+[18:08] He wasn't expecting and took the whole page down with them.
+[18:12] He had one where everything ran perfectly on his laptop
+[18:15] and died the second it was deployed.
+[18:17] Four days, that one.
+[18:19] And every single break, he wrote down what he expected
+[18:23] and what he got.
+[18:24] That's it.
+[18:25] That's the whole intervention.
+[18:26] A running file of I thought X and I got Y.
+[18:29] Here's what was actually happening.
+[18:31] When he finally got in a room, because he got in rooms,
+[18:35] once he had something real to point at,
+[18:37] the interview didn't go the way he trained for.
+[18:40] They didn't quiz him.
+[18:42] They asked him why he built it.
+[18:44] And then they asked what went wrong.
+[18:47] And Julian had four months of answers to that question.
+[18:51] He talked about the deployment bog.
+[18:52] He explained why his laptop lied to him.
+[18:55] He talked about a decision he made early
+[18:59] that he regretted and what it cost him to unwind it.
+[19:02] He said afterward it barely felt like an interview.
+[19:04] It felt like two engineers talking about a code base.
+[19:08] Government contracting firm offer.
+[19:11] Four years of coursework and a thousand applications
+[19:14] got him nothing.
+[19:16] One thing he built badly and fixed a few hundred times
+[19:19] got him hired.
+[19:20] He didn't need more education.
+[19:22] He needed something to break.
+[19:25] Okay, this is the most important part of the video
+[19:27] because this is where it stopped being a study technique
+[19:31] and starts being a career strategy.
+[19:33] The person companies are trying to hire right now
+[19:35] is not the person they were trying to hire 18 months ago.
+[19:39] And a lot of people are still preparing for the old one.
+[19:43] The old one was pretty simple.
+[19:45] Can you produce code?
+[19:46] Can you take a ticket?
+[19:48] Write the thing?
+[19:49] Make it work?
+[19:50] No framework?
+[19:51] No syntax?
+[19:52] Grind some algorithm problems?
+[19:54] Prove you can generate correct code under pressure.
+[19:57] That person is no longer scarce.
+[20:00] Producing code is not the bottleneck anymore.
+[20:03] And everybody inside these companies knows it.
+[20:06] The machine writes the first draft now.
+[20:08] It writes it fast and it writes a lot.
+[20:11] And it writes it with total confidence
+[20:13] whether or not it's right.
+[20:15] So the bottleneck moved and it moved exactly one place.
+[20:19] Who can tell when it's wrong?
+[20:20] That's the new job.
+[20:22] Not can you write it?
+[20:24] Can you look at 200 lines that appeared in four seconds?
+[20:27] And feel that thing in your chest that says,
+[20:30] hold on, that's not going to do what it says it does.
+[20:33] Can you catch the confident mistake?
+[20:35] Can you own the outcome after the code is written?
+[20:38] Deploy it, watch it, catch it,
+[20:40] when it falls over at 2 a.m.
+[20:42] And know why.
+[20:43] And I want you to notice something.
+[20:45] Because this is the whole reason I made this video.
+[20:48] That skill, the mismatched detector, the wait.
+[20:51] That's weird.
+[20:52] Reflex is the exact same muscle as the break point.
+[20:56] Identical.
+[20:58] Reviewing machine written code is nothing
+[21:00] but expectation versus reality.
+[21:02] Over and over all day.
+[21:04] If you spent six months building a prediction engine
+[21:07] in your head and stress testing it every time
+[21:10] something surprised you, you already
+[21:13] have the thing they're hiring for.
+[21:15] And if you spent those six months nodding at tutorials,
+[21:18] you don't.
+[21:20] And you can't fake it in an interview.
+[21:22] Because the questions have changed too.
+[21:24] People aren't just asking you to write a function on a whiteboard.
+[21:28] They're putting AI generated code in front of you
+[21:31] and asking what's wrong with it.
+[21:34] They're asking you to build something live with AI
+[21:37] and narrate your thinking while you do it.
+[21:40] They're asking about the worst bug you've ever shipped.
+[21:44] Every one of those is a judgment question.
+[21:46] None of them are recall questions.
+[21:49] So here's what I do.
+[21:51] Concretely, for the next 90 days.
+[21:55] Build something that has an actual user.
+[21:58] One user is enough.
+[21:59] Your mom's business, your friend's fantasy league,
+[22:02] the spreadsheet, your old team was drowning in.
+[22:05] Real users generate real breaks.
+[22:08] And real breaks are the raw material for everything
+[22:11] I've just described.
+[22:13] Tutorial projects can't break in interesting ways
+[22:15] because they were designed not to.
+[22:17] Own the whole loop.
+[22:19] Don't stop at, it works on my machine.
+[22:21] That's the exact phrase Julian lost four days to.
+[22:24] Deploy, put it somewhere as stranger can reach.
+[22:26] Watch it fall over, fix it.
+[22:28] The part after, it works locally
+[22:31] is where the actual engineering lives
+[22:33] and it's the part nobody in a course ever shows you.
+[22:36] Use AI, but predict first.
+[22:38] This is the single biggest one and it's a small habit.
+[22:42] Before you read what it generated,
+[22:44] before your eyes go down the screen,
+[22:47] say what you think it's going to do.
+[22:50] One sentence, then read it.
+[22:53] When you're right, you just confirmed your model for free.
+[22:56] When you're wrong, you just found a break point
+[22:59] you'd otherwise have accepted silently.
+[23:01] People who skip that step get faster at producing code
+[23:05] and never get better at engineering.
+[23:07] And after a year, they've got a portfolio of things
+[23:10] they can't explain, which in an interview in 2026
+[23:14] is worse than nothing.
+[23:15] Keep the file, the one Julian kept,
+[23:18] decisions, breaks, what you expected, what you got,
+[23:21] what you changed, it takes two minutes a day
+[23:24] and then when someone asks you what went wrong
+[23:26] on your project and they will ask,
+[23:29] that's a standard question now.
+[23:30] You're not reaching for something.
+[23:33] You're reading from four months of engineering.
+[23:36] Two things I want to say directly
+[23:38] because there are two of you watching.
+[23:41] If you're a CS student, you can do everything right
+[23:43] for four years and still walk out with a drawer full
+[23:46] of parts from different machines like Julian did.
+[23:49] That's not you failing.
+[23:51] The structure does that.
+[23:53] It gives you fragments on a schedule
+[23:55] and never once makes you connect them under real pressure.
+[23:58] So connect them yourself on the side, this semester.
+[24:02] One thing that runs somewhere a stranger can reach it
+[24:05] and unlearn the reflex school built into you,
+[24:08] which is to hide the moment you don't know something
+[24:11] because that's the exact moment that makes you hireable.
+[24:15] The engineer who says, I don't know yet,
+[24:17] here's how I'd find out.
+[24:19] Beats the one who's never wrong out loud every time.
+[24:23] If you're a career changer, you are not behind.
+[24:26] You're just uncomfortable and you've confused the two.
+[24:30] And the thing you keep apologizing for
+[24:33] the nine years you spent in nursing or logistics or sales
+[24:37] is the most valuable thing in your bag.
+[24:40] You've been in real organizations with real deadlines
+[24:43] and real customers who are unhappy for real reasons.
+[24:48] Most junior engineers have never seen any of that.
+[24:51] Build something for the world you came from.
+[24:55] You know where the pain is.
+[24:57] They don't.
+[24:58] So whether you are a CS student or a career changer,
+[25:01] follow the things I told you above and I promise you
+[25:04] you will gain some momentum and some traction in your career.
+[25:09] And if you are just starting out today and watch this video
+[25:11] all the way to this point, I want to hear from you
+[25:15] and offer you advice and help you break through this year.
+[25:18] So comment below, I am starting today
+[25:21] and tell me exactly what you have tried
+[25:23] and where you're stuck on.
+[25:25] I will personally read it and get back to you
+[25:28] and offer you what I would do.
+[25:31] And if you're doing all of this alone
+[25:33] and you're tired of guessing whether you're even
+[25:36] working on the right thing,
+[25:38] that's what our mentorship is for.
+[25:40] We sit down with you, figure out where you actually are
+[25:44] and build the plan to get you hired
+[25:47] with someone checking your work
+[25:48] who's been in the industry.
+[25:50] It's not for everybody and you're going to have to lock in.
+[25:54] But I personally lock in with you and oversee your career
+[25:57] until we land that dream job that you've always wanted.
+[26:01] I only take on 10 students per month
+[26:03] so apply at levfield.com
+[26:05] and I'll see you in there and let's crush it.
+[26:08] Look, I got into this at 30 with no degree.
+[26:12] After spending my 20s in a classroom
+[26:14] in career teaching grammar,
+[26:16] senior engineer at 33 Tech Lead at 35,
+[26:19] and I promise you I am not smarter than you.
+[26:22] I lost an entire year to nodding at videos
+[26:25] before any of this made sense to me.
+[26:28] The people you think are gifted aren't absorbing
+[26:30] more than you.
+[26:32] They just refuse to let a weird thing stay weird.
+[26:35] Something doesn't add up and instead of running it again,
+[26:39] they stop and go, no, hang on.
+[26:41] So the next time your code does something,
+[26:43] that makes no sense and it'll probably happen within the hour.
+[26:47] Don't refresh, don't scroll back up to the timestamp,
+[26:51] work through your break point and make that break through.
+[26:54] You'll come out of that leveled up.
+[26:56] I'll see you in the next one.
+[26:57] And remember, if I can do it, you can do it too.
+[27:00] Coding saves lives.

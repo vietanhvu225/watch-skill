@@ -1,0 +1,84 @@
+[00:00] I have received offers from Apple, Meta, Microsoft, Amazon, and Salesforce, and one of the biggest
+[00:06] things that helped me get those interviews and offers was DSA. But if I had to start learning DSA
+[00:12] again in 2026, I would do it very differently. Because most people spend months watching lectures,
+[00:19] memorizing patterns, and grinding hundreds of legal problems without actually getting
+[00:24] better at solving them. There's a much better way to approach it. If we haven't met,
+[00:28] hi, I'm Anjali Ramgama, a software engineer at Microsoft. I was previously an intern at Meta
+[00:33] in AWS. So I've been through a lot of these internship and full-time interviews. In this video,
+[00:38] I'm going to walk you through the exact five-phase system I would use to learn DSA from scratch today,
+[00:44] from choosing your language, mastering the right topics, learning how to actually solve problems,
+[00:51] following a 12-week roadmap, and finally preparing specifically for the company that you want to work at.
+[00:57] By the end, you'll have a clear path to go from learning DSA to actually being ready for technical
+[01:03] interviews. Let's get into it. Now, before diving in, let me get one thing straight. It took me one
+[01:10] year to go from nothing to being able to crack a whole of these companies. It would take lesser time
+[01:16] for you if you already know how to code. It could take more time for you if you have a full-time job
+[01:21] or a hectic schedule. So you just need to understand that this is not a get-rich quick scheme.
+[01:27] If somebody promises you a four-week bootcamp and then you'll directly get a $200,000 job,
+[01:34] that's probably a gimmick. You need to give your all because good things do take time. Let's start with
+[01:40] step one, programming language. Python is arguably the best language simply because it's very easy
+[01:47] to understand and write. It's very clean, concise, it has amazing libraries, and you'll have to
+[01:53] write less lines of code overall, which will save you time. And time is of essence when it comes to
+[01:58] interviews. However, using a language that you're most comfortable in is more important than just
+[02:04] using Python. So if you're in a rush or have interviews lined up soon and you don't have the time
+[02:11] to get comfortable with Python, don't feel pressured to switch. I also cracked my first internship
+[02:17] using Java at the interview because at that time that was the language I was most comfortable with.
+[02:23] So yeah, no pressure, but Python would be the best. Now, let's move on to step two, the exact
+[02:30] list of topics that you need to master. You'll mostly be asked about data structures and algorithms,
+[02:35] so you should focus on these 12 topics. Arrays, strings, blank lists, trees and tris, stacks and
+[02:44] cues, graphs, dynamic programming and recursion, heap, hashing, hash sets, hash maps, big manipulation,
+[02:54] sorting, and searching. Within each topic are these basic set of concepts that are asked over and
+[03:02] so instead of really memorizing the question, you just need to understand the pattern, so if a
+[03:06] similar question is thrown at you, you're able to solve it easily. For example, with a link list,
+[03:11] you need to be familiar with cycle detection, slow fast pointer, or merging to lists. With graphs,
+[03:17] you want to be comfortable with BFS, DFS, shortest path, etc. I've made the exact list of sub topics
+[03:23] within each topic. Plus a list of leak code questions that you can solve to tackle those
+[03:29] in the free resource link below, so make sure you check it out. Use what the resource looks like.
+[03:34] For each data structure, we have a list of sub topics that you need to know. What I want you to do is
+[03:39] skim over the list and make sure that all of these sound familiar. For example, if you don't know what
+[03:44] contains algorithm is, you should look it up and understand it before diving into the questions.
+[03:50] Once you're done with the reading, I have a list of questions for you that cover the topics listed
+[03:55] above. Make sure you do all of these multiple questions and are able to trace it back to the topic
+[04:00] where it came from. After you're done with arrays, you can move on to strings and trees and just
+[04:06] follow the same technique. Once you understand the patterns, the next time a similar problem is thrown
+[04:11] at you, you should be able to solve it even if you've never seen it before. And with that, let's move
+[04:17] on to step three, which is how to approach a question so that you understand it instead of memorizing
+[04:24] it. I'll first list out the mistakes that you need to avoid. Mistake number one, many times when
+[04:30] you're unable to solve a question, you might look at the solution and move on, but don't do that.
+[04:36] You have to write the code yourself even if you just read it. Mistake number two is not focusing
+[04:42] on the time and space complexity. Passing all the test cases is one thing, but the first question
+[04:47] that any interviewer would ask you after you're done is what is the timing space for complexity.
+[04:52] Mistake number three is not going through the lead code discuss section. Even if you're able to solve
+[04:57] a question, there's multiple ways you can do it. So you need to see how others have approached the
+[05:03] problem because in some cases, the time complexity is better, but there's some data structure involved
+[05:08] that takes up a lot of space. Or there's other cases where there's no space complexity, but it takes
+[05:15] longer. So you need to know the pros and cons and be able to explain them to an interviewer.
+[05:20] If you can present more than one solution and just talk through which ones better based on
+[05:25] the requirements of the question, it looks so much better than you simply giving a single
+[05:30] solution in any interview. The last mistake is treating this as a numbers game. You have to aim
+[05:36] for quality, not quantity. Don't try to solve a thousand lead code questions. 100 to 200 is actually
+[05:43] a very good number. What really helped me out was repeating those 200 questions. So after three
+[05:50] months or so, when I was done with all of them, I went back to the first one to check if I remembered
+[05:56] how to solve it. Now, based on all the mistakes we discussed so far, here is the correct approach.
+[06:02] Take a question, spend at least 15 to 30 minutes trying to come up with a solution,
+[06:07] even if you brute force it. Once you look at the solution, you want to again write the code yourself
+[06:13] instead of moving on. You want to repeat the question after three months and make sure you read
+[06:19] the discuss section to look at multiple ways a question can be solved. Now, moving on to step four,
+[06:25] the 12-week checklist that I promised you earlier is in the description below. You need to focus
+[06:31] on one topic per week for this list. Within each topic, you start with a couple easy questions first
+[06:38] and then move on to medium and hard. Your goal should be solving as many medium questions as possible
+[06:44] because those are the most frequently asked. Now, if you aim for the biggest tech companies
+[06:50] or competitive startups with the hard interviews, they may have a higher frequency of hard questions
+[06:56] asked but in general, when you, especially if you're a student or a job seeker,
+[07:01] you want multiple offers from different companies. So your best shot is getting through the most
+[07:06] amount of medium questions and then move on to hard once you're comfortable. I have a tracker for you
+[07:12] in the description box that you can follow and now for the last part of today's video is how to
+[07:18] prepare for a specific company. This is very simple. If you have leaked code premium, they have
+[07:23] company tagged questions. So you want to make sure that you go do those for whatever company you're
+[07:28] aiming for. But if you don't have leaked code premium, what I love to do is go on glass door and
+[07:34] look at the previous interview experiences. There's a lot of candidates who shared exactly what they asked
+[07:41] so you can just ask chat GPT or cloud to create a giant Google Doc and compile all the questions
+[07:47] that are asked by whatever company that I was aiming for and then do those. This is super helpful
+[07:54] when it comes to smaller companies because they have a tendency to ask the same questions over and
+[07:58] over again. So there's a chance that you'll be asked the exact same question that you read on
+[08:02] glass door earlier. This has happened to me a couple of times when I was interviewing with startups.
+[08:07] That's all I have for you today. Make sure you like and subscribe and I'll see you in the next one.

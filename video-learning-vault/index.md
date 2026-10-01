@@ -12,6 +12,16 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (01/10/2026 - 02/10/2026)
+*Nhóm 4 video chuyên sâu về Kỹ nghệ Đánh giá PR với AI, Tư duy Học tập Đột phá, Lộ trình DSA và 9 Mẫu hình LeetCode:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `1e2875f019dac4bc` | Fixing the PR Bottleneck — Matt Pocock, AIHero | Khẩu đại bác Slop, 3 Tầng Phanh (CPU / Token / Attention), Deep Modules, Tách rời Implementer & Reviewer Sub-agents, Cửa 1 Chiều vs 2 Chiều, Compounding Retrospectives | [fixing_the_pr_bottleneck_matt_pocock_aihero.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fixing_the_pr_bottleneck_matt_pocock_aihero.md) | 22:34 |
+| `2aaa368274058ea6` | How to learn to code so fast, people naturally think you are gifted | Động cơ Dự đoán (Prediction Engine), Vực thẳm Kỳ vọng vs Thực tế, Nợ câu hỏi (Question Debt), 3 Nước đi đột phá, Sự dịch chuyển thị trường 2026 (Ai biết code sai?) | [how_to_learn_code_so_fast_gifted_phillip_choi.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_learn_code_so_fast_gifted_phillip_choi.md) | 27:00 |
+| `94655780bab816a6` | Fastest Way to Learn DSA in 2026 (from ex-Meta, ex-AWS, Microsoft SWE) | Lộ trình DSA 12 chủ đề cốt lõi, Spaced Repetition 3 tháng, Đọc LeetCode Discuss tối ưu trade-offs, Khai thác câu hỏi Glassdoor theo công ty | [fastest_way_to_learn_dsa_anjali_viramgama.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fastest_way_to_learn_dsa_anjali_viramgama.md) | 08:14 |
+| `771dbc200ae13fd2` | I was Bad at LeetCode. Then I did This. (Google Senior SWE) | 9 Mẫu hình Cốt lõi (Pattern-driven), Phân loại $O(1)$ Hash đến DP, Cấm gõ bừa cú pháp, Hand-coding thuật toán chống teo cơ tư duy trong thời đại AI | [i_was_bad_at_leetcode_maddy_zhang.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/i_was_bad_at_leetcode_maddy_zhang.md) | 09:47 |
+
 ### 🟢 Mới phân tích (29/09/2026)
 *Nhóm 12 video chuyên sâu về Jev AI, Hệ thống phản xạ System 1, Kỹ nghệ tác nhân đa nhiệm, Kiến trúc Dune & WebMCP:*
 
@@ -196,6 +206,16 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [SpaceX AI Engineer Lauren Tan (Part 2) (55m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/spacex_ai_engineer_lauren_tan_part_2.md) - Bài chia sẻ nâng cao của Lauren Tan (Cursor / xAI): Đường cong tín nhiệm (Trust Curve), 1000 PRs/tháng tự động merge vào main, năng lực tự xác thực (CDP Traces/Heap snapshots), Bản đồ tính năng (Feature Map), Stealth Dir Evals (/loop 10/10), hạm đội Benny Cloud Agents và Kiến trúc Dune cấm `useEffect` cùng code comments rác.
 * [10 Levels of Jev For Agentic Engineers (35m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/10_levels_of_jev_for_agentic_engineers_indydevdan.md) - Cẩm nang phân cấp 10 bậc của IndyDevDan: "Vibe coding is the floor, agentic engineering is the ceiling", từ Smart If-Statement chặn prompt injection, triage ticket, tinh chỉnh trọng số số học (Composite Scoring), Bash Tool Gate, Out-Loop Model Routing, Agent Harness Interceptor, Context Compacting Oracle (ngưỡng 6k/10k/14k), Cheap Read Jev, quét hàng chục files song song, đến Agentic Jev tự chẩn đoán lỗi test.
 * [WebMCP Changes EVERYTHING (23m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/webmcp_changes_everything_bytegrad.md) - Phân tích kỹ thuật của ByteGrad: Sự chuyển dịch từ Browser-Use chụp ảnh màn hình vụng về sang WebMCP Client-Side API (`document.modelContext`), đăng ký tool thao tác React state trực tiếp, bảo mật chống prompt injection với `untrustedContentHint`, và 4 demo thực chiến (Grocery list, Kanban board, SaaS Analytics, OpenAI WebRoom 3D/Photo).
+* [Fixing the PR Bottleneck: Matt Pocock (23m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fixing_the_pr_bottleneck_matt_pocock_aihero.md) - Kiểm soát "Khẩu đại bác Slop" với kiến trúc 3 Tầng Phanh (CPU / Tokens / Attention), Deep Modules (Ousterhout), Tách rời Implementer & Reviewer Sub-agents, Cửa 1 Chiều vs 2 Chiều và Vòng phản hồi Retrospective tự hoàn thiện.
+
+### 🧠 Engineering Mastery, Algorithms & Career Growth
+*Phương pháp học tập kỹ nghệ đỉnh cao, tư duy giải quyết vấn đề, cấu trúc dữ liệu giải thuật và định vị kỹ sư trong kỷ nguyên AI:*
+* [How to Learn to Code Fast - The Prediction Engine: Phillip Choi (27m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_learn_code_so_fast_gifted_phillip_choi.md) - Triết lý học lập trình thần tốc từ cựu giáo viên thành Tech Lead: Xây dựng Động cơ Dự đoán (Prediction Engine), Vực thẳm Kỳ vọng vs Thực tế, trả hết "Nợ câu hỏi", 3 Nước đi đột phá và năng lực nhận diện code AI sai.
+* [Fastest Way to Learn DSA in 2026: Anjali Viramgama (8m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fastest_way_to_learn_dsa_anjali_viramgama.md) - Chiến lược học DSA từ kỹ sư Microsoft (ex-Meta, ex-AWS): 12 chủ đề trọng tâm, phương pháp Spaced Repetition 3 tháng, khai thác LeetCode Discuss tìm trade-offs và đào xới câu hỏi phỏng vấn Glassdoor.
+* [I was Bad at LeetCode. Then I did This: Maddy Zhang (10m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/i_was_bad_at_leetcode_maddy_zhang.md) - Bí kíp chinh phục LeetCode từ Senior Google SWE: 9 Mẫu hình thuật toán cốt lõi giải quyết 90% bài toán, thói quen Hand-coding chống teo cơ tư duy cú pháp khi phụ thuộc AI.
+* [How to Become Dangerously Self Educated](file:///f:/source/watch-skill/video-learning-vault/ai-agents/dangerously_self_educated.md) - Triết lý học lập trình thời đại AI: Phân tách nhóm kỹ năng "tra cứu" và "tự giải quyết", thoát khỏi bẫy "AI Passenger", học qua xây dựng trước hiểu sau, vẽ sơ đồ hệ thống napkin từ trí nhớ.
+* [Advice from the Top 1% in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) - Định hình lộ trình thăng tiến thu nhập dài hạn, đầu tư tái phân bổ tài chính vào kỹ năng có lợi nhuận cao, tránh các công việc mang lại cảm giác ảo về năng suất.
+* [Ambitious but Inconsistent in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) - Lời khuyên định hướng sự nghiệp, xây dựng tính nhất quán, trách nhiệm thay vì đuổi theo đam mê cảm tính, và playbook lập trình 5 bước trong kỷ nguyên AI 2026.
 
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
@@ -215,9 +235,11 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [cognee_memory.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/cognee_memory.md) (03:01)
     *   [google_okf.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/google_okf.md) (08:01)
     *   [jev_google_antigravity_faster_agents.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_google_antigravity_faster_agents.md) (08:09)
+    *   [fastest_way_to_learn_dsa_anjali_viramgama.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fastest_way_to_learn_dsa_anjali_viramgama.md) (08:14)
     *   [loop_engineering_explained.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) (08:53)
     *   [jev_schema_safe_ai_repochad.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_schema_safe_ai_repochad.md) (08:10)
     *   [building_a_harness_with_jev_langchain.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/building_a_harness_with_jev_langchain.md) (09:14)
+    *   [i_was_bad_at_leetcode_maddy_zhang.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/i_was_bad_at_leetcode_maddy_zhang.md) (09:47)
     *   [jev_explained_in_7min_caleb_writes_code.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_explained_in_7min_caleb_writes_code.md) (07:11)
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
     *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
@@ -247,6 +269,8 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [orchestras_not_factories_charlie_holtz.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/orchestras_not_factories_charlie_holtz.md) (17:44)
     *   [what_product_looks_like_when_coding_is_solved_ramp.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_product_looks_like_when_coding_is_solved_ramp.md) (19:31)
 *   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
+    *   [fixing_the_pr_bottleneck_matt_pocock_aihero.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fixing_the_pr_bottleneck_matt_pocock_aihero.md) (22:34)
+    *   [how_to_learn_code_so_fast_gifted_phillip_choi.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_learn_code_so_fast_gifted_phillip_choi.md) (27:00)
     *   [spacex_ai_engineer_lauren_tan_part_2.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/spacex_ai_engineer_lauren_tan_part_2.md) (55:04)
     *   [10_levels_of_jev_for_agentic_engineers_indydevdan.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/10_levels_of_jev_for_agentic_engineers_indydevdan.md) (35:17)
     *   [webmcp_changes_everything_bytegrad.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/webmcp_changes_everything_bytegrad.md) (22:38)

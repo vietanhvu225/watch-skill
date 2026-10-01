@@ -1,0 +1,173 @@
+[00:00] I've solved over 400 problems on leak code, landed a role at Google, and internet other
+[00:05] big tech companies like Amazon, IBM, and Microsoft.
+[00:08] And after solving that many problems, I learned something that I wish I knew when I started.
+[00:13] You don't actually need to solve 400 leak code problems to get a big tech offer.
+[00:17] What you actually need to do is to recognize the patterns that keep on showing up across
+[00:22] these problems.
+[00:23] Because once you understand the patterns, you can look at a problem you've never seen
+[00:27] before and still know how to approach it.
+[00:29] Hi friends, I'm Maddie and I'm a senior software engineer.
+[00:32] From being on the other side of the table and interviewing candidates at Google, I saw
+[00:37] the same thing over and over again.
+[00:39] The candidates who perform best weren't necessarily the ones with the highest problem count.
+[00:44] They were the ones who could quickly look at an unfamiliar problem, identify what was
+[00:47] going on, and know which tools to reach for.
+[00:50] So in this video, we'll break down each of the nine most common patterns via that clues
+[00:55] in a problem statement that tell you when to use them, and the problems you should practice
+[00:59] to actually master them.
+[01:00] Let's get into it.
+[01:01] Let's first talk about why leak codes still matters in 2026, even as many companies are
+[01:06] moving toward AI assisted interviews.
+[01:09] So traditional coding interviews haven't disappeared.
+[01:12] Open AI, sweet interview loop still involves algorithmic coding.
+[01:16] Anthropics says technical interviews still use live coding environments such as CoLab and
+[01:20] Code Signal, and current Google engineering listings still explicitly call out data structures
+[01:25] and algorithms.
+[01:26] What has changed, however, is the relative importance of leak code.
+[01:31] AI can now produce routine code extremely well.
+[01:34] So interviews are increasingly trying to test whether you can reason, debug, design, verify,
+[01:40] and make end-nearing decisions, rather than whether you memorize 300 algorithms problems.
+[01:46] And for the same companies, you can get an AI-allowed round on Monday and a their editor
+[01:50] won on Wednesday in the same loop.
+[01:53] Also, keep in mind that if you spent the last year coding mostly with AI, you should
+[01:57] still prepare writing code by hand for these leak code style questions.
+[02:01] Syntax is after all a language, and language is atrophy when you stop speaking them.
+[02:05] So you might have the right intuition, but then sit there fumbling the actual syntax
+[02:10] as you type out your code.
+[02:12] So let's start with the one concept that shows up more than any other hashing.
+[02:16] The clue to if a problem balls hashing is any version of have I seen this before, or how
+[02:21] many times have I seen it?
+[02:22] If your brute force solution scans the rate a second time to check for something, a hash
+[02:27] map usually collapses that interloop into a single lookup.
+[02:30] To sum is the canonical problem.
+[02:32] You want two numbers that add up to a target, so instead of checking every pair, you walk
+[02:37] the rate once and ask whether the target minus the current number is already in your map.
+[02:42] Oven squared then becomes Oven time complexity.
+[02:45] Another classic problem is longest consecutive sequence.
+[02:48] To solve this, you should dump everything into a set that only start counting from numbers
+[02:52] that have no left neighbor, which sounds like a trick until you realize it's what keeps
+[02:56] the runtime linear.
+[02:57] Group and grams is the counting variety, a half the sorted string as the key, and the
+[03:01] list of words as the value.
+[03:03] Next up, let's talk about two pointers.
+[03:05] This involves two indices walking the same structure, either converting from opposite
+[03:09] ends or chasing each other at different speeds.
+[03:12] What you should look for in order to know that you need two pointers is a sorted input
+[03:15] or a problem about pairs.
+[03:17] So for example, take container with most water.
+[03:19] You're going to start with your pointers wide, and every move has to be the pointer
+[03:23] at the shorter wall because moving the taller one can only lose you area.
+[03:27] Three sum, which is the variation of two sum that's a bit harder, is the same idea with
+[03:31] the loop wrapped around it.
+[03:32] You should fix one number and then two pointer the rest.
+[03:35] Let's also talk about the fast and slow variant.
+[03:37] So the slow one is going to move one step each time and the other moves too.
+[03:41] If there's a cycle, they eventually collide.
+[03:43] So this is how you can solve linked list cycle, and it's also how you can, for example, find
+[03:47] a list midpoint in a single pass, which covers the problems middle of the link list and
+[03:52] remove and note from the end.
+[03:54] Next up, let's talk about sliding window.
+[03:56] Siding window is two pointers with an additional rule attached.
+[04:00] Whatever sits between the two pointers has to stay valid.
+[04:03] So in order to know when you should use sliding window, look for the word contiguous.
+[04:07] So for example, longest substring, shortest subway, maximum sum of K consecutive elements,
+[04:13] those who you in that it should be window territory.
+[04:16] So you can expand the right edge, take a new elements, and when the window breaks condition,
+[04:21] you pull the left edge in until it's valid again.
+[04:24] A classic example of sliding window is longest substring without repeating characters.
+[04:29] And another one is minimum window substring.
+[04:31] The mistake I see most often when people try to implement sliding window is that they
+[04:35] are rebuilding the window state from scratch on every step.
+[04:38] So the whole point of this is that state is updated incrementally, one element in when
+[04:43] one element out.
+[04:44] So if you're computing a sum inside the loop, then you're just writing a nestle loop with
+[04:48] extra steps, which is not what we want.
+[04:50] The fourth concept is binary search.
+[04:52] Everyone knows that you should use binary search on a sorted array.
+[04:55] However, if fewer people recognize it when there's no array to search, if you think about
+[04:59] it, the real requirement for when to use binary search isn't just sorted data, it's a monotonic
+[05:04] yes or no question.
+[05:06] Think about it this way.
+[05:07] If some answer works, does every other larger answer also work?
+[05:10] If so, you can binary search the answer space itself.
+[05:13] Coco eating bananas is a good example of a binary search problem that doesn't include
+[05:17] an explicit array.
+[05:18] So Coco picks an eating speed and tries to eat piles of bananas and you want the minimum
+[05:22] speed that finishes the piles on time.
+[05:24] So there's no actual sorted array anywhere in that problem.
+[05:27] But think about it this way, if speed seven works, then speed eight should work too.
+[05:32] So you can binary search over speeds from one to the largest pile.
+[05:35] A problem that uses the same concept is capacity to ship packages within D days.
+[05:40] So whenever a problem asks for a minimum or maximum or the smallest capacity still works,
+[05:45] check whether the answer is monotonic.
+[05:46] If it is, you have just turned a search over millions of values into about 20 checks.
+[05:51] The fifth pattern is a monotonic stack.
+[05:53] A monotonic stack is a stack that you keep in sorted order by popping anything that would
+[05:58] break the order.
+[05:59] The clue here is to look for a problem that asks for every position in an array what the nearest
+[06:04] larger value to the right is for the nearest smaller one.
+[06:07] For example, let's take the problem daily temperatures.
+[06:10] For each day, you need to find how long it is until it gets warmer.
+[06:13] To solve this, you push the indices and when a warmer day arrives, you pop every colder
+[06:18] day off the stack and record the gap.
+[06:20] Each index gets pushed and popped exactly once to the whole thing is over and runtime.
+[06:25] The problem is trapping rainwater and largest rectangle in histogram are the harder ones.
+[06:29] And both still show up in real big tech loops.
+[06:32] They might sound impossible until you see the solution with the stack and then they feel
+[06:36] extremely obvious.
+[06:37] So if your instinct is to write for each element, scan backward until you find something bigger
+[06:41] or smaller, then it is likely a monotonic stack.
+[06:44] Pattern 6 covers trees and grafts together as DFS and DFS, or depth-first search and breath-first
+[06:50] search.
+[06:51] In depth-first search, you go as deep as you can and then backtrack.
+[06:54] Oftentimes, that's your curgeon and it's a good choice when you need complete paths,
+[06:58] bottom-up calculations or every node in a connected region.
+[07:01] For example, number of islands is the classic problem.
+[07:04] Solve this, you traverse the grid and every time you hit unvisited land, DFS the entire
+[07:09] island and mark it off.
+[07:10] Wrath-first search goes level by level using a queue and it's what you should use whenever
+[07:14] the word shortest appears in unweighted graft.
+[07:16] So for example, binary tree level order traversal is BFS by definition.
+[07:21] Rodding oranges is BFS from several starting points at once.
+[07:24] Concept 7 is top-k with a heap.
+[07:26] Any time in a problem you see the k-largest, the smallest, or k-mas frequent, a heap
+[07:31] is probably the data structure you're looking for.
+[07:33] The instinct is to sort, which costs O of N log N, but a heap of size k gets you O of N log
+[07:39] k.
+[07:40] And when k is small, an N is huge, that's a massive improvement in runtime.
+[07:44] This is a bit counterintuitive, but keep in mind for the k-largest elements you want
+[07:48] a min heap.
+[07:49] You hold as actually k elements in your heap and the smallest of them sits on top, ready
+[07:53] to be evicted the second something bigger arrives.
+[07:55] The classic example is k-largest element in array.
+[07:59] The eighth pattern I want to cover is backtracking, which is what you should implement when the
+[08:03] problem wants all of something rather than the best of something.
+[08:06] So for example, subsets, permutation, combinations, valid board configurations.
+[08:11] If the answer is a list of lists, you're backtracking.
+[08:14] The basic structure of backtracking is very consistent and never changes.
+[08:17] You choose an option, recurse, and then undo the choice before trying the next option.
+[08:22] Just make sure you're undoing because it's quite easy to forget that stuff.
+[08:25] So for example, the canonical problems are subsets and permutations.
+[08:29] While you're doing backtracking problems, keep in mind that they are exponential runtime,
+[08:33] so don't be afraid when you calculate that that is totally expected.
+[08:36] And finally, let's talk about the ninth pattern, dynamic programming, which is probably
+[08:41] the hardest concept on the list.
+[08:43] Dynamic programming or DP is recursion where you stop recombuting things.
+[08:47] So you can write the brute force recursion first, but then look at what changes between calls.
+[08:52] If the same arguments keep coming back, cache them.
+[08:55] That's called memoization.
+[08:57] Your clue that you should be using dynamic programming is if a problem is asking for the
+[09:01] number of ways to do something or a minimum or maximum across a sequence of choices.
+[09:05] So for example, climbing stairs is the smallest DP problem that you'll see on lead code.
+[09:10] And coin change and house offer are the two that should follow suit quickly.
+[09:14] So in conclusion, this is a list of the nine patterns that you can master to solve 90%
+[09:18] of all lead code problems.
+[09:20] Hashing, two pointers, sliding window, binary search, monononic stack, DFS and VFS, top
+[09:25] K with heaps, backtracking and last but not least, dynamic programming.
+[09:29] So if you want to master data instruction algorithms, learn these nine, do five to ten
+[09:33] problems for each one, and you'll be able to handle problems that you've never seen
+[09:37] before.
+[09:38] And that's all I have for you in this video.
+[09:39] If you found it helpful, hit that like button, type the video, and subscribe to my
+[09:43] channel for more tech, AI and career videos.
+[09:46] Thanks for watching, and I'll see you next one.
