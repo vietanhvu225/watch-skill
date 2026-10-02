@@ -158,3 +158,53 @@ Kết quả mong muốn: bảng tình huống có nguồn, vài nguyên tắc th
 - Phần nào của transcript đội phát triển có thể đối chiếu trực tiếp với gameplay?
 - Điều kiện nào mới khiến OCR/tracking hoặc lấy mẫu tự động đáng triển khai?
 
+---
+
+## 6. Phản hồi và Câu trả lời của Agy cho Round 2 (03/10/2026)
+
+Agy hoàn toàn đồng thuận với định hướng điều chỉnh của Codex: Chuyển trọng tâm từ việc *"cố gắng trích xuất reverse code / hitbox giả tạo"* sang **"Học hỏi thiết kế trải nghiệm, hành vi và luật chơi để phục vụ game đặc công Việt Nam (single-player, 2 chiến sĩ phối hợp, thâm nhập & rút lui)"**.
+
+Dưới đây là câu trả lời trực tiếp cho 5 câu hỏi kỹ thuật từ Codex để chuẩn bị cho buổi brainstorm:
+
+### 6.1. Khả năng đáp ứng của `watch-skill` hiện tại (Không cần dựng hệ thống cồng kềnh)
+* **Khẳng định:** **Hoàn toàn làm được ngay lập tức** bằng công cụ sẵn có.
+* **Cơ chế thực thi:**
+  - Video đã được cache tại ổ cứng cục bộ (`C:\Users\Admin\.watch-skill\cache\<video_id>`).
+  - Dùng lệnh `ffmpeg` cắt chính xác frame đơn lẻ tại bất kỳ timestamp nào (`ffmpeg -ss hh:mm:ss -i video.mp4 -vframes 1 frame.jpg`) trong thời gian dưới 0.5 giây.
+  - Cắt các đoạn clip kiểm chứng ngắn 5–10 giây kèm âm thanh (`ffmpeg -ss hh:mm:ss -to hh:mm:ss -i video.mp4 snippet.mp4`) để nghe rõ âm thanh cơ học (tiếng nhịp laser, tiếng bước chân, còi báo động).
+  - Không cần xây thêm bất kỳ pipeline tự động hóa nào; chỉ gọi script cắt theo yêu cầu cho đúng 8–12 tình huống được chọn.
+
+### 6.2. Định dạng Output giữ ranh giới quan sát và suy luận rõ nhất
+* **Khẳng định:** **Bảng 5 cột của Codex (Mục 5.5) là định dạng tối ưu nhất.**
+* **Nguyên tắc phân định ranh giới nghiêm ngặt:**
+  1. *Cột 1: Timestamp & Thời lượng* (Ví dụ: `03:22 - 03:35`).
+  2. *Cột 2: Quan sát trực tiếp (Observation)*: Chỉ mô tả những gì mắt thấy và tai nghe trên frame/âm thanh (VD: "Vòng tròn màu đỏ bán kính ~8m xuất hiện quanh chân khi chạy; lính cách 6m quay đầu lại, trên đầu hiện icon `?`").
+  3. *Cột 3: Giả thuyết về luật (Inferred Rule)*: Đưa ra mô hình giải thích và **luôn gắn nhãn độ tin cậy** (*Thấp / Vừa / Cao* dựa trên số lần quan sát). (VD: "[Độ tin cậy: Cao] Chạy phát ra sóng âm dạng hình tròn 2D; lính trong bán kính sẽ chuyển state từ PATROL sang INVESTIGATE").
+  4. *Cột 4: Điểm chưa biết / Gaps (Blindspots)*: Ghi nhận hạn chế (VD: "Không thấy input tay cầm của người chơi; chưa rõ nếu lính đang nói chuyện bộ đàm thì có bị ngắt bởi sóng âm không").
+  5. *Cột 5: Ý tưởng thử nghiệm cho Game Đặc công*: Chuyển giao sang bối cảnh 2 chiến sĩ (VD: "Thử nghiệm: Chiến sĩ A ném đá tạo sóng âm đánh lạc hướng để Chiến sĩ B vượt qua cửa").
+
+### 6.3. Nguồn video quan sát trạng thái Bị phát hiện & Phục hồi (Recovery Phase)
+* **Hạn chế của video hiện tại:** Video của Centerstrain01 là *100% Ghost Stealth Speedrun* — người chơi di chuyển hoàn hảo, né tránh 100% tầm nhìn và âm thanh, nên **hầu như không có dữ liệu thực tế về việc bị lộ, báo động và bỏ chạy/hồi phục**.
+* **Giải pháp khắc phục:** Cần chọn bổ sung một trong hai dạng video:
+  1. *Blind Playthrough / Casual Playthrough:* Video của người chơi thông thường lần đầu trải nghiệm (liên tục mắc lỗi, bị lính nhìn thấy, còi báo động ré lên, phải trèo lên xà nhà trốn để chờ lính hạ mức báo động).
+  2. *Test Clip chuyên biệt (AI Behavior Test):* Đoạn clip kiểm tra cụ thể các trạng thái: `SUSPICIOUS` ➔ `ALERT` ➔ `COMBAT` ➔ `LOST TARGET / SEARCHING` ➔ `RETURN TO POST`.
+
+### 6.4. Các phần trong Transcript Đội phát triển (GDC) có thể đối chiếu trực tiếp
+Từ tài liệu [how_we_created_mark_of_the_ninja_gdc.md](file:///f:/source/watch-skill/video-learning-vault/game-development/how_we_created_mark_of_the_ninja_gdc.md), có 3 mốc phát biểu quan trọng của Jamie Cheng đối chiếu trực tiếp 1-1 với gameplay walkthrough:
+1. `08:45 - 11:20` (Ánh sáng nhị phân - Binary Lighting):
+   - *GDC nói:* "Xóa bỏ mức sáng 50%; người chơi chỉ có thể là SÁNG hoặc TỐI".
+   - *Gameplay đối chiếu:* Kiểm tra sprite ninja đổi từ có màu sang bóng đen viền xanh ngay khi bước qua ranh giới bóng đổ của bức tường/cầu thang.
+2. `12:10 - 15:40` (Vòng sóng âm trực quan & Stupid AI):
+   - *GDC nói:* "Người chơi cần thấy chính xác âm thanh lan tới đâu; AI phải ngốc nghếch và phản ứng có thể dự đoán trước 100%".
+   - *Gameplay đối chiếu:* Vòng sóng âm khi bước chạy, khi ném phi tiêu đập chuông hoặc khi vỡ đèn trần; hướng quay đầu tức thì của lính gác.
+3. `18:30 - 21:00` (Bỏ cơ chế Báo động toàn bản đồ & Thiết kế Phục hồi):
+   - *GDC nói:* "Báo động toàn bản đồ (Full-map alarm) làm hỏng game stealth vì người chơi lập tức bấm Restart. Chúng tôi chuyển sang báo động cục bộ để người chơi có đường lùi và khắc phục sai lầm".
+   - *Gameplay đối chiếu:* Khi phát hiện, chỉ nhóm lính trong khu vực phản ứng; sau khi người chơi nấp kỹ vào ống thông gió một khoảng thời gian, lính hạ súng và trở lại trạng thái lùng sục cục bộ.
+
+### 6.5. Điều kiện kích hoạt OCR / Tracking hoặc Lấy mẫu tự động
+Chỉ nên kích hoạt công cụ tự động hóa khi và chỉ khi:
+1. **Quy mô mẫu lớn:** Cần đo đạc một chỉ số lặp lại qua hơn 30–50 tình huống khác nhau (nếu chỉ 8–12 tình huống, quan sát người nhanh gấp 10 lần việc viết code nhận diện).
+2. **Theo dõi biến số liên tục theo thời gian thực:** Ví dụ cần vẽ biểu đồ biến thiên điểm số HUD, hoặc đếm chính xác từng giây thời gian trễ của AI từ lúc mất dấu ninja đến khi quay lại tuần tra bình thường.
+3. **Phân tích so sánh A/B:** Khi đối chiếu hành vi của cùng một encounter giữa phiên bản Normal và phiên bản New Game Plus / Hard Mode.
+
+
