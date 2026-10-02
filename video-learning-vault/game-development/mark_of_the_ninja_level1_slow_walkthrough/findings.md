@@ -3,19 +3,19 @@
 > **Mục tiêu nghiên cứu:** Rút trích bài học về cách thiết kế cơ chế hướng dẫn (onboarding), vai trò nhân vật phụ (NPC guidance), hệ thống phản hồi giác quan và tạo dựng lựa chọn cho người chơi trong **dự án game 2D stealth về Đặc công Việt Nam** (Single-player, 1 nhân vật điều khiển chính, Leader NPC hướng dẫn từ vòng ngoài, đồng đội xuất hiện rồi tản ra).  
 > **Nguồn video khảo sát:** [Mark of the Ninja - Gameplay Walkthrough - Part 1 [Level 1: Ink & Dreams] — theRadBrad](https://www.youtube.com/watch?v=e1UnoyKqeMs)  
 > **Thời lượng:** 20:21 | **Tệp thông tin nguồn:** [sources.md](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/sources.md) | **Transcript thô:** [transcript.txt](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/transcript.txt)  
-> **Tài liệu đối chiếu:** [mark_of_the_ninja_level1_reverse_engineering.md](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_reverse_engineering.md) & [game_walkthrough_reverse_engineering_findings.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/game_walkthrough_reverse_engineering_findings.md)
+> **Tài liệu đối chiếu:** [mark_of_the_ninja_level1_reverse_engineering.md](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_reverse_engineering.md) & [game_walkthrough_reverse_engineering_findings.md](file:///f:/source/watch-skill/video-learning-vault/game-development/game_walkthrough_reverse_engineering_findings.md)
 
 ---
 
 ## 1. Metadata & Giới Hạn Kỹ Thuật (Metadata & Limitations)
 
-* **Kênh & Người chơi:** `theRadBrad` — Lối chơi mang tính tự nhiên, trải nghiệm lần đầu (blind/exploratory playthrough), nhịp độ chậm rãi, thường xuyên dừng lại 5–15 giây để quan sát bối cảnh, đọc thông báo hướng dẫn và thử nghiệm nút bấm.
-* **Thời lượng:** 20 phút 21 giây (dài gần gấp đôi lượt chơi speedrun 11:06 của Centerstrain01).
-* **Nền tảng & Phiên bản:** Xbox 360 (Xbox Live Arcade, phát hành ngày 08/09/2012, độ khó Normal).
-* **Đặc tính cảnh quay:** Video được thu trực tiếp không cắt dựng (raw unedited), không tua nhanh, hiển thị đầy đủ các lỗi sai của người chơi (trượt chân bị phát hiện, báo động, đóng cửa tháo lui).
-* **Lưu ý về Profile người chơi:** Người chơi dùng một profile đã từng khởi động thử game trước đó: Ngay từ đầu màn đã có trang bị `Noisemaker` phụ trợ bên cạnh `Darts`, khác với một save game hoàn toàn mới chỉ có `Darts`.
-* **Phân tách âm thanh:** Đã tách bạch giữa lời thoại có phụ đề trong game (Ora, Sensei Azai, lính Hessian) và lời bình luận cảm xúc cá nhân của theRadBrad.
-* **Công cụ xác minh:** Sử dụng kết hợp `faster-whisper` (bóc tách transcript thoại), `ffmpeg` (trích xuất frame bằng chứng tại các mốc giây chính xác), và RapidOCR đối chiếu trực tiếp trên giao diện HUD.
+* **Kênh & Người chơi:** `theRadBrad` — Lối chơi mang tính khám phá, chưa tối ưu (exploratory / unoptimized play); người chơi đã từng chạy thử màn này trước đó (xác nhận tại phút 01:26 và 04:13), nhịp độ chậm rãi, thường dừng lại quan sát bối cảnh, đọc thông báo hướng dẫn và thử nghiệm nút bấm.
+* **Thời lượng video:** 20 phút 21 giây (bao gồm khoảng 1 phút 15 giây đầu/cuối dành cho lời chào, bình luận của YouTuber và cutscene; không phải hoàn toàn là thời gian chơi thuần). Lượt chơi của Centerstrain01 dài 11 phút 06 giây theo nhịp nhanh, quen thuộc.
+* **Nền tảng & Phiên bản:** Giao diện hiển thị layout nút bấm Xbox (`A`, `B`, `X`, `Y`, `LT`, `RT`). Có thể chơi trên console Xbox 360 hoặc PC cắm tay cầm Xbox; chưa có dữ liệu phần cứng cụ thể để khẳng định tuyệt đối. Video đăng tải ngày 08/09/2012 trùng ngày phát hành gốc của game. Độ khó hiển thị Normal.
+* **Đặc tính cảnh quay:** Video được thu trực tiếp không cắt dựng giấu lỗi (raw unedited), không tua nhanh, ghi nhận trung thực các sai lầm của người chơi (bị phát hiện, còi báo động ré lên tại phút 12:24, nấp thoát ly).
+* **Lưu ý về Profile người chơi:** Người chơi dùng một profile đã từng chơi trước: Ngay từ đầu màn đã có trang bị `Noisemaker` phụ trợ bên cạnh `Darts`, khác với một save game hoàn toàn mới chỉ có `Darts`.
+* **Phân tách âm thanh:** Đã tách bạch giữa lời thoại có phụ đề trong game (Ora, Sensei Azai, lính Hessian) và lời bình luận cảm xúc cá nhân của theRadBrad. Các âm thanh môi trường nhỏ có thể bị tiếng bình luận lấn át một phần.
+* **Công cụ xác minh:** Sử dụng kết hợp `faster-whisper` (bóc tách transcript thoại), `ffmpeg` (trích xuất frame bằng chứng tại các mốc giây chính xác), và OCR đối chiếu trực tiếp trên giao diện HUD.
 
 ---
 
@@ -46,7 +46,7 @@ Dưới đây là 12 tình huống được bóc tách theo khung phân tích k�
 | **Điều thấy/nghe trực tiếp** | Người chơi giữ nút `RT` để chạy nhanh. Một **vòng tròn màu đỏ mở rộng** xuất hiện quanh bước chân. Ora lập tức nhắc thoại: *"Hold up. Run and they'll be able to hear it."* Bên dưới lầu, 2 lính đánh thuê đang trò chuyện về việc lấy trộm cờ đền. theRadBrad lập tức nhả nút chạy, chuyển sang đi bộ rón rén. |
 | **Lời người chơi giải thích** | *"I just like got detected... Not gonna run... Hold up, run and they'll be able to hear it."* |
 | **Suy luận & Mức tin cậy** | **[Mức tin cậy: Cao]** Game phản hồi sai lầm của người chơi bằng cả 2 kênh: Kênh hình ảnh trực quan (vòng tròn sóng âm đỏ) và Kênh âm thanh/thoại NPC can thiệp kịp thời trước khi lính kịp phát hiện. |
-| **Điều chưa biết** | Bán kính chính xác của vòng âm bước chạy là bao nhiêu mét? Có xuyên qua tường dày được không hay bị cản trở bởi địa hình? |
+| **Điều chưa biết** | Bán kính phát âm thanh bước chạy mở rộng tối đa bao nhiêu đơn vị hiển thị? Sóng âm này có bị tường dày chặn hoàn toàn hay truyền qua một phần? |
 | **Bài học cho Game Đặc công** | Tuyệt đối cần một tín hiệu trực quan cho tiếng ồn (ví dụ sóng âm lan tỏa trên mặt đất bùn/nước) để người chơi tự tin biết bước chân của mình có với tới tai lính gác hay không. |
 
 ---
@@ -108,15 +108,15 @@ Dưới đây là 12 tình huống được bóc tách theo khung phân tích k�
 ---
 
 ### Tình huống 7: Người Chơi Sai Lầm, Bị Phát Hiện & Thoát Ly Ẩn Nấp Hồi Phục (08:35 - 09:15)
-* **Bằng chứng thị giác:** [11_08m45s_detection_alert_state.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/11_08m45s_detection_alert_state.jpg)
+* **Bằng chứng thị giác:** [11a_08m39s_dart_tutorial_alert.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/11a_08m39s_dart_tutorial_alert.jpg) | [11b_08m48s_penalty_detected.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/11b_08m48s_penalty_detected.jpg) | [11c_08m57s_hold_detected.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/11c_08m57s_hold_detected.jpg)
 
 | Trường thông tin | Chi tiết ghi nhận |
 |---|---|
 | **Timestamp** | `08:35 - 09:15` |
-| **Điều thấy/nghe trực tiếp** | theRadBrad nhảy xuống từ trần nhà trúng ngay nón ánh sáng của 2 tên lính. Còi báo động ré lên dữ dội, lính gào thét: *"Show yourself! Hey, hey!"*, nổ súng bắn thẳng về phía ninja. theRadBrad bị trúng đạn, vội vàng bấm nút chạy lùi lại căn phòng trước đó, nhảy vào một bức bình phong và bấm `B` nấp (`HIDE`). Hai tên lính đuổi theo tới cửa phòng, lia đèn pin qua lại nhưng không thấy ai. Sau khoảng 8–10 giây không có tín hiệu mới, lính hạ súng, chuyển từ trạng thái `ALERT` sang `SUSPICIOUS`, rồi lững thững quay trở lại vị trí tuần tra cũ. Nhạc nền căng thẳng hạ dần về êm dịu. |
+| **Điều thấy/nghe trực tiếp** | theRadBrad nhảy xuống từ trần nhà trúng ngay nón ánh sáng đèn pin của lính tại 08:39. HUD hiển thị hình phạt trừ điểm `-300` cùng icon cảnh báo `DETECTED` (xác nhận tại frame 08:48). Lính hô lớn: *"Show yourself! Hey, hey!"* và nổ súng bắn thẳng về phía ninja. theRadBrad bị trúng đạn, vội vàng điều khiển ninja lùi lại căn phòng trước đó, nhảy vào bình phong và bấm `B` nấp (`HIDE`). Hai tên lính đuổi theo tới cửa phòng, lia đèn pin qua lại. Sau một khoảng thời gian ngắn không nhìn thấy ninja, lính hạ súng, trên đầu hiện biểu tượng dấu hỏi `?`, rồi lững thững quay trở lại hành lang tuần tra. Nhạc nền căng thẳng hạ dần về bình thường. |
 | **Lời người chơi giải thích** | *"Hey, see my sights. Are you shitting me? I didn't think they were there... What was that noise? Oh shit, there's two of them... Ah, shit! I'm not really good at this stealth thing, am I? Yeah, the detection in this game, it's very easy to get spotted."* |
-| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Rất cao]** **ĐỐI CHIẾU HOÀN TOÀN KHỚP VỚI LÝ THUYẾT GDC CỦA JAMIE CHENG:** Mark of the Ninja **KHÔNG trừng phạt người chơi bằng cái chết tức tưởi hay còi báo động vĩnh viễn toàn map**. Khi bị lộ, game mở ra một **Cửa sổ tháo lui (Recovery Window)**: Nếu người chơi cắt đứt tầm nhìn (break line of sight) và chui vào hiding spot đủ nhanh, AI sẽ mất dấu và tự động reset chu kỳ tuần tra! |
-| **Điều chưa biết** | Sau khi bị báo động 1 lần, lịch trình tuần tra của lính có bị thay đổi vĩnh viễn (ví dụ đi nhanh hơn, cảnh giác hơn) hay trở lại giống hệt 100% như lúc đầu? |
+| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Cao]** Game không xử thua ngay lập tức khi người chơi rơi vào tầm nhìn kẻ địch mà mở ra một cơ hội thoát ly (Recovery Window): Nếu người chơi chạy thoát khỏi tầm nhìn thẳng và ẩn nấp kịp thời, lính sẽ mất dấu sau một khoảng thời gian tìm kiếm cục bộ và ngừng truy đuổi. *(Lưu ý: Không suy diễn tên trạng thái FSM nội bộ hay trích dẫn sai bài nói GDC).* |
+| **Điều chưa biết** | Thời gian chính xác từ lúc mất dấu đến khi lính hạ súng ngừng tìm kiếm là bao lâu nếu đo bằng đồng hồ đếm chuẩn? Lịch trình tuần tra sau đó có bị thay đổi hay lặp lại hoàn toàn chu kỳ cũ? |
 | **Bài học cho Game Đặc công** | **BÀI HỌC VÀNG CHO GAME STEALTH:** Tuyệt đối không làm cơ chế "Bị phát hiện = Game Over". Phải luôn cho người chơi cơ hội tung lựu đạn khói, lặn xuống mương nước hoặc nhảy vào bụi rậm cắt đuôi kẻ địch để tổ chức lại đợt thâm nhập. |
 
 ---
@@ -135,45 +135,45 @@ Dưới đây là 12 tình huống được bóc tách theo khung phân tích k�
 
 ---
 
-### Tình huống 9: Phản Xạ Đóng Cửa Thoát Hiểm Khi Mở Cửa Bất Cẩn (12:15 - 12:35)
-* **Bằng chứng thị giác:** [14_12m20s_door_close_evasion.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/14_12m20s_door_close_evasion.jpg)
+### Tình huống 9: Thao Tác Đóng Cửa Ngắt Tầm Nhìn & Kích Hoạt Báo Động Khi Tái Xâm Nhập (12:10 - 12:35)
+* **Bằng chứng thị giác:** [14a_12m12s_open_door_prompt.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/14a_12m12s_open_door_prompt.jpg) | [14b_12m14s_close_door_prompt.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/14b_12m14s_close_door_prompt.jpg) | [14c_12m24s_alarm_raised_detected.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/14c_12m24s_alarm_raised_detected.jpg)
 
 | Trường thông tin | Chi tiết ghi nhận |
 |---|---|
-| **Timestamp** | `12:15 - 12:35` |
-| **Điều thấy/nghe trực tiếp** | theRadBrad mở một cánh cửa nhưng không thèm nghe lén trước. Vừa mở ra thì thấy ngay một tên lính tuần tra đang đứng cách đó chỉ 2 mét quay mặt lại. theRadBrad lập tức bấm nút `B` đóng sập cánh cửa lại. Cánh cửa gỗ đóng lại kịp thời chắn ngang tầm nhìn, thanh cảnh báo trên đầu lính chưa kịp đầy nên không kích hoạt báo động. |
+| **Timestamp** | `12:10 - 12:35` |
+| **Điều thấy/nghe trực tiếp** | Ở 12:12, theRadBrad mở cửa (`OPEN DOOR B`) mà không dùng door peeking trước. Thấy lính gác ở cự ly gần quay lại, theRadBrad lập tức bấm nút `B` đóng cửa ở 12:14 (`CLOSE DOOR B`). Việc đóng cửa tạm thời ngắt đường nhìn của lính trong khoảng 2 giây. Tuy nhiên, sau đó ở 12:24, theRadBrad mở lại cửa và nhảy qua thì **BỊ PHÁT HIỆN GÂY BÁO ĐỘNG**: HUD hiện điểm phạt `ALARM RAISED -600`, thông báo `SEAL FAILED`, icon `DETECTED` màu đỏ, còi báo động ré lên khắp khu vực. theRadBrad phải dùng ám sát hạ lính để dập tắt mối nguy. |
 | **Lời người chơi giải thích** | *"Oh, shit! Let me just close this door... I didn't see that guy there... No, sir... There's a big guy there. Alright, he's dead, that doesn't matter, got to move on."* |
-| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Cao]** **Cánh cửa là vật thể che chắn động hai chiều:** Người chơi có thể mở ra để đi qua, nhưng cũng có thể đóng lại để lập tức chặn nón tầm nhìn (*Raycast Occlusion*) của kẻ địch nếu lỡ tay mở sai thời điểm. |
-| **Điều chưa biết** | Lính có biết tự mở cửa để đi sang phòng bên cạnh kiểm tra tiếng đóng cửa không? |
-| **Bài học cho Game Đặc công** | Cửa ra vào, cửa hầm ngầm, nắp công sự phải có khả năng **mở hé, mở toang và khép lại nhẹ nhàng** để người chơi linh hoạt kiểm soát tầm nhìn và che chắn vết tích. |
+| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Cao]** Thao tác đóng cửa cho phép ngắt tầm nhìn trực tiếp tức thời. Tuy nhiên, việc đóng cửa không tự động hóa giải nguy hiểm nếu sau đó người chơi bước qua cửa mà không nắm vị trí lính. Trong tình huống này, đóng cửa chỉ trì hoãn phát hiện trong khoảnh khắc, không ngăn được còi báo động kích hoạt ở 12:24. |
+| **Điều chưa biết** | Tiếng đóng cửa có tạo sóng âm cảnh báo lính bước lại gần cửa không? Lính có biết tự mở cửa để sang phòng đối diện không? |
+| **Bài học cho Game Đặc công** | Cửa ra vào, cửa hầm ngầm, nắp công sự cần có cơ chế tương tác linh hoạt: mở hé quan sát, mở toang tháo chạy, và khép lại nhẹ nhàng để che chắn tầm nhìn. Người chơi phải tự chịu trách nhiệm định vị địch trước khi mở lại cửa. |
 
 ---
 
-### Tình huống 10: Kéo Lê Tử Thi Vào Vùng Tối Để Xóa Dấu Vết (12:55 - 13:30)
+### Tình huống 10: Thao Tác Kéo Xác Vào Vùng Tối Dưới Cầu Thang (12:55 - 13:30)
 * **Bằng chứng thị giác:** [15_13m15s_dragging_body_shadow.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/15_13m15s_dragging_body_shadow.jpg)
 
 | Trường thông tin | Chi tiết ghi nhận |
 |---|---|
 | **Timestamp** | `12:55 - 13:30` |
-| **Điều thấy/nghe trực tiếp** | Sau khi ám sát một tên lính đứng ở hành lang có đèn, theRadBrad bấm giữ nút `B` nhấc xác lính lên và kéo giật lùi về phía gầm cầu thang ngập trong bóng tối (`DROP BODY` prompt). Khi đặt xác vào vùng tối, tên lính tuần tra thứ hai đi từ bên phải sang hành lang không hề phát hiện ra xác đồng đội đang nằm cách đó vài bước chân. |
+| **Điều thấy/nghe trực tiếp** | Sau khi ám sát một tên lính đứng ở hành lang có đèn, theRadBrad bấm giữ nút `B` nhấc xác lính lên và kéo giật lùi về phía gầm cầu thang ngập trong bóng tối (`DROP BODY` prompt ở 13:12). theRadBrad nói: *"I don't think he's gonna see the body right there. No, he won't. Okay, good."* Trong khoảng thời gian còn lại của phân cảnh (13:15 - 13:40), người chơi di chuyển tiếp sang khu vực khác; không có bất kỳ tên lính nào khác đi ngang qua gầm cầu thang này để đối chứng xem xác có bị phát hiện hay không. |
 | **Lời người chơi giải thích** | *"Okay, got him. I'm gonna drag his body. Hopefully I can drag it all the way back over here... That's far as it goes... I don't think he's gonna see the body right there. No, he won't. Okay, good."* |
-| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Rất cao]** **Quy luật Ánh sáng nhị phân áp dụng lên cả Tử thi:** Xác chết nằm trong ánh sáng = Báo động tức thì nếu lính nhìn thấy. Xác chết nằm trong bóng tối = Tàng hình đối với lính tuần tra bình thường. |
-| **Điều chưa biết** | Nếu kéo xác qua vùng sáng khi lính đang quay lưng, vết máu kéo lê trên sàn có kích hoạt AI nghi ngờ không? |
+| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Thấp - Giả thuyết chưa kiểm chứng]** Nhận định "xác chết nằm trong bóng tối thì lính tuần tra đi ngang không phát hiện được" chỉ là phỏng đoán cá nhân của người chơi. Tình huống này chưa có lính đối chứng đi ngang qua xác để xác nhận thành quy luật tuyệt đối. |
+| **Điều chưa biết** | Cần kiểm chứng: Nếu một tên lính tuần tra đi ngang qua xác chết nằm trong vùng tối hoàn toàn, lính có phát hiện ra xác không? Nón ánh sáng đèn pin có soi thấy xác trong bóng tối không? Vết máu kéo lê trên sàn có kích hoạt AI nghi ngờ không? |
 | **Bài học cho Game Đặc công** | Cơ chế giấu xác: Kéo xác địch giấu vào bụi lau sậy, ném xuống hố hầm hoặc mương rãnh để tránh lính đổi ca phát hiện báo động. |
 
 ---
 
-### Tình huống 11: Giải Cứu Đồng Đội Treo Ngược & Đồng Đội Tự Tản Ra (14:40 - 15:15)
-* **Bằng chứng thị giác:** [16_14m50s_hostage_ninja_encounter.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/16_14m50s_hostage_ninja_encounter.jpg)
+### Tình huống 11: Giải Cứu Đồng Đội Bị Treo & Nhận Điểm Seal (14:40 - 15:15)
+* **Bằng chứng thị giác:** [16a_14m52s_kill_guard_hostage.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/16a_14m52s_kill_guard_hostage.jpg) | [16b_14m58s_untie_hostage_prompt.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/16b_14m58s_untie_hostage_prompt.jpg) | [16c_15m04s_ninja_rescued_points.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/16c_15m04s_ninja_rescued_points.jpg)
 
 | Trường thông tin | Chi tiết ghi nhận |
 |---|---|
 | **Timestamp** | `14:40 - 15:15` |
-| **Điều thấy/nghe trực tiếp** | Một ninja đồng đội bị lính Hessian bắt trói treo ngược bằng dây thừng trên xà nhà. Người chơi dùng phi tiêu bắn đứt dây trói hoặc hạ lính canh. Khi chạm đất, người đồng đội đứng dậy nói: *"Don't worry about me. Go save Master Azai!"* rồi lập tức thực hiện động tác nhảy vọt biến mất vào lối thông gió phía sau, nhường lại toàn bộ không gian cho nhân vật chính tiếp tục nhiệm vụ. |
+| **Điều thấy/nghe trực tiếp** | theRadBrad ám sát tên lính canh ở 14:52, sau đó tiếp cận đồng đội ninja đang bị trói treo ngược trên xà nhà. Màn hình hiện prompt `HOLD B UNTIL...` ở 14:58. Người chơi giữ `B` để cởi trói. Ở 15:04, HUD hiện điểm thưởng `+500 NINJA RESCUED` và cập nhật mục tiêu `SEAL PROGRESS: Rescue all the ninja 1/4`. Đồng đội nói: *"Don't worry about me. Go save Master Azai!"*. Ngay sau đó ở 15:07, theRadBrad tiến tới cánh cửa bên phải và ấn `OPEN DOOR B` để sang phòng tiếp theo. Camera chuyển theo nhân vật chính ra ngoài, không quay tiếp diễn biến của đồng đội sau đó. |
 | **Lời người chơi giải thích** | *"All right, well, I got that. Don't worry, Buckley... Go save Master Azai. Nice! That is so cool. You just find new stuff every time... Leave this person hanging upside down..."* |
-| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Rất cao]** **KHỚP CHÍNH XÁC VỚI BỐI CẢNH DỰ ÁN ĐẶC CÔNG CỦA BẠN:** Khi thiết kế game stealth có đồng đội hỗ trợ, **không bắt buộc đồng đội phải đi kè kè theo sau nhân vật chính (tránh lỗi AI đi theo ngớ ngẩn gây lộ vô lý)**. Đồng đội xuất hiện ở các điểm chốt, trao đổi thông tin nhiệm vụ, sau đó tự tản ra mở đường/rút lui! |
-| **Điều chưa biết** | Nếu người chơi bắn đứt dây làm đồng đội rơi trúng đầu lính gác bên dưới, lính có bị đè chết không? |
-| **Bài học cho Game Đặc công** | **Mẫu hình phối hợp đồng đội:** Chiến sĩ B có thể xuất hiện tại các điểm hẹn then chốt (cắt hàng rào kẽm gai mở đường, ôm mìn định hướng, hoặc giải cứu khỏi hầm giam), trao đổi ngắn rồi tản ra yểm trợ vòng ngoài, giữ trải nghiệm điều khiển chính thuần khiết cho người chơi. |
+| **Suy luận & Mức tin cậy** | **[Mức tin cậy: Vừa]** Việc giải cứu đồng đội là mục tiêu phụ tính điểm và tiến độ con dấu (`Seal`). Đồng đội tương tác bằng câu thoại cốt truyện và không đi theo nhân vật chính sang phòng kế tiếp. Hành vi tản ra hay rút lui cụ thể không quan sát được trên màn hình do người chơi lập tức rời phòng. |
+| **Điều chưa biết** | Đồng đội sau khi được giải cứu có ở lại phòng, biến mất hay có hoạt ảnh nhảy lên ống thông gió nếu người chơi đứng lại quan sát lâu hơn? |
+| **Bài học cho Game Đặc công** | **Mẫu hình phối hợp đồng đội:** Đồng đội NPC xuất hiện tại các điểm chốt then chốt (giải cứu khỏi hầm giam, mở rào kẽm gai), trao đổi ngắn rồi tản ra, giữ trải nghiệm điều khiển chính thuần khiết cho người chơi duy nhất mà không cần AI đồng hành đi kèm liên tục. |
 
 ---
 
@@ -203,28 +203,36 @@ Qua việc đối chiếu frame và transcript của cả 2 walkthrough, chúng 
   - Ở cuối màn 1, Sensei Azai trao cho ninja là **thanh Katana tổ truyền của gia tộc (hoặc vũ khí biểu tượng của Champion)**, chứ không phải trước đó nhân vật không thể tấn công.
 
 ### ② Hiding Spot bảo vệ người chơi trong điều kiện nào? Có an toàn tuyệt đối không?
-* **Kết luận đính chính:** Hiding spot **KHÔNG an toàn tuyệt đối trong mọi trạng thái**, mà phụ thuộc chặt chẽ vào **Trạng thái cảnh giác của AI (AI State)**:
-  - Khi lính ở trạng thái bình thường (`UNAWARE`): Đi ngang qua bình phong/vò gốm, lính hoàn toàn không phát hiện dù người chơi đứng cách chỉ vài centimet.
-  - Khi lính ở trạng thái báo động (`ALERT` / đang rượt đuổi): Nếu người chơi nhảy vào hiding spot **sau khi lính đã có tầm nhìn thẳng**, lính sẽ chạy thẳng đến vị trí đó và lôi người chơi ra bắn! Hiding spot chỉ hiệu quả khi người chơi đã **cắt đứt đường nhìn (break line of sight)** trước khi chui vào ẩn nấp.
+* **Kết luận đính chính:** Hiding spot **không thể khẳng định là an toàn tuyệt đối trong mọi tình huống**:
+  - Khi lính chưa phát hiện: Đi ngang qua bình phong/vò gốm, lính hoàn toàn không phát hiện dù người chơi đứng ở cự ly rất gần.
+  - Khi lính phát hiện và truy đuổi: Ở phút `08:48 - 08:57`, người chơi chạy rẽ vào phòng trong (cắt đứt đường nhìn thẳng) rồi mới nấp vào bình phong; lính đuổi tới cửa nhưng không thấy người chơi và sau đó ngừng lùng sục.
+  - **Giới hạn dữ liệu:** Chưa có quan sát trực tiếp trong video này về việc nếu người chơi chui vào hiding spot ngay trước mắt lính khi đang có đường nhìn thẳng thì lính có lôi ra bắn hay không. Cần giữ dưới dạng giả thuyết cần kiểm chứng thêm.
 
 ### ③ Focus Mode thể hiện việc dừng/chậm thời gian như thế nào?
-* **Kết luận đính chính:** Không suy diễn các biến nội bộ như `Engine.time_scale = 0.0`.
-* **Biểu hiện giác quan thực tế:**
-  - *Thị giác:* Toàn bộ hoạt cảnh xung quanh (hạt bụi bay, lính đang bước đi) dừng cử động; viền màn hình chuyển sang hiệu ứng tối dần (vignette shader); một đường parabol laser nét đứt cùng hồng tâm ngắm xuất hiện.
-  - *Thính giác:* Toàn bộ âm thanh nền, nhạc và tiếng động vật lý bị lọc qua bộ lọc hạ âm (low-pass filter/muffled sound), tạo cảm giác như ninja đang tập trung cao độ trong tâm trí.
+* **Kết luận đính chính:** Không suy diễn mã nguồn hay cơ chế nội bộ (như biến thời gian hay tên shader/filter).
+* **Biểu hiện giác quan thực tế quan sát qua clip:**
+  - *Thị giác:* Các chuyển động môi trường xung quanh (hạt bụi bay, lính đang bước) dừng cử động; 4 góc viền màn hình chuyển sang tối sẫm lại; xuất hiện tia quỹ đạo nét đứt cùng hồng tâm ngắm.
+  - *Thính giác:* Toàn bộ âm thanh nền, nhạc và tiếng động vật lý trở nên trầm đục, nghẹt lại như ở dưới nước, tạo cảm giác nhân vật đang tập trung cao độ.
 
 ### ④ Hai tiếng động đánh lạc hướng liên tiếp (Dual Distraction) tác động ra sao?
 * **Kết luận đính chính:** **Không đủ bằng chứng để khẳng định luật "âm mới luôn ghi đè âm cũ cho mọi AI".**
-  - Quan sát thực tế: Khi ném 2 tiếng động liên tiếp gần 1 tên lính, tên lính sẽ hủy hướng đi cũ để quay sang hướng âm thanh mới nhất.
+  - Quan sát thực tế: Khi ném 2 tiếng động liên tiếp gần 1 tên lính, tên lính sẽ chuyển hướng đi sang nguồn âm thanh phát ra sau.
   - Tuy nhiên, khi 2 tiếng động phát ra ở 2 góc xa nhau với 2 tên lính khác nhau, mỗi tên lính bị chi phối bởi nguồn âm gần phạm vi nghe của mình nhất. Do đó, hiện tượng này là sự tương tác giữa **bán kính sóng âm hình học** và **mức ưu tiên kích thích giác quan**, không phải một lệnh ghi đè biến toàn cục.
 
-### ⑤ Phân biệt Nhiệm vụ Bắt buộc vs Mục tiêu Tùy chọn (Collectibles & Seals)
+### ⑤ Phân biệt Nhiệm vụ Bắt buộc vs Mục tiêu Tùy chọn (Collectibles & Seals) & Bảng Điểm
 * **Nhiệm vụ bắt buộc (Core Objectives):** Thoát khỏi khu buồng ngủ, vượt qua các chốt gác hành lang, cứu ninja đồng đội bị treo, tiếp cận sân đình giải cứu Sensei Azai.
 * **Mục tiêu tùy chọn (Optional Collectibles & Challenges):**
   - 3 Cuộn giấy Hisomu (Mở khóa lore Master Tetsuji).
   - 3 Cổ vật bí mật (Artifacts cộng điểm).
   - Thử thách phụ gõ vang 4 quả chuông đồng (`Ring 4 Bells`).
   - Các con dấu phong cách chơi (Seals: 0 Kills, 0 Alarms, v.v.).
+* **Bằng chứng thị giác bảng tổng kết điểm màn 1:** [20_20m15s_score_summary_screen.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/20_20m15s_score_summary_screen.jpg) *(khung hình thực tế tại phút 20:15, không phải cutscene 19:50)*.
+  - Điểm cơ bản (Level Score): `13,050`
+  - Thưởng đánh lạc hướng (Distracted Bonus): `+1,600`
+  - Thưởng không bị phát hiện (Undetected Bonus): `0` *(do bị phát hiện tại 08:48 và 12:24)*
+  - Thưởng không báo động (No Alarms Raised): `0` *(thất bại do kích hoạt báo động còi tại 12:24)*
+  - Thưởng không giết địch (No Enemies Killed): `0` *(do đã ám sát lính)*
+  - Tổng số Honor đạt được: `5/9`
 
 ---
 
@@ -232,13 +240,13 @@ Qua việc đối chiếu frame và transcript của cả 2 walkthrough, chúng 
 
 Bảng đối chiếu 5 tình huống then chốt giữa hai phong cách chơi chứng minh rằng **một walkthrough không bao giờ phản ánh toàn bộ quy luật của game**:
 
-| Tình huống khảo sát | Walkthrough Centerstrain01 (100% Ghost Speedrun) | Walkthrough theRadBrad (Blind / Casual Playthrough) | Nguyên nhân khác biệt |
+| Tình huống khảo sát | Walkthrough Centerstrain01 (Nhịp nhanh, quen thuộc, hướng tới thành tích) | Walkthrough theRadBrad (Khám phá, chưa tối ưu) | Nguyên nhân khác biệt |
 |---|---|---|---|
-| **1. Chạm trán lính đầu tiên (Room 2)** | Đu xà nhà, nhảy vọt qua nón tầm nhìn, trượt qua cửa không chạm trán (`+200 Undetected`). | Nhảy xuống đất sau lưng lính, ném Noisemaker lừa lính quay lưng, bấm `X` ám sát đẫm máu (`+400 Silent Assassin`). | Khác biệt về **phong cách chơi cá nhân**: Centerstrain01 tự đặt luật không giết ai; theRadBrad tận dụng cơ chế ám sát để dọn đường an toàn. |
-| **2. Nhịp độ & Thời gian xử lý** | Di chuyển liên tục, không ngập ngừng, hoàn thành màn trong **11 phút 06 giây**. | Thường xuyên dừng lại 5–15 giây trước mỗi khúc cua để quan sát và đọc hướng dẫn; thời lượng kéo dài **20 phút 21 giây**. | Khác biệt về **mức độ thông thuộc màn chơi**: Người chơi quen map tối ưu hóa thời gian; người chơi mới cần thời gian tiếp nhận thông tin. |
-| **3. Khám phá Bí mật & Cổ vật** | Lấy đủ 3/3 Scrolls, 3/3 Artifacts, gõ đủ 4 quả chuông phong thủy. | Bỏ lỡ 2 Scrolls, 1 Artifact; gõ chuông một cách ngẫu nhiên vì tưởng chỉ là vật gây tiếng ồn thông thường. | theRadBrad tập trung vào mạch truyện chính và sinh tồn, không quan tâm đến bảng thành tích 100%. |
-| **4. Xử lý Cánh cửa Đóng kín** | Áp sát cửa sử dụng Door Peeking, nhìn thấy lính quay lưng rồi mới mở cửa lướt qua. | Mở toang cửa mà không thèm nhìn trộm; giật mình thấy lính gác ở khoảng cách gần vội vàng **bấm nút đóng cửa lại** để che tầm nhìn. | theRadBrad cho thấy **cơ chế phòng vệ dự phòng của game**: Game cho phép đóng sập cửa lại để cứu vãn sai lầm khi mở cửa bất cẩn! |
-| **5. Cứu Sensei Azai ở Sân Đình** | Leo tường bên phải, đu dây xuống bóng tối, ném phi tiêu góc xa đánh lạc hướng cả 3 lính rồi lẻn vào. | Ném phi tiêu bắn đứt xích rơi lồng đèn xuống đầu lính gây hoảng loạn, sau đó chui xuống đường cống ngầm dưới sân đình. | Trò chơi cung cấp **nhiều giải pháp cho cùng một căn phòng**: Đường trên cao (distraction lồng đèn) kết hợp đường ngầm bên dưới. |
+| **1. Chạm trán lính đầu tiên (Room 2)** | Đu xà nhà, nhảy vọt qua nón tầm nhìn, trượt qua cửa không chạm trán (`+200 Undetected`). | Nhảy xuống đất sau lưng lính, ném Noisemaker lừa lính quay lưng, bấm `X` ám sát (`+400 Silent Assassin`). | Khác biệt về **phong cách chơi cá nhân**: Centerstrain01 tự đặt luật không giết ai; theRadBrad tận dụng cơ chế ám sát để dọn đường an toàn. |
+| **2. Nhịp độ & Thời gian xử lý** | Di chuyển liên tục, ít ngập ngừng, hoàn thành màn trong **11 phút 06 giây**. | Thường dừng lại quan sát bối cảnh và đọc hướng dẫn; thời lượng video kéo dài **20 phút 21 giây** (bao gồm intro/outro/cutscene). | Khác biệt về **mức độ thông thuộc màn chơi**: Người chơi quen map tối ưu hóa thời gian; người chơi khám phá cần thời gian tiếp nhận thông tin. |
+| **3. Khám phá Bí mật & Cổ vật** | Lấy đủ 3/3 Scrolls, 3/3 Artifacts, gõ đủ 4 quả chuông phong thủy. | Bỏ lỡ 2 Scrolls, 1 Artifact; gõ chuông một cách ngẫu nhiên vì tưởng chỉ là vật gây tiếng ồn thông thường. | theRadBrad tập trung vào mạch truyện chính và sinh tồn, không tập trung vào bảng thành tích 100%. |
+| **4. Xử lý Cánh cửa Đóng kín** | Áp sát cửa sử dụng Door Peeking, nhìn thấy lính quay lưng rồi mới mở cửa lướt qua. | Mở cửa không quan sát; thấy lính ở cự ly gần vội bấm đóng cửa (12:14) ngắt tầm nhìn tạm thời; nhưng đến 12:24 bước qua cửa vẫn **bị phát hiện gây báo động** (`ALARM RAISED -600`). | theRadBrad cho thấy **đóng cửa chỉ là giải pháp che chắn tạm thời**: Nếu không nắm được vị trí lính thì khi mở lại cửa vẫn bị phát hiện và còi báo động ré lên. |
+| **5. Cứu Sensei Azai ở Sân Đình** | Leo tường bên phải, đu dây xuống bóng tối, ném phi tiêu góc xa đánh lạc hướng cả 3 lính rồi lẻn vào. | Ném phi tiêu bắn đứt xích rơi lồng đèn xuống lính gây hoảng loạn, sau đó chui xuống đường cống ngầm dưới sân đình. | Trò chơi cung cấp **nhiều giải pháp cho cùng một căn phòng**: Đường trên cao (distraction lồng đèn) kết hợp đường ngầm bên dưới. |
 
 ---
 
@@ -247,19 +255,19 @@ Bảng đối chiếu 5 tình huống then chốt giữa hai phong cách chơi c
 Từ toàn bộ quá trình phân tích đối chiếu thực nghiệm, chúng tôi rút ra **3 bài học thiết kế then chốt** cho dự án game đặc công:
 
 ### Bài học 1: Mô Hình NPC Đồng Hành "Dẫn Dắt Vòng Ngoài, Nhường Bước Vòng Trong"
-* **Thực trạng học được:** Cả Ora và người đồng đội bị treo đều không đi kè kè theo sau nhân vật chính. Ora chỉ đưa ra khẩu lệnh ngắn gọn từ bóng tối khi có cơ chế mới xuất hiện; đồng đội sau khi được giải cứu thì lập tức rút lui để mở đường.
+* **Thực trạng học được:** Cả Ora và người đồng đội bị treo đều không đi kè kè theo sau nhân vật chính. Ora chỉ đưa ra khẩu lệnh ngắn gọn từ bóng tối khi có cơ chế mới xuất hiện; đồng đội sau khi được giải cứu thì không đi cùng nhân vật chính sang phòng tiếp theo.
 * **Ứng dụng cho Game Đặc công:**
-  - **Chỉ huy vòng ngoài (Leader NPC):** Liên lạc qua bộ đàm tầm ngắn hoặc tiếng huýt sáo quy ước, nhắc nhở địa hình phía trước (*"Cẩn thận, chốt gác bên phải có đèn pha quét theo chu kỳ!"*).
-  - **Chiến sĩ hỗ trợ (Comrade NPC):** Xuất hiện ở các điểm cắt hàng rào kẽm gai, đặt bộc phá nghi binh ở hướng đối diện để hút hỏa lực địch, sau đó tản ra điểm hẹn rút lui, giữ cho lối chơi thâm nhập của người chơi luôn là **Single-player tập trung cao độ**, tránh hoàn toàn lỗi AI bạn đồng hành đi lạc gây lộ.
+  - **Chỉ huy vòng ngoài (Leader NPC):** Cần phương thức liên lạc phù hợp với tình trạng thính lực kém (lời dặn trước nhiệm vụ, quy ước tín hiệu đèn pin/tiếng gõ, điểm hẹn trung chuyển, hoặc mã số bộ đàm 1 chiều), nhắc nhở thông tin địa hình phía trước.
+  - **Chiến sĩ hỗ trợ (Comrade NPC):** Xuất hiện ở các điểm chốt (cắt hàng rào kẽm gai, đặt bộc phá nghi binh ở hướng đối diện để hút hỏa lực địch), sau đó tản ra điểm hẹn rút lui, giữ cho lối chơi thâm nhập của người chơi luôn là **Single-player tập trung cao độ**, tránh hoàn toàn lỗi AI bạn đồng hành đi lạc gây lộ.
 
 ### Bài học 2: Thiết Kế "Cửa Sổ Hồi Phục" (Recovery Window) Thay Vì Trừng Phạt Tức Thì
-* **Thực trạng học được:** Khi theRadBrad nhảy nhầm vào ánh đèn pin bị lính bắn, game không ép chết ngay mà cho phép chạy nhanh thoát ly tầm nhìn, nấp vào bình phong để lính hạ mức báo động.
+* **Thực trạng học được:** Khi theRadBrad nhảy nhầm vào ánh đèn pin bị lính bắn, game không ép chết ngay mà cho phép chạy nhanh thoát ly tầm nhìn, nấp vào bình phong để lính hạ mức báo động sau một khoảng thời gian tìm kiếm.
 * **Ứng dụng cho Game Đặc công:**
-  - Khi đặc công bị lính tuần tra phát hiện, phải có **thời gian trễ 1-2 giây để lính nhận diện và hô hoán** (chưa nổ súng ngay).
+  - Khi đặc công bị lính tuần tra phát hiện, cần có **thời gian trễ phản ứng (giả định đề xuất 1–2 giây)** để lính nhận diện và hô hoán (chưa nổ súng ngay).
   - Nếu bị bắn, người chơi có thể tung lựu đạn khói, lặn xuống mương nước hoặc nhảy vào bụi rậm rậm rạp để cắt đuôi. Lính sẽ bắn vu vơ về hướng cũ rồi chuyển sang trạng thái sục sạo, cho phép người chơi tái tổ chức đường đột nhập.
 
 ### Bài học 3: Minh Bạch Giác Quan (Visual & Acoustic Transparency)
-* **Thực trạng học được:** Vòng sóng âm bước chạy, nón ánh sáng đèn pin, trạng thái nhị phân của sprite (sáng thì có màu, tối thì thành bóng đen) và tính năng nhìn bóng mờ qua khe cửa giúp người chơi tự tin 100% trong mọi quyết định.
+* **Thực trạng học được:** Vòng sóng âm bước chạy, nón ánh sáng đèn pin, trạng thái nhị phân của sprite (sáng thì có màu, tối thì thành bóng đen) và tính năng nhìn bóng mờ qua khe cửa giúp người chơi nắm rõ thông tin trước khi ra quyết định.
 * **Ứng dụng cho Game Đặc công:**
   - Thể hiện rõ mức độ ngụy trang: Khi trườn qua cỏ tranh hoặc bôi bùn ngụy trang, nhân vật chuyển sang trạng thái hòa lẫn môi trường.
   - Bổ sung cơ chế áp tai xuống đất nghe tiếng bước chân hoặc nhìn qua khe vách nứa để nắm rõ bố phòng của đồn địch trước khi xâm nhập.
@@ -268,9 +276,11 @@ Từ toàn bộ quá trình phân tích đối chiếu thực nghiệm, chúng t
 
 ### Các Câu Hỏi Mở Cần Thử Nghiệm Bằng Prototype Nhỏ (Small Prototypes)
 
+*(Lưu ý: Các giá trị số dưới đây là giả định thiết kế ban đầu để thử nghiệm và cân chỉnh trong prototype, không phải thông số đo đạc từ game gốc).*
+
 1. **Prototype 1 (Tương tác Cửa & Che chắn):**  
-   * *Câu hỏi:* Khi nhân vật hé mở cửa gỗ 30% để nhìn vào trong, lính ở khoảng cách 5m có phát hiện không? Việc đóng cửa sập lại nhanh có phát ra âm thanh báo động lính đến gần gõ cửa không?
+   * *Câu hỏi thử nghiệm:* Khi nhân vật hé mở cửa gỗ (thử nghiệm thông số góc mở, ví dụ 30%) để quan sát vào trong, lính ở cự ly gần (ví dụ đặt 5m trong engine) có phát hiện không? Việc đóng cửa sập lại có phát ra tiếng động thu hút lính tới gần kiểm tra không?
 2. **Prototype 2 (Thời gian Reset của AI sau Báo động):**  
-   * *Câu hỏi:* Cần bao nhiêu giây ẩn nấp an toàn (ví dụ 8s hay 12s) trong bụi rậm để lính từ trạng thái xả súng (`COMBAT`) hạ xuống trạng thái lùng sục (`SEARCHING`) rồi quay về vị trí cũ?
+   * *Câu hỏi thử nghiệm:* Cần bao nhiêu giây ẩn nấp an toàn (ví dụ thử nghiệm mốc 8s hoặc 12s) trong bụi rậm để lính từ trạng thái truy đuổi hạ xuống trạng thái lùng sục rồi quay về vị trí tuần tra cũ?
 3. **Prototype 3 (Tương tác Phối hợp 2 Nhân vật tại Chốt chặn):**  
-   * *Câu hỏi:* Thiết kế cơ chế để người chơi ra lệnh cho đồng đội NPC ném đá nghi binh ở chốt A, tạo cửa sổ 5 giây cho người chơi lướt qua chốt B như thế nào để vừa mượt mà vừa không bị cảm giác tự động hóa quá đà?
+   * *Câu hỏi thử nghiệm:* Thiết kế cơ chế để người chơi ra lệnh cho đồng đội NPC ném đá nghi binh ở chốt A, tạo cửa sổ hành động (ví dụ giả định 5 giây) cho người chơi lướt qua chốt B như thế nào để vừa mượt mà vừa không bị cảm giác tự động hóa quá đà?
