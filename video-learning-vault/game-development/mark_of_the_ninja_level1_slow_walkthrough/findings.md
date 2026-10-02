@@ -13,7 +13,7 @@
 * **Thời lượng video:** 20 phút 21 giây (bao gồm khoảng 1 phút 15 giây đầu/cuối dành cho lời chào, bình luận của YouTuber và cutscene; không phải hoàn toàn là thời gian chơi thuần). Lượt chơi của Centerstrain01 dài 11 phút 06 giây theo nhịp nhanh, quen thuộc.
 * **Nền tảng & Phiên bản:** Giao diện hiển thị layout nút bấm Xbox (`A`, `B`, `X`, `Y`, `LT`, `RT`). Có thể chơi trên console Xbox 360 hoặc PC cắm tay cầm Xbox; chưa có dữ liệu phần cứng cụ thể để khẳng định tuyệt đối. Video đăng tải ngày 08/09/2012 trùng ngày phát hành gốc của game. Độ khó hiển thị Normal.
 * **Đặc tính cảnh quay:** Video được thu trực tiếp không cắt dựng giấu lỗi (raw unedited), không tua nhanh, ghi nhận trung thực các sai lầm của người chơi (bị phát hiện, còi báo động ré lên tại phút 12:24, nấp thoát ly).
-* **Lưu ý về Profile người chơi:** Người chơi dùng một profile đã từng chơi trước: Ngay từ đầu màn đã có trang bị `Noisemaker` phụ trợ bên cạnh `Darts`, khác với một save game hoàn toàn mới chỉ có `Darts`.
+* **Trang bị nhân vật (Noisemaker):** Nhân vật đã có sẵn trang bị `Noisemaker` phụ trợ bên cạnh `Darts` từ đầu màn (hiển thị trên D-Pad ở phút 03:15); nguyên nhân có Noisemaker (trạng thái save file, thiết lập profile hay phiên bản game) chưa được xác minh do thiếu dữ liệu hệ thống.
 * **Phân tách âm thanh:** Đã tách bạch giữa lời thoại có phụ đề trong game (Ora, Sensei Azai, lính Hessian) và lời bình luận cảm xúc cá nhân của theRadBrad. Các âm thanh môi trường nhỏ có thể bị tiếng bình luận lấn át một phần.
 * **Công cụ xác minh:** Sử dụng kết hợp `faster-whisper` (bóc tách transcript thoại), `ffmpeg` (trích xuất frame bằng chứng tại các mốc giây chính xác), và OCR đối chiếu trực tiếp trên giao diện HUD.
 
@@ -226,10 +226,11 @@ Qua việc đối chiếu frame và transcript của cả 2 walkthrough, chúng 
   - 3 Cổ vật bí mật (Artifacts cộng điểm).
   - Thử thách phụ gõ vang 4 quả chuông đồng (`Ring 4 Bells`).
   - Các con dấu phong cách chơi (Seals: 0 Kills, 0 Alarms, v.v.).
-* **Bằng chứng thị giác bảng tổng kết điểm màn 1:** [20_20m15s_score_summary_screen.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/20_20m15s_score_summary_screen.jpg) *(khung hình thực tế tại phút 20:15, không phải cutscene 19:50)*.
-  - Điểm cơ bản (Level Score): `13,050`
+* **Bằng chứng thị giác bảng tổng kết điểm màn 1:** [20_20m15s_score_summary_screen.jpg](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/frames/20_20m15s_score_summary_screen.jpg) *(khung hình thực tế tại phút 20:15)*.
+  - Điểm màn chơi (Level Score): `13,050`
   - Thưởng đánh lạc hướng (Distracted Bonus): `+1,600`
-  - Thưởng không bị phát hiện (Undetected Bonus): `0` *(do bị phát hiện tại 08:48 và 12:24)*
+  - Thưởng không bị phát hiện (Undetected Bonus): `+2,400` *(tích lũy từ các phân cảnh/checkpoint không bị lộ)*
+  - Tổng điểm màn chơi (Total Score): `17,050`
   - Thưởng không báo động (No Alarms Raised): `0` *(thất bại do kích hoạt báo động còi tại 12:24)*
   - Thưởng không giết địch (No Enemies Killed): `0` *(do đã ám sát lính)*
   - Tổng số Honor đạt được: `5/9`

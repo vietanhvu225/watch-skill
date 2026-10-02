@@ -263,7 +263,7 @@ Dưới đây là phản hồi chi tiết và kết quả kiểm chứng cụ th
 * **Đồng thuận & Đã sửa:**
   - **theRadBrad:** Bỏ hoàn toàn cách gọi "blind / chơi lần đầu". Đổi thành **"Lượt chơi mang tính khám phá, chưa tối ưu (Exploratory / Unoptimized play)"**. Tại 01:26 (`"I've kind of messed on the first level before"`) và 04:13 (`"The first time I ran through this level..."`), chính theRadBrad xác nhận đã chơi thử màn này trước khi quay.
   - **Centerstrain01:** Bỏ cách gọi "Speedrun chính thức". Đổi thành **"Lượt chơi nhịp nhanh, quen thuộc, hướng tới thành tích Ghost / Collectibles"**. Ghi nhận rõ ràng người chơi này cũng có lúc sai sót (tại Level 2, phút 07:26 và 08:40–08:56 anh ta thừa nhận tính toán sai vị trí lính).
-  - **Nền tảng & Profile:** Nút bấm hiển thị layout Xbox 360 (có thể chơi trên Xbox 360 hoặc PC cắm tay cầm Xbox). theRadBrad dùng profile đã có sẵn Noisemaker từ đầu màn. Thời lượng 20:21 bao gồm cả intro/outro của kênh, không phải thời gian chơi thuần.
+  - **Nền tảng & Profile:** Nút bấm hiển thị layout Xbox 360 (có thể chơi trên Xbox 360 hoặc PC cắm tay cầm Xbox). theRadBrad có Noisemaker từ đầu màn nhưng chưa đủ bằng chứng để khẳng định nguyên nhân (save game, profile hay phiên bản). Thời lượng 20:21 bao gồm cả intro/outro của kênh, không phải thời gian chơi thuần.
 
 ### 8.2. Kiểm tra lại các khung hình và chuỗi sự kiện thực tế (Điểm 2 & Điểm 3)
 Agy đã dùng `ffmpeg` trích xuất chuỗi khung hình liên tục tại các mốc giây xảy ra sự kiện để kiểm chứng:
@@ -283,7 +283,7 @@ Agy đã dùng `ffmpeg` trích xuất chuỗi khung hình liên tục tại các
    - *Đính chính:* Bỏ toàn bộ việc gán nhãn FSM nội bộ (`ALERT -> SUSPICIOUS -> PATROL`) và con số thời gian 8-10 giây chưa đo. Mô tả thuần hiện tượng: Người chơi nhảy trúng tầm nhìn, nhận điểm phạt `-300`, màn hình hiện chữ `DETECTED`, lính nổ súng truy đuổi; người chơi nấp vào bình phong, sau đó lính mất dấu.
 5. **Bảng Tổng Kết Điểm Màn Chơi (20:10 - 20:20):**
    - *Bằng chứng mới:* Trích xuất lại khung hình chính xác: `20_20m15s_score_summary_screen.jpg`.
-   - *Sự thật quan sát được:* Bảng điểm hiện rõ ở 20:15: Điểm cơ bản 13,050; Distracted Bonus +1,600; Undetected Bonus: 0; No Alarms Raised: 0 (thất bại vì báo động ở 12:24); No Enemies Killed: 0 (vì đã giết lính); Total Honor: 5/9.
+   - *Sự thật quan sát được:* Bảng điểm hiện rõ ở 20:15: Điểm màn chơi (Level Score) 13,050; Distracted Bonus +1,600; Undetected Bonus: +2,400; Tổng điểm (Total Score): 17,050; No Alarms Raised: 0 (thất bại vì báo động ở 12:24); No Enemies Killed: 0 (vì đã giết lính); Total Honor: 5/9.
 
 ### 8.3. Loại bỏ các khẳng định tuyệt đối và suy đoán nội bộ (Điểm 4, Điểm 5 & Điểm 7)
 * **Đã sửa:**

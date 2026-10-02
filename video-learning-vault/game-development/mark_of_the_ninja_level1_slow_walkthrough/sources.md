@@ -14,7 +14,7 @@
 * **Thời lượng video:** 20 phút 21 giây (1,221 giây). Lưu ý: Thời lượng bao gồm khoảng 1 phút 15 giây đầu/cuối dành cho lời chào, bình luận của YouTuber và cutscene, không hoàn toàn là thời gian chơi thuần.
 * **Giao diện điều khiển & Nền tảng:** Hiển thị nút bấm tay cầm Xbox (`A`, `B`, `X`, `Y`, `LT`, `RT`, `D-Pad`). Có thể chơi trên console Xbox 360 hoặc bản PC sử dụng tay cầm Xbox; chưa có căn cứ khẳng định chắc chắn 100% phần cứng bên dưới nếu không có thông số hệ thống của người chơi.
 * **Độ khó:** Thiết lập mặc định (Normal) trong menu game.
-* **Đặc điểm Profile:** Người chơi sử dụng profile đã chơi thử trước đó (tại 01:26 và 04:13 chính theRadBrad xác nhận đã từng chạy thử màn này), nên nhân vật đã có trang bị Noisemaker phụ trợ bên cạnh Darts.
+* **Đặc điểm Trang bị (Noisemaker):** Nhân vật có sẵn trang bị Noisemaker phụ trợ bên cạnh Darts ngay từ đầu màn (phút 03:15). Mặc dù theRadBrad xác nhận đã từng chạy thử màn này (01:26, 04:13), nguyên nhân cụ thể dẫn đến việc có sẵn Noisemaker (trạng thái save game, profile hay phiên bản thử nghiệm) chưa đủ bằng chứng để khẳng định.
 
 ---
 
