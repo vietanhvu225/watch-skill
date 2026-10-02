@@ -1,0 +1,223 @@
+[00:00] So I was asked to introduce myself first. So I'm Jamie Chang. I found Clay in 2005 and we've
+[00:16] been building independent games since then. Our last two games was Mark and Ninja and
+[00:22] don't starve. I wanted to talk about the development process today a little bit. I'm the creative
+[00:34] director at Clay Entertainment. Pretty much dark dude. Okay, so I want to talk about what
+[00:45] Clay is about and what we've been trying to build over time. For me I wanted Clay to be a place
+[00:54] where we're continually building amazing games over and over. And so Jeff and I have been doing
+[01:01] this for quite some time and the only way that we can actually see this actually happening is if the
+[01:07] process is same, if the process is sustainable. So not only do we need to build great games, we
+[01:14] actually need to do it while still going home and still not ruining our lives in the process. And you know, it
+[01:24] comes, it's basically inevitable, inevitable. I mean, for me, I actually just flew in today which
+[01:32] is why I'm a little out of it. I had a 2 a.m. feed. I have a two week old at home right now and I flew in
+[01:38] today. I'm flying out tomorrow. Jeff has a one year old Friday. Yeah, her birthday is on Friday. So I have to fly
+[01:46] out early. And all of us are getting older. And it just, you know, for the last three years we've been
+[01:52] thinking about this, you know, that we know that everyone's going to get older. Everyone's priorities are going to
+[01:56] change and we need some changes in order for that to happen. And you know, for me, I find it disingenuous when
+[02:04] somebody says the reason why we worked a whole lot of overtime and the reason why we killed everybody
+[02:10] working in this game is because we're doing something new, because we're doing art. And to hide behind art
+[02:15] as a shield, to kill yourself and your employees or the people you work with, I think is not the right
+[02:22] thing to do. And I think you're, you know, going to screw with development in the future for that.
+[02:29] So while there's no formula to building a new game, how we see it is that there are theories that we can use
+[02:36] to help us better understand how game development works. So this is a little bit of how much, I guess, you can call it
+[02:46] over time what I would say is insanity happened during the development of our different games and you can kind of see this
+[02:52] downward slide. And Shank one was the one where basically it was a tipping point for me. It was so stressful
+[03:02] and such hard work and such a short amount of time. Basically, I made a promise to myself that I would never put
+[03:10] myself or other people in that position again. So you can see this downward slide from there and you can see
+[03:15] a little up on Mark the Ninja. And the important thing for me is not that we shouldn't work really hard, but that I see that
+[03:25] as a failure. And I see that, you know, we can do better. So what we end up asking is, you know, what are the biggest
+[03:34] waste of time as we're working on development. And to us, it's actually just building the wrong thing. So it's not even about the
+[03:45] trees or the leaves, it's like this analogy where people are in the forest and they're chopping down the trees and they're
+[03:51] trying to work really hard and then somebody climbs up to the top of the forest and says, hey, we're in the wrong forest. And the other
+[03:58] guys are like, but we're making so much progress down here. It'd be a waste if we moved to another forest. And we laugh because, you know, we see that
+[04:08] alive because we're building these features and we're like, well, we don't want to cut that because, you know, we've already spent so much time on it.
+[04:16] And so, you know, for us, the idea is, how do we figure out that we're in the wrong forest quicker? Because when you're working on something new,
+[04:24] the nature of it is that you're going to do the wrong thing, often. But the goal is to recognize that quicker and get the hell out of there.
+[04:33] So I want to start with talking about some of the massive failures that we had. And, you know, between March and July was when we started
+[04:42] Ninja. And even then, you know, people say that you need to have this vision of your game and you follow your vision and you'll be fine. But even then,
+[04:50] we already had that vision. We had the vision that Ninja is a stealth game where you feel like a real ninja. So you're a glass cannon and you're flitting in the shadows and the enemy never
+[05:00] even knows you're there. When we made the first pitch, we already had that written down. But the problem was we had no idea how to actually get there. And so, we had all these assumptions that we were building on, that we thought we would work.
+[05:16] And none of it was working. It just felt so we actually had light and dark and we had stealth kills and we had shurikens. We had the sound. All this stuff. But it actually felt all mushy and it just sucked.
+[05:28] And in fact, it got so bad that, you know, around May, we actually thought this isn't actually going to work at all. We can't build a stealth game.
+[05:38] So for a couple of months, we decided that Mark and Ninja wasn't going to be a stealth game primarily anymore and that it was going to be an action game with stealth elements because we thought this wasn't actually going to work.
+[05:51] And of course, that made the game even worse. So then we took it back and we thought again, what is wrong with what we're doing? And what was wrong was, is that we were building a whole bunch of stuff based on bad assumptions.
+[06:05] And so, what was going on was, we were saying that we think that, you know, these fire propagation is going to work. Or that, if we build more features, the game will get better.
+[06:16] But it was all based on assumptions that we weren't clear about. So instead, what we did was, we went back and we said, I'm going to build testable hypotheses.
+[06:24] I'm going to see, I'm going to say, this is what I actually believe. And let's test it out. And so we went through tons and tons of different little scenarios and we said, I think that, for example, if I hide behind this vase and then a guard comes along, I'm going to feel stealthy.
+[06:41] And so we built all these scenarios and we were testing them out and trying to fail quickly. And once we started doing that, that's when we could actually start to see which of our assumptions were right and which of our assumptions were wrong.
+[06:55] So I'm going to show you a little video of something that we did when we, as we started doing that.
+[07:04] And this is, you know, somewhere in the summer where we started testing out our hypotheses and these are the ones that actually worked.
+[07:13] So I'm going to cut away, yeah.
+[07:23] Who's there?
+[07:34] You can see that there was a little line up there that's talking about exactly what we're trying to accomplish as we're going along.
+[07:44] So here, we're trying multi-targeting and trying to slow it down.
+[07:56] I see him!
+[08:05] Here, we're getting people to work for the formation when we decided what our hypothesis was, hey, you know, if people don't know the information but can learn it, that's fun.
+[08:15] That's that feels sneaky. And so we're trying that out.
+[08:19] Here's something.
+[08:22] Not to kill them and just distract them.
+[08:24] We need to check this out.
+[08:27] And that's the Canadian out that everyone talks about.
+[08:30] It's odd, I heard something.
+[08:35] And there you go. That goes on for some time.
+[08:40] I think we probably built about two dozen of them before we started really realizing that the point of the game is rather mechanically the point is to plan.
+[08:55] It was to observe the environment, work for your information, plan your attack, actually execute that.
+[09:03] And the planning part was the most important part and it was having this predictable cause and effect.
+[09:09] And once that was clear and we could test that and it was working, then kind of the game started designing itself.
+[09:17] And all of these decisions just kind of worked itself out.
+[09:20] So for example, you know, should we have binary light sources, yes, because that makes it more clear.
+[09:24] Should we have, you know, should we show the sound rings?
+[09:28] Well, at first, when I remember saying, hey, we really should show the sound rings.
+[09:32] And, you know, there was some murmur because it was like, well, does that make the game too easy?
+[09:38] You know, shouldn't you be able, shouldn't you have to work to figure out how big your distance is.
+[09:43] And the answer is no because that makes it mushy.
+[09:47] It makes it, it makes it unclear how many steps forward I can plan.
+[09:51] And so when you make it super clear, then you're able to plan further ahead and do higher level planning.
+[09:57] And then another really good example is the AI, because at first we had these really complex systems of what the AI was going to do.
+[10:04] And we're having a really hard time implementing it.
+[10:06] Or rather, we're having a really hard time getting the player to understand what the heck it was doing.
+[10:11] And when this idea, this theory that people need to know the cause and effect very, very clearly became clear,
+[10:18] it was very clear that we needed stupid AI.
+[10:23] And we needed AI, which was really manipulatable.
+[10:27] So, you know, this is one of those things which actually helps cut out work.
+[10:32] And I'd say that cutting out smart AI cut out probably four or five months worth of programmer work just there.
+[10:42] And then this translates totally into the art process and making things clear to the player.
+[10:49] So, basically, it went from the theory of like, okay, let's take things and make it look cool to, okay, how do we translate all this information?
+[10:57] How do you translate all the static to the player?
+[10:59] So, certain things like, okay, binary light systems.
+[11:02] Like, if you're an artist, you know, okay, if I walk into a light, I could get like shadow up to here and then I'm like partially seen.
+[11:09] So, we actually change that too. Like, if you have one foot in the light, you're seeing if you're not, if you don't, you're unseen.
+[11:15] So, it's basically player knows at all times if they're in shadow or if the non-chadow.
+[11:20] Another point was, if we had like the UI aiming all the guides that we have in the game, we made it like super precise, super accurate.
+[11:28] Just so people could plan and execute their actions to a T.
+[11:36] And the one key point that Jamie was talking about too was the AI, being able to have predictable AI.
+[11:42] And from an art standpoint, how do you do that?
+[11:44] How do you translate those emotions and stuff like that?
+[11:47] So, we did, like, we have really talented artists at Clay.
+[11:49] So, we did a whole bunch of like facial animation.
+[11:52] We scaled up their like expressions to make it readable.
+[11:55] But we found like the most, the critical thing or the easiest thing to do was to actually put like emotional icons over them.
+[12:01] And everybody knows, oh, that person's in a terrorist state that person's in a investigate state.
+[12:08] But one of the big elements here about playing with our theory of making it clear was also like where the Ninja can go.
+[12:16] Like we were playing with this idea of like the artists were like, oh, should we do it like Chang, where it was like there's depth to the platforms and stuff like that.
+[12:23] But the key thing was like we had to get the player to know like, oh, I could go on that ceiling part, I could go on these walls.
+[12:29] So we decided to keep it completely flat. And that was just the result of just testing these theories.
+[12:34] Like the more the easier it is, the clearer it is for the player, the better it is for the game.
+[12:41] So, not only did these theories of like create a theory, test the theory and learn from all our failures, apply to game design and like what I call visual language for a game.
+[12:52] It applied to our entire process.
+[12:55] So, that was a weird and awesome kind of learning for us where we could basically test our theories with production and move on and see if like that actually worked if like everybody in the production process enjoyed it and we created a good effective product at the end.
+[13:13] So, this is an example of us when we had the, when we were creating a level.
+[13:18] So, we wanted to test this process or theory and we wanted to fail quickly. So, like we got nails in the team to do like one level.
+[13:27] Like create all the scenarios, create all the cool like stealth moments where you're sneaking up in guards, going through vents and all that stuff.
+[13:32] But the one thing was it wasn't a world like when the artist got it and I even put it like I even tried painting over it.
+[13:39] And it's like we couldn't make these into like an actual world. Like is this supposed to be like a sewer, vented like facility? Like how do we actually make this in the world?
+[13:52] So, we're like the artists are struggling with it. So, we're like okay let's fail at that.
+[13:56] And let's get the artists to actually create the structures. Let's get the artists to create the buildings.
+[14:01] Like knowing that we have to put vents everywhere, knowing we have to put like different like rooms and doors.
+[14:06] And so, and then we passed off to the game designers. So, the game designers knew exactly how their scenarios worked.
+[14:12] They had their process planned out, but they were able to use it within our structure of artists created buildings.
+[14:18] A whole bunch of work was like moved around, deleted, pushed and pulled to make the final game, but at least they had a basis.
+[14:24] So, we removed the whole blank canvas structure that the game designers were struggling with.
+[14:30] And then the artist went in and painted it up or polished it up afterwards.
+[14:35] But the key thing, the key learning for us here was that like we kind of changed our perspectives. Like people presume that like creating a more efficient system for an individual is the better way.
+[14:47] But with this, we actually created more work. Like the artist did the levels, the designers adjust the levels and then the artist did the levels again.
+[14:54] But it also created a more effective process or effective product at the end.
+[15:01] So, it wasn't like about individual efficiency, but more process effectiveness.
+[15:09] So, the theory of failing quickly was a big thing and we wanted to incorporate into all our different like in studio processes.
+[15:23] So, batching became one of these things that like we used to do it on Changwer, we just like do all the run animation at one time, do all the kill animation, and then we implemented it later.
+[15:33] We took that idea and we're like, okay well let's test everything constantly. Let's make sure everything works.
+[15:39] So, we kind of eliminated batching from our whole kind of process and we basically, if someone animates like a kill, we put it in game, test if it works.
+[15:47] And so, they're not just doing like all these stealth kills and not having it in game.
+[15:51] So, nothing kind of like lingers and then we're constantly testing our stuff and like Concy's testing our assumptions.
+[15:58] So, we're not wasting a lot of work as well and we kind of get clearer.
+[16:02] So, the thing about batching is that it's this thing where in a production process where if you know what you're going to do, you can do a lot of it very quickly.
+[16:13] But if you're doing that based on bad assumptions, then you're going to be very quickly doing the wrong thing.
+[16:19] So, that's why we needed to get rid of batching until we really figured out what we were actually making.
+[16:28] And now, going back to some of the theories that we're thinking about and solidifying what the vision of the game is, I see Mark of the Ninja as this finely sharpened blade because we just kept shaving things off.
+[16:43] And in terms of an efficient development process, many talks talk about how you need to be able to cut features.
+[16:53] So, how do you know what to cut is through a solid theory that you've actually tested your assumptions on.
+[17:01] And because of that, we were able to just keep fine tuning Ninja and it's almost to the point where if we cut anything else, the blade would break.
+[17:10] And what's interesting is, as a side, our other game Don't Starve is about, you know, whereas Mark of the Ninja is a finely tuned blade, Don't Starve is more like a bonsai tree.
+[17:20] It kind of grows and grows. There's all these interlocking systems.
+[17:25] And as the systems grow, we kind of fine tune those systems, but it's growing nonetheless and it gets bigger and bigger.
+[17:31] And so, it's kind of a different process, but at the same time, using these theories, so theories are flexible.
+[17:37] Whereas, you know, if you have a formula, that's inflexible.
+[17:42] A formula is you put this stuff in and it comes out the other way.
+[17:45] A theory is when you understand what's going on better.
+[17:48] And so, we were able to use these theories on Don't Starve as well.
+[17:52] And I think that even though it's a very different game and a different way of building it, it still really helped us out.
+[17:59] Now, one other thing, you know, that I used to think about process is how the people work together and how all of us work together.
+[18:11] And at Clay, we have what we call T people, which are people who are really good at one thing, but are, you know, pretty good at a whole bunch of other things.
+[18:20] Now, I'd say that in a traditional process, there's a lot of eye people, so people who only know their thing and don't know much about other people.
+[18:29] And that's when middle managers come in. That's when you need the middle managers because they need to talk to everybody else so that everybody knows what everybody's doing.
+[18:38] But when you have T people and they work together, they naturally already touch each other and they actually can talk about what they're doing and they actually think about the effect of what they're working on against other people.
+[18:51] And so, the problems actually get worked out way sooner and you actually get more innovative results that way as well.
+[18:58] So, you know, at Clay, we've tried having middle managers before, we thought we needed them and honestly, we don't. And it's worked out way better this way.
+[19:09] So, this is something that I think about a lot.
+[19:14] And it kind of comes back, you know, to when I'm thinking about all these processes, it comes back to a state of mind, I think.
+[19:21] You know, so what I'm saying here is, you know, while shipping a mediocre games is going to screw up your company really quickly, you know, having an unsustainable process is going to suffocate your company or your self rather, I would say.
+[19:35] And so, you know, the message that I want to bring across is that that's not okay and that I hope that, you know, today I'm presenting a little bit about how we do things and I want to learn from everybody else so that we can create processes that allow us to create art.
+[19:50] And I think that it's not a juxtaposition or an oxymoron when you have good theories and you have good processes, you're actually more free to think about new things because you're not just flailing around not knowing where you're going and hopefully hitting somewhere good.
+[20:07] That's kind of a message.
+[20:10] And I think that's it.
+[20:14] Thank you.
+[20:23] So, time to just write there's a time for questions, five minutes questions.
+[20:29] Oh, I forgot to say all those things I was supposed to say which is trying to fix all those.
+[20:35] Anyway, Terry is, if you want to go ahead and set up while they're taking questions, that would help.
+[20:41] So, questions? So, you have to come up to the mics over here on both sides. Do you have any questions?
+[20:49] No questions?
+[20:52] There's some questions.
+[20:55] Okay, I have a question. So, you talk about using theories. Can you give us some examples of the theories that guided Mark of the Ninja?
+[21:04] Yeah, so, I mean, the theories were, I mean, for example, the process theories, some of them were, you know, tea people make it so that you don't need middle of management.
+[21:13] But from a game, from a mechanical perspective, it was that planning made people feel like an ninja, for example.
+[21:22] I mean, we basically keep drilling down into little theories and testing those things out.
+[21:30] So, with the testing of these theories, did you do it internally within the team, or did you look out?
+[21:36] So, either the team where you're going back to the same people again and again, or was it fresh people every time?
+[21:40] So, now is it a great job in getting people off Craigslist to come over.
+[21:44] Thankfully, we weren't murdered or anything like that.
+[21:47] But they came in, you know, twice a week, throughout development, and sometimes we're bringing the same people over and over.
+[21:55] And we made really clear, I mean, the distinction is that we use that data to test our assumptions, to say did our assumptions work or not, rather than ask them what they wanted.
+[22:05] Because what they actually wanted was to hit harder, and to, you know, to slice people up. That's what they said they wanted, right?
+[22:14] And so, the feedback for us was, oh, they don't want to stealth. Why don't they want to stealth?
+[22:21] Hey, Jamie. Great talk. Great talk, actually. Did you use your hypothesis method to improve other processes besides game design, i.e. production?
+[22:34] Absolutely, yeah, absolutely.
+[22:36] So, the idea behind, for example, the level building was that we thought that the best way to build levels was for the designers to build it and then the artists to art it up in that order.
+[22:47] Right? Right. I guess maybe more on the management side or more business side.
+[22:52] Yeah, there was, I can't think of any of the top of my head, but for sure, that's what I think about all the time.
+[23:00] Maybe after, I don't know. Sorry, I can't think of it right now.
+[23:04] Hey, I'll take it.
+[23:07] And it seemed like it was really cool to see those early prototype or the testing hypothesis videos of gameplay.
+[23:14] It seemed like it was really polished. Like, I wondered, did you do an extra effort into doing a polished prototype of your assumptions?
+[23:23] Or did you just like, why wasn't it just blocks jumping around?
+[23:26] They were just blocks jumping around, actually. Because we built a tiling system for the platforms that look good
+[23:36] as soon as you put it down. So, that was actually my art. And I'm not an artist.
+[23:43] So, I just threw down the blocks, and it looks good because the artists are awesome. But they were just blocks, really.
+[23:55] Okay. So, you did talk about the base of the method of applying theories and making sure that you're applying them appropriately with your wrong forced argument.
+[24:05] So, I was curious as to, with all these different theories being experimented, and you're rejecting the ones that don't work,
+[24:11] did you still feel an attachment to that kind of mechanic being a fun mechanic that you could apply to a later project?
+[24:18] Do you guys have a notebook or an archive of theories that didn't work for Mark of the Ninja, but could possibly make a return in another game?
+[24:26] We don't actively archive them. But, I mean, there's still cool mechanics. Like, for example, we actually had a mechanic where the Ninja could counter attacks.
+[24:37] It would actually go into attack pose and do like, assassins, creed, stalks, movements, and jumping over and stuff like that. It was cool.
+[24:45] It just made people want to slash people more.
+[24:48] Well, right. And based in correlation with my question, say, for example, that was a cool mechanic that you found cool.
+[24:54] Would you ever see yourself applying it in a game that would be more appropriate?
+[24:57] I agree. Yeah. But, we don't actively archive it. It's not like a process that we actually write it up. But, yes.
+[25:04] Okay. We'll do that.
+[25:05] Awesome panel. Thank you.
+[25:08] Hi. Regarding the T people arrangements, if you have, say, an artist designer, a designer programmer and a programmer producer, then for the artist and producer to communicate, do they use the designer programmer as a middle manager or do they try to interact directly or how does that work?
+[25:27] We don't have any producers.
+[25:30] Any as far as that kind of, if it wasn't producer, then a sound guy, then.
+[25:34] I think everybody's like, once you create an area in a team that has all these multiple skills or like, is aware of other people skills, then everybody communicates with each other.
+[25:45] Like, everybody sits in the same area. So, if you have a question, there's other people overhearing and then people could pitch in and stuff like that.
+[25:51] So, we basically just create an environment where people could communicate as well as everybody knows what's going on constantly.
+[25:57] And I also have, in terms of more theories and guess, is we see people in certain ways as well. So, we try to see people where four people have backs to each other, because that's the minimum amount of distraction.
+[26:10] But then they can still turn around and talk to each other. From a space perspective, the best space usage is when you have a T and you're all working inside that T.
+[26:20] So, if you stare at each other at a time and one person stands up, everybody notices.
+[26:25] So, I used to work like that, and I was terrible.
+[26:29] So, we actively try to think about all the little things that help the communication.
+[26:34] Thank you.
+[26:36] Thanks guys.
+[26:37] Thank you.
+[26:40] Thank you.
+[26:43] Thank you.
+[26:46] Thank you.
+[26:49] Yeah, we have to...

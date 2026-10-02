@@ -13,6 +13,13 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (03/10/2026)
+*Video giải phẫu kỹ thuật phát triển game từ Game Developers Conference (GDC):*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `23f9d31707adbb88` | How We Created Mark of the Ninja Without (Totally) Losing Our Minds | Kỹ nghệ Game Stealth 2D, Bẫy Khu rừng sai, Hypothesis-Driven Game Design, Ánh sáng nhị phân, Vòng sóng âm trực quan (Sound Rings), Stupid AI, Pipeline sản xuất level | [how_we_created_mark_of_the_ninja_gdc.md](file:///f:/source/watch-skill/video-learning-vault/game-development/how_we_created_mark_of_the_ninja_gdc.md) | 26:50 |
+
 ### 🟢 Mới phân tích (01/10/2026 - 02/10/2026)
 *Nhóm 4 video chuyên sâu về Kỹ nghệ Đánh giá PR với AI, Tư duy Học tập Đột phá, Lộ trình DSA và 9 Mẫu hình LeetCode:*
 
@@ -218,6 +225,12 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 * [Advice from the Top 1% in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/top_1percent_tech_advice.md) - Định hình lộ trình thăng tiến thu nhập dài hạn, đầu tư tái phân bổ tài chính vào kỹ năng có lợi nhuận cao, tránh các công việc mang lại cảm giác ảo về năng suất.
 * [Ambitious but Inconsistent in Tech](file:///f:/source/watch-skill/video-learning-vault/ai-agents/ambitious_but_inconsistent.md) - Lời khuyên định hướng sự nghiệp, xây dựng tính nhất quán, trách nhiệm thay vì đuổi theo đam mê cảm tính, và playbook lập trình 5 bước trong kỷ nguyên AI 2026.
 
+### 🎮 Game Development & Engineering (Lập trình & Thiết kế Game)
+*Phương pháp luận phát triển game thực chiến, kiến trúc mechanics, thiết kế màn chơi và bài học hậu kỳ từ các studio game hàng đầu:*
+* [How We Created Mark of the Ninja: Klei Entertainment @ GDC (27m)](file:///f:/source/watch-skill/video-learning-vault/game-development/how_we_created_mark_of_the_ninja_gdc.md) - Giải phẫu chuẩn mực vàng của thể loại 2D Stealth từ Jamie Cheng & Jeff Agala: Thoát khỏi bẫy "Khu rừng sai", thiết kế dựa trên giả thuyết có thể kiểm thử (Hypothesis-Driven), bản chất lập kế hoạch & quan hệ nhân - quả, hệ thống ánh sáng nhị phân, vòng sóng âm thanh trực quan (Sound Rings), triết lý dùng AI ngốc nghếch dự đoán được, và quy trình phối hợp Level Design giữa Designer & Artist.
+* [I Built (And Shipped) a 3D Game With Claude Opus 5.5 (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) - Toàn bộ quy trình xây dựng và phát hành tựa game 3D Pressure Washing trong 6.5 giờ: Kiến trúc No-Engine (Rust -> WASM + WebGPU 120Hz), quy tắc cấm One-Shot, tách rời pipeline Blender Assets, Gray Box Level Gym và điều phối subagents song song.
+* [Reverse-Engineering Game từ Walkthrough Video: Khảo sát & Pipeline](file:///f:/source/watch-skill/video-learning-vault/ai-agents/game_walkthrough_reverse_engineering_findings.md) - Tài liệu khảo sát kiến trúc 4 giai đoạn bóc tách Game Logic, State Machine, HUD và Rules từ video gameplay walkthrough.
+
 ### 🎬 AI Content Creation & Automation
 *Quy trình nghiên cứu thị trường, tự động hóa sáng tạo nội dung và vận hành kênh bằng AI.*
 * [Toàn Bộ Quy Trình Tìm Ngách YouTube AI Trong 57 Phút](file:///f:/source/watch-skill/video-learning-vault/ai-agents/tim_ngach_youtube_ai_57_phut.md) - Lộ trình 187 độ của Hiếu Trương: 4 triết lý chọn ngách, thước đo sinh tử 10 video, công thức săn kênh đột biến (outlier channels) và pipeline tự động hóa kịch bản, âm thanh, hình ảnh.
@@ -270,6 +283,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [orchestras_not_factories_charlie_holtz.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/orchestras_not_factories_charlie_holtz.md) (17:44)
     *   [what_product_looks_like_when_coding_is_solved_ramp.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_product_looks_like_when_coding_is_solved_ramp.md) (19:31)
 *   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
+    *   [how_we_created_mark_of_the_ninja_gdc.md](file:///f:/source/watch-skill/video-learning-vault/game-development/how_we_created_mark_of_the_ninja_gdc.md) (26:50)
     *   [fixing_the_pr_bottleneck_matt_pocock_aihero.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fixing_the_pr_bottleneck_matt_pocock_aihero.md) (22:34)
     *   [how_to_learn_code_so_fast_gifted_phillip_choi.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/how_to_learn_code_so_fast_gifted_phillip_choi.md) (27:00)
     *   [spacex_ai_engineer_lauren_tan_part_2.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/spacex_ai_engineer_lauren_tan_part_2.md) (55:04)
