@@ -14,10 +14,11 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
 ### 🟢 Mới phân tích (03/10/2026)
-*Video giải phẫu kỹ thuật phát triển game từ Game Developers Conference (GDC):*
+*Video giải phẫu kỹ thuật phát triển game từ Game Developers Conference (GDC) & Thực nghiệm Màn chơi Mẫu mực:*
 
 | Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
 | :--- | :--- | :--- | :--- | :--- |
+| `736e35152edbfca6` | Mark of the Ninja Walkthrough Part 1: "Ink & Dreams" (100% Ghost Stealth) | Giải phẫu Level 1, Pacing Tutorial mẫu mực, Tước đoạt vũ khí, Focus Mode (Freeze time), Vòng sóng âm bước chân, Nghe lén qua cửa, Đánh lạc hướng kép, Hệ thống điểm Ghost | [mark_of_the_ninja_level1_reverse_engineering.md](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_reverse_engineering.md) | 11:06 |
 | `23f9d31707adbb88` | How We Created Mark of the Ninja Without (Totally) Losing Our Minds | Kỹ nghệ Game Stealth 2D, Bẫy Khu rừng sai, Hypothesis-Driven Game Design, Ánh sáng nhị phân, Vòng sóng âm trực quan (Sound Rings), Stupid AI, Pipeline sản xuất level | [how_we_created_mark_of_the_ninja_gdc.md](file:///f:/source/watch-skill/video-learning-vault/game-development/how_we_created_mark_of_the_ninja_gdc.md) | 26:50 |
 
 ### 🟢 Mới phân tích (01/10/2026 - 02/10/2026)
@@ -227,6 +228,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 
 ### 🎮 Game Development & Engineering (Lập trình & Thiết kế Game)
 *Phương pháp luận phát triển game thực chiến, kiến trúc mechanics, thiết kế màn chơi và bài học hậu kỳ từ các studio game hàng đầu:*
+* [Mark of the Ninja — Level 1 "Ink & Dreams": Giải Phẫu Kỹ Thuật (11m)](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_reverse_engineering.md) - Phân tích chi tiết từng căn phòng (Room-by-Room Deconstruction), nghệ thuật Tutorial không dùng chữ bằng cách tước kiếm của Ninja, cơ chế Focus Mode (đóng băng thời gian ngắm bắn), vòng sóng âm bước chân, nghe lén qua cửa (Door Peeking Sensor), đánh lạc hướng kép và mã nguồn mẫu Godot Engine.
 * [How We Created Mark of the Ninja: Klei Entertainment @ GDC (27m)](file:///f:/source/watch-skill/video-learning-vault/game-development/how_we_created_mark_of_the_ninja_gdc.md) - Giải phẫu chuẩn mực vàng của thể loại 2D Stealth từ Jamie Cheng & Jeff Agala: Thoát khỏi bẫy "Khu rừng sai", thiết kế dựa trên giả thuyết có thể kiểm thử (Hypothesis-Driven), bản chất lập kế hoạch & quan hệ nhân - quả, hệ thống ánh sáng nhị phân, vòng sóng âm thanh trực quan (Sound Rings), triết lý dùng AI ngốc nghếch dự đoán được, và quy trình phối hợp Level Design giữa Designer & Artist.
 * [I Built (And Shipped) a 3D Game With Claude Opus 5.5 (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/built_and_shipped_3d_game_with_claude_opus.md) - Toàn bộ quy trình xây dựng và phát hành tựa game 3D Pressure Washing trong 6.5 giờ: Kiến trúc No-Engine (Rust -> WASM + WebGPU 120Hz), quy tắc cấm One-Shot, tách rời pipeline Blender Assets, Gray Box Level Gym và điều phối subagents song song.
 * [Reverse-Engineering Game từ Walkthrough Video: Khảo sát & Pipeline](file:///f:/source/watch-skill/video-learning-vault/ai-agents/game_walkthrough_reverse_engineering_findings.md) - Tài liệu khảo sát kiến trúc 4 giai đoạn bóc tách Game Logic, State Machine, HUD và Rules từ video gameplay walkthrough.
@@ -256,6 +258,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [i_was_bad_at_leetcode_maddy_zhang.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/i_was_bad_at_leetcode_maddy_zhang.md) (09:47)
     *   [jev_explained_in_7min_caleb_writes_code.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_explained_in_7min_caleb_writes_code.md) (07:11)
 *   **📖 Nghiên cứu Trung bình (10 - 20 phút):**
+    *   [mark_of_the_ninja_level1_reverse_engineering.md](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_reverse_engineering.md) (11:06)
     *   [new_skills_v12.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/new_skills_v12.md) (11:37)
     *   [jev_ai_just_dropped_jack_roberts.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/jev_ai_just_dropped_jack_roberts.md) (11:53)
     *   [astra_jev_ds_v4_1_flash_aicodeking.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/astra_jev_ds_v4_1_flash_aicodeking.md) (14:12)
