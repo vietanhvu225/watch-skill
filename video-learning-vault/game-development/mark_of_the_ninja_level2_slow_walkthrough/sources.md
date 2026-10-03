@@ -12,7 +12,7 @@
 * **Kênh phát hành:** [theRadBrad](https://www.youtube.com/@theRadBrad)
 * **Ngày phát hành video:** 10/09/2012.
 * **Thời lượng video:** 22 phút 36 giây (1,356 giây). Bao gồm thời lượng lời chào mở đầu, bình luận của YouTuber và cutscene chuyển tiếp cốt truyện.
-* **Giao diện điều khiển & Nền tảng:** Hiển thị layout nút bấm Xbox (`A`, `B`, `X`, `Y`, `LT`, `RT`, `D-Pad`). Có thể chơi trên console Xbox 360 hoặc PC cắm tay cầm Xbox; chưa có dữ liệu phần cứng cụ thể để khẳng định 100%.
+* **Giao diện điều khiển & Nền tảng:** Hiển thị layout nút bấm Xbox (`A`, `B`, `X`, `Y`, `LT`, `RT`, `D-Pad`). Có thể chơi trên console Xbox 360 hoặc PC cắm tay cầm Xbox; chưa có dữ liệu phần cứng cụ thể để khẳng định chắc chắn.
 * **Độ khó:** Thiết lập mặc định (Normal) trong menu game.
 * **Tài liệu đối chiếu:** 
   - Lượt chơi nhịp nhanh của Centerstrain01: [mark_of_the_ninja_level2_reverse_engineering.md](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level2_reverse_engineering.md)
