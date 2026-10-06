@@ -13,6 +13,13 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (06/10/2026)
+*Livestream chuyên sâu giữa Matt Pocock và Lauren Tan (poteto) về kiến trúc Agent Loop, vận hành hàng nghìn PRs mỗi tháng và bộ công cụ pstack:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `MN9dGgmLyso` | LIVE: Poteto (creator of pstack) on shipping 1,000's of PR's a month at SpaceX | Ẩn dụ Bếp Michelin vs Nhà máy Slop, Tính tất định (Determinism) vs Bất định trong pstack, Thu hẹp không gian giải pháp (Type Narrowing), Kiến trúc Dual-Loop (GrokBot & Cursor Projects), Fuzzing & Auto-merge, Khai thác Transcript (Transcript Mining) | [live_poteto_pstack_shipping_thousands_prs_spacex_matt_pocock.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/live_poteto_pstack_shipping_thousands_prs_spacex_matt_pocock.md) | 01:05:36 |
+
 ### 🟢 Mới phân tích (03/10/2026)
 *Video giải phẫu kỹ thuật phát triển game từ Game Developers Conference (GDC) & Thực nghiệm Màn chơi Mẫu mực:*
 
@@ -162,6 +169,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 
 ### 🤖 AI Agents & Agentic Workflows
 *Các kỹ thuật thiết kế, vận hành, kiểm thử và tối ưu hóa hệ thống Agent.*
+* [LIVE: Poteto on Shipping 1,000s of PRs a Month (Matt Pocock x Lauren Tan) (65m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/live_poteto_pstack_shipping_thousands_prs_spacex_matt_pocock.md) - Livestream chuyên sâu giữa Matt Pocock (AIHero) và Lauren Tan (poteto): Ẩn dụ Bếp Michelin (Executive Chef vs Sous Chefs), Determinism vs Non-determinism trong pstack, thiết kế môi trường như Type Narrowing trong TypeScript, kiến trúc Dual-Loop (GrokBot outer loop + Cursor Projects inner loop), Verifier Fuzzing & Auto-merge cho Two-way door PRs, và phương pháp khai thác Transcript (Transcript Mining) để đào tạo skills.
 * [Harness Engineering](file:///f:/source/watch-skill/video-learning-vault/ai-agents/harness_engineering.md) - Cách tối ưu hóa môi trường ràng buộc và kiểm soát LLM.
 * [Loop Engineering (8m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_explained.md) - Giới thiệu sơ khởi về 4 lớp kiến trúc vòng lặp.
 * [Loop Engineering from First Principles (18m)](file:///f:/source/watch-skill/video-learning-vault/ai-agents/loop_engineering_first_principles.md) - Phân tích thực tế thiết kế vòng lặp bằng Semgrep/ast-grep, golden patterns và flow control.
@@ -299,6 +307,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
     *   [orchestras_not_factories_charlie_holtz.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/orchestras_not_factories_charlie_holtz.md) (17:44)
     *   [what_product_looks_like_when_coding_is_solved_ramp.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/what_product_looks_like_when_coding_is_solved_ramp.md) (19:31)
 *   **🧠 Học sâu & Chi tiết (Trên 20 phút):**
+    *   [live_poteto_pstack_shipping_thousands_prs_spacex_matt_pocock.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/live_poteto_pstack_shipping_thousands_prs_spacex_matt_pocock.md) (01:05:36)
     *   [findings.md](file:///f:/source/watch-skill/video-learning-vault/game-development/mark_of_the_ninja_level1_slow_walkthrough/findings.md) (20:21)
     *   [how_we_created_mark_of_the_ninja_gdc.md](file:///f:/source/watch-skill/video-learning-vault/game-development/how_we_created_mark_of_the_ninja_gdc.md) (26:50)
     *   [fixing_the_pr_bottleneck_matt_pocock_aihero.md](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fixing_the_pr_bottleneck_matt_pocock_aihero.md) (22:34)

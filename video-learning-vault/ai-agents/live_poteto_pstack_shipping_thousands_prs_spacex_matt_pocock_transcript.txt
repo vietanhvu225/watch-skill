@@ -1,0 +1,1706 @@
+[00:00:02] So, hello folks. I've got another treat
+[00:00:05] for you today. Last time on this kind of
+[00:00:07] podcasty thing, I suppose, we had Uncle
+[00:00:09] Bob and we talked about software
+[00:00:10] quality. We talked about agents. We
+[00:00:13] talked about lots of cool stuff. Now, we
+[00:00:15] have uh an incredible guest, someone who
+[00:00:18] I'm delighted to welcome on, who's been
+[00:00:21] exploding on Twitter recently about
+[00:00:24] software factories, um about increasing
+[00:00:25] the quality of your work, about
+[00:00:28] increasing your velocity and climbing
+[00:00:30] the trust ladder with agents so that you
+[00:00:32] can ship more and more and more. And it
+[00:00:35] is potato. Welcome. Thank you so much
+[00:00:36] for joining.
+[00:00:38] &gt;&gt; Thanks for having me. Yeah, very excited
+[00:00:41] to be here. Yeah, big fan of yours
+[00:00:42] &gt;&gt; and a huge fan of yours. I [laughter]
+[00:00:44] think people have been talking about
+[00:00:45] this like it's like the meeting of the
+[00:00:49] skill minds, the skill Mount Olympus or
+[00:00:50] something because both of us have very
+[00:00:52] popular skill libraries. Um I've not, as
+[00:00:54] I was saying before we started, I've not
+[00:00:57] used a ton of yours and like I want to
+[00:00:59] get all of the juice out of your brain
+[00:01:01] so that I can go and use it properly and
+[00:01:04] use it better. And I think where I want
+[00:01:06] to start with this is you gave a talk um
+[00:01:08] pretty recently like um about 10 days
+[00:01:10] ago and posted on X which went
+[00:01:13] absolutely nuts as about how I shipped
+[00:01:16] 2,500 PRs last month to production got
+[00:01:19] about 3 million views or something on X
+[00:01:21] and I watched it and I loved it and I
+[00:01:24] recommended it and I kind of want to run
+[00:01:26] this as almost like a Q&amp;A of that talk
+[00:01:29] basically of giving you because it just
+[00:01:31] I just had tons of questions about it
+[00:01:33] and I wanted to dive into it. And I
+[00:01:35] think where I want to start is you talk
+[00:01:39] about a trust ladder with agents where
+[00:01:41] you as you trust agents more, you can
+[00:01:44] get them to do better and better things
+[00:01:47] and or scale them to up to use more and
+[00:01:50] more agents. So what is your story of
+[00:01:53] how you climbed the trust ladder and how
+[00:01:55] did that work when like you got SpaceX
+[00:01:55] and
+[00:01:58] &gt;&gt; started climbing more and more?
+[00:02:00] So I think this the the journey sort of
+[00:02:03] began even before I joined cursor uh
+[00:02:06] which is now SpaceX AI. Uh [snorts] so
+[00:02:09] the story is um
+[00:02:12] after Meta so I I used to work at Meta
+[00:02:14] on the React team. [snorts] Uh I took a
+[00:02:16] month off uh because I was feeling kind
+[00:02:19] of burnt out and of course when what
+[00:02:20] what do you do when you're burnt out?
+[00:02:22] You go and start a new side project. Um
+[00:02:24] and so I started a side project. you
+[00:02:27] know, I was uh of course using AI to to
+[00:02:29] write code. Uh [snorts] but then I
+[00:02:31] started to realize uh you know, I was
+[00:02:33] spending like so many hours just
+[00:02:36] micromanaging one agent, right? And you
+[00:02:38] know, at the time, this was back in
+[00:02:41] February, maybe February, early February
+[00:02:43] or January, you know, people were really
+[00:02:44] obsessed with this idea of like
+[00:02:46] orchestration. This was like, you know,
+[00:02:48] before, you know, things like cursor,
+[00:02:50] you know, like the agents window was had
+[00:02:53] become popular. So people were still in
+[00:02:55] like like 2 land you know in their
+[00:02:56] terminal and they were all talking about
+[00:02:58] okay here you know I built a custom
+[00:03:01] orchestrator right and so of course I
+[00:03:03] had I was a bit nerd sniped by that
+[00:03:04] [snorts] and you know as I was building
+[00:03:08] my toy project uh I got nerd sniped by
+[00:03:10] oh how do I make my AI coding setup more
+[00:03:13] efficient and so you know I I kind of
+[00:03:16] started the journey there where I just
+[00:03:18] you know took a step back and realized
+[00:03:20] you know I was spending all this time
+[00:03:23] micromanaging a single agent you know I
+[00:03:24] was [snorts] creating skills and I was
+[00:03:26] like finding it quite difficult to
+[00:03:29] measure the output or the the result the
+[00:03:32] impact of the skill as well so I was
+[00:03:34] kind of flying blind but I was you know
+[00:03:39] iterating really fast um and um so that
+[00:03:42] project eventually sort of became the
+[00:03:44] basis of PAC even though I didn't know
+[00:03:48] it at the time um and a lot of some
+[00:03:50] tricks I had learned like building that
+[00:03:52] early set of skills. Actually, it's
+[00:03:54] still open source if you want to if
+[00:03:56] anybody wants to take a look. It's on my
+[00:03:58] GitHub like potato
+[00:04:02] noodle n o d l e. Um, and in there you
+[00:04:04] will see some skills and a brain
+[00:04:05] directory. [snorts] And so I was really
+[00:04:09] interested in this idea of how do I, you
+[00:04:12] know, extract my own ability, if that
+[00:04:14] makes sense, and give it to the agent,
+[00:04:16] right? cuz I was I I realized that you
+[00:04:18] know all I was trying to do was trying
+[00:04:19] to teach the agent to write code more
+[00:04:21] like me you know do do you do do
+[00:04:24] workflows more like me. So you know the
+[00:04:27] skills were like an entry point to doing
+[00:04:27] that.
+[00:04:31] Um and then you know after I joined
+[00:04:33] cursor uh I was starting to work on the
+[00:04:36] agents window and uh it had a lot of
+[00:04:39] performance issues. Uh it was it was it
+[00:04:41] was pretty laggy. Uh and so since I had
+[00:04:43] experience working in React, I was asked
+[00:04:45] like, "Hey, do you want to come and help
+[00:04:47] out uh with the agents window?" Um and
+[00:04:52] so the the this beginning of the cursor
+[00:04:55] journey was very manual. [snorts] Uh I
+[00:04:58] was deep in like looking at like flame
+[00:05:00] graphs and heap snapshots and trying to
+[00:05:03] see like why exactly is the app so slow.
+[00:05:05] Uh but then coming back to the same
+[00:05:07] realization like you know I was sort of
+[00:05:09] the bottleneck. I was doing everything
+[00:05:11] manually. I was sort of the meat proxy
+[00:05:13] in a way, right? I was the meat proxy
+[00:05:16] between my agent and Chrome DevTools. Uh
+[00:05:18] and I was like really annoyed by that.
+[00:05:20] &gt;&gt; And what month of the year is that?
+[00:05:22] Let's say where are we in the timeline?
+[00:05:25] &gt;&gt; Uh so I joined Cursor in March. So this
+[00:05:28] was like early early April probably
+[00:05:30] early April is when [snorts] you know uh
+[00:05:32] I joined and I didn't have any skills,
+[00:05:35] right? I had I I sort of abandoned my
+[00:05:36] personal skills because I didn't think
+[00:05:39] they'd be relevant anymore. Uh but then
+[00:05:41] working on the agents window uh and
+[00:05:44] [snorts] now working on grockbot uh I
+[00:05:46] sort of realized that a lot of the
+[00:05:48] lessons I had learned from those skill
+[00:05:50] time building the the initial set of
+[00:05:52] skills were very relevant especially
+[00:05:55] around things like verification
+[00:05:57] uh you know being very rigorous in your
+[00:06:01] work um [clears throat] because I think
+[00:06:04] from my experience even the the frontier
+[00:06:07] ones tend to
+[00:06:10] tend to take shortcuts. Uh they tend to
+[00:06:14] do the easy thing. Uh so uh a lot of the
+[00:06:16] skills that I've built have been around
+[00:06:19] how do I make the easy thing the right
+[00:06:20] thing? You know, how do I make that the
+[00:06:22] best thing?
+[00:06:25] &gt;&gt; The idea of sort of distilling your
+[00:06:28] expertise and turning what you do every
+[00:06:30] day into processes, that's something
+[00:06:32] that feels super familiar to me. That's
+[00:06:34] exactly what I've been doing with the
+[00:06:37] skills. And I suppose there's something
+[00:06:39] in that which is a lot of people think
+[00:06:41] domain expertise is getting less useful
+[00:06:44] now as people uh start to rely more on
+[00:06:47] AI where what do you think about that
+[00:06:49] just as a sort of vibe check before we
+[00:06:51] start talking [laughter]
+[00:06:52] &gt;&gt; I actually feel like domain expertise is
+[00:06:56] is more important than ever you know uh
+[00:06:58] I think I wrote this on my ex at some
+[00:07:01] point but you know at times I sometimes
+[00:07:05] think of you know AI as is like
+[00:07:06] especially as the models get smarter and
+[00:07:08] smarter and more capable and the
+[00:07:10] frontier models are just getting so good
+[00:07:13] like I [snorts] love Opus 5.5 by the way
+[00:07:17] um uh you know as the models get really
+[00:07:19] really really good it almost becomes
+[00:07:21] like the bottleneck is no longer the
+[00:07:24] agent right it becomes your ability to
+[00:07:27] express your intent and your goals in a
+[00:07:29] clear way that [snorts] the agent can
+[00:07:33] understand and actually carry out and
+[00:07:34] That's why I think you know like people
+[00:07:37] with a lot of domain expertise are
+[00:07:39] extremely have a have a huge advantage
+[00:07:42] in my opinion especially if you're a
+[00:07:44] little bit like you know tech technoc
+[00:07:46] curious you know so I I think of people
+[00:07:49] like you know like uh like a doctor or a
+[00:07:52] lawyer or you know someone who who has a
+[00:07:54] deep expertise in a particular
+[00:07:56] non-engineering domain and [snorts] if
+[00:07:57] they're actually just a little bit
+[00:07:59] techsavvy and they can figure out how to
+[00:08:01] use agents they can actually build
+[00:08:04] really really great products, right? If
+[00:08:06] they if they have a clear enough vision
+[00:08:09] in their head and they can articulate it
+[00:08:11] in a way that the agent can build it,
+[00:08:14] you know, I think that that is really
+[00:08:17] the the bottleneck these days is is like
+[00:08:20] the transfer of your intent, right, and
+[00:08:23] your vision to the agent.
+[00:08:25] &gt;&gt; Yeah. I've been obsessed with language
+[00:08:27] basically since agents um dropped. are
+[00:08:30] just obsessed 100% and thinking
+[00:08:32] constantly about the the composition of
+[00:08:35] words, how I can make things sharper,
+[00:08:37] what um what might be hidden in the
+[00:08:40] phrases that I'm using. And it's and
+[00:08:42] finding what I love is when you find a
+[00:08:45] word that the agent then hooks on to and
+[00:08:47] then goes, "Okay, I'm going to reinforce
+[00:08:49] that word. I'm going to reuse that in my
+[00:08:51] thinking traces." You know, I found that
+[00:08:53] with um TDD was an early example of
+[00:08:55] that. a lot of chat about TDD recently
+[00:08:57] of like, you know, people say, should
+[00:08:59] you use TDD with agents? Doesn't matter.
+[00:09:00] What you're doing is you're getting the
+[00:09:03] agent to think about TDD, getting it to
+[00:09:04] write tests, getting it to prioritize
+[00:09:06] things in a different way than it did
+[00:09:08] before. And that's why sort of grilling,
+[00:09:10] I think, works effectively. Grilling is
+[00:09:10] a
+[00:09:13] &gt;&gt; Yeah. Yeah. It it draws those words out
+[00:09:16] of you, right? or or at least it helps
+[00:09:19] the agent understand your thinking so
+[00:09:20] that they can propose those words to you
+[00:09:22] and you can pick up and say yes exactly
+[00:09:22] that.
+[00:09:25] &gt;&gt; Uh I've actually copied some of the the
+[00:09:27] tips that you've shared as well where
+[00:09:28] you know one of my favorite ones that
+[00:09:30] you've shared recently or or not or like
+[00:09:32] maybe in the past couple weeks is
+[00:09:34] [snorts] about uh reducing or
+[00:09:37] eliminating tautological tests. Like one
+[00:09:39] of my pet peeves of agents is like all
+[00:09:41] of the useless tests that they write.
+[00:09:43] And so, you know, that was one thing
+[00:09:45] where, you know, the word tutology,
+[00:09:47] right, is is is I guess, you know, not
+[00:09:49] many people necessarily know that if if
+[00:09:51] especially if English isn't your first
+[00:09:53] language, but there's a lot of meaning
+[00:09:56] to that word. And it's like it's almost
+[00:09:58] like compressed, right? Like you
+[00:10:00] compress a lot of intent and meaning
+[00:10:04] into words. And so I I I totally agree
+[00:10:06] with you. I think language I've always
+[00:10:08] been interested in language actually uh
+[00:10:11] like programming languages natural human
+[00:10:13] languages and how they came to be and
+[00:10:15] it's so interesting that now with agents
+[00:10:17] it's sort of like this meeting of
+[00:10:19] natural language with programming
+[00:10:21] language but it's all it's all language
+[00:10:23] out of the hood it's all communication
+[00:10:25] &gt;&gt; totally I did a drama degree right so
+[00:10:26] you know I've been thinking about
+[00:10:28] language and Shakespeare and stuff for a
+[00:10:29] long time [laughter] and so this all
+[00:10:31] feels very familiar
+[00:10:34] &gt;&gt; um so okay there's sort
+[00:10:36] before we get into like because I think
+[00:10:38] the thing I want from you is like
+[00:10:40] software factory stuff, right? Software
+[00:10:42] factory is the big buzzword. Software
+[00:10:43] factory is the thing that I'm thinking
+[00:10:45] about too. I'm sort of releasing a
+[00:10:47] course in that direction too.
+[00:10:50] &gt;&gt; And it's this sort of scaling yourself
+[00:10:53] up to un unrealistic numbers of PRs
+[00:10:56] basically or PR numbers that sound
+[00:10:57] ridiculous to people who don't
+[00:10:59] understand how this works. So where I
+[00:11:01] want to get to is sort of from people
+[00:11:03] who are doing kind of like one to five
+[00:11:06] agents today up to, you know, hundreds
+[00:11:08] of agents running at once and how that
+[00:11:10] sort of functions. And so I'd love to
+[00:11:12] hear about your metaphor of the Michelin
+[00:11:15] Kitchen instead of the software factory
+[00:11:16] because I think that says a bit about
+[00:11:18] the way you think about this stuff.
+[00:11:18] &gt;&gt; Yes.
+[00:11:22] Yeah. I I I've I've never really liked
+[00:11:25] the term software factory. Not because
+[00:11:28] you know it's not accurate but I think I
+[00:11:29] think the a lot of people when they
+[00:11:31] think factory right they don't
+[00:11:34] necessarily equate that with quality or
+[00:11:36] craft right things which are very
+[00:11:39] important to me and a lot of people and
+[00:11:41] technologists who work you know building
+[00:11:43] products we care about the user
+[00:11:45] experience we care about the things
+[00:11:48] we're building. So while so while I do
+[00:11:51] think software factory is an apt term,
+[00:11:53] it also I guess maybe conjures up
+[00:11:55] negative, you know, maybe sometimes
+[00:11:57] negative connotations. So Michelin
+[00:12:00] Kitchen is the thing that I've sort of
+[00:12:02] landed on where it's much more I feel
+[00:12:05] like it's much more aspirational and uh
+[00:12:06] I like the metaphor a lot cuz you know I
+[00:12:09] like food. I'm called potato of course
+[00:12:10] [snorts] and I like cooking [laughter]
+[00:12:13] and I see a lot of parallels right like
+[00:12:15] with food right when you're cooking a
+[00:12:17] meal for yourself for example
+[00:12:19] [clears throat] it's both utilitarian
+[00:12:20] like you're trying to just feed yourself
+[00:12:23] right and and survive uh but it can
+[00:12:25] actually be transformed into art right
+[00:12:28] and that's what what a Michelin starred
+[00:12:31] chef or even just a chef or a cook can
+[00:12:33] do with food is take something very
+[00:12:35] ordinary and turn it into a delicious
+[00:12:38] meal that you know takes you back to
+[00:12:39] your childhood days or something like
+[00:12:43] that. Um and so it almost like mirrors
+[00:12:45] that trust letter that I talk about
+[00:12:48] where uh you can sort of imagine your
+[00:12:50] own journey as a home cook, right? Uh as
+[00:12:52] a home cook, you are doing all of the
+[00:12:55] food, the cooking yourself. You cut all
+[00:12:57] the vegetables, you do all the prep
+[00:12:59] work, you do all the cleanup, you know,
+[00:13:03] you are the one man or one woman show
+[00:13:07] really. Um, and it's an interesting
+[00:13:09] thought experiment like, okay, if you
+[00:13:11] were to cook a meal and then you add
+[00:13:13] people, right, your your your partner
+[00:13:16] trying to your brother, your sister, and
+[00:13:18] now suddenly you have your whole family
+[00:13:19] in the kitchen. I think most people
+[00:13:21] would get very stressed by that, right?
+[00:13:23] The thought of, oh, so many people are
+[00:13:24] just mocking around in my kitchen. They
+[00:13:26] have no no idea where all the utensils
+[00:13:26] are.
+[00:13:28] &gt;&gt; I have a max capacity of one person in
+[00:13:31] the kitchen. Yeah, absolutely. So, I
+[00:13:33] feel like that that's really apt because
+[00:13:35] when you ask yourself that question of
+[00:13:37] how do I go from being a solo cook,
+[00:13:41] right, to having an army or even not not
+[00:13:44] even an army but a few sue chefs, right,
+[00:13:45] that that are helping me in the kitchen.
+[00:13:48] How do I think about dividing the work
+[00:13:50] in a way that makes sense? You know, I'm
+[00:13:52] not dividing work just for the sake of
+[00:13:55] it, but in a way that actually makes the
+[00:13:57] sum the to the better than, you know,
+[00:14:00] the total of its parts. And so the
+[00:14:02] Michelin kitchen metaphor to me like
+[00:14:05] works really well in that regard because
+[00:14:08] you know as a chef you're you know if
+[00:14:09] you become a chef you're in a position
+[00:14:12] where you're not necessarily cooking all
+[00:14:14] the food yourself anymore but you are
+[00:14:17] thinking you're almost like the tech
+[00:14:20] lead right for the kitchen where uh you
+[00:14:21] know chefs have to think about you know
+[00:14:23] not just cooking but they have to
+[00:14:25] basically organize the whole kitchen and
+[00:14:27] they're like the CEO of the kitchen they
+[00:14:29] have to think about when do you order
+[00:14:30] ingredients, how do you store them, how
+[00:14:32] do you prepare them, when do they have
+[00:14:34] to be prepared, you know, it's a whole
+[00:14:36] it's a whole job, right? That's not just
+[00:14:39] cooking. Um, and I think that again it
+[00:14:42] mirrors so much of how engineers write
+[00:14:45] code today where you are not writing the
+[00:14:47] code yourself anymore. You have agents,
+[00:14:49] right? But you as the human are still
+[00:14:51] responsible for the final outcome,
+[00:14:53] right? your name still is associated
+[00:14:55] with the work that you do, your
+[00:14:58] reputation and you know so how you set
+[00:15:01] up your kitchen right and how you set up
+[00:15:03] your skills your environment your
+[00:15:07] codebase I think are ultimately the new
+[00:15:10] ingredients that go into um building
+[00:15:10] product
+[00:15:14] &gt;&gt; yeah I think what I love about your
+[00:15:16] approach is the amount of focus that you
+[00:15:18] put into the environment that the agent
+[00:15:20] operates in right because I think a lot
+[00:15:22] of people they think, right, the agent
+[00:15:25] is good. I'm probably not going to be
+[00:15:27] able to make it better. Let's just trust
+[00:15:29] what these magic model people have put
+[00:15:31] into the harness and the model
+[00:15:33] combination. Uh, there's nothing I can
+[00:15:35] really do, like I can't mess about with
+[00:15:36] claw codes internals or something or
+[00:15:40] whatever you're using. Um, but what I
+[00:15:42] love about your approach, and it's
+[00:15:43] something I advocate for too, is that
+[00:15:45] you can change the environment the agent
+[00:15:48] operates in, right? you can make changes
+[00:15:51] in the codebase and also give it tools
+[00:15:53] for verification as well and allow it to
+[00:15:56] verify its own work. So the thing I I
+[00:15:58] loved about watching that talk is the
+[00:16:01] amount of focus you put in verification
+[00:16:03] and like that is the lever that you can
+[00:16:05] start to generate trust. Can you talk
+[00:16:07] about that and what that concretely
+[00:16:09] looks like? Let's start like looking at
+[00:16:10] practical ways that people can improve
+[00:16:14] their own processes, their own kitchens.
+[00:16:16] Yeah, I've I've I've said this a lot
+[00:16:18] actually that you know even if you don't
+[00:16:21] use PAC or you know your skills I think
+[00:16:24] that the single most important skill
+[00:16:27] that should be in your toolkit is
+[00:16:29] verification because without
+[00:16:32] verification and for for by the way for
+[00:16:33] those watching who don't know what that
+[00:16:35] means it's this idea that you can give
+[00:16:38] you can sort of give your agent uh hands
+[00:16:42] and eyes in a way that's the the analogy
+[00:16:42] I
+[00:16:46] where the agent is able to run the code,
+[00:16:48] right? And actually
+[00:16:48] &gt;&gt; [snorts]
+[00:16:50] &gt;&gt; uh interact with it like a normal human
+[00:16:53] user would and also do things like you
+[00:16:56] know debug it, you know, take traces and
+[00:17:00] snapshots. Um and uh funnily enough like
+[00:17:01] that was actually the first skill I
+[00:17:03] built when I joined Cursor. uh that gave
+[00:17:05] me a lot of that was that was the thing
+[00:17:07] that actually started to let me ascend
+[00:17:09] the trust ladder a little bit in a way
+[00:17:11] that some of the other skills I had
+[00:17:13] looked at or built had not really let me
+[00:17:17] do because no matter how good you know
+[00:17:19] some of the other skills were like the
+[00:17:21] how skill, the why skill, the unsop
+[00:17:24] skill were, I was still relying on me
+[00:17:27] right as the proxy between my agent and
+[00:17:30] the output. So that you know if the
+[00:17:31] agent can't actually see the result of
+[00:17:33] its work there's no way it can actually
+[00:17:36] iterate right and so this is where
+[00:17:37] people start to talk about loops this
+[00:17:40] idea of a loop and really I think the
+[00:17:43] term loop you know seems kind of uh
+[00:17:46] almost abstract like people like what
+[00:17:47] what what is a loop what is an agent
+[00:17:50] loop but really to me like the most
+[00:17:52] important part of a loop that allows it
+[00:17:55] to be a loop is the verification part
+[00:17:58] because the agent is able to to verify
+[00:18:01] by its own work and uh you know that
+[00:18:04] takes you out of the equation where now
+[00:18:06] I can actually do something like so the
+[00:18:07] very one of the very first use cases I
+[00:18:09] had for verification was you know like
+[00:18:11] the performance work that I was doing on
+[00:18:14] cursors agent window and I want I wanted
+[00:18:15] to get to a point where I could do
+[00:18:17] something called hill climbing uh which
+[00:18:20] is a term that I I think the labs uh
+[00:18:22] talk about a lot which is this idea that
+[00:18:25] you know you have some kind of rubric or
+[00:18:28] a way to judge or score something And
+[00:18:30] now because you have a loop, you can
+[00:18:33] have an agent continually try to make
+[00:18:35] improvements to that. Uh I think
+[00:18:38] Carpathy, Andre Carpathy also famously
+[00:18:40] released uh something called auto
+[00:18:43] research that has a lot of these ideas.
+[00:18:46] Um but yeah, verification I would say is
+[00:18:49] probably the most important skill in PAC
+[00:18:51] uh and many [clears throat] other you
+[00:18:55] know tool sets. Uh and I think it's the
+[00:18:57] most important thing to focus on. So a
+[00:19:00] lot of the a lot of I spent a lot of
+[00:19:02] time actually you know tuning the
+[00:19:05] verification the creative verification
+[00:19:09] skill um and also internally the the we
+[00:19:10] have so many verification skills now
+[00:19:12] like every app that cursor has or
+[00:19:16] spaceexai has has a uh verification
+[00:19:19] skill that is automaintained as well
+[00:19:19] [clears throat]
+[00:19:21] &gt;&gt; uh and it's become critical
+[00:19:22] infrastructure for our team because
+[00:19:24] everybody uses it
+[00:19:26] &gt;&gt; and you went pretty far with that too
+[00:19:28] right like you had a um in your talk I
+[00:19:30] saw that you actually built a custom CLI
+[00:19:32] for that too. So what does that CLI do?
+[00:19:33] Like how does it [clears throat] execute
+[00:19:35] things and why did you I mean that's
+[00:19:37] proof of how deep you're going right of
+[00:19:39] how much you're pushing that.
+[00:19:42] &gt;&gt; Yeah. So this is actually a tip I
+[00:19:45] learned early on where
+[00:19:49] um I guess you know back in January or
+[00:19:51] or late last year the thing that people
+[00:19:54] were concerned about was context window,
+[00:19:56] right? That was the big the big topic at
+[00:19:58] the time was how do I you know manage
+[00:20:00] the context window because you know
+[00:20:02] compaction summarization wasn't really
+[00:20:05] that good yet [snorts] and people were
+[00:20:07] always people had this there was almost
+[00:20:09] this meme in the community that you know
+[00:20:12] once your agent summarized or compacted
+[00:20:15] once it would become sort of stupid
+[00:20:17] right for the rest of your session. So
+[00:20:20] there was a lot of thinking around like
+[00:20:22] you know being very efficient with your
+[00:20:25] context usage and so that was actually
+[00:20:28] the inspiration for some of the uh the
+[00:20:31] CLI work inside of the verification
+[00:20:34] skills. I guess now it's less so about
+[00:20:38] context because uh you know agents are
+[00:20:40] much better or harnesses have gotten a
+[00:20:42] lot better with summarization.
+[00:20:45] Um, I still think there's some benefits
+[00:20:49] to, you know, uh, having a clean context
+[00:20:51] window. Uh, so the CLI is really just
+[00:20:53] more of a way for me to take the
+[00:20:56] deterministic parts of what the skill
+[00:20:58] does and encode that into a script or
+[00:21:03] CLI to reduce to kind of take away the
+[00:21:05] judgment that would otherwise
+[00:21:08] unnecessarily be used because with
+[00:21:10] judgment so I also think of you know
+[00:21:13] agents and skills in sort of like it's
+[00:21:15] like a gradient
+[00:21:18] you have some parts of the work that are
+[00:21:20] entirely judge measurement based right
+[00:21:22] you know something that requires thought
+[00:21:24] you know putting together multiple
+[00:21:27] pieces of context thinking um and then
+[00:21:28] you have the more deterministic parts
+[00:21:31] like I don't know if you wanted to uh
+[00:21:33] refactor some code right from one
+[00:21:35] pattern to another that's very
+[00:21:37] mechanical right you don't you don't
+[00:21:40] need an agent to think about it and come
+[00:21:43] up with it in a novel way each time
+[00:21:45] right and so that that was really the
+[00:21:47] inspiration for the CLI and you'll see
+[00:21:48] this in a lot of the other skills that I
+[00:21:52] built is like I try to extract out the
+[00:21:54] deterministic parts and turn that into
+[00:21:56] code and just leave only the parts that
+[00:21:59] actually require judgment to the agent.
+[00:22:01] So in a way I think of the seal as kind
+[00:22:03] of like your wrapper, right? It's a
+[00:22:04] wrapper with some light instructions
+[00:22:06] around how to use these custom tools
+[00:22:10] that are inside of the skill. Um but
+[00:22:11] yeah, I don't think the CL is really
+[00:22:13] that interesting in its own really. It's
+[00:22:16] not like a novel piece of software. It's
+[00:22:17] just something that interacts with like
+[00:22:20] Playright and the Chrome DevTools
+[00:22:22] protocol and calls a bunch of APIs. It's
+[00:22:24] like it's just a bunch of glue.
+[00:22:25] &gt;&gt; No, it's fascinating because it's a way
+[00:22:27] of hiding information from the skill,
+[00:22:28] right? It's a way of conserving the
+[00:22:31] skill, keeping the skill quite small, I
+[00:22:32] imagine, and then you're able to
+[00:22:33] delegate more of the complicated
+[00:22:36] deterministic stuff into a script within
+[00:22:38] the skill. So it's almost you're
+[00:22:41] compressing information and making the
+[00:22:44] agent do more consistent things more
+[00:22:44] consistently.
+[00:22:45] &gt;&gt; Yeah,
+[00:22:47] &gt;&gt; that's fascinating.
+[00:22:49] And it it [clears throat] also helps I
+[00:22:50] guess if you care about context window
+[00:22:53] it it does help because now the agent
+[00:22:56] doesn't need to uh you know re reinvent
+[00:22:59] uh things cuz uh one thing I had noticed
+[00:23:02] early on when we didn't have a CLI
+[00:23:05] was that uh well the the agent would try
+[00:23:07] to verify it work but it would basically
+[00:23:09] rebuild the world each time and then
+[00:23:11] every agent did it differently and I was
+[00:23:12] starting to notice like that's very
+[00:23:14] inefficient right I was wasting it it
+[00:23:16] was actually not just about context
+[00:23:18] usage but also speed, right? Like
+[00:23:19] because now an agent had to actually go
+[00:23:22] off and write the scripts or the CLI and
+[00:23:24] test it and you know and it doesn't work
+[00:23:26] and the last agent did it and it worked
+[00:23:28] but it discarded it. So it was just very
+[00:23:30] obvious at that point like I should just
+[00:23:32] turn this into a CLI and put that inside
+[00:23:35] of the skill uh so that every agent that
+[00:23:38] uses it now benefits from that same
+[00:23:41] piece. Um but I I also think like you
+[00:23:43] know it's a good push for people to
+[00:23:46] think about is how much of your skills
+[00:23:48] and rules could actually be
+[00:23:48] deterministic.
+[00:23:53] Um that's like another core thing or or
+[00:23:55] one of my core principles that I like to
+[00:23:59] think about is yeah how do I uh make
+[00:24:02] very efficient use of determinism and
+[00:24:02] non-determinism
+[00:24:07] and you know let Asians shine at the
+[00:24:09] non-deterministic parts right because
+[00:24:11] that's what they're trained to do. Um
+[00:24:14] and the other parts which are much more
+[00:24:16] mechanical or you know straightforward
+[00:24:19] can be just pure determinism. Um, and
+[00:24:21] you'll see this as well for things like
+[00:24:24] doing migrations. Um, which is another
+[00:24:25] big thing that I've I've talked about
+[00:24:29] is, you know, going from one technology
+[00:24:31] to another, especially one that is
+[00:24:34] better for agents, right? And a lot of
+[00:24:36] how you can do that migration is, I
+[00:24:38] think, through things like scripts and
+[00:24:40] CLIs, like the deterministic parts like
+[00:24:44] code mods, you know, like crawling the
+[00:24:46] abstract syntax tree and transforming
+[00:24:48] code literally mechanically, right? like
+[00:24:50] a script does it for you instead of the
+[00:24:50] agent.
+[00:24:55] &gt;&gt; Totally makes sense. I I mean I think
+[00:24:57] what there's another thing there which
+[00:25:00] is you're taking stuff away from the
+[00:25:03] agent and you're kind of putting it in
+[00:25:05] the environment too a little bit which
+[00:25:08] is let's say you have a a thing that you
+[00:25:10] notice the agent always gets wrong. You
+[00:25:13] want to make that um just impossible
+[00:25:15] within the environment. And that sort of
+[00:25:18] comes down to code quality as well. I
+[00:25:22] mean, I talk about a lot like having a
+[00:25:24] what a good codebase means, right? What
+[00:25:26] is a good codebase? And there's a
+[00:25:28] definition I like which is a a good
+[00:25:30] codebase is a codebase that's easy to
+[00:25:34] make changes in, right? Easy to um
+[00:25:36] change stuff without things screwing up.
+[00:25:37] And that means that you have a lot of
+[00:25:40] guard rails that you have a lot of um
+[00:25:42] the agent or the human is constrained to
+[00:25:44] very narrow paths. And that's again
+[00:25:46] something you talk about in your talk.
+[00:25:48] &gt;&gt; And you talk about this not only on the
+[00:25:51] kind of sort of automated checks side of
+[00:25:53] things. So linting and type checking
+[00:25:55] blah blah blah but also in the way you
+[00:25:58] design abstractions. And you guys even I
+[00:25:59] think built a framework uh for your
+[00:26:01] agent to work in too.
+[00:26:04] &gt;&gt; I think what I'd love to hear is you
+[00:26:06] obviously think of that as very
+[00:26:08] important, right? And that's how
+[00:26:10] important is that compared to other
+[00:26:11] things you could be doing like building
+[00:26:14] features or shipping work.
+[00:26:17] Yeah, I think that's a um I almost feel
+[00:26:19] like the new job of the engineer is
+[00:26:21] really to to spend time on the
+[00:26:23] environment. Um I almost actually wrote
+[00:26:25] a tweet about this yesterday, but I but
+[00:26:29] I didn't. But I think that
+[00:26:31] I think that you you know if you if you
+[00:26:33] haven't really spent time, you know,
+[00:26:34] building trust in your agents and
+[00:26:37] building skills and tools, you can get
+[00:26:39] stuck in this mode where you're very low
+[00:26:41] on that trust ladder, right? you don't
+[00:26:43] have a lot of trust in your agents work.
+[00:26:47] And so the only way to cope in that when
+[00:26:48] you're in that situation is just to kind
+[00:26:51] of lock in and micromanage your agents.
+[00:26:53] And that's very time consuming. And when
+[00:26:55] you're stuck in that mode, you don't
+[00:26:58] really have the luxury to think about,
+[00:27:00] you know,
+[00:27:03] uh higher level things like like making
+[00:27:05] yourself more productive. In the same
+[00:27:09] way that uh I guess analogy would be
+[00:27:11] like if you've never taken the time to
+[00:27:13] learn like your tools right as a
+[00:27:14] developer when you were writing code
+[00:27:17] yourself and you know you've never heard
+[00:27:19] of VS Code, you've never heard of Vim,
+[00:27:22] you only knew about Notepad [laughter]
+[00:27:23] uh and you had hadn't even heard about
+[00:27:25] Git. That's sort of the analogy. It's
+[00:27:27] like you you haven't spent the time
+[00:27:29] sharpening your own knives, right? And
+[00:27:31] so, of course, if you have a dull knife,
+[00:27:33] then everything's going to take a long
+[00:27:36] time. Um, and you're going to be you're
+[00:27:38] just going to be and and especially if
+[00:27:41] you know deadlines are looming, then you
+[00:27:42] don't have the now you're stuck in this
+[00:27:45] rut, right? Where where you you you
+[00:27:47] don't have sharp knives, you don't have
+[00:27:49] good tools, but you're under all this
+[00:27:51] pressure to ship, right? And so, all you
+[00:27:54] can do is just focus on that. But I do
+[00:27:55] think that, you know, if you can find
+[00:27:58] yourself the time to actually spend time
+[00:28:00] thinking about your setup, it's again
+[00:28:02] going back to the cooking, you know,
+[00:28:02] analogy,
+[00:28:06] it's like uh, you know, if you, for
+[00:28:09] example, if if cutting cutting cutting
+[00:28:11] the garlic is like super slow, right?
+[00:28:13] There are garlic mashers, right? You can
+[00:28:14] you can buy and you put it in the thing
+[00:28:17] and you like squeeze it out, right? It's
+[00:28:20] super fast. Uh, machines and tools were
+[00:28:22] invented for a reason, right? And so if
+[00:28:25] you're operating a Michelin kitchen and
+[00:28:27] your your your cooks had no tools, then
+[00:28:29] of course everything's going to be
+[00:28:31] extremely inefficient, very very, you
+[00:28:33] know, every every every cook is going to
+[00:28:35] make something up of their own. So I
+[00:28:37] think the tools and the determinism to
+[00:28:41] me are you know taking that part away
+[00:28:42] and and just like you said about
+[00:28:44] constraints as well. It's the
+[00:28:48] constraints are are to me as well like
+[00:28:50] uh actually a slight tangent on that is
+[00:28:53] uh I think we should talk about
+[00:28:55] TypeScript cuz like we we actually both
+[00:28:57] share like a background in Typescript
+[00:28:58] where you know you obviously have done a
+[00:29:00] lot of work with TypeScript and total
+[00:29:02] TypeScript and you know you're a leader
+[00:29:05] in that space and I uh had adopted
+[00:29:07] TypeScript pretty early and I had given
+[00:29:10] like a talk or two at Typescript conf uh
+[00:29:13] many years ago and so one of the the
+[00:29:15] talk that I did actually was about type
+[00:29:18] systems and constraining the
+[00:29:20] constraining types. Like one of my most
+[00:29:22] favorite things about Typescript is
+[00:29:23] actually type narrowing, right? This
+[00:29:26] idea that you go from a very broad type,
+[00:29:28] right? That could be anything and then
+[00:29:31] you through type guards and you know
+[00:29:33] type narrowing and you know runtime
+[00:29:35] checks you can actually narrow the space
+[00:29:38] and say like oh this isn't just a string
+[00:29:40] this is a very special type of string.
+[00:29:42] It's a constant, right? like I but I I
+[00:29:45] determine that through the type system
+[00:29:47] and in a way it's like uh there's a lot
+[00:29:49] of parallels I think to that with
+[00:29:52] constraints in your codebase where is it
+[00:29:55] you're you're constraining the space
+[00:29:57] right if you if you think about category
+[00:29:58] theory as well you know you're
+[00:30:01] constraining the the number of possible
+[00:30:05] types right that can can exist
+[00:30:07] and you're saying there's only one type
+[00:30:10] right and for for us like that framework
+[00:30:13] that I'm called Dune. Uh it's not an
+[00:30:15] open source framework. It's the the way
+[00:30:17] I describe it to people. It's it's kind
+[00:30:20] of like a internal Nex.js for our
+[00:30:23] Electron apps. Uh but it comes with a
+[00:30:25] lot of really really restrictive lit
+[00:30:28] rules and the codebase is designed in a
+[00:30:30] way that there's really only one way to
+[00:30:32] do something. So we make use a we make
+[00:30:35] use of a lot of conventional
+[00:30:38] patterns. So like features all go into a
+[00:30:41] specific directory. Well, every feature
+[00:30:43] has its own directory. As an example,
+[00:30:44] you know, there's like a a thing that
+[00:30:46] discovers features like through a
+[00:30:48] registry and like crawling the codebase
+[00:30:51] and stuff like that. But this
+[00:30:55] conventional pattern and the lint rules
+[00:30:57] make for an environment where it's
+[00:31:01] actually very hard to write bad code.
+[00:31:04] And that sort of frees up the it both
+[00:31:09] frees up your own mental uh you know
+[00:31:11] capacity as well as the agent sort of
+[00:31:13] doesn't have to think about that anymore
+[00:31:15] where it's just like oh there's only
+[00:31:17] there's I should just if I want to add a
+[00:31:18] new feature it just goes in the feature
+[00:31:20] the new feature directory and all the
+[00:31:22] code goes in there and I'm not going to
+[00:31:25] append to a god file right that was
+[00:31:26] really actually the inspiration for
+[00:31:29] those feature directories is the very
+[00:31:32] first couple of versions of Grockbot
+[00:31:36] were composed of like eight god files
+[00:31:38] which were like at least 10,000 lines
+[00:31:40] long if not longer and so I kind of had
+[00:31:43] to break it up into smaller pieces.
+[00:31:46] Uh but it was just observing you know
+[00:31:47] actually that's another important part
+[00:31:50] is observing how agents fail and then
+[00:31:52] every time you see a mistake every time
+[00:31:54] you see something that could be done
+[00:31:57] better you think you step back and think
+[00:31:58] how do I turn this into a lint rule? How
+[00:32:01] do I make it so that the code base makes
+[00:32:03] this impossible? Right? And it comes
+[00:32:05] back to me for my you know my background
+[00:32:08] learning Typescript and types uh type
+[00:32:12] systems is how do I constrain the space
+[00:32:15] so that you know I know precisely what
+[00:32:16] I'm working with and I think yeah
+[00:32:18] there's a lot of parallels there.
+[00:32:21] &gt;&gt; Totally makes sense. And don't I mean
+[00:32:22] it's funny that you mentioned TypeScript
+[00:32:23] and Goth files in the same sentence
+[00:32:25] because Typescript famously has a
+[00:32:29] 25,000line type uh file.
+[00:32:29] &gt;&gt; [laughter]
+[00:32:30] &gt;&gt; Although I don't know if they've
+[00:32:32] rewritten that and go as they probably
+[00:32:34] have, haven't they? Um,
+[00:32:38] okay. So, environment is important. You
+[00:32:39] should watch your agent like a hawk to
+[00:32:42] make sure that any mistakes it makes.
+[00:32:44] You turn them into things in the
+[00:32:45] environment. And the benefit of the
+[00:32:47] environment is you're not overloading
+[00:32:49] your agent, right, in terms of rules, in
+[00:32:51] terms of things it has to remember. It's
+[00:32:53] just in the environment. And so it
+[00:32:56] stumbles into the rules and exactly um
+[00:32:57] you know bounces off them and hits them
+[00:32:59] at the right moment.
+[00:33:01] &gt;&gt; So okay, we still haven't talked about
+[00:33:03] the 2,500 PRs. Where do those come from?
+[00:33:06] Like how do you you've built your trust
+[00:33:07] ladder, you've worked on your
+[00:33:09] environment, and you understand, okay,
+[00:33:13] um I now want to scale up. So what are
+[00:33:16] the mechanics of that scaling? Are you
+[00:33:19] um initiating 2500
+[00:33:21] like chats per month? That can't be
+[00:33:23] right. So there must be are there any
+[00:33:26] kind of automated triggers that trigger
+[00:33:28] stuff in your repo? Like how do you get
+[00:33:30] the software factory kind of triggering
+[00:33:32] work by itself?
+[00:33:32] &gt;&gt; Right.
+[00:33:36] Um I'll definitely say that the
+[00:33:40] prerequisite to you know something like
+[00:33:43] a very high volume of of pull requests
+[00:33:46] um is the environment. you know, the the
+[00:33:48] stuff we just talked about where I
+[00:33:49] definitely would not have been able to
+[00:33:52] do this if I had not spent the time, you
+[00:33:53] know, thinking about the kitchen, right,
+[00:33:55] and the knives and the tools for my
+[00:33:58] Asians. And so, in a way, I I think of
+[00:34:00] this as
+[00:34:02] I've spent the time building one kitchen
+[00:34:05] and one restaurant. And now I I'm in a
+[00:34:07] position where I don't actually have to
+[00:34:10] be there anymore because the
+[00:34:11] environment, you know, that the same
+[00:34:14] analogy, right? It works really well.
+[00:34:15] [laughter] Yeah. You open chain of
+[00:34:16] restaurants, right? That's
+[00:34:19] &gt;&gt; Yeah. Exactly. Yeah. Exactly. It's like
+[00:34:21] you're Gordon Ramsay and you know, you
+[00:34:23] you've taught your executive chef like
+[00:34:25] all the tricks of the of coming up with
+[00:34:28] great menu. Uh and like the kitchen is
+[00:34:30] set up really well. Everything's just
+[00:34:32] perfect and you're now in a position
+[00:34:33] where you can open your second your
+[00:34:36] third restaurant. And [snorts]
+[00:34:38] I guess I I sort of see each project
+[00:34:41] that I work on, like each big chat is
+[00:34:43] sort of like a restaurant, right? and
+[00:34:45] and I'm I'm I have multiple of them
+[00:34:47] operating at the same time and I'm sort
+[00:34:50] of like helicoptering between them
+[00:34:52] sometimes some more than others
+[00:34:55] depending on how in the loop I am but
+[00:34:56] yeah definitely I think there's there
+[00:35:00] there are external triggers and context
+[00:35:05] that those projects don't have that
+[00:35:08] for a long time I was the proxy for that
+[00:35:10] so uh the best example I have is like
+[00:35:11] you know you have a project that's
+[00:35:13] working on a feature
+[00:35:15] uh or you're trying to fix a bug and
+[00:35:17] you're getting bug reports, but the bug
+[00:35:19] reports are going to things like Slack
+[00:35:24] or linear or X, right? And these are
+[00:35:26] external systems that aren't connected
+[00:35:28] to your inner loop. So, I like to talk
+[00:35:30] about this outer loop and the inner
+[00:35:30] loop.
+[00:35:33] Uh I don't know if I'm using the
+[00:35:35] definition correctly but to me my inner
+[00:35:38] loop is like basically my engineers my
+[00:35:41] agent engineers working on the code to
+[00:35:45] an building towards an intent or
+[00:35:48] snapshot of my intent right and the
+[00:35:49] thing about that is that the snapshot
+[00:35:52] can go stale right new information comes
+[00:35:54] to light that I then have to be the
+[00:35:57] proxy of and you know transfer that
+[00:35:59] context to my agent so you know if you
+[00:36:01] if you don't have these triggers pulling
+[00:36:04] information back into the interloop,
+[00:36:07] then you sort of have to play that role
+[00:36:09] where you're you're off, you know, in
+[00:36:12] Slack or X or or whatever and you're
+[00:36:14] gathering context, right? You're getting
+[00:36:16] context about bug reports, about feature
+[00:36:19] requests, about, you know, something
+[00:36:20] someone said about, you know, our
+[00:36:22] backend infrastructure has some
+[00:36:24] limitation, you know, all that
+[00:36:27] information, you have to f that across
+[00:36:29] to your agent. So that's where I think
+[00:36:32] like tools like Grogbot are really good
+[00:36:35] because they help you automate the outer
+[00:36:37] loop as well. And when you connect those
+[00:36:39] two loops, it's very very powerful
+[00:36:41] because now all of a sudden your agents
+[00:36:44] have the ability to get context for this
+[00:36:48] for themselves, right? If for example
+[00:36:51] uh you know either through just as a
+[00:36:52] simple example like maybe you have the
+[00:36:56] Slack MCP, right? Or you have uh your
+[00:36:58] own harness, right, that you've built a
+[00:37:00] Slack subscription into for a particular
+[00:37:03] Slack channel. Now all of a sudden you
+[00:37:05] can tell your agents, okay, subscribe to
+[00:37:08] the Slack channel. Every time there's a
+[00:37:11] uh, you know, bug report about
+[00:37:13] something, go off and triage that thing,
+[00:37:16] right? Go reproduce the issue, right?
+[00:37:17] Using the verification skills that we've
+[00:37:20] already spent time building and all of
+[00:37:22] those other skills that we've set up so
+[00:37:24] that I have a lot of trust, right? I
+[00:37:25] have a lot of trust that these agents
+[00:37:28] can actually go off and understand the
+[00:37:31] bug, you know, uh verify that the bug
+[00:37:33] actually still exists on main and it
+[00:37:34] wasn't
+[00:37:38] something about you maybe the users
+[00:37:40] setup or their data or maybe I don't
+[00:37:42] know they didn't install a dependency or
+[00:37:45] something like that like uh basically I
+[00:37:49] think uh creating that yeah creating
+[00:37:52] those two loops and connecting them is
+[00:37:53] really a very important part of the job
+[00:37:56] these days. Um, especially if you are
+[00:37:58] thinking about how to scale yourself.
+[00:38:01] So, a big theme here is really just like
+[00:38:04] always thinking about like what where am
+[00:38:07] I the bottleneck in this process? Why do
+[00:38:09] my agents need me, you know, to answer
+[00:38:11] this question? I I always like to think
+[00:38:13] about that. And so I try to think about
+[00:38:15] how do I actually get the agent to
+[00:38:17] answer its own question, right? But not
+[00:38:19] by hallucinating, not by guessing, but
+[00:38:22] actually real data. And you know, a lot
+[00:38:23] of people talk about this idea of a
+[00:38:25] company brain, right, or a context
+[00:38:27] graph. I feel like those terms are
+[00:38:27] unnecessarily
+[00:38:33] complex uh or even abstract. To me, it's
+[00:38:37] just about um how do I take information
+[00:38:39] that my agent needs that I would
+[00:38:42] otherwise have to go and pass it myself
+[00:38:44] and just teach it how to do it, right?
+[00:38:47] And that removes me from the equation.
+[00:38:50] And so how I arrive at 2,000 or however
+[00:38:53] many PRs is the fact that I have all
+[00:38:57] these loops set up, right? And so uh it
+[00:39:00] allows me to open chain restaurants,
+[00:39:02] right? I can I can really parallels
+[00:39:04] myself. So yeah, I'm not sitting there
+[00:39:06] creating 2,500 chats, right? Of course,
+[00:39:10] it's really like these projects are um
+[00:39:12] actually cursor has a new feature called
+[00:39:13] projects which are these like
+[00:39:17] coordinator agents. Um and so the
+[00:39:19] coordination co coordinator agents are
+[00:39:21] really good at sort of delegating and
+[00:39:23] not doing work of their own but they
+[00:39:25] manage and supervise like almost a list
+[00:39:27] of tasks and they spawn sub agents to go
+[00:39:30] and do them. And so I'm just constantly
+[00:39:32] feeding context or teaching the agents
+[00:39:33] how to get their own context and then
+[00:39:35] they're going off and doing the work for
+[00:39:38] me. Uh and really the big the last thing
+[00:39:40] I'll say to this is like the big unlock
+[00:39:43] for me for getting to 2,000 PRs is
+[00:39:45] starting from the question and working
+[00:39:48] backwards of how do I get to the point
+[00:39:51] where my agent can merge its own code?
+[00:39:51] Because
+[00:39:55] the obvious thing people ask me when
+[00:39:56] when they when I tell them, "Oh, I
+[00:39:59] shipped 2,000 and 2,500 pull requests
+[00:40:00] last month." They'll be like, "How did
+[00:40:02] you review that?" Right? That that's a
+[00:40:04] lot of PRs to review. Like your team
+[00:40:05] must hate you.
+[00:40:07] &gt;&gt; Do do you mind if we go there in a
+[00:40:09] second? Because a good question about
+[00:40:09] that.
+[00:40:10] &gt;&gt; Yeah. Yeah. Yeah.
+[00:40:12] &gt;&gt; I want to like this analogy is great. I
+[00:40:15] want to like deepen it a bit which is
+[00:40:17] before if you're like manually
+[00:40:18] initiating all those chats it's like
+[00:40:20] you're bringing the orders to your chefs
+[00:40:22] manually right whereas if you've got an
+[00:40:25] agent sort of like doing the expo then
+[00:40:26] you're able to sort of run it yourself
+[00:40:30] itself what is what does that concretely
+[00:40:31] look like then you've got these sort of
+[00:40:33] grock bots that are um subscribing to
+[00:40:35] channels pulling in Slack messages and
+[00:40:37] you it sounds like have a couple of
+[00:40:39] coordinator agents or like chief of
+[00:40:43] staff agents that like monitor that or
+[00:40:45] something like when you look at your
+[00:40:47] computer to manage your agents, what
+[00:40:49] does it look like?
+[00:40:52] &gt;&gt; Yeah. So, [clears throat] so uh this is
+[00:40:53] I guess somewhat confusing but we're
+[00:40:55] working on you know simplifying and
+[00:40:59] unifying but so uh there's graphbot uh
+[00:41:01] which or you know you can use other
+[00:41:03] tools of course as well but I I largely
+[00:41:05] think of these tools as like your outer
+[00:41:07] loop. These are tools like you know
+[00:41:09] Grabbot that have connectors right these
+[00:41:11] are connectors I guess they a lot of
+[00:41:14] people call them personal agents um but
+[00:41:15] they're connectors to things like your
+[00:41:20] email your calendar slack uh plaid I
+[00:41:21] don't know like all these different
+[00:41:24] services and they are a great source of
+[00:41:29] pulling context in to your work so the
+[00:41:31] same way that a human like you know if I
+[00:41:33] were if I was a manager and I was
+[00:41:37] leading a team of engineers years. Um,
+[00:41:38] you know, like when I used to work in
+[00:41:40] Netflix, one of the biggest things that
+[00:41:41] managers would talk about was this idea
+[00:41:45] of context not control, which funnily
+[00:41:48] enough, you know, has so much uh has so
+[00:41:51] much uh carry over to the agents world.
+[00:41:54] Uh, of you know, you you know, you you
+[00:41:56] of course can drive to an outcome you
+[00:41:58] want by control, right? Like by
+[00:42:00] micromanaging, but what you want is to
+[00:42:02] provide context instead, right? like
+[00:42:04] teach the agent, teach your engineers
+[00:42:06] how to be self-sufficient and then you
+[00:42:09] don't have to micromanage them.
+[00:42:11] &gt;&gt; Um, and so I see a lot of parallels
+[00:42:13] there. Uh, but yeah, graphbot. So,
+[00:42:16] concretely, I have some graph bots that
+[00:42:19] look at my Slack channels, look at my X,
+[00:42:23] uh, or my emails, uh, or linear, and
+[00:42:24] they're just constantly they have
+[00:42:26] routines that subscribe. So they're
+[00:42:29] constantly watching and I have I I'll
+[00:42:31] tell them things like you know uh I'll
+[00:42:34] watch for issues with uh bugs in the
+[00:42:37] graphbot desktop app as an example. Uh
+[00:42:40] and whenever you find that send it to my
+[00:42:42] cursor project. So one of the really
+[00:42:43] cool things about grabbot is it connects
+[00:42:47] to cursor. So cursor has uh like I I
+[00:42:49] just mentioned this new feature called
+[00:42:52] projects. And a project is really a uh
+[00:42:55] again like a you get a coordinator agent
+[00:42:57] that's in the cloud. It has its own
+[00:42:59] computer and all it really does is like
+[00:43:01] it's a manager of agents. It's like your
+[00:43:03] executive chef, right? Your your chief
+[00:43:06] of staff. It doesn't do the work itself.
+[00:43:08] It delegates and orchestrates and
+[00:43:12] manages the work of other sub agents to
+[00:43:15] you know that report to your chief your
+[00:43:20] chief uh of staff. And it basically is
+[00:43:22] responsible for driving the work forward
+[00:43:25] and managing things and uh passing
+[00:43:27] context to them.
+[00:43:28] &gt;&gt; So if you get a sudden burst of issues,
+[00:43:30] let's say you get 30 issues at once in
+[00:43:32] one payload or something or very quickly
+[00:43:34] the coordinator agent can figure it out
+[00:43:34] and delegate.
+[00:43:36] &gt;&gt; Yeah, exactly. It gets like uh you know
+[00:43:39] 30 the 30 or so payloads and spawns a
+[00:43:41] sub agent or a single coordinator agent.
+[00:43:42] It can actually do a bunch of different
+[00:43:45] topologies of agents and it will sort of
+[00:43:48] figure out the best way to uh you know
+[00:43:52] efficiently distribute the tasks to your
+[00:43:57] team of agents. Um so I use uh cursor
+[00:44:01] projects a lot um and I also use grapot
+[00:44:03] a lot and cursor projects are my inner
+[00:44:05] loop and grabbot is my outer loop.
+[00:44:08] Grabbot takes all the context, external
+[00:44:11] context, gives it to the projects
+[00:44:12] because it can actually just send
+[00:44:14] messages to those projects, right? You
+[00:44:16] don't even have to open cursor. You can
+[00:44:17] just tell your grabbot, okay, create a
+[00:44:20] project, right, for these series of
+[00:44:23] tasks. They're all related, right? Maybe
+[00:44:26] as an example, you know, you've had a uh
+[00:44:28] [clears throat] a big burst of issues
+[00:44:29] that are all about performance, right?
+[00:44:33] Your app is slow uh and they're all
+[00:44:34] connected, right? Maybe some of them
+[00:44:38] even have a similar fix, right? But and
+[00:44:39] you can certainly go off and just spawn
+[00:44:42] one agent per task, but then you've lost
+[00:44:45] that sort of thread between them, right?
+[00:44:47] And and you may duplicate work or you
+[00:44:48] may not really think about the higher
+[00:44:50] level problem. You know, sometimes when
+[00:44:52] you you you solve bugs, you know, it
+[00:44:54] helps to have multiple bug reports that
+[00:44:56] are are slightly different because it
+[00:44:58] helps you really, you know, zoom out and
+[00:44:59] see actually, you know, the problem when
+[00:45:01] I looked at this one report, I thought
+[00:45:03] the bug was here, but actually when when
+[00:45:05] I see the other multitude of bugs is
+[00:45:07] actually up here,
+[00:45:07] &gt;&gt; right?
+[00:45:09] &gt;&gt; Yeah. Got you. So that that's why you
+[00:45:10] have so many agents in that loop then,
+[00:45:13] right? Because it's not just you have um
+[00:45:15] like you have a bug report comes in, you
+[00:45:17] spawn a single agent to look at that bug
+[00:45:19] report. that a that single agent will be
+[00:45:21] duplicating work with other um other
+[00:45:23] agents, right? Because if there are
+[00:45:24] multiple bug reports coming in through
+[00:45:25] the same thing, that can be duplicated
+[00:45:25] work.
+[00:45:26] &gt;&gt; Yeah.
+[00:45:28] &gt;&gt; Fascinating. [snorts]
+[00:45:30] &gt;&gt; That's really fascinating. Okay. And so
+[00:45:32] this just this endless series of
+[00:45:34] triggers um coming from real users
+[00:45:38] reporting real reports um builds up this
+[00:45:40] sort of and accelerates the factory sort
+[00:45:43] of adds more orders in. Other than bug
+[00:45:44] reports, are there any other sources
+[00:45:48] that you use for like um accelerating
+[00:45:51] for pushing these PRs?
+[00:45:54] &gt;&gt; Uh well, funnily enough, it's some of it
+[00:45:57] comes from uh reading the code, too. So,
+[00:46:01] I guess I have sort of uh well, so to
+[00:46:03] clarify that, you know, the 2,500 PRs,
+[00:46:05] they're not obviously like 2,500
+[00:46:08] features, right? they are a lot of the
+[00:46:12] work actually is spent on gardening like
+[00:46:15] another term that I really love. Uh
+[00:46:15] where
+[00:46:19] so I guess this is more important when
+[00:46:21] you have a big team of engineers human
+[00:46:25] engineers that you work with where and
+[00:46:26] also this goes back a little bit to what
+[00:46:27] I was talking about with the
+[00:46:28] environment. You know, setting up a
+[00:46:29] really good environment that doesn't
+[00:46:31] just help you and your agents, but
+[00:46:33] everybody on your team, right? Think of
+[00:46:34] a new hire who doesn't have a lot of
+[00:46:36] context on all of your engineering
+[00:46:39] practices joining your your team. And if
+[00:46:41] you have a really good environment, they
+[00:46:43] can be productive from day one, right?
+[00:46:44] They can they don't have to like, you
+[00:46:46] know, make open a bunch of lowquality
+[00:46:49] PRs. They can start, you know, they can
+[00:46:52] start just turning out really good code.
+[00:46:52] Um,
+[00:46:57] and uh, yeah, I think I I sort of lost
+[00:46:58] my train of thought.
+[00:47:00] &gt;&gt; I've got a I've got a followup, which is
+[00:47:02] what's what are the mechanics of like
+[00:47:02] triggering
+[00:47:06] &gt;&gt; like how when when do you trigger a a
+[00:47:06] agent
+[00:47:10] to go and look at the code, right?
+[00:47:11] Because some people might say, "Oh,
+[00:47:13] let's just do that every hour or
+[00:47:15] something or like on a chron job or
+[00:47:15] what's
+[00:47:19] &gt;&gt; Oh, yeah. Yeah. Yeah. Yeah. Uh I saw
+[00:47:20] some of your recent tweets as well about
+[00:47:21] like you know the some of the tweets
+[00:47:24] you've been doing which are great for
+[00:47:27] setting up your routines. Uh I have some
+[00:47:32] routines like that as well. Um so uh one
+[00:47:35] of them is uh
+[00:47:38] like looking through just another simple
+[00:47:40] example is you know [clears throat]
+[00:47:43] React has a lot of foot guns. Um, so,
+[00:47:45] uh, as as I'm sure you're aware. And so
+[00:47:47] I have an agent that's just constantly
+[00:47:50] looking for band patterns. And the
+[00:47:52] interesting thing about that one is that
+[00:47:53] I don't actually tell it to fix the
+[00:47:55] issue first. I tell it to append it to a
+[00:47:58] document. And then every couple of days
+[00:48:00] I look at it and I see actually these
+[00:48:02] are all the same thing, you know, and so
+[00:48:04] that gives me, you know, you almost want
+[00:48:07] like a buffer, a queue. Sometimes that's
+[00:48:09] actually more effective than just
+[00:48:10] spawning off a couple of like a lot of
+[00:48:13] sub agents to fix every single thing
+[00:48:15] because when you are [clears throat] in
+[00:48:17] kind of pure execution mode and just
+[00:48:20] trying to like you know f uh you know
+[00:48:21] execute on the orders that are coming in
+[00:48:23] very fast you sometimes miss the big
+[00:48:26] picture. So sometimes having a buffer
+[00:48:28] forces you to think about the big
+[00:48:31] picture because you you you have these
+[00:48:33] artifacts and things that you can look
+[00:48:36] at as a human um and sort of use your
+[00:48:39] own human judgment to or I guess you can
+[00:48:41] use an agent to do that as well. But you
+[00:48:42] give the [clears throat] agent and
+[00:48:46] yourself a way to identify patterns,
+[00:48:47] right, that you might otherwise miss if
+[00:48:51] you're just only solving each bug at a
+[00:48:53] time. And that's also really the benefit
+[00:48:54] of having something like a chief of
+[00:48:59] staff agent is uh it can see the forest
+[00:49:02] right uh in addition to actually doing
+[00:49:04] the execution.
+[00:49:07] &gt;&gt; Fascinating. That's I mean my brain is
+[00:49:08] exploding a bit there with the sort of
+[00:49:10] chief of staff at the software factory.
+[00:49:12] I might have to change some of the
+[00:49:13] course that I'm filming next week.
+[00:49:15] That's [laughter]
+[00:49:16] &gt;&gt; uh all right. Let's talk about let's
+[00:49:18] talk about review, right? because this
+[00:49:20] is the reply that you get, you know, is
+[00:49:24] &gt;&gt; did you read did you taste all 2500 of
+[00:49:27] those dishes as they swept past you?
+[00:49:30] &gt;&gt; And I assume the answer is a variety is
+[00:49:34] a version of no.
+[00:49:36] &gt;&gt; Yeah, I think you you you don't want to
+[00:49:37] be in a position where you're not
+[00:49:40] tasting your food ever again. Uh but you
+[00:49:42] also, you know, for scale, you cannot be
+[00:49:44] tasting every single dish that comes out
+[00:49:46] of your kitchen, especially if you have
+[00:49:48] multiple restaurants. So it becomes more
+[00:49:50] about sampling right and thinking about
+[00:49:53] the processes in the same way that you
+[00:49:55] know if I guess maybe this is where the
+[00:49:58] the the factory analogy is a bit more
+[00:50:01] apt is you know as a quality supervisor
+[00:50:04] on a factory you you can't look at every
+[00:50:06] single item you sample right you take
+[00:50:09] you you you go in there every day and
+[00:50:11] you look at the quality of the pull
+[00:50:12] requests you look at the code that the
+[00:50:16] agents are writing and you scrutinize it
+[00:50:19] very rig rigorously and you think about
+[00:50:21] all the inefficiencies, the bad patterns
+[00:50:23] that the agents are doing and then you
+[00:50:26] think about how to course correct the
+[00:50:28] environment, right? Not not that single
+[00:50:33] agent. Uh because if maybe if it if it
+[00:50:35] was a one-off incident, it's fine. You
+[00:50:36] know that maybe there's nothing to fix
+[00:50:39] there. But if you actually notice that
+[00:50:41] multiple agents are are having the same
+[00:50:43] issue, right? They're taking the same
+[00:50:45] shortcut. they're they're propagating
+[00:50:48] the same workaround everywhere. Uh
+[00:50:50] that's a sign that you should go off and
+[00:50:53] think about how to uh amend your kitchen
+[00:50:55] or your factory, right? Like thinking
+[00:50:57] about your skills, your constraints,
+[00:51:02] your lints, your type systems um and
+[00:51:04] setting or adjusting it so that that
+[00:51:06] problem doesn't happen again. And when
+[00:51:08] you do that enough times, then you get
+[00:51:10] to a place where the codebase is again
+[00:51:13] like the environment is so constrained
+[00:51:16] and so it guides you so well that you
+[00:51:19] can just you can just step away, right?
+[00:51:20] That's the dream. And I'll I'll
+[00:51:23] definitely say it um it's very hard to
+[00:51:25] get to this point. I don't want to sell
+[00:51:27] this as like, you know, something that
+[00:51:30] you can just do easily by using PAC.
+[00:51:32] Like it takes a lot of time and effort
+[00:51:35] to think about your code and where you
+[00:51:38] see your agents failing and thinking
+[00:51:40] very thoughtfully, intentionally and
+[00:51:43] setting up guard rails and constraints
+[00:51:45] so that they do the right thing by
+[00:51:45] default.
+[00:51:49] &gt;&gt; And you're not [clears throat] like if
+[00:51:51] to go back to the software factory
+[00:51:53] analogy, this isn't a dark factory,
+[00:51:55] right? This the lights are on, right?
+[00:51:56] &gt;&gt; It kind of is. Yeah, actually.
+[00:51:57] &gt;&gt; Is it?
+[00:51:59] &gt;&gt; Yeah. Well, it's dark in the sense that
+[00:52:02] so um it's dark in the sense that well I
+[00:52:04] think if my agents are merging their own
+[00:52:07] pull requests it's sort of become dark
+[00:52:09] where I go to sleep my agents now work
+[00:52:09] 24/7
+[00:52:14] uh I have I have the equivalent of like
+[00:52:16] more than 10 chiefs of staff right each
+[00:52:18] working on a different area like for
+[00:52:20] example I have one that's working on
+[00:52:23] performance of the Grockbot desktop app
+[00:52:25] I have one that's working on uh fixing
+[00:52:28] bugs that users report I have one that's
+[00:52:31] exploring rewriting it in a different
+[00:52:32] language just for fun, you know, like
+[00:52:34] what if what if, you know, just
+[00:52:35] reimagining what what it would be if it
+[00:52:38] was like a native app. It's just a toy.
+[00:52:41] Um, but the idea is like yeah, I uh I
+[00:52:43] when you spend the time setting up your
+[00:52:45] environment, I've gotten to a point
+[00:52:47] where I review the pull request after
+[00:52:50] it's landed, right? I I tell my agents
+[00:52:52] full autopilot is is something that you
+[00:52:56] can do in in PAC and that will trigger
+[00:52:58] off this very intense rigorous
+[00:53:00] verification loop where it will spawn a
+[00:53:03] bunch of verifier agents for every pull
+[00:53:06] request and it will fuzz right fuzzing
+[00:53:07] meaning that it will actually run the
+[00:53:09] application. It's going to click around
+[00:53:11] and try to use it like a real human.
+[00:53:13] look for regressions, look for bugs in
+[00:53:17] your implementation and um it will try
+[00:53:19] to find issues with the thing and then
+[00:53:21] it will fix it itself. It'll do that
+[00:53:24] again and eventually get the PR to a
+[00:53:26] state where it can land.
+[00:53:29] Uh so it does it does it is quite token
+[00:53:32] intensive. You can tune this of course.
+[00:53:34] Uh so you know instead of like 10
+[00:53:37] verifier agents you might do like one,
+[00:53:39] right? Or you just tell the agent to
+[00:53:41] verify it's done work. But yeah, the key
+[00:53:44] thing is the verification part is really
+[00:53:46] the key piece that gives me a lot of
+[00:53:46] confidence
+[00:53:49] that I guess verification plus the
+[00:53:51] environment, right? It's these the
+[00:53:52] combination of these two things that
+[00:53:54] allow me to step away and say agents go
+[00:53:56] off and merge your thing. I'll review it
+[00:53:58] in the morning by looking at my commit
+[00:53:58] history
+[00:54:02] &gt;&gt; and if I see problems, I go and course
+[00:54:02] correct,
+[00:54:06] &gt;&gt; right? And I'll go and revert or modify,
+[00:54:10] add new link rules and whatever. Um, so
+[00:54:11] it does it does take time to get to that
+[00:54:14] point, but once you get it, oh, it's so
+[00:54:17] it feels so magical. Uh, I I I tell
+[00:54:19] people like I'm sleeping so much better
+[00:54:22] now because, you know, it took it the
+[00:54:24] very first day I turned on the sort of
+[00:54:26] dark factory was very scary because I
+[00:54:28] was like, "Ooh, what if I call the SE,
+[00:54:29] right? What if I break something
+[00:54:29] overnight?"
+[00:54:34] &gt;&gt; Uh, and it took a lot of it took a lot
+[00:54:37] of uh bravery, I think, to do that, but
+[00:54:39] &gt;&gt; somehow I did it. And yeah, now I'm in a
+[00:54:42] place where my Asians are are merging
+[00:54:43] their own code while I sleep.
+[00:54:44] &gt;&gt; It sounds like
+[00:54:46] &gt;&gt; I think it's dark in that sense.
+[00:54:48] &gt;&gt; Yes, it's dark sometimes, right? You do
+[00:54:48] sometimes.
+[00:54:49] &gt;&gt; That's true. That's true.
+[00:54:51] &gt;&gt; Because I think of a dark factory is
+[00:54:53] like almost like if you take the
+[00:54:55] original definition of Kapathy's vibe
+[00:54:57] coding, right, which is the code almost
+[00:54:59] doesn't exist. You forget that code
+[00:55:01] might be a thing. I think your approach
+[00:55:03] is totally different from that, which is
+[00:55:06] that code and the environment is
+[00:55:07] essential. And if the code in the
+[00:55:09] environment are bad, then you will get
+[00:55:12] bad outputs. Garbage in, garbage out. So
+[00:55:15] I I I think this is a this is a
+[00:55:18] different thing. It's like, you know,
+[00:55:20] the I don't know, maybe there's a dimmer
+[00:55:21] switch or something, right? Like, you
+[00:55:23] know, some parts of dark, some parts
+[00:55:24] were light. This is why the maybe the
+[00:55:27] the kitchen is a better analogy
+[00:55:29] &gt;&gt; the restaurant because you know even as
+[00:55:32] a as a as a
+[00:55:33] as a [clears throat] restaurant
+[00:55:36] restaurant you still might go to your
+[00:55:37] restaurants every now and then to take
+[00:55:40] take a peek in taste the food right
+[00:55:41] &gt;&gt; uh I think that's
+[00:55:42] &gt;&gt; the idea of sampling instead of blocking
+[00:55:44] I think is really important
+[00:55:46] &gt;&gt; I think what would you say to people who
+[00:55:49] are in I guess you're obviously in a
+[00:55:50] pretty security conscious environment
+[00:55:52] where you're working very security
+[00:55:52] conscious
+[00:55:56] &gt;&gt; mh [clears throat] Um maybe there are
+[00:55:58] folks working in like um medical
+[00:56:01] applications or law or finance or
+[00:56:04] something. I think of the like some PRs
+[00:56:06] are kind of like two-way doors which is
+[00:56:08] you can merge it and then revert it,
+[00:56:10] right? It's cheap back through. But
+[00:56:11] there are some PRs that are one-way
+[00:56:13] doors, right? That will cause data loss
+[00:56:16] of some kind that will
+[00:56:18] &gt;&gt; do something that can't be easily walked
+[00:56:21] back. How do you deal with situations
+[00:56:23] where most of your PRs, let's say, are
+[00:56:25] one-way doors? Like, is this something
+[00:56:27] you just wouldn't recommend or like what
+[00:56:28] do you think?
+[00:56:30] &gt;&gt; Yeah, I think that's a really good
+[00:56:32] question. I think that
+[00:56:34] it all comes back to me to the quality
+[00:56:37] of the verification that you're able to
+[00:56:41] um get out of your agent. And I think
+[00:56:44] for domains where the work is
+[00:56:44] verifiable,
+[00:56:48] this is easier, right? and the the
+[00:56:51] oneway doors become two-way doors in a
+[00:56:51] sense.
+[00:56:54] But I guess I don't know if you're
+[00:56:56] working on something that is like
+[00:56:56] extremely
+[00:57:00] is very hard to verify programmatically
+[00:57:02] then I think yeah you're definitely in a
+[00:57:04] position where it's very hard to get to
+[00:57:07] that point. Um so I do think like yeah
+[00:57:10] verifiability of the domain is an
+[00:57:13] important aspect to be able to do this.
+[00:57:15] Um and software engineering is just one
+[00:57:16] of those things where it's quite
+[00:57:19] verifiable in in a lot of cases maybe
+[00:57:22] not totally um you know like other
+[00:57:24] domains like mathematics I think are
+[00:57:26] another example of not all of it of
+[00:57:30] course but some aspects of mathematics
+[00:57:32] can be verifiable
+[00:57:35] if you write a proof for example um and
+[00:57:38] so yeah I think it's a great question
+[00:57:40] that I don't really have the answer to
+[00:57:41] and I think that this is something the
+[00:57:43] industry and us as engineers will have
+[00:57:48] to figure out is you know my sort of uh
+[00:57:49] hope and prediction for the future is
+[00:57:52] that we'll see more and more interesting
+[00:57:56] new agentoriented programming languages
+[00:57:57] and one of the most fascinating ones
+[00:57:59] that I've seen so far is this one called
+[00:58:04] bend bend d bend um and that language is
+[00:58:08] one where it kind of marries programming
+[00:58:12] with proofs right there used to be a
+[00:58:14] time, you know, where you actually had
+[00:58:16] to write your proofs in a different
+[00:58:18] language. And proofs, by the way, for
+[00:58:20] those uh who who aren't familiar is this
+[00:58:24] idea of uh that you can sort of formally
+[00:58:26] verify that some code is correct
+[00:58:29] mathematically, right? Especially if
+[00:58:31] you've written your code in a very
+[00:58:34] functional programming way.
+[00:58:36] uh but for the longest time you had to
+[00:58:38] do that in a separate language like lean
+[00:58:42] or tla+ or uh I'm blanking on some of
+[00:58:45] the other other examples but uh like
+[00:58:46] languages like that where you would
+[00:58:48] construct the mathematical proof and
+[00:58:51] then use a solver essentially to det
+[00:58:54] that that you've covered all the cases
+[00:58:56] you don't have like a race condition or
+[00:58:58] or whatever.
+[00:59:02] So yeah, I think
+[00:59:03] trying to sum up the question, I think
+[00:59:05] yeah, if you are in a position where you
+[00:59:07] can figure out how your agents can truly
+[00:59:10] verify the work in a way that gives you
+[00:59:13] confidence, you can actually, you know,
+[00:59:16] uh have the PRs merge cuz if it
+[00:59:18] compiles, right, if it if the proofs
+[00:59:21] show you that it's correct, then why
+[00:59:24] wouldn't you just merge it? Um but of
+[00:59:26] course, yeah, not all the means are
+[00:59:31] verifiable. Yeah, it's a tough one. Um,
+[00:59:34] okay. I think we've got to think about
+[00:59:35] wrapping up because we are nearly on the
+[00:59:36] hour. Have you Have you got something
+[00:59:38] after this? I mean, I've got something
+[00:59:40] before I give my son dinner, but
+[00:59:42] &gt;&gt; I I can go a bit longer after you.
+[00:59:43] &gt;&gt; Okay, let's let's go five minutes longer
+[00:59:46] then. Um I think I just want to have one
+[00:59:49] more question which is
+[00:59:55] I think I want to ask how you see Pstack
+[00:59:57] and how you see skills in general like
+[01:00:00] in terms of we talked about this before
+[01:00:02] we went on air which is like people
+[01:00:05] think of as like my skills versus your
+[01:00:08] skills and how do you combine frameworks
+[01:00:11] together? How do you use Pstack with my
+[01:00:13] stuff? like what should you take from
+[01:00:16] each one and because I think I see
+[01:00:19] skills as sort of just derived from
+[01:00:21] process basically like they're just
+[01:00:25] processes turned into words and I would
+[01:00:27] love to know
+[01:00:29] how you recommend people take Pstack and
+[01:00:31] take my stuff as well and turn it into
+[01:00:36] I think you shared a tip actually today
+[01:00:38] that I thought was actually very
+[01:00:40] relevant, which is this idea that you go
+[01:00:41] off and look at your previous
+[01:00:44] transcripts, right? And you sort of mine
+[01:00:48] for information of, you know, your own
+[01:00:50] look through your own your own prompts,
+[01:00:51] right, to the agents where you correct
+[01:00:53] them where you have to constantly
+[01:00:57] intervene and uh you know take that
+[01:00:59] higher level learning and turn that into
+[01:01:00] a a reusable skill, right? So that
+[01:01:04] agents stop repeating that mistake. I
+[01:01:08] think that uh PAC and your skills are
+[01:01:10] very complimementaryary. I I totally
+[01:01:12] agree with you that they're like a skill
+[01:01:13] is really much just process. I mean it's
+[01:01:15] just at the end of the day a skill is
+[01:01:18] just English or or language. It's just
+[01:01:18] markdown.
+[01:01:21] &gt;&gt; Um and I think you can you can
+[01:01:24] definitely weave them, combine them in a
+[01:01:27] way that makes sense to you. But I do
+[01:01:30] think that uh everyone should have their
+[01:01:33] own set of knives, right?
+[01:01:35] I I keep going back to the the the
+[01:01:37] cooking analogy, but it's so apt because
+[01:01:39] like, you know, every chef when they go
+[01:01:41] to a different job, right, when they go
+[01:01:42] to a different restaurant, they carry
+[01:01:44] they bring their knives with them. The
+[01:01:46] tools go with them, right? And so trust
+[01:01:48] to me is really about trust in your own
+[01:01:51] tools. And when you spend the time
+[01:01:52] sharpening them and understanding them
+[01:01:54] really, really well, you can do great
+[01:01:56] things. And everybody's skills and tool
+[01:01:58] set is going to look different. you
+[01:02:00] know, someone might find a lot of
+[01:02:03] success combining, you know, like your
+[01:02:05] grill me with docs, uh, or wayfinder
+[01:02:07] skill with some of the execution skills
+[01:02:10] in Pstack as an example. Some people
+[01:02:11] might use more of your skills, some
+[01:02:13] people might use more of my skills. I
+[01:02:15] think at the end end of the day, it
+[01:02:17] really just comes back to how much do
+[01:02:19] you trust, you know, me and Matt, right?
+[01:02:21] Like if you if you trust us both, of
+[01:02:23] course, use our skills, but I also
+[01:02:25] encourage you to, you know, look at your
+[01:02:29] own transcripts. Um um tell the agent to
+[01:02:31] look through, you know, some of the all
+[01:02:33] of the patterns that you've used, the
+[01:02:36] the times you've had to intervene, you
+[01:02:38] know, suggest turning them into lint
+[01:02:41] rules or new skills, right? The the past
+[01:02:44] chats I I often say is like a a treasure
+[01:02:46] trove of context because that, you know,
+[01:02:51] it's it's like the process materialized,
+[01:02:53] right? Like it's the real process. It's
+[01:02:55] not an abstract idea in your head. it's
+[01:02:57] the actual thing right and you can
+[01:02:59] actually see how it happened in practice
+[01:03:01] and extract so much information from
+[01:03:02] that and there's so much so that I
+[01:03:04] actually turn I have a skill in pac
+[01:03:07] called recall which is exactly that um
+[01:03:10] where this was a pattern where
+[01:03:12] you know I was working in I was working
+[01:03:14] on a similar problem so specifically I
+[01:03:17] was working on virtualization for the
+[01:03:18] cursor application and there were a lot
+[01:03:21] of bugs and so you know every time I
+[01:03:22] started a new chat I was like ah this
+[01:03:24] there's so much good context from the
+[01:03:25] last one So, you know, I want to bring
+[01:03:27] it over to the new chat. How do I do
+[01:03:29] that? And that's where the transcript
+[01:03:31] came, uh, you know, looking at the past
+[01:03:33] transcript came about. And then recall
+[01:03:35] was just a way for me to collapse
+[01:03:37] collapse and compress that workflow into
+[01:03:39] a skill. So that I didn't have to just
+[01:03:42] say I didn't have to write a long essay
+[01:03:43] every time. Go look at all these chats,
+[01:03:45] right? And, you know, blah blah blah.
+[01:03:47] So, I I largely think of skills,
+[01:03:50] especially as agents get more capable as
+[01:03:52] really encoding workflows. you know
+[01:03:54] skills from last year were really more
+[01:03:56] about like almost like implementation
+[01:03:59] details like here are the exact script
+[01:04:02] commands you know you should use right I
+[01:04:04] think with the latest models you can
+[01:04:06] just delete those parts and just really
+[01:04:09] focus on the workflow right until it
+[01:04:11] it's more the skill becomes more like a
+[01:04:13] series of steps
+[01:04:16] a series of your process uh and I think
+[01:04:18] over time we'll see that skills get
+[01:04:20] smaller and smaller you know more
+[01:04:24] compact Um, and yeah, they're very
+[01:04:26] compatible. Or you can, you know, if you
+[01:04:29] want, why not read our skills, right,
+[01:04:31] and com and combine them in your of your
+[01:04:34] own, right? Combine Wfinder with potato
+[01:04:35] mode and make your own custom mode,
+[01:04:38] right? Like like skills are the the
+[01:04:40] thing I love about skills that is are
+[01:04:42] that they're so malleable. You can do
+[01:04:44] anything you want. It's just language.
+[01:04:46] &gt;&gt; Absolutely. There's nothing magical in
+[01:04:48] them, right? They're just words. And
+[01:04:49] &gt;&gt; Exactly. If if there is any magic in
+[01:04:52] them, it's just the words chosen and the
+[01:04:55] phrases used and the thinking that's
+[01:04:59] been done to turn those like take
+[01:05:01] abstract process and turn them into
+[01:05:04] language. And once that thinking has
+[01:05:05] been done, then it's just there. It's
+[01:05:06] available. It's on the surface and you
+[01:05:10] just nick it. Um Lauren, thank you so
+[01:05:11] much. This has been glorious.
+[01:05:14] &gt;&gt; Yeah, this has been super fun. I really
+[01:05:16] enjoyed talking to you. Hope we can do
+[01:05:19] it again. I'd love to do it again. I'd
+[01:05:20] love to do it again. Absolutely. Um
+[01:05:22] yeah, we'll check in in uh
+[01:05:25] &gt;&gt; I don't know. Yeah, Monday. Let's do it.
+[01:05:28] &gt;&gt; Yeah, [laughter] let's do it. Part two.
+[01:05:29] &gt;&gt; Well, thank you so much. I'm going to
+[01:05:31] close the stream here. Laura and I will
+[01:05:33] uh chat a little bit and stay here. But
+[01:05:34] thank you guys so much for watching. The
+[01:05:34] glorious.
