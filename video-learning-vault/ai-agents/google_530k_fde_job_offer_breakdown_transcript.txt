@@ -1,0 +1,405 @@
+[00:00] I just got a $530,000 job offer from
+[00:02] Google. [music] No, this is not a
+[00:04] traditional software engineer role, nor
+[00:06] is it a PhD level AI research role. And
+[00:09] this role, most developers [music] have
+[00:11] never heard about it before. It's called
+[00:13] forward deploy engineer. And companies
+[00:15] like Palantir, Google, [music]
+[00:16] Anthropic, and OpenAI are all fighting
+[00:19] to hire them. And this role here pays
+[00:21] anywhere from $100,000 all the way to $1
+[00:25] million per year. Just [music] for quick
+[00:26] context, my name is Eric and I have 7
+[00:28] years as a senior software engineer
+[00:30] working at companies like Amazon and
+[00:31] Microsoft. And after interviewing dozens
+[00:33] of these forward deploy engineer roles,
+[00:35] I have finally landed my senior L5 at
+[00:38] Google at $530,000 for [music] the total
+[00:41] compensation. So, that's why in this
+[00:42] video I'm going to break it down exactly
+[00:44] what this role is, why it's high demand
+[00:46] right now, as well as what are the
+[00:47] requirements, and how you can actually
+[00:49] be able to get one. And if you stick to
+[00:50] the end of this video, I'm going to
+[00:52] share with you exactly why I didn't
+[00:53] [music] choose to go with that offer.
+[00:55] But, more over that on later. So, with
+[00:56] that being said, if you're interested,
+[00:58] let's get into the video. All right, so
+[00:59] let's talk about what is forward deploy
+[01:01] engineer, short for FTE. What is
+[01:02] [clears throat] it? Well, forward deploy
+[01:04] engineer is actually created by
+[01:05] Palantir. And Palantir, for those who
+[01:07] don't know, is actually a company built
+[01:09] data and AI platform for business and
+[01:12] governments. [music]
+[01:13] And clients who actually work with
+[01:15] Palantir's need someone to actually
+[01:17] plugs the Palantir systems [music]
+[01:19] in their business operations. And that's
+[01:21] exactly where the term forward deploy
+[01:23] come from, is to actually be out in the
+[01:25] field, not in their headquarter, right?
+[01:27] Not in the Palantir headquarter, but
+[01:28] actually in the clients' companies to
+[01:31] actually help them to solve their
+[01:32] problems. And you can think of this role
+[01:34] here as a technical expert [music] who
+[01:36] connects AI to business operations, and
+[01:40] that's basically the goal. So, basically
+[01:41] integrate AI into real business
+[01:43] operations, and that's why we have this
+[01:45] role called forward deploy engineers.
+[01:47] Now, you may be wondering, why can't
+[01:49] they just train their own people to
+[01:50] learn about AI and integrate that in
+[01:52] their business? Well, that comes down to
+[01:54] one single answer. It's called trust.
+[01:56] Let's say if you're looking to learn how
+[01:58] to ride a bike. Well, you won't learn
+[02:00] from someone who never ride a bike
+[02:01] before. You want to learn from someone
+[02:02] who done it before and probably done it
+[02:05] in many times. And that's exactly why
+[02:07] they need someone who have experts in
+[02:10] this field, right? Someone who have done
+[02:11] it many times. But the problem here is
+[02:13] that big tech companies have a lot of
+[02:15] specialized roles like software
+[02:17] engineers who are specialized in writing
+[02:19] code, AI engineers who are focusing on
+[02:21] building better models. We have
+[02:23] infrastructure people focusing on devops
+[02:25] or infrastructures building. We also
+[02:27] have people who are consulting like
+[02:29] solution architects who are consulting
+[02:31] for businesses. These are many
+[02:33] specialized roles. But this role here is
+[02:35] really hard to find because it needs
+[02:37] someone who have combinations of all
+[02:39] these skill sectors like software
+[02:41] engineering, AI, infrastructures, and
+[02:44] consulting all together. So that's why
+[02:46] we have a huge demand and small portion
+[02:48] of candidates in the markets. And the
+[02:49] reason why it's getting so popular
+[02:51] nowadays for this role is that AI models
+[02:53] are really good, right? frontier models
+[02:56] like Opus open 5 or GB6 Astra just came
+[02:59] out and those are really good models.
+[03:01] But the problem here isn't about the
+[03:03] models anymore. It's about how we can
+[03:04] actually using these models to put in a
+[03:06] real operations. Now, according to a
+[03:08] recent study from MIT in 2025, about 95%
+[03:13] of companies fail to see a real return
+[03:15] using AI. So they need someone who can
+[03:18] actually go to make it work. And also AI
+[03:20] companies only make money when customers
+[03:22] actually know how to use them. So that's
+[03:24] why companies like OpenAI, Anthropic,
+[03:26] and AWS actually sends out their
+[03:28] engineers to become forward deploy
+[03:30] engineers to these clients and helping
+[03:32] to integrate their models to real
+[03:33] business use case.
+[03:34] >> [music]
+[03:35] >> And we can see that based on this data
+[03:36] right here, forward deploy engineer job
+[03:38] posts are over 1,000% this year. So we
+[03:41] have a huge demand but only a few
+[03:43] candidates because only a few people
+[03:45] here have all four skills. All right, so
+[03:47] now we know exactly why it's so popular
+[03:49] and why this role exists. Let's take a
+[03:51] look at what are the skill that it needs
+[03:53] for this role. So, this role here it
+[03:55] actually break down into four sections,
+[03:57] right? So, software engineer skills, AI
+[03:59] integration skills, infrastructure
+[04:01] skills, and communications and
+[04:03] consulting skills. Now, let's start with
+[04:06] software engineer skills. Now, if you're
+[04:07] existing software engineers, I think
+[04:09] this will be really really easy. All you
+[04:11] need to do here is brush up on algorithm
+[04:13] and data structures and know a few
+[04:15] things about system designs and you're
+[04:16] pretty much good to go. But, if you're
+[04:18] new to coding and you want to start from
+[04:20] something from scratch, then my
+[04:21] recommendation is pick a language.
+[04:23] [music] Maybe it could be JavaScript or
+[04:25] Java, Python, just the most popular
+[04:27] languages and start learning about
+[04:29] algorithm and data structures. Now, I do
+[04:31] have a full channel here talks about
+[04:32] algorithm data structures. If you're
+[04:34] interested, you can check out this
+[04:35] channel right here. But, essentially, if
+[04:37] you're aiming for big tech companies
+[04:38] like Google, Amazon, Microsoft, then
+[04:41] highly recommend after you learn about
+[04:42] algorithm data structures, practicing
+[04:44] with LeetCode is going to be really
+[04:46] really helpful. And you also need to
+[04:48] have experience with debugging. So, they
+[04:50] will hand you a broken code and your
+[04:51] goal here is to finding the bug and be
+[04:53] able to fix [music] it. Things like
+[04:55] exception handling, be able to handling
+[04:56] errors, be able to actually check for
+[04:58] real valid schemas, right? Be able to do
+[05:01] object-oriented designs. Those are
+[05:02] things that interviewer here are looking
+[05:04] for for these software engineering
+[05:06] skills. And furthermore, if you're
+[05:07] aiming for senior level and above,
+[05:09] you'll probably want to brush up on your
+[05:11] system designs, maybe based on your past
+[05:13] experience and system design books. And
+[05:15] the next section we have here is AI
+[05:17] integrations. This is really important
+[05:18] because this is the core of this job.
+[05:21] It's to integrate AI into real business
+[05:23] use case. [music] So, they're looking
+[05:24] for things like do you know how to
+[05:26] building rack system like knowledge
+[05:28] base, MCPs, or CLI tools, how you can be
+[05:30] able to actually connect AI with a real
+[05:32] tool calls, skills and workflows, that
+[05:34] how you can be able to harness the agent
+[05:36] here to get a predictable outcomes. And
+[05:38] even things like agentic loops, setting
+[05:40] up evals for model performance,
+[05:42] guardrails, cost optimizations, and so
+[05:45] much more. And those are the that I talk
+[05:47] about on this channel right here. So, if
+[05:48] you're interested for that, you can also
+[05:50] check out more videos on this channel.
+[05:52] And the third section here we have is
+[05:54] infra [music] structures. The things
+[05:55] like how you can deploy your system in
+[05:57] the cloud. So, learning about AWS and
+[05:59] Google Cloud, as well as how you can
+[06:01] scale and maintain a system are also
+[06:03] really useful. And that's the infra
+[06:05] structure parts. And finally, we have
+[06:07] the consulting. So, things like
+[06:08] understand client's problem, properly
+[06:10] scope out the projects, and be able to
+[06:12] show better communications, those are
+[06:14] skill sets that you're looking for for
+[06:15] the consulting parts. So, pretty much
+[06:17] these are skill sets and requirements
+[06:19] for how you can actually get into the
+[06:21] forward deployed engineer roles.
+[06:22] >> All right. So, before we jump into the
+[06:24] next part, forward deployed engineering
+[06:25] is really two jobs in one, and almost
+[06:28] nobody has both. And watching a video
+[06:31] isn't how you close it. You keep about
+[06:33] 20% of what you only watch. Write the
+[06:35] code yourself and it jumps to 75 to 90.
+[06:38] So, that's why I partnered with DataCamp
+[06:40] here. It's a website where you learn to
+[06:42] code and learn to build with AI. And
+[06:44] their two tracks map onto exactly those
+[06:46] two halves. I've used it for years. The
+[06:49] engineering half is Python for software
+[06:51] engineering, 32 hours, eight courses.
+[06:53] Object-oriented programming, data
+[06:55] structures and algorithms, efficient
+[06:57] code, testing. [music] The stuff that
+[06:58] separates writing a script from being an
+[07:00] engineer. The AI half is associate AI
+[07:03] engineer for developers, 29 hours across
+[07:06] 10 courses. And it assumes you already
+[07:08] know how to code. LangChain, Pinecone,
+[07:11] NCP, LLM Ops, building real
+[07:13] applications. And when you finish,
+[07:15] there's the AI engineer for developers
+[07:17] associate certification, a 4-hour
+[07:19] practical where you build a real AI
+[07:21] application. That goes straight on your
+[07:23] LinkedIn, and for a job about shipping
+[07:25] AI, that carries weight. It all runs in
+[07:28] the browser, so no 3 hours setting up
+[07:30] Python. A short lesson, 3 to 5 minutes,
+[07:32] then you're writing real code.
+[07:34] >> [music]
+[07:34] >> And when you're stuck, the AI helper
+[07:36] gives you a hint instead of the answer.
+[07:38] First chapter of every course is free.
+[07:40] Python for software engineering and
+[07:42] associate AI engineer for developers.
+[07:44] Links in the description. All right,
+[07:46] let's get back into it. So now what I
+[07:48] want to talk about here is how you can
+[07:49] actually get one. Well, here's my steps.
+[07:51] >> [music]
+[07:51] >> If you already have experience in the
+[07:53] industry, then using some real AI
+[07:55] projects that you work with before, then
+[07:57] being [music] able to talk about them in
+[07:58] an interview is going to be really
+[07:59] helpful. So if you don't have those
+[08:01] experience, my recommendation is
+[08:02] building real AI projects for real
+[08:04] business, not just for a simple real to
+[08:06] do applications. Like even small
+[08:08] business who just needed a chatbot to
+[08:10] answering customer service supports.
+[08:11] [music]
+[08:11] Those are all good use cases that you
+[08:13] can showcase in your resume. And the
+[08:14] step two is to get customer facing
+[08:17] experience. Even things like volunteer
+[08:19] for experience like demos, onboardings,
+[08:21] [music] or being able to gather
+[08:22] requirements call. These are all things
+[08:24] that you can do practice. Interviews
+[08:26] will actually ask about those experience
+[08:28] working directly with a customer, how
+[08:30] would you [music] do it, right? So these
+[08:31] are things that you want to get started
+[08:33] with. And the third step that I would
+[08:34] recommend is start with smaller
+[08:36] companies rather than big tech
+[08:37] companies. Because big tech companies
+[08:39] are definitely harder to get into, and
+[08:41] their requirements are really, really
+[08:43] high. So having to start with a small
+[08:45] company, get your foot in the door with
+[08:46] some experience is going to be really,
+[08:48] really helpful. But in short, Google
+[08:50] interviews really contains three parts,
+[08:52] [music] right? We have LeetCode style
+[08:54] interview checking for algorithm data
+[08:55] structures. We have a debugging rounds.
+[08:58] So rather than just more LeetCode
+[08:59] problems, they also have some debugging
+[09:02] rounds where they will actually give you
+[09:03] existing code, and your task is to
+[09:06] utilizing [music]
+[09:06] AI or utilizing tools to basically try
+[09:09] to fix the code. And the third types of
+[09:11] interview is more like system designs
+[09:13] plus things like behavioral interviews,
+[09:16] right? So like STAR methods or being
+[09:18] able to using your past experience to
+[09:20] talk about how you solve a particular
+[09:22] problem in the business, right? those
+[09:23] are system design plus behavioral
+[09:25] interviews that I have with Google. But
+[09:27] like I said, if you're looking to see a
+[09:29] full deep dive of my interview process,
+[09:32] my journey, and my prep, make sure to
+[09:33] comment down below and like this video,
+[09:35] and I'll make sure to make a part two of
+[09:37] this video to talk about the whole
+[09:39] journey, okay? So, with that being said,
+[09:41] let's move on to the last part, which is
+[09:43] why I choose not to go with this offer.
+[09:46] Now, some parts of it is personal. So,
+[09:48] for example, location, because it needs
+[09:50] to be on-site. So, there's a lot of life
+[09:52] decisions that I have to make. And then,
+[09:54] the second part here is after talking to
+[09:56] the teams, as well as learning about the
+[09:58] role, I feel like the role here
+[09:59] currently is [music] really overhyped.
+[10:02] Now, don't get me wrong. The problem is
+[10:04] still there. Business needs someone here
+[10:06] to actually implement AI solutions in
+[10:08] their business operation. But, [snorts]
+[10:10] will the job last forever? That's the
+[10:11] big [music] question. Because, let me
+[10:13] give you an example. Before in 2023, we
+[10:15] have a role that's really popular, it's
+[10:16] called prompt engineering. And that job
+[10:19] is probably the hottest job at that
+[10:21] year. Where
+[10:22] gurus talk about how you can get prompt
+[10:25] engineer jobs, and courses are being
+[10:27] made, and even article talks about this
+[10:29] job it has the highest paying salary.
+[10:31] [music]
+[10:32] Where even Sam Altman himself tweeted
+[10:34] about it, too. Writing a really great
+[10:35] prompt for chatbots personally is
+[10:37] amazing high-leverage skill. But now, if
+[10:40] you were to look for prompt engineering
+[10:41] on LinkedIn, you will be struggled to
+[10:43] find any. Because everyone are already
+[10:45] learning about this and adapting this in
+[10:47] their day-to-day workflow. So, the big
+[10:49] question here is will the job here
+[10:51] really last for 3 years or 5 years or
+[10:53] [music] more? So, this could be
+[10:54] concerned if you're looking for a stable
+[10:56] and a long-term role. And the other side
+[10:58] of the coin here is that because AI are
+[10:59] moving so fast, AI are getting easier to
+[11:02] use every single month. We have models
+[11:04] like AI 5
+[11:05] or a Fable 5 in 1, or even things like
+[11:07] ChatGPT Astra here. These are all things
+[11:10] that making AI a lot easier for me and
+[11:12] you here to use AI in our day-to-day
+[11:14] workflow. [clears throat] And human are
+[11:15] actually adapting AI a lot faster than
+[11:17] we expected. So, maybe it will become a
+[11:19] second nature to use AI or integrate AI
+[11:21] in our day-to-day workflow. So, if the
+[11:23] integration here gets easier, then this
+[11:25] job here is going to be a temporary fix
+[11:27] for the current situation. But, don't
+[11:28] get me wrong. This is just my take. It
+[11:30] might not be for me, but it doesn't mean
+[11:31] that it might not be for you. Because
+[11:33] this will be a really great experience
+[11:34] to get your foot in the door with a real
+[11:36] experience and see how companies are
+[11:38] actually using AI and build up your
+[11:40] resume. Especially if you like to work
+[11:42] with people and love to solve real
+[11:43] business problems, [music] then I think
+[11:45] this problem here is perfect for you.
+[11:46] Plus, there's also a lot of people who
+[11:48] have a lot of knowledge and you can
+[11:50] actually learn from it. I was working at
+[11:52] Amazon and Microsoft before and I
+[11:54] learned a lot of things from senior
+[11:56] staff [music] or even principal level
+[11:58] engineers as well. So, you actually get
+[11:59] a chance to learning from higher people
+[12:01] who have a lot of knowledge [music] and
+[12:03] you actually be on the forefront to
+[12:05] learning about the new stuff with AI.
+[12:07] So, aside from the disadvantage and the
+[12:08] unknowns, [music]
+[12:09] there's actually a lot of advantage that
+[12:11] you should consider as well if you're
+[12:12] looking to take on the forward
+[12:14] deployment engineer roles. Obviously, my
+[12:16] goals are different here, but that's
+[12:17] pretty much my take on this role. In
+[12:18] this video, we went over exactly what is
+[12:20] forward deployment engineer, how does it
+[12:21] work, why there's a high demand right
+[12:23] now, and how you can actually become
+[12:24] one. And lastly, my reason why I didn't
+[12:27] choose to go with that offer. So, pretty
+[12:28] much that's it for this video and if you
+[12:29] want to see a full part two version of
+[12:31] this video about my full Google
+[12:33] interview process, make sure to comment
+[12:35] down below, like this video, and if this
+[12:37] video gets a thousand likes, I'll make
+[12:38] sure to make that video right away. I'll
+[12:40] see you in the next video.

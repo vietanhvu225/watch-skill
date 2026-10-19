@@ -1,0 +1,366 @@
+[00:00] [music]
+[00:02] >> Hi. Welcome to another video. So,
+[00:05] Anthropic [music]
+[00:06] says Claude's web and desktop experience
+[00:08] became about three times faster during a
+[00:11] two-week sprint.
+[00:12] And I wanted to spend some time on how
+[00:14] they approach this because the
+[00:15] engineering ideas are useful even if you
+[00:17] don't use Claude.
+[00:19] When you ask an AI coding tool to
+[00:20] improve an application, you still need
+[00:22] some way to tell whether its changes
+[00:24] helped. A confident explanation and a
+[00:26] big code change don't give you that
+[00:28] answer. At the 75th percentile, typing
+[00:31] readiness on a fresh web load improved
+[00:33] from 3.1 seconds to 0.55. That
+[00:36] percentile means roughly three quarters
+[00:38] of the measured loads were that fast or
+[00:40] faster. It isn't an average and it
+[00:42] doesn't describe the slowest users.
+[00:44] Also, being ready to accept your typing
+[00:46] is a different measurement from how
+[00:47] quickly a model generates its response.
+[00:50] My reading of what Anthropic is
+[00:51] preaching here is that you should give
+[00:52] the agent a job with a way to check its
+[00:54] own progress.
+[00:56] Their broader guidance on agent loops
+[00:57] makes this explicit. Define what success
+[01:00] means, let the agent repeat the work and
+[01:02] verification, and give it a stopping
+[01:03] condition. I think that's a much more
+[01:05] useful discussion than counting how many
+[01:06] lines an AI wrote. If I'm waiting for a
+[01:08] document to open, I care about whether
+[01:09] the document opens sooner and still
+[01:11] works properly. So, let's get into the
+[01:13] technical side of this and then talk
+[01:14] about what I take from it.
+[01:16] Their team used Claude tag in Slack with
+[01:18] an internal research model roughly
+[01:20] comparable to Opus 5.5. Claude tag is
+[01:22] their shared agent experience inside
+[01:24] Slack. It can use the conversation in a
+[01:26] thread, work with connected tools, and
+[01:28] follow standing instructions. So, you
+[01:30] can give an agent an ongoing
+[01:32] responsibility such as watching incoming
+[01:33] issues instead of having to explain the
+[01:35] whole job again whenever something
+[01:37] happens. For a team, I can see the
+[01:39] appeal.
+[01:40] The person reporting a problem and the
+[01:42] person reviewing the fix can discuss the
+[01:45] same evidence in one place.
+[01:47] But putting an agent in Slack doesn't
+[01:49] make the investigation good by itself.
+[01:51] You still have to give it useful access
+[01:53] and decide what it should be allowed to
+[01:55] change. Now, the phrase hill climbing
+[01:57] comes up in this discussion. It means
+[01:59] making a change, evaluating the result,
+[02:02] and using that result to decide which
+[02:04] change to try next. You need an
+[02:05] objective that's specific enough to
+[02:07] measure, and the improvement needs to be
+[02:08] larger than the noise in your
+[02:09] evaluation.
+[02:11] Imagine you're trying to make a search
+[02:12] box respond faster. You could change the
+[02:14] way it filters results, run the same
+[02:16] search again, and compare.
+[02:18] If you've also changed the data set, the
+[02:20] browser, and the network connection,
+[02:21] then you don't know how much credit the
+[02:23] code change deserves.
+[02:25] The experiment needs to be
+[02:26] understandable. They measured
+[02:27] instruction counts, tied those to
+[02:29] elapsed time improvements, and enforced
+[02:31] lower ceilings in continuous
+[02:32] integration. So, let's unpack that. Wall
+[02:35] clock time is the time that passes on a
+[02:37] clock while an operation runs. That's
+[02:39] useful because waiting is what a user
+[02:40] experiences, but timings can move around
+[02:43] when the machine is doing other work. A
+[02:44] profiler helps you look inside the
+[02:46] operation and find where the work
+[02:47] happens.
+[02:49] Valgrind's Callgrind tool can count
+[02:50] executed machine instructions and
+[02:52] attribute work to functions and the
+[02:54] functions they call. That lets you
+[02:55] investigate whether a particular
+[02:57] operation is repeatedly doing
+[02:58] unnecessary work.
+[03:00] An instruction count is a different
+[03:01] measurement from milliseconds, and fewer
+[03:02] instructions won't automatically mean
+[03:04] the entire application feels faster. For
+[03:06] a fixed program and input, instruction
+[03:08] counting can give you much more
+[03:09] repeatable results than a stopwatch.
+[03:11] That makes small changes easier to
+[03:13] compare.
+[03:14] You're counting the machine's executed
+[03:15] work, not the number of lines in a
+[03:16] source file. Think of a delivery
+[03:18] service.
+[03:19] You could make the paperwork twice as
+[03:20] fast, but if the package spends a day
+[03:23] waiting for a van, the customer might
+[03:25] see no difference. In software, I'd want
+[03:27] to know whether the function we're
+[03:29] optimizing is actually responsible for a
+[03:31] meaningful part of the weight.
+[03:33] Continuous integration, or CI,
+[03:35] is where automated checks run when code
+[03:37] changes. A performance check can compare
+[03:39] a new measurement against an accepted
+[03:41] baseline and flag a regression.
+[03:43] A regression just means that a change
+[03:45] made something worse than it was before.
+[03:47] The ratchet idea is that an improvement
+[03:48] becomes the new standard. For a made-up
+[03:50] example, suppose a repeatable task a
+[03:52] thousand operations and you reduce that
+[03:54] to 700, you update the limit to 700. So,
+[03:57] a later change that pushes the count
+[03:58] back up gets noticed. They checked
+[04:00] production data after deployment and
+[04:02] kept looking for the next bottleneck.
+[04:03] Production data is what you measure from
+[04:05] people using the released application.
+[04:06] Lab tests give you controlled
+[04:07] conditions, while real users bring
+[04:09] different devices, network speeds, and
+[04:11] usage patterns. Both are useful. A
+[04:13] change can look good on your test
+[04:14] machine and still have little effect on
+[04:16] the people experiencing the problem. I
+[04:18] like this because the fix now comes with
+[04:20] a way to remember why it mattered.
+[04:22] Otherwise, someone can accidentally undo
+[04:24] your optimization six weeks later while
+[04:26] working on a completely different
+[04:27] feature. You shouldn't have to depend on
+[04:29] everybody remembering every performance
+[04:31] decision. They used an early HTML input
+[04:33] box while React initialized and reduced
+[04:35] sidebar re-renders. React is a library
+[04:37] for building interfaces. With an
+[04:39] application that sends HTML first, you
+[04:41] can show content before all the
+[04:42] JavaScript is ready. For background,
+[04:44] hydration is the usual React process of
+[04:46] connecting component logic to existing
+[04:48] HTML. The initial HTML and the React
+[04:50] output need to agree or the handoff can
+[04:52] cause problem. Claude's early text box
+[04:55] had its own handoff to the full React
+[04:57] interface.
+[04:58] I'd care about more than whether it
+[05:00] appears early. If I type the first half
+[05:02] of a prompt while the application is
+[05:04] starting, those characters need to
+[05:06] survive the handoff. The box should keep
+[05:08] focus and the text shouldn't jump. A
+[05:11] loading improvement that interrupts
+[05:12] typing would be pretty annoying. Now, a
+[05:15] React re-render means React calls
+[05:16] components to work out what the
+[05:18] interface should look like. It doesn't
+[05:20] necessarily mean the browser redraws
+[05:22] everything. React then determines which
+[05:24] changes need to be applied. But running
+[05:26] that component logic can still cost
+[05:28] time, especially when expensive work
+[05:30] happens repeatedly. Memoization means
+[05:32] reusing a previous result when the
+[05:34] relevant inputs haven't changed. For an
+[05:36] interface, this can help avoid repeating
+[05:37] work for a component whose content is
+[05:39] still the same. You have to check the
+[05:41] inputs correctly, though, because
+[05:42] reusing an outdated result gives you an
+[05:44] interface that fails to update when it
+[05:46] should. Imagine typing in a message box
+[05:48] while a completely unrelated list
+[05:50] recalculates itself on every key press.
+[05:52] I'd want the agent to show me why the
+[05:53] list is involved at all. That's a
+[05:55] specific investigation.
+[05:57] And you can test whether the behavior
+[05:59] changes after the fix. They also reused
+[06:01] finished reply blocks and moved code
+[06:03] tokenization to a worker, reaching 120
+[06:05] frames per second on a 120 hertz
+[06:07] MacBook. Tokenization here means
+[06:09] breaking code into pieces so a syntax
+[06:11] highlighter can recognize things like
+[06:13] keywords and strings. This is work the
+[06:15] interface does to display code. A web
+[06:17] worker can run suitable JavaScript work
+[06:19] on a separate thread, communicating
+[06:21] results back through messages. It can't
+[06:23] directly manipulate the page's document
+[06:25] the way the main thread can.
+[06:26] >> The browser's main thread handles a lot
+[06:28] of the work involved in running page
+[06:29] JavaScript and updating the interface.
+[06:33] When one task occupies it for too long,
+[06:35] other work has to wait. That can show up
+[06:37] as delayed input or an animation that
+[06:40] stutters. At 120 frames per second,
+[06:42] there are only about 8.3 milliseconds
+[06:45] between frames. That's the time
+[06:46] available for the whole frame. So an
+[06:48] individual piece of JavaScript can't
+[06:50] casually use all of it. A high refresh
+[06:52] rate makes unnecessary work easier to
+[06:54] notice because the next frame is due so
+[06:56] soon. For a streaming answer, imagine
+[06:58] receiving the last sentence of a page
+[07:00] and then formatting every earlier
+[07:02] paragraph again. As the answer grows,
+[07:04] that approach keeps giving you more
+[07:05] work. Reusing the completed parts is
+[07:08] sensible as long as you know they really
+[07:10] are complete. Otherwise, you can trade a
+[07:11] performance problem for incorrect
+[07:13] formatting. The sidebar jumps stayed
+[07:15] within the usual good CLS threshold
+[07:17] despite bothering users. A layout shift
+[07:19] is when visible content unexpectedly
+[07:21] moves.
+[07:23] Cumulative layout shift or CLS scores
+[07:25] these movements using factors such as
+[07:26] how much of the screen is affected and
+[07:28] how far things move. It's useful for
+[07:30] detecting unstable pages, but a score
+[07:32] doesn't describe every detail of
+[07:33] someone's experience. Suppose a small
+[07:35] button moves just as you're about to
+[07:37] click it. The area involved might be
+[07:38] tiny, but you still click the wrong
+[07:40] thing. That's why I'd use recordings and
+[07:42] real interactions alongside a dashboard.
+[07:44] I'd also want a test that reproduces the
+[07:46] particular movement people complained
+[07:47] about. Anthropic's separate guidance on
+[07:49] evaluations makes a related point. The
+[07:51] tasks you test should reflect the work
+[07:53] you actually care about. An agent can
+[07:54] improve a benchmark without improving
+[07:56] real use if the benchmark is too narrow.
+[07:58] Testing on examples outside the ones
+[07:59] used for optimization helps expose that.
+[08:01] That's the part I'd keep coming back to
+[08:03] if I were managing this work.
+[08:05] You can make a dashboard look healthier
+[08:07] by changing what gets measured or by
+[08:09] avoiding a difficult case.
+[08:11] I'd want the team to be able to explain
+[08:12] what a better score means for the person
+[08:14] using the product.
+[08:15] They ran over 150 threads with human
+[08:18] owners, tests, and staged rollouts.
+[08:20] I can see why parallel work helps when
+[08:22] the investigations are separate. One
+[08:24] agent might study startup while another
+[08:26] looks at scrolling, but if they both
+[08:28] change the same shared component,
+[08:29] somebody needs to resolve the overlap.
+[08:32] I'd expect review and coordination to
+[08:34] become a bigger part of the job as the
+[08:35] number of agents increases.
+[08:37] A feature flag lets a team enable or
+[08:39] disable a behavior without necessarily
+[08:40] removing the code. A staged rollout
+[08:42] introduces a change to a limited group
+[08:44] first, then expands it after the team
+[08:46] checks the results. That gives you an
+[08:48] opportunity to catch problems under real
+[08:50] conditions before the change reaches
+[08:52] everybody.
+[08:53] Every change needed human approval.
+[08:55] Anthropic reports over 3,000 merged
+[08:57] changes with no customer-facing
+[08:59] incidents or rollbacks.
+[09:01] That's an encouraging result for this
+[09:02] sprint. I'd still be careful about
+[09:04] treating it as a promise for another
+[09:05] team with different tests and a
+[09:07] different code base. The amount of
+[09:09] support around the agent is part of what
+[09:10] you're evaluating here. Their engineers
+[09:12] supplied ambition, taste, and direction,
+[09:15] pushing for further improvements,
+[09:16] judging visible changes, and keeping
+[09:18] investigations focused. I think that
+[09:20] gives the human a demanding role. You
+[09:22] need enough understanding to challenge a
+[09:24] weak result and enough restraint to stop
+[09:26] an unnecessary rewrite. I'd also want
+[09:28] somebody watching the experience as a
+[09:29] whole. Optimizing each individual
+[09:31] component doesn't guarantee that the
+[09:33] entire application feels coherent. They
+[09:35] rejected a 900-line proposal saving 2
+[09:37] milliseconds per cent. Personally, I
+[09:40] like that detail a lot. A performance
+[09:42] improvement still has a maintenance
+[09:43] cost. Somebody has to understand the new
+[09:46] code when it breaks, update it when
+[09:48] dependencies change, and decide whether
+[09:50] it still belongs there.
+[09:51] I'd want a stronger reason to accept
+[09:53] that much complexity for such a small
+[09:55] saving. So, the workflow Anthropic is
+[09:57] encouraging gives the agent more room to
+[10:00] iterate while making verification
+[10:01] explicit. Their loop guidance also
+[10:03] recommends testing on a small slice of
+[10:05] work before scaling up, setting clear
+[10:07] limits, and checking token usage. Those
+[10:09] details matter if you're paying for
+[10:10] repeated attempts. For your own app, I'd
+[10:12] begin with one problem you can
+[10:13] reproduce. Ask the agent to capture a
+[10:15] baseline and investigate the cause
+[10:17] before changing things. Then ask for a
+[10:19] small fix, the same measurement
+[10:20] afterward, and a check that the existing
+[10:22] behavior still works. I'd also give that
+[10:24] first experiment a budget. You can spend
+[10:26] a lot of time improving something nobody
+[10:27] notices if the agent has tried several
+[10:30] approaches and the remaining improvement
+[10:31] is tiny. I'd want it to explain the
+[10:33] trade-off before continuing. More
+[10:35] activity doesn't automatically make the
+[10:37] project more valuable. Overall, what I
+[10:38] take from this is that the quality of
+[10:40] the feedback deserves as much attention
+[10:42] as the prompt. I would rather spend some
+[10:44] effort making a useful test than keep
+[10:46] asking an agent whether it's sure the
+[10:47] app is faster. Once it can show the
+[10:49] difference, I have something concrete to
+[10:50] review, and I can decide whether the
+[10:52] improvement is worth keeping. Overall,
+[10:54] it's pretty cool. Anyway, let me know
+[10:56] your thoughts in the comments. If you
+[10:57] like this video, consider donating
+[10:59] through the Super [music] Thanks option,
+[11:01] or becoming a member by clicking the
+[11:02] join button. Also, give this video a
+[11:04] thumbs up
+[11:07] and subscribe [music] to my channel.
+[11:08] I'll see you in the next one. Until
+[11:09] then, bye.
+[11:21] >> [music]
