@@ -1,0 +1,840 @@
+[00:00] Guys, you always ask
+[00:01] me to show you
+[00:02] how I actually make
+[00:03] games with AI, my
+[00:05] processes, my workflows, my
+[00:07] secrets, subscriptions I use,
+[00:09] how much I spend
+[00:11] on all of this.
+[00:12] Let's get into it.
+[00:13] Now, first of all,
+[00:14] my secret is that
+[00:15] I keep things organized.
+[00:16] I mean, yeah, that
+[00:17] is like the very
+[00:18] secret really.
+[00:19] And I started to
+[00:20] doing that like a
+[00:21] year ago.
+[00:22] And you need to
+[00:23] understand first, like where
+[00:25] this workspace comes from.
+[00:27] Again, like there is
+[00:28] a dedicated video about
+[00:29] this workspace, but I'm
+[00:30] going to cover most
+[00:31] of it anyway, like
+[00:32] explaining like why this
+[00:34] is here.
+[00:34] Of course, two years
+[00:35] ago as you, I
+[00:37] was only using Chai GPT.
+[00:39] Then I started to
+[00:40] use Claude.
+[00:41] And I think like
+[00:42] starting like Claude code,
+[00:43] I started to realize
+[00:45] that, I mean, it
+[00:46] basically takes different shape.
+[00:47] Like you can have
+[00:49] projects on your computer
+[00:50] and keep all data
+[00:52] organized there.
+[00:53] And you basically can
+[00:54] do everything in same
+[00:56] folder, keep the context,
+[00:57] like you're working on
+[00:58] some project, developing some
+[00:59] game, and you put
+[01:01] all the files like,
+[01:02] and whenever you launch
+[01:03] the agent in same
+[01:04] folder, it has all
+[01:05] the context.
+[01:06] And for me, that
+[01:07] was really much better
+[01:08] than chats.
+[01:09] In old chat GPT,
+[01:10] you cannot even like
+[01:12] copy old chat and,
+[01:13] you know, like send
+[01:14] the context to a
+[01:15] new one and say
+[01:16] like, look, like this
+[01:17] is what we're talking about.
+[01:18] I need to continue
+[01:19] that thing.
+[01:19] And I started to
+[01:21] build my system.
+[01:22] and It was completely
+[01:23] based on my processes,
+[01:25] what I was doing.
+[01:27] Like for example, this
+[01:28] workspace in first place
+[01:30] was built around making
+[01:32] YouTube videos.
+[01:32] So my idea was
+[01:34] to describe process that
+[01:36] I repeat and keep
+[01:38] everything in one folder
+[01:39] with very simple UI.
+[01:41] I mean, this, what
+[01:42] you see is basically HTML.
+[01:43] And instead of like
+[01:45] giving me a text
+[01:46] report, I ask it
+[01:47] to give me a
+[01:48] report in a HTML view.
+[01:50] And again, like for
+[01:51] AI right now, that's
+[01:52] not an issue.
+[01:53] And so it was
+[01:54] like already one year ago.
+[01:55] So it was able
+[01:56] to do this pages.
+[01:57] I mean, before it
+[01:58] was messing with the
+[01:59] design, so I had
+[02:00] to specify a lot.
+[02:01] So like keep it
+[02:02] in one same style,
+[02:03] et cetera.
+[02:04] So some of the
+[02:05] skills are already redundant,
+[02:06] like GPT six or
+[02:08] opus five point five,
+[02:09] they will do that anyway.
+[02:10] They can get the
+[02:12] context so nicely that
+[02:14] I mean, crazy.
+[02:15] But yeah, I mean,
+[02:15] it all starts it
+[02:16] like with YouTube videos.
+[02:17] So you can see
+[02:18] like here are my
+[02:19] skills and I actually
+[02:21] posted all of this, right?
+[02:22] I started to describe
+[02:23] processes that I was doing.
+[02:25] And if I'm going
+[02:27] to repeat it, like
+[02:28] AI will help me
+[02:28] and we'll know what
+[02:29] the outputs I will expect.
+[02:31] And again, that still
+[02:32] happens, but it's much
+[02:34] easier right now.
+[02:34] Like I can do
+[02:35] a task and say
+[02:36] like, okay, we Did
+[02:37] an animation for a
+[02:39] character and I got
+[02:41] successful result.
+[02:42] I was experimenting along
+[02:43] the way, right?
+[02:44] I made a video
+[02:44] about it.
+[02:45] And then I say,
+[02:45] okay, now put this
+[02:47] into the processes or
+[02:48] into the knowledge that
+[02:50] this way, this approach
+[02:52] works the best.
+[02:53] So next time you're
+[02:54] going to do the
+[02:55] thing that you did
+[02:56] like in that way.
+[02:57] And you're going to
+[02:57] remind me to review
+[02:59] at this stage or
+[03:00] provide you with something
+[03:00] on this stage.
+[03:01] So that is all
+[03:02] the secrets.
+[03:03] And by the way,
+[03:04] guys, if you want
+[03:05] to full potential of
+[03:07] your AI agent, I
+[03:09] really recommend you to
+[03:10] consider Hicksville MCP and
+[03:12] the recent released API
+[03:13] with Hicksville within one
+[03:15] subscription, you get access
+[03:17] to frontier image generation
+[03:18] models, image edit model,
+[03:20] 3d generations and much more.
+[03:22] They also have quite
+[03:23] good Blender plugin and
+[03:24] you can definitely make
+[03:25] sure that if any
+[03:26] new AI model released,
+[03:28] it will be available
+[03:29] on Hicksville.
+[03:29] Take a look by
+[03:30] the link in the description.
+[03:31] Now about this workspace.
+[03:33] Now, how do you
+[03:34] install it?
+[03:34] How do you use it?
+[03:35] Like what's in here?
+[03:36] First of all, the
+[03:37] installation is extremely simple.
+[03:38] You can get it
+[03:40] on the GitHub and
+[03:41] there are releases by
+[03:42] the way, like I
+[03:43] keep updating it and
+[03:44] I just recently added
+[03:46] like absolutely crazy thing
+[03:47] that I really needed
+[03:48] to do like way earlier.
+[03:50] I'm going to show
+[03:51] you how it works.
+[03:52] It is like a
+[03:52] mobile version.
+[03:53] But it's based only
+[03:55] on connection to your PC.
+[03:56] So you're not putting
+[03:58] anything to the cloud.
+[03:59] Now you can basically
+[04:00] just go and download
+[04:02] installation file and you
+[04:03] just need to install
+[04:04] it in one specific folder.
+[04:06] That folder will be
+[04:07] your workspace and you're
+[04:08] going to keep all
+[04:09] the stuff there.
+[04:10] It doesn't mean that
+[04:11] you're going to need
+[04:11] to put everything there.
+[04:13] No, I mean like
+[04:14] the key things will
+[04:15] be there like skills,
+[04:16] all that stuff.
+[04:17] And I also recommend
+[04:18] that you basically do
+[04:20] put it on the
+[04:21] GitHub so you can
+[04:21] actually fork it and
+[04:23] continue developing.
+[04:24] I mean, the idea
+[04:25] of the space is
+[04:26] that you develop it
+[04:28] based on your preferences.
+[04:30] So I did plenty
+[04:30] of updates again based
+[04:31] on your requests and
+[04:33] someone actually already contributed
+[04:34] and crazy.
+[04:35] We do have like
+[04:36] almost 400 stars.
+[04:37] Mr.
+[04:38] Mark is shock.
+[04:39] Also, if you use
+[04:41] codecs, Claude code or
+[04:42] anything, just drop them
+[04:44] this link to this
+[04:45] git and ask them
+[04:46] to install it and
+[04:47] explain to you how
+[04:48] it works.
+[04:49] That's how easy it
+[04:50] is right now.
+[04:50] Like again, it is
+[04:53] local thing.
+[04:53] There is no servers.
+[04:55] I do not host
+[04:56] anything and I don't
+[04:57] really want to bother
+[04:57] with all of that stuff.
+[04:58] Now when you install
+[04:59] it, you will not
+[05:01] have all my projects.
+[05:02] Of course, they are
+[05:03] my project.
+[05:04] But to give you
+[05:04] an idea, like again,
+[05:05] I have like different
+[05:07] sort of entities.
+[05:08] Again, like I just
+[05:09] described like That sometimes
+[05:11] I work on games.
+[05:12] So like when I
+[05:12] work on games, I
+[05:14] have like this type
+[05:15] of tabs, right?
+[05:16] I have GDD, I
+[05:18] have story, maybe something
+[05:19] related to 3D generation
+[05:21] so I can show
+[05:22] you numbers.
+[05:22] For example, someone actually
+[05:24] was asking like in
+[05:24] the comments, how do
+[05:25] I do this?
+[05:26] Well, I just once
+[05:27] described it.
+[05:28] I liked it and
+[05:29] I said, OK, now
+[05:30] remember how you do
+[05:32] this layout of numbers
+[05:33] and stuff so we
+[05:34] can show it like
+[05:35] to guys later.
+[05:35] Here you can see
+[05:37] like similar tab like
+[05:38] for another game and
+[05:39] you can see like
+[05:39] the layout is pretty similar.
+[05:41] And again, I just
+[05:42] did it once.
+[05:43] I liked it.
+[05:44] Maybe I did it
+[05:45] few iterations and then
+[05:46] I said, OK, now
+[05:48] we're going to have
+[05:48] like tab of game
+[05:50] category and whenever you
+[05:52] do something like that,
+[05:53] just try to keep
+[05:54] it like this way.
+[05:55] So you can say
+[05:55] I'm working on a
+[05:56] few projects and I
+[05:57] keep track of everything.
+[05:58] Even if it's something
+[06:00] simple, I still keep
+[06:01] context here.
+[06:02] Well, again, like first
+[06:03] of all, it's really
+[06:04] cool to check.
+[06:05] I can show it
+[06:06] to you.
+[06:06] But the other thing
+[06:07] is that whenever I
+[06:08] want to jump from
+[06:09] one agent to another
+[06:10] agent, like the context
+[06:11] is all here again.
+[06:12] The ultimate example is
+[06:14] my game called Overlord,
+[06:16] where I actually created
+[06:17] a complete Vicky.
+[06:18] This project is also
+[06:20] hosted on a separate git.
+[06:22] And again, like that's basically.
+[06:23] you.
+[06:23] Don't have any limits
+[06:24] here, right?
+[06:25] This is your workspace
+[06:26] is like your ultimate
+[06:27] agent like and you
+[06:28] can do everything here.
+[06:29] And that's how we
+[06:30] work with it.
+[06:31] So here again, like
+[06:31] I have like a
+[06:32] lot of tabs, like
+[06:33] a lot of images,
+[06:34] a lot of history,
+[06:35] you know, like only
+[06:36] if you take a
+[06:37] look on the concepts,.
+[06:38] It looked like they're
+[06:39] like, I don't know, 60.
+[06:41] I don't know how
+[06:42] many thousands of images
+[06:43] I actually made.
+[06:44] But trust me,.
+[06:45] Like it was a lot.
+[06:46] You can see some
+[06:47] spoilers for new characters
+[06:49] coming up soon.
+[06:51] And as I said,
+[06:51] there are chats.
+[06:52] Well,.
+[06:53] Basically there is Claude
+[06:55] code CLI and codec
+[06:56] CLI that you can
+[06:58] create here.
+[06:59] Someone asked me to add.
+[07:00] Open code support.
+[07:01] So no worries.
+[07:02] It is open code support.
+[07:03] I also added Kimi support.
+[07:05] I'm not using it
+[07:06] right now.
+[07:07] PowerShell like.
+[07:07] Just for again, like
+[07:09] whenever else can come
+[07:10] to mind.
+[07:11] And if you need
+[07:12] more just ask to
+[07:13] do more.
+[07:14] Well, I actually have.
+[07:15] A system setup chat here.
+[07:16] And whenever I like
+[07:18] realized that, oh, this
+[07:19] is something that is
+[07:20] not convenient to do
+[07:21] or like I'm repeating this.
+[07:22] Process too often, like
+[07:23] maybe I need to
+[07:24] optimize it.
+[07:25] Yeah.
+[07:25] And I just say
+[07:26] like, okay, just add
+[07:27] this feature.
+[07:28] It updates the workspace
+[07:29] and boom, I.
+[07:30] Mean like, I'm constantly
+[07:31] get it's a better
+[07:32] and more convenient and
+[07:34] so on and so on.
+[07:35] So how do.
+[07:35] I really work here
+[07:36] is pretty simple.
+[07:37] Again, I create a
+[07:38] chat based on task.
+[07:40] You can see like
+[07:41] for Overlord actually like
+[07:42] almost six chats, like
+[07:43] one chat here.
+[07:44] I do VFX is here.
+[07:46] I do animations is
+[07:47] just like to keep
+[07:48] one narrow context.
+[07:49] Like we just do
+[07:51] animations there and you
+[07:52] don't need to worry
+[07:52] that it will lose
+[07:53] some small details because
+[07:55] it's like really small details.
+[07:57] But technically I can
+[07:58] just have one chat
+[07:59] like it's up to you.
+[08:00] Right.
+[08:00] So you can see
+[08:01] all my chats here.
+[08:02] So basically I'm doing
+[08:03] a task.
+[08:03] I do have a whisper.
+[08:05] My local one that
+[08:06] is connected to chat
+[08:07] GPT voice recognition.
+[08:08] So I just double
+[08:09] click on my mouse
+[08:10] and say, look, okay,
+[08:11] we're going to need
+[08:12] to do this and
+[08:13] this and this.
+[08:13] And you know, I
+[08:14] do that while I
+[08:15] can actually check the results.
+[08:17] Think about ads.
+[08:18] Sometimes I can, you
+[08:19] know, like just click
+[08:20] on something and say
+[08:21] like, okay, like this
+[08:22] one I don't like
+[08:23] or here maybe, I
+[08:24] don't know, whatever.
+[08:25] Right.
+[08:25] I can draw on
+[08:26] the image and then
+[08:27] I can actually like
+[08:29] drop it to the
+[08:30] chat like this and
+[08:31] then everything that I
+[08:33] dictated, it's already there.
+[08:34] So you can see
+[08:35] right at first that
+[08:37] was a bit unusual,
+[08:38] but right now I
+[08:39] cannot imagine myself doing
+[08:41] it other way.
+[08:42] Like I see something
+[08:43] I probably feel that's
+[08:44] how I can jump
+[08:45] through multiple projects and do.
+[08:47] so.
+[08:47] Much of it.
+[08:48] And it's not easy
+[08:49] to do first iteration
+[08:50] because it will fail
+[08:52] sometimes, but you just
+[08:53] need to, again, like.
+[08:54] Set some processes, describe
+[08:56] how you want it,
+[08:57] like describe outputs, like
+[08:58] basically do one iteration
+[09:00] that works, put it
+[09:01] in your.
+[09:02] Processes and next time
+[09:03] it will be easier
+[09:04] and easier and you're
+[09:05] going to enjoy things
+[09:05] and you will be
+[09:06] really, really efficient.
+[09:07] So basically that is exactly.
+[09:09] How I work.
+[09:10] But of course, to
+[09:10] make it work, you
+[09:12] need subscriptions, some APIs,
+[09:13] MCPs, et cetera.
+[09:14] So let me break
+[09:15] it down to you
+[09:16] completely on.
+[09:16] It's like what I'm
+[09:17] using, what I'm not using.
+[09:18] My main agent is
+[09:20] Cloud right now and
+[09:21] I really, really, really
+[09:23] like it.
+[09:23] Like, I mean, it.
+[09:24] Does a lot for
+[09:25] games, et cetera.
+[09:26] It really does better
+[09:27] job than GPT, especially
+[09:29] on some long task.
+[09:30] So you can see I'm.
+[09:31] Still on 200 bucks
+[09:33] plan and I'm going
+[09:34] to keep it.
+[09:35] Another thing is that
+[09:36] I also have chat
+[09:37] GPT and I recently actually.
+[09:39] Paid almost 500 bucks
+[09:41] to try that ultra fast.
+[09:42] And yeah, I mean,
+[09:43] like I'm also a
+[09:44] content creator.
+[09:45] So like I really
+[09:46] wanted to.
+[09:46] Test it and see
+[09:47] like if that's revolution.
+[09:48] But it's not.
+[09:50] And I'm actually canceling it.
+[09:51] So you can see
+[09:52] I'm going to go
+[09:53] with 100.
+[09:53] I even thinking like
+[09:54] to maybe go downgrade
+[09:55] to 20 because I
+[09:57] mean, I'm actually the
+[09:58] same like you guys.
+[09:59] I really.
+[09:59] hate having like 10
+[10:01] subscriptions and I have
+[10:02] like more than 10
+[10:03] because sometimes I need
+[10:04] to test some stuff.
+[10:05] Like people ask like
+[10:07] whether that works or not.
+[10:08] And yeah, I mean
+[10:09] like sometimes, you know,
+[10:10] like I see my
+[10:11] credit card like is
+[10:13] charged like 20, 30
+[10:14] bucks and I don't
+[10:15] really remember where I
+[10:16] spend it.
+[10:17] And that's extremely frustrating.
+[10:19] So, chat GPT pro
+[10:21] right now, I don't
+[10:22] recommend I not going
+[10:23] to use it.
+[10:24] If you're choosing like
+[10:25] between Claude or GPT,
+[10:26] I would go for Claude.
+[10:27] There is also Google.
+[10:28] Well, I do have
+[10:30] 20 bucks Google subscription
+[10:31] because of disk space,
+[10:33] because I store like
+[10:34] my videos on Google
+[10:35] Drive, et cetera.
+[10:36] But Gemini for me
+[10:37] is Joe.
+[10:38] Well, I'm waiting Gemini
+[10:39] for and hopefully I'm
+[10:41] going to change my mind.
+[10:43] But so I don't
+[10:44] know, like Gemini is
+[10:45] absolutely out of the league.
+[10:47] OK, so that is
+[10:48] the core.
+[10:49] But you also need
+[10:50] like image generation.
+[10:51] Well, at least I
+[10:52] need and I needed
+[10:53] a lot again, like
+[10:54] if you developing the
+[10:56] games And then you
+[10:57] also need 3D generation.
+[10:58] And here there are
+[10:59] a lot of questions
+[10:59] like why do you
+[11:00] not use Tripo?
+[11:01] Why do you not
+[11:02] use that one?
+[11:03] Do you really use
+[11:04] Higgs field?
+[11:04] What do you use?
+[11:05] And here's the basically
+[11:06] the biggest problem again,
+[11:07] like you don't really
+[11:08] want plenty of subscriptions,
+[11:10] but you you need
+[11:11] that right.
+[11:12] I'm not going to
+[11:13] cover like really like
+[11:14] local Approaches like or
+[11:16] how we can do
+[11:17] that cheap or free,
+[11:18] et cetera.
+[11:18] You can do some
+[11:20] stuff with ComfyUI
+[11:21] like you have like
+[11:22] really good GPU and
+[11:24] generated with pixel 3D
+[11:25] right or some image model.
+[11:27] Actually, like for image
+[11:28] models, it's not that bad.
+[11:29] But like for 3D
+[11:30] models again, it's quite
+[11:31] a lot of headache.
+[11:32] And I'm really trying
+[11:34] to get like good quality.
+[11:36] And time for is
+[11:37] extremely valuable.
+[11:38] So I am honestly
+[11:40] not using local stuff
+[11:42] at all because within
+[11:43] my calculations, within my
+[11:45] understanding, it is more
+[11:47] expensive by time.
+[11:48] And for me, saving
+[11:49] 10 bucks, for example,
+[11:50] and spending like five
+[11:52] hours more is a
+[11:53] no brainer.
+[11:54] Like, I mean, definitely
+[11:55] going to spend 10 bucks.
+[11:56] Actually, in one of
+[11:57] my video, I did
+[11:58] a breakdown, like how
+[11:59] much it costs, like
+[12:00] with all the APIs
+[12:01] to create one here.
+[12:02] And I calculated like
+[12:03] 20, 25 bucks.
+[12:05] And was like absolutely
+[12:06] everything like 15 images,
+[12:08] like 10 3D models,
+[12:10] even video generations, actually
+[12:12] without video generations that
+[12:13] I use for animation
+[12:14] references, it will be
+[12:16] like 10, 12 dollars,
+[12:17] which is absolutely acceptable
+[12:19] if I can save
+[12:20] like a day of
+[12:21] my time and get
+[12:23] stable, nice results with
+[12:24] three poor, for example,
+[12:25] like Tripo P to
+[12:27] Tripo smart TV, et cetera.
+[12:28] So what do I
+[12:29] actually use?
+[12:30] I actually left in
+[12:31] works is like the
+[12:33] description of like the
+[12:34] skills that I currently
+[12:35] use and MCP and services.
+[12:37] Right.
+[12:37] So the.
+[12:38] Hicksville.
+[12:38] Yes I do use Hicksville.
+[12:40] I also use full
+[12:42] AI and I also
+[12:43] use Tripo and time
+[12:45] to time again,.
+[12:46] Like I also use
+[12:47] some other APIs like
+[12:48] mostly to test.
+[12:49] But if I would
+[12:50] say like I need
+[12:51] to choose like one
+[12:52] or two,.
+[12:53] Like I will definitely
+[12:54] go with Hicksville and
+[12:56] fully I and fully
+[12:57] I mostly I need
+[12:58] because it.
+[12:59] Very rare APIs that
+[13:02] Hicksville still don't have.
+[13:03] But I think like
+[13:04] if they will improve
+[13:05] the API, it will
+[13:06] be better.
+[13:06] And.
+[13:06] The main difference there
+[13:07] is that Hicksville has
+[13:09] better MCP for agents.
+[13:11] So basically when you
+[13:12] use Hicksville MCP, so
+[13:13] you basically spend.
+[13:14] Less time to describe
+[13:15] what API to use
+[13:16] and it uses better
+[13:17] models with full AI.
+[13:19] You can use my
+[13:20] setup, my.
+[13:21] Skills but I actually
+[13:22] had to spend quite
+[13:23] a lot of time
+[13:24] and you always need
+[13:25] to guide it like
+[13:26] which because it's not
+[13:28] really official.
+[13:28] MCP To be honest,
+[13:30] like just fully is
+[13:31] basically aggregator, like plenty,
+[13:33] plenty, plenty of APIs.
+[13:34] But that's good and
+[13:35] bad in same time,.
+[13:36] Because if you just
+[13:37] say like generate me
+[13:38] an image, you're not
+[13:39] going to get far.
+[13:39] So I have to
+[13:40] specify exactly what image
+[13:42] models with what settings.
+[13:43] Like to use and
+[13:44] all that kind of stuff.
+[13:46] And with Hicksville, MCP
+[13:47] is just like what's
+[13:49] way easier.
+[13:49] Again, when we talk.
+[13:50] About Hicksville.
+[13:52] An aggregator of multiple
+[13:54] APIs, images, 3D videos,
+[13:57] all that things are
+[13:58] really needed.
+[13:59] To.
+[13:59] make.
+[14:00] Games content, anything like that.
+[14:02] And good news from
+[14:03] paid ones.
+[14:03] I think that's all right.
+[14:05] The rest of my
+[14:06] setup is mostly.
+[14:07] MCPs or some skills
+[14:09] and they are pretty
+[14:10] much free.
+[14:11] I do have a
+[14:11] lot of tools for
+[14:12] video creation, such as
+[14:13] notion vid.
+[14:15] IQ I have YouTube
+[14:16] analytics connected to API.
+[14:18] It's a skill.
+[14:19] I just like dropped
+[14:20] the API here and.
+[14:22] Described I guess, like
+[14:23] the skill myself.
+[14:24] So my agent can
+[14:25] go and check like
+[14:26] my YouTube videos, like
+[14:27] comments, all that stuff,
+[14:28] like the performance.
+[14:29] So I can do
+[14:30] analyze it quicker.
+[14:31] There are probably some
+[14:32] other stuff, but I
+[14:33] don't really remember already
+[14:35] for games.
+[14:35] I have.
+[14:36] Much more rights for
+[14:38] working in Blender.
+[14:38] I have like three
+[14:40] things official Blender, MCP,
+[14:41] Hicksville, Blender plugin and.
+[14:43] Mix are but actually
+[14:45] best if you work
+[14:46] in Blender and do
+[14:47] some tasks.
+[14:48] But also again, like
+[14:49] some Blender plugins, etc.
+[14:50] They can.
+[14:51] Work autonomously like for
+[14:52] your agent.
+[14:53] So definitely recommend to
+[14:54] try it out.
+[14:55] Like mix are is
+[14:56] really a good one
+[14:57] for work in.
+[14:58] Blender Now, then we
+[14:59] have like game engines.
+[15:00] Of course, I do
+[15:01] have Godot.
+[15:02] Of course, I do
+[15:03] have unity for unity.
+[15:05] You can.
+[15:05] Use official unity CLI.
+[15:07] They graded it quite
+[15:08] a lot.
+[15:09] I also use this
+[15:11] unity ankle breaker MCP.
+[15:12] I think those guys
+[15:14] really did a great
+[15:15] job describing all the
+[15:16] skills within that MCP.
+[15:18] So it's not just
+[15:18] an MCP.
+[15:19] There are also.
+[15:20] A lot of skills
+[15:21] workflows, etc.
+[15:21] How to do tasks
+[15:23] in Unity, more efficient
+[15:24] and actually got quite
+[15:25] good results with that
+[15:27] MCP alone.
+[15:28] If you developing with
+[15:29] Unreal Engine, I can
+[15:30] recommend like two things.
+[15:32] Native Unreal Engine MCP
+[15:33] that was released with
+[15:35] Unreal Engine 5 .8
+[15:37] and Vibe UE, quite,
+[15:38] quite good.
+[15:39] And all MCPs that
+[15:40] I used, all of
+[15:41] them are absolutely free.
+[15:43] And most of them
+[15:43] are actually on the
+[15:44] GitHub open source.
+[15:45] So you can use them.
+[15:46] You can improve them
+[15:47] like and that's how
+[15:48] it works.
+[15:49] Well, I think I
+[15:50] just described every detail
+[15:52] showed you like how
+[15:53] I work like showed
+[15:54] you some projects.
+[15:56] If I miss something,
+[15:57] guys, you're going to
+[15:58] let me in the comments.
+[15:59] And I gonna either
+[16:00] answer the comments or
+[16:02] gonna make another video
+[16:03] answering your questions, guys.
+[16:04] That was stuff as usual.
+[16:05] Don't forget to like
+[16:06] and subscribe.
+[16:06] That's extremely important and
+[16:08] see you in the
+[16:09] next videos.

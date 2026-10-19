@@ -1,0 +1,598 @@
+[00:00] Every piece of claw code advice for the
+[00:01] last year has said the same thing. Start
+[00:04] in plan mode, including the person who
+[00:06] built it. So in January, Boris Churnney
+[00:08] said most of his sessions start in plan
+[00:10] mode. But two weeks ago on Hacker News,
+[00:13] he said plan mode is no longer useful.
+[00:15] So 9 months apart, the way Boris and the
+[00:17] other 1% use Claude has completely
+[00:19] changed. So here are the 10 things the
+[00:21] top 1% are doing so you can have the
+[00:23] best setup and stop wasting time on old
+[00:25] advice, starting with what they use
+[00:27] instead of plan mode. So when you
+[00:29] consider what plan mode actually did, it
+[00:31] never changed what Claude could actually
+[00:32] do. So it just added a reminder to every
+[00:34] prompt message along the lines of you're
+[00:37] in plan mode, please don't start coding
+[00:39] yet. So he came up with that late one
+[00:40] Sunday night because he was tired of
+[00:42] asking Claude to plan before it actually
+[00:44] started building. And it's kind of funny
+[00:45] that the idea that he just came up with
+[00:46] on a Sunday night ended up being so
+[00:48] integral to the way that we worked with
+[00:50] claw code every single day. Now at the
+[00:52] time it was actually really useful
+[00:53] because the older models, think back to
+[00:55] things like Sonic 4.6
+[00:56] and early Opus, they all had a tendency
+[00:59] to jump straight in and just get on and
+[01:00] do the work. So, it was a model
+[01:02] limitation. But with the newer models,
+[01:04] he just stopped using it because
+[01:05] planning now happens while the model
+[01:07] works. So, what he does instead, as he
+[01:09] explained at the YC startup school, is
+[01:12] he describes the task, describes the
+[01:14] guardrails that surround the task,
+[01:16] describes what done looks like, so our
+[01:17] definition of done, and then let the
+[01:19] model actually work it out. So, for
+[01:21] example, for your weekly client report,
+[01:22] that might just be three lines. The task
+[01:25] is this week's report from the CRM
+[01:26] export, for example. The guardrails are
+[01:29] don't amend the template that we've set
+[01:31] and don't email anyone. And then the
+[01:32] definition of done is every figure
+[01:35] matches the export. And now instead of
+[01:36] reading a plan before that task starts,
+[01:39] you can now check what it did after. And
+[01:41] that is the advice now. So for his
+[01:42] bigger changes, Boris asked Claude for a
+[01:45] diagram or even an interactive demo of
+[01:47] what it changed. And if you'd seen just
+[01:48] yesterday, Claude also announced that it
+[01:50] now has a built-in capability to produce
+[01:52] live dashboards and animated explainers.
+[01:54] So, it's even easier to get that
+[01:56] interactive output. So, when the task
+[01:57] finishes, you're going to ask it for a
+[01:59] onepage visual of what it did and what
+[02:01] it assumed whilst it was doing that
+[02:02] task. So, here's the picture we're
+[02:04] building throughout this video. On the
+[02:05] left is you, and the only thing you
+[02:07] write is actually the brief. Claude is
+[02:09] going to do the work, and what comes
+[02:10] back is the output plus that onepage
+[02:13] explainer. So you're basically checking
+[02:14] the result now and you're no longer
+[02:16] planning it up front in as much detail.
+[02:18] Now that brief that we've got, it says
+[02:20] exactly what to do and what guardrails,
+[02:21] but a lot of us still try to control how
+[02:23] hard Claude thinks about it. But
+[02:25] actually the new advice is to ignore
+[02:26] that entirely. So you might remember
+[02:28] back to last year when they said you had
+[02:30] to write things like think, think hard,
+[02:32] think harder, or ultra think. And each
+[02:35] one got Claude a bigger thinking budget.
+[02:37] But now Claw Code reads think hard as
+[02:40] effectively just part of the prompt. It
+[02:41] reads it as ordinary words. So this
+[02:43] became its own setting which you might
+[02:45] recognize as effort level and that you
+[02:47] can see each model has a recommended by
+[02:50] it. So opus 5.5 is recommended medium
+[02:52] and anthropics say that on medium it
+[02:54] matches or beats opus 5 on high for
+[02:57] coding and knowledge work. So in plain
+[02:59] English then the default now does what
+[03:01] you used to do yourself in fewer steps
+[03:04] and fewer tokens. So for the majority of
+[03:06] tasks the advice is just don't touch it.
+[03:08] It's one less thing for you to think
+[03:10] about. leave it on the recommended
+[03:11] effort level and I wouldn't be surprised
+[03:12] if in the near future they take away
+[03:14] that setting entirely and just let it
+[03:16] run in the background. So in essence
+[03:17] what we're saying is trust Claude's
+[03:19] setup. Now the next two are about how
+[03:21] Claude proves it's actually done the
+[03:23] task that you've asked it to do. One
+[03:25] thing from Boris's January post that's
+[03:27] still super relevant. So he said giving
+[03:29] Claude a way to verify its work will two
+[03:31] to 3x the quality of the final result.
+[03:33] And anthropic stocks now actually make
+[03:35] it their first tip. So a check Claude
+[03:37] can run is the difference between a
+[03:39] session you watch and one that you can
+[03:41] walk away from. So if you want more
+[03:42] autonomous setups that you only need to
+[03:44] supervise, then this one is going to be
+[03:45] critical. And to do this, you are not
+[03:47] going to tell Claude to doublech checkck
+[03:49] its work inside the prompt. So the Opus
+[03:51] 5 guide says it already checks its own
+[03:53] work without being told to do so. So
+[03:55] that line is basically just adding
+[03:56] additional cost and doesn't improve the
+[03:57] result. But one thing you are going to
+[03:59] do is always give it criteria that it
+[04:01] can come back with a pass or fail
+[04:03] against that criteria. So for example,
+[04:05] we're going to ask claw to write a small
+[04:07] script called check report that can be
+[04:09] validated against the done criteria in
+[04:12] my client report example earlier. So
+[04:13] it's going to basically check every
+[04:14] figure against the export and that every
+[04:16] section is filled in of the template and
+[04:18] that's all the check report script is
+[04:20] going to validate. So how it actually
+[04:21] works then let's say on the first run
+[04:23] the checks fail on one figure. It
+[04:25] doesn't match the export. Claude is
+[04:27] basically going to go back and fix that.
+[04:28] Run the checks again and then if it
+[04:30] passes it's going to show me the output.
+[04:31] So this means as a user we're just
+[04:33] reading the evidence instead of actually
+[04:35] running the checks for ourselves on the
+[04:36] output. So a way to actually do this is
+[04:38] to look back at the definition of done
+[04:40] that line from your brief and turn it
+[04:41] into a check that Claude can run. And by
+[04:43] the way, it doesn't have to be an
+[04:44] executable code script. It can be your
+[04:46] brand voice doc that it checks the draft
+[04:48] against for example. But if you make it
+[04:50] more deterministic, it's going to catch
+[04:51] more errors. So now we have Claude doing
+[04:53] more of the work itself now and handing
+[04:55] us just the evidence that validated that
+[04:57] it did the correct thing. But this is
+[04:58] only helpful if Claude has a way to keep
+[05:00] going until it passes the checks.
+[05:02] Otherwise, you'll sit there and keep
+[05:04] typing continue to get it to fix its own
+[05:06] evidence. Which brings us to /ash goal.
+[05:09] So/G goal does the typing of continue
+[05:12] for you. And hopefully in the future we
+[05:14] don't even have to write that and we can
+[05:15] just set the criteria that we want it to
+[05:17] continue going until it's validated that
+[05:18] definition of done and it will be as
+[05:20] simple as that. But for now we use
+[05:22] forward/ goal. There is a catch though
+[05:23] with how it works today and that's
+[05:25] really important. So after every turn, a
+[05:27] separate small model like Haiku reads
+[05:30] your goal and decides whether it's met
+[05:31] the condition and if it hasn't, Claude
+[05:33] is going to take another turn to try and
+[05:35] achieve that goal. And the catch here is
+[05:37] that the judge, i.e. that HiQ agent,
+[05:39] doesn't run commands or read files
+[05:41] independently. So it only gets given the
+[05:43] chat that you sent it and Claude's
+[05:44] output. Which means if your goal is
+[05:46] poorly defined, like the definition of
+[05:48] done is that the report is finished,
+[05:50] then it's basically going to complete
+[05:51] prematurely. It's going to think it's
+[05:52] met the done criteria when it hasn't. So
+[05:54] the goal has to be really clear and
+[05:56] explicit to be the check that we created
+[05:58] in the last section. And anthropics say
+[06:00] that a good goal has one end state. It
+[06:02] says how to prove that end state and
+[06:04] says what mustn't change. And it should
+[06:06] also have a turn limit to stop it
+[06:08] running indefinitely. So here's mine for
+[06:10] this example and it's very
+[06:11] straightforward. We've got / goal. The
+[06:13] check report script is going to pass and
+[06:15] you show me the output. The template is
+[06:17] going to be unchanged or you're going to
+[06:19] stop after 15 turns. So now it can
+[06:20] continue on that path of validation and
+[06:23] loop around until it's met our criteria
+[06:25] and that criteria is written in the
+[06:27] check report script. So that means we're
+[06:28] freeing up more time as we don't have to
+[06:30] supervise it. We don't have to sit there
+[06:32] and type in continue every time. We just
+[06:33] have to validate that the outputs are
+[06:35] exactly as we expected. So now we've got
+[06:37] our agents running loops around us.
+[06:39] We've got to make sure that our base
+[06:40] instructions in our claw.md don't defy
+[06:43] anthropic's latest advice. But before
+[06:44] that, if you've learned something so
+[06:46] far, then you probably love the new
+[06:48] course we're about to drop in our Aentic
+[06:49] Academy. So, it's going to be focused on
+[06:51] handing off more of your day-to-day to
+[06:53] Claude, Codeex, and other AI tools so
+[06:56] you can effectively get more done. So,
+[06:57] check it out in the first link in the
+[06:59] description below. So, let's make sure
+[07:00] that our foundations of our setup are
+[07:03] solid because everything we've spoken
+[07:04] about so far is underpinned by all of
+[07:06] this. Now, when Opus 5 shipped recently,
+[07:10] Anthropic did something crazy. They went
+[07:12] ahead and deleted over 80% of claw
+[07:14] code's own instructions because most of
+[07:16] them were fixing things that the older
+[07:18] models would get wrong. And it's not new
+[07:20] advice that anthropics docs say to keep
+[07:22] claw.md under 200 lines because longer
+[07:24] files cost more and get followed less.
+[07:26] But here's how I'm actually starting to
+[07:28] think about claw.md. And it might be
+[07:29] useful for you too to think about it
+[07:31] like this. So claw.md to me now is the
+[07:34] contents page for your workspace. It's
+[07:36] the same job that skill.md does inside a
+[07:39] skill folder. So, there's four things
+[07:40] that should still be inside your
+[07:42] Claude.md. Number one is the tools and
+[07:44] commands that Claude can't guess. Number
+[07:46] two is anything you do differently to
+[07:49] the normal way that Claude would do it.
+[07:51] Number three, slightly related, is the
+[07:53] gotchas that it's got wrong more than
+[07:54] once. And number four are those
+[07:56] boundaries we mentioned earlier, like
+[07:58] only write the email draft. And
+[08:00] everything else in claw.md is basically
+[08:02] becoming a pointer or a reference to
+[08:04] another file where it can go and extract
+[08:06] the additional information that it
+[08:07] needs. And then for those pointers
+[08:09] themselves, there are also three rules
+[08:10] that you need to follow. So first is
+[08:12] going to be writing any reference as a
+[08:14] path and not an import. So if you're
+[08:16] going to use an at simple, it's going to
+[08:18] load the whole file into every single
+[08:19] session. So basically we need to write
+[08:21] the path in these back ticks with when
+[08:22] to open it. Like read the client brief
+[08:25] before any client work. That way Claude
+[08:27] knows to go and open that file only at
+[08:28] the right time and load it into context.
+[08:29] Secondly, we're going to point to every
+[08:31] file straight from claw.md because
+[08:33] anthropics say that a file that's only
+[08:35] reached through another file. So if it's
+[08:37] nested, it's just going to get its first
+[08:39] 100 lines previewed. And therefore, we
+[08:41] might be missing the detail that we
+[08:42] actually need in those reference files.
+[08:44] And then thirdly, any file over 100
+[08:45] lines should get a contents list at the
+[08:48] top. And anthropic set that rule for
+[08:50] skill files, but I'm actually applying
+[08:51] it to everything the index points at
+[08:53] because with every file, we're going to
+[08:54] get the same partial read of only the
+[08:56] first 100 lines. Now, that's quite a few
+[08:57] rules, right? And you can make these
+[08:58] changes yourself or you can simply run
+[09:00] /docctor prompt audit. That's going to
+[09:03] go and check your claw.md. It's going to
+[09:05] check your skills and your rules for
+[09:07] instructions written for older models
+[09:09] paths that no longer exist and files
+[09:11] that contradict each other. And it's
+[09:12] going to change nothing until you
+[09:14] basically validate it and say yes. It's
+[09:15] then going to cut anything that Claude
+[09:17] does anyway from those instructions and
+[09:19] turn what's left into a contents list
+[09:21] into an index with a bunch of pointers
+[09:22] and references to other files. So, back
+[09:24] to where we're at on the board,
+[09:26] claude.mmd is going to sit underneath
+[09:27] claude because it's read before anything
+[09:29] else and it's integral foundations for
+[09:31] all the work you do. And you can think
+[09:32] of it as the index and every arrow out
+[09:35] of the claw.md is going to point to a
+[09:37] file that claude only opens when it
+[09:38] needs that. I.e., it's progressive
+[09:40] disclosure. It's only loading in the
+[09:42] context it needs when it needs it. And
+[09:43] claude.md itself is only going to hold
+[09:45] information that's always true. Now,
+[09:47] going back to our weekly client report,
+[09:49] how you actually run the weekly client
+[09:51] report is going to go into a skill if
+[09:53] and only if Claude can't do it properly
+[09:56] out of the box first time. So, this is
+[09:57] something that's tripped me up again and
+[09:59] again when I've been skill buildinging.
+[10:01] So, most of us plan the process for our
+[10:03] skill in our heads and then we prompt to
+[10:05] build a skill before Claude has ever
+[10:07] tried the job out of the box without any
+[10:09] skills attached. But, Anthropic skill
+[10:11] guide actually says to do it the other
+[10:13] way round, especially now the models are
+[10:15] so much more competent. So the first
+[10:17] step that they say is complete a task
+[10:19] without a skill. So you work through the
+[10:20] job with Claude normally, then you run
+[10:22] it on real tasks without a skill and
+[10:25] write down where it actually went wrong.
+[10:26] So the skill part then is actually just
+[10:28] solving real problems rather than
+[10:30] documenting imagined problems. So we're
+[10:32] not just building a skill for a process.
+[10:34] We're effectively reverse engineering
+[10:35] the skill to tackle the things that out
+[10:37] of the box Claude could not fix itself.
+[10:39] And you're probably noticing a theme of
+[10:41] change in this video here over the last
+[10:42] 6 months, which is leave Claude alone
+[10:44] doing its thing until it makes mistakes,
+[10:47] then add the infrastructure and files
+[10:48] like skills to give it some support to
+[10:51] get to that final destination. And
+[10:52] Anthropics team actually also say that
+[10:54] most of their own best skills began as
+[10:57] just a few lines and a single gotcha
+[10:59] that basically corrected something that
+[11:00] Claude can do out of the box. So this
+[11:02] treats skills as a list of things that
+[11:04] Claude actually got wrong, not a manual
+[11:06] for the whole process anymore. And we
+[11:07] also have an alternate way to do this,
+[11:09] right? We can now record a skill in the
+[11:11] desktop app which is going to do the
+[11:12] same thing by watching you do the job.
+[11:14] And when I ran this myself on a DM
+[11:16] automation for Instagram, it noticed the
+[11:19] things that I actually got wrong in my
+[11:20] demo and documented those things. And I
+[11:22] remember it being a really surprisingly
+[11:24] small skill at the time. And now I
+[11:26] understand exactly why. It was just
+[11:27] documenting the parts that Claude
+[11:29] wouldn't understand out of the box. So
+[11:30] you're going to pick your process that
+[11:31] you want to automate. You're going to
+[11:33] run it with no skill on a good model and
+[11:35] only write down the corrections that you
+[11:36] needed to make. the corrections that
+[11:38] took it to your definition of done and
+[11:39] then you want to make sure you run it on
+[11:40] the model that you're actually intending
+[11:41] to use it on every other time as other
+[11:43] models are going to perform differently
+[11:45] and need more or less instructions. So
+[11:46] that's the other part of the
+[11:47] infrastructure, right? So on the board
+[11:49] we have skills sitting next to the
+[11:50] claude index and then we have claude.md
+[11:52] which is what's always true about your
+[11:54] setup about your workspace or your
+[11:56] business and then a skill is what's true
+[11:57] about that one specific process which is
+[11:59] mostly just the corrections it needs to
+[12:01] make. And to continue on skills, let's
+[12:03] quickly talk about skills libraries
+[12:05] because I see popular skill packs that
+[12:07] get shared around constantly get
+[12:08] thousands of stars. But one developer
+[12:10] actually went away and tested nine of
+[12:11] them at the end of September. He did 450
+[12:14] runs on Opus 5.5 and only two out of the
+[12:16] nine did better than a dummy file of the
+[12:19] same length, which is quite frankly
+[12:20] telling. So these were some of the most
+[12:22] starred coding agent skills. And
+[12:25] actually the context inside those skills
+[12:27] did not make the output any better in
+[12:30] seven out of nine of the scenarios. And
+[12:31] thankfully Claude coders recognized this
+[12:33] and now have a built-in way to check. So
+[12:35] you can run the Claude plug-in evval
+[12:38] which is going to run the same task with
+[12:39] your skill and without your skill and
+[12:42] basically score it on the difference. So
+[12:43] you can see skill versus no skill. How
+[12:45] does Claude code perform on the task
+[12:47] that I'm trying to get it done? Now it's
+[12:48] mostly designed for plugins as it
+[12:49] sounds, but you can actually amend it
+[12:50] for single skills too, which I've done
+[12:52] for my community members. And basically
+[12:53] what it's going to tell you is if the
+[12:54] two scores come out the same, then the
+[12:57] skill is just costing you more tokens,
+[12:58] i.e. it's just decoration. And not to
+[13:00] mention, it's also clouding up your
+[13:02] folder space. So to clean up your
+[13:03] skills, then I first ran forward/skill
+[13:06] doctor, which shows what each skill
+[13:07] actually costs and how often it gets
+[13:09] used. And then I got rid of the ones I
+[13:11] never use. Then I ran the plug-in eval
+[13:13] on the skills left and was able to trim
+[13:15] down a few more skills in my skills
+[13:17] directory. And it makes total sense when
+[13:18] you think about how good the models are
+[13:20] now. just most of us haven't amended our
+[13:22] old library a huge amount of skills that
+[13:24] we installed. So that's one to tackle
+[13:25] today if you're only going to take one
+[13:27] thing away from this video. So now we've
+[13:29] got to the point where we've got nearly
+[13:30] all of our critical infrastructure now.
+[13:31] But there's three more that are really
+[13:33] going to accelerate the amount of work
+[13:34] you get done whilst maintaining high
+[13:36] quality outputs. So you probably already
+[13:39] recognize that adding words like
+[13:40] important or you must do this in
+[13:43] capitals inside the rules because Claude
+[13:45] kept messing up with that is no longer
+[13:47] effective. So if you actually want
+[13:48] guarantees that something will happen,
+[13:50] we need to write good hooks, which if
+[13:52] you haven't used them before, they're
+[13:53] just small executable scripts that run
+[13:55] at a set moment that you define. So a
+[13:57] moment might be, for example, just
+[13:58] before Claude uses a tool every time or
+[14:00] every single time it uses a tool, it
+[14:02] would run that hook and it's totally
+[14:04] deterministic. So it doesn't use any AI
+[14:06] tokens and it's going to run no matter
+[14:07] what. So if in our client report
+[14:09] example, we had never email the client
+[14:12] as a rule, we basically delete that line
+[14:14] and try and turn that into a hook
+[14:15] instead that blocks any email to a
+[14:17] client. And that hook guarantees a
+[14:19] result. The hook is going to run no
+[14:20] matter what on our condition. So go
+[14:22] through your claude the empty file, look
+[14:24] for anything in capitals, and each one
+[14:25] is either going to be something that
+[14:26] Claude does anyway, so it's going to get
+[14:28] deleted, or it's something that must
+[14:29] never happen, so it should become a
+[14:31] hook. And going back to Boris's original
+[14:33] advice, then these are just guard rails
+[14:34] that are added to the actions that
+[14:36] Claude can actually take on your behalf.
+[14:37] Now, the last two are about how removed
+[14:39] we can be from the work itself and have
+[14:41] things running without us. So, it's
+[14:43] things like should you be using sub
+[14:44] agents and agent teams or should we
+[14:46] actually defer that to Claude as well?
+[14:47] Now, so early this year, we built agent
+[14:50] teams by hand with orchestrators, agent
+[14:52] files, and routting. We had one lead
+[14:54] agent. We could interact with each sub
+[14:56] agent and give it tasks. But the Opus 5
+[14:58] guide now says it hands work to sub
+[15:00] agents more readily than any model
+[15:02] before it. So on small jobs, Anthropic
+[15:04] says that that's going to basically just
+[15:05] multiply the cost and the time. So their
+[15:07] advice is just to cap the number of sub
+[15:09] aents that are added so we're not just
+[15:11] continuously adding more and more sub
+[15:12] aents for a simple task. But in plain
+[15:14] English, what we're effectively doing is
+[15:16] Claude is going to make that judgment
+[15:18] for us around the team that it needs to
+[15:20] build around how many members of the
+[15:21] team there need to be, what tasks need
+[15:23] to be delegated to those team members.
+[15:25] Claude is going to do that job and your
+[15:26] job now is to set up how big the team is
+[15:28] allowed to get the boundaries, the guard
+[15:30] rails and that's going to stop it
+[15:31] costing too much or going overboard for
+[15:33] a task that doesn't need it. So I
+[15:35] actually went and gave it a
+[15:36] researchheavy brief with no agent files
+[15:38] already set up and you can see in the
+[15:40] task panel that by default it's going to
+[15:42] spin up its own helpers. It understands
+[15:44] what workflow to take, what sub aents to
+[15:46] allocate to to actually get this task
+[15:48] done. Now you might remember when people
+[15:49] were talking about ultra code as an
+[15:51] effort level. Ultra code actually spins
+[15:52] out multiple sets of sub aents and it
+[15:54] can indefinitely build out more and more
+[15:56] sub aents into an individual task team.
+[15:58] Now there is one caveat with this
+[16:00] allocation of sub aents and letting
+[16:01] claude do itself which is actually if
+[16:03] you are producing a skill because you've
+[16:04] got limitations in claude out the box
+[16:06] and you have something like a big
+[16:07] research step or a step where it
+[16:09] connects to an MCP or connector then
+[16:11] actually you should tell it to do that
+[16:12] step inside a sub agent so that the main
+[16:14] chat stays clean for the work that
+[16:16] actually matters. So if you remember why
+[16:18] we even consider sub agents in the first
+[16:20] place or one of the reasons is to have a
+[16:21] clean main context. So allocating those
+[16:24] tasks to sub agents can be really
+[16:25] powerful. So basically Claude will add
+[16:27] any helpers it needs with a given
+[16:29] process. Claude is going to spin them up
+[16:30] but you can control the limit inside
+[16:32] your config. And this brings us to the
+[16:34] final unlock which is about running
+[16:35] everything without you even having to
+[16:37] think about it. So the dream of sitting
+[16:38] on a beach with pina coladas whilst our
+[16:41] agents run our entire business is
+[16:43] definitely not quite there yet but we're
+[16:44] getting close with this last one. And
+[16:46] one of the latest updates to claude code
+[16:48] projects are a step in exactly this
+[16:50] direction.
+[16:52] So projects are now one ongoing
+[16:53] conversation that starts its own threads
+[16:56] whereas we used to have to start
+[16:57] sessions and keeps running when your
+[16:59] machine is off. So it runs lots of
+[17:01] agents in parallel to get a specific
+[17:03] task done. And the reason that's so
+[17:04] powerful is when we have isolated
+[17:05] context for our projects combined with
+[17:08] tasks that run on a timer or an event.
+[17:10] For example, an action gets added to our
+[17:11] to-do list or a contact or lead gets
+[17:13] added to our CRM. then we're able to set
+[17:15] up routines in code or scheduled tasks
+[17:18] in chat mode or co-work and those are
+[17:19] effectively able to tackle work without
+[17:21] us even being there. Now this is exactly
+[17:23] how I produce all of my social carousels
+[17:25] and shorts now for Instagram and all I
+[17:27] need to do is just hit approve in my
+[17:29] customuilt UI. So this is something that
+[17:30] we're sharing in the Aentic Academy with
+[17:32] members and this is becoming even more
+[17:34] important now that Codeex announced MCP
+[17:36] events for plugins i.e. now connected
+[17:40] apps can trigger codeex to run when
+[17:42] something happens. So, we're basically
+[17:44] boxing up everything we've talked about
+[17:45] so far into a package to run and you're
+[17:47] able to focus then on the next process
+[17:49] that you want to automate because all
+[17:51] you need to do are validate the outputs
+[17:52] for that specific process that's run
+[17:54] without you. And if you actually want
+[17:55] help handing your first process over
+[17:57] like this to AI, that's what we're
+[17:59] helping people to do inside the Agentic
+[18:01] Academy. So, in the next video, I'm
+[18:02] running through all updates in the last
+[18:04] year to skill building specifically to
+[18:06] skill building specifically. See you
+[18:08] there. Thanks for watching.
