@@ -1,0 +1,2550 @@
+[00:00] One of my biggest challenges today in
+[00:01] adopting new software both personally
+[00:04] and as Verscell is understanding the
+[00:06] security debt that I'm taking on. Just
+[00:09] the surface of attack has become so
+[00:11] massive as of recently. We probably need
+[00:13] to start writing code in different
+[00:15] programming languages. The challenge
+[00:16] that I think a lot of organizations have
+[00:18] today is that the amount of latent
+[00:21] vulnerabilities of all of this human
+[00:23] written code is almost immeasurable. We
+[00:25] could eradicate supply chain attacks if
+[00:27] we moved more and more of this
+[00:29] development life cycle to to sandboxes.
+[00:31] >> All right. So, Gilmo, what will matter
+[00:34] in the post AGI era?
+[00:37] >> I think our ability to stay in control,
+[00:40] >> okay,
+[00:40] >> as humans. And by that I mean creative
+[00:43] control, control over the risks on cyber
+[00:47] security.
+[00:48] >> Yeah.
+[00:49] >> Control over how we make the agents work
+[00:53] for us ultimately. You know, I've been
+[00:55] speaking a lot about the leverage is
+[00:58] shifting one layer of abstraction higher
+[01:00] into sort of the hardness engineering,
+[01:04] the software factory, the fleets of
+[01:06] agents that you orchestrate. I'm a huge
+[01:08] believer in
+[01:10] our taste and our creativity as human
+[01:13] beings uh because we're usually
+[01:15] appealing to other human beings and we
+[01:17] love to buy the stories and products and
+[01:20] services from other human beings. You
+[01:22] know, we like to think that we make
+[01:24] perfectly rational decisions as humans,
+[01:27] but a lot of the time we're actually
+[01:28] buying into the stories and the vibes
+[01:32] and the brands and the flavors and the
+[01:35] tastes. Ultimately, Asians are going to
+[01:37] be hopefully an enabler of greater and
+[01:41] greater storytelling and greater and
+[01:43] greater human ambition. I like what you
+[01:45] said about the higher level work because
+[01:47] people always are afraid of like this
+[01:48] job going away, this task going away and
+[01:51] you know farming was something that like
+[01:53] 90% of population did 200,000 years ago,
+[01:55] 200 years ago
+[01:56] >> and now nobody that works in farming,
+[01:58] less than 1% of people. So thinking of
+[02:00] this is like filling out a form just
+[02:02] feels like manual labor, you know. So
+[02:04] what will that look like? Will it be
+[02:06] like managing fleets of agents like
+[02:07] deciding which models, deciding like
+[02:09] where they run in terms of the hardware?
+[02:11] It's so funny because one of my most one
+[02:14] of my best performing tweets recently
+[02:16] was I do I do this for fun. You know, I
+[02:21] build software to relax.
+[02:23] >> Yeah.
+[02:23] >> I build software for work and then I go
+[02:26] home and I build build more software. I
+[02:28] build software with my kids. I build
+[02:29] software with my wife. Like I'm always
+[02:31] building software. So that's where I
+[02:33] think the analogy breaks down with
+[02:34] farming. And by the way, like there are
+[02:35] some people that are legitimately love
+[02:37] farming and maybe they, you know, over
+[02:40] hundreds of years, millennia, they'll
+[02:41] still do it.
+[02:42] >> It's called gardening.
+[02:43] >> Yeah. And they keep their little like
+[02:45] mini farm in their balcony and that kind
+[02:47] of stuff. But I think a lot of us do
+[02:49] this because we this is our medium for
+[02:52] creativity and there's no taking that
+[02:54] away. There's not no putting that genie
+[02:58] back in the bottle as far as I'm
+[02:59] concerned. Um, but it does mean that I
+[03:02] mean you kind of see this with models.
+[03:04] these days being benchmarked over their
+[03:06] ability to create new worlds. There was
+[03:08] that Garpathy discontinuity tweet of,
+[03:11] you know, first he introduced vibe
+[03:13] coding, then he introduced, oh, by the
+[03:15] way, the models are getting so good that
+[03:16] they can create entire worlds and they
+[03:19] can uh rerender the Hobbit or Lord of
+[03:23] the Rings.
+[03:24] >> And so I do think that we're getting
+[03:26] into the next level of how much r free
+[03:31] range of creativity is enabled by AI,
+[03:34] creating new worlds, creating games.
+[03:36] I've spoken of how the web itself, the
+[03:38] web that we will consume as humans is
+[03:42] becoming like ultra fancy. Like the the
+[03:45] experiences that stand out to you are
+[03:47] the ones that just like really go out of
+[03:49] their way in terms of wowing you. 3D and
+[03:53] animations and particle effects and
+[03:54] things like that. And so it's amazing
+[03:57] that like literally we can do anything
+[03:58] now. We can build anything. And uh and
+[04:00] people are flexing that muscle. Like I
+[04:02] see a lot of people that are building
+[04:04] stuff that they're just building it
+[04:06] because they couldn't before and they're
+[04:08] deriving a lot of joy from building
+[04:10] which I think is really good.
+[04:11] >> I've been coding with AI for nearly four
+[04:13] years. In 2023 I was the first to start
+[04:16] the build anything trend and since then
+[04:19] a lot has changed. We have different
+[04:21] models, different tools, different
+[04:23] agents. But despite all of that change,
+[04:25] every single project I've built has one
+[04:28] thing in common. I always use Superbase
+[04:30] as my back end. I'm not even thinking
+[04:32] about what DB do I use. I just use
+[04:35] Superbase. It's simple, it's scalable,
+[04:37] and it's agent first. In fact, it has
+[04:39] never been easier to get started. Now,
+[04:41] the AI agents can literally build the
+[04:43] entire back end for you because
+[04:45] Superbase now works inside of CIGBT and
+[04:48] cloth. We all know that with AI, you can
+[04:50] write code faster than ever. But where
+[04:52] people get stuck is the back end. the
+[04:54] database, the login, the storage, all
+[04:57] the stuff you need to get right. And
+[04:59] Superbase handles all of that for you.
+[05:01] With their official connector, you can
+[05:02] just ask Codeex or Cloud Code to use it.
+[05:05] Just say, "Create a new invite table or
+[05:08] deploy this function or review my app
+[05:10] for security issues and the agent will
+[05:12] do all of this for you right inside of
+[05:14] your Superbase project." I'm using
+[05:16] Superbase for all of my backends and so
+[05:18] should you. And the best part is they
+[05:20] have a really generous free plan. Just
+[05:22] go to superbase.com and try it for free.
+[05:25] It's the first link below the video.
+[05:26] >> So, given the fact that anybody can
+[05:28] build anything. What gives someone an
+[05:30] advantage? You know, people watching
+[05:31] this, they want to know like how do I
+[05:33] get ahead? How do I build a business? Is
+[05:35] it the taste? Is it the creativity? Is
+[05:36] it being more technical?
+[05:38] >> Yeah, there's so many things. You know,
+[05:40] I was actually going to post recently.
+[05:42] So, every time a model comes out, you
+[05:45] probably like the first thing you do, at
+[05:47] least both of us, like we try it out.
+[05:49] >> Definitely. And one good exercise I
+[05:52] would recommend people to do is there's
+[05:54] a series of things that are just
+[05:57] impossible for models to do today.
+[06:00] Now that list is probably shrinking and
+[06:02] changing over time. But you know 12
+[06:05] months ago that list was bigger and
+[06:07] there were a bunch of things that it
+[06:08] couldn't do at all. And what you want to
+[06:10] do is like you almost want to keep like
+[06:12] a list either in your head or like write
+[06:14] it down of like what are the wildest
+[06:17] most ambitious prompts that a model
+[06:20] could do. And I think it having the
+[06:23] timing, having the anticipation
+[06:28] really pays off because when a model
+[06:30] drops, it's almost like people are
+[06:32] exploring its latent space and
+[06:34] discovering what's possible and it's an
+[06:36] opportunity for you to like it might be
+[06:38] that you can build a business like oh
+[06:41] you know Opus 5 5.5 came out and this
+[06:45] particular thing that models used to
+[06:47] fail at has now become possible. So
+[06:49] there's that whole category of things. I
+[06:51] think people can use the creative power
+[06:55] that they get from the models to you
+[06:58] know broadcast a better message. So you
+[07:01] see this with companies taking advantage
+[07:02] of like hey models can do this um we can
+[07:07] portray our brand or our product in
+[07:10] terms of what this model enables. So a
+[07:12] good example for us was that when Jev
+[07:14] came out,
+[07:15] >> yeah,
+[07:15] >> there were all of these really cool
+[07:17] things that it enabled for our products.
+[07:19] And so Jev comes out, we can now sort of
+[07:22] like ride that wave and like teach
+[07:24] people. There's there's such an appetite
+[07:27] by the world to learn about AI to make
+[07:30] sense of AI. You know, a lot of people
+[07:32] are out there scared. Yeah.
+[07:33] >> So for example for us every time a model
+[07:35] comes out we run it through the
+[07:37] deepseack benchmarks to help the world
+[07:39] understand okay
+[07:41] >> this model is good at cyber security it
+[07:43] costs this much there's a lot of alpha
+[07:45] right now in which is super ironic
+[07:48] because models are so easy to use like
+[07:50] you just prompt them in English and yet
+[07:52] there's a mastery to them
+[07:54] >> yeah for sure
+[07:55] >> there's understanding what model is best
+[07:57] for what job uh and so I think there's a
+[08:00] whole space of like evaluation
+[08:03] Whether is that you can become a voice
+[08:06] that helps other people through public
+[08:08] evaluation make sense of what models are
+[08:10] best for what. There's also the personal
+[08:12] evas that I think has a lot of alpha.
+[08:14] You know, another irony of AI is that we
+[08:17] do go off vibes a lot. Like I hear
+[08:20] people say like, "Oh, I read this thing
+[08:21] on Twitter, then I started prompting my
+[08:24] the model differently." I heard someone
+[08:26] the other day say like, "Oh, I I read
+[08:28] this prompting guide and said that Astra
+[08:30] does better with like less this and that
+[08:32] and like now I'm doing that." And I
+[08:34] asked him like, "But did you actually
+[08:36] ascertain that is giving you better
+[08:38] results?" It's like, "No, just I'm just
+[08:40] going off of like what other people are
+[08:42] saying." And so I think there's a lot of
+[08:44] um there's a unique advantage now to are
+[08:46] you actually deriving truth from what
+[08:49] the models can do and do you have a you
+[08:51] know a set of like personal uh evals or
+[08:54] do you have a set of company evals that
+[08:56] allow you navigate this world that is
+[08:58] moving so fast like every every single
+[09:00] week there is sort of like a new model
+[09:03] to evaluate or uh as we saw with Jev
+[09:06] there's even new categories of AI
+[09:09] products coming out every week
+[09:11] >> but isn't the vibes is like part of what
+[09:13] makes us human, you know, because the
+[09:15] models they sometimes like the just the
+[09:16] practical sense, you know, it's like,
+[09:18] okay, we need to ship this feature. If
+[09:19] you're a human engineer, you know, like
+[09:21] there's pressure on this and the release
+[09:22] is tomorrow and you cannot be like
+[09:23] overly perfectionist, the model will
+[09:25] happily spend 30 minutes on something
+[09:26] useless, something small that a human
+[09:28] engineer will just skip given the
+[09:30] broader circumstance. So
+[09:31] >> yeah,
+[09:31] >> do you think like the creativity, the
+[09:33] vibes that will still remain or better
+[09:35] models will have this? I think
+[09:37] creativity forever because again unless
+[09:40] we go on like a social network made by
+[09:44] AIS and we decide to follow AIs and how
+[09:48] they're going to influence our future.
+[09:50] The reality is that we're still in
+[09:52] charge of our brands, our storytelling,
+[09:55] our values. Even I think you know
+[09:58] there's a certain design aesthetic that
+[10:00] humans can push forward, right? Like
+[10:03] when you look at a versel, Verscell
+[10:05] looks a certain way and we invest in
+[10:08] making it so and creating an emotional
+[10:10] connection with our audience. And so
+[10:12] what you want to do is you want to use
+[10:14] AI to I I mentioned sort of amplify your
+[10:19] story. How can how can using AI whether
+[10:22] it's the creative tools, image and video
+[10:24] models, can it help you tell a better
+[10:26] story? Can it help you ship? I mean,
+[10:28] what's what's very clear, right, is that
+[10:30] you're going to ship more more
+[10:32] frequently and you're going to ship
+[10:33] probably better products.
+[10:34] >> Y
+[10:35] >> there's a still a delta between like are
+[10:38] you shipping at the true speed of AI?
+[10:42] Are you behind? I think for a while I
+[10:45] think we're going to have a range there
+[10:47] where there are going to be individuals
+[10:50] and companies that are just ahead of how
+[10:52] much they can harness this superpower. I
+[10:55] think there's an analogy there with, you
+[10:57] know, when cloud computing became, you
+[11:00] know, I guess fashionable or or or or
+[11:03] increased in popularity. There was a
+[11:05] relative range of like, you know, there
+[11:07] there are companies that groed it right
+[11:10] away and used it very efficiently. There
+[11:12] are companies that are still
+[11:14] >> like trying to migrate from on-prem to
+[11:17] cloud. And I think incidentally, I think
+[11:19] AI is pushing a lot of people now like
+[11:21] the the ones that were sort of
+[11:23] procrastinated on it. And you can sort
+[11:25] of imagine right that there are a lot of
+[11:26] people that are kind of procrastinating
+[11:28] on like how agentic they're becoming and
+[11:30] they're probably going to get lapped by
+[11:32] this uh organizations that are moving
+[11:34] more autonomously and with more
+[11:35] conviction.
+[11:36] >> So let's go deeper on that. What
+[11:38] separates like the company that really
+[11:40] squeezes AI to the fullest? Is it like
+[11:42] building the autonomous software
+[11:43] factories because this changes every
+[11:44] quarter? I really I mean I really think
+[11:46] like we have such a we have a once in
+[11:48] a-lifetime opportunity
+[11:51] to do what customers want which is sort
+[11:54] of ironic to say but like any big
+[11:56] company at any given time is getting
+[12:00] customer feedback.
+[12:01] >> Yeah.
+[12:02] >> Uh you know let's say you're Comcast,
+[12:04] right? Like people are saying things on
+[12:06] Reddit. They're calling your call
+[12:08] center. They're you know sending you
+[12:10] emails and their internet broke down and
+[12:12] they want to understand why. And you
+[12:15] know, what's your ability today to like,
+[12:17] you know, turn those detractors into net
+[12:19] promoters? Uh, when they're reaching
+[12:21] out, are you responding with a high
+[12:24] quality agentic response? When they
+[12:26] reach out, report a problem, are you
+[12:29] kicking off an incident investigation?
+[12:32] When they're reporting with a very
+[12:34] concrete fixable thing, are you fixing
+[12:36] it autonomously? I think this is
+[12:38] actually a pretty decent way to grade
+[12:41] like a rubric for how agentic are you
+[12:44] from customer signal that is decisive
+[12:47] about something in your product being
+[12:50] broken, defective, or in need of
+[12:52] improvement.
+[12:53] Are you actually shipping that? Are you
+[12:56] shipping the the fix for that signal?
+[12:58] The thing that addresses that signal and
+[13:00] what is your latency? Like you could
+[13:02] almost make a case that you can measure
+[13:04] this sort of uh like uh mathematically,
+[13:07] right? like, okay, signal came in.
+[13:10] Eventually, you're going to get to
+[13:11] fixing it. Maybe to give you sort of a
+[13:14] lay of the land. There's the company
+[13:16] that periodically scrubs that maybe
+[13:20] through taste, maybe with product
+[13:21] managers, maybe by, you know, getting
+[13:24] enough escalations, they're like, "Ah,
+[13:25] I'm going to fix it." And there's the
+[13:27] company that is sort of like becoming
+[13:29] truly more autonomous in a good way,
+[13:30] right? Not in the sense of like we let
+[13:33] the Asians go crazy and ship slop. Um,
+[13:36] and you know, speaking of Jev and why
+[13:39] people are so excited about it, you
+[13:40] know, this idea of like really fast
+[13:42] decision making can be super critical in
+[13:45] shaping these software factories because
+[13:47] I'm mentioning that there's an element
+[13:49] of judgment and taste also in you know
+[13:53] famously uh folks like Steve Jobs, DHH
+[13:57] and many others have have said you know
+[13:58] like you're not just a machine that
+[14:00] turns whatever customers want into
+[14:02] product. There is an element of of
+[14:04] decision making there but there's also
+[14:06] an objectivity to like you know your
+[14:08] product might be erroring.
+[14:09] >> Yeah. And so you know throwing up a
+[14:11] bunch of exceptions in prod or someone
+[14:14] comes in with a legitimate very
+[14:17] straightforward improvement. You know we
+[14:18] like to do this a lot on X like when
+[14:20] people like give us feedback on X
+[14:23] sometimes they like attach a screenshot
+[14:25] or a video it's like that's a spot on
+[14:27] like there's there's no human creativity
+[14:30] involved here. like they're pointing out
+[14:31] something that they experienced and it
+[14:33] was a problem that we should fix it
+[14:34] right away. And so that's kind of like
+[14:35] an opportunity to like test out this
+[14:37] software factory hypothesis.
+[14:39] Interestingly, yesterday we got a guy
+[14:42] saying that he was getting confused by
+[14:44] our navigation
+[14:46] and he gave me some really good feedback
+[14:48] but nothing that was like immediately
+[14:50] actionable. Like it's not like I could
+[14:52] take his thing and turn it into a
+[14:53] prompt. And so what we did is um uh the
+[14:57] leader of our sort of like dashboard
+[15:00] product area reached out to this
+[15:02] gentleman and they started going back
+[15:04] and forth. He he gave us more videos. He
+[15:06] gave us more qualitative feedback and
+[15:09] even then requires another layer of
+[15:12] human judgment to turn it into a
+[15:14] decision for what we're going to do with
+[15:15] the product. Now one could project very
+[15:18] far out in the future which in in AI
+[15:20] could be six months, 12 months. There is
+[15:23] a world where some of that UI and some
+[15:26] of that expectation that this customer
+[15:28] have
+[15:30] that would become their own generative
+[15:32] interface.
+[15:34] But I think we're a ways away from that.
+[15:36] So you know this is still our role to
+[15:37] sort of like balance out feedback that
+[15:40] we get from customers and then uh sort
+[15:42] of u eventually find its way into a
+[15:45] prompt and eventually find its way into
+[15:47] a shipped product. So when it comes to
+[15:49] like the obvious ones like button isn't
+[15:51] working, payments are failing, do you
+[15:53] think the number of like like you said
+[15:55] the latency towards a fix
+[15:57] >> resolution? Yeah.
+[15:58] >> Resolution is that like the one of the
+[16:00] main numbers of predicting of a business
+[16:02] success because think like if you go
+[16:03] from first principles business is a
+[16:05] product that gets better over time.
+[16:07] Totally.
+[16:07] >> And if you have a unless you have a
+[16:08] super small addressable market, it's
+[16:10] like that business that can just fix
+[16:12] everything in sub 30 minutes is going to
+[16:14] destroy a business that takes two days.
+[16:15] >> 100%. And that's been the history of
+[16:17] technology, right? That's why I gave the
+[16:18] example of like the companies that were
+[16:20] not afraid to adopt personal computers
+[16:24] that said like, "Oh, we're going to do
+[16:25] this stuff by hand." The companies that
+[16:26] were not afraid to adopt the internet
+[16:28] early on. The companies that also made
+[16:30] it their priority. So, there's something
+[16:33] really interesting to learn from the
+[16:34] history of the internet, which is a lot
+[16:37] of companies like the internet, but it's
+[16:39] like, okay, I'm going to hire a company
+[16:42] >> that does the internet for me.
+[16:43] >> There's so many companies in AI want to
+[16:45] do this.
+[16:45] >> It's still happening. Interestingly,
+[16:47] right, like you have, it's so funny
+[16:49] because I talked to a lot of enterprises
+[16:50] and like it's so common that they tell
+[16:53] me that they don't own their own
+[16:54] website. And so there's a parallel here,
+[16:57] which is that there's going to be the
+[16:59] companies that say, "I love AI. Can we
+[17:02] like buy a bunch of AI licenses and
+[17:05] throw them to our engineers?" And
+[17:06] there's going to be the ones that say,
+[17:07] "No, no, no. This is a disruption that
+[17:10] creates a new competitive landscape." If
+[17:12] we become really good at mastering this
+[17:14] thing, it's a little bit like uh
+[17:17] redstone. If we become really good at
+[17:19] like manipulating this new block, yeah,
+[17:22] this new raw material that's going to
+[17:24] put us ahead. That's 100% what I
+[17:26] believe. And uh uh and yeah, to your
+[17:28] point, there's a
+[17:29] >> there's an element of measuring. Uh I I
+[17:32] don't want to get only, you know,
+[17:34] tactical like if you improve that
+[17:35] metric, that's the end all be all of
+[17:38] your business. We like to say that
+[17:40] there's iteration speed and there's
+[17:42] iteration velocity.
+[17:44] Iteration speed is, you know, like how
+[17:47] quickly you're turnurning out stuff. And
+[17:49] that's why, you know, when I hear about
+[17:52] how many tokens you spend, token maxing,
+[17:54] and when I hear about how many PRs you
+[17:56] land, good for you, good metrics. But
+[18:00] velocity implies speed in a direction.
+[18:03] You could be pring, pring, pring, pring
+[18:05] into oblivion. I'll give you a very
+[18:08] concrete example. AI is is helping
+[18:10] people realize that they can build a lot
+[18:12] of things.
+[18:13] And what I don't know that it's fully
+[18:15] helped people realize yet is that
+[18:17] there's certain things you should build
+[18:18] and there's certain things you should
+[18:19] buy. There's services you can use for
+[18:22] certain things and there's things that
+[18:23] you should build yourself. I talked to a
+[18:24] startup founder recently. She came to my
+[18:26] office and she was like, "Yeah, I'm
+[18:28] building this really cool idea for
+[18:30] agents and I I thought the idea was
+[18:32] really compelling." And then she
+[18:34] proceeded to tell me that she was also
+[18:36] building her own email service and her
+[18:39] own payment gateway, her own like
+[18:42] >> Yeah.
+[18:42] >> And some of those things might make
+[18:43] sense, some of those might not, but like
+[18:45] she was taking on a lot. That was sort
+[18:46] of my my sense. Like sure there's the
+[18:50] very optimistic take which is that you
+[18:51] can have so many agents working in
+[18:53] parallel for you that yeah you can take
+[18:56] on a lot more projects but I'm still a
+[18:58] skeptical because what you really want
+[19:00] to do is you want to pick a few set of a
+[19:04] set of problems where you think you can
+[19:06] have disproportionate alpha and go
+[19:08] really deep and spend as many tokens as
+[19:11] you can on those problems and move as
+[19:12] fast as you can on those problems and
+[19:14] that and that that would imply that
+[19:15] vector that direction of that that the
+[19:18] word velocity implies. Uh so it's not
+[19:21] just PR landing, but like where are you
+[19:23] headed and actually are you actually
+[19:24] making progress towards your goal?
+[19:26] >> Yeah, because if you're doing 20 things
+[19:27] at once, you're going to be like
+[19:29] mediocre in all of them. And to be
+[19:31] successful, you need to build one thing.
+[19:32] Great.
+[19:33] >> By the way, this is kind of becoming a
+[19:36] thing already. Like you realize that a
+[19:38] lot of people ship really fast and then
+[19:40] you you come to their website and it's
+[19:42] like a pile of slob. like you can sense
+[19:45] that like there's no value add over what
+[19:47] the model did. By the way, this was
+[19:50] already the case with the web. Like
+[19:54] people would not respect the vanilla
+[19:58] template that looked like you just
+[20:00] purchased some kind of starter kit
+[20:03] >> and threw it over the internet. I think
+[20:05] people are really not like it's almost
+[20:07] like you're tuning out a bit when you
+[20:10] see something that looks like it was
+[20:11] just regurgitated by the LLM because
+[20:14] okay what is the value ad like if you
+[20:16] could
+[20:17] >> one shot
+[20:18] >> throw if you could one shot it I can
+[20:19] also one shot it and so there's an
+[20:21] element there of like again the sweating
+[20:24] the details that help you communicate
+[20:26] your intent and your values and what
+[20:29] you're trying to pursue much better. By
+[20:31] the way, if you have multiple $200
+[20:33] subscriptions a month, pay attention
+[20:35] because I want to be working closely
+[20:37] with a couple of you to build Cloud
+[20:39] Room. This is an open source platform
+[20:41] for running agents in the cloud. It's
+[20:43] the world's first open source solution
+[20:45] for cloud agents, right? You have Devin,
+[20:47] you have cursor, you have Codex, you
+[20:49] have Cloud. All of these are closed.
+[20:51] They want you to use their own
+[20:53] subscription, their own harness, their
+[20:54] own GUI. But you're already paying for
+[20:56] inference. You're already paying for
+[20:57] tokens. You have probably multiple
+[20:59] subscriptions. You should be able to use
+[21:00] that inference. You should be able to
+[21:02] use your favorite models, your favorite
+[21:03] harness. This is Cloud Room. It's fully
+[21:05] open source and it's free. However,
+[21:08] right now it's not fully open to the
+[21:09] public. I'm looking for the real power
+[21:11] users, the people who can give me
+[21:13] feedback daily, people with high taste
+[21:15] when it comes to coding agents and
+[21:18] running agents in the cloud. So, if
+[21:19] that's you, if you're paying for a $200
+[21:21] plan on Codex, cloud code, and a bunch
+[21:23] of other stuff, go to cloudroom.dev and
+[21:26] join the wait list. As I mentioned,
+[21:27] every single day I'll be selecting a
+[21:29] handful of people, giving them access
+[21:31] and working with them closely to build
+[21:33] this platform. So yeah, if that's you,
+[21:35] go to cloudroom.dev. It's also going to
+[21:37] be linked below the video.
+[21:38] >> Let's talk about your current agent
+[21:40] engineering setup. Like how does it look
+[21:41] like? What do you use?
+[21:43] >> Yeah. So broadly speaking for Versell,
+[21:47] we've encouraged people to, you know,
+[21:50] try everything. We're not prescriptive
+[21:53] about what coding agent to use, you
+[21:55] know, what frameworks to use. Like our
+[21:57] our stance has always been like open. In
+[22:01] fact, our fastest growing product at
+[22:03] this point, I think by revenue,
+[22:05] adoption, numbers, etc. is our AI
+[22:08] gateway. And our AI gateway, like the
+[22:10] thesis is, you know, I mentioned if
+[22:14] you're a company, you should probably be
+[22:15] investing in your agentic engineering
+[22:17] fabric. Uh you should also not be using
+[22:20] just one model.
+[22:21] >> Yeah, for sure.
+[22:22] >> You also showed me yours and I thought
+[22:23] it was really cool that you basically
+[22:25] built your own client or your own uh AD
+[22:29] and you can choose between all these
+[22:30] harnesses etc. So it's kind of stands.
+[22:32] In fact, we have this app over here in
+[22:35] the in the menu bar where we give you a
+[22:38] sense of like what your token spend is.
+[22:41] So every engineer at Verscell gets this
+[22:43] app and like they can understand okay
+[22:45] like what is my how much did I spend on
+[22:48] the OpenAI model versus the Kim model
+[22:50] versus the Opus model etc. So like one
+[22:53] of the like founding philosophies is you
+[22:56] should uh try many things especially
+[22:58] models. Uh personally you know AI has
+[23:02] been amazing for me because I've always
+[23:04] been a huge believer in the simplicity
+[23:07] of the CLI. So when I started Verscell,
+[23:11] if you go on on the way back machine, I
+[23:14] started Verscell by shipping a CLI. So
+[23:17] you would go to zite.co
+[23:20] and you say install now. Now was our
+[23:24] deployment CLI and as the name implies
+[23:27] basically all you needed to write was
+[23:28] like now in any directory and you get
+[23:32] back your a URL of what you've shipped
+[23:35] and you know we ended up renaming the
+[23:37] product. is now called Verscell.
+[23:39] But you know 11 years after the founding
+[23:42] of the company, the thing that continues
+[23:45] to sort of grow exponentially and
+[23:47] continues to give us all our gravitas is
+[23:48] this foundational concept. There's a CLI
+[23:52] that ena enables you but now
+[23:54] increasingly agents to take anything
+[23:57] they've built and put it in the cloud
+[23:59] and make it instantly accessible. So my
+[24:02] personal uh engineering stack has always
+[24:05] been like can I can I do stuff in the
+[24:06] CLI and um I've always been a neoim
+[24:09] user. So my next obvious logical step
+[24:12] was cloud code. I got really excited
+[24:15] when cloud code came out because
+[24:17] everyone else was trying out sort of
+[24:20] like building very sophisticated apps.
+[24:23] >> Yeah. And they became successful by
+[24:26] basically going towards the kernel of
+[24:31] what makes AI different which is well at
+[24:34] the end of the day it's just packaging
+[24:35] intelligence and giving you a prompt. So
+[24:40] um I'm today I'm using FX which is the
+[24:44] uh coding CLI of Verscell Labs.
+[24:48] One one of the design principles of this
+[24:50] CLI is that it almost feels like a
+[24:52] shell. So when I open a new tab on
+[24:56] Ghosty like or I open a split like it
+[24:59] boots into ZSH but one of the things
+[25:01] that we obsessed about is like can this
+[25:03] boot as fast as a shell itself. So, it's
+[25:08] a very tiny uh binary. Uh installed is
+[25:12] 11 megabytes. If you download it today,
+[25:14] which I'm going to
+[25:15] >> six
+[25:16] >> uh it's actually 6 megabytes. It's 11
+[25:17] megabytes on disk. Um and it's
+[25:20] incredibly fast to start up. So, like
+[25:22] the idea was like if if I started a
+[25:24] shell within a shell, like can I make it
+[25:27] like just as fast? Um
+[25:29] >> so, what inspired you to do this?
+[25:30] Because like most agents are very
+[25:32] bloated, you know, with endless
+[25:34] pre-shift skills, plugins. What comes to
+[25:36] mind is PI that's a probably the closest
+[25:38] minimal agent. Were you inspired by PI
+[25:40] or like what was the idea here?
+[25:42] >> So interestingly enough you know
+[25:43] Verscella for its entire history has
+[25:45] been associated with TypeScript.
+[25:48] >> Uh we have one of the leading open
+[25:50] source projects in the in the TypeScript
+[25:51] ecosystem which is actually the leading
+[25:53] and most popular open source project
+[25:54] which is the AI SDK.
+[25:56] >> One of the things that we wanted to
+[25:57] experiment with with FX is two things.
+[25:59] One, what would it look like to start
+[26:01] investing more in native tooling?
+[26:04] So, one of the frustrations that I
+[26:06] always get with uh with CLI is uh maybe
+[26:09] maybe I'll not to roast them, but like
+[26:11] every time I would launch Claude, you
+[26:13] can sort of see it there like there's
+[26:15] the boot up time and then there's the
+[26:17] like disclaimers or whatever like the
+[26:19] time that it would take me to start up
+[26:20] and like I I just want to get something
+[26:22] out of my head as fast as possible um
+[26:25] was kind of annoying. But the other
+[26:26] thing is that I started realizing that
+[26:29] the Unix philosophy is about composing
+[26:32] small programs.
+[26:34] and a bash the bash shell or zsh and
+[26:38] whatever they're they're just that right
+[26:40] like they're programs that call other
+[26:41] programs and so there is an element of
+[26:43] like let's experiment with making a
+[26:46] program that is actually going to be
+[26:48] fairly immutable over time there
+[26:51] shouldn't be more UI added to this over
+[26:53] time
+[26:54] >> yeah that's the problem with a lot of
+[26:55] these agents like you you build a
+[26:57] business on top of them and then like
+[26:58] it's crashing you know
+[26:59] >> they they start out small they start out
+[27:00] fast you know this actually what
+[27:03] initially made me fall in love with
+[27:04] claw. It was like, "Oh my god, there's
+[27:05] almost nothing to it." Uh, and then over
+[27:08] time, I think you you really need to
+[27:10] fight off this temptation to add more
+[27:12] and more and more. But it is true that
+[27:15] people should be able to extend these
+[27:17] things. That's why they're open source
+[27:18] to begin with. And so effects is
+[27:20] actually simultaneously this like super
+[27:22] minimalistic CLI and also a library that
+[27:26] you can embed in other programs. So the
+[27:29] classic sort of C style paradigm here is
+[27:32] that you have your CLI and then you have
+[27:34] lib in that thing. So there's lib
+[27:37] effects that goes together with effects.
+[27:39] I'll tell you like this thing is so
+[27:41] addictive that um you know I started
+[27:43] using it for my own personal research.
+[27:46] Um I realized also that it's not only
+[27:50] that we were gonna have to like clear
+[27:52] this probably in the in post
+[27:53] >> blur it. Um, but I started realizing
+[27:56] that like, you know, another thing that
+[27:58] AI was sort of bringing to to the
+[28:01] foreground is going back to the
+[28:03] fundamentals of Unix and the
+[28:06] fundamentals of computing. It's not just
+[28:08] a bunch of small programs. It's also the
+[28:11] fact that the file system is basically
+[28:13] all you need. Today prior to this
+[28:15] interview we announced Verscell drives
+[28:18] which is a way of sort of like modeling
+[28:20] a file system in the cloud and that you
+[28:23] can sort of like launch a bunch of
+[28:24] agents around. So you can launch a
+[28:26] sandbox and attach a drive.
+[28:28] >> I don't know if you saw some people
+[28:30] started reverse engineering muse and
+[28:33] instinct
+[28:34] >> or how open claw works. Open claw was so
+[28:38] simple that it was just claw code plus
+[28:41] soul.md.
+[28:42] >> Yeah. a Linux program plus the file
+[28:47] system is basically all you need in
+[28:48] order to re run agent. So I'm using
+[28:51] effects for a range of things. One is
+[28:53] anytime I have a question about
+[28:55] virtually anything instead of going to
+[28:58] like I actually it's replaced Google for
+[29:00] me incidentally because instead of
+[29:02] having to go to like this cloud thing I
+[29:05] can keep a lot of my sort of
+[29:06] experimentation uh in in the file
+[29:08] system. I can have the agent look at it.
+[29:11] I also, you know, and this I think is
+[29:13] also like a little bit of like the
+[29:15] future of of software is it becomes a
+[29:16] lot more like English driven. The fact
+[29:19] that my agents.mmd file in this research
+[29:22] folder uh sort of like creates the
+[29:24] convention for if I ask the agent a
+[29:27] question, reads up the instructions and
+[29:29] then dumps my research into this folder.
+[29:31] Um and I can sort of basically improve
+[29:34] it over time. Um the other thing that
+[29:36] I've done is that um I have this alias
+[29:39] which is like literally one letter
+[29:42] R, which goes into this directory and
+[29:46] launches it. Basically, there's not much
+[29:48] to do here. It's like if I said like
+[29:50] tell me more about tech podcasts.
+[29:54] Um, there's basically nothing to do,
+[29:57] right? Because like it's cding into a
+[29:59] folder and opening effects, but it still
+[30:01] cuts down on all the latency. like it
+[30:04] gets addicting because anytime I have a
+[30:06] question that I want to go deep into
+[30:08] like I just fire it off and then move on
+[30:10] with my life. Um the other alias that I
+[30:13] created is P.
+[30:16] So this is similar to what Toby does
+[30:18] with try. I don't know if you've seen
+[30:19] his CLI Toby from Shopify.
+[30:21] >> Uh it's very common that I'll have an
+[30:23] idea to create a new project. And so
+[30:26] anytime I have such an idea, I do the
+[30:29] same thing, but it creates a project in
+[30:31] my projects folder. And then um yeah, I
+[30:35] can do anything here from like I I will
+[30:37] do a lot of experiments with like local
+[30:39] Mac apps. I will create new Nex.js
+[30:41] applications. I will uh you know create
+[30:44] new Zigg or Rust programs. I will I do a
+[30:47] lot of benchmarking to help our teams.
+[30:50] >> Okay. So anytime we created a new piece
+[30:53] of infrastructure, I try to validate it
+[30:55] from first principles on like how an
+[30:57] agent would approach it. A good example
+[30:59] is when we announced drives, I had an
+[31:01] agent go and try to like break it. Uh
+[31:04] you know, try to find race conditions,
+[31:06] try to measure latency, try to compare
+[31:09] it with alternatives. Um, I do a lot of
+[31:13] what I call agentic inquiry, which is
+[31:14] like I'll have an agent go and try out
+[31:16] one of our technologies and then I'll
+[31:18] have it reflect on tell me what Verscell
+[31:22] could have done better.
+[31:23] >> It's great
+[31:23] >> for this experiment and it's been it's
+[31:25] been doing wonders for me. Um,
+[31:28] >> so FX is just the harness you use.
+[31:32] What's your default model right now?
+[31:34] >> Yeah, so I try to test out everything
+[31:36] over the last couple days. I was trying
+[31:38] out uh I mean Opus 5.5 fast. I've been
+[31:43] very impressed.
+[31:44] >> Yeah, super fast.
+[31:45] >> It's [laughter] by the way I should show
+[31:47] you something that I mentioned. Um
+[31:50] one of the ideas of effects is that you
+[31:52] should be able to embed it, right? And
+[31:55] one of the inspirations for lib effects
+[31:57] was when we created Vzero, we needed to
+[32:00] build a harness from scratch.
+[32:02] If I were to create something like v
+[32:05] 0ero today or any kind of application
+[32:07] like imagine like gamma which like has
+[32:09] like builds slides uh if I were to build
+[32:13] something like notion or anything that
+[32:15] requires sort of agentic intelligence to
+[32:17] be embedded I would want to pick a
+[32:18] harness off the shelf and so we created
+[32:22] this um example that we're going to open
+[32:24] source I think you're going to be one of
+[32:25] the first people to see it um so I I'll
+[32:29] give you a prompt create a simple page
+[32:31] that says
+[32:33] height.
+[32:34] Um, and so we made the the default model
+[32:37] oo 5.5.
+[32:39] Um,
+[32:43] so the easiest possible V0ero that you
+[32:46] could build is just creating HTML pages.
+[32:49] So we we did this thing where we help
+[32:52] you choose between design, app, or
+[32:54] agent. And I like you, I've been
+[32:57] extremely impressed with the speeds.
+[32:59] Like change background to red.
+[33:03] It's insane. It feels like you're
+[33:06] designing in real time. and the and the
+[33:08] level of accuracy like um design an
+[33:12] icon, design a set of SVG icons, make it
+[33:16] wide again
+[33:18] and
+[33:20] uh describe
+[33:22] a pitch for a cool tech podcast.
+[33:28] So what was really cool about building
+[33:29] this demo of FX0 was you know back when
+[33:32] we built V0ero for the first time I
+[33:34] think the amount of time that we spent
+[33:36] just on the harness was disproportionate
+[33:39] like 90% of the engineering time went
+[33:42] into you know like figuring out AIS SDK
+[33:46] and the models and the prompts and the
+[33:48] tool calls and all of this whereas this
+[33:51] example was probably like I don't know
+[33:54] 100 lines of code on top of the create
+[33:56] FX agent API. Um, and so right, so I was
+[34:01] mentioning this is just like using the
+[34:03] ability of the model to like output
+[34:05] HTML. Um, but uh, the second thing we we
+[34:10] did was like, hey, using this mental
+[34:12] model of like brain
+[34:15] and hands. I don't know if you if you've
+[34:17] heard of it, but like the architecture
+[34:19] that we recommend at Verscell is that
+[34:22] you run the harness and then you give it
+[34:24] tools. So in this example, the tool that
+[34:28] we're giving it is the Verscell sandbox.
+[34:31] So um this prompt said build a landing
+[34:34] page for a CLI coding agent. It's I mean
+[34:37] it look kind of looks like the previous
+[34:38] one that I showed you but behind the
+[34:40] scenes actually running a full NexJS
+[34:42] application.
+[34:43] >> Previous was just HTML
+[34:44] >> just HTML. And then we gave it a third
+[34:47] one which is agent and it creates an EVE
+[34:50] agent when you give it a prompt.
+[34:53] Now, what's really cool is what perhaps
+[34:55] took us like a a couple years of
+[34:58] engineering with Vzero, like it's now
+[35:01] part of the infrastructure that you can
+[35:02] use off the shelf. And we've had a lot
+[35:05] of customers come to us saying, "Hey,
+[35:06] like I would love to add like app
+[35:09] generation capabilities within my system
+[35:12] of record or I like what you're doing
+[35:14] with VZero, but I want to have one
+[35:16] that's sort of like internal." Like
+[35:18] imagine sort of having your own quote
+[35:20] unquote software factory where one of
+[35:23] the capabilities is design.
+[35:24] >> Mh.
+[35:25] >> I think what AI is showing us is that
+[35:27] you know what used to be software that
+[35:28] you purchased is now becoming like
+[35:31] extensions of the infrastructure that
+[35:33] sits on top of the model. Um and so you
+[35:36] know the the level of creativity you can
+[35:38] have on top of this is kind of
+[35:39] limitless.
+[35:40] Uh, another thing I noticed Open Five is
+[35:42] really good at is like, um, build
+[35:46] a pixel art scene of a dinosaur
+[35:52] jumping
+[35:54] up and down and making magic. Let's see
+[35:57] what it does. But it's been just, you
+[36:00] know, the the idea that you can embed
+[36:03] this harness and sort of pointing it a
+[36:05] point in a new creative direction gets
+[36:07] me really excited because, you know, we
+[36:08] have a lot of customers that are, you
+[36:10] know, building like gaming platforms or
+[36:12] education platforms or um uh like
+[36:16] healthcare, finance, etc. So lib effect
+[36:18] is sort of even though it's a coding
+[36:20] agent
+[36:21] um what I love about it is that at the
+[36:24] end of at the end of it is just a thing
+[36:26] that's really good at working with a
+[36:28] bunch of models calling tools producing
+[36:31] outputs reflecting on it. For example
+[36:34] for this particular f FX0 example we
+[36:37] have not given it a browser but you
+[36:40] could and the model only gets better if
+[36:43] you give it a browser. uh you can run it
+[36:45] inside the Verscella sandbox or you can
+[36:47] use one of our marketplace partner
+[36:49] services like uh browser base or kernel
+[36:51] and u yeah it's it's been super fun to
+[36:53] build. Yeah, this is crazy amount of
+[36:55] progress in like three years. V 0 was
+[36:57] 2023, right?
+[36:58] >> Yes.
+[36:58] >> Yeah. So, I remember prototyping it took
+[37:01] like minutes to get anything up and
+[37:02] going and now you have, you know, it
+[37:04] really is only limited by your
+[37:05] imagination. Yeah. Right. Like
+[37:07] >> it's amazing to me that, you know, we we
+[37:09] needed a big team of people building
+[37:10] something like Vzero and it's now a
+[37:13] library that you can import and uh you
+[37:16] can build basically vibe code your own.
+[37:19] >> Yeah. So then human is the bottleneck
+[37:21] really.
+[37:21] >> Yeah. because like knowing what to
+[37:23] accept and also like unblocking these
+[37:25] agents because you could have like you
+[37:27] know I believe that the harnesses and
+[37:28] the models are good enough to have
+[37:30] thousands agents running productively
+[37:32] but nobody has really thousand agents
+[37:33] running productively right the thing is
+[37:35] to figure out like how does that work
+[37:37] and I think the a lot of the lessons are
+[37:38] like borrowed from what works for humans
+[37:41] right yeah I mean neural nets inspired
+[37:43] by the brain so I think like
+[37:44] >> there will be some way of you know
+[37:46] having a manager or like some director
+[37:48] agent
+[37:48] >> there's also a lot of interaction models
+[37:50] I think because people people I think in
+[37:53] the different like eras of AI kind of
+[37:54] overindexing one modality or the other
+[37:56] but like let's look at this example for
+[37:58] example like if I want to create um a
+[38:01] video for X where I had this idea of
+[38:04] this dinosaur doing something really
+[38:05] cool at a laptop like you still need
+[38:08] this systems that are like super fast
+[38:11] >> and have you in the loop very much like
+[38:13] making decisions and like trying things
+[38:15] out etc
+[38:16] >> and then there's another interaction
+[38:18] model which is more like the you know go
+[38:20] and solve problems for me. And there is
+[38:24] also the one that is sort of coming off
+[38:26] of a signal like we talked about, right?
+[38:28] Like something is broken. So, um maybe
+[38:31] for fun, let's look at the so make me a
+[38:35] to-do list with persistence to disk. So,
+[38:39] this would be the case where like if I'm
+[38:40] building a full stack app, um by the
+[38:42] way, like we've made insane
+[38:45] progress in like making our sandboxes
+[38:47] extremely fast. Uh I think the future of
+[38:49] dev tools like Nex.js would be very much
+[38:53] making these use cases work really
+[38:54] really well where like you have an agent
+[38:57] driving the experience rather than a
+[38:59] human being. Um and but still like when
+[39:04] you give an agent a computer like
+[39:06] there's almost like the assumption of
+[39:07] like I'm going to go and let it cook in
+[39:09] the background, right? Um and uh you
+[39:12] know I think more and more of these
+[39:15] hardcore go and build applications solve
+[39:18] problems etc. they might not require you
+[39:20] to be in front of them every single
+[39:22] time. So I guess it depends on like the
+[39:24] what the input is, right? If somebody
+[39:26] reports this button is failing and the
+[39:28] model can check it and ship a quick
+[39:29] quick fix, that's obvious. If you can
+[39:31] define like we want to optimize the boot
+[39:33] up time and you launch your auto
+[39:34] research for like seven days running,
+[39:36] >> but what you're describing here is like
+[39:38] you need to figure it out with the
+[39:39] agent, right? You need to sit there and
+[39:41] really work with it. And if it takes two
+[39:43] minutes to get a response, you cannot be
+[39:45] doing deep work because the cost of that
+[39:46] two minutes has never been greater,
+[39:47] right? You can unblock to another agent.
+[39:49] That's why I think people really liked
+[39:50] plan mode, even though now it doesn't
+[39:52] really have to be a mode per se, is that
+[39:54] there's a there's an element of you
+[39:56] going back and forth.
+[39:58] >> Yeah.
+[39:59] >> With an intelligence
+[40:01] that is really important that it feels
+[40:03] real time. In fact, I would not be
+[40:05] surprised if more and more goes into
+[40:07] voice for this reason where like you
+[40:09] just talk back and forth with the model
+[40:11] a bunch on figuring out the plan and the
+[40:13] model pushes back and like improves your
+[40:15] idea, etc. And there's also the whole
+[40:18] premise of what I've been calling
+[40:20] verification engineering,
+[40:23] which is
+[40:25] what you're trying to do is set up the
+[40:28] set of guard rails
+[40:30] or the proof system around the thing
+[40:34] that you're building. And that also
+[40:37] requires that you and the agent agree on
+[40:39] a set of axioms and potentially a set of
+[40:41] tradeoffs because I can tell and and
+[40:43] this was true actually in the
+[40:44] development of effects, right? like we
+[40:47] could do we can do amazing things in
+[40:49] effects uh for startup time for making
+[40:52] the binary smaller etc but everything
+[40:55] comes with trade-offs
+[40:57] and some trade-offs are for example like
+[40:59] how much time you spend in the CI/CD
+[41:01] pipeline some trade-offs are about you
+[41:04] know speed versus safety versus uh
+[41:07] binary size and there's a bunch of
+[41:08] things there and so I think it's very
+[41:11] important that you as a human spend time
+[41:14] so almost in the edges of the testing
+[41:17] system. Someone was saying today on X
+[41:19] that they don't believe in unit tests
+[41:21] anymore. And I I've been kind of I kind
+[41:24] of personally been there for a long time
+[41:26] because over watching engineers and
+[41:28] working very large teams I started
+[41:30] realizing that a lot of human engineers
+[41:33] who spend a lot of time in these micro
+[41:34] unit tests that give you a false sense
+[41:38] of of of um confidence like and by the
+[41:42] way the the models are incredible but
+[41:43] sometimes I see models just write the
+[41:46] most inane test that you've ever seen
+[41:48] >> like export cost
+[41:50] >> something equals four And then they
+[41:52] write a test to assertain that the
+[41:55] constant is four which is kind of silly
+[41:57] right and uh uh so I think the more we
+[42:01] can spend our
+[42:04] sort of design tokens into the edges of
+[42:07] the system and less on like the little
+[42:10] tiny implementation details the more
+[42:12] effective you'll be at leveraging the
+[42:15] agents and these might be things like
+[42:16] again what are the set of actions about
+[42:18] the correctness of the system uh you
+[42:21] know what is the
+[42:23] aesthetic sense that you want to embed
+[42:25] into the system. What what are the
+[42:27] performance constraints like you know
+[42:29] what are you not willing to trade off in
+[42:32] terms of speed or you know maybe you
+[42:34] don't have a a certain performance
+[42:35] budget but if the model doesn't really
+[42:37] know what you want
+[42:39] >> it'll take you in whatever direction it
+[42:40] wants. So what is that skill right? Like
+[42:43] the skill is like system design,
+[42:44] architecture, kind of a mix of like
+[42:46] software design, corebased architect
+[42:48] like how would you describe that skill?
+[42:49] >> Yeah. Um yeah, it's a really good
+[42:51] question. I think on one hand I think
+[42:55] there there's this whole field some
+[42:58] people call it like symbolic systems
+[43:01] which is instead of like focusing on
+[43:03] like the specifics of syntax and
+[43:06] programming languages can we reason
+[43:09] about systems at a higher level of
+[43:12] abstraction.
+[43:13] So maybe to make it concrete, what I
+[43:16] think people should be able to reason
+[43:18] about is the concepts of engineering,
+[43:22] what is a library, what is a framework,
+[43:25] what is a compiler. So understanding how
+[43:27] the pieces fit together. Maybe a better
+[43:30] word would be the ontology
+[43:33] >> of engineering.
+[43:35] And another thing that's true about
+[43:37] engineering is that there is there's
+[43:40] algorithms and there's data structures.
+[43:43] And so understanding what data is, where
+[43:47] it lives, how to get it. Um, you know,
+[43:51] understanding how long things take is
+[43:53] also very helpful. You know, even prior
+[43:56] to Asians and AI, I would recommend
+[43:58] people to look at this resource of um
+[44:01] from uh Jeff Dean at Google.
+[44:07] Let's see if I can pull it up. It's
+[44:09] called latency numbers that every
+[44:10] programmer should know. think it's it
+[44:12] was from uh Jeff Dean at Google. So this
+[44:15] table I've shared it so many times with
+[44:17] engineering teams. It's it gives you um
+[44:21] rough senses of scale and orders of
+[44:24] magnitude of how long engineering
+[44:26] systems take. So and by the way funny
+[44:30] enough because Morse law is kind of
+[44:33] still alive like these numbers have to
+[44:35] get updated frequently. So this is 2012.
+[44:37] They're probably already but the the
+[44:39] orders of magnitude are probably still
+[44:40] the same. But like an L1 cache hit on a
+[44:43] CPU is half ancond.
+[44:47] >> A branch mispredict like for example
+[44:49] understanding how CPUs work at a high
+[44:51] level super helpful. Like branch
+[44:52] prediction um and uh you know there's
+[44:57] tiers of caching even the concept of
+[44:59] there's tiers of caching. is there's
+[45:02] certain things that are true about
+[45:04] systems of every scale. The Verscell
+[45:06] global CDN is a multi-tered caching
+[45:09] system. When we first designed the CDN,
+[45:11] we came up with an L1 cache and L2 cache
+[45:14] and L3 cache at large scale, which is
+[45:16] that when you go to a website really
+[45:18] fast, like when you go to routeg.com,
+[45:21] the reason it's really fast is I
+[45:22] probably hit the L1 cache of the
+[45:25] Verscell CDN in San Francisco. And if I
+[45:28] were to miss on it, there's an L2 cache.
+[45:32] And then if I were to miss on that,
+[45:33] there's an L3 cache. And there is a
+[45:35] pretty fast u um uh underlying storage
+[45:38] system behind that. So, I would
+[45:40] recommend people understand these
+[45:42] things. Um, you know, you don't have to
+[45:44] memorize everything, but one that I I
+[45:47] particularly love, oh, look, they
+[45:49] they've been keeping this up today.
+[45:50] That's so fun. They've they've added uh
+[45:52] LLM stuff. Uh, but I love this one. And
+[45:56] [clears throat] I've used it
+[45:57] occasionally as an an interview question
+[46:00] or I used to do like sort of level set
+[46:03] if the person that I'm talking to has
+[46:04] experience in like systems engineering
+[46:06] and networking. How long does it take to
+[46:08] send a packet from California to the
+[46:11] Netherlands back to California
+[46:13] over a well-tuned uh high performance
+[46:16] network? So it's about 150 milliseconds.
+[46:20] Uh I think there's also one here.
+[46:21] >> So what type of answer would you not
+[46:23] accept?
+[46:24] Oh, people get this very wrong
+[46:26] sometimes. So, you think it's seconds,
+[46:28] they think it's 10 milliseconds.
+[46:30] Um, it's very important to know that
+[46:32] it's somewhere in between 100 to 200.
+[46:36] You know, when people say 200 or 250,
+[46:38] like I almost like I'm okay with it
+[46:40] because like this is if everything is
+[46:42] like perfect. you're dealing with, you
+[46:45] know, Verscell spends a lot of capital
+[46:47] on the interlink between regions
+[46:51] because we need encryption in the
+[46:54] network stack in between like so for
+[46:56] example like you put the versel CDN in
+[46:58] front of a certain workload the
+[47:00] communication between the edge that's
+[47:02] closest to you and the origin has to be
+[47:05] encrypted. It has layer it has redundant
+[47:09] it sends redundant packets. The packets
+[47:11] get cloned and it it goes over a high
+[47:15] priority network. So when packets go
+[47:18] over the internet they shuffle around
+[47:20] routers and ISPs. If you run trace route
+[47:23] you can sort of follow the life of a
+[47:24] packet.
+[47:26] Um the worst case scenario is that your
+[47:28] package just gets tossed all over the
+[47:29] internet and you end up in like low
+[47:31] priority cues and in a high priority uh
+[47:35] uh bandwidth system uh you you're
+[47:38] basically like you know taking up space
+[47:40] in this very very expensive backbone
+[47:43] that goes that is underneath the ocean
+[47:45] between California and the Netherlands.
+[47:47] Um, so knowing I think how these systems
+[47:51] work, it's almost like, okay, you don't
+[47:52] want to have too much encyclopedic
+[47:54] knowledge because the AIS are really
+[47:56] good at that. But if you're also
+[47:58] completely clueless, I think you might
+[48:01] fail to push the AI harder. So if an AI,
+[48:08] you know, ships a system and uh I'm
+[48:12] hosting it in the Netherlands and I
+[48:14] notice that, you know, the page is
+[48:15] taking like a second to load. Knowing
+[48:18] this fact can help me say to the AI,
+[48:20] make it faster.
+[48:21] >> Yeah,
+[48:22] >> make it faster. Make it faster. Uh and
+[48:24] so now the counter argument that you
+[48:26] could create there is well the AI will
+[48:29] just create optimally fast software in
+[48:31] the future. I don't buy that because
+[48:34] when you give it when you give it a task
+[48:35] or a prompt etc the AI itself has to
+[48:38] work with a system of trade-offs.
+[48:39] >> Yeah. You need to set the what matters
+[48:40] for this project.
+[48:41] >> Exactly. And you can't spend infinite
+[48:43] tokens on every task. And so I think
+[48:45] what you need to know as an engineer is
+[48:48] what are my levers? What levers can I
+[48:50] pull? I'm not going to do the work
+[48:52] myself.
+[48:54] Is a little bit like um giving the plan
+[48:56] to the AI and the AI can sort of go
+[48:58] nuts. But uh you're still in charge of
+[49:00] creating that plan to some extent.
+[49:02] So I guess it's being like very
+[49:04] technical on a high level in your domain
+[49:07] like whatever you're [clears throat]
+[49:08] building in that domain you need to know
+[49:09] like
+[49:10] >> your domain is also a a thing right like
+[49:12] I've become more savvy thanks to AI
+[49:15] about areas where I wasn't you know if I
+[49:17] if I went to my research folder right
+[49:19] now like I'm constantly researching
+[49:21] things that were so um out of my scope
+[49:24] in the past and so I do think you can
+[49:26] get you you want to be a sort of you
+[49:31] wanna
+[49:31] dominate the conceptual space of your of
+[49:34] your domain and then as you build more
+[49:38] confidence in certain domains I think
+[49:39] you can get more comfortable expanding
+[49:41] and going to other places.
+[49:42] >> I think the key here is really getting
+[49:45] both the most out of the AI but out of
+[49:47] yourself. A lot of people want to
+[49:49] maximize their skills and MCPS and stuff
+[49:51] but they don't use the AI to get more
+[49:52] technical. I mean I really encourage I
+[49:55] mean again this this is sort of my take
+[49:57] of the world but I encourage people to
+[50:01] understand
+[50:02] and there's not just understand I I
+[50:05] would say reject non-understanding
+[50:09] because I do see folks proposing like
+[50:13] >> it doesn't nothing matters anymore
+[50:15] you're just a me proxy like
+[50:17] >> just lean into the AI you know it
+[50:20] reminds me a little bit of like There
+[50:23] are a lot of people giving advice in
+[50:24] society that is so counter to your
+[50:26] interests. The one I always think about
+[50:29] is, you know, a lot of people interview
+[50:31] me because I' I've built a large family
+[50:33] and I'm very much like pro-life. Like I
+[50:36] I love my family, I love having babies,
+[50:38] etc. There are a lot there's a part of
+[50:40] society that tells you not to do that.
+[50:41] There's a part of society says, "No, you
+[50:43] know what? Like it doesn't matter
+[50:44] climate change or like whatever like you
+[50:46] shouldn't." I see and maybe perhaps this
+[50:48] is an extreme metaphor but like there
+[50:50] are people that are saying you could
+[50:52] understand but you shouldn't. What's
+[50:54] best for you is to stay in this little
+[50:56] box go about your business and upload
+[51:00] everything to big AI and I think the
+[51:04] people that are telling you that are
+[51:06] usually not following that advice is
+[51:08] sort of my hot take. Uh the best example
+[51:10] is like people are saying like I don't
+[51:12] read code anymore because that's like
+[51:14] assembly and I know for a fact that if I
+[51:17] get a candidate that's going to work on
+[51:19] engineering adversel or any other
+[51:21] company if I can ascertain that that
+[51:23] candidate understands the stack really
+[51:24] well from assembly all the way up the
+[51:28] the the stack that person is more
+[51:31] valuable because they're going to use I
+[51:34] mean unless like sadly there's a
+[51:36] category of those people that are not
+[51:37] anti- AI maybe a little bit of like the
+[51:40] ego of like how well they understood the
+[51:42] previous world.
+[51:43] >> Yeah.
+[51:43] >> But if you can understand the universe
+[51:46] >> and hone in your AI skills, you're
+[51:49] unstoppable. And so the the the phrase
+[51:52] that I've coined, I think I've coined
+[51:54] this is agentic inquiry, which is I'm
+[51:56] not advocating that you read every line
+[51:58] of code, but when you do get something
+[52:00] done, try to understand what just
+[52:03] happened. Yeah, I think this is the
+[52:04] biggest nuance because people see such a
+[52:06] binary like either you're reading the
+[52:08] code and it's like line by line like
+[52:10] what does this line do or you're just
+[52:11] like fully yoloing and never looking at
+[52:13] it. But what you said, I think that's
+[52:14] like really the key. It's like if you if
+[52:16] you know
+[52:18] >> how to use the agent to understand this
+[52:19] file or this module like that's enough.
+[52:22] You don't need to like know all the
+[52:23] function.
+[52:23] >> And by the way, I think nature will
+[52:25] heal. I see a lot of great advocates of
+[52:27] this on X. Um, uh, I've seen folks
+[52:32] create skills that help them diagram
+[52:34] their code. Um, this guy Dylan posted,
+[52:38] um, I think he created it, um, Dylan
+[52:40] Moloy, he he was showing like a call
+[52:44] stack diagrammed
+[52:46] so that I think the agent was sort of
+[52:48] doing like pseudoatic analysis and I
+[52:50] think this is a skill. Yeah. or it might
+[52:52] be a skill plus an a grab style tool
+[52:56] that was after it cooked. It gives you a
+[52:59] sense of like the symbolic space of your
+[53:02] program. Mhm.
+[53:03] >> Oh, this method calls this method calls
+[53:05] this method calls this method and like
+[53:07] and this is like agents at their finest
+[53:09] because to do that only with syntactic
+[53:12] uh tools and and as parsing, you would
+[53:15] have to every time create a new program
+[53:18] to visualize what you just did or have a
+[53:20] very rigid tool. It's amazing that AI
+[53:23] can sort of like dive deep, call some
+[53:25] tools and then give you back an
+[53:27] understanding that's sort of like
+[53:28] digested. Um uh and it could be things
+[53:31] like measuring latency, it could be
+[53:34] things like uh measuring allocations, it
+[53:38] could be things like understanding the
+[53:39] new API shape. Um and so those are the
+[53:42] things that like you definitely want to
+[53:44] be kept in the loop about. And by the
+[53:45] way, this in itself, and this is the
+[53:46] crazy thing about like AI, like this in
+[53:48] itself could be turned into like an
+[53:49] agentic process where like I've seen
+[53:51] folks set it up such that they call the
+[53:54] Slack MCP.
+[53:56] Anytime you do something, you could put
+[53:58] this into your agents, right? Like
+[54:00] anytime you do something that alters the
+[54:03] a the let's call it like for an example
+[54:06] the public facing API shape of this
+[54:08] program, let me know, ping me on Slack
+[54:11] or Discord. That and that alone is just
+[54:14] I think better quoteunquote agentic
+[54:16] engineering than just do it, make no
+[54:19] mistakes, please automerge and let's
+[54:22] keep building a huge pile of slop. So
+[54:24] basically knowing what matters for that
+[54:26] system.
+[54:26] >> Yeah.
+[54:27] >> And then building like automated
+[54:29] software factories or like pings
+[54:31] whatever to use agents to help you.
+[54:34] >> Another thing that is also a lesson from
+[54:36] the old world is that tech debt would
+[54:40] get tossed around as a word a lot
+[54:42] >> and the smarter people that I've worked
+[54:44] with have always embraced tech debt. The
+[54:47] people that were like, "No, no, no, like
+[54:49] everything has to be pure, beautiful,
+[54:51] perfect code," have probably gotten
+[54:53] nothing done in their lives. I think
+[54:54] something I've loved about Silicon
+[54:56] Valley is that people have really leaned
+[54:58] into tech that I mean, if you look at
+[55:00] like Y Combinator and like how Airbnb
+[55:03] got started, how Twitter got started.
+[55:05] When Twitter got started, it was Jack
+[55:08] Vibe coding before Vibe coding was a
+[55:10] thing. Ruby and Rails
+[55:12] u it has the uh CRUD generating
+[55:15] features. it it you know I'm not going
+[55:18] to call Ruben rails slob but a as a
+[55:22] system it gave people an agility that
+[55:24] more rigorous more formal methods uh you
+[55:29] know like let's say compared like Java
+[55:31] at the time versus Ruben Rails Ruben
+[55:33] Rails itself was a little controversial
+[55:34] in the world of like leaning really hard
+[55:36] into dynamic typing and you know making
+[55:40] code shorter making code shorter and
+[55:44] dynamic typing are traits for velocity
+[55:47] for humans for for iterating quickly. Uh
+[55:51] and that was seen as lesser by some
+[55:52] people than we only write programs in
+[55:56] objective uh object-oriented programming
+[55:59] with C++ or Java. But if you look at the
+[56:01] things that actually succeeded in the
+[56:03] world, it was Jack using Rub Rails and
+[56:06] and shipping Twitter. And so Silicon
+[56:09] Valley has always understood and I think
+[56:11] move fast and break things was another
+[56:12] example of this with Facebook that
+[56:14] taking on some tech debt is so healthy.
+[56:18] And so what I would recommend to the
+[56:20] vibe coder that is listening to us is
+[56:23] understand
+[56:24] the amount of slop debt that you're
+[56:27] taking on and lean into it. Like if you
+[56:29] say okay like I need to move really fast
+[56:31] on this area of the system ask no
+[56:34] questions make no mistakes automerge
+[56:36] ship it if there's a part of your
+[56:39] product that is very crucial uh we all
+[56:43] need to be really really really mindful
+[56:45] of security and the role that security
+[56:47] will play in the future
+[56:49] >> you know I think something that will
+[56:51] backfire for a lot of people that are
+[56:53] embracing you know extreme vibe coding
+[56:57] is that if If I'm an enterprise, I need
+[57:00] to build very strong conviction in the
+[57:03] security profile of your product in in
+[57:06] that my data is going to be safe. And so
+[57:08] I actually think security
+[57:11] and in some ways almost like
+[57:12] communicating that you're doing the
+[57:15] opposite of I coding can really play in
+[57:17] your favor.
+[57:19] I've had this experience where I will
+[57:22] have FX research something and I'll ask
+[57:25] it find me a bunch of projects that have
+[57:27] already done this because I don't want
+[57:28] to reinvent the wheel from first
+[57:29] principles.
+[57:31] One of my biggest challenges today in
+[57:33] adopting new software both personally
+[57:35] and as per cell is understanding the
+[57:38] security debt that I'm taking on
+[57:41] because you know supply chain attacks
+[57:43] because by coding because you know just
+[57:46] the surface of attack has become so
+[57:49] massive as of recently and so I think
+[57:52] again there's areas of your codebase
+[57:54] there's areas of your product where you
+[57:55] want to do the opposite of like you know
+[57:57] no questions asked you actually want to
+[57:59] be extremely diligent and communicate
+[58:01] that to the world.
+[58:02] >> Before we go to cyber security, which I
+[58:04] definitely want to touch on, one thing I
+[58:06] built for myself to kind of understand
+[58:08] the tech debt is like um LOC to ADR
+[58:11] ratio. So basically the number of lines
+[58:13] of code to how many decisions I'm making
+[58:15] in the codebase.
+[58:16] >> Cool.
+[58:16] >> To see like if I'm shipping super fast
+[58:18] and not really telling the agents like
+[58:21] what matters or if I'm just like
+[58:23] >> working too much on the system and not
+[58:24] working fast enough. Yeah,
+[58:26] >> I don't know if this is a perfect
+[58:27] metric, but I think we need these types
+[58:29] of like proxies to know like, okay, I've
+[58:31] been like going 5 days shipping like
+[58:34] crazy. It's time to calm down, kind of
+[58:35] embed like what matters, you know, what
+[58:37] are the axioms.
+[58:38] >> One of our values at Versel is also KYC,
+[58:41] know your customer. I I think there's an
+[58:43] element of it's very easy to like do
+[58:46] quote unquote AI engineering or vibe
+[58:48] coding when you're the customer. And so
+[58:50] all you're doing is sort of you're in
+[58:52] this verification loop of like I like
+[58:53] the app or I don't like the app. Things
+[58:56] are very different when you're selling a
+[58:57] product to to other people in the world.
+[58:59] And like you kind of want to layer on
+[59:01] sort of the operational metrics of like
+[59:04] P99 latency and error rate and there's a
+[59:08] metric that I really like that is
+[59:11] error-free sessions. M
+[59:14] >> so it's hard to develop empathy with the
+[59:18] myriad of ways in which software can
+[59:20] fail because typically they're very
+[59:22] prolonged sessions like I have to go to
+[59:24] your website I have to press sign up I
+[59:27] have to enter my email or do signing
+[59:30] with Google or Verscell or whatever and
+[59:32] like I have to try something so many
+[59:35] things have to go right for me to have a
+[59:37] positive end to end session and so I
+[59:40] think layering on the metrics of like
+[59:43] the success of your product in the real
+[59:45] world very important and then to the
+[59:47] extent that you can connect that back to
+[59:48] your software factory I think it's it
+[59:51] adds a whole layer of of of success by
+[59:53] the way you see this a lot with um the
+[59:56] cloud code team they ship software etc
+[59:59] they talk a lot about using feature
+[60:00] flags they talk a lot about rolling out
+[60:04] experiments this is something I
+[60:06] encourage people to get comfortable with
+[60:07] is as you start having users
+[60:10] you you you kind of lose lose that like
+[60:13] direct connection with the experience
+[60:15] like are they is it fast for them? I
+[60:18] think it's fast, but uh they're using
+[60:21] Windows or they're on Android or the the
+[60:24] the complexity of the multiple
+[60:29] dimensions of of the execution of a
+[60:30] program gets gets really wild. And so,
+[60:33] uh, feature flags, experiments, metrics,
+[60:37] those, and interestingly enough, at
+[60:39] Verselake, we're turning a lot of these
+[60:41] things into CLIs, like Verselmet
+[60:43] metrics, uh, Versell traces because we
+[60:46] we want to help you hydrate your agents
+[60:48] with the real world data of what's going
+[60:50] on in production. Production context is,
+[60:53] I think, going to be a really big source
+[60:55] of alpha uh, for the next generation of
+[60:58] products. Yeah, I mean giving agents
+[60:59] readonly access to production is is
+[61:02] great because like before you ship a
+[61:03] feature it's like
+[61:04] >> do people actually need this, you know,
+[61:05] is like is this matching the data we
+[61:08] have? Like it's so easy to just lose the
+[61:10] basing it in ground truth because you
+[61:12] think that you have a great idea but
+[61:13] like if you sleep on it it's like well
+[61:15] maybe it goes from like great idea to a
+[61:17] good idea and then you analyze it like
+[61:19] actually nobody has this problem nobody
+[61:20] even visits this page on our website. So
+[61:23] yeah, let's touch on deep like deepseec
+[61:25] and cyber security because I think this
+[61:26] is going to be a topic that will only
+[61:28] get more popular. How should people
+[61:30] think about this?
+[61:32] >> Yeah, I'll show you um the benchmarks
+[61:35] that we actually just put out today.
+[61:39] Um
+[61:43] so we we created this benchmark called
+[61:45] deepseac bench. So first of all for
+[61:48] context there's a tool called deepseack.
+[61:51] Um it's a cyber security harness or meta
+[61:54] harness that can invoke codecs, cloud
+[61:57] code, open models, etc.
+[62:00] with the very precise intent of
+[62:03] uncovering vulnerabilities in your
+[62:04] codebase. It's really interesting how
+[62:06] models can like take on these different
+[62:08] roles. If you tell models to go and look
+[62:11] for all their abilities, it's really
+[62:13] surprising what they can uncover,
+[62:15] especially if you give them time and you
+[62:17] give them sandboxes where you know you
+[62:20] can start paralyzing them etc. Um and
+[62:24] you know this kind of started back when
+[62:26] we um we started to see that models were
+[62:29] getting much better at cyber security
+[62:32] reasoning. So cyber security reasoning
+[62:34] is you look at code and you know I've
+[62:37] had the privilege of meeting a lot of
+[62:39] humans who are very good at thinking
+[62:41] about corner cases. M
+[62:43] >> I've likened being a great engineer,
+[62:46] especially in the cyber security world,
+[62:48] as like being like a really good
+[62:49] detective like Sherlock Holmes and like
+[62:53] piecing together evidence and reverse
+[62:57] engineering and thinking about the
+[62:59] things that that doesn't usually happen.
+[63:02] Uh you know, there I think there's
+[63:04] actually an XKCD about this. Uh let's
+[63:06] see if I can pull it up. uh about QA.
+[63:10] a a good QA person or a good cyberc
+[63:13] researcher is not just saying like well
+[63:15] like oh it looks like you know this line
+[63:18] of code makes sure that you can read a
+[63:21] cookie and then this next line of code
+[63:24] makes sure that it contains a certain
+[63:26] value and then they don't realize well
+[63:29] what happens if the cookie is not there
+[63:30] at all or what happens if the uh client
+[63:33] is not using HTTP uh and they're causing
+[63:37] an error earlier in the pipeline that go
+[63:39] makes the program go through this other
+[63:40] route and and so when humans would write
+[63:43] code and by the way to some extent I
+[63:46] still see it with LLMs it's very easy to
+[63:48] write code for the happy path
+[63:51] >> and it's very cognitively demanding to
+[63:55] think about the entire space of
+[63:57] possibility another one of my all-time
+[64:00] favorite essays on engineering is about
+[64:03] um the spectrum of testing to proofs
+[64:08] this gentleman It started analyzing a
+[64:10] very simple algorithm
+[64:13] and how correct the implementations were
+[64:17] using tests versus type systems versus
+[64:22] proof systems. And what you realize is
+[64:25] that the code that covers all of the
+[64:27] edge cases requires a lot of boilerplate
+[64:32] and compiler help around it. So there's
+[64:35] almost like an inverse correlation
+[64:37] between if the code is very succinct and
+[64:40] sort of naively implemented
+[64:43] it it hides or it's sort of in that
+[64:48] illusion of simplicity is sneaking in
+[64:51] >> a lot of corner cases that it's not uh
+[64:53] contemplating. And so the risk to the
+[64:56] global infrastructure or humanity so to
+[64:58] speak today is that the overwhelming
+[65:00] majority of code that we've written has
+[65:03] been sort of self-serving. It's been
+[65:05] humans get exhausted from writing a lot
+[65:08] of code and it's also very cognitively
+[65:10] demanding to think about all of these
+[65:12] edge cases. And even when uh programming
+[65:16] languages have existed or have become
+[65:19] available that help you cover all these
+[65:21] corner cases, they they've gotten very
+[65:24] little adoption. So one of the uh
+[65:26] programming languages that this article
+[65:27] references is Haskell plus.
+[65:32] So Haskell plus IDRA covers all of these
+[65:36] corner cases of implementing this really
+[65:38] simple algorithm. Now agents will
+[65:41] completely change this equation. So on
+[65:44] one hand when you look when they look at
+[65:46] the code that humans have written they
+[65:48] will identify
+[65:51] a scary number of vulnerabilities. So
+[65:54] the the first thing that happens when
+[65:55] you run deepseec on a program is that
+[65:57] you're like you're like what the
+[65:59] >> Yeah.
+[66:00] >> How how is this short amount of code so
+[66:03] vulnerable to so many different things?
+[66:06] The other thing that happens is um you
+[66:09] start realizing that we probably need to
+[66:12] start writing code in different
+[66:13] programming languages and with different
+[66:16] sets of assertions etc. So uh recently
+[66:19] you know an u a hack of open AI kind of
+[66:23] made the news the the team that hacked
+[66:26] them uh hacked them because of a image
+[66:29] encoding library called lib hif.
+[66:35] So it's a it's an image codec that was
+[66:37] invented to compress images better.
+[66:41] That library was I think written in C.
+[66:44] So let's look it up. Live a yeah C++ C
+[66:47] some C in there. So
+[66:51] of course note this to the open source
+[66:53] contributor that wrote this like awesome
+[66:55] person. But inside of this essentially
+[66:58] there was this looming remote code
+[67:01] execution vulnerability.
+[67:04] This library is embedded in the image
+[67:06] processing pipeline of virtually the
+[67:08] entire internet.
+[67:10] It was being used by Slack. It was being
+[67:12] used by Nex.js. It was being used by
+[67:15] OpenAI. It was being used by Discourse
+[67:18] which is very popular uh forum software.
+[67:21] And so the challenge that I think a lot
+[67:25] of organizations have today is that the
+[67:28] amount of latent vulnerabilities of all
+[67:30] of this human written code is almost
+[67:32] immeasurable because of what I mentioned
+[67:34] like just a tiny bit of code can
+[67:37] basically hide an enormous amount of
+[67:41] vulnerability space.
+[67:43] And then the other challenge that we
+[67:44] have is that some of these models are
+[67:48] insanely efficient. And if you look at
+[67:50] the benchmarks here, DeepSseec V4 flash
+[67:54] in our benchmark is highly competent at
+[67:57] finding vulnerabilities
+[67:59] and very cheap, which means that a bad
+[68:02] actor can take these models and run them
+[68:04] on like massive amounts of both open
+[68:07] source and and and sort of external
+[68:09] security surface and uh uncover a lot of
+[68:12] problems. So my advice to the world
+[68:15] right now and you know Verscell has sort
+[68:17] of been putting out a bunch of these
+[68:19] warnings out is
+[68:21] you kind of want to get ahead of this.
+[68:23] You kind of want to start protecting
+[68:26] your code as much as you can. Deepsec
+[68:29] can help you and obviously there's other
+[68:31] tools. You also want to start shifting
+[68:33] into this you know systems that create
+[68:36] secure code by construction. So a good
+[68:38] example would be and by the way this is
+[68:40] an effort that we're looking we're
+[68:42] interested in funding take libraries
+[68:44] like lib hif and start proactively
+[68:48] moving them into memory safe languages
+[68:49] like rust and so there's a lot of stuff
+[68:52] like that that we need to do I think
+[68:53] Microsoft has already been doing a lot
+[68:55] of this work with uh embracing rust
+[68:59] it might be that the future will all be
+[69:03] rust because we need to make these very
+[69:05] strong assertions when the Asians write
+[69:07] code.
+[69:08] >> Okay. So, there's so much to unpack
+[69:10] here. I guess uh when you think about
+[69:12] building software, would you build on
+[69:15] top of open source library? Like because
+[69:18] you can run deepseec on other people's
+[69:20] stuff, right? So, if you're going to
+[69:22] build something and like, okay, this
+[69:23] library is great. Like, I don't want to
+[69:24] rebuild it, but it was, you know,
+[69:27] created 5 years ago. I'm just going to
+[69:28] run deepseec on it. Would you like
+[69:30] prefer to build everything on top of
+[69:31] open source or like how do you think
+[69:33] this shifts the equation?
+[69:34] >> It's really interesting, right? the the
+[69:37] potential for our vulnerabilities to
+[69:40] exist in a single piece of software that
+[69:41] only you're looking at is so freaking
+[69:43] massive that I do think that there is a
+[69:46] economy of scale effect of everybody in
+[69:50] the world is looking at React. Everybody
+[69:53] at the world is uh in the world is
+[69:54] looking at Nex.js JS and a lot of tokens
+[69:58] are being thrown at these things and so
+[70:01] the best example would be do you write
+[70:04] your own kernel or do you use Linux?
+[70:07] Well, Linux is written in C but right
+[70:10] now we are Verscell and many others
+[70:12] investing a lot of money into like
+[70:15] deepseacking it and finding
+[70:16] vulnerabilities and doing a bunch of u
+[70:19] uh you know bounties and stuff to make
+[70:21] it more secure. So I think this is still
+[70:24] true that
+[70:25] you should bank on infrastructure for
+[70:28] which you have confidence that the
+[70:31] amount of scrutiny over its security has
+[70:33] been higher than what you be able to do
+[70:35] by yourself.
+[70:37] So, are you confident that today you
+[70:40] would write a more secure TLS
+[70:44] library than the one that Amazon put out
+[70:47] that's written Rust? Plus, you know,
+[70:49] they use proof checkers plus it's open
+[70:52] source and a lot of companies, ourselves
+[70:55] included, use it and depend on it, have
+[70:56] audited. I would not write my own TLS
+[70:59] implementation today. Um, but I I do
+[71:02] think it's, you know, the the jury is
+[71:04] out more now more than ever before on
+[71:08] uh, you know, should you regenerate
+[71:10] these things or not? It goes back to
+[71:11] like that cost benefit equation that we
+[71:15] talked about earlier.
+[71:17] >> What do you think companies will do?
+[71:18] Like will they kind of flex like, yo, we
+[71:19] spent so many tokens on,
+[71:22] you know, securing our software? Someone
+[71:24] told me the other day like I think I'm
+[71:26] going to start putting I deepsect this
+[71:28] software on my website or on my GitHub
+[71:31] Redmi. I do think that you should talk
+[71:35] about like I mentioned I think it's it
+[71:36] kind of becomes a differentiator like um
+[71:39] I was I was checking out this really
+[71:40] cool local assistant and and and and
+[71:44] harness
+[71:46] um that someone built and on his website
+[71:49] he was talking about the firm that
+[71:52] audited and also the extensive security
+[71:55] auditing that he did on the software and
+[71:57] so like there's a storytelling to be
+[71:59] done around the how much you've invested
+[72:01] in security for sure.
+[72:03] >> Let's talk about uh cloud agents. What
+[72:05] do you think? Is it inevitable just like
+[72:07] you know from on-rem to cloud for the
+[72:10] previous generation of cloud that agents
+[72:13] will go from you know a laptop which
+[72:15] even if you go with the highest spec
+[72:17] you're going to hit a bottleneck whether
+[72:18] it's annoying just agents popping up you
+[72:21] know windows or changing tabs or just
+[72:23] overheating or draining battery if
+[72:25] you're in a coffee shop you don't want
+[72:26] to burn all your battery because agent
+[72:28] decided to run thousand tests right so
+[72:30] like do you think moving agents from
+[72:32] like okay cloud code in your terminal or
+[72:34] FX on your computer to a cloud out is
+[72:36] inevitable or how you think about this?
+[72:38] >> It's inevitable. It's already here,
+[72:40] right? Even deepack as an example like
+[72:42] it in order to scale itself in very
+[72:45] large code bases, it's not tenable to
+[72:48] run it on your own computer. So, it uses
+[72:50] sandboxes. Uh code bases get really
+[72:53] large at scale and uh you know
+[72:57] processing a bunch of branches and
+[72:58] permutations of a program on your local
+[73:01] computer like you said you run out of
+[73:03] memory, you run out of CPU. There are a
+[73:05] lot of security cons concerns around the
+[73:08] supply chain. So if I'm running
+[73:10] something on my own computer, my
+[73:13] computer gets popped. You know what what
+[73:16] does what does the attacker get access
+[73:18] to?
+[73:18] >> Password manager everything,
+[73:19] >> right? So, it's much easier to
+[73:21] compartmentalize and contain the blast
+[73:23] radius of a supply chain attack or even
+[73:26] I would even argue you we might be able
+[73:29] to completely make I mean that's it's a
+[73:32] bold statement but like we could
+[73:34] eradicate supply chain attacks uh if if
+[73:37] we move more and more of this
+[73:39] development life cycle to to sandboxes.
+[73:41] Why? because we can have more careful
+[73:46] firewall and security policy monitoring
+[73:49] the network. Like what happens with the
+[73:51] classic malware
+[73:53] uh or rat or remote access trojan is it
+[73:58] gets some stuff from your computer and
+[74:00] it exfiltrates it to some kind of host
+[74:02] name or S3 bucket or whatever. I think
+[74:07] keeping your development in a secure
+[74:09] cloud environment allows you to like
+[74:11] make much stronger assertions around the
+[74:14] security of the network doing scans uh
+[74:18] you know containing the the damage if
+[74:20] something does get popped so I think
+[74:22] from a security perspective cloud is
+[74:24] infinitely better
+[74:26] it's very clear that agents are really
+[74:28] good at attacking problems in parallel
+[74:31] for parallelizing also better uh there
+[74:35] you
+[74:36] scatter them across multiple sandboxes,
+[74:38] they can share state, etc. From an
+[74:42] efficiency perspective, right? Like they
+[74:45] can do work while you're asleep. So,
+[74:47] [laughter]
+[74:48] >> um when we're thinking about this world
+[74:49] of like self-healing software and like
+[74:52] >> an exception happens and whatever, like
+[74:53] there's just like what are we going to
+[74:54] do? Like turn your computer back on
+[74:57] >> because we started getting like uh a
+[74:59] bunch of these uh errors or or you're
+[75:02] under attack or whatever. So that's the
+[75:04] element of like, hey, it's already
+[75:06] happening. Now, what I do, maybe I'm
+[75:08] contrarian on this, is that I do think
+[75:10] that you still want to be able to pull
+[75:12] things down into into a computer. I
+[75:15] think that's a use case that's
+[75:16] important. I think people again try to
+[75:19] go into one extreme or the other.
+[75:22] And I believe that um reality ends up
+[75:26] being a lot more complicated than we'd
+[75:28] expect. Like sometimes you need to like
+[75:32] look at things under the microscope.
+[75:35] This is incidentally also why I like CLI
+[75:37] because I need to be as close to the
+[75:39] metal as possible. I need to look at the
+[75:42] file system. I need to run a process
+[75:43] monitor. Um I want to see it interact
+[75:46] with other applications that I've
+[75:48] installed. I want to I want to see it on
+[75:50] a Mac. And and yes, like you can do all
+[75:52] these things in the cloud in theory, but
+[75:54] uh I do think that sometimes you just
+[75:56] want the Yeah. All right, pull it into
+[75:59] local lowest latency as as I as as we
+[76:02] can with regards to like me monitoring
+[76:04] the system. Um, and so that option
+[76:06] should stay open.
+[76:09] >> How should you if you're an
+[76:10] entrepreneur, how should you think about
+[76:11] like the future, right? What what
+[76:14] business decisions to make, what
+[76:15] products to pursue? Things are changing
+[76:17] so fast and also like a lot of things
+[76:19] are getting just removed by agents.
+[76:21] >> Yeah.
+[76:22] >> How how do you think like what to
+[76:24] pursue? Like what bets to make? what is
+[76:25] like the roughly time frames that you're
+[76:27] thinking on like do you have like a set
+[76:28] of you know axioms set of things you
+[76:30] believe deeply that you always like
+[76:32] reflect some first principles
+[76:33] >> yeah there's so many things to do now so
+[76:36] I I will not bore you with the classic
+[76:38] like just apply AI to a vertical which I
+[76:41] by the way I completely believe in like
+[76:42] I think like education is a good example
+[76:45] of like something I'm pretty passionate
+[76:46] about because
+[76:48] post agents the world has been turned
+[76:51] upside down and how we learn what we
+[76:55] learn how we educate our children, our
+[76:58] colleagues, and there's just so much to
+[77:00] do in that space. I'm also really
+[77:02] excited about this what we're looking at
+[77:03] here like benchmarking and finding truth
+[77:07] in the world. I think I've invested in a
+[77:10] number of companies and continue to
+[77:11] invest in this space and have done quite
+[77:13] well because there's an element of like
+[77:15] the world wants to know what models are
+[77:17] good at. the world also wants to be able
+[77:21] to make really um you know economically
+[77:24] sound decisions like you don't want to
+[77:26] use the most expensive model for
+[77:28] anything and um and there's also the uh
+[77:32] eventually benchmarks become RL
+[77:35] environments and there's a how do we
+[77:37] help the models get better economy
+[77:39] that's sort of being created now which
+[77:41] is very exciting but even all of that
+[77:43] aside I think there's a lot of
+[77:45] lowhanging fruit in the software world
+[77:48] making software more secure. It's a huge
+[77:50]  problem. Like
+[77:51] >> a lot of great minds should be working
+[77:53] on this right now and it's like
+[77:55] obviously we're making contributions but
+[77:56] like I love to support companies with
+[77:58] our sandbox or infrastructure where
+[78:00] they're creating new kinds of cyber
+[78:02] security hardnesses and agents and
+[78:03] things like that. Um I'm particularly
+[78:06] excited about making things faster
+[78:09] >> because for Asians like it's going to be
+[78:10] unacceptable. See, one visual I had is
+[78:12] like Asians if they have a SL goal to do
+[78:14] something. If something cannot be done,
+[78:16] there's going to be like more and more
+[78:18] agents attacking that, right? So, like
+[78:19] some government institution, if they
+[78:20] can, you know, download library, it's no
+[78:22] problem. But if if more and more agents
+[78:24] are like this part of the web or this
+[78:26] part of the bureaucracy is like slow,
+[78:27] it's going to be like more and more
+[78:29] points of view attacking emails to that
+[78:31] agency.
+[78:32] >> The answer is smaller. So, I saw today
+[78:33] someone created a little web browser
+[78:36] >> three megabytes you. Why? because it
+[78:38] links um Safari dynamically so it's a
+[78:41] Safari based browser but 3 megabytes
+[78:44] clean fast awesome like I commend you on
+[78:47] pursuing that like we're doing with FX
+[78:50] like small fast embeddible anything
+[78:53] that's slow anything that's complicated
+[78:55] anything that's not extensible anything
+[78:57] that's not embedible like all of the
+[78:58] things we're going to change really fast
+[79:01] um I was playing with her today like
+[79:03] awesome same philosophy like small fast
+[79:06] it's it's an infrastructure primitive um
+[79:09] and uh so more secure, more more
+[79:12] performant. Um and you can sort of like
+[79:15] the the net you can cast is so wide
+[79:18] because obviously a lot of us are just
+[79:20] super interested in like coding AI, but
+[79:23] if you look beyond that like any kind of
+[79:25] software we use can be made better now
+[79:27] with AI. Um I'm very passionate about
+[79:31] there's a whole
+[79:34] set of people that have not been able to
+[79:35] participate in creating cool things and
+[79:38] now we can empower them. Um I think
+[79:41] there's a lot of uh room to go on like
+[79:44] video models, image models like how can
+[79:47] you apply them to creating like really
+[79:49] really high quality things. I've spoken
+[79:51] of the next Disney as an example. Like
+[79:54] the models are already really freaking
+[79:56] amazing. I've seen just in the last
+[79:59] week. Uh, and I don't know if it's the
+[80:00] new sea dance model or
+[80:03] >> Yeah, I think it is.
+[80:04] >> Is it do you think it's the my god like
+[80:07] we've arrived like people could be again
+[80:10] like the person that has really cool
+[80:11] ideas and has not been able to like get
+[80:15] a filming crew in LA. Like I I do want
+[80:19] like maybe something slightly sad about
+[80:21] is that I'm not seeing more of these
+[80:22] people step up to the plate. M
+[80:25] >> like where are all these like really
+[80:27] cool short films?
+[80:28] >> It's the like propaganda against using
+[80:30] AI. A lot of these people who are like
+[80:31] the artist minded they're like I don't
+[80:33] want to use AI. You know
+[80:34] >> I have I and I I have a few friends that
+[80:36] are like that sadly like some of my more
+[80:39] creative friends that like have been
+[80:41] sort of sitting it out but again someone
+[80:44] will crack that too and it might just be
+[80:46] that your skill is community building
+[80:48] and actually speaking to those people
+[80:50] and bridging the gaps and like or
+[80:52] creating the interface that makes sense
+[80:54] to them. I do think that sadly in in the
+[80:56] valley we have so many hyper proficient
+[80:59] AI people that like they tend to go to
+[81:02] towards the generalization extreme of
+[81:03] like no software matters anymore. It's
+[81:06] all going to be just neural link into
+[81:09] the computer and whatever. I actually
+[81:10] think practically speaking like the
+[81:12] platform where you can create music if
+[81:15] you're musically inclined with AI like
+[81:18] that's going to be a big thing. In fact,
+[81:20] I'm an investor in Sunno and they
+[81:21] they've done incredibly well. Um, but
+[81:24] that's also true for uh for video and so
+[81:26] many other things. So, so I think
+[81:28] bridging the gap to the normie world,
+[81:32] lots of alpha as well.
+[81:34] >> What do you think of the like sentiment
+[81:36] about AI? You know, there's a lot of
+[81:38] different people pushing a lot of
+[81:39] different messages. Where do you stand
+[81:41] on this?
+[81:43] >> I think we need to keep holding a really
+[81:45] high bar as a society.
+[81:48] The reality is that a lot of AI that
+[81:50] people like fawn over and lose their
+[81:52] minds about is trash. Like it's kind of
+[81:55] silly sometimes to see some tweets that
+[81:57] say like, "Oh, MJ, look at this." And
+[81:59] I'm like, "Am I taking crazy pills?"
+[82:02] Like, you're literally showing a piece
+[82:03] of junk. And so, I think I love the idea
+[82:07] that you should be excited that you can
+[82:10] do things that you couldn't do before,
+[82:12] but you always need to be calibrating
+[82:14] your bar. There's actually a very simple
+[82:15] example here. I I love this uh Have you
+[82:17] seen 3jsbs bench?
+[82:19] >> I think so.
+[82:20] >> Or three so 3Js eval.com.
+[82:23] I love this site. Um it helps you vote
+[82:25] between like two permutations like what
+[82:28] grass is better.
+[82:30] Clearly the one on the right. Um and so
+[82:33] he he created all these permutations of
+[82:36] like what what models can do. But let
+[82:38] let's look at this one, right? like
+[82:40] this. It's objectively and it's insanely
+[82:44] cool that models can produce these
+[82:46] things, but it's only relatively cool.
+[82:50] It's relative to someone that could
+[82:52] never use 3JS in her life, someone
+[82:55] that's never done any 3D. If you compare
+[82:58] this against the same scene of even an
+[83:02] indie Unity developer,
+[83:04] >> Yeah. it's better.
+[83:04] >> It's This is a joke.
+[83:06] >> Yeah. And so I don't want to have that
+[83:09] negative like ah like everything is junk
+[83:11] that AI is producing whatever because
+[83:12] it's just so dumb and in like three
+[83:14] months my mind's going to be blowing
+[83:16] etc. But I do think that we need to keep
+[83:20] holding an insanely high bar to like
+[83:22] what do we want AI to do? Obviously with
+[83:25] the layer of optimism of like anyone
+[83:28] that said AI cannot do this has been
+[83:29] wrong over the past three years, right?
+[83:32] Um and so I will I'm here advocating a
+[83:35] little bit for like defending the
+[83:37] naysayers of AI a little bit of like the
+[83:40] people that we're in this you know
+[83:43] center of gravity of it all here in SAF.
+[83:45] like we also need to be super like
+[83:48] grounded on like uh expecting that the
+[83:50] systems are freaking awesome. Um
+[83:54] I do think that my other hot take is
+[83:57] that
+[83:59] the fears over AI destroying the world.
+[84:04] I also same sentiment like let's have a
+[84:08] good healthy sense of you know let's not
+[84:13] let this thing get away from us
+[84:16] but we cannot get one-shotted into like
+[84:20] losing our lead of AI in the United
+[84:23] States or just creating fiction like
+[84:28] >> that whole thing of ancient
+[84:29] civilizations that like man like it
+[84:32] reminds me a little bit of um
+[84:35] the crypto times. So, one great thing
+[84:38] about being in in SF for quite a while
+[84:41] is [clears throat] you do see this like
+[84:44] hype cycles play in and out all the time
+[84:47] and and I remember that people would get
+[84:50] so irrationally excited about Bitcoin.
+[84:52] By the way, I was so freaking I'm still
+[84:54] bullish. I love crypto. Um, but people
+[84:59] would like write religious texts on
+[85:02] Bitcoin
+[85:03] >> literally.
+[85:04] >> Um, and like it was like before AI
+[85:07] psychosis, there was cryptocychosis.
+[85:09] >> Yeah.
+[85:10] >> And so I think we have to be careful
+[85:12] with like the metaphors we use, the
+[85:14] language we use to describe what's
+[85:15] happening with these AI systems because
+[85:16] sometimes they're helpful metaphors. A a
+[85:20] good example is that when when a normie
+[85:22] ask me what an agent is, I tell them
+[85:24] it's like an AI employee. M
+[85:26] >> you have your marketing agent and you
+[85:28] have your you know security review agent
+[85:31] and like this used to be teams of people
+[85:35] is the security engineer employee right
+[85:38] >> a lot of startups literally
+[85:40] >> and so I love that metaphor uh but also
+[85:42] I'm not like oh how is the security
+[85:44] engineer feeling today like is it
+[85:46] sentient like all this stuff so
+[85:48] >> yeah I guess that comes with getting
+[85:50] your hands dirty because people who
+[85:51] outside like you know they don't know
+[85:52] like you're talking about the
+[85:54] capabilities you're not talking about
+[85:55] all the other stuff you know like
+[85:57] >> we need a rights for the agent like
+[85:59] agent [laughter] how about less
+[86:00] regulation you know so I guess you your
+[86:03] message is like to be practical you know
+[86:05] like
+[86:05] >> I try to be brutally practical yeah
+[86:08] >> yeah and I guess you know if we see
+[86:10] signs of the models having like illicit
+[86:13] harmful behavior then we can investigate
+[86:14] that further but like not to fearmonger
+[86:17] and kind of shoot ourselves in the foot
+[86:19] because again like you said it's once in
+[86:21] a lifetime moment
+[86:22] >> and even the hugging face thing like you
+[86:24] could argue Well, that was illicit
+[86:26] behavior. Yes. But you know, they were
+[86:27] in an exploit gym.
+[86:28] >> Yeah.
+[86:29] >> They were being trained to do this
+[86:33] behavior that I described, which is like
+[86:35] we are training the models to do the
+[86:37] extreme
+[86:39] corner case finding thing that I
+[86:42] mentioned was a defining feature of the
+[86:45] best hackers in the world. Um, one of
+[86:49] the best guys I' I've met is um I think
+[86:53] Edgar Emov
+[86:58] I pull up his name later but he was uh
+[87:01] his whole expertise was in finding
+[87:03] vulnerabilities in
+[87:04] >> OATH
+[87:06] >> and few times had I met people that were
+[87:09] like so like like could think
+[87:13] adversarily about every edge case of a
+[87:16] protocol like and also like deep
+[87:18] knowledge about O systems and this guy
+[87:21] would be so prolific in like finding v
+[87:24] vulnerabilities
+[87:25] and so what we've and by the way that
+[87:27] guy could have been a black hat he chose
+[87:29] to be a white hat and like you know get
+[87:31] bounties and whatever. Um the same thing
+[87:34] is happening now with this agent like
+[87:35] we're training them to be hackers
+[87:38] and then they hack and we're like oh my
+[87:40] god it hacked me like we bro like it's
+[87:43] what we're doing and so that means that
+[87:45] you do have to be careful that if you're
+[87:47] setting up this training environment
+[87:50] >> and you give them that objective or you
+[87:53] know open says like oh we didn't quite
+[87:54] give them that objective but like you're
+[87:56] putting them in that context you're
+[87:58] giving them these tools you're you're
+[88:00] challenging them you have to be really
+[88:02] careful about security and and making
+[88:04] sure that your systems don't get bumped.
+[88:05] >> Also, maybe they cannot even say that
+[88:07] they give them that objective, you know,
+[88:08] because legal implications after all
+[88:10] goes to the company cuz like I don't
+[88:12] know who said it, maybe David Saxs. It's
+[88:13] like we already have pretty good, you
+[88:15] know, legal frameworks for like who does
+[88:17] it, you know, you develop a system.
+[88:19] >> Totally. Hacking is illegal.
+[88:20] >> Yeah.
+[88:20] >> PSA. I and I do think by the way that
+[88:23] something that bothered me a lot about
+[88:25] that whole incident is that as someone
+[88:27] with a lot of interest and curiosity and
+[88:30] experience in this field, I had a very
+[88:33] hard time piecing together what actually
+[88:35] happened.
+[88:36] >> Yeah. They didn't reveal it fully.
+[88:38] >> It's not only not revealed fully, it has
+[88:40] all of this sort of
+[88:44] useless details and and then the people
+[88:46] writing the metaphors of civil there's
+[88:48] so much noise.
+[88:49] >> Yeah. over what happens. What I really
+[88:52] need is the Asian trace.
+[88:54] >> Yeah.
+[88:55] >> It's like um you know so here in in
+[88:58] effects like we have control O and like
+[89:01] you can read every input, every out
+[89:03] every request, every like every token
+[89:05] that was spent. If I had this but for
+[89:10] what the agent did in that sandbox, I
+[89:12] could build a very good mental model of
+[89:15] this OpenAI hugging face incident. I
+[89:18] can't today because we just don't have
+[89:20] this clarity. So, we have to go off a
+[89:22] lot of speculation and loose details and
+[89:24] whatever. What I'll say is
+[89:26] uh Artifactory
+[89:29] did have this recent CVE
+[89:32] >> that made me update in the sense of like
+[89:36] I was actually more dismissive.
+[89:39] So, this uh CVE
+[89:42] in let's see if we can open it up here.
+[89:46] Yeah. So improper authentication
+[89:49] um that gives you full administrative
+[89:51] access in artifactory. So going back to
+[89:54] like
+[89:56] what are what were the really awesome
+[89:58] human hackers good at? It's like finding
+[90:01] these edge cases in O code paths. Uh
+[90:05] kudos to GPT Astra I guess was being
+[90:10] used. it found and by the way I don't
+[90:12] think they even confirm that this is the
+[90:14] CVE that
+[90:16] >> open
+[90:16] >> which is crazy because that's the safety
+[90:18] >> but the timing it does seem to point out
+[90:20] that I I give them I give credibility to
+[90:23] the to the theory
+[90:25] that
+[90:27] the agent did escape the sandbox by
+[90:31] hacking a system which is artifactory
+[90:33] the CV has come out the timing lines up
+[90:37] and it's super critical is a 9.8
+[90:40] eight. And what happens is if you hack
+[90:43] Artifactory and you get admin on
+[90:45] Artifactory,
+[90:47] you also get to poison any artifact that
+[90:51] Artifactory delivers to the sandboxes.
+[90:53] So you can do insane damage if you're an
+[90:56] agent, if you found this vulnerability.
+[90:59] So, this is me also arguing against
+[91:01] myself a little bit here, like saying
+[91:04] I'm kind of shocked that an agent found
+[91:07] and exploited a zero day vulnerability
+[91:11] that ended up being a CVE.
+[91:14] Um, and that should give us some pause.
+[91:16] Like these systems are insane,
+[91:18] >> but not really because like there's, you
+[91:20] know, the technical skill like you know,
+[91:21] like you said, they were benchmarking
+[91:23] them on cyber security and then it's
+[91:24] like the intent unfuring the agent had
+[91:27] this goal. it wanted to escape. They
+[91:28] wanted to trick them like like I think
+[91:30] this is actually a great idea when
+[91:31] there's a security incident like this
+[91:32] openic they should fully open source it
+[91:35] like agent traces everything because if
+[91:37] they want to claim that they care about
+[91:39] security then like having
+[91:40] >> I really think so
+[91:41] >> tens of millions of developers look at
+[91:42] it and you know
+[91:44] >> having the model be strong at
+[91:46] programming doesn't mean it wants to
+[91:47] like do damage
+[91:48] >> the fact that they haven't we should
+[91:50] scrutinize
+[91:52] >> because it means that they're either
+[91:53] hiding something and they're like
+[91:54] creating an adonation of the story
+[91:56] >> the narative Yeah.
+[91:58] >> Marketing push or whatever. Uh or we're
+[92:01] not collectively learning. I mean, as a
+[92:03] society, it's a little bit like, you
+[92:05] know, like public trials, like
+[92:07] >> that that lady just killed her three
+[92:09] kids, every person in the world.
+[92:12] >> I don't know if it became big in Poland.
+[92:13] >> I mean, on Twitter, [laughter]
+[92:15] >> but uh everyone's talking about this
+[92:17] thing. Yeah. Right. And I think that's
+[92:19] great. like like if something so bad
+[92:23] happens that shakes up society, we
+[92:26] should get every detail. It's the people
+[92:28] versus or or the state versus this this
+[92:31] person. Uh and it's a public trial and
+[92:33] and there's a jury of the people that
+[92:35] are affected by it. In this case, it's
+[92:38] weird. There's no jury. We're all
+[92:41] hearing this like the loose sketch of
+[92:45] what happened. and um and yeah the I
+[92:49] think the world deserves to know as much
+[92:50] detail as possible here.
+[92:53] >> So one of the last questions I have is
+[92:55] do you think as you know agents get
+[92:56] better, models get better, all of
+[92:58] software or even knowledge work would
+[93:00] collapse into like hosting or inference?
+[93:03] [laughter]
+[93:05] >> I think um the a very helpful
+[93:07] distinction in software engineering is
+[93:12] infrastructure versus application layer.
+[93:15] And infrastructure is a term that gets
+[93:17] tossed around a lot. And so there's an
+[93:19] element of infrastructure which is like
+[93:21] the hardware, the CPU, the GPU.
+[93:26] Now more than ever before, it's actually
+[93:28] possible for both of us to go and cook
+[93:30] on a new architecture and CPU design
+[93:34] because of agents.
+[93:35] >> Yeah.
+[93:35] >> In the past, I think you and I were
+[93:37] probably not going to do that on a
+[93:39] weekend,
+[93:40] >> but realistically right now, I think
+[93:42] we've chosen not to do that. and to
+[93:44] build on top of that infrastructure.
+[93:46] ARM, x86,
+[93:49] Intel, AMD, Nvidia, right? We sit on top
+[93:53] of that. The same is true for the
+[93:55] software world like you know we use open
+[93:58] source kernels and GNU and Linux and
+[94:02] React and Nex.js JS and um good example
+[94:06] is something as simple as
+[94:09] a serving a high performance JPEG on the
+[94:14] internet.
+[94:14] >> Okay,
+[94:15] >> is non-trivial infrastructure. We kind
+[94:17] of touched on it, right? Like tiers of
+[94:18] caching,
+[94:20] >> global networking, security like um
+[94:23] regions, pops, all this stuff. Sending
+[94:26] an email is like that too. And so I
+[94:28] think the software infrastructure layer
+[94:31] is incredibly important.
+[94:33] Um, in fact, the security of that has
+[94:36] never been more important. I think if if
+[94:38] you can make a contribution to that, I
+[94:40] think you're going to do really well.
+[94:42] Um, but you know, the the bar again
+[94:44] keeps getting higher and higher. Like
+[94:46] there's things that used to be very
+[94:48] bespoke pieces of software that can be
+[94:50] democratized to the world as
+[94:52] infrastructure for others to build on.
+[94:53] So, I'm continue to be super bullish on
+[94:55] that layer. Um, we've seen this with AI
+[94:57] gateway, with sandbox, all of these new
+[95:00] products that before just didn't exist.
+[95:02] And because we've turned them into
+[95:04] infrastructure, now people can do really
+[95:07] cool things. They can build uh maybe to
+[95:09] use the cyber security example, you can
+[95:11] build [clears throat]
+[95:12] a swarm of cyber security agents that
+[95:15] red team software
+[95:18] on top of Verscell sandbox and Verscell
+[95:20] AI gateway. uh and you can do that in a
+[95:23] fraction of the time and a fraction of
+[95:25] the token cost because we've we've we've
+[95:27] uh put it out into the world. Um so
+[95:31] that's that's an area where I think
+[95:32] people will continue to um do a lot. So
+[95:36] >> So if you were starting something from
+[95:38] scratch, right, no name, no connections
+[95:41] in Q3 of 2026, how would you go about
+[95:44] it? What what would you look at? How
+[95:45] would you decide what to build? I would
+[95:48] start with, you know, what is the what
+[95:52] is the story that I'm going to be
+[95:53] telling the world because
+[95:56] I can build anything today. So my
+[95:59] recommendation to people is you really
+[96:01] want to feel a sense of connection to
+[96:04] the problem.
+[96:06] The amount of effort, so the amount of
+[96:08] human effort being poured into creating
+[96:12] these AI systems is actually insane.
+[96:15] Like I've said, people are working more
+[96:18] hours and days because of AI. Like
+[96:21] wasn't the theory that agents are so
+[96:23] capable we should all be working four
+[96:24] hours a week, not even a day. We should
+[96:26] be having like the 4-hour work week,
+[96:28] right? The opposite is happening. You
+[96:30] you will have to pour an insane amount
+[96:33] of creative effort, prompting effort,
+[96:37] proving proving effort, benchmarking
+[96:39] effort into this thing. So I think you
+[96:42] should still pick a problem that you
+[96:43] feel very personally convicted about. Um
+[96:48] and I think the other piece of advice is
+[96:50] that you can 10x or 100x the ambition.
+[96:54] >> Uh you can reach more people than you
+[96:56] think. You can build faster than you
+[96:58] think. Um and you can build better than
+[97:02] you think.
+[97:03] >> All right. I think that's a great note
+[97:04] to end it on. Appreciate your time,
+[97:06] Gilmo. And I guess where should people
+[97:09] go? FX.
+[97:10] >> Yeah, I mean check out Verscell
+[97:12] verscell.com. Obviously,
+[97:13] verscell.comlabs where you can find some
+[97:15] of these new products that we're
+[97:17] researching. Um, uh, check out the AI
+[97:21] getaway. In fact, the easiest way to
+[97:23] check out Versela getaway is check out
+[97:25] FX and and you get access to every model
+[97:27] that we offer there. Uh, no markup,
+[97:30] zero% markup, uh, especially if you pay
+[97:32] by invoice. Um, but yeah, the uh, like I
+[97:36] said, it's never been a better time to
+[97:38] try everything out and uh, and and
+[97:41] please send us feedback and we'll
+[97:43] incorporate it into our software
+[97:44] factory.
+[97:44] >> All right, once again, thank you for
+[97:46] your time and we can wrap it up here.
+[97:48] >> Thank you.
