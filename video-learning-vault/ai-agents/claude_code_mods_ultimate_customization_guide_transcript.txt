@@ -1,0 +1,322 @@
+[00:00] If you're using ClawCode and you're not
+[00:01] satisfied with how it looks right now,
+[00:03] well, now you have the chance to change
+[00:05] the way how it looks, the way how it
+[00:07] behaves, as well as swapping out any
+[00:09] features that you want inside of
+[00:10] ClawCode. And that feature is called
+[00:12] ClawCode mods. An analogy for this is
+[00:14] that you can think of ClawCode as kind
+[00:16] of like a house. So, before, we have
+[00:18] skills and hook. Those are kind of like
+[00:20] the furniture of the house, right? We
+[00:22] can be able to add in furniture as we
+[00:23] want. But now with mods, we can actually
+[00:26] change the layouts, like moving the
+[00:27] walls. These are the things that
+[00:29] ClawCode mods can do. So, that's why in
+[00:31] this video I'm going to show you exactly
+[00:32] what is ClawCode mods, how does it
+[00:34] actually works, and what are the mods
+[00:35] that I installed and actually improves
+[00:37] my ClawCode experience. So, with that
+[00:39] being said, if you're interested, let's
+[00:41] get into the video. Now, first of all,
+[00:42] let's do a quick recap. What is ClawCode
+[00:45] really? Whenever we're using ClawCode,
+[00:47] there's actually two components. We have
+[00:49] the brain, and then we also have the
+[00:51] ClawCode app. And you can think of the
+[00:53] ClawCode app here is kind of like the
+[00:54] middleman between your computer and also
+[00:56] the model itself. So, whenever we're
+[00:58] sending requests, right, from our
+[01:00] computer here to, let's say, ClawCode,
+[01:02] and what happened here is that it's
+[01:03] going to go through the ClawCode app
+[01:05] first, and it's going to redirect that
+[01:06] request to the brain to actually process
+[01:08] that request, to actually generate the
+[01:10] outputs. And then once the output is
+[01:12] generated, we have the ClawCode app here
+[01:14] to render this on a UI, as well as
+[01:16] making any tool calls if needed. And
+[01:18] like I said, prior to this feature, we
+[01:19] can only be able to modify the prompts,
+[01:21] the Claw MD, like the system prompts,
+[01:23] and now it we call it Agent MD, as well
+[01:25] as the skills, like the workflows, the
+[01:26] instructions, the SOPs. But now with the
+[01:29] new features, we're no longer are locked
+[01:31] with the same user interface and the
+[01:33] same functionalities of ClawCode app.
+[01:35] And that's exactly what ClawCode mods
+[01:36] can do. Is that now you're in control of
+[01:39] the entire ClawCode app design. So,
+[01:41] simply, you just prompt exactly what you
+[01:43] want to actually look, right? The actual
+[01:45] behave, and Claw writes the code, it
+[01:48] will automatically ask that features or
+[01:50] that custom UI that you wanted inside of
+[01:53] the ClawCode app. And you might be
+[01:54] wondering, okay, what are the things
+[01:55] that ClawCode app here can really
+[01:56] change? Well, there's two things. The
+[01:58] window, which is the UI, as well as
+[02:00] different tool calls. So, in this case,
+[02:02] let's take a look at this. Now, for
+[02:04] window modification here, you can see
+[02:05] inside of the ClawKow desktop app, we
+[02:07] can now be able to add in this kind of
+[02:09] like a progress bar at the top, right?
+[02:11] So, above the prompt window, we can add
+[02:13] a
+[02:14] UI window here, which we can be able to
+[02:16] track anything we want. For example,
+[02:18] this person here tracks the cash
+[02:19] percentage, so it knows exactly how much
+[02:21] token it can save. Uh furthermore, this
+[02:23] person here, you can see also adding
+[02:25] some really cool animation here, where
+[02:27] you can see uh it also adds like model
+[02:29] routing, so instead of just using like
+[02:31] {slash} model here to switch the model,
+[02:33] we can now be able to just click in a
+[02:34] button here and be able to switch the
+[02:35] model directly inside of this UI. We can
+[02:38] also be able to see the progress for
+[02:39] fixing the authentication bug. What's
+[02:41] the progress look like? As well as the
+[02:44] context window, right? So, you can
+[02:45] customize the UI however you want. And
+[02:48] for example, this person here also adds
+[02:50] stuff in the UI. So, let's say for
+[02:52] example, let's take a screenshot. It can
+[02:53] also pass it to ClawKow CLI here, and we
+[02:56] will see the image preview, right? So,
+[02:58] right here, you can see this person
+[02:59] here, they're able to see the preview on
+[03:01] top of the prompt window. So, there's so
+[03:03] many things that we can customize it
+[03:04] inside of the ClawKow app and the actual
+[03:07] user interface. The next feature that we
+[03:09] can change here inside of ClawKow mode
+[03:10] here is the tool column. So, before we
+[03:12] have ClawKow here to pass the request,
+[03:14] let's say the response here back to the
+[03:17] ClawKow app, they can also be able to
+[03:18] trigger the tool calls inside of the
+[03:20] ClawKow app. So, before the triggers the
+[03:22] tools, we can actually be able to
+[03:23] intercept the requests and be able to
+[03:25] actually do some stuff in there, right?
+[03:27] For example, before, let's say it
+[03:28] modifies a file, we can be able to
+[03:30] actually ask us approval, right? Maybe
+[03:33] like a modified specific file. Every
+[03:35] time maybe it modified this XYZ file,
+[03:37] then it's going to prompt a window here
+[03:39] to ask us for a approval before it's
+[03:42] actually going to modify anything. We
+[03:43] can also be able to intercept that
+[03:44] request. But, at this point, you might
+[03:46] be wondering, "Okay, that sounds really
+[03:48] similar to ClawKow hooks, right?"
+[03:50] Something that we have before. So, how
+[03:52] is this feature right here different
+[03:54] compared to Claude hooks? Well, first of
+[03:57] all, the fundamental difference here is
+[03:59] that Claude hooks live outside of the
+[04:01] Claude app. And mod here is actually
+[04:03] inside of the Claude app itself. So,
+[04:05] essentially, the hook here lives inside
+[04:07] of the Claude folder. So, whenever you
+[04:09] want to trigger something, it intercepts
+[04:11] the request that it triggers
+[04:12] programmatically. But, Claude mod here
+[04:15] is different. Well, the first difference
+[04:16] here is that, first of all, it can be
+[04:17] able to connect with the user interface.
+[04:19] So, every time we intercept the request,
+[04:21] it can actually be able to render and
+[04:23] change the UI with this. And the second
+[04:25] part here is that it can also be able to
+[04:27] remember things for Claude mod. And
+[04:29] because hooks are pro triggered as
+[04:31] programmatically, so they doesn't have
+[04:32] memories. But, Claude mod here do.
+[04:35] And the third part here is that they can
+[04:37] also be able to, like I said before, be
+[04:39] able to change the UI, right? Be able to
+[04:41] modify the UI whenever things happen. It
+[04:44] can be able to pause things. It can be
+[04:46] able to ask for your approval and so
+[04:47] much more. And that's really different
+[04:49] compared to hooks because you cannot be
+[04:51] able to make it interacting with hooks,
+[04:52] right? So, all in all, hooks here you
+[04:54] can think of it like a our contractor,
+[04:56] right? That basically lives outside of
+[04:58] the company. And mod here is kind of
+[05:00] your full-time employee that controls
+[05:02] the interface, that remembers the data,
+[05:04] and has more interactions between user
+[05:07] and the application, right? So, that's
+[05:09] the fundamental difference here between
+[05:11] hook and mod. So, now you know exactly
+[05:13] the difference between the two, as well
+[05:15] as what is Claude mod and how does it
+[05:16] work, let's take a look at how we can be
+[05:18] able to actually use it. So, in this
+[05:20] case, let's take a look at this nest.
+[05:21] All right. So, to install mod here, the
+[05:23] first step we're going to do here is to
+[05:24] update our Claude in a CLI. So, simply
+[05:26] just open your terminal and just type in
+[05:28] Claude update. And that's going to
+[05:30] update your Claude here to the latest
+[05:31] version. And then we can be able to
+[05:33] installing mod. And once we have this
+[05:35] installed, the next thing we're going to
+[05:36] do here is I'm going to open a Claude
+[05:37] session. Now, if you want to use mod
+[05:39] here, we have two options. Either we can
+[05:41] create our own mod, or we can also
+[05:43] installing mods from the community. And
+[05:44] let me show you exactly how we can do
+[05:45] that. Now, to installing a mod here, you
+[05:47] can see this is a mod here created by
+[05:49] Theoric, which is a engineer from
+[05:51] Anthropic team, and he has created his
+[05:53] own mod called Next Steps. So, this mod
+[05:55] here gives you suggestions on what to do
+[05:57] next, including selected skills or any
+[05:59] other commands. And you can see that
+[06:01] this is the entire marketplace plugins
+[06:03] that we can install right away inside of
+[06:05] a Claude. Or if you actually want to see
+[06:06] the entire source of where you can
+[06:08] actually find the entire mod that it
+[06:10] creates, you can also scroll down here
+[06:12] inside of the Claude plugins community
+[06:14] and click on Next Steps, and there the
+[06:16] actual mod plugins that it has created.
+[06:19] So, what I can do here is simply just
+[06:20] copy this link and simply just navigate
+[06:22] to my Claude and just paste this link
+[06:24] and say that please install this on my
+[06:26] current Claude code. And what's going to
+[06:28] happen then is going to installing this
+[06:29] mod onto our current Claude machine. All
+[06:31] right, so once we install this, here you
+[06:33] can see that if I were to use it, here
+[06:34] you can see we have some options. So,
+[06:36] for example, after I do the get sync,
+[06:38] you can see either we can switch to
+[06:40] different branch or we can commit the
+[06:41] website's changes as well as leaving the
+[06:44] entire thing and just bump the root. So,
+[06:46] I can literally just be able to choose
+[06:47] any option right here. So, if I choose
+[06:49] the option, you can see it just fills my
+[06:50] input prompt box, and I can just click
+[06:52] on enter, and then it will just go from
+[06:54] there. Now, there's also a community of
+[06:57] bunch of Claude code mods that are
+[06:58] available. So, right here you can see
+[07:00] this repository here contains over 50
+[07:02] collections of mods that you can
+[07:04] actually go and install from the
+[07:05] community. And I have pasted that link
+[07:07] and have Claude here to review my second
+[07:09] brain and decide for me what are the
+[07:11] things that we should be able to
+[07:13] install, right, for the mods. And you
+[07:15] can see that there are the top six mods
+[07:16] here based on our agency requests. So,
+[07:18] for example, like the flight deck here
+[07:20] to explore, hey, what are the things
+[07:21] that are currently running or what is
+[07:23] the plan right now, what is the context
+[07:24] window. So, because I already have the
+[07:26] con status bar at the bottom there, so I
+[07:28] probably won't need this. But let's take
+[07:30] a look at other things, like for
+[07:31] example, context meter here or quota
+[07:33] watcher, right? So, things like Claude
+[07:36] Q, I think this one's really
+[07:37] interesting. So, I'll probably say
+[07:38] Claude Q in number four and secret
+[07:41] reductor because we can be able to hide
+[07:43] out any secrets or anything values that
+[07:45] are sensitive. We can be able to hide it
+[07:47] out, right? And we also have the aside
+[07:49] which is really, really important. Let's
+[07:51] say if I want to ask a side question.
+[07:52] Now, we can be able to do this in
+[07:54] you know, chat GPT, but we're not able
+[07:56] to do this in Claude. So, have the
+[07:58] ability here to ask side question
+[07:59] without adding it in the main chat and
+[08:01] that's going to be really, really
+[08:02] helpful. So, I would highly recommend,
+[08:04] you know, 4 5 6 here in terms of that,
+[08:07] okay? So, I can just mention that inside
+[08:09] of my uh prompt. Now, once we have this
+[08:11] installed here, you can see if I were to
+[08:13] just simply first reload the plugins
+[08:15] first. I'm going to copy that and paste
+[08:18] it over, reload the plugins,
+[08:19] everything's are all good to go. And
+[08:21] then the next thing we're going to do
+[08:22] here is I can now be able to ask a side
+[08:23] question. So, hey, is the current secret
+[08:26] reductor here is already active?
+[08:29] I'm going to ask this question right
+[08:30] here. And here you can see we have our
+[08:32] answer back. So, now if I want to close
+[08:33] it, I can simply just do the close right
+[08:35] here and we can just continue our
+[08:37] conversations. All right, so now you
+[08:39] know exactly how we can be able to use
+[08:40] it. And the next thing we're going to
+[08:41] look at here is where are those mods are
+[08:42] being stored? Because right here you can
+[08:44] see that the mods here are actually
+[08:46] stored in the root.claude folder. So,
+[08:49] root.claude folder here, there's a
+[08:50] folder called plugins which is all the
+[08:52] mods are being stored. So, any mods you
+[08:54] install is going to be stored inside of
+[08:55] this folder. So, if you want to list out
+[08:57] all the mods you have, simply just type
+[08:59] in Claude plugin list. It will list out
+[09:01] all the mods that are currently
+[09:02] installed on your current machine.
+[09:04] And let's say if you want to uninstall
+[09:06] one, simply just do Claude plugin
+[09:08] uninstall and then you point the actual
+[09:10] name of the plugins or the mod and it
+[09:12] will just simply just remove that from
+[09:14] your local machine.
+[09:15] Okay, so pretty much that's the entire
+[09:17] video on Claude mods. And honestly, I
+[09:19] have been testing this for the past
+[09:21] couple of days and I have designed my
+[09:23] own Claude mod here inside my CLI which
+[09:26] I can be able to change different model
+[09:27] here. I can be able to see what tasks
+[09:29] are being done. And also if I want to
+[09:31] recap or recalibrate the skill as well
+[09:33] as any retro sections to see if there's
+[09:35] any calibration that we should make for
+[09:37] the existing skills based on the
+[09:38] conversation that we have. So, I have
+[09:40] put together every mods that I have
+[09:42] created inside of a PDF file that you
+[09:44] can actually download this inside of my
+[09:45] school community. So, pretty much that's
+[09:47] it for this video. If you do find my
+[09:48] this video, please make sure to like
+[09:49] this video. And of course, I'll see you
+[09:51] in the next video.

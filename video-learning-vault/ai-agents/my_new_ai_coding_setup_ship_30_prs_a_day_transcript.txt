@@ -1,0 +1,693 @@
+[00:00] In this video, I want to go over what my
+[00:01] current AI coding stack is. It changes
+[00:04] all the time because AI moves incredibly
+[00:06] quickly. And as a serial builder and
+[00:08] someone that's chronically online, I
+[00:10] love trying brand new AI coding setups,
+[00:12] completely destroying my productivity
+[00:13] 90% of the time. But then the other 10%
+[00:15] of the time, the new tools or workflows
+[00:17] that I use are actually really good and
+[00:19] it significantly increases my
+[00:20] productivity. And that's what I want to
+[00:22] talk about in today's video. Because the
+[00:23] last time I made this type of video,
+[00:24] which you can see over here, was four
+[00:26] months ago where I said I was using
+[00:28] Neovim and Cloud Code. I don't use Neoim
+[00:30] or Cloud Code. I haven't been a Claude
+[00:32] Code subscriber in 3 months. So, yes,
+[00:34] there have been lots of change that has
+[00:36] happened. Let's dive deeper into what
+[00:38] exactly my AI coding setup is. I'm going
+[00:39] to talk about the actual tools that I
+[00:41] use, the new workflow, and how exactly I
+[00:43] use those tools because it is pretty
+[00:45] drastically different, especially
+[00:46] compared to this video from 4 months
+[00:48] ago. And last but not least, I also want
+[00:49] to go over a couple additional AI agents
+[00:51] and automations that I use to run my
+[00:53] startup in general, not pure coding
+[00:55] wise. So, in case you are new here, I am
+[00:57] a serial app builder that has built over
+[00:59] 14 different apps in the past 5 years.
+[01:01] And my current app that I'm building is
+[01:03] called Yorby. It is an AI social media
+[01:05] marketing tool for startups to help them
+[01:07] make viral marketing content and run
+[01:09] their social media marketing operations
+[01:11] so that they can market their product,
+[01:13] their business on social media. And a
+[01:14] couple months ago, we peaked at around a
+[01:16] high 11K a month of revenue. But now
+[01:18] we're kind of stabilizing at around the
+[01:20] mid 10s to mid 9k of monthly recurring
+[01:22] revenue. So I'm not a larer. I'm a real
+[01:24] builder with a real product with real
+[01:26] customers. So shipping features,
+[01:28] especially high quality features that
+[01:29] don't cause bugs is super important. And
+[01:31] I'm building this startup in a very lean
+[01:33] team with just myself and my co-founder.
+[01:35] I'm the primary builder and he's a
+[01:37] primary marketer, but he also builds and
+[01:38] I also market as well. So we keep things
+[01:40] lean and we are super super AI native
+[01:43] and we use AI in literally everything we
+[01:44] do. The building, the marketing, the
+[01:46] selling, everything. So that's a little
+[01:47] bit of context setting just to set it
+[01:48] all up. So now let's get into the actual
+[01:50] tools that I use. So for myself
+[01:52] personally, I daily drive Codeex and
+[01:54] Cursor. I know Curse is a bit of a
+[01:56] surprise because I was a diehard Cursor
+[01:58] user, turned off of them for a long
+[02:00] time, but I just came back because I
+[02:01] think Cursor has been doing really great
+[02:03] work, especially after their acquisition
+[02:05] by SpaceX AI, Grock, whatever you want
+[02:07] to call it. And I'm incredibly bullish
+[02:09] on the future of what Cursor has in
+[02:11] store. So now let's start transitioning
+[02:12] over into talking about when do exactly
+[02:14] do I use Codeex and when exactly do I
+[02:15] use Cursor? because I do use both.
+[02:17] Before I get into that, I do want to say
+[02:18] that this video talking about what my
+[02:20] agentic coding setup is, it's not cheap.
+[02:22] It's pretty expensive. I pay for a $200
+[02:24] a month plan for Codeex. I pay for a
+[02:26] $200 month plan for Cursor out of my own
+[02:28] pocket. And I'm right now even tempted
+[02:30] with the release of Fable 5.1. I'm
+[02:32] tempted to restart my CL code
+[02:33] subscription as well. So, this is not
+[02:34] for the budget conscious. This is just
+[02:36] for maximum efficiency, willing to pay a
+[02:38] really high price to get these things
+[02:40] done. Okay. So, the way that I split up
+[02:41] my work between cursor and codec really
+[02:43] depends on the type of work that I'm
+[02:45] doing. I prefer using codeex for anytime
+[02:47] I'm doing work on my local laptop, local
+[02:50] dev environment using a local agent. The
+[02:52] reason why I emphasize that is because I
+[02:54] actually just released a video right
+[02:55] here talking about cloud coding agents
+[02:57] and how cloud coding agents have really
+[02:59] changed my workflow. And I'm going to
+[03:00] dive deeper into that in this video
+[03:01] here. But I use cursor mainly just for
+[03:03] the cloud coding agents as you can see
+[03:05] all throughout here. But I much prefer
+[03:07] Codeex's local developer experience. And
+[03:10] the reason for that is pretty simple. I
+[03:11] just find the codec desktop app to be
+[03:13] the best pure desktop app. It's the most
+[03:16] performant. I've never had any
+[03:17] performance issues when I'm running like
+[03:19] multiple work trees at a time. Whereas
+[03:20] with cursor, when I'm running a lot of
+[03:22] work trees locally, like a lot of coding
+[03:24] agents on local work trees, I have found
+[03:26] cursor to kind of lag and slow down
+[03:28] significantly compared to the
+[03:29] chatgpt/codex app. So I number one, I
+[03:31] just find the chat GPT and Codex app the
+[03:33] most efficient app, especially if you're
+[03:35] working with multiple local work trees.
+[03:37] And on top of that, I also think they
+[03:38] have a lot of nice small quality of life
+[03:40] things that seem really small when I
+[03:43] talk about it right now, but it adds up
+[03:44] over time. And here's an example of
+[03:46] that. So right here, I have opened up
+[03:47] like a local browser. I open it up to
+[03:49] Google, but let's just assume, you know,
+[03:50] for that this is my local dev
+[03:52] environment. And I want to test out what
+[03:53] the app looks like in different
+[03:54] viewports. Sure, I can go and test out
+[03:56] the mobile view by resizing the panel
+[03:58] like this. Or I can expand it out this
+[04:00] way to go full screen for desktop view.
+[04:02] But then when you go full screen in
+[04:03] desktop view, the chat window with the
+[04:05] history disappears and it just gets
+[04:06] collapsed into this tiny pill at the
+[04:08] bottom. And that really annoys me. But
+[04:10] luckily, Codeex has this toggle to show
+[04:12] a device toolbar where we can then
+[04:13] actually change the resolution from here
+[04:16] with your full chat history on the side
+[04:17] opened up at all times. And yes, this is
+[04:19] a super small example, but there's a lot
+[04:21] of these really small things that add up
+[04:23] to make it a much better local developer
+[04:25] experience. So number one, I think
+[04:26] Cursor has a better pure desktop app.
+[04:28] And I do prefer using it whenever I'm
+[04:30] doing any local development that
+[04:31] requires a lot of fine-tuned changes.
+[04:33] And that usually boils down to tasks
+[04:34] that are more front-end heavy because I
+[04:36] do think like chat GPT's annotation tool
+[04:38] over here is just better and more
+[04:41] performant. It's a lot faster. And with
+[04:42] front-end development, I like to see the
+[04:44] changes that I'm making in the faster
+[04:45] iterations. So that's why I primarily
+[04:47] stick to pure front-end development,
+[04:49] like doing really small pixel movements
+[04:51] and optimizations on my local developer
+[04:54] environment. And that is always going to
+[04:55] be used with chatgpt/codex. So now let's
+[04:58] head over to Cursor. So Cursor, like I
+[05:00] said in this video right here, I think
+[05:02] Cursor is having a renaissance and I've
+[05:03] been using them a lot more because of
+[05:05] their cloud agent support, which you
+[05:06] should watch this video for a more
+[05:08] in-depth tutorial. But essentially,
+[05:09] these are coding agents that run in the
+[05:10] cloud with their full-blown own
+[05:12] dedicated desktop environment. So if I
+[05:14] go over here, I can go into this cloud
+[05:16] agent. I can open up the desktop over
+[05:18] here. And this is a full desktop virtual
+[05:21] machine. I can go in actually test the
+[05:23] app, open up a browser, literally do
+[05:24] anything I want within a pure desktop
+[05:26] environment. And now the way that
+[05:28] exactly I'm using these cloud agents
+[05:30] have changed with a new skill that I've
+[05:32] been using or like a stack that I've
+[05:33] been using and it is called Pstack right
+[05:36] here. Lately within Yorby, one of the
+[05:38] most highly requested features users
+[05:39] have been asking for is the ability to
+[05:41] add voice narration into the videos and
+[05:44] content that they create on our
+[05:45] platform. But when you're building voice
+[05:46] into a product, I find that you usually
+[05:48] run into two major issues. Either the
+[05:50] latency and the robotic tune makes the
+[05:52] experience pretty bad, or the API
+[05:53] pricing makes scaling nearly impossible.
+[05:56] But after checking out a lot of
+[05:57] different API providers, we actually
+[05:58] decided to use Fish Audio within Yorbi,
+[06:01] and they just so happen to be the
+[06:02] sponsor of today's video, which is
+[06:03] really great timing. When we were
+[06:04] testing a lot of different models for
+[06:05] Yorby, Fish Audio specifically stood out
+[06:07] for how natural it sounded. It captures
+[06:09] a lot of the emotional nuance and the
+[06:11] subtle pace shifting really accurately
+[06:13] without that stiff synthetic artificial
+[06:15] artifacting that you normally get when
+[06:17] using text to speech tools. Just listen
+[06:19] to this clip right here to get a sense
+[06:20] of the emotional range and the clarity
+[06:21] you get with Fish Audio. Hey, if you're
+[06:23] still paying hundreds of dollars per
+[06:25] video for UGC creators, you are
+[06:28] literally lighting your money on fire.
+[06:30] Then I found Yorby.ai.
+[06:33] Pretty good, right? I know. Beyond how
+[06:34] good it sounds as a developer, their
+[06:36] ecosystem was incredibly flexible as
+[06:38] well. With Fish Audio, you get access to
+[06:40] ultra low latency texttospech and speech
+[06:42] to text, instant, highly accurate voice
+[06:45] cloning, emotional prompting and
+[06:46] controlling directly within your
+[06:47] texttospech request, and full endto-end
+[06:50] voice agent support. It essentially
+[06:51] covers every single voice and audio
+[06:53] workflow you could ever want to build.
+[06:55] And best of all, right now, Fish Audio
+[06:57] is offering free API usage for their
+[07:00] latest Fish Audio S2.1 Pro model through
+[07:03] the end of November, so you can test it
+[07:04] out in your own projects and apps
+[07:06] without spending a single dime. If
+[07:08] you're building AI apps, agents, or just
+[07:10] need that frontier grade voice
+[07:12] generation, then you should check out
+[07:13] Fish Audio in the description down
+[07:14] below. Once again, huge thanks to Fish
+[07:16] Audio for sponsoring today's video. If
+[07:18] you are like me and you spend any time
+[07:19] on tech x tech Twitter, you have
+[07:22] probably come across this person right
+[07:23] here, PTO. Her name is Lauren. She is a
+[07:26] engineer on the SpaceX AI team working
+[07:28] on Grockbot specifically. And she
+[07:30] created this engineering stack called
+[07:32] Pstack that has just absolutely taken
+[07:34] over the internet right now. And it's
+[07:36] not all too similar from when Gary Tan,
+[07:38] the founder of Y Combinator, made
+[07:40] GStack. But I feel like GStack was kind
+[07:42] of clowned on by a lot of other
+[07:43] engineers. I never personally use it,
+[07:45] but Pstack, I wanted to give it a try.
+[07:47] and it's very optimized for cursor and I
+[07:49] think it is very very good and this is
+[07:51] my go-to set of skills that I'm using to
+[07:54] run and develop all of my applications
+[07:56] these days specifically even more
+[07:58] specifically within cursor cloud agents.
+[08:00] I actually want to make a whole separate
+[08:01] video dedicated to PAC cuz I do think
+[08:03] there's a lot more nuances surrounding
+[08:04] it. But just for a little highle
+[08:06] perspective about what PAC does is it's
+[08:08] essentially just a bunch of skills
+[08:09] bundled up together to help you write
+[08:11] code more efficiently and more
+[08:13] autonomously. And for me, I think the
+[08:15] two biggest components of Pstack that I
+[08:17] think have really fundamentally changed
+[08:18] the way that I let agents write my code
+[08:20] is number one, Pstack using cursors
+[08:23] multimodel availability. It lets
+[08:25] multiple models go out and plan how to
+[08:27] build a specific feature and then
+[08:28] there's a judge in orchestrator that'll
+[08:30] then look at all the multiple
+[08:31] implementations from the various
+[08:33] different models and then create one
+[08:35] final plan from all the inputs of all
+[08:37] these individual models. And I really
+[08:38] like this approach because I think
+[08:39] there's been a lot of work recently from
+[08:41] a lot of other AI labs where they're
+[08:43] actually test they're actually able to
+[08:44] see that testing a bunch of cheaper
+[08:46] models with multiple different
+[08:47] approaches and then combining all of
+[08:49] them the best parts of every single one
+[08:51] of these individual plans via one higher
+[08:53] intelligence judge orchestrator model
+[08:55] gives you frontier level performance at
+[08:57] a fraction of the cost. So that's part
+[08:59] one. And then from all the different
+[09:01] implementations, the judge figures out
+[09:03] what is the best implementation and then
+[09:05] goes out and actually implements that
+[09:06] with more cost effective models because
+[09:08] you don't really need to use like a
+[09:10] Fable 5.1, a GPT 5.6 Soul Max, a super
+[09:14] high-end, super expensive model to do
+[09:16] the actual raw coding. The cheaper
+[09:18] models are much better at actually doing
+[09:19] the raw implementation of the code. So I
+[09:21] think that's principle number one of PAC
+[09:23] that I think leads to really high
+[09:24] engineering quality. And then the second
+[09:26] part of it is the fact that Pstack
+[09:28] really emphasizes that the AI agents
+[09:30] using the cursor cloud agents which can
+[09:32] control the cloud agents virtual desktop
+[09:34] environment to go out and actually
+[09:36] validate the changes that are made to
+[09:38] make sure that whatever task you ask the
+[09:40] agent to create. It doesn't just make
+[09:42] the changes and say all done good for
+[09:43] you. No, it actually goes and replicates
+[09:45] and tests and proves that that feature
+[09:47] works in the real virtual machine. And
+[09:50] this has been a true step function
+[09:51] increase in terms of my productivity
+[09:53] because now I no longer have to actually
+[09:55] go in to the browser and click around
+[09:57] and make sure everything behaves
+[09:58] properly. Instead, the Pstack framework
+[10:00] essentially builds it in such that the
+[10:02] models as they continually use and test
+[10:04] your app, they create these verification
+[10:06] skills, these reusable skills that
+[10:08] instruct the AI models, the agents, how
+[10:10] to use and interact with your app and
+[10:12] test out the various features within
+[10:14] your application. And the way that they
+[10:16] do this is with skills like create
+[10:17] verification skill and maintain
+[10:20] verification skill right here where
+[10:22] whenever you ask it to build out a
+[10:23] feature, it'll go out and test it and
+[10:25] validate that it's correct. And then on
+[10:27] top of that, it'll write down exactly
+[10:28] what it did to replicate the workflow
+[10:30] again and again for future agents to
+[10:32] reflect on. So if you go over here for
+[10:34] example, I go to my verify your web
+[10:36] skills or you can even see right here my
+[10:38] skills. I have verify reotion lambda,
+[10:40] verify resend, verify tik tok connect,
+[10:42] verify your web. I have all these
+[10:44] instructions of how to verify and test
+[10:46] the various parts of my application. And
+[10:47] this has really opened my eyes to how
+[10:49] much more powerful these agents can be.
+[10:51] And if anything, I would even conjecture
+[10:53] to say that investing into these
+[10:55] verification skills is probably the most
+[10:57] important thing you can do for an AI
+[10:59] native engineering team. Because prior
+[11:00] to this stuff, whenever the AI would go
+[11:02] out and make code, it would just assume
+[11:03] the code would work to the best of its
+[11:05] abilities. But the actual raw testing
+[11:07] process still fell into the human's
+[11:08] hands to go in, click all the buttons,
+[11:10] make sure everything works properly. But
+[11:11] then by investing a lot into good
+[11:14] verification skills throughout your
+[11:15] application, these agents truly can be a
+[11:18] lot more autonomous and you can trust
+[11:20] the output and trust the agents when
+[11:22] they say all done a lot more because
+[11:23] they'll literally within cursor cloud
+[11:25] agent specifically, they can straight up
+[11:27] record a playback of the work that it
+[11:30] did. Let me try to find one to show you.
+[11:31] So right here you can see right here
+[11:33] that these models are then able to
+[11:35] actually go in test your application
+[11:36] that it actually built out or fixed the
+[11:39] feature you requested or fix the bug you
+[11:40] requested it to by actually taking legit
+[11:42] screenshots of your application and
+[11:44] sharing it with you as a validation that
+[11:46] it actually worked. Pretty incredible
+[11:47] stuff. So then you no longer actually
+[11:49] have to go through the manual
+[11:50] verification process cuz the agent
+[11:51] proved that it works. All you need to do
+[11:53] is just review the code only if you want
+[11:54] to to make sure that it fits your
+[11:55] standards and some type of architecture
+[11:57] decisions that you wanted to abide by.
+[11:59] So this is something that takes up a
+[12:00] huge chunk of my engineering time these
+[12:02] days because this is one of the things
+[12:04] where in the beginning it's going to be
+[12:05] super slow using these types of cloud
+[12:07] agents using Pstack or whatever tech
+[12:09] stack you want. I just personally love
+[12:10] using Pstack. I think it's pretty good.
+[12:12] You can use whatever feature set tool
+[12:14] set stack you want. But I do think one
+[12:16] of the biggest key unlocks for me is
+[12:18] just investing heavily into these
+[12:20] verification skills because this will
+[12:21] really unlock that next level of AI not
+[12:23] just writing code but actually testing
+[12:25] out the app and the code changes that it
+[12:27] made. And then how exactly I invoke and
+[12:29] use these Pstack and all these
+[12:31] verification skills. It's been changing
+[12:33] a lot, but right now I think I like what
+[12:35] I have set up right now. So I'm pretty
+[12:37] Grockbot pilled right now. Yes, I made a
+[12:39] video about Grockbot here. I mentioned
+[12:40] Grockbot. They were a sponsor of this
+[12:42] video, but I personally just use it a
+[12:44] shitload. I love Grockbot and it's like
+[12:46] I'm obsessed with it. I'm super super
+[12:47] Grockbot pill and essentially here's the
+[12:49] way that I do it. So because Grockbot is
+[12:51] built by the team at SpaceX AAI who also
+[12:53] builds and owns Cursor, Grockbot can
+[12:55] essentially kick off cloud agents for
+[12:57] you directly within Cursor to do all the
+[13:00] engineering work for you. So the way
+[13:01] that I've been orchestrating everything
+[13:02] is with a lot of Grock bots essentially
+[13:04] acting not just as a coding tool, but
+[13:07] actually treating my Grock bots as
+[13:09] co-workers or teammates. And here's what
+[13:10] I mean by that. So what I did was I
+[13:12] created individual bots for the various
+[13:15] features in my app. So for example, this
+[13:16] is the UGC studio bot. This is the bot
+[13:19] that is in charge of our AI content
+[13:21] studio right here that allows startups
+[13:22] to create high performing viral videos
+[13:24] for marketing their startup with these
+[13:26] various video formats. This bot is the
+[13:28] owner of this feature. It explored the
+[13:30] codebase. It played around with the
+[13:31] codebase and actually used the tool
+[13:33] itself and got an entire knowledge base
+[13:35] of this tool and how it all works. And I
+[13:37] did the same thing for various other
+[13:38] features in our application as well. We
+[13:40] have an account spy feature that lets
+[13:41] you spy on competitors social media
+[13:43] accounts and you get alerted when their
+[13:45] content's going viral so that you can
+[13:46] copy the content that they're making to
+[13:48] also go viral and market your product on
+[13:49] social media. This bot is a complete
+[13:51] owner of that tool. Same with our
+[13:54] analytics feature, our content coach
+[13:56] feature, our this is our AI content
+[13:57] script writer, a content calendar
+[13:59] feature that's a work in progress right
+[14:00] now that automatically creates content
+[14:02] for you in the background. I essentially
+[14:04] created these staff engineers, these
+[14:05] tech leads, these full stack engineer
+[14:07] owners of these features and then
+[14:09] whenever I want to go and build
+[14:11] something in that specific feature set,
+[14:13] I invoke that cloud agent directly
+[14:15] within Grockbot here. Let me show you
+[14:17] something here. Here, so I had a bug
+[14:19] right here in our AI content studio. I
+[14:21] let users pick a chat model and an image
+[14:23] model, but then when they actually go in
+[14:25] and use it and the chat window gets
+[14:27] minimized, only the chat model is
+[14:29] visible and the image model is not
+[14:31] visible anymore. So I really I just
+[14:33] treat this like a teammate, a real
+[14:34] co-orker. I tell it, hey, this is a bug.
+[14:36] Please go fix it and then do some UI UX
+[14:39] exploration and then validate that it
+[14:41] works by sending me the real results,
+[14:43] the real receipts that it actually does
+[14:44] work. So it actually just handles it
+[14:45] like a real teammate would. And then
+[14:47] it's able to kick off an actual cloud
+[14:49] agent to do the actual work, which then
+[14:51] appears directly within your cursor
+[14:53] instance right there. And then every
+[14:54] single time a PR is merged, I tell Mike
+[14:56] Rockbot that is the owner of this
+[14:58] particular feature to merge the PR and
+[15:00] to do two things. Number one, look at
+[15:01] the changes that are made and update
+[15:03] your knowledge base as the staff
+[15:05] engineer, the tech lead, the owner of
+[15:07] this feature and update your knowledge
+[15:08] base about how everything works. And
+[15:10] number two, create and maintain new
+[15:13] verification skills on this surface so
+[15:15] that future agents when they try to work
+[15:16] on a similar part of this tool stack,
+[15:18] there is a defined skill set on how
+[15:21] exactly to use this part of the
+[15:22] application. So, it just gets smarter
+[15:24] and smarter, auto updating, it's
+[15:26] learning as more PRs are made, as it's
+[15:27] reviewing the PRs and writing more and
+[15:29] more verification skills. And one thing
+[15:31] that I'm really excited to do that I
+[15:32] haven't done quite yet is if you're
+[15:34] building like a cross functional feature
+[15:35] that touches multiple surfaces, you can
+[15:37] literally create a group chat. So, I can
+[15:39] toss in like, let's say I'm going to do
+[15:41] something with the analytics feature and
+[15:42] the UGC studio feature. You can straight
+[15:45] up make a group chat with your bots,
+[15:46] like a real engineering team, and tell
+[15:49] them to check each other's work,
+[15:50] brainstorm with each other, and figure
+[15:52] out how exactly to build this feature. I
+[15:54] haven't done this yet, but I'm really
+[15:55] excited to do that once the moment comes
+[15:56] because I think that's very, very, very
+[15:58] cool. Obviously, this is some bleeding
+[15:59] edge, cutting edge stuff, and it's crazy
+[16:01] to say that we're at the time where we
+[16:03] can actually treat these AI bots as like
+[16:05] legit teammates and co-workers. But I'm
+[16:07] kind of at that point at this point, you
+[16:08] know, like I think to transcend to this
+[16:10] next level of AI 10x AI engineer, you
+[16:13] just got to let go of reading all the
+[16:15] code. You got to trust the agents a
+[16:16] little bit more. And the only way you
+[16:17] can trust the agents more and and you
+[16:19] can then read less code is by creating
+[16:22] incredibly rigid verification skills and
+[16:24] code standards for the models to follow
+[16:26] and implement. and then on your end you
+[16:28] can just stick around to making more
+[16:30] higher level architectural decisions.
+[16:32] Yes, I'm sure bugs are going to occur,
+[16:33] but also bugs occur with human
+[16:35] engineering teams as well. I'm not
+[16:36] saying that you should do this. This is
+[16:37] just what I've been doing and it's been
+[16:38] pretty exciting for me and I've really
+[16:40] enjoyed this kind of new paradigm of
+[16:41] engineering. And if anything, I've
+[16:43] actually found that with this new
+[16:44] paradigm, all the engineering actually
+[16:46] happens in the beginning stages. is
+[16:47] essentially like you're creating a new
+[16:48] GitHub ticket, a linear ticket, a task
+[16:50] to hand off to a junior engineer. I
+[16:52] write the task and ticket items so
+[16:55] incredibly in detail and that actually
+[16:56] forces me to do the engineering upfront
+[16:58] in the initial prompt because you
+[17:00] essentially have to dictate what I want
+[17:01] to change, what surfaces to touch and
+[17:03] these are the verification scenarios
+[17:05] that you got to make sure passes and
+[17:06] here are some other scenarios to make
+[17:07] sure that it doesn't cause any type of
+[17:09] regressions. So nowadays, my prompting
+[17:11] to actually build out a feature, it
+[17:12] takes maybe 10, 15 minutes because
+[17:14] that's how much time the it takes for me
+[17:16] to write a really good spec. But then it
+[17:18] really does pay dividends because when
+[17:19] you write a super detailed prompt to
+[17:22] build out a feature with the
+[17:23] verifications, the context, the
+[17:25] references, and everything, if you build
+[17:26] it out using a powerful engineering
+[17:27] stack, you don't have to use Pstack,
+[17:29] that's just what I use, but a good
+[17:30] engineering stack with good AI tooling
+[17:32] to verify correctness that the changes
+[17:34] are actually going to work. more or less
+[17:36] runs on its own, oneshot it, verifies
+[17:38] everything, reviews the code to high
+[17:39] standards, and then all you have to do
+[17:40] is take a quick glance and approve or
+[17:42] ask for changes. It's pretty incredible
+[17:44] stuff. And then now I want to transition
+[17:45] more into talking about how I just used
+[17:47] more AI agents for running my startup in
+[17:49] general. So I have a couple of things I
+[17:51] want to share with you guys. So number
+[17:52] one, I have a customer support agent
+[17:54] right here. I'm not going to click on it
+[17:55] to show you the chat transcripts because
+[17:57] it has like our customer information in
+[17:58] there. But essentially, we used to use
+[18:00] intercom, but then we switched over to
+[18:01] just using pure email for handling all
+[18:04] of our customer support. And what we do
+[18:06] within this bot right here is this is
+[18:08] the home for all automated customer
+[18:10] support. We give it instructions on how
+[18:11] to handle different scenarios and then
+[18:13] it monitors a dedicated support inbox.
+[18:15] And if it sees a scenario that it knows
+[18:17] how to handle, it'll handle it. If it
+[18:18] sees a scenario that is not in its
+[18:20] explicit instructions, it loops in
+[18:21] myself and my founder to go in and
+[18:23] intervene and we will solve it
+[18:24] ourselves. And then once we solve it
+[18:25] ourselves, we'll then automatically
+[18:27] update our customer support agent right
+[18:29] here to take those news instructions and
+[18:31] this is how to handle that scenario if
+[18:33] this type of thing comes again. Next up
+[18:35] is we have a Yorby error fixing bot. So
+[18:38] this is our 24/7 365 a days a year on
+[18:41] call agent that takes in all of the
+[18:43] errors that are coming in from Postto.
+[18:45] We use post talk to capture any errors
+[18:46] and any error that comes in, it'll take
+[18:48] a look at it and first it'll triage it.
+[18:50] It'll first take a look to say is this
+[18:52] error on a very specific surface. Is it
+[18:54] in a UGC studio? Is it in the account
+[18:56] spy? Is it in the content calendar,
+[18:58] analytics, content coach? If so, I'm
+[18:59] going to take this, package it all up,
+[19:01] get all the necessary information, and
+[19:02] hand it on over to the dedicated
+[19:04] engineer, the dedicated bot, staff
+[19:06] engineer, tech lead that owns this
+[19:08] particular service to let them fix it
+[19:09] instead. But then if it's not able to
+[19:11] route it to anyone in particular, then
+[19:13] this becomes like the miscellaneous bug
+[19:15] fixer as well. So it runs 24/7 365 and
+[19:18] for most of the time it does not
+[19:20] automatically merge the code itself. But
+[19:22] then I do have some but then I I added
+[19:24] some instructions in its prompt to say
+[19:25] if you find that this is a super
+[19:27] widespread bug happening to multiple
+[19:30] users, not just one isolated incident, I
+[19:32] will give you full permission to
+[19:33] actually merge the fix. Which is a lot
+[19:35] of confidence to give a bot if it is
+[19:37] going to handle this in the middle of
+[19:38] the night. But the reason why I've kind
+[19:40] of built up the confidence for the bot
+[19:41] to do this is because I have invested so
+[19:44] much more into the verification skills
+[19:46] within my application. So I can actually
+[19:48] trust the output and the changes that
+[19:50] are made by my bots a lot more. It
+[19:52] doesn't happen often because I have set
+[19:54] a very high bar. I basically just say is
+[19:56] this a super like P00 absolutely urgent
+[19:59] affecting all of our users or the vast
+[20:01] majority of our users? If so, you can
+[20:03] then merge it without me reviewing and
+[20:05] approving it. So, it doesn't happen
+[20:06] often, but if it does happen, I trust it
+[20:08] because of the investment into the
+[20:09] verification skills I've been making in
+[20:11] my AI coding stack. All right, so that
+[20:13] is all I got for today. It is a crazy
+[20:15] time to be alive and to be an engineer.
+[20:17] A little spooky, a little exciting at
+[20:19] the same time. Who knows what's going to
+[20:20] happen, but overall super excited and I
+[20:22] love doing what I'm doing right now. I
+[20:24] love the direction that it's heading.
+[20:25] I've never felt more powerful as a
+[20:27] builder in my life and I'm super excited
+[20:29] for what we can continue to build in the
+[20:30] future. But that's all I got for today's
+[20:31] video. A lot of interesting things that
+[20:33] we covered. Let me know if you have any
+[20:34] questions in the comment section down
+[20:36] below. I try my best to answer as many
+[20:37] of them I can, especially in the first
+[20:39] couple of days that a video comes out.
+[20:40] Let me know if you have any questions or
+[20:41] comments. But that's all I got for
+[20:43] today. Thanks so much for watching and
+[20:44] I'll see you in the next

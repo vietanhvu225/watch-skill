@@ -1,0 +1,532 @@
+[00:00] So, I've been using Herder a lot now for
+[00:02] a couple months. I'm a big fan of it.
+[00:05] And the one thing about Herder is what
+[00:06] it comes with is very kind of
+[00:08] bare-bones. It doesn't come with a lot
+[00:09] of stuff built in, which I kind of like.
+[00:11] I like how minimal it is out of the box.
+[00:14] But, it has a very healthy community of
+[00:17] plugins. So, this is how you kind of
+[00:19] expand the functionality with the core
+[00:21] still staying fairly lean.
+[00:24] So, I already did a video on the Herder
+[00:26] plugins for code review, but in today's
+[00:28] video, we're going to do stuff with
+[00:29] multi-agent orchestration cuz there's a
+[00:31] lot of cool features you can do. Herder
+[00:34] itself has cool features with this.
+[00:36] Like here in Herder, I can say I can use
+[00:38] the Herder CLI to tell me what the other
+[00:39] agent sessions are working on. So, the
+[00:41] different kind of agent sessions that we
+[00:43] have here all have awareness of one
+[00:45] another.
+[00:46] Um you can see there's three Cloud Code
+[00:48] agents and one of them is me. And so,
+[00:49] it's reading the output here. So, we can
+[00:51] also send messages between the different
+[00:53] sessions. So, that's the basic kind of
+[00:55] core functionality, but a lot of these
+[00:56] plugins kind of add to that. Either in
+[00:58] terms of like visualization or actually
+[01:02] delegating tasks. They just make it a
+[01:04] lot easier.
+[01:05] So, today's video, we're going to look
+[01:06] at a couple different orchestration
+[01:09] plugins for multi-agent workflows in
+[01:12] Herder. So, let's get started. If you're
+[01:14] looking to level up your own agents,
+[01:16] check out my project agentwikis.com.
+[01:18] Here, you can access the knowledge bases
+[01:20] I use every day for researching these
+[01:22] videos and building my own projects. All
+[01:24] standard wikis are free, but if you sign
+[01:26] up for agentwikis pro for only $19.99 a
+[01:28] month, you can access exclusive videos
+[01:30] on agents and skills and workflows,
+[01:32] custom skills I've developed with my
+[01:34] agents over months of working together,
+[01:36] a weekly Q&A newsletter, and specialist
+[01:38] agent profiles equipped with skills,
+[01:40] guides, and tools for local LLM work,
+[01:43] trading, on-chain analysis, coding, and
+[01:45] many more to come.
+[01:47] Sign up today on agentwikis.com. Links
+[01:49] are in the description. Thank you all
+[01:50] for your support. Now, back to the
+[01:52] video.
+[01:53] Okay, so here we are at
+[01:54] herder.dev/plugins,
+[01:56] and these are community plugins. they
+[01:57] are not um official plugins.
+[02:01] And the first one we're going to look at
+[02:03] is this one, herder/projects.
+[02:06] And this is
+[02:07] click here, so you can see the repo.
+[02:10] Uh so this is the GitHub repo. It is
+[02:12] from
+[02:13] um
+[02:14] alias stra- stravic.
+[02:17] Uh so he has a very popular one here.
+[02:19] You can see 585 stars, so it's very
+[02:22] popular.
+[02:23] And what this does it's a coordinator
+[02:25] conversation parallel worker threads,
+[02:28] shared memory and an overview of what
+[02:30] needs you.
+[02:31] So this is for
+[02:34] multi-agent orchestration.
+[02:37] So the idea is that the coordinator
+[02:39] never does the work itself, so it's
+[02:40] always free to answer you if you have
+[02:42] questions. Um for a larger project like
+[02:44] this, you're probably used to that. And
+[02:46] you could use sub-agents for this, but
+[02:48] this is
+[02:49] a situation where each separate worker
+[02:50] agent gets its own work tree and branch.
+[02:52] So they're not uh
+[02:54] you know, walking over each other
+[02:55] changing code on the same work tree.
+[02:58] Uh so first of all, we're going to
+[02:59] install this. Okay, so for some of these
+[03:01] um they don't have Windows versions,
+[03:02] they only have Linux or Mac.
+[03:05] So what I'm doing is I'm going to be in
+[03:07] my DGX Spark, which is a Linux machine
+[03:11] for this. And you're going to want to
+[03:12] update your herder version if you have
+[03:14] not already.
+[03:16] Let's go back into herder now.
+[03:19] Um so this is herder plugin install. And
+[03:21] then the name. This is alias
+[03:24] stravic/herder projects.
+[03:26] So this will install the plugin in
+[03:28] herder itself.
+[03:30] So say yes.
+[03:34] And there we go. So it is installed.
+[03:36] Uh we have the plugin.
+[03:40] Um so first thing, I need to create the
+[03:43] herder project. So this is herder
+[03:44] projects new.
+[03:46] And then the name here.
+[03:48] I'm calling it POD ops because this is
+[03:50] going to be
+[03:51] we're creating a multi-agent maintenance
+[03:53] workflow for my print-on-demand shop
+[03:56] uh Shopify shop Keepsake Threads, which
+[03:58] you've probably seen me
+[03:59] uh building on Agent Run Business from
+[04:02] Zero, that series.
+[04:03] So, this is going to be part of that.
+[04:05] We're going to actually be designing
+[04:06] this. This is a real task, not just a
+[04:08] demo.
+[04:09] Um so, there we go. So, I created POD
+[04:11] Ops
+[04:12] as a Herder project here.
+[04:16] And then we just do Herder projects open
+[04:18] POD Ops, POD Ops.
+[04:21] So, it's asking
+[04:22] uh to access it.
+[04:24] So, it's starting Claude here.
+[04:27] Uh so, yes. You can see it's accessing
+[04:30] this workspace, the Herder projects
+[04:32] uh POD Ops.
+[04:34] So, there we go. We're in Claude now.
+[04:38] So, this is just the default. You don't
+[04:39] have to use Claude.
+[04:41] If you want to use a different agent,
+[04:43] you just use a
+[04:45] profile tag basically when you're
+[04:47] opening it.
+[04:48] So, let's exit there.
+[04:50] So, instead of um just doing it as the
+[04:53] default, you could do like profile and
+[04:54] then
+[04:56] you could do Hermes.
+[05:00] Uh so, instead now it opens Hermes
+[05:03] uh within the POD Ops. So, this is now
+[05:06] the coordinator.
+[05:08] Um so, now
+[05:10] in your root file, you're going to see
+[05:13] this dot Herder projects.
+[05:15] So, this is where
+[05:17] you'll see POD Ops as well.
+[05:19] And there's a bunch of different
+[05:20] directories here it uh
+[05:23] it created. You see it already created
+[05:24] like an agents.md, claude.md.
+[05:27] This is all for
+[05:29] this specific project that we created.
+[05:32] So, in uploads, I'm going to actually
+[05:33] paste this business brief file.
+[05:36] And this is a file
+[05:39] um that gives kind of information about
+[05:41] the project.
+[05:43] You could see it has all the
+[05:46] the basic understanding of the project
+[05:48] is quite a complicated one.
+[05:50] So, I'm not going to be able to one-shot
+[05:51] it.
+[05:52] Um if you're starting something from
+[05:53] scratch, you don't need to do this, but
+[05:54] this was already an existing project. I
+[05:56] just want to build a workflow around it.
+[05:58] So, before we get started here, um
+[06:00] there's a couple other
+[06:02] plugins that I want to install.
+[06:05] So, the other one here is Herder Dagger.
+[06:07] And so, this is your Agent Swarm is a
+[06:09] live uh DAG.
+[06:14] So, this is more of visualization, and
+[06:15] it works with um the Herder projects
+[06:18] that you just saw.
+[06:20] So, this is what we'll be able to see.
+[06:22] It's more of visualization.
+[06:26] So, we're going to install this. This is
+[06:29] Herder plugin install.
+[06:31] Uh
+[06:33] Aim
+[06:34] Try to pronounce that name.
+[06:37] Emmer. I'll just call it Emmer.
+[06:40] So, same thing. Herder plugin install
+[06:43] Herder Dagger.
+[06:48] Okay, so we finished up installing.
+[06:49] Okay, so now launching
+[06:51] Herder projects open pod ops.
+[06:54] So, we're back in Cloud Code here. Uh
+[06:56] we'll just use Cloud Code. And this is
+[06:58] the brief that I'm giving it. So, read
+[07:00] the business brief file that I just
+[07:02] showed you before.
+[07:03] I want the design document it asked for.
+[07:05] First, propose three to four research
+[07:06] threads and wait for my go-ahead.
+[07:09] After I review the reports, start one
+[07:11] design thread per maintenance workflow.
+[07:13] Then a red team thread to review the
+[07:15] designs.
+[07:16] So, wait for my approval before
+[07:18] assembling the final document. Keep the
+[07:20] Dagger run file
+[07:22] updated the whole time with your Dagger
+[07:23] producer skill.
+[07:25] So, I'm going to send this to Sonnet.
+[07:29] And this is going to be my coordinator.
+[07:37] Um so, it's checking the project state.
+[07:39] It's going to read that file.
+[07:46] Reading the dagger producer skill.
+[07:49] Um, and this is currently a Claude code
+[07:51] skill.
+[07:55] So, you can import it to your other
+[07:57] agent, but it automatically went into
+[07:59] Claude. So, that's what we're going to
+[08:01] use.
+[08:04] So, these are the proposed research
+[08:05] threads.
+[08:07] Uh, one for Shopify Printful and open
+[08:09] router API surfaces.
+[08:12] Uh, Digital Ocean and infrastructure
+[08:13] access, multi-agent patterns and cost,
+[08:16] business contacts and runbook inventory.
+[08:19] So, it has some questions for me.
+[08:21] Um, so we're just going to go with all
+[08:22] those threads. So, I'm going to say all
+[08:24] and it's going to start
+[08:26] uh, spinning up the different threads
+[08:30] for each of these, uh, research paths.
+[08:33] And you can see it's starting to spin
+[08:35] them up.
+[08:39] So, this is a Claude-ify one.
+[08:43] So, this is Claude code research Shopify
+[08:45] Printful.
+[08:47] Um, so this is another These are all
+[08:50] different threads that it's launching.
+[08:54] This one's going to be on Digital Ocean.
+[08:57] Um, so I started the four research
+[08:58] threads. They're running in parallel as
+[09:00] tabs in a Claude profile.
+[09:03] So, we could see all the different ones.
+[09:04] Each thread was told to cite official
+[09:06] docs.
+[09:07] See, they're popping up over here.
+[09:10] Um, the dagger run file is updated.
+[09:13] I'll tell you when the reports land so
+[09:15] you can review them.
+[09:18] So, this was the one on multi-agent
+[09:20] patterns and cost.
+[09:22] So, now as these are still doing
+[09:24] research and doing work, I can talk with
+[09:26] the coordinator
+[09:27] um, and make adjustments along the way.
+[09:30] So, that's kind of the advantage of this
+[09:31] dagger projects. You can see them all
+[09:33] populating on the side here.
+[09:36] Okay, so I just told it to launch um the
+[09:38] dagger run as well and these are the
+[09:41] exact commands
+[09:42] ran from the pane if you want to do this
+[09:43] manually, but you could just tell your
+[09:45] war coordinator uh launch dagger run.
+[09:48] So, this is what the pane looks like
+[09:49] over here.
+[09:51] Um you have your research. These are
+[09:53] different levels, right? Research,
+[09:55] workflow designs, red team final
+[09:57] document. So, right now we can see
+[10:00] um this is done.
+[10:02] These are still working.
+[10:08] So, the research agent's all finished up
+[10:10] here.
+[10:14] So, you see Q research
+[10:16] is done and then
+[10:20] so that switched over. See these are all
+[10:22] done.
+[10:23] So, this is ready now.
+[10:28] So, they have individual research
+[10:29] reports as well.
+[10:31] Um so, you can look through these for
+[10:33] each of the different topics you found.
+[10:35] So, what I need from you brief do-do's,
+[10:38] repo path,
+[10:39] and design threads.
+[10:41] Um so, I'll just go with the assumptions
+[10:45] that it made.
+[10:46] So, seed as is.
+[10:48] So, now we'll be able to see this full
+[10:51] uh flow move forward.
+[10:56] Starting six design threads where it's
+[10:58] going to design the workflows for us.
+[11:01] See it's launching more agents here.
+[11:04] And you can see workflow designs.
+[11:06] Now, it says working.
+[11:08] So, this is just a graph. Shows you kind
+[11:10] of the status when you have a
+[11:12] a large project like this, um it shows
+[11:14] you exactly
+[11:17] what each uh agent is doing.
+[11:19] So, it's quite easy to launch. These are
+[11:22] separate plugins, but they work really
+[11:23] well together.
+[11:27] So, you can see a lot of the designs are
+[11:28] now coming in.
+[11:37] >> So, these are six design threads, one
+[11:39] per workflow,
+[11:41] plus one for coordination.
+[11:44] All six are running in parallel and none
+[11:46] has reported as of yet.
+[11:48] Well, some are coming in now, I believe.
+[11:53] And you see it's updating. Four of them
+[11:54] are done.
+[11:56] Still two working.
+[12:00] Okay, all six designs are in, as you
+[12:02] could see, and now the red team is
+[12:04] working.
+[12:05] Um the red team thread is now running
+[12:07] here.
+[12:12] You see up here, there Here we go, it's
+[12:14] the red team.
+[12:15] Uh started to work, fetching everything.
+[12:18] So, the coordinator
+[12:19] tells us the status everything that's
+[12:21] been done.
+[12:23] And the dagger graph over here shows us
+[12:25] the exact status.
+[12:29] And the point of the red team brief is
+[12:31] that it checks the designs against the
+[12:32] brief's hard rules and the credit
+[12:34] credential ban.
+[12:36] It also checks for permission and PII
+[12:38] leaks, inconsistencies between the
+[12:40] different designs we got,
+[12:42] um unsupported outside API claims on
+[12:44] designed failure no- modes,
+[12:46] and unrealistic rollout or cost.
+[12:48] So, this is kind of a adversarial
+[12:50] review, basically.
+[12:54] And once this is done,
+[12:56] um we're going to be waiting on the
+[12:57] final document.
+[13:00] That'll be the final kind of workflow
+[13:01] design document. So, this whole process
+[13:04] between research and designing workflows
+[13:06] is all
+[13:08] meant to make sure that once we have
+[13:09] this final document and this final
+[13:11] workflow, we can implement it without
+[13:13] any kind of issue.
+[13:14] Okay, the red red team is done here.
+[13:18] Um we got a a message. We can see what
+[13:20] it says.
+[13:22] And our coordinator is reading uh the
+[13:24] results.
+[13:26] So, we can see red team passed.
+[13:28] Um
+[13:30] need to approve assembling the final
+[13:32] document. So, there's a couple decisions
+[13:34] for me and these are all whenever
+[13:35] there's a question it goes through this
+[13:36] one coordinator
+[13:38] session.
+[13:40] Um so, you can look through these and
+[13:42] answer them.
+[13:44] So, let's go with this. Fix the pass and
+[13:45] then uh assemble.
+[13:49] So, you can come up here. There's kind
+[13:50] of a summary of the red team result as
+[13:51] well. Six blockers that it found.
+[13:53] So, I just told it to fix fix these
+[13:56] blockers. So, we have a
+[13:59] And you can see it came up here um
+[14:02] revision, right? So, this is kind of the
+[14:04] workflow. We have this adversarial
+[14:06] review and then when it finds blockers,
+[14:08] you can add a revision. So, now you can
+[14:10] see here in the graph
+[14:12] uh where we're going here.
+[14:16] You click D, you get more details about
+[14:18] what's going to happening here.
+[14:19] See, this is a follow-up red team ready
+[14:21] after the fixes.
+[14:23] And you can make it switch to see the
+[14:25] orchestrator from here
+[14:26] or just to enter to focus the pane.
+[14:30] And escape to close that and get back to
+[14:31] the uh to the full graph.
+[14:34] And the nice thing here is that this
+[14:36] um shows exactly which thread, T12, can
+[14:39] get, as you can imagine, very confusing
+[14:41] all these different threads. So,
+[14:43] this lets you know exactly which one is
+[14:45] which. Like for this red team,
+[14:47] it was uh T11.
+[14:50] So, you can easily go here and then we
+[14:52] can see, okay, this one is working.
+[14:57] Okay, and that's done.
+[15:00] So, now
+[15:03] um we're back here on the final
+[15:04] document. Uh the final document hasn't
+[15:06] been assembled. It does have a question
+[15:08] for me
+[15:09] through the coordinator.
+[15:11] Um so, you can either assemble it now,
+[15:12] rerun
+[15:14] the uh red team on the review
+[15:16] or just hold it. I can read the package
+[15:18] first.
+[15:19] Um let's just assemble it now. So, we'll
+[15:21] do one here.
+[15:25] This is going to be moving on to this
+[15:27] final
+[15:28] document stage. So, it need my answer. I
+[15:31] gave it the answer.
+[15:33] There we go. You can see it's moved on
+[15:34] to
+[15:35] done approval.
+[15:37] And now finally this last one T13
+[15:40] uh is assembling the final document.
+[15:44] You can check what it's doing here.
+[15:46] You can see
+[15:47] what the actual session is doing.
+[15:50] I simply sent it a prompt saying read
+[15:52] this Herder Herder project
+[15:54] uh brief and do what it says. So, these
+[15:56] are all kind of organized within this
+[15:57] workspace, this Herder project.
+[16:00] And then there's all different threads.
+[16:01] These are all the different threads
+[16:02] under that.
+[16:03] But you don't really need to go into any
+[16:05] of these threads.
+[16:06] Um you can if you want to inspect what's
+[16:08] happening.
+[16:09] But most of the work just stays here
+[16:11] with the coordinator.
+[16:12] Okay. You could see it's just got done.
+[16:15] The monitor ended.
+[16:18] So, here we go. We got our
+[16:21] final document here. Design document is
+[16:23] assembled.
+[16:24] And the dagger run file is complete as
+[16:26] we could see here.
+[16:27] So, let's take a look at the document.
+[16:29] You kind of see everything that was
+[16:31] built was done in this Herder projects
+[16:33] and in pod ops
+[16:35] or POD ops.
+[16:36] Um so, this is the dagger file which had
+[16:39] This is just a JSON file, but that's
+[16:41] what um
+[16:42] is used to create the
+[16:44] the graph that you saw.
+[16:46] This over here.
+[16:48] Um so, then you can see inbox. These are
+[16:50] all
+[16:52] reports basically. They're markdown
+[16:54] files, but
+[16:55] that's the inbox library has everything
+[16:58] from all the different threads.
+[17:00] And this is our final design document.
+[17:03] You see other thing memory as well. And
+[17:05] memory is closed. Routines.
+[17:08] Scratch files. Threads. So, this is our
+[17:12] final document that we got.
+[17:14] Take a look at this.
+[17:16] Open it in preview so we can actually
+[17:18] read it.
+[17:19] Uh so keep sake threads multi-agent
+[17:21] maintenance workflow design document. So
+[17:23] this is finally what we got. It's quite
+[17:25] thorough.
+[17:27] Large contents file.
+[17:28] So this has everything you need like a
+[17:30] full report here.
+[17:32] What you must do first.
+[17:35] Step by step with the dates and
+[17:36] everything. Recommendations. So you can
+[17:38] read this yourself or you can have
+[17:40] another agent
+[17:41] uh read it and execute it. But you can
+[17:44] see it's a very thorough
+[17:45] document.
+[17:47] Um so
+[17:49] this is all based on thorough uh
+[17:51] research
+[17:52] and then uh designing the workflow and
+[17:55] then adversarial review as well.
+[17:58] So it has figures and everything. So
+[18:00] this is
+[18:01] what I'm going to be handing my uh
+[18:03] operations agent to actually get this
+[18:07] project workflow going. But that'll
+[18:10] probably be a different video where I
+[18:11] introduce you to the actual workflow.
+[18:14] Uh for this one I just wanted to
+[18:15] introduce you
+[18:16] uh to this plugin. So pretty nice
+[18:19] multi-agent orchestration workflow.
+[18:22] Um it keeps everything in that one
+[18:24] uh workspace. So it's easier to do.
+[18:29] It's easier to uh just keep everything
+[18:30] in that one directory.
+[18:33] Uh it's very nice.
+[18:34] So that is Herder Dagger for the uh the
+[18:37] graph and then Herder Projects
+[18:41] for the the projects. And you see it's
+[18:42] quite a few stars.
+[18:45] And it makes sense cuz
+[18:46] pretty pretty nice little plugin.
+[18:49] But there's many more. Uh we just
+[18:50] introduced two today.
+[18:52] Uh cuz I want to do stuff on multi-agent
+[18:54] orchestration, but there's a lot more
+[18:56] that we can look at. And in future
+[18:58] videos I will do it. So please leave me
+[18:59] a comment. Let me know
+[19:01] uh what other plugins you're interested
+[19:03] in looking at or what other kind of uh
+[19:06] topics or categories you want to check
+[19:08] out.
+[19:09] And that's going to be the end of this
+[19:11] video. So thank you for watching.

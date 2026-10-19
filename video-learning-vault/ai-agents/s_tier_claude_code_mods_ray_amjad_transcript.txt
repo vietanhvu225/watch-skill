@@ -1,0 +1,643 @@
+[00:00] Okay, so just over a week ago Anthropic
+[00:02] released Claude Code mods and I made a
+[00:03] video 1 month ago explaining how they
+[00:05] work while the feature was still in
+[00:06] beta. But in this video, I want to go
+[00:08] through some of the high-level patterns
+[00:10] and ideas that allow us to make
+[00:12] effective Claude Code mods for our
+[00:14] engineering workflows. Now, the main
+[00:15] pattern that I've seen behind most of
+[00:16] the good Claude Code mods is that every
+[00:18] time Claude finishes a turn, something
+[00:20] checks whether there's anything else
+[00:22] that's worth doing. So, this could be a
+[00:23] small model like Haiku or a classifier
+[00:25] kind of like Jed. And if there is, then
+[00:27] a whole copy of the conversation spins
+[00:29] off to side and then deals with it using
+[00:32] the same prompt cache while the Claude
+[00:33] continues on working towards the main
+[00:35] goal. And this can do background jobs
+[00:37] like updating the memory or like showing
+[00:38] you some kind of notes. Now, to consider
+[00:40] what would make this possible, I want to
+[00:42] quickly mention the building blocks
+[00:43] here. Now, I did go through all the
+[00:45] building blocks in my last video. It
+[00:46] will be linked down below. But
+[00:48] essentially, we have two main ones. We
+[00:50] have model complete that allows us to
+[00:52] call a particular model kind of like
+[00:53] Haiku Opus or Sonnet in the background.
+[00:55] So, this basically allows you to use
+[00:57] something like Haiku for a really quick
+[00:58] yes or no. But if you want probabilities
+[01:00] then you may want to use Jed instead.
+[01:02] And this is what the code would kind of
+[01:04] look like behind the scenes. So, you'd
+[01:05] pick Haiku and if it returns something
+[01:07] other than yes, then we would exit early
+[01:09] kind of like middle one. And then the
+[01:10] second idea is that of forking the main
+[01:12] conversation. So, the main conversation
+[01:14] does a bunch of tool and tool calls and
+[01:16] all of that would be copied over to a
+[01:17] forked conversation using the same
+[01:20] prompt cache with a extra instruction
+[01:22] over here. And then that can continue
+[01:24] doing its own work in the background.
+[01:26] And then anything else that is
+[01:27] discovered can be passed back into the
+[01:29] main session. And behind the scenes, it
+[01:30] looks something kind of like this. We
+[01:31] just simply fork from this point in the
+[01:33] conversation with an additional prompt.
+[01:35] Now, combining both of those ideas
+[01:37] together, we can do something pretty
+[01:38] interesting kind of like what one of the
+[01:40] Claude Code engineers mentioned over
+[01:41] here where we can make our own memory
+[01:43] harness by spinning off a custom
+[01:45] classifier each turn and then writing
+[01:47] memories if it matches. And the way that
+[01:49] we would do this in Claude Code is by
+[01:51] doing {slash} plugin offering and then
+[01:53] describing what we want. So, I'm going
+[01:54] to quickly describe everything that I
+[01:55] just mentioned and then sending over
+[01:57] this prompt, it will basically go ahead
+[01:58] and make that cloud code mod. And then
+[02:00] once it's finished being made, I can do
+[02:02] {slash} reload plugins, and then it will
+[02:04] reload it. So, now the mod is available,
+[02:06] so I can trigger it by saying something
+[02:08] like,
+[02:09] "Hey, so remember that I want the
+[02:10] clickhouse uh P99 latency to be under 50
+[02:14] milliseconds." And then if I press enter
+[02:16] over here, that will trigger HiQ in the
+[02:18] background that will quickly classify
+[02:19] being like, "Hey, the user wants
+[02:21] something remembered." And now you can
+[02:23] see it says memory updating over here.
+[02:25] And then if I press open, I can see this
+[02:27] on the right-hand side, so it says fork
+[02:29] writing, and then it will finally show
+[02:30] me the updates that I actually made. And
+[02:32] then I can see that two files have been
+[02:34] changed, so the memory.md file has been
+[02:36] changed, and also a brand new file has
+[02:38] been added over here. If I wanted to, I
+[02:39] could also like show how many lines have
+[02:41] actually been changed in the sidebar.
+[02:43] So, I can just quickly customize a mod
+[02:45] by doing something like {slash} plugin
+[02:46] offering, and then describing that
+[02:48] behavior change again. So, to kind of
+[02:50] close the pane over here, I can press a
+[02:51] button in the top right, and then that
+[02:53] will disappear. Now, of course, I
+[02:55] explicitly triggered it in this case,
+[02:56] but ideally the memory will be
+[02:58] automatically added and updated, so the
+[03:00] main session can focus on the task at
+[03:02] hand, rather than trying to both update
+[03:04] the memory and try to do the main task.
+[03:06] Now, this mod will actually be linked
+[03:07] down below in GitHub, so you can
+[03:09] download it alongside all the other mods
+[03:11] mentioned in this video. So, you can run
+[03:13] this command over here, and if you do
+[03:14] want to see all the mods in a slightly
+[03:16] nice interface, then that will be
+[03:17] available on my website linked down
+[03:18] below. And then going over to mod and
+[03:20] looking at the behind the scenes, I can
+[03:22] see that says model fork over here. So,
+[03:24] it first passes it through a classifier,
+[03:27] and if the classifier answered with yes,
+[03:29] let's update it, then it will pass it
+[03:30] over to fork's conversation, and if that
+[03:32] replies, then it will update the
+[03:34] relevant files automatically here. Okay,
+[03:36] so we kind of solved the problem of
+[03:38] delegating any memory updates to a side
+[03:40] agent instead of having the main agent
+[03:42] work towards a goal and also try to
+[03:44] update memories. Another problem we can
+[03:46] solve with mods is sometimes these
+[03:48] agents can work for hours at a time,
+[03:50] like an hour, and you're kind of like,
+[03:52] "Okay, what exactly happened during that
+[03:54] session?" And And you may have to ask
+[03:55] for a summary, but that can be pretty
+[03:57] difficult to read. So, it'd be better if
+[03:59] we can have some kind of diagram that
+[04:00] automatically appears in the side panel
+[04:02] that we showed earlier to show what
+[04:04] exactly happened during that session and
+[04:06] all the main decisions that were made
+[04:08] and the paths that were followed. So, I
+[04:09] can do {slash} plugin offering and
+[04:11] prompt that behavior again, but to save
+[04:13] on time, I already did that before the
+[04:14] video. So, I have another mod called
+[04:16] diagram pane that will be linked down
+[04:18] below, and it looks something kind of
+[04:19] like this. But essentially, the way that
+[04:21] it works is that after Claude finishes a
+[04:22] pretty big task, it will automatically
+[04:24] make a diagram on the right hand side
+[04:26] over here for you to get an
+[04:27] understanding of what exactly happened
+[04:29] during that long turn. And it uses the
+[04:31] exact same principle that we mentioned,
+[04:33] whereby we have a quick high-Q based
+[04:35] classifier deciding, "Okay, was a lot of
+[04:37] work done?" And if it was, it will
+[04:39] automatically take a copy of the
+[04:40] conversation into a fork, design that
+[04:43] diagram, and then show it you in a pane.
+[04:45] And I can see this in action because in
+[04:46] this session over here, I basically gave
+[04:48] Claude a pretty big task, and it worked
+[04:51] for quite a while, I think like 20-30
+[04:52] minutes or something. And then finally,
+[04:54] once it was done, on the right hand
+[04:55] side, it made me a nice diagram to kind
+[04:57] of show like, "Okay, this is what I made
+[04:59] first." I then did some verification
+[05:01] over here using a live test in Hadder
+[05:03] because I allowed it to use Hadder to
+[05:05] verify that the mod is working properly.
+[05:07] I then made a diagram, and then I
+[05:08] published it to a GitHub repo. And if I
+[05:11] kind of zoom in, I can see there's a
+[05:12] small key over here to understand what
+[05:14] was changed. So, for example, this one
+[05:16] is a file because it is a square
+[05:18] rectangle. This one with a rounded
+[05:20] rectangle is a brand new component that
+[05:21] was made. And then this one with a
+[05:23] double rectangle is a step that actually
+[05:25] happened. So, if I quickly read through
+[05:27] this, I can get an overview of what
+[05:29] exactly happened during that session.
+[05:30] Now, another cool thing about the mod is
+[05:31] that if Claude makes a mermaid diagram
+[05:33] in line, so if I say make an
+[05:35] architecture mermaid diagram in line,
+[05:37] then it will automatically pick up on
+[05:38] that fact, and because it can't show the
+[05:40] mermaid diagram over here, this will be
+[05:43] displayed in the side panel instead. So,
+[05:45] it says pinned the over here, and I can
+[05:47] quickly scroll down and then see the
+[05:49] mermaid diagram that kind of explains
+[05:51] the structure over here. So, of course I
+[05:53] can resize this and this like makes more
+[05:55] sense than to just read through all the
+[05:57] text that Claude wrote. Now, I have
+[05:59] found this pretty handy to get a quick
+[06:00] representation in line of the changes
+[06:02] that Claude did. And you can also
+[06:04] combine this idea with other things such
+[06:05] as like the Show Me skill by Human
+[06:08] Layer. Instead of just using the skill,
+[06:10] you can have it make a Claude code mod
+[06:12] that shows you everything on a nice side
+[06:14] panel instead. Now, I kind of like to
+[06:16] take this idea further where anytime I
+[06:17] see something cool online that I want to
+[06:19] implement, kind of like Cognition's
+[06:21] dreaming feature, then I like to turn it
+[06:23] into a Claude code mod. So, you can see
+[06:25] they kind of wrote up about how it works
+[06:27] and it is slightly different from the
+[06:28] Claude code dreaming feature that's
+[06:30] automatically built in. And I just said
+[06:32] to Claude, "Hey, turn this into a mod."
+[06:34] And it turned into a mod that will also
+[06:35] be linked down below called Dream Pass.
+[06:37] And it kind of looks like this if you
+[06:39] were to run it, whereby we have our main
+[06:40] memory.md. We also have sources as well
+[06:43] to show the session from which that
+[06:45] information was gathered so it can be
+[06:47] resolved later. So, you can either do
+[06:48] {slash} dream and then it will
+[06:50] automatically show you which files have
+[06:51] been removed, merged, and rewritten. And
+[06:54] by default, it will run every 20 turns
+[06:56] or just before compaction or when you
+[06:58] run the command. Now, for this
+[07:00] particular repo, you can kind of see how
+[07:01] it differs from the auto dream feature
+[07:03] built into Claude code. Now, in the same
+[07:05] article by Cognition, they also
+[07:06] mentioned agent swarms using a message
+[07:08] board. And I recently gave my own agent
+[07:10] swarms access to message board where
+[07:12] they can communicate back and forth with
+[07:13] each other as they're working towards a
+[07:15] common goal. So, I can see that right
+[07:16] over here. So, right now I have three
+[07:19] agents that are running who are on the
+[07:20] board right now. And then I can see some
+[07:22] of the recent messages that they
+[07:23] exchanged and whether it was read or not
+[07:24] by the other agent. So, this was some
+[07:26] testing that I did before the video. And
+[07:28] I'm kind of thinking, "Okay, when I'm
+[07:29] getting my agent swarm to do any kind of
+[07:31] red teaming, research, or bug bashing,
+[07:34] for example, then I want to have a
+[07:36] overview inside of Claude code of what
+[07:38] my agent swarm is currently doing." So,
+[07:40] like how much compute it's using, how
+[07:41] many tokens it's using, and then a whole
+[07:43] bunch of other things. Now, if you do
+[07:44] want to learn much more about agent
+[07:46] swarms, then I will be covering this in
+[07:47] my upcoming agentic engineering cohort
+[07:49] that starts in about 2 weeks. So, we'll
+[07:51] be going over code base design,
+[07:52] verification loops, system one models,
+[07:54] agent swarms, and also software
+[07:56] factories. So, as you can tell by this,
+[07:58] this will be the most comprehensive set
+[08:00] of agentic engineering lessons that you
+[08:01] will find online, and many of your
+[08:03] favorite engineers and engineers from
+[08:05] some of the world's biggest companies
+[08:06] have already taken my classes. There
+[08:08] will be over 150 lessons and then a
+[08:10] whole bunch of office hours on Zoom, and
+[08:12] there is also a Discord server where you
+[08:14] can ask your questions around the clock,
+[08:15] and I will be answering them as well.
+[08:17] Now, most of my students find that many
+[08:19] of the ideas that I talk about in my
+[08:20] classes are many months ahead of the
+[08:22] curve, many months ahead of what
+[08:23] everyone else is teaching, and because
+[08:25] of that, many engineers have taken them
+[08:26] and applied to the ideas have now been
+[08:28] promoted to senior engineers, and many
+[08:30] managers who bought the class for their
+[08:32] team quickly found that their team
+[08:33] became one of the best-performing teams
+[08:35] in the company by effectively using
+[08:37] agents. Now, prices for this will be
+[08:39] rising in about 11-12 days. So, if you
+[08:41] do want to check it out, then there will
+[08:42] be a link down below. And there is also
+[08:44] a 30-day money-back guarantee, but you
+[08:45] likely won't be needing that because
+[08:47] during my last cohort, no one asked for
+[08:49] their money back. So, anyways, I was
+[08:51] kind of thinking to myself, what if I
+[08:52] made a Claude code mod to help me manage
+[08:54] my agent swarm better? So, I made a
+[08:56] little mod over here, and by the way, if
+[08:58] you do have two mods that are both using
+[09:00] panes, then you can kind of switch
+[09:01] between the two panes. So, I have the
+[09:03] previous diagram pane, and now I have a
+[09:05] swarm pane. And right now, we have eight
+[09:07] sandboxed agents running in the cloud
+[09:09] using 18 virtual CPUs, which costs about
+[09:11] 16 cents per hour for the sandboxes. And
+[09:14] the reason why it's so cheap is because
+[09:15] I recently launched my own sandboxing
+[09:17] provider called Impello. It will be
+[09:19] linked down below, and it's about eight
+[09:21] to 40 times cheaper than pretty much all
+[09:24] the other providers whilst delivering
+[09:26] similar performance as well. So, if you
+[09:27] do want to start using sandboxes are one
+[09:29] of the most cost-effective on the market
+[09:31] for your agents, then there will be a
+[09:33] link down below, and there's a free
+[09:34] trial that you can sign up to and use.
+[09:36] So, what I did in this situation is that
+[09:37] I linked a Pimpello to the terminal pane
+[09:40] that you can see over here, and I can
+[09:42] see all the stats live. Now, to see the
+[09:43] pane in action, I want to start a brand
+[09:45] new agent swarm focused on a research
+[09:47] task. So, essentially, there are many
+[09:49] software engineering books that are
+[09:50] really good, and many of the ideas
+[09:52] transfer pretty well to agents. For
+[09:54] example, some of the ideas inside of
+[09:56] Refactoring by Martin Fowler transfer
+[09:58] pretty well. But, I think there are also
+[09:59] many classical software engineering
+[10:01] books with some foundational ideas that
+[10:03] may not transfer well to agents. So, I
+[10:05] basically want to do a bunch of
+[10:06] benchmarking, hypothesis testing, blind
+[10:09] review, and stuff like that. So, my
+[10:10] agent swarm can basically prepare me a
+[10:12] report to show me which of the ideas
+[10:14] transfer well based on the research and
+[10:15] experimentation that's done, and which
+[10:17] ones do not. Now, I will get a prompt
+[10:19] kind of like this one over here, so you
+[10:20] can pause and read it if you want to,
+[10:22] and then press enter, and then I should
+[10:24] see that it starts spinning up the agent
+[10:25] swarm, and I will be able to monitor it
+[10:27] on the right-hand side. But, I've been
+[10:29] interested in this problem for quite a
+[10:30] while, and since my bank's resets for
+[10:32] Claude are about to expire, I basically
+[10:34] want to make sure that I'm using them
+[10:36] for a pretty question. Now, I can see
+[10:38] that my agent swarm is slowly ramping
+[10:40] up, so I have about 59 agents 62 running
+[10:43] right now. And I've reached about 100
+[10:45] agents running in parallel, and the
+[10:47] sandboxing itself is only costing me
+[10:48] $1.80 per hour. All right, so I can see
+[10:50] that this is a message board that
+[10:52] they're using to send messages back and
+[10:53] forth to each other, and the messages
+[10:55] are kind of like in this format over
+[10:56] here. And if I go back, then I can also
+[10:58] see information on the side panel of
+[11:00] like this is how many messages have been
+[11:02] sent, these are how many clusters there
+[11:04] are. So, I think clusters here basically
+[11:05] means that certain pairings of agents
+[11:08] are more frequent than other pairings,
+[11:10] and that kind of forms a cluster. And
+[11:11] then I can see down here how many
+[11:12] sandboxes I still have running. Now, I
+[11:14] don't think the agent swarm will be
+[11:15] completed by the time I finish recording
+[11:17] the video, so I will be sharing whatever
+[11:18] response that it comes to inside of my
+[11:20] newsletter. So, if you do want to hear
+[11:22] about that, then there will be a link
+[11:23] down below. But, I think the question is
+[11:24] really important that it's investigating
+[11:26] of which software engineering ideas
+[11:28] transfer over well to the current era.
+[11:31] Now, to kind of zoom out, I think one of
+[11:32] the biggest values of Claude Code mods
+[11:34] is making panes that help keep you in
+[11:36] the loop. So, number one, Claude Code
+[11:38] could be working for quite a while, like
+[11:39] over an hour, two hours, and you want to
+[11:41] kind of get an overview of what exactly
+[11:43] it did behind the scenes. And if it
+[11:44] makes any diagrams along the way, you
+[11:46] kind of want it pinned over here. So,
+[11:48] you can do this with a diagram pane mod
+[11:50] kind of like this. And number two,
+[11:51] instead of a duration, if you have
+[11:53] Claude Code fan out into many sub
+[11:54] agents, you're using it to orchestrate
+[11:56] agent swarms, then you may want a panel
+[11:58] kind of like this over here to keep you
+[12:00] in the loop of how your swarm is doing
+[12:02] over time. And you want to make sure
+[12:03] that's healthy as it's working towards
+[12:05] its goal. Now, I want to go for a couple
+[12:06] more mods that I made that I think are
+[12:07] really helpful. So, we have decision
+[12:09] tree. So, basically, when Claude asks
+[12:11] you a series of questions, it will
+[12:13] basically present a tree on the
+[12:14] right-hand side, and it allows you to
+[12:15] explore each direction independently.
+[12:18] And then you can zoom out to see the
+[12:19] full tree over here. So, if I try out, I
+[12:22] can give a prompt kind of like this over
+[12:24] here, and I say, "Give me three
+[12:25] different storage options in a numbered
+[12:27] list." Now, it seems that Ask Us a
+[12:28] Question tool is getting in the way
+[12:30] here, so I'm going to tell it to quickly
+[12:31] disable that. And then I'm going to go
+[12:32] ahead and retry the conversation again.
+[12:34] So, start that again. I now get a prompt
+[12:36] over here that says, "Run {slash}
+[12:38] explain to see the pane." And if I do
+[12:40] {slash} explain, then it will open up
+[12:41] the sidebar over here. And then I can be
+[12:43] like, "Okay, cool. So, SQLite is a
+[12:45] recommended option." And if I press
+[12:47] explore over here, then I can start
+[12:49] forking the session in the background.
+[12:51] And then it will start asking me
+[12:52] follow-up questions. So, like, "Which
+[12:54] SQLite driver do you want to use?" So, I
+[12:55] can press explore over here as well, or
+[12:57] type in my own answer by saying, "I did
+[12:59] I did Okay." And essentially, I can go
+[13:01] back to previous question kind of like
+[13:02] this and pick a different option and
+[13:04] explore that again. And then I can go
+[13:06] back over here and then press the map
+[13:07] button and actually see the tree that I
+[13:09] took. Now, of course, this can get more
+[13:11] complicated over time, but if I wanted
+[13:13] to go back to previous question kind of
+[13:14] like this and then explore a different
+[13:16] route, that will all be happening in the
+[13:18] background. I can get a quick overview
+[13:20] in the map, and then once I made a final
+[13:22] decision, I can pass it back into the
+[13:23] main session. So, I So I of find that
+[13:25] the map part over here is the most
+[13:27] useful because I can explore all these
+[13:28] different options and then quickly get a
+[13:30] big overview again. So if you make a lot
+[13:32] of decisions or you like exploring a lot
+[13:33] of different options in Claude Code,
+[13:35] this may be a good fit for you and you
+[13:37] may want to customize it to your needs.
+[13:38] Now another one that I made is called
+[13:39] cash clock. So inside of Claude Code, if
+[13:42] you're using the sub, then your prompt
+[13:43] cash lasts for about 1 hour for the main
+[13:46] session and about 5 minutes for any sub
+[13:47] agents. And of course, you can change
+[13:49] that, but often you may have a session
+[13:51] running and then you come back and you
+[13:53] kind of forgot how much time is left. So
+[13:55] this basically shows you like how much
+[13:56] time is left in the prompt cash and
+[13:58] sometimes it may be better to start a
+[13:59] brand new session instead of sending a
+[14:01] message into a session where the prompt
+[14:03] cash has expired. There's also a auto
+[14:06] handoff feature. So if there's less than
+[14:08] 5 minutes remaining inside of your
+[14:09] prompt cash, then it will automatically
+[14:11] write a handoff, which can be handy if
+[14:13] you come back to a session many hours
+[14:14] later because then you can just load in
+[14:16] the handoff document instead. Now
+[14:17] another problem is that if you have a
+[14:19] lot of skills installed, then the skill
+[14:21] name and the description can always be
+[14:22] inside of your context window. So you
+[14:24] can see over here I have 10,000 tokens
+[14:27] just dedicated to the skills I have and
+[14:29] we can use a classifier kind of like Jev
+[14:31] to suggest which skills we should be
+[14:32] using as we're typing our prompt. So
+[14:34] they already have this in the Jev
+[14:35] cookbook and I basically pointed Claude
+[14:37] Code to that and I said, "Hey, make this
+[14:39] into a mod." And it looks something kind
+[14:40] of like this. So as you're typing out
+[14:42] your prompt, then Jev will automatically
+[14:44] block Claude from loading in skills and
+[14:46] using them and it will instead use Jev
+[14:48] to decide which skills should be loaded
+[14:50] in. So basically if I install it,
+[14:52] then I can do Jev {slash} stare or have
+[14:55] it on all the time and it says, "Jev
+[14:57] skills mode is now stare." And then I
+[14:59] can start typing out a prompt so like,
+[15:01] "I want to edit a video." for example.
+[15:03] And now you can see Jev is grading it in
+[15:05] the background, but I think I changed my
+[15:06] API keys so I'm going to quickly redo
+[15:08] that. So now if I run Claude again,
+[15:10] {slash} Jev, I can see all my skills on
+[15:12] the right hand side. So I have about 48
+[15:14] skills installed right now and they're
+[15:15] mostly for content creation skills, not
+[15:17] like development skills. And if I say
+[15:19] something like, "I want to edit a
+[15:21] video." cuz I use Claude for video
+[15:22] editing, then I can see that it shows
+[15:25] Dev with the different probabilities of
+[15:27] which skills should be loaded in. If I
+[15:28] find it's not as accurate, I could say
+[15:30] only load in the top three skills, and
+[15:32] then leave Claude to decide which one is
+[15:34] the best one for the job. So yeah, if
+[15:36] you have a lot of skills for your
+[15:37] organization and you want to make sure
+[15:38] the right ones are loaded in at the
+[15:39] right time, you may want to use
+[15:41] something kind of like this. Now,
+[15:42] another handy mod that I made is called
+[15:44] secret box, and it makes it slightly
+[15:46] easier for those people who manage a lot
+[15:48] of API keys and environment variables
+[15:50] for stuff like GTM to manage our
+[15:52] secrets. And basically, it registers a
+[15:54] brand new tool inside of Claude, which
+[15:56] is request secret. So Claude, when it
+[15:58] needs a secret, it will call this tool,
+[16:00] it will open a pane on the right-hand
+[16:01] side, and you can basically save it
+[16:03] inside of there. And then it will be
+[16:04] saved directly to your desk in your .env
+[16:06] folder, which Claude is blocked from
+[16:08] ever reading. And Claude never sees your
+[16:10] .env folder, but it can still use your
+[16:12] secrets because it will see a redacted
+[16:14] version instead, which is ID'd. So it
+[16:16] can still make requests using the
+[16:18] redacted version, and it never actually
+[16:20] appearing in the session transcript or
+[16:22] going to Infracloud servers. And it
+[16:24] works a very similar to Agent Proxy by
+[16:25] Infracloud, whereby your AI agent can
+[16:28] make a request with a placeholder value.
+[16:30] The Agent Proxy, which is a mod,
+[16:32] basically makes a request with the real
+[16:34] credential to the public internet, and
+[16:36] then it can fetch the real credentials
+[16:38] from wherever you're storing them. So
+[16:40] you can either store those secrets
+[16:41] locally on a .env folder, or you can
+[16:44] customize a mod whereby it will be
+[16:45] stored in Infracloud, and you basically
+[16:47] sign up for an account and then make a
+[16:49] brand new project like
+[16:51] and then marketing secrets, and this
+[16:53] will be for your marketing folder, and
+[16:55] then you can store all your secrets
+[16:56] inside of there instead. So using secret
+[16:58] box is basically how I manage my own
+[17:00] secrets now. Now, another one that I
+[17:01] really like is called prompt bouncer,
+[17:03] and it basically decides whether your
+[17:05] prompt is clear enough to pass over to
+[17:07] Claude. So for example, if I say a
+[17:09] pretty vague prompt such as fix a thing
+[17:11] on the settings page, and the vague part
+[17:13] is saying the thing over here. So if you
+[17:14] say the thing, something, that thing,
+[17:17] that's always a vague prompt. It will go
+[17:18] to Haiku, and Haiku will be like, "Okay,
+[17:20] that should be bounced back cuz
+[17:22] obviously this is unclear." And this
+[17:23] prevents you from wasting a bunch of
+[17:25] tokens on a turn for a prompt that was
+[17:27] not clear to begin with. Because
+[17:28] oftentimes, if you're tired and you
+[17:30] write a pretty vague prompt, then your
+[17:32] coding agent may do the wrong work, and
+[17:33] then you wasted a bunch more tokens
+[17:35] compared to a small amount of tokens
+[17:36] that it would have taken to classify to
+[17:38] begin with. Now, this can also be really
+[17:39] handy if you have a project glossary of
+[17:42] all the words that you like to use for
+[17:43] your project because then you can have
+[17:45] your prompt bouncer tell you how you can
+[17:47] be more specific. So, for example, if I
+[17:48] say, "The payments page shows a wrong
+[17:50] price. Fix it." And then in this case,
+[17:52] it will reject the prompt and say, "This
+[17:55] project calls out the billing page is a
+[17:57] wrong price in the billing page or
+[17:59] somewhere else." And then you will
+[18:00] basically change your prompt to be more
+[18:02] clear that this is a billing panel we're
+[18:03] talking about. And I think that whilst
+[18:05] this can be a tiny bit annoying at the
+[18:06] very beginning because your prompts are
+[18:08] being rejected often, you'll find out
+[18:10] over time your prompting becomes clearer
+[18:12] because you go from vague prompts that
+[18:13] don't really use your project's
+[18:14] terminology
+[18:15] to much better ones, which can save you
+[18:17] tokens in the long term. So, yeah, for
+[18:19] this mod, you can see a quick diagram of
+[18:20] how it works behind the scenes on the
+[18:22] GitHub page. So, yeah, if you want to
+[18:24] use any of my Cloud Code mods, they will
+[18:26] be linked down below and also available
+[18:28] on my website as well. And of course,
+[18:29] you don't have to download every single
+[18:31] one, just download the one that seems
+[18:32] the most interesting to you. And then
+[18:34] also try and use Cloud Code to further
+[18:35] personalize it to your own use case. I
+[18:37] will likely be making more Cloud Code
+[18:39] mods that I think are handy and then
+[18:41] sharing them inside my newsletter, which
+[18:43] will be linked down below. And finally,
+[18:45] if you do want to join my Agentic
+[18:46] Engineering class that starts in about 2
+[18:48] weeks, then the link will be down below.
+[18:50] As you can tell over here, it will be
+[18:52] the most comprehensive class on Agentic
+[18:54] Engineering that you will find online.
+[18:55] And if you have any questions about the
+[18:57] class, then my email will also be down
+[18:58] below as well.

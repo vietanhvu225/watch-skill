@@ -1,0 +1,1346 @@
+[00:00] How do you stand out in a world where
+[00:01] everyone can build things so quick?
+[00:03] >> I think the people who are really
+[00:04] successful are the people who are the
+[00:05] best communicators, right? So, in my
+[00:08] opinion, the best way to get the best
+[00:10] work out of agents is to tell them what
+[00:12] you care about.
+[00:13] >> So, the skill there is being able to
+[00:15] just get it all out of your head.
+[00:17] >> The skill is being aware of unknown
+[00:18] unknowns, right? Could be security,
+[00:21] could be how you deploy it, could be
+[00:22] just things you haven't thought of. And
+[00:25] if you're not careful about those, then
+[00:27] the agent will just make stuff up.
+[00:28] >> What would you see as the big
+[00:30] opportunities to be looking at to help
+[00:32] launch your career in the right spot?
+[00:33] >> Taking agents, figuring out processes
+[00:36] for knowledge work, and then bringing
+[00:37] those for organizations. Cuz every
+[00:39] organization does things slightly
+[00:41] differently. I think that's a massive
+[00:43] opportunity.
+[00:44] >> I would love to hear a war story.
+[00:45] >> I tried doing spectrum development, I
+[00:47] suppose. And I just saw the code getting
+[00:49] worse and worse and worse. And the agent
+[00:52] would produce worse and worse results.
+[00:54] And I tried this for months, and I just
+[00:56] thought about it again and again and
+[00:58] again. And it wasn't working. So, I
+[01:00] realized
+[01:04] >> All right, Matt. I'm super excited to be
+[01:06] sitting here with you today. You know, I
+[01:07] am a frequent user of your skills, of
+[01:10] course. And it's really interesting to
+[01:12] me that you taught yourself to code. And
+[01:14] when we first hopped on the call, right
+[01:16] before we started recording, you said
+[01:17] that you think learning how to code is a
+[01:19] lot easier than people make it out to
+[01:21] be. So, you taught yourself how to code.
+[01:22] You were doing it by hand for about 10
+[01:24] years. And then, we entered this whole
+[01:27] era of being able to use coding agents
+[01:29] and things like that. So, I'm really
+[01:30] curious to hear your opinion on all this
+[01:33] today. But I'd like to just kick it off
+[01:34] real quick to you and understand what
+[01:36] was that transition like for you when
+[01:38] you had learned all these fundamentals
+[01:39] of coding and you're doing it by hand,
+[01:41] and then you can sort of like, you know,
+[01:43] the term vibe coding pops up and people
+[01:45] are just building things in one day.
+[01:46] What did that transition look like for
+[01:48] you?
+[01:50] >> Well, thank you. Thank you for using my
+[01:51] skills as well. I appreciate it. That's
+[01:52] very kind. Um
+[01:54] I
+[01:56] really started I was a skeptic for a
+[01:59] long time, right? I had about 10 years
+[02:04] of coding like as a sort of amateur and
+[02:07] then professionally for, you know, about
+[02:09] 8 years before vibe coding before stuff
+[02:13] got really good. I consider like when
+[02:15] Opus 4.5 got released when Open Claw got
+[02:17] built around, you know, December last
+[02:19] year 2025, I consider that to be the
+[02:22] moment the sort of threshold where I
+[02:24] went, "Okay, I'm never going to write a
+[02:26] line of code myself anymore, you know."
+[02:28] So, that's the moment when agents got
+[02:30] really, really good. And it was the kind
+[02:32] of year leading up to that where I was
+[02:34] going, "Okay, yeah, I can see the
+[02:36] benefits. I can see that everyone's very
+[02:38] excited about this, but it hasn't quite
+[02:40] clicked for me." And as soon as I
+[02:46] I don't know. I
+[02:47] For me, I've always been very excited by
+[02:49] the parts of my job that were like
+[02:52] trying to make my colleagues better,
+[02:54] right? Trying to build things that
+[02:56] helped my colleagues ship stuff faster,
+[02:58] trying to communicate to other devs and
+[03:00] like and teach them how to do their job
+[03:02] better even, you know, if they were
+[03:04] probably maybe senior to me. So, I'm
+[03:06] always interested in like the
+[03:08] environment in which my colleagues
+[03:10] operated and the environment in which I
+[03:12] operated. And so, when agents came
+[03:14] around and they actually were really
+[03:15] good,
+[03:16] I started thinking, "Right, I can use
+[03:19] these skills that I've developed over my
+[03:21] career and my interest in this stuff to
+[03:23] really help these agents get a lot, lot
+[03:25] better, a lot faster." And that hadn't
+[03:29] really been working previously before
+[03:31] Opus 4.5. And then December last year,
+[03:33] it started working. And I realized,
+[03:36] "Wow, okay, I can really put my skills
+[03:39] to work here and actually pump out some
+[03:41] pretty good stuff." And it's been
+[03:43] working so well so far.
+[03:44] >> That's super cool. You know, one of the
+[03:46] things that I've kind of taken away from
+[03:48] the stuff that you're putting out there
+[03:49] online is that you believe the software
+[03:53] engineering fundamentals and principles
+[03:55] are even more important now because
+[03:58] AI is being slapped into all of these
+[04:00] development processes. And but also on
+[04:03] the same point,
+[04:04] you don't necessarily believe that
+[04:06] someone has to be super super technical
+[04:07] or have a huge coding background in
+[04:09] order to take advantage of the stuff.
+[04:10] So, what does that look like for someone
+[04:12] who's not technical? Because I know that
+[04:13] your audience is primarily pretty
+[04:14] technical. What does it look like for
+[04:16] someone who's not technical?
+[04:17] How do they actually use software
+[04:19] engineering foundations and principles
+[04:21] to build in the right way?
+[04:24] >> Right. So,
+[04:26] in my opinion,
+[04:27] the best way to get the best work out of
+[04:29] agents is to tell them what you care
+[04:32] about, right? Cuz agents will tend to
+[04:35] like people underestimate how
+[04:39] people underestimate the communication
+[04:41] barrier there is between you the human
+[04:44] and the agent, right? And it doesn't
+[04:46] matter how smart that model is, there's
+[04:48] always going to be that gap between you.
+[04:51] And the thing about that gap is that the
+[04:54] agent doesn't know precisely what you
+[04:56] want, it doesn't know what you care
+[04:58] about, and so you have to tell it again
+[05:00] and again every time.
+[05:02] And so,
+[05:03] I think you're going to get better
+[05:06] results out of agents if the environment
+[05:08] in which they operate is
+[05:11] useful for them, right? If they're in
+[05:13] like a garbage vibe-coded crappy code
+[05:16] base that has never had any care put
+[05:18] into it, no one cares about the code
+[05:20] base, they only care about the outputs,
+[05:22] then you're going to get garbage in,
+[05:23] garbage out, right? The agent is just
+[05:25] going to produce rubbish because it's in
+[05:27] a rubbish environment. And so, you have
+[05:30] to start caring about that environment.
+[05:32] And the way you start caring about it is
+[05:34] you start thinking about
+[05:36] uh how Let's say I was running a huge
+[05:40] coding organization, and I had 100
+[05:43] humans, human coders, I know that sounds
+[05:46] like a strange idea, to actually do my
+[05:49] work for me, right? Or push work out.
+[05:51] How would I raise the floor so that the
+[05:53] worst human coder that I had access to
+[05:56] was going to perform better? What
+[05:57] strategies would I use? And it turns out
+[05:59] people have been thinking about this
+[06:01] stuff for 20 years, right? And there are
+[06:02] books written about all of these
+[06:04] concepts. And it turns out if you read
+[06:06] those books, they feel like they were
+[06:08] written last week. They feel so relevant
+[06:10] for right now because they're talking
+[06:13] about how you make good tests. How you
+[06:16] add checks to make sure that your code
+[06:18] base gets better and better over time to
+[06:21] raise the floor, to stop classes of
+[06:23] bugs, to prevent mistakes. And that's
+[06:27] what everyone is trying to do now. And
+[06:29] so I think the first step in that is to
+[06:31] care about that and care about learning
+[06:33] it and get interested in it because
+[06:36] agents are pretty good at teaching you
+[06:37] stuff as well. So if you're interested
+[06:39] in it, if you're asking the right
+[06:40] questions, then you know, the agents
+[06:43] will be able to understand that you care
+[06:45] about that and start pushing you in that
+[06:46] direction.
+[06:47] >> Mhm. That's super interesting because I
+[06:49] do, of course,
+[06:52] I would say 80% of the stuff that I've
+[06:54] learned in the past year, I've had my
+[06:55] agents teach it to me. And I know that
+[06:57] you have a skill, the {slash} teach. And
+[07:00] you know, one thing that I'd be curious
+[07:02] about is how do you think about
+[07:04] trusting what they're teaching you?
+[07:08] >> You shouldn't, right? You shouldn't. You
+[07:10] should always be skeptical of anything
+[07:12] that anyone tells you, I think. I'm like
+[07:15] a born skeptic. I have always like it
+[07:17] took me quite a while to get interested
+[07:19] in AI because I was like this thing is
+[07:20] rubbish. This thing is like the new web
+[07:22] 3 crypto bubble,
+[07:24] you know, BS, whatever. Am I allowed to
+[07:26] swear on this? I'm not sure. I tend to
+[07:28] swear a lot. Okay. [laughter]
+[07:29] Okay, good. I tend to swear a lot on
+[07:30] podcasts. I don't know. It loosens me
+[07:32] up. Um
+[07:33] so I was very skeptical for a long time.
+[07:35] And
+[07:37] I still remain skeptical unless I can
+[07:39] read the primary source, right? So when
+[07:42] I design the teach skill, the teach
+[07:44] skill is essentially all about going out
+[07:46] fetching a high trust, high quality
+[07:48] primary sources, and then breaking those
+[07:50] down for people with quotes, with like
+[07:53] attribution, with saying exactly where
+[07:55] it links to it. And
+[07:58] over time the hallucinations of AI
+[08:00] agents have gone way down. You know,
+[08:02] they will tend to not make stuff up so
+[08:04] much anymore. They still do. Fable still
+[08:07] does it. They They still do it, but they
+[08:08] it's much less frequent. And I found
+[08:11] that
+[08:12] what I mostly use those teach sessions
+[08:14] for is I will just get it to introduce
+[08:16] me to a topic, and then I'll just go and
+[08:18] read the primary source, because that
+[08:19] primary source has the actual
+[08:21] information I need. It's just maybe I
+[08:22] didn't quite have the language to
+[08:24] interpret it before the teach session.
+[08:26] >> All right, real quick guys, a huge
+[08:27] thanks to Hostinger for sponsoring this
+[08:29] part of the video. So, I know that a lot
+[08:31] of you guys are obviously learning to
+[08:32] build with AI, and at some point what
+[08:34] you build has to live somewhere other
+[08:35] than your local laptop. Because once
+[08:37] other people use it, you need a server
+[08:38] that stays on and lets you change things
+[08:40] without breaking what's actually
+[08:41] working.
+[08:42] So, Hostinger VPS is your own server
+[08:44] with dedicated CPU and RAM and full root
+[08:47] access. And it makes the setup the easy
+[08:48] part, so you can actually spend your
+[08:50] time building instead of on the
+[08:51] plumbing, because I know a lot of us
+[08:52] aren't from like a DevOps background.
+[08:54] So, I'd go with the KVM 2 plan. For the
+[08:57] price, you get two vCPUs, 8 gigs of RAM,
+[09:00] and 100 gigs of storage, which is plenty
+[09:02] for a first project. And you can always
+[09:03] upgrade later if you need to. Then you
+[09:05] can pick the Cloud Code template, which
+[09:07] comes with Cloud Code already installed.
+[09:08] So, you can start building as soon as
+[09:10] you log in. And to keep what you build
+[09:11] safe, you can snapshot your server
+[09:13] before you change anything, and you can
+[09:14] roll back if it breaks with weekly
+[09:16] backups included. And if you get stuck,
+[09:18] a Hostinger agent in the web console
+[09:20] helps with server tasks, errors, and
+[09:21] deployments just by using your natural
+[09:24] plain English. So, you can grab KVM 2 at
+[09:26] hostinger.com/nateherkvps.
+[09:28] The link is in the description, and you
+[09:29] can use code nateherk at checkout, which
+[09:31] will take an extra 10% off any yearly
+[09:33] plan on top of the current pricing. So,
+[09:35] thanks again Hostinger for sponsoring
+[09:36] this part of the video, and now let's
+[09:37] get back to it. Got you. Okay. So,
+[09:42] what would you say
+[09:44] is, you know, you you you're you're
+[09:46] seeing a lot of different people coming
+[09:48] into your ecosystem, and they're
+[09:49] learning
+[09:50] how to teach themselves things with AI,
+[09:52] how to build products or automations,
+[09:55] and they probably have a lot of
+[09:57] different motivations in there.
+[09:58] What are you seeing as the different
+[09:59] opportunities that are popping up for
+[10:01] people that want to make sure, maybe
+[10:03] they are a little bit skeptical like you
+[10:04] were about this whole AI thing, but now
+[10:06] we're seeing this, right? Like it's not
+[10:07] going away.
+[10:08] What would you see as the the the big
+[10:11] opportunities to be looking at
+[10:13] to help, you know, launch your your
+[10:15] career in the right spot?
+[10:17] >> Well, [sighs] I mean,
+[10:18] in any period of massive change, there
+[10:21] are always going to be opportunities
+[10:22] available, right? As everything shifts,
+[10:25] then people are going to be adopting
+[10:26] things at a slower pace. Um for me, I'm
+[10:28] seeing a ton of like teaching
+[10:30] opportunities, right? Like, you know,
+[10:31] people want to learn this stuff because
+[10:33] it is so useful, it is so powerful, and
+[10:37] every organization I talk to is having
+[10:39] resistance with this stuff trying to get
+[10:41] it adopted. And
+[10:43] let me make it clear, I do think that
+[10:45] there are
+[10:46] parts about the AI world that are
+[10:48] unethical or are have dubious ethics.
+[10:51] And I think there are attitudes out
+[10:53] there that are absolutely correct, you
+[10:54] know, it is a bit weird the fact that uh
+[10:57] you know, Anthropic just nicked a bunch
+[10:59] of uh novels and then just sort of paid
+[11:01] them back later. You know, it is weird
+[11:04] that it is like it is going to strain
+[11:06] the energy ecosystem to have all of this
+[11:09] uh AI out there. But, you're right, it
+[11:12] is here. It is not going away because
+[11:14] there is an economic incentive to have
+[11:16] it. So, in terms of opportunities, I
+[11:18] mean, they're just everywhere you look,
+[11:20] really, like
+[11:21] the ability to
+[11:23] produce different types of applications
+[11:25] that embed AI, to go into companies to
+[11:28] um say, "I know how to use AI, and I can
+[11:31] help your systems improve and systems
+[11:33] develop.
+[11:34] It [snorts] seems like everyone has this
+[11:36] buzzword on their lips and I think the
+[11:38] opportunities are there if you look for
+[11:39] them.
+[11:41] >> Totally. So,
+[11:42] if
+[11:43] let's let's take a practical example.
+[11:45] Let's say someone right now works a
+[11:47] full-time job and they're not technical.
+[11:50] Let's say let's say maybe they're just
+[11:51] like they're a sales person. So, not
+[11:53] technical, they work a full-time job,
+[11:55] but they want to figure out with AI, you
+[11:58] know, should I learn how to build this
+[11:59] stuff and then start up a consulting
+[12:01] business or should I try to use AI at
+[12:03] work myself and just, you know, get
+[12:05] promotions and try to
+[12:06] work into a leadership position at my
+[12:09] job. How would you yourself think about
+[12:13] the the different paths and trying to
+[12:15] figure out which one is is right for
+[12:16] you?
+[12:18] >> So,
+[12:19] what I'd say is I think of this as kind
+[12:22] of or I take a sort of narrow view,
+[12:24] which is
+[12:25] what are the skills that are going to be
+[12:27] useful to me going forward, right? And
+[12:30] if you have the skills that I'm about to
+[12:32] describe, then you will be able to like
+[12:35] uh find your way to something useful,
+[12:37] you know, whether it's um building your
+[12:39] own thing or whether it's getting
+[12:41] promoted within your own organization.
+[12:43] And the skills
+[12:45] I think are useful are
+[12:48] like people think that agents there's
+[12:50] like no learning curve to them, right?
+[12:52] They think you just talk to it and you
+[12:53] just get stuff back.
+[12:55] And what I've found is that is
+[12:58] absolutely not the case. And as models
+[13:00] improve, they don't necessarily lessen
+[13:02] that learning curve. The learning curve
+[13:04] is still there. It's just maybe a little
+[13:05] bit hidden for most people.
+[13:08] So, the concept of what can you trust
+[13:10] from an agent? How do you organize
+[13:11] agents? How do you get agents to um
+[13:14] behave in ways that follow what you
+[13:16] want? How do you control the information
+[13:19] that agents receive? How do you design
+[13:21] the information that you want the agents
+[13:23] to receive? What um
+[13:25] forms and data structures should those
+[13:26] be in? How do you then take those agents
+[13:29] and turn them into
+[13:30] um like reusable processes? Or how do
+[13:33] you take your processes and turn them
+[13:35] into something that agents can follow?
+[13:37] For instance, I've been using agents for
+[13:40] code, obviously. And agents are really
+[13:42] good at code because code is very easy
+[13:44] to verify, you know? Just like you see
+[13:46] agents solving all these math problems
+[13:48] because maths is very easy, sorry, math
+[13:51] math is very easy to uh
+[13:53] is very far, right? You can create these
+[13:55] proofs that you just sort of like
+[13:57] generate over time and you can solve
+[13:58] these amazing math problems.
+[14:00] But
+[14:01] real-world work is much harder than
+[14:04] coding for agents because it's much
+[14:07] harder to verify. And so when I've had
+[14:10] my biggest struggles trying to adopt
+[14:12] agents for my day-to-day work and it's
+[14:16] taken a long time and trying out
+[14:18] innumerable processes until I finally
+[14:21] found something I'm pretty happy with
+[14:23] and I'm slowly improving it over time.
+[14:25] So, I think those are the big
+[14:27] opportunities. It's actually taking
+[14:29] agents, figuring out processes for
+[14:31] knowledge work, and then bringing those
+[14:33] for organizations because every
+[14:34] organization does things slightly
+[14:36] differently, and there's all of these
+[14:38] opportunities out there to get that
+[14:39] working.
+[14:40] >> Mhm.
+[14:40] >> And that's a skill that's really hard.
+[14:43] And like even me having fiddled about
+[14:46] with agents for like a year year and a
+[14:47] half now, I'm still finding it very
+[14:49] difficult and I think that's a massive
+[14:52] opportunity.
+[14:53] >> Mhm.
+[14:55] So, you said that
+[14:57] the fundamentals are important.
+[14:59] And you've also said that
+[15:02] explaining the context behind why you
+[15:04] want something done. So, sort of like
+[15:05] intent-driven
+[15:07] prompting and and development. Now, how
+[15:11] do those things come together? Where
+[15:12] where does that break where
+[15:14] a non-technical person that might not
+[15:16] have knowledge of how to set up the
+[15:18] right code base or how to, you know,
+[15:20] create the right scoped API keys or
+[15:21] whatever the the issue might be.
+[15:24] How does that person
+[15:26] drive with intent while still making
+[15:29] sure that things don't fall through. And
+[15:31] I'm not sure if you have any like war
+[15:32] stories of and I'm sure this is where
+[15:33] your whole like vibe coding
+[15:36] um pivot away kind of kind of comes into
+[15:38] place. But I'd love to hear if you've
+[15:40] seen specific examples of that falling
+[15:42] short and how someone
+[15:44] can think about
+[15:46] um maybe it's
+[15:49] I guess the point I'm trying to make is
+[15:51] what I've seen is you can you can have a
+[15:54] like you can have enough awareness to
+[15:56] make your agent think about the problem
+[15:58] and you might not know exactly how to
+[15:59] solve the problem. But if you can
+[16:01] identify that this is something that
+[16:02] needs to be looked into, a lot of times
+[16:04] that can go a far a long way. So, I
+[16:07] guess that's the point I'm trying to
+[16:08] make is like how do you think about um a
+[16:10] regular person being able to
+[16:13] identify those those opportunities?
+[16:15] >> I mean, you're talking about a regular
+[16:17] person versus a coder, right? But
+[16:18] everything you're saying there is like
+[16:20] so familiar to me as a developer, right?
+[16:23] It that there's no divide there.
+[16:26] There's a great quote in the pragmatic
+[16:28] programmer which says no one knows
+[16:30] exactly what they want, right? No one
+[16:32] knows what they want. Everyone has these
+[16:34] unknown unknowns in their head. Whenever
+[16:36] they're specifying anything, whenever
+[16:38] they're telling
+[16:39] like let's say we're talking to a dev,
+[16:41] whenever
+[16:42] like I as a normal person talk to a
+[16:45] developer, which is kind of like a
+[16:47] normal person talking to an agent, there
+[16:49] is that communication barrier, right?
+[16:51] And the dev is going to listen to
+[16:52] everything and try to work out what I
+[16:54] care about. And so, one of my skills in
+[16:56] particular, which is um one of the most
+[16:59] commonly used ones, is called grill me.
+[17:01] And what that does is the agent
+[17:03] essentially tells the agent to interview
+[17:06] me relentlessly about the thing that
+[17:08] we're trying to build. And the reason
+[17:11] that is so effective is because it then
+[17:14] gets more context from you about what
+[17:17] you care about and the thing you're
+[17:18] actually trying to build and fleshes out
+[17:20] some of those unknown unknowns where
+[17:23] sure, some things you don't know that
+[17:26] you don't know and some things that you
+[17:27] do know that you don't know and that's
+[17:30] very confusing sentence, but essentially
+[17:32] it's stuff you're not aware of that you
+[17:34] need to care about, right? Could be
+[17:36] security, could be how you deploy it,
+[17:39] could be just things you haven't thought
+[17:40] of and
+[17:42] if you're not careful about those, then
+[17:44] the agent will just make stuff up or it
+[17:47] will say obviously that's not important
+[17:48] because they didn't mention it and
+[17:50] you'll end up with weird stuff happening
+[17:53] or you'll just end up with something
+[17:54] that's totally different from how you
+[17:56] actually imagined it.
+[17:57] >> Mhm. So, the skill there is being able
+[17:59] to
+[18:01] just
+[18:02] get it all out of your head.
+[18:04] >> Yes, the skill is, I think, knowing that
+[18:10] you're
+[18:12] Mhm.
+[18:13] What is the skill?
+[18:15] >> [laughter]
+[18:15] >> The skill The skill is being aware of
+[18:17] unknown unknowns, right? Of knowing that
+[18:19] you could be missing things in your
+[18:21] design and not trusting that you've come
+[18:24] up with a complete design. Um and
+[18:27] whenever you create code based on some
+[18:29] idea, it's really hard, right? That's a
+[18:32] hard thing to do because
+[18:35] by turning it into code, you realize the
+[18:38] weaknesses in in the design and
+[18:40] sometimes those things are just can't be
+[18:43] made clear until you've reached code
+[18:45] because it's a kind of translation from
+[18:47] the fuzzy human brain into executable
+[18:51] statements, right? Into things that have
+[18:53] to link to each other and there's always
+[18:56] difficulty in translation there.
+[18:59] >> Absolutely. I mean, I remember when I
+[19:00] first started building
+[19:02] automations, I remember doing the best I
+[19:05] could, trying to predict all the edge
+[19:07] cases and you know, building guardrails
+[19:09] to protect against those, but then you
+[19:11] put it in production and things happen,
+[19:12] especially when the inputs to the system
+[19:14] are human, because humans are
+[19:16] just as unpredictable, if not more
+[19:18] unpredictable than than agents are. So,
+[19:20] I remember at least being aware of
+[19:23] being able to communicate that to my
+[19:24] client and saying, "Hey, I've built all
+[19:26] these protections, but there are still
+[19:27] some things that might happen in the
+[19:29] real world, and that's why I'm going to
+[19:30] be here to monitor this and and see what
+[19:31] happens and make sure that all of these
+[19:33] failures are still happening in a safe
+[19:34] way."
+[19:35] Now, a lot of my audience
+[19:38] is looking to build solutions for their
+[19:40] clients or their stakeholders at work.
+[19:43] And one thing that I feel like I've been
+[19:46] seeing a lot is a bit of a trust gap
+[19:48] because it's so amazing how much you can
+[19:51] build in one day and how
+[19:55] expert you can appear if you lock
+[19:57] yourself in a room for a weekend and
+[19:58] just have a portfolio when you come out
+[20:00] on Monday.
+[20:01] How would you think about positioning
+[20:03] yourself
+[20:04] about your, you know, your experience,
+[20:06] your expertise, your portfolio projects?
+[20:08] How would you position yourself to, you
+[20:10] know, a cold
+[20:12] prospect to give them confidence that
+[20:14] you are the guy or girl to to to get the
+[20:17] job done, to be able to, you know, look
+[20:19] at all the other maybe 20 vendors
+[20:21] they're looking at or 20 people they're
+[20:22] considering promoting? How do you stand
+[20:24] out in a world where everyone can build
+[20:26] things so quick?
+[20:27] Real quick, guys, I've got this
+[20:28] completely free kit that I want to give
+[20:29] to you all on helping you build your own
+[20:31] AI OS. Whether you need to build it or
+[20:32] whether you need to scale it up, this is
+[20:34] the full kit. It's based on my actual
+[20:36] framework I call the Herc loop, context,
+[20:38] connections, capabilities, and cadence.
+[20:39] This thing comes with six skills. It
+[20:41] helps you set up a brain. It helps you
+[20:42] set up your priorities in your business
+[20:44] and it interviews you. It is exactly how
+[20:46] I built my own actual AI operating
+[20:48] system and it's how I'm able to move so
+[20:49] fast. So, if you guys want this, the
+[20:50] link for this is down in the
+[20:51] description. But, anyways, let's get
+[20:53] back to the video.
+[20:55] >> Honestly, I've I've never been in that
+[20:56] position, right? I've never been a
+[20:58] freelance consultant. I've never been I
+[21:00] suppose I have been a freelance
+[21:01] consultant. I've, you know, I just
+[21:02] happen to have a huge audience while I
+[21:04] was doing it, right? So, I had the kind
+[21:05] of reputation um that came before. I
+[21:08] think what people really want in those
+[21:10] situations is they want someone they can
+[21:12] work with and they want someone who can
+[21:14] understand what they care about, right?
+[21:16] Who can try to cross the communication
+[21:17] gap. And so, because agents allow you to
+[21:20] ship prototypes to just
+[21:23] um
+[21:25] ship I I would say at this point vibe
+[21:27] coding is actually a good thing, right?
+[21:28] Because you're just trying to get to an
+[21:30] end point quick enough. If you can ship
+[21:32] something that demonstrates to them that
+[21:34] they you understand their business, that
+[21:36] you care about what they care about, and
+[21:38] that you can demonstrate, you know, real
+[21:41] acumen in
+[21:43] building something real for them very
+[21:44] quickly, I think they're going to like
+[21:46] that. So, I can't feel like I can't
+[21:48] offer concrete advice for that cuz I've
+[21:50] never been in that competitive situation
+[21:51] bidding for roles and stuff. But, use AI
+[21:54] to your advantage and like if it freaks
+[21:57] people out that you're able to churn out
+[21:58] work in a day, then just charge them for
+[22:00] 5 days, you know, and just sit on your
+[22:02] bum for four. So,
+[22:04] like I think there's a big
+[22:07] People don't realize how quickly you can
+[22:09] churn out high-quality stuff with agents
+[22:10] yet, especially people who are not
+[22:12] AI-pilled. And so, I think you might
+[22:14] just have to adjust
+[22:16] what you're doing for them.
+[22:18] >> What what I think is interesting about
+[22:19] what you said there is it sounds like
+[22:21] it's the humanness that that helps build
+[22:23] that trust rather than look at all these
+[22:25] cool things I've built or look at all
+[22:27] these frameworks I understand. It's the
+[22:29] humanness of
+[22:31] does this person care about what I care
+[22:32] about and are they thinking about
+[22:34] protecting my business, not just getting
+[22:36] a paycheck out of me. What about with
+[22:38] your students?
+[22:39] I'm sure there's been some things that
+[22:40] you've seen where it's like this person
+[22:42] is
+[22:43] there's potential here, very talented.
+[22:45] And you might have also seen some traits
+[22:46] where it's like
+[22:47] this person might need, you know, more
+[22:49] work, a couple extra weeks. What are you
+[22:51] seeing as far as like
+[22:53] what sticks out about your students to
+[22:54] you?
+[22:56] >> I think the people who are really
+[22:57] successful are the people who are the
+[22:59] best communicators, right? That's always
+[23:01] been true for developers and for
+[23:03] non-developers, too.
+[23:04] Everyone I've seen who's been like the
+[23:07] top top tier of developer has always
+[23:10] been incredibly good at communicating.
+[23:13] That means that when they make a code
+[23:14] change, they are writing a really
+[23:16] detailed report about what changed. It's
+[23:18] easy to read, easy to understand, very
+[23:20] clear from their thinking. In other
+[23:22] words, the clarity of their thinking
+[23:24] ends up in the product they create. And
+[23:26] that is what I notice about folks who
+[23:29] are not doing that is they get worse
+[23:31] results because they can't communicate
+[23:33] things to the agent, and then they can't
+[23:35] communicate what is wrong. They're not
+[23:36] thinking in clear terms and clear
+[23:39] boundaries. And so actually, I think the
+[23:41] quality of your thinking and the quality
+[23:43] of your language is key, right? Not only
+[23:46] for when you're talking to the client,
+[23:47] but also when you're talking to the
+[23:49] agent about what the client wants.
+[23:51] I have few skills for this, which is and
+[23:53] there's
+[23:54] sort of a a coding idea that comes into
+[23:57] this as well, which is there's a concept
+[23:59] called DDD, which is domain-driven
+[24:00] design. Sounds very complicated.
+[24:03] But it has this idea at the core of it,
+[24:05] which is that you have when you're
+[24:06] building a project a
+[24:08] what they call a ubiquitous language
+[24:10] where the language in the code, the
+[24:13] terms you use in the code, should be the
+[24:15] same as the ones the developers use to
+[24:17] talk about the product, which is the
+[24:19] same as the client asking you to build
+[24:21] the thing in the product, which is the
+[24:23] same as the users using the product. So
+[24:26] if you have a concept of an order,
+[24:28] right? What is an order? That should
+[24:30] look at the same in the code as it does
+[24:32] in the database as it does in the
+[24:34] um
+[24:35] UI as it does when you and the client
+[24:37] are talking about it. And actually,
+[24:39] iterating on that and creating that and
+[24:41] the preciseness of that language again,
+[24:44] helps you align with what they actually
+[24:46] want and what you're actually building.
+[24:48] I can't recommend this technique enough.
+[24:51] And actually, I have um a modified
+[24:53] version of Grill Me which does this, so
+[24:55] helps you come up with these terms
+[24:57] called Grill with Docs. That's what
+[24:58] Grill with Docs does. It helps you build
+[25:00] this domain language as you go.
+[25:03] I mean, I don't know. I'm sort of I'm
+[25:04] sort of shilling DDD there, like but
+[25:06] it's it's quite an advanced um you know,
+[25:08] you talk to a lot of coders, they won't
+[25:09] have heard of DDD, but I've just found
+[25:11] it extraordinary for building with
+[25:13] agents.
+[25:14] >> Interesting. What What do you think
+[25:15] about JDD? Have you ever heard of that?
+[25:17] >> No, what's JDD?
+[25:18] >> Jealousy-driven development.
+[25:20] >> [laughter]
+[25:22] [gasps]
+[25:22] >> Telling Claude, "Hey,
+[25:23] hey, Astro's doing this way better than
+[25:25] you. What's your problem? What's
+[25:26] [laughter] going on here?"
+[25:27] >> [gasps]
+[25:27] >> There's spectrum development, there's
+[25:29] readme-driven development is a fun one.
+[25:32] Uh behavioral-driven development, I
+[25:34] mean, it's it's everywhere.
+[25:35] >> That's and I just saw that Anthropic
+[25:37] announced something about there's going
+[25:39] to be some sort of
+[25:41] consequences or it will it will prohibit
+[25:42] you from being cruel or mean to Claude.
+[25:44] I don't know if you saw that. I just saw
+[25:46] that like last night, so we'll see what
+[25:47] happens there. But, you have talked
+[25:51] a lot on YouTube, here, on stages about
+[25:54] your skills. And there's a reason why I
+[25:55] use them, there's a reason why so many
+[25:56] people use them. And what I would like
+[25:58] to hear about from you is
+[26:01] before all those. You know, I I'm going
+[26:03] to put you on the spot a little bit
+[26:03] here. I would love to hear a war story.
+[26:06] You know, I really like to learn from
+[26:08] people by hearing about
+[26:11] failures they've had or or why they've
+[26:12] learned a lesson. And I'm I'm sure there
+[26:14] was a specific moment where you decided,
+[26:16] "Okay, I need to build a skill around
+[26:17] this so I don't run into that issue
+[26:19] again."
+[26:20] Or you had some sort of
+[26:21] you know,
+[26:23] big problem inside of your projects or
+[26:26] with your students. I would love to just
+[26:29] see if we could look inside your brain a
+[26:30] little bit and and understand one of
+[26:31] these stories that um
+[26:34] you learned a big lesson from.
+[26:36] >> Well,
+[26:37] I was really intrigued by a talk that I
+[26:41] saw
+[26:43] given by a guy from OpenAI. Um it was on
+[26:47] the AI engineer I I uh Shawn Grove, I
+[26:49] think, uh saying that specs are the new
+[26:52] code, right? Specs are the new code. And
+[26:55] this theory was that you don't need to
+[26:58] write code anymore cuz what you can do
+[27:00] is you can write a specification, which
+[27:02] is write a very detailed document and
+[27:04] agents can help you do that, on how you
+[27:06] want the code to be.
+[27:08] And then
+[27:09] what you do is you then get an agent to
+[27:11] turn that specification into code.
+[27:13] Right? And this is still a very very
+[27:16] popular idea. People love this thing and
+[27:17] there are lots of frameworks built
+[27:19] around it. I would say this is this is
+[27:21] spec-driven development, basically.
+[27:23] That's a pretty muddy term but this
+[27:25] that's how I define it, at least. Which
+[27:27] is you keep the specs around and you
+[27:29] just sort of refine them as you go.
+[27:31] And I tried doing this. I really tried.
+[27:34] Um
+[27:34] this was before I come up with my skills
+[27:36] and stuff. I like, you know, I I have a
+[27:38] a repo that I sort of is my pride and
+[27:41] joy, which is a custom video editor.
+[27:43] It's like a sort of version of Dscript.
+[27:45] It's got uh AI writing, um design
+[27:48] thumbnails on it, you know, I do every
+[27:50] freaking everything on this thing.
+[27:52] Um
+[27:53] and I tried turning that into a big spec
+[27:56] and I tried um
+[28:00] doing spec-driven development, I
+[28:01] suppose.
+[28:02] And what I found was I just kept wanting
+[28:04] to look at the code, first of all, cuz I
+[28:06] was curious, and I just saw the code
+[28:08] getting worse and worse and worse. And
+[28:11] the agent would produce worse and worse
+[28:13] results. And I tried this for months
+[28:15] because I thought this guy was OpenAI,
+[28:16] right? He knows what he's talking about.
+[28:18] I'll I'll be able to like get this
+[28:19] concept down. And I just thought about
+[28:22] it again and again and again. And it
+[28:24] wasn't working. So, I realized, no, I'm
+[28:26] going to ditch these specs. I'm actually
+[28:28] going to focus more on the code. And the
+[28:29] thing that triggered it for me was
+[28:32] code is the environment that the agent
+[28:34] operates in.
+[28:35] Right? Like what I was talking about
+[28:36] before. If you have an agent that's
+[28:38] basically that dog sitting there with
+[28:40] the house on fire around it, it's not
+[28:42] going to produce good code, right? The
+[28:43] dog is in a bad environment, you know.
+[28:46] What I wanted was
+[28:48] good code and like code that made sense
+[28:51] and if you think about what good code
+[28:53] means,
+[28:54] a good code base is a code base that's
+[28:56] easy to make changes in.
+[28:58] A change is not going to screw up
+[29:00] something that the agent didn't think
+[29:02] about. A code base where everything is
+[29:05] easy to modify.
+[29:06] And that's what I started focusing on.
+[29:08] And when I started focusing on that and
+[29:11] started focusing back on the code,
+[29:12] that's when I felt okay, I'm actually
+[29:15] starting to get somewhere and I can kick
+[29:17] things into gear. But the spectrum of
+[29:19] development just did not work for me.
+[29:23] >> The models are getting better
+[29:25] every time. Every time there's a new
+[29:27] number iteration, they're getting
+[29:29] better.
+[29:30] Why do you think that these models don't
+[29:33] already understand a lot of these
+[29:35] concepts or don't natively do them? And
+[29:38] do you when do you think that'll happen,
+[29:39] I guess?
+[29:41] >> So,
+[29:42] it's about the communication barrier,
+[29:44] right? Models can't know what you care
+[29:46] about until you tell them. And skills
+[29:50] are one way of telling the model what
+[29:52] you care about. Now, I think that, you
+[29:55] know, models are getting better and
+[29:57] harnesses are getting better. I think
+[29:58] people underrate the impact of harnesses
+[30:00] on models, you know, harness being
+[30:02] Claude code, Claude.ai.
+[30:04] And Codex, whatever.
+[30:07] And I think then
+[30:09] models [snorts] are obviously going to
+[30:10] get better, but they're never going to
+[30:11] be good enough to read your mind, right?
+[30:13] Never going to be good enough to align
+[30:15] with you perfectly every time. And so,
+[30:18] you need some framework around that,
+[30:20] some process to help this genius genius
+[30:23] developer understand what you want
+[30:25] because
+[30:27] it takes a really good product manager
+[30:29] and a really good developer to make a
+[30:32] great product. You have to care about
+[30:34] things. You have to look at the outputs
+[30:36] and and like add your taste to it. So, I
+[30:39] always think there's going to be
+[30:41] some layer of process over the top of
+[30:43] that to just get over that communication
+[30:46] barrier.
+[30:48] That makes sense.
+[30:49] That makes sense. How how much faster do
+[30:51] you think that you can move now that
+[30:53] you've learned these fundamentals from
+[30:55] when you were doing it by hand? I mean,
+[30:57] it's it's it's outrageous the
+[30:58] difference, right? Like it is outrageous
+[31:01] the amount of stuff I'm able to ship.
+[31:04] Like it's it's just not comparable. Um
+[31:06] like I've got agent I've got like four
+[31:08] agents right now working on different
+[31:09] projects. I've given them all long-term
+[31:11] tasks. I've said, "Okay, uh do this and
+[31:13] do this and do this. Um here are my
+[31:15] long-term goals. Uh go and figure it
+[31:17] out." I've got I've sort of new couple
+[31:19] of skills that I'm playing with like a
+[31:20] kind of chief of staff skill, which does
+[31:23] sort of like sub-agent management and
+[31:25] and you know, that's outrageous. That's
+[31:27] like a team of eight developers or
+[31:29] something that I've just got access to
+[31:30] that are shipping for me, you know? And
+[31:32] I check in with them and I make sure
+[31:33] their plans are good and I grill and you
+[31:35] know, all that stuff.
+[31:37] And I do I I don't know. I mean, you
+[31:39] could could look at my GitHub and just
+[31:41] look at the number of commits that I'm
+[31:42] pushing in and it's in, you know, 200,
+[31:45] 300 a day or something. Whereas before,
+[31:47] you know, 20 a day I think would have
+[31:50] been a good day.
+[31:51] Um but again, you can look look back at
+[31:52] my stuff. So,
+[31:55] uh it's not comparable. Not remotely.
+[31:57] >> I have to ask the question about your
+[31:59] favorite harness and model.
+[32:03] >> I've um
+[32:05] been using Claude Code and Opus uh 5.5
+[32:08] currently. Opus 5.5 is an excellent
+[32:10] model. Um I use it on a much lower
+[32:12] effort level than most people do and
+[32:14] this is kind of one of my hot takes,
+[32:16] which is I think most people are using
+[32:18] way too high an effort level. I think
+[32:20] people look at effort and they just
+[32:21] think, "Yeah, I'll crank it up, right?
+[32:23] Like I I want it to put in effort, you
+[32:25] know?" And I use it on uh Opus 5.5
+[32:29] medium effort, basically. And I'm
+[32:30] debating going to lower effort actually
+[32:32] because you get much more token
+[32:34] efficiency, it replies much faster, and
+[32:37] because I've kind of raised the floor on
+[32:38] my agents, like they're just they don't
+[32:41] need to work that hard to produce good
+[32:43] code, you know, they're just sort of
+[32:45] they just write stuff that passes the
+[32:46] tests and the tests catch it. So, that's
+[32:49] what I like at the moment, but I'm not
+[32:50] that much of a polyglot. Like I don't go
+[32:52] around like trying all of these models
+[32:54] and harnesses, because I think if
+[32:56] they're like the model and the harness
+[32:58] are good and obviously essential to
+[33:01] creating good work.
+[33:02] But, I also think like
+[33:04] you know, just improve the environment
+[33:07] that your agents operate in, right?
+[33:08] That's where I find the most gains. I
+[33:11] recently moved a project from
+[33:14] before I sort of hadn't figured out how
+[33:16] to get this project to a place where I
+[33:19] could get an agent to like look in the
+[33:21] browser and click through it. It was a
+[33:23] complicated project. It relied on lots
+[33:26] of third-party dependencies, like it had
+[33:27] OBS running locally. This was my video
+[33:29] editor. Like how do I make sure that's
+[33:32] available and can do that while I'm also
+[33:35] using it to record in it, you know, it
+[33:36] was it was quite complicated. But, I
+[33:38] fixed that and
+[33:40] now the agent can click through it, can
+[33:43] create screenshots, can actually run the
+[33:45] application properly, and just that
+[33:48] difference has led to a massive increase
+[33:50] in the quality of the stuff I'm able to
+[33:52] produce, because the agent has such
+[33:55] better data to access. And I think I
+[33:58] could get, you know, just as good result
+[34:00] like
+[34:01] with Opus 4.5 and that setup, you know
+[34:03] what I mean? Like
+[34:05] it's it's amazing the difference that
+[34:06] has made. And so, honestly, I think
+[34:08] working on the environment your agents
+[34:10] operate in, it just pays you back so
+[34:12] much. And I know it's kind of a cop out
+[34:14] from the question, right? cuz you want
+[34:15] me to give a hot take of, you know,
+[34:16] Codex sucks and local code is great and
+[34:18] stuff, but I just I don't care that much
+[34:20] about the harness, really. I really
+[34:21] don't, you know, it it's improving and
+[34:22] it's great. And Opus 5.5 especially is a
+[34:25] much better model than five was, much
+[34:27] more efficient. Um,
+[34:29] but really I
+[34:31] I think of it as like just being
+[34:32] employees in my company and I want my
+[34:35] company to be as good as it can be so
+[34:37] that the base level of employees better.
+[34:40] >> Yeah, you know, I and I I actually
+[34:41] really love that answer because I think
+[34:43] if anything that helps people realize
+[34:46] you don't need to be stressing out so
+[34:47] much about the newest model job and
+[34:49] making sure you fully understand what
+[34:50] it's best at and all these benchmarks
+[34:52] because you know, if you think back to
+[34:56] before we even had Opus and we had
+[34:58] Sonnet and it was a really really good
+[34:59] model. Like you could automate tons of
+[35:01] stuff. You can do tons of knowledge work
+[35:02] and you could do a lot with that model.
+[35:04] So even Opus 5.5 on low is better than
+[35:07] that model was and I think a lot of
+[35:08] people don't realize that just because
+[35:10] of how fast everything moves and you
+[35:12] know, I've always believed that you
+[35:13] know, someone like you Matt with a very
+[35:16] old model could still produce better
+[35:17] output than someone with Opus 5.5 that
+[35:19] has no idea of how to communicate. So
+[35:22] that's what I think is really cool about
+[35:23] that and I I I do love that answer.
+[35:25] Um
+[35:27] Now, one thing that I'm I'm curious
+[35:28] about for you as well is
+[35:33] someone that might have been listening
+[35:35] to this whole podcast so far
+[35:37] and maybe they're still feeling
+[35:38] overwhelmed about a lot of the stuff
+[35:40] that we're talking about but you know,
+[35:42] there's a lot of
+[35:43] benefits and and you've talked about how
+[35:45] much faster you've been able to move and
+[35:46] we talked about how the barrier entry is
+[35:48] so much lower. What would be kind of
+[35:50] like your final
+[35:52] your final motivational message, your
+[35:53] final push to get someone to start
+[35:56] taking action and just getting in there,
+[35:57] getting their hands dirty and learning
+[36:00] more.
+[36:01] >> So I think
+[36:03] if you feel the urge to want to get
+[36:05] better at this stuff, I have to say that
+[36:07] my skills are a great place to start.
+[36:09] You know, if you're looking for um just
+[36:11] give me the like basic idea of just do
+[36:13] this and this and this
+[36:15] >> [clears throat]
+[36:15] >> then downloading my skills, downloading
+[36:17] any harness, like just choose from the
+[36:19] main ones. Choose from Claude Code,
+[36:21] Codex, um GitHub Copilot, whatever. You
+[36:24] know, don't spend too much time thinking
+[36:25] about the harness. Just try it out.
+[36:28] And then from there, it's about
+[36:30] I interviewed Lauren Tan recently,
+[36:31] Potato on Twitter, who works at GrokBot,
+[36:34] and she talks about climbing the trust
+[36:37] ladder, right? Climbing the trust
+[36:39] ladder, because
+[36:40] you are not going to trust your agents
+[36:43] the first time you see it work. And that
+[36:45] is good. That's a good impulse. You
+[36:47] shouldn't be trusting it blindly. You
+[36:49] should um
+[36:51] you know, when you learn to drive,
+[36:52] what's the first pedal you learn? Do you
+[36:53] learn the accelerator or you learn the
+[36:55] brake? You learn the brake right? You
+[36:57] learn how to stop because you don't want
+[36:59] to just push on push on push on cuz
+[37:01] you're going to burn through your rate
+[37:02] limits, you're going to produce stuff
+[37:04] that you didn't want to see, and you're
+[37:06] not going to get a feel for the thing
+[37:08] that you're using.
+[37:09] So, what I recommend is just to try
+[37:13] opening up the model, giving it some
+[37:14] prompts, try
+[37:16] just open up an empty folder, use VS
+[37:18] Code as well cuz it is sometimes nice
+[37:20] just to be able to look inside the code.
+[37:22] And
+[37:24] from there, you can start working on
+[37:27] some idea. It really helps to have an
+[37:30] idea of the thing that you want to build
+[37:32] and to see have something cool in your
+[37:34] mind that you can
+[37:36] actually build towards because
+[37:39] if you don't have like a reason or like
+[37:40] a mission for doing this, then it's a
+[37:42] lot harder to get your motivation and
+[37:45] your the feedback loop won't be as
+[37:47] strong because if you're learning stuff
+[37:49] and you're seeing a cool idea come to
+[37:51] life, that's just it's a multiplier.
+[37:54] And so, from there, you start to watch
+[37:56] the agent like a hawk, understand
+[37:58] everything that it's doing, understand
+[38:00] everything that a harness gives you, and
+[38:02] you can start to
+[38:04] feel when you're trusting the agent and
+[38:06] when you understand the agents.
+[38:09] And when you're at that point, then you
+[38:10] can start maybe using two agents, or you
+[38:12] can start maybe writing a couple of
+[38:14] skills to make the agent do custom
+[38:16] things. You can start connecting it up
+[38:18] to different data sources. You can plug
+[38:20] it into your Slack, to your Twitter, to
+[38:23] your you know, whatever, to your Gmail.
+[38:25] And from there you can start, you know,
+[38:27] I've I've got an agent that handles my
+[38:28] to-do list for me. So, I've got, you
+[38:30] know, I
+[38:31] dictate something to my watch and it
+[38:33] goes and pings a system and it goes in
+[38:35] my to-do list and then the agent triages
+[38:37] it and whatever.
+[38:38] So, you start integrating it in your
+[38:39] life and integrating it into your work.
+[38:42] So, that's it. Climb the trust ladder,
+[38:44] start small, start with my skills if you
+[38:45] want to
+[38:46] or don't, you know. And from there you
+[38:49] can just go nuts with it and it's
+[38:51] amazing how if you just pay attention to
+[38:53] it and try to think on its level,
+[38:57] it's amazing how quickly you can climb
+[38:58] that trust ladder.
+[39:00] >> I love that answer. I kind of call that
+[39:02] in a lot of my videos or that that that
+[39:05] theory. I I refer to that sometimes as
+[39:07] teaching a kid to ride a bike, like the
+[39:08] bike method of how you have to earn that
+[39:10] trust and you don't start with trying to
+[39:12] teach 10 kids at the same time. You have
+[39:14] to watch them closely, you make you
+[39:17] adjust them and you're still at the end
+[39:19] of the day
+[39:20] you're not just going to have have 20
+[39:21] kids go ride their bikes on the highway
+[39:23] and then go inside and take a nap.
+[39:24] You're still
+[39:25] >> [laughter]
+[39:25] >> you're still very much in in the
+[39:26] process.
+[39:28] So, I love that answer and
+[39:30] you know, I've seen
+[39:31] Elon,
+[39:33] Boris, and Sam I believe and probably
+[39:35] many more people
+[39:37] basically say some version of this. Give
+[39:40] X model
+[39:42] your most ambitious tasks or your most
+[39:44] ambitious goals. And it's really
+[39:46] interesting to me that they are coming
+[39:48] out and saying this because I mean I I
+[39:50] totally believe in that, but I I would
+[39:51] love to hear from you. Why do you think
+[39:53] in their minds they had to make that a
+[39:55] point to tell the world, "Hey,
+[39:57] try our model, but try your most
+[39:59] ambitious tasks on this model."
+[40:02] >> I don't know cuz I think the opposite,
+[40:04] right? I think give it your most menial
+[40:06] boring work, you know, give it the stuff
+[40:08] that you hate doing, you know. Um, give
+[40:10] it the like
+[40:13] get it to draft replies to
+[40:15] people who are asking you asking you for
+[40:17] things and like
+[40:19] give it simple achievable tasks where
+[40:22] you can measure the output and measure
+[40:23] how good it is, right? Now, of course,
+[40:25] you can use it to brainstorm. You can
+[40:27] use it to think about um,
+[40:29] ideas and think about uh, how you might
+[40:32] turn those ideas into execution and it's
+[40:34] pretty good at that. It's useful to use
+[40:36] Grill Me for that, actually. Um, but
+[40:39] I would say that the real utility that I
+[40:41] get from AI and the reason that I use it
+[40:44] is cuz it helps automate the boring
+[40:46] stuff. It helps me focus on the
+[40:47] strategic layer and the stuff that I
+[40:49] want to focus on. You know, all of the
+[40:51] like I have video content that I produce
+[40:54] and then written content um, that I
+[40:56] produce and writing that written content
+[40:59] has got so much easier since AI came
+[41:01] around cuz I plug it into Sonic 5.5 and
+[41:03] it produces a first draft. I iterate on
+[41:05] it and
+[41:07] you know, that has been amazing for me
+[41:09] cuz it's made my work more interesting
+[41:11] to me cuz I didn't like writing those
+[41:12] things before. It was a real pain.
+[41:14] And I even used to pay people to do it
+[41:16] for me. So, yeah, give it your boring
+[41:19] stuff. Give it your low-level menial
+[41:21] jobs, the stuff that you don't need to
+[41:23] worry if it gets wrong or not cuz you
+[41:25] can just go in and correct it. So, and
+[41:27] let it do that because that's what it's
+[41:28] really good at.
+[41:31] >> So, I want to close off here with
+[41:33] with one question to
+[41:36] just kind of learn a little bit more
+[41:37] about you and
+[41:39] where you're headed. So, I'd love to
+[41:40] hear
+[41:42] when you think about the next let's just
+[41:43] say two to three years which in in the
+[41:46] AI world is a decade.
+[41:48] What what are you really excited about?
+[41:50] What are you building? What are you
+[41:51] working on? What's something in your
+[41:53] life that's got you excited, especially
+[41:55] as you think about how AI will evolve
+[41:57] that?
+[41:58] So, I'm going to preface this by saying
+[42:00] I'm a teacher, I'm not a pundit, right?
+[42:02] I've no idea I'm I'm in Oxfordshire.
+[42:04] Like I'm not in SF. I don't have the ear
+[42:06] of anyone important. Like no one is
+[42:08] whispering the future into my ear. I I
+[42:11] actually reject most offers to like
+[42:13] preview things cuz I just don't care
+[42:15] actually. I just want to make it work
+[42:16] now, right? And
+[42:19] that has been working well for me so far
+[42:20] in terms of my sanity, [laughter] too.
+[42:22] Cuz
+[42:23] you know, it's easy to get swept up in
+[42:24] what's going to happen. And
+[42:27] your question was what is going to
+[42:29] happen in 3 years or like what I'm
+[42:31] excited about.
+[42:31] >> Yeah, what are you excited about?
+[42:33] >> Yeah. I'm excited about
+[42:35] finding the right way of
+[42:41] turning my ideas into work, right? And
+[42:43] into code cuz I still don't think
+[42:46] I've been trying to like, you know, I
+[42:48] suppose what I'm excited about right now
+[42:49] are software factories.
+[42:51] Ways that you can automate initiating
+[42:54] work and improving code bases over time
+[42:56] by themselves. I think agents
+[42:59] currently are not very good at thinking
+[43:02] long-term about a code base. And what
+[43:05] I'm excited about right now is turning
+[43:08] agents into
+[43:10] that annoying developer who's always on
+[43:12] the team who says, "No, we should do it
+[43:14] the right way, not the fast way, right?
+[43:16] We should do it for the benefit of the
+[43:19] people who come after us." Agents are
+[43:21] really bad at that right now, and I
+[43:23] think there is a way to make them good
+[43:25] at it.
+[43:26] That's what I'm specifically excited
+[43:27] about. And I think that we haven't found
+[43:30] the right way of organizing lots of
+[43:34] agents yet.
+[43:36] I still think there's huge potential in
+[43:39] that, and no one nothing I've seen has
+[43:42] made me go, "Yes, that is the right way
+[43:43] yet."
+[43:45] So,
+[43:46] and I'm also excited that open models
+[43:48] are going to get better. That's another
+[43:50] thing I'm really excited about because
+[43:53] they are getting better, and eventually
+[43:54] we will have an open model that's as
+[43:55] good as Opus 5.5, and I'd be delighted
+[43:58] with that. That's fantastic. I don't
+[44:00] need the models to be that good, right?
+[44:03] Because I'm pretty good already, you
+[44:04] know, like I can sort of make up for
+[44:06] them. Just having a Opus 5.5 level of
+[44:09] open model would be amazing. And even
+[44:13] beyond that, just sort of getting more
+[44:15] token efficiency, getting a nice
+[44:17] plain-speaking model who can ship work
+[44:19] quickly.
+[44:21] I don't know. It's cool. It's an
+[44:22] exciting time.
+[44:23] >> It absolutely is. It absolutely is.
+[44:25] Well, Matt, thank you so much for coming
+[44:27] on today. I really enjoyed this
+[44:28] conversation, and thank you for all of
+[44:30] the golden nuggets you dropped on us
+[44:31] today.
+[44:32] Where can people find you if they want
+[44:34] to learn more and see what else you're
+[44:36] up to?
+[44:37] >> I here we are at dev is the place. I've
+[44:39] got a newsletter there. I'm on Twitter.
+[44:41] I'm on YouTube. Those are the main
+[44:42] three.
+[44:44] >> Awesome. Well, thank you so much again,
+[44:45] Matt, and
+[44:47] hopefully we'll see you again soon.
+[44:48] >> See you, man.

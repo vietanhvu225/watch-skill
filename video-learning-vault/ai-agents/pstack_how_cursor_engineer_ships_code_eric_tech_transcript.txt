@@ -1,0 +1,512 @@
+[00:00] This is Lauren Tan. She's currently the
+[00:01] principal engineer at SpaceX, the
+[00:04] technical staff at Cursor, and also a
+[00:06] staff engineer at Meta. And you can see
+[00:08] that she's also the core member at the
+[00:09] React team. And recently, she have
+[00:11] open-sourced her entire knowledge, her
+[00:13] workflows, skills, and principles into a
+[00:16] open-source repository called P Stack.
+[00:18] And that's why in this video, I'm going
+[00:19] to share with you exactly what is P
+[00:21] Stack, what are the skills that we have,
+[00:23] as well as I'm going to share with you
+[00:24] how are they different compared to the
+[00:26] skills that we have reviewed in the
+[00:27] past. And of course, if you stick to the
+[00:29] end of this video, I'm also going to
+[00:30] share with you my core takeaways after I
+[00:32] review her own software development
+[00:34] skills. So, with that being said, if
+[00:35] you're interested, let's get into the
+[00:36] video. All right, so to get started, you
+[00:38] can see here that I created an entire
+[00:39] diagram to break down all the workflows
+[00:41] that she have, as well as her skills,
+[00:44] and also the principles that she follow
+[00:46] whenever it comes to writing code. And I
+[00:48] have broke down her skills into six
+[00:50] stages, which is the entire AI software
+[00:52] development life cycle, which I have
+[00:54] made a video on, which you can check out
+[00:55] here. So, in this case, let's start with
+[00:57] the first stage, which is the planning
+[00:58] stage. But essentially, what it does
+[01:00] here, you can see for planning stage, is
+[01:02] whenever you building applications, you
+[01:04] start with the planning. But her skill
+[01:06] here, you can see, is mostly working for
+[01:08] brownfield project, which means that the
+[01:10] project here already have existing code
+[01:12] on it. Right? You can see that we have
+[01:14] two workflows, learn the code first, and
+[01:16] also plan a big job. Right? So, for
+[01:18] example, let's say if you want to learn
+[01:19] how the code works, you have the how
+[01:21] skill. Uh if you want to know why the
+[01:23] code works this way, then we have the
+[01:25] why skill. And the teach skill here
+[01:27] combines the how and the why, and that's
+[01:29] basically the workflow here to learn the
+[01:30] code first. Now, if you want to break a
+[01:32] task or a project into a smaller
+[01:35] tickets, you can also be able to using
+[01:36] the figure out skill, and also show me
+[01:39] your work skill, which will basically
+[01:40] log these decisions onto a proper doc or
+[01:43] MD file. But personally, I won't
+[01:44] probably use her planning skill, because
+[01:46] you can see that she's not really big on
+[01:47] the planning stage. It's mostly just
+[01:49] focusing on improving the existing
+[01:51] applications, like making a big
+[01:52] migrations or big change, then you You
+[01:55] see that her skill here is is mostly up
+[01:56] to par for that. But in terms of like
+[01:58] solo builders or you try to building
+[02:00] application from scratch or whatever it
+[02:02] is, my preference are mostly on the Matt
+[02:04] Pocock skills or the Sue Power skills.
+[02:06] So those are the two skills that I
+[02:07] highly rely on rather than using her
+[02:09] planning skills. And then the next stage
+[02:10] we have is the designing stage. Now
+[02:12] that's going to be the part where we're
+[02:13] going to design how we're going to do
+[02:15] the implementation before we actually
+[02:16] going to write a single line of code. So
+[02:18] right here you can see we have a single
+[02:19] workflow here called settle the code
+[02:21] shape. Now you can see that we have the
+[02:23] architect. Now the architect here is
+[02:24] going to trigger the arena here to
+[02:26] basically try to have multiple different
+[02:28] models and multiple different AI agent
+[02:29] here to fan out and try to do the
+[02:31] design, okay? And once that we have
+[02:34] multiple different AI agent here come
+[02:35] back with multiple different designs
+[02:36] that created, we can then be able to
+[02:38] trigger a skill called the interrogate,
+[02:40] which will basically have a AI model
+[02:41] here to judge the results and then be
+[02:43] able to aggregate the results back into
+[02:45] a single report for the design. So you
+[02:47] can see that it's really different
+[02:48] compared to Matt Pocock's or any other
+[02:49] skills that we have reviewed in the past
+[02:51] because in the past we were mostly rely
+[02:54] on just one single model, but her
+[02:56] approach is mostly rely on having
+[02:58] multiple different models, right? Like
+[02:59] Opus, GPT, or Grok, whatever models you
+[03:02] can think of. And having them to fan out
+[03:04] and then try to compare the results and
+[03:06] then be able to take the best parts from
+[03:08] each models here and then aggregate it
+[03:10] into one single report for the design
+[03:12] before we move on to the next stage,
+[03:14] okay? So that's her design stage right
+[03:15] there. And then the next part we have is
+[03:17] the building stage. Now the building
+[03:19] stage here you can see we have two
+[03:21] workflows. One is to follow the test
+[03:23] driven development here to writing code.
+[03:25] Now you can see that for writing test
+[03:26] first is actually also using the TDD
+[03:28] skill. And I have also judged the
+[03:30] comparisons between TDD skills from
+[03:32] P-Stack, Matt Pocock's, and also Sue
+[03:34] Power. And here you can see this is the
+[03:36] entire breakdown for the difference
+[03:37] between all skills from TDD. So if you
+[03:40] want to figure out which one is the best
+[03:41] TDD skill, you can check out this one,
+[03:43] right? For example, quick fix bugs, new
+[03:45] features, strict teams disciplines,
+[03:47] right? You can see that we have
+[03:48] different type of skills because there's
+[03:50] so many test driven development skills
+[03:52] that we have review. So, if you want to
+[03:53] know exactly which test-driven
+[03:54] development skills is best fit for you,
+[03:56] you can check it out inside of this page
+[03:58] right here, which I'll make sure to put
+[03:59] this in the end of this video. But,
+[04:01] essentially, once we have our TDD skill
+[04:03] built, right, we also have our
+[04:04] TypeScript best practice because Lauren
+[04:06] 10 here, the creator of Piece That,
+[04:08] she's mostly focusing on React, right?
+[04:10] So, React is mostly using TypeScript.
+[04:12] So, that's why you can see that we have
+[04:12] a skill here called TypeScript best
+[04:14] practice, which will enforce AI's here
+[04:16] to building application using the
+[04:18] TypeScript best practice. Furthermore,
+[04:20] we also have our cleanup diff. So,
+[04:21] essentially, what this do here is we
+[04:23] have our D-slop here. First, it checks
+[04:25] the difference between the main branch
+[04:27] as well as the current branch that we
+[04:28] have. And then, furthermore, you can see
+[04:30] there's some additional checks, right?
+[04:32] For example, check for extra comments,
+[04:33] all try-catch, like basically like error
+[04:35] exceptions, or any variables that
+[04:37] doesn't have types, right? Deep
+[04:38] nestings, those should be removed inside
+[04:41] of the code, right? It follows the best
+[04:42] practice here in terms of like writing
+[04:44] code that are not AI-slop. And the goal
+[04:46] here is to try to keep the behavior the
+[04:48] same by running test to make sure of
+[04:50] that. And it gives you a one-to-three
+[04:52] sentence summary by the end of it. Now,
+[04:54] one thing that I want to point out here
+[04:55] is you can see remove extra comments.
+[04:57] Now, why does she actually want to
+[04:59] remove extra comment here? Because here
+[05:00] you can see it has a skill called no
+[05:02] comments. Now, the reason why she says
+[05:05] no comments in the code because often
+[05:07] time AI sometimes just read the comments
+[05:09] instead of the code. So, what happened
+[05:10] is this. Let's say we have a comment
+[05:12] says that this function returns A, but
+[05:14] this function in the code, it returns B.
+[05:16] So, what do AI listens to? Well, the AI
+[05:18] sometimes just look at the comments
+[05:20] rather than the code. So, that's why you
+[05:21] can see she removes the comment part
+[05:23] because this way it's going to remove
+[05:25] the noise so that AI actually look at
+[05:27] the code rather than the comments. So,
+[05:29] you can see that that's the entire
+[05:30] building process for Lauren 10's Piece
+[05:32] That. Okay, so, next stage we have here
+[05:34] is testing. Now, you can see that we
+[05:36] have three stages for testing, three
+[05:38] workflows. And let's walk through these
+[05:40] workflows one by one. Now, the first
+[05:41] workflow we have here is prove the
+[05:43] application works. Now, here you We see
+[05:45] it uses a skill called create
+[05:47] verification skill. Now, essentially
+[05:49] how's it different compared to CDD
+[05:50] skill? Because CDD skill is mostly
+[05:52] focusing on writing functional or unit
+[05:55] testing and then create verification
+[05:57] skill is mostly focusing on creating
+[05:59] end-to-end tests, right? Now, one thing
+[06:01] to note here before you create
+[06:02] end-to-end testing is that you have to
+[06:03] set up the environments. You have to set
+[06:04] up the database. You have to set up the
+[06:05] servers. You have to set up pretty much
+[06:07] how user is going to launch it, right?
+[06:09] You can see it launch the applications,
+[06:11] you know, be able to diagnose it if
+[06:12] there's any problem with it, be able to
+[06:14] drive the actual user behavior,
+[06:16] collecting the evidence, do the
+[06:18] cleanups. When it says cleanup part,
+[06:20] maybe sometimes it needs to tear down a
+[06:22] temporary database or temporary servers
+[06:24] that you have spin up. And then having
+[06:25] some helper function here help you along
+[06:27] the way, right? So, you can see it's
+[06:29] going to writing a skill here that
+[06:30] builds this kind of end-to-end flow,
+[06:32] right? And rather than just writing uh
+[06:34] end-to-end testing, yes, right writing
+[06:36] end-to-end testing is key, but building
+[06:38] that entire flow, how AI agent here is
+[06:40] going to spin up, what commands is going
+[06:41] to run, that requires a skill here to
+[06:44] create this kind of verification, right?
+[06:46] And you can see there's some additional
+[06:47] rules like one feature per folder rather
+[06:49] than just putting features in one single
+[06:51] folder, right? We want to divide that
+[06:52] into different folder for different
+[06:53] features and then try to run its own
+[06:56] steps once end-to-end and then points
+[06:58] you to the main gaining skill, right?
+[07:00] So, and here you can see there's
+[07:01] additional skills after that is called
+[07:03] swarm. So, rather than just have one AI
+[07:05] agent here runs the entire thing
+[07:06] end-to-end, right? Does the launching,
+[07:08] does the testing for different pages,
+[07:10] we're going to swarm by having multiple
+[07:12] different AI agents here, right? You
+[07:13] could also choose different model here
+[07:15] and having multiple different AI agents
+[07:16] to focus on small parts of it and at the
+[07:19] end aggregate it into one single
+[07:20] reports. Okay, so that's basically the
+[07:22] prove it on the real application parts.
+[07:24] Now, last part of that we have here is
+[07:26] attack the difference and you can see
+[07:27] that it's actually reusing the
+[07:28] interrogate skills from the earlier in
+[07:30] the design scope, right? You can see
+[07:32] that we have the interrogate to have
+[07:34] multiple different AI agents here try to
+[07:35] break the changes. So, essentially what
+[07:37] it do here is it knows the difference,
+[07:39] right? So, compare the main branch
+[07:40] versus your current feature branch, see
+[07:42] what are the code changes that it has
+[07:43] made. And then what we do here is we
+[07:45] have different AI models here and try to
+[07:47] spin up and try to see we we can
+[07:49] actually be able to break this change
+[07:50] that we have made, right? And then we
+[07:52] also using a skill called thermonuclear
+[07:54] code quality review, which I have no
+[07:56] idea how they come up with this name,
+[07:57] but you can see it does a extra harsh
+[08:00] review layer to see if there's any way
+[08:01] that we can be able to make the code
+[08:03] here much more simpler, right? So, it's
+[08:05] very similar to the ponytail skill that
+[08:06] we have review on our channel before and
+[08:09] you can see that essentially we have to
+[08:10] see if we can be able to refactor the
+[08:11] code even better, right? So, those are
+[08:13] the sets of skills, those are the sets
+[08:14] of workflows that's in the testing
+[08:16] stage, which are really, really
+[08:17] interesting, okay? Now, the last stage
+[08:19] we have here is deployment stage. Now,
+[08:21] deployment stage, you could think of it
+[08:22] like we're trying to deploy the feature,
+[08:24] right? So, now we have everything all
+[08:25] tested, are all ready to merge to the
+[08:27] pull request. So, now we can do here is
+[08:29] first of all, make a pull request easy
+[08:30] review, but obviously everyone has their
+[08:32] own writing style. Even our Superboard
+[08:34] skill, we already have our own style
+[08:36] with this. So, it really depends on how
+[08:38] you want to have your pull request
+[08:40] review. You can also reference her skill
+[08:42] for the pull request easy to review
+[08:43] skill and see how you can be able to
+[08:44] tidy up for the pull request. But,
+[08:46] essentially you can see that we have a
+[08:47] set of skill for the entire pipeline
+[08:49] like being able to babysit the entire
+[08:51] pull request, right? let's say if we're
+[08:52] going to merge it, okay, let's try to
+[08:54] babysit it to make sure that it's
+[08:55] actually able to fully merge. We have
+[08:57] the fixed merge conflicts. Let's say
+[08:59] you're about to merge the pull request,
+[09:00] someone else on your team here is also
+[09:02] merging that too, which causes a
+[09:03] conflict with your changes, then how do
+[09:05] we actually fix it? And also get pull
+[09:07] request comments. So, list of the review
+[09:09] comments and also fixing the CI, which
+[09:11] is the uh CI/CD pipelines, the CI
+[09:13] checks, right? So, these are the things
+[09:14] you can see as she has built out this
+[09:16] entire pipelines. So, if you're
+[09:18] interested for that, you can also check
+[09:19] it out as well, okay? Now, essentially
+[09:21] you can see for stage six, which is
+[09:22] maintaining. So, how can you actually be
+[09:24] able to collecting these issues and
+[09:26] cycle back uh into the planning stage,
+[09:29] you can see that she doesn't have any
+[09:30] skill for that. But, we do have review
+[09:32] tons of skills for maintaining skills
+[09:34] like our Super Collect from Superboard
+[09:36] skills, you can also check that as well,
+[09:38] okay? So, pretty much those are the six
+[09:40] stages, right, that we have from the
+[09:42] software development cycle from Her
+[09:44] skills. Now, what we're going to take a
+[09:45] look at is some of the secondary skills
+[09:47] that you can literally trigger anytime,
+[09:49] anywhere you want inside of your
+[09:50] development. And then we're also going
+[09:52] to take a look at her principles at the
+[09:53] end of this video. Now, before we move
+[09:55] on to the next part, if you have
+[09:56] applications and you're struggling with
+[09:58] marketing, well, you got to check out
+[09:59] this product called Potato. And take my
+[10:01] social media account for example, Every
+[10:03] Tech Bro. I have grown this social media
+[10:05] accounts from followers all the way to
+[10:07] 7,000 followers just in a couple months
+[10:09] because I was able to post consistently
+[10:11] and be able to also automate my entire
+[10:13] process using this tool. So, in this
+[10:15] case, let me show you exactly how I was
+[10:17] able to set this up. Now, first of all,
+[10:18] make sure to sign in with Potatoes. Once
+[10:20] you sign in, make sure to click on
+[10:21] connect accounts and you can connect it
+[10:23] with any social media accounts you have.
+[10:25] And once you're done that, make sure to
+[10:26] click on settings and click on APIs. And
+[10:28] here you can be able to connect with
+[10:29] your Potato here with your large
+[10:31] language model because now you can be
+[10:32] able to use your large language model
+[10:33] here to directly control your social
+[10:35] medias. So, in this case, I'm using
+[10:37] ChatGPT. I'm going to click on that. And
+[10:39] it's going to tell you exactly the
+[10:40] step-by-step guide how you can be able
+[10:41] to add Potato here as an MCP server
+[10:43] inside your ChatGPT. And once you have
+[10:45] that set up, here you can see it asks,
+[10:46] "Do you have access to Potato?" And it
+[10:48] says, "Yes, I do have access." It is
+[10:49] telling you exactly which Instagram
+[10:51] account have access to. And then you can
+[10:53] see I just pasted all video links. For
+[10:55] example, I have two videos that I posted
+[10:56] on YouTube and I have AI here to kind of
+[10:58] just cropped it with some clips and you
+[11:00] can see that the clips here is shown
+[11:02] here. And eventually, [clears throat] I
+[11:03] also ask it, "Hey, why don't you just go
+[11:04] ahead and try to publish those reels,
+[11:07] those short videos?" And then also have
+[11:09] one here to be scheduled for tomorrow's.
+[11:10] And you can see that AI agent here is
+[11:12] able to do that using the Potato MCPs.
+[11:15] And then furthermore, I also ask it to
+[11:16] set up the auto comment DM rule. For
+[11:18] let's say someone actually comment any
+[11:20] keywords, for example, reel video or SDE
+[11:22] video. And behind the scene, we actually
+[11:24] have an AI agent here that can actually
+[11:26] respond to the users whenever someone
+[11:28] comments for these kind of keywords
+[11:30] inside the comments. So, this way we can
+[11:32] actually be able to our Instagram
+[11:33] accounts to show engagements, as well as
+[11:35] be able to capture emails from people so
+[11:37] that we can be able to add them into our
+[11:38] email campaigns. So, that's exactly how
+[11:40] I was able to grow my Instagram accounts
+[11:42] all the way to 7,000 followers using
+[11:44] potato here, using this social media
+[11:46] automation. And if you're interested,
+[11:47] make sure you check it out in the
+[11:48] description below. So, pretty much
+[11:49] that's it. Let's get back to the real
+[11:51] video. Okay, so to get started, let's
+[11:53] start with the secondary skills. And
+[11:55] start off, we have the router skill,
+[11:56] which is the potato mode. So, let's say
+[11:58] if you have a situation you don't know
+[11:59] which skill to trigger, you can trigger
+[12:01] the potato mode here and explain what
+[12:03] problem you have, and it's going to try
+[12:04] to using the right skill here to tackle
+[12:06] that problem. And then furthermore, you
+[12:07] can see we have the setup skills, the
+[12:09] catch-up and plain talk skills, the
+[12:12] writing skills, as well as improving P
+[12:13] stack over time skills. And
+[12:15] specifically, I really like the catch-up
+[12:17] and plain talk skills, especially for
+[12:18] the recalls. So, let's say if you switch
+[12:20] different contexts, you were working on
+[12:22] different projects, and you want to get
+[12:23] a recall of what happened so far, then
+[12:26] you can see that there's incentive
+[12:27] skills I can use here to catch up on
+[12:28] what happened so far. So, I have grouped
+[12:30] them into different categories. So, if
+[12:32] you want to get into more details, you
+[12:34] can also check out this page right here.
+[12:36] Now, lastly, we also want to talk about
+[12:37] here is the principal skills. And you
+[12:39] can see that there's tons of principal
+[12:41] skills inside of P stack. Now, why are
+[12:44] these skills not system prompts? You
+[12:46] might be asking. It's because you try to
+[12:47] keep all the rules and principles into a
+[12:50] system prompt, that's going to be a huge
+[12:51] file which contains a lot of tokens.
+[12:54] Imagine that every message you send to
+[12:55] AI is going to read that system prompt,
+[12:57] but those information might not be
+[12:59] relevant to what you're trying to do.
+[13:00] So, that's why you can see it keeps all
+[13:02] those principles into several skills,
+[13:04] and having a index map on exactly when
+[13:06] to trigger them, right? Now, because
+[13:08] there's so many principles here, I'm
+[13:09] just going to narrow down exactly what I
+[13:10] find really helpful based on what we
+[13:12] have in our superboard. Now, for the
+[13:13] first principle, keep it small, this is
+[13:15] really similar to the ponytail skill,
+[13:17] which is already something that we have,
+[13:18] so I'm not going to talk about that.
+[13:20] But, for the design for shape, one thing
+[13:22] that I want to talk about here is this
+[13:23] interesting principle called attack the
+[13:25] premise. Sometimes we have AI here to
+[13:27] fixing a bug. It fixed it, still
+[13:29] happens, fix it again, it's still
+[13:31] happening again. And what happened here
+[13:32] is that it's going to continuously cycle
+[13:34] through a loop where we have AI fixing
+[13:37] and then blocked, fixing and then
+[13:38] blocked, and it just feels like AI is
+[13:40] not able to fix that bug entirely. But
+[13:42] what this skill, like I said, it does
+[13:43] here is to stop and have AI here to
+[13:45] question about the assumption. Are we
+[13:47] even on the right track before we have
+[13:49] AI here to actually focusing on that
+[13:51] direction, okay? So this is a really
+[13:53] helpful skill and definitely I'm
+[13:54] planning on adding this into our
+[13:56] Superboard skill. Now the next part that
+[13:57] we have for the principle is the
+[13:59] co-construction safety and specifically
+[14:01] for the type system disciplines.
+[14:03] Sometimes a variable here could have
+[14:04] different types or different status. So
+[14:06] it's really important to reject any
+[14:08] impossible states, right? For example, a
+[14:10] payment here could not be paid and also
+[14:12] pending at the same time. So problems
+[14:14] like these we want to make sure to have
+[14:15] a principle that basically solve them,
+[14:17] which is something that I'm actually
+[14:18] going to add this to my Superboard as
+[14:19] well. So pretty much those are the
+[14:20] principle that I see that are really
+[14:22] valuable that I probably will take this
+[14:23] into my own development room. And of
+[14:25] course there's probably some other
+[14:26] principles that I have already covered
+[14:28] inside our Superboard. So if you're
+[14:29] interested for this, you can check out
+[14:31] this page right here. And I'll make sure
+[14:32] to put this entire page, this entire
+[14:34] diagram here for P stack inside of the
+[14:36] description below so you can actually
+[14:37] access this well. So pretty much that's
+[14:39] it for this video. If you do find them
+[14:40] helpful, make sure to like this video
+[14:42] and of course comment down below what
+[14:43] are some other spectrum development
+[14:45] framework that I should review on the
+[14:46] channel. So pretty much that's it for
+[14:47] this video. I'll see you in the next
+[14:49] video.
