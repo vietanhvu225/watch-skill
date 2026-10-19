@@ -1,0 +1,408 @@
+[00:01] If I had to start game development over
+[00:03] in 2027, [music] I'd do a lot of things
+[00:06] differently.
+[00:07] One of the biggest would be the tools.
+[00:09] >> [music]
+[00:10] >> Here's something years of making games
+[00:12] taught me. More tools don't make you a
+[00:14] better developer. Sometimes they just
+[00:16] give you more ways to waste time. You
+[00:19] spend days comparing engines, weeks
+[00:22] learning complicated software, hours
+[00:24] trying to figure out what the industry
+[00:26] standard is supposed to be. And after
+[00:28] all that research, you still haven't
+[00:31] made a game. Sound familiar? So today,
+[00:34] I'm going to go through the tools I'd
+[00:35] actually pick if I was starting from
+[00:37] scratch. Not the most powerful ones, and
+[00:40] not necessarily what everyone else
+[00:42] recommends, just what I prefer based on
+[00:44] making games, prototyping ideas, and
+[00:47] finding out what works for me. Some are
+[00:49] free, some are very simple, a couple
+[00:52] might surprise you. One thing up front,
+[00:55] these aren't the best tools for
+[00:56] everyone. They're the ones I [music]
+[00:58] choose, and I'll tell you why. The why
+[01:01] is the useful part. Let's start with the
+[01:03] big one.
+[01:05] Unity, Unreal, Godot, GameMaker.
+[01:10] >> [music]
+[01:10] >> There are plenty of good engines, and
+[01:12] you could spend a whole month watching
+[01:14] videos about which one wins. If I were
+[01:17] starting in 2027,
+[01:19] I'd pick Godot. It's free, it's open
+[01:21] source, and the reason that matters most
+[01:24] to me, it's really flexible.
+[01:27] I know what some of you are thinking.
+[01:29] Sure, it's free, but [music] can it do
+[01:31] everything I need? Honestly, not always
+[01:34] out of the box. That's part of why I
+[01:36] like it. [music] Here's a real example.
+[01:39] I was prototyping a physics-based marble
+[01:41] game, and I wanted the marble to move in
+[01:44] a very specific way. If you've ever made
+[01:46] a physics game, you know how hard it is
+[01:49] to get movement to feel right. Rolling
+[01:51] an object is easy. Getting the
+[01:53] acceleration, momentum, friction, and
+[01:56] responsiveness to feel satisfying is
+[01:58] not. I couldn't get what I wanted from
+[02:01] what was available. So, instead of
+[02:03] switching engines, dropping the idea, or
+[02:06] living with movement that felt off, I
+[02:08] used AI to help me build the
+[02:10] functionality I needed [music] and
+[02:11] plugged it into the project. That
+[02:13] changed how I think about tools. I don't
+[02:16] always have to work around their limits.
+[02:18] Sometimes, I can just extend them. Godot
+[02:21] being open source and built to be
+[02:23] extended makes that a natural thing to
+[02:25] do. To be fair, you can build custom
+[02:28] tools in Unity and Unreal, too.
+[02:29] >> [music]
+[02:30] >> Godot isn't the only engine that lets
+[02:32] you do this. And if you're making a
+[02:33] huge, high-fidelity 3D game, Unreal is
+[02:37] probably the better call. But for the
+[02:39] indie games and prototypes I like
+[02:41] making, especially with AI in the loop,
+[02:43] Godot has fit really well. Which leads
+[02:46] straight into the next one. Because a
+[02:48] big part of why I enjoy Godot is the AI
+[02:51] tool I use with it.
+[02:54] AI coding tools are everywhere now, and
+[02:56] it's hard to keep track of them all.
+[02:59] My pick is Claude, specifically Claude
+[03:02] Code. I connect it to Godot through MCP.
+[03:05] If you haven't run into MCP yet, it's a
+[03:08] way to give an AI assistant access to
+[03:10] outside tools and systems.
+[03:12] >> [music]
+[03:12] >> So, instead of asking an AI for some
+[03:14] code, pasting it into Godot and hoping,
+[03:18] Claude can work with the project
+[03:19] directly. It can read the project files,
+[03:22] see how systems connect, change code,
+[03:24] [music]
+[03:24] and help build new features. Depending
+[03:27] on what's hooked up through MCP, it can
+[03:29] also run tests and interact with the
+[03:31] editor. That's where it gets interesting
+[03:34] for me. My favorite part is automated
+[03:36] testing. I can have Claude run test
+[03:39] events, simulate different situations,
+[03:41] and go looking for problems.
+[03:43] >> [music]
+[03:43] >> It's caught bugs I would have missed.
+[03:45] Does that replace real playtesting? No,
+[03:48] not even close. An AI can tell you your
+[03:51] movement code works.
+[03:53] >> [music]
+[03:53] >> That doesn't mean moving your character
+[03:54] feels good. Those are two different
+[03:56] questions. And never trust AI-generated
+[03:59] code just because it runs without
+[04:01] errors. But, as an assistant, I found it
+[04:04] really useful. And right now, it's the
+[04:07] one whose results I like best. For me,
+[04:09] the value isn't writing code faster.
+[04:12] It's being able to try ideas that would
+[04:14] otherwise take way too long to build and
+[04:16] test.
+[04:17] >> [music]
+[04:17] >> For a solo or small indie team, that's a
+[04:20] big deal.
+[04:22] Let's step away from code for a minute.
+[04:25] Before you build a game, you need to
+[04:27] understand what you're building. [music]
+[04:30] I don't mean a 100-page design document
+[04:32] nobody reads. I mean understanding your
+[04:35] systems, how they work, how they affect
+[04:37] each other, and what breaks when you
+[04:39] change one. I switched to Miro recently
+[04:42] after a colleague recommended it, and
+[04:44] I'm glad I did. What I like is seeing
+[04:47] the whole project in one visual space.
+[04:50] Say you've got progression, character
+[04:52] upgrades, an economy, and a handful of
+[04:54] core mechanics.
+[04:56] >> [music]
+[04:56] >> None of those are really independent.
+[04:58] Change one, and you might shift three
+[05:00] others. When that information is spread
+[05:02] across separate documents, it's easy to
+[05:05] miss those links. In Miro, I can lay it
+[05:07] all out, connect related systems, and
+[05:10] actually see how one mechanic pushes on
+[05:12] another. I can move things around,
+[05:15] restructure, and spot contradictions.
+[05:17] Seeing the relationships makes it a lot
+[05:19] easier for me to think a design through.
+[05:22] >> [music]
+[05:22] >> It can turn into a mess if you dump
+[05:24] everything onto one giant board. You
+[05:26] still have to organize it. But for me,
+[05:29] that visual approach works much better
+[05:31] than long documents. Game design isn't
+[05:33] only coming up with ideas. It's
+[05:35] understanding what those ideas do to
+[05:37] each other. And Miro makes that part
+[05:40] easier.
+[05:42] This is the one I wish more beginners
+[05:44] understood.
+[05:45] You don't have to make every asset
+[05:47] yourself. Seriously, if it's your first
+[05:50] game, spending [music] 3 weeks modeling
+[05:52] a chair is probably not the best use of
+[05:55] your time.
+[05:56] Unless the game is about the chair, then
+[05:58] fair enough. For basically everything
+[06:00] else, Kenny. Always Kenny. It's one of
+[06:04] my favorite resources, especially for
+[06:06] beginners and fast prototyping. 2D
+[06:09] assets, 3D models, UI elements, and a
+[06:12] lot more. The game assets are CC0, so
+[06:15] you can use them for free, commercial
+[06:17] projects included. So, if you've got an
+[06:19] idea and want to know if it's fun, you
+[06:21] don't need to build an art pipeline
+[06:23] first. Grab some assets and start. Your
+[06:26] first prototype doesn't need beautiful
+[06:28] original art. It needs to answer one
+[06:30] question. Is this fun to play?
+[06:33] itch.io is worth a look, too. There are
+[06:36] lots of free asset packs there, [music]
+[06:37] and sometimes you'll find one that fits
+[06:39] your style really well. Just check the
+[06:41] license on every one, because [music]
+[06:43] free download doesn't always mean the
+[06:45] same permissions. Use existing assets to
+[06:48] test the idea. Once you know the game is
+[06:51] worth making, then put real time into
+[06:53] its look.
+[06:55] At some point, you'll want to make your
+[06:57] own 3D models.
+[06:59] Ask anyone what to learn, and the answer
+[07:02] is almost always Blender. And Blender is
+[07:05] incredible software, [music] but I want
+[07:08] to recommend Blockbench instead.
+[07:10] The reason is simple. It's easy. You
+[07:13] open it, start messing around, and make
+[07:15] something useful without learning a
+[07:17] mountain of tools first. For stylized
+[07:20] games, low poly art, simple
+[07:22] environments, and quick prototypes, I
+[07:24] think it's great. It's not just a
+[07:26] beginner tool, either. You can use it on
+[07:28] professional projects, as long as its
+[07:30] style of modeling fits the look you're
+[07:32] going for. You can get distinctive
+[07:34] models and textures without a
+[07:36] complicated workflow, and I really like
+[07:38] that. Here's where I draw the line,
+[07:40] though. If your game needs detailed
+[07:42] characters, smooth organic shapes,
+[07:45] complex geometry, or more advanced
+[07:47] workflows, learn Blender.
+[07:49] Blockbench isn't trying to [music]
+[07:51] replace every 3D tool, and it doesn't
+[07:53] need to. It does a few things really
+[07:55] well without making them complicated,
+[07:57] and that's the whole appeal.
+[08:01] For 2D, I've got two picks, and they're
+[08:04] for different jobs.
+[08:06] Pixel art first,
+[08:07] >> [music]
+[08:07] >> Aseprite, no question. It's
+[08:09] straightforward. Simple interface, a
+[08:11] workflow that makes sense, and it
+[08:13] handles pretty much any pixel art a game
+[08:15] needs. Characters, environments,
+[08:17] animation, effects. It's simple enough
+[08:20] for a beginner to pick up, and capable
+[08:22] enough for experienced pixel artists to
+[08:24] do really impressive work. You don't
+[08:26] have to fight the interface to make a
+[08:28] few animation frames.
+[08:30] For concept art and other 2D work, I'd
+[08:32] go with Photoshop. And my main reason
+[08:35] might not be what you'd guess. It's the
+[08:37] tutorials. Whatever you're trying to
+[08:39] learn, someone has probably already made
+[08:41] a tutorial on exactly that in Photoshop.
+[08:45] When you're learning, having that much
+[08:47] material available makes a huge
+[08:48] difference. It is a paid subscription,
+[08:51] and there are good free alternatives.
+[08:53] [music] So, if you're on a tight budget,
+[08:55] I wouldn't tell you that you need it.
+[08:57] But, if you're asking what I'd use for
+[08:58] concept art and general 2D design, it's
+[09:01] still Photoshop.
+[09:04] Next, UI. Menus, [music] inventory
+[09:07] screens, HUDs, buttons.
+[09:10] Everything the player touches that isn't
+[09:12] the game world.
+[09:13] For this, Figma. Easy pick. What I like
+[09:17] is the workflow. I can put together a
+[09:19] clean layout, keep the elements
+[09:21] organized, edit fast, and export what I
+[09:23] need. When something has to change, I
+[09:26] don't rebuild the whole thing. Maybe a
+[09:28] button needs to be bigger. Maybe the
+[09:30] inventory layout doesn't work. Maybe the
+[09:32] health bar needs a completely different
+[09:34] look. I can try those out quickly. That
+[09:37] matters a lot for game UI because your
+[09:39] first design won't be your last. You're
+[09:41] going to change it a lot. Figma won't
+[09:44] turn your designs into a working
+[09:46] interface in the [music] engine. You
+[09:47] still have to build the actual
+[09:49] interactions, but for designing and
+[09:51] iterating on how the UI looks, it's one
+[09:53] of the most convenient tools I know.
+[09:56] Same theme as before. I'm not after the
+[09:58] longest feature list. I'm after whatever
+[10:01] makes the work easier.
+[10:04] This one's a bit different because I'm
+[10:06] recommending a tool I partly stopped
+[10:08] using.
+[10:10] For one project, I wanted a very
+[10:12] specific audio style and I started with
+[10:14] BFXR. If you haven't used it, it's a
+[10:17] sound effect generator that's great for
+[10:19] retro style game sounds. It's really
+[10:21] fun. You tweak parameters and get all
+[10:24] sorts of interesting effects. It's
+[10:26] simple, fast, and more capable than it
+[10:28] looks. If you're making a retro or
+[10:30] stylized game, check it out. But, I hit
+[10:33] some limits. [music] There were things I
+[10:35] wanted that didn't fit how I was using
+[10:37] it. My first thought was, why not just
+[10:40] modify BFXR and add what I need?
+[10:43] Reasonable plan. But, while I was poking
+[10:45] at the code, a different idea came up.
+[10:48] What if I generated the notes and
+[10:50] melodies themselves in [music] code?
+[10:52] That was way more interesting to me. So,
+[10:55] I dropped the BFXR mod and started
+[10:57] writing music by programming the notes
+[10:59] directly, which is how I ended up
+[11:01] getting into procedural music. I'm
+[11:03] [music] not saying everyone should ditch
+[11:05] music software and write their own audio
+[11:07] system. That would be ridiculous.
+[11:09] >> [music]
+[11:09] >> But, there's a lesson in it. When a tool
+[11:12] doesn't do what you need, the instinct
+[11:14] is to go find another tool. Sometimes
+[11:16] the better move is to build your own.
+[11:19] And with the tools we have now, that
+[11:20] kind of experiment is a lot easier to
+[11:22] try than it used to be.
+[11:25] Last one, and I think it's as important
+[11:29] as everything else on this list. Getting
+[11:31] people to actually play your game.
+[11:34] You can have a great engine, nice art,
+[11:37] interesting mechanics, and a slick
+[11:39] workflow. If nobody plays it, you're
+[11:41] missing real feedback, which is one of
+[11:43] the most important parts of making
+[11:45] games. For a first indie game, start on
+[11:48] itch.io. It's a great place for
+[11:51] prototypes, experiments, and playable
+[11:53] builds. But uploading your game is not
+[11:56] the same as people playing it. Putting
+[11:58] it on itch.io doesn't mean anyone will
+[12:01] find it. You have to do the work. Share
+[12:04] it in Discord communities where it fits.
+[12:06] Post on X. Make content about your
+[12:09] process. Show mechanics, share progress,
+[12:12] give people a reason to care.
+[12:14] And don't drop a link in a Discord
+[12:16] server and vanish. Be part of the
+[12:18] community. Talk to people. Ask real
+[12:21] questions. Most of all, listen to what
+[12:24] they tell you. At this stage, the goal
+[12:26] isn't downloads. It's finding out how
+[12:29] real players experience [music] your
+[12:30] game. Maybe something you thought was
+[12:32] obvious is confusing. Maybe the mechanic
+[12:35] you spent weeks on isn't as fun as you
+[12:37] hoped. Maybe players find a way to enjoy
+[12:40] the game you never thought of. That's
+[12:42] the information you need. [music] Use it
+[12:44] to fix problems, polish, and get ready
+[12:47] for a bigger release. [music] When the
+[12:49] game is ready, that's when I'd get
+[12:50] serious about Steam. If you're planning
+[12:53] a Steam release, events like [music]
+[12:54] Steam Next Fest are really valuable.
+[12:57] Players try your demo, find your game,
+[12:59] and give feedback before launch. Getting
+[13:02] a demo in front of that many people will
+[13:04] surface problems your own testing never
+[13:06] did. But know this, a game can only be
+[13:09] in Next Fest once.
+[13:11] >> [music]
+[13:11] >> So, don't jump in just for the
+[13:13] visibility. Make sure your demo actually
+[13:15] represents the game.
+[13:17] >> [music]
+[13:17] >> It's not only a test. For a lot of
+[13:19] players, it's their first impression of
+[13:21] your project, and first impressions
+[13:23] stick. So, start small. Put something
+[13:27] playable on itch.io. Build a community
+[13:30] around it. Listen. Improve it. When
+[13:33] you're really ready, move towards Steam.
+[13:36] And whatever you do, don't wait until
+[13:38] the game is finished to start building
+[13:39] an audience.
+[13:42] So, that's my list if I were starting in
+[13:44] 2027.
+[13:45] >> [music]
+[13:46] >> Godot for the engine, Claude code for
+[13:49] AI-assisted development, Miro for
+[13:51] design,
+[13:52] >> [music]
+[13:52] >> Kenny to get prototypes running,
+[13:54] Blockbench, Aseprite, and Photoshop for
+[13:57] art, Figma for UI, Bfxr for sound
+[14:01] effects, plus code-based music when I
+[14:03] want something more specific, and
+[14:05] itch.io and Steam to get the game to
+[14:08] players. You might disagree with some of
+[14:10] these. Maybe you're more at home in
+[14:12] Unity. Maybe you think Blender is worth
+[14:14] learning from day one. Maybe your whole
+[14:17] toolkit is different and works better
+[14:19] for you. That's fine. The point isn't
+[14:21] that you should use what I use, it's
+[14:24] that you should build your workflow
+[14:25] around the games you actually want to
+[14:27] make. Don't pick a tool because it's
+[14:29] popular. Don't learn complicated
+[14:32] software just because everyone says you
+[14:34] should. And don't spend six months
+[14:36] getting ready to make your first game.
+[14:38] Pick your tools, make something small,
+[14:41] finish it, let people [music] play it,
+[14:43] learn from what happens. Nobody cares
+[14:46] what software you use to make a good
+[14:48] game.
+[14:48] >> [music]
+[14:49] >> They care whether it's good.
+[14:51] So, what's one tool you couldn't work
+[14:53] without? And what would you swap out
+[14:55] from my list? Tell me in the comments.
+[14:58] If this was useful, subscribe for more
+[15:00] on game design and development. Thanks
+[15:02] for watching, and I'll see you in the
+[15:03] next one.

@@ -1,0 +1,109 @@
+[00:00] What if Claude Code stopped being one
+[00:01] assistant
+[00:02] >> [music]
+[00:02] >> and started acting like a whole team?
+[00:05] That's basically what just happened. On
+[00:07] October 14th, Anthropic shipped a huge
+[00:10] update to the Claude Code desktop app.
+[00:12] People are already calling it Claude
+[00:13] Code 3.0.
+[00:15] It's not an official version number, but
+[00:17] honestly, it feels like one.
+[00:19] The whole update is about one idea,
+[00:21] running lots of sessions side by side.
+[00:24] Starting them faster, splitting work
+[00:26] between them, and always knowing what
+[00:28] each one is doing.
+[00:29] Here's what's [music] new, what's great,
+[00:31] and the one catch you need to know.
+[00:34] Quick context. Back in April, the
+[00:36] desktop app was rebuilt for parallel
+[00:38] work. You got a sidebar with all your
+[00:40] sessions in one place.
+[00:41] >> [music]
+[00:42] >> But that sidebar only listed your
+[00:44] sessions.
+[00:45] This update changes how you actually
+[00:47] work with them.
+[00:49] First, the new session [music] screen.
+[00:50] It now shows your recent folders right
+[00:52] up front. One click and you're in. No
+[00:55] more digging through your files.
+[00:57] Next up, saved environments. An
+[00:59] environment is a setup you save once. It
+[01:02] can be a few folders together, an SSH
+[01:04] host, or the cloud.
+[01:05] So if you always work on a front end and
+[01:07] a back end repo, save them as one
+[01:09] environment and every new session starts
+[01:11] with both.
+[01:13] You can also give each folder its own
+[01:14] work tree. That's a separate copy of
+[01:16] your repo for each session.
+[01:18] So two sessions never fight over the
+[01:20] same files.
+[01:21] And now, the big one. Nested sessions.
+[01:24] [music]
+[01:25] Ask Claude to do a few things in
+[01:27] parallel and it spins up a separate
+[01:29] child session for each task.
+[01:31] >> [music]
+[01:31] >> They work on their own, and when they're
+[01:32] done, they report back to your main
+[01:34] session.
+[01:35] Why does that matter? Before, parallel
+[01:37] work dumped everything into one chat. It
+[01:40] was a wall of text.
+[01:42] Now your main chat just gets the clean
+[01:43] results, and you can still open any
+[01:45] child session to see the details.
+[01:48] It also suggests follow-up work. Spot a
+[01:50] missing label or a lazy loading fix?
+[01:53] One click and that becomes its own
+[01:54] session [music] while your current task
+[01:56] keeps going.
+[01:58] So how do you keep track of all this?
+[02:00] The sidebar now groups sessions into
+[02:01] three buckets: needs input, working, and
+[02:05] completed. [music]
+[02:05] Inside each session, there's a live
+[02:07] to-do list of Claude's next steps, a
+[02:09] recap card when it stops to ask you
+[02:11] something, and a side rail with your
+[02:13] environment, context usage, and pending
+[02:15] changes. Okay.
+[02:17] Now, the catch.
+[02:19] Usage limits.
+[02:20] >> [music]
+[02:21] >> Every session burns through your plan.
+[02:23] Run 10 at once and you can hit your cap
+[02:25] fast. [music]
+[02:26] And if you leave a big session idle, the
+[02:28] prompt cache expires after about an
+[02:30] hour.
+[02:31] Coming back means reprocessing the whole
+[02:33] conversation.
+[02:34] Anthropic's answer is idle compaction.
+[02:37] Right before the cache expires, Claude
+[02:39] summarizes long idle sessions, so coming
+[02:42] back costs way less.
+[02:44] The trade-off? You resume from a
+[02:46] summary, so small details can get lost.
+[02:49] If that bugs you, you can turn it off in
+[02:50] your settings.
+[02:52] So, my take?
+[02:53] Nested sessions are the real star
+[02:55] [music] here.
+[02:56] They keep long sessions from turning
+[02:58] into chaos.
+[02:59] Saved environments and status groups?
+[03:01] Super nice, too.
+[03:02] But this only shines if your limits can
+[03:04] keep up.
+[03:05] Would you actually run five Claude
+[03:07] sessions at once? Or is one plenty? Tell
+[03:10] me in the comments.
+[03:11] And if you want the next big AI update
+[03:13] broken down in under 5 minutes,
+[03:15] subscribe to Stack Delta. See you in the
+[03:17] next one.

@@ -1,0 +1,125 @@
+[00:01] Chín giây.
+[00:02] Đó là tất cả thời gian để một AI agent thổi bay toàn bộ database production
+[00:06] của PocketOS, một startup làm phần mềm cho các hãng thuê xe.
+[00:09] Tiện tay, nó dọn sạch luôn cả các bản backup nằm chung chỗ cho... gọn.
+[00:13] Bản backup gần nhất còn sót lại đã cũ ba tháng,
+[00:15] và bài đăng kể khổ của founder đã thu hút hơn 7 triệu lượt xem.
+[00:18] Cay nhất là trong project đã ghi rõ rule:
+[00:21] "NEVER run destructive/irreversible git commands,
+[00:24] DON'T run destructive operations".
+[00:27] Sau khi gây họa, chính con agent tự thú nhận luôn là nó lỡ delete mất DB,
+[00:31] thái độ nhận lỗi cực kỳ thành khẩn,
+[00:32] mỗi tội nhận lỗi xong thì công ty cũng mất luôn dữ liệu.
+[00:35] Vậy có phải do model chưa đủ thông minh?
+[00:38] Không, họ đã dùng Claude Opus 4.6 trong Cursor, model xịn nhất lúc đó.
+[00:42] Ngặt nỗi khi gặp lỗi đăng nhập ở staging, con agent lại đi lục lọi
+[00:46] rồi nhặt được một cái token full quyền nằm lạc quẻ trong một file
+[00:49] chẳng liên quan, thế là toang.
+[00:51] Tại sao luật viết rõ ràng mà agent vẫn vượt rào?
+[00:54] Để hiểu pha bóp team cực mạnh này, anh em cần nắm khái niệm Agent Harness.
+[00:57] Hiểu nôm na thì model chỉ là một cái đầu biết suy nghĩ và trả lời bằng chữ,
+[01:01] khi muốn xóa database, thực chất nó chỉ viết ra một đề xuất kiểu:
+[01:04] 'chạy lệnh xóa này đi'.
+[01:05] Còn chương trình bọc bên ngoài như Claude Code, Codex hay Cursor
+[01:09] mới là người bấm nút chạy và kiểm tra rule trước khi bấm -
+[01:12] đó chính là Agent Harness.
+[01:14] Chính tài liệu của Claude Code cũng nói rõ CLAUDE.md thực chất chỉ là context
+[01:18] chứ không phải cấu hình bắt buộc phải tuân thủ.
+[01:20] Thế nên, sự cố xảy ra tại PocketOS là do họ đã đặt niềm tin
+[01:24] vào các instruction viết cho model,
+[01:25] thay vì các rào chắn kỹ thuật ở tầng harness.
+[01:28] Vậy áp dụng Agent Harness vào công việc hằng ngày như thế nào?
+[01:31] Anh em không cần tự viết một harness mới,
+[01:32] vì bản thân Claude Code hay Codex đã là harness rồi.
+[01:35] Việc của chúng ta là cấu hình nó bằng một bộ file commit lên repo,
+[01:39] để bất kỳ ai trong team khi chạy agent cũng tuân theo cùng một quy chuẩn.
+[01:43] Phần một là instructions, nằm trong file CLAUDE.md hoặc AGENTS.md.
+[01:48] Thay vì viết những câu chung chung kiểu "hãy viết code sạch",
+[01:51] anh em hãy ghi những thứ mà agent không thể tự đoán được:
+[01:54] lệnh build, lệnh chạy test, đặc biệt là cách chạy riêng một file test cho nhanh;
+[01:59] những điểm dễ gây lỗi trong repo, các lưu ý như không đụng vào secret
+[02:02] hay file sinh tự động, và convention đặt tên PR.
+[02:06] Các repo lớn cũng viết rất thực tế như vậy.
+[02:08] Chẳng hạn file AGENTS.md của Sentry dặn là:
+[02:11] "Do not run pytest by itself; it'll take forever!".
+[02:15] File này nên giữ gọn dưới 200 dòng theo khuyến nghị của Claude Code.
+[02:19] Phần hai là skill.
+[02:20] Những quy trình lặp đi lặp lại như review code hay tạo bản release,
+[02:24] anh em nên tách ra thành từng file riêng.
+[02:26] Bình thường agent chỉ thấy tên và mô tả ngắn của skill,
+[02:29] khi nào cần dùng mới mở toàn bộ nội dung ra đọc.
+[02:31] Nhờ vậy mà dự án có nhiều skill cũng không lo tốn context:
+[02:34] như PostHog có tới 108 skill, còn Sentry có 29.
+[02:39] Tuy nhiên, nội dung mỗi skill vẫn cần ngắn gọn.
+[02:42] Matt Pocock, người làm Total TypeScript, chia sẻ danh sách những lỗi
+[02:46] các team hay gặp nhất với gần 200 nghìn lượt xem,
+[02:48] trong đó có lỗi viết skill quá dài.
+[02:50] Các lỗi phổ biến tiếp theo là thiết lập kiểm tra tự động quá lỏng,
+[02:53] không xem lại lịch sử các session làm việc cũ của agent,
+[02:56] và nhồi nhét quá nhiều thứ vào file instructions chung.
+[03:00] Phần ba là deny rule.
+[03:01] Những thao tác nào cấm agent thực hiện thì anh em đưa vào đây,
+[03:04] vì từ bước này trở đi, harness sẽ chặn lệnh thật sự
+[03:07] chứ không chỉ dừng ở mức nhắc nhở.
+[03:09] Vậy chúng ta nên đưa gì vào danh sách cấm?
+[03:12] Xem qua các repo lớn thì mình khá bất ngờ:
+[03:14] họ không tập trung cấm những lệnh gây hậu quả nghiêm trọng,
+[03:17] mà cấm những lỗi quen thuộc agent hay lặp lại hằng ngày.
+[03:20] Ví dụ, dự án React dùng yarn thì họ chặn không cho agent
+[03:24] chạy npm, pnpm, bun và npx.
+[03:28] Supabase thì cấm agent chỉnh sửa trực tiếp các file được sinh tự động.
+[03:31] Còn repo ale sử dụng tính năng forbidden của Codex
+[03:35] để khóa khoảng 30 lệnh git làm thay đổi repo,
+[03:37] chỉ cho phép agent dùng các lệnh kiểm tra trạng thái
+[03:40] như git status, git diff hay git log.
+[03:43] Vì vậy, cách thiết thực nhất là anh em hãy bắt đầu chặn
+[03:46] từ chính những lỗi mà agent hay làm sai trong dự án của mình.
+[03:49] Lưu ý là anh em không nên để các lệnh nguy hiểm ở chế độ "hỏi xác nhận"
+[03:53] mà hãy đưa thẳng vào danh sách cấm luôn,
+[03:55] vì khi agent hỏi lại quá nhiều lần, anh em rất dễ rơi vào trạng thái lười đọc
+[03:59] và bấm "Đồng ý" theo quán tính.
+[04:01] Phần bốn là hook: các đoạn script được gắn vào những thời điểm cố định,
+[04:05] như lúc bắt đầu session,
+[04:06] trước khi thực thi lệnh, sau khi sửa file,
+[04:09] hoặc khi agent chuẩn bị kết thúc công việc.
+[04:11] Vài hook hay mình tổng hợp được:
+[04:13] Hook tự động chạy format và lint sau mỗi lần agent sửa file.
+[04:17] Hook chặn các lệnh sai quy chuẩn của dự án,
+[04:19] như dùng nhầm package manager hoặc chạy toàn bộ test thay vì một file lẻ.
+[04:23] Hook ngăn các lệnh git rủi ro như push thẳng lên nhánh main
+[04:26] hay dùng cờ --no-verify.
+[04:28] Một script như vậy có thể dùng chung cho cả Claude Code, Codex và Cursor,
+[04:32] dù chốt chặn an toàn nhất trên server tất nhiên vẫn là CI và branch protection.
+[04:37] Spotify ghi nhận lượng token tiêu tốn cho việc đọc file hàng loạt
+[04:40] đã giảm tới khoảng 90% khi họ viết hook chặn không cho agent đọc toàn bộ
+[04:44] một file dài quá 350 dòng
+[04:46] mà hướng dẫn nó chuyển sang dùng công cụ tóm tắt khác.
+[04:49] Trong số này, loại hook đáng áp dụng nhất chính là Stop hook.
+[04:52] Mỗi khi agent định báo cáo hoàn thành công việc,
+[04:54] hook sẽ tự động chạy các bước kiểm tra như lint và test.
+[04:57] Nếu còn lỗi, script sẽ trả về mã lỗi exit code 2,
+[05:01] buộc agent phải tiếp tục quay lại sửa chứ chưa được phép dừng.
+[05:04] Cả Claude Code và Codex đều hỗ trợ cơ chế này.
+[05:07] Nhờ vậy, việc một tác vụ đã thực sự xong hay chưa
+[05:10] sẽ do bộ test quyết định, chứ không phải do agent tự nói.
+[05:13] Quay lại sự cố của PocketOS ở đầu video:
+[05:16] nếu áp dụng những nguyên tắc vừa rồi, họ cần làm gì để phòng tránh?
+[05:19] Thực chất lệnh xóa hôm đó là một API request
+[05:22] sử dụng token mà agent tìm thấy.
+[05:24] Vì vậy, lớp phòng vệ quan trọng nhất phải nằm ở bên ngoài repo:
+[05:27] tuyệt đối không lưu token của môi trường production trên máy đang chạy agent,
+[05:31] và mỗi token chỉ nên được cấp đúng quyền hạn tối thiểu mà nó cần.
+[05:35] Lớp bảo vệ thứ hai là thiết lập một hook kiểm tra trước mỗi câu lệnh,
+[05:38] nếu phát hiện các từ khóa nhạy cảm như volumeDelete hay DROP DATABASE
+[05:42] thì lập tức chặn lại và báo lý do cho agent.
+[05:45] Ở quy mô các công ty lớn, việc quản lý harness còn giải quyết cả bài toán chi phí.
+[05:50] Tại Uber, họ xây dựng một bộ công cụ quản lý chung cho mọi AI agent
+[05:54] trong công ty, tự động hóa từ khâu cài đặt, cấu hình, đăng nhập
+[05:58] cho tới việc theo dõi chi phí sử dụng.
+[05:59] Họ đặt effort mặc định của model ở mức Medium,
+[06:02] và tự động compact context mỗi khi chạm ngưỡng 400 nghìn token.
+[06:07] Theo chia sẻ từ Uber, chi phí trung bình cho mỗi session làm việc
+[06:10] đã giảm 52% so với mức đỉnh điểm hồi tháng 6.
+[06:14] Nếu anh em quan tâm đến Agent Harness thì có thể tham khảo thêm
+[06:17] các khóa học mình để trên màn hình nhé.
+[06:19] Cảm ơn anh em rất nhiều vì đã xem hết video.

@@ -1,0 +1,495 @@
+[00:00] So now finally, we have a model from Google that I would say actually
+[00:03] good enough for you to start building games like you see over here.
+[00:06] Hey, guys.
+[00:06] I built this fully 3D capture the flag game The goal here is to capture the flag
+[00:11] from your opponent's team and try your best to bring it all the way to the back.
+[00:15] And this entire game is running fully multiplayer on the web right
+[00:18] now, everything that you see in this game, from the art, the animations,
+[00:22] the environments, the coding logic, the multiplayer functionality,
+[00:25] everything was made using AI.
+[00:27] I was able to build this entire game, and I posted about it on X, and in
+[00:31] less than 12 hours, I've managed to get hundreds of people playing it.
+[00:34] I made use of Gemini 4 Argon, which is the latest model release from Google DeepMind.
+[00:41] in today's video, I'll be walking you through all the lessons that
+[00:44] I learned making use of Gemini 4 Argon for game development.
+[00:48] Now, if you've actually seen some of the posts on X about Gemini 4 Argon,
+[00:51] you realize that some people are getting mixed results and some were struggling
+[00:55] to get the games to look and feel right.
+[00:57] so I'll be showing you how I managed to get it from looking for something
+[00:59] like this, all the way to improving the look and feel of the game so that you
+[01:03] can end up with a game that looks good and plays good, like what over here.
+[01:06] I'll cover a couple of gotchas that I encountered and how to fix them,
+[01:10] including how to get Gemini 4 Argon to create nicer-looking animations
+[01:15] that allow your game to come to life.
+[01:17] So if you've ever wanted to know how you can make an online multiplayer
+[01:20] capture the flag game like you see over here using nothing but
+[01:23] AI tools, this video is for you.
+[01:25] All right.
+[01:26] So let's run through all of the lessons that I learned
+[01:28] working with Gemini 4 Argon.
+[01:30] Just to be very clear, this game was not made in one shot.
+[01:34] In fact, far from it.
+[01:35] What I found is that while Gemini 4 Argon can give you really good results,
+[01:40] it required quite a lot of hand-holding in order to get it to get to the
+[01:46] fidelity and the visual quality, or some people like to call it, get to the
+[01:49] taste that I was trying to look for.
+[01:52] and this is something that I will go through in detail
+[01:54] in the rest of this video.
+[01:55] But basically, if you just try to let Argon build things on its own,
+[01:59] you may get some fairly underwhelming results that you see over here.
+[02:03] And for it to get to a level like this, where you have something that looks
+[02:05] a lot better, you will need to take take a bunch of things into account.
+[02:10] All right, so how did I go about building this game from start to finish?
+[02:13] So I made use of Gemini for Argon within Cursor, and I was using high
+[02:18] reasoning effort as part of this.
+[02:19] So you can see over here on the left-hand side, these were all the
+[02:22] different kind of like threads of chats that I was having And altogether,
+[02:26] I asked it to calculate how much it would cost, at the API list price.
+[02:31] So you can see here the complete, usage, so most of it went to Cursor
+[02:34] for the coding agent, and then I used FAL image generation models, mainly
+[02:38] GPT Images 2.5 to do floor plans, UI, and a bunch of other things.
+[02:42] I made use of Tripo specifically for the characters, and this is something
+[02:46] that I do for all of my games.
+[02:48] When it comes to character models, I still think that making use of an
+[02:51] image-to-3D, platform is still better.
+[02:53] Blender was used to make all of the environment art, so everything that
+[02:56] you see here was created within Blender and then imported into the game.
+[03:01] I used 11labs for sound and music.
+[03:02] I used a little bit of Jev to help to do some balancing of the game, and then
+[03:06] finally, I uploaded everything onto WaveDash I actually use WaveDash to
+[03:10] host all of my games now because I find it's really easy to distribute, and
+[03:13] the developers are super responsive, both on asks as well as reaching
+[03:16] out to you if you're facing issues or suggestions for improvements.
+[03:19] And then I use convex for my database.
+[03:21] so this is the token usage, as you can see over here.
+[03:23] overall, the takeaway here is that it costs around $200
+[03:26] to make this entire game.
+[03:28] So you can see this is my opening prompt, right?
+[03:30] I want to build a whimsical and comedic multiplayer game, capture the flag.
+[03:33] It will involve bipedal, animal characters set in a backyard.
+[03:37] The focus here will be on gameplay, eye-catching, comic mischief.
+[03:40] When you use Cursor, it will oftentimes ask you a bunch of questions,
+[03:43] and then you can respond to it.
+[03:44] So I actually captured it here.
+[03:45] So based on this, I wanted a 3v3.
+[03:48] I wanted it to work on both desktop and mobile.
+[03:50] I wanted it to have about 90-second rounds, and then the next thing that it
+[03:53] did was to generate a bunch of mockups.
+[03:55] Now, one thing to mention is that I did not start entirely from scratch.
+[03:59] I have a starter template that I've been using for all of my
+[04:01] most recent games that makes use of Rust Wasm and WebGPU or WebGL.
+[04:07] This other project is just combination of skills as well as boilerplate that
+[04:11] helps me to build and run games in the browser that also work for mobile,
+[04:16] and it's very performant, and I like it because it's very lightweight.
+[04:18] It allows me to iterate very quickly.
+[04:20] I can deploy it on the web, push it out to players.
+[04:22] And this is a project that I share with my community members.
+[04:25] It comes with a simple demo project that you can build upon, or you
+[04:27] can just use it from scratch.
+[04:28] if you're interested to learn more, you can check out vibegamedev.com.
+[04:31] But even without it, you should be able to replicate everything that
+[04:33] I'm gonna running through here.
+[04:34] All you need to do is just tell your AI agent you wanna make use
+[04:36] of Rust, Wasm, and WebGPU or WebGL.
+[04:40] And with that, you should be able to get pretty close to the
+[04:42] framework that I'm using here today.
+[04:44] The thing that's more important is the process that I take to build
+[04:47] all of my games, and I'm gonna show it to you right over here today.
+[04:50] All right, so you can see here that I always ask for it to generate four
+[04:53] distinct visual gameplay mock-ups, and I make use of image generation models
+[04:57] all the time, and you can see over here, this allows you to get a sense
+[05:02] of what kind of game you are going for.
+[05:05] And you can see here, from this brief of a whimsical and comedic
+[05:08] multiplayer capture the flag, you can have entirely different styles.
+[05:12] You have this one and then this one, which really inspired me for this game, and then
+[05:16] this other, view that you have over here.
+[05:18] And it's always very important, for you to visualize what you're trying to go for
+[05:23] bec- It's also very important for the AI to understand what you're trying to do.
+[05:27] So once you've gotten a sense of where you wanna go, so in this case,
+[05:30] I wanted this one, what you want to then do is then to start to focus
+[05:34] on building three things, okay?
+[05:36] and these three things should happen in parallel.
+[05:39] All right, so before we begin, we want to make use of sub-agents.
+[05:42] I know you can actually do this in Cursor by doing something like multitask, but
+[05:46] I found that I didn't actually use this.
+[05:47] I just explicitly told it to use sub-agents, and this is a process
+[05:51] that will work regardless of whether you're using Cursor, whether you're
+[05:53] using Codex or using Claude Code.
+[05:55] It just knows that it should parallelize things.
+[05:57] And the reason why you want to do this in parallel is to save time, right?
+[06:01] If you're working on generating images for the environment, for the character,
+[06:04] and then doing some code-related stuff, there's no reason to wait for each
+[06:07] one to complete before proceeding.
+[06:09] You should just make use of the fact that these can all run in
+[06:12] parallel because they're not gonna conflict with each other.
+[06:14] So what I like to do is I always like to say generate turnaround sheets
+[06:17] for the different character types.
+[06:18] parallelize it even further with multiple sub-agents for each character.
+[06:22] And like I said, I always use GPT Images 2.5.
+[06:25] And then I said generate additional reference images for the environments
+[06:28] and the props that make up the environment and potentially the
+[06:30] weapons in the game as well.
+[06:32] And then finally, this is what I, I do now, is that I then say in this
+[06:35] main chat, so this will mean that you want to continue it in this point
+[06:38] over here so that it doesn't spin off yet another sub-agent, is that
+[06:42] I want you to create a Rust Wasm WebGPU/WebGL gray box of the game.
+[06:46] And the whole point of this is that we want to build a gray box, okay?
+[06:49] So a gray box is effectively a version of the game that
+[06:52] doesn't require any art assets.
+[06:54] The focus of it is to get a good feel around the game
+[06:56] mechanic- and the game feel.
+[06:58] Identify any gotchas or things we might have missed, and focus on
+[07:02] the game, like the weapon types and anything that we want to de-risk.
+[07:05] So you can see that this is the gray box that was created by Argon, and it
+[07:10] allowed us to basically get a first sense of, like the space, how far away
+[07:14] the flags should be from each other.
+[07:16] And ultimately allows you to test things like the number of weapons
+[07:18] that you might want to have, and just the general controls.
+[07:21] And y- the reason why you wanna do this is that it's important for your game to
+[07:25] be fun even without all the assets in.
+[07:27] Because if your game actually is pretty fun to play, even without
+[07:30] the final graphics, you know you probably have something on your hands.
+[07:33] All right, so you can see that the choices that I made was that I wanted it to be
+[07:36] this third person chase kind of style.
+[07:38] And then I basically told it to just create a roster of characters.
+[07:42] All right, so let's just take a look.
+[07:43] These are what you call turnaround sheets, and the reason why you wanna use
+[07:46] turnaround sheets is that you want to get the front-facing, the side-facing,
+[07:49] back-facing, and a profile view.
+[07:52] And these are effectively sent into Tripo.
+[07:56] And Tripo It's an image to 3D service which creates 3D models which you
+[08:00] can then import into your game.
+[08:01] So these turnaround sheets are very important, and the reason why I like to
+[08:04] have all four angles is that it gives a much more accurate sense, of the
+[08:08] character models, especially if they have things like tails at the back.
+[08:11] And then you can see here, this was the environments that it generated, and then
+[08:15] all of the different props that it wanted.
+[08:17] And so these are the isolated props.
+[08:19] and reason why you wanna do all this is that it gives a sense to
+[08:22] your AI agent about what it needs to model within Blender Okay?
+[08:26] So these steps will happen in parallel.
+[08:27] You get all of the reference images that you need to then go ahead and
+[08:31] begin integrating it into a single game.
+[08:34] now that we have these turnaround sheets, I said let's use Triple to
+[08:36] create the models for the characters.
+[08:38] I want you to then export it and then use Blender to rig and animate them.
+[08:42] We want the same skeleton and animations to be used for the different meshes, and
+[08:46] then I said you can make use of sub-agents to generate the models in parallel.
+[08:49] Okay?
+[08:50] The second thing that, that I did was I said look at the current map layout.
+[08:52] It doesn't serve us well.
+[08:53] So you can see this map that you generated here just didn't feel right.
+[08:57] It doesn't feel very game-like, right?
+[08:59] So what I said is that I want a larger level to make it more fun.
+[09:02] Think about modularity of objects.
+[09:03] I want a level design that has symmetry, that is fair.
+[09:06] We want some depth and height as well so it's not just a flat plane, and then I
+[09:09] ask it to generate even more images to help with the layouts and floor plans.
+[09:13] So with that, you can see these are all the characters that were
+[09:16] generated by Triple, and the results are really very good.
+[09:18] And this is the floor plan of the level, And as you can see, this final
+[09:22] level effectively took inspiration from, that floor plan that we had.
+[09:27] That makes the game a lot more, fun to play.
+[09:30] There's a lot more space, and like I said,
+[09:32] There's a depth and height as well.
+[09:34] All right, so that's the process that I took to basically get, what
+[09:37] you call a V1 version of this.
+[09:39] Now, this is the point in which I think a lot of people struggle
+[09:42] because this is actually how the first version of the game kind of looked.
+[09:47] and you can see here, right?
+[09:47] this is like meh, right?
+[09:49] And you can see this is, the, how the game look, in game.
+[09:52] But there's just a big problem with this first version output.
+[09:55] And I think this is where I would say Argon really differs from something
+[09:59] like Opus or Astra, is that it doesn't really get taste quite yet.
+[10:05] And what do I mean when I say that?
+[10:06] Is that if you told Opus to do this, I would say that it will get a lot
+[10:09] closer to the final version You can see there's, waves and some transparency.
+[10:14] This looks pretty good, right?
+[10:15] And then even the planks and everything, this entire scene just
+[10:18] looks a lot more professionally done.
+[10:21] And if you actually look at this original level, it's just very saturated.
+[10:25] It has this cartoony look that it tried to do, but it just wasn't working for me.
+[10:28] And a part of it might be because, like I said, I started with a starter project.
+[10:31] My starter project has a bit more of a cartoony style, but even then, I've used
+[10:35] the same starter project for other games
+[10:36] This game that you see over here that you can see, is yet again
+[10:39] in a completely different style, and this was done with Opus 5.5.
+[10:42] and this is where I think, Argon, is still quite not there yet, is that if you just
+[10:47] left it to its own devices, it can get the game completely running fine, but it
+[10:51] just lacks that taste to get you to that visual fidelity that you're looking for.
+[10:55] And you can see here when I was, like, looking at a scene, I
+[10:57] said, the look of the game is far from the bar we are going for.
+[11:00] It's overly bright.
+[11:01] It's saturated.
+[11:01] There's no lighting.
+[11:02] There's no post-processing.
+[11:03] There's no effects.
+[11:04] It looks nothing close to the mock-ups.
+[11:05] Your goal is to really fix this."
+[11:07] And this was the second attempt by Argon.
+[11:09] And you can see, right?
+[11:10] it's not that it's not capable of doing it, it's that it required
+[11:12] me to tell it that, hey, this doesn't look that great, right?
+[11:17] And you can see this second attempt is a lot better.
+[11:19] All right?
+[11:19] It's not so saturated.
+[11:20] There's, a little bit more texture and depth.
+[11:22] there's, a sky now, the trees and everything.
+[11:24] But even then, you look at this, even though it's a lot better than, say,
+[11:27] what over here, which is, overly bright, it's still not quite there, right?
+[11:31] the, the shadows are just too dark.
+[11:32] There's no real lighting and, look at the water over here.
+[11:35] It's just, a very flat piece, a flat plain.
+[11:38] After a couple of iterations, this was as close as I could get for it to look right.
+[11:41] And I think this is probably the next stage that people get to, and then
+[11:44] they're like, "Ugh, I just can't get it to look right. What's wrong with the
+[11:46] model?" and as I've shown you in this game, you can get it to look really
+[11:50] good, and this was all done by Argon.
+[11:51] It's just that it took- You know, some steering and
+[11:54] guidance to get to this stage.
+[11:56] What I found as the trick for Argon is that you need to give it reference
+[12:00] images for it to shoot for, right?
+[12:03] Telling it to improve things, by adjusting shading and lighting and
+[12:06] post-processing doesn't get you very far.
+[12:08] All right, so you can see this is after I prompted it to say, improve
+[12:11] the lighting, improving the shading.
+[12:12] I said, "The scene is looking better, but there's no sky box," right?
+[12:15] I would like to see the neighborhood, that the textures on
+[12:17] some things are just so jarring.
+[12:19] look at this texture over here.
+[12:20] It's you just don't wanna look at something like this.
+[12:21] So I said, "Can we have some bump mapping?
+[12:23] Can we make the overall lighting?" And then you can see it's And Argon's like,
+[12:26] "Oh, yeah, I definitely can do better.
+[12:27] I'm gonna put in the houses in the background.
+[12:29] I'm gonna, make a less noisy texture." it's definitely capable of doing it,
+[12:32] but it just didn't do it initially, which I find really interesting.
+[12:35] So the thing is that you need to really steer it, and like I said,
+[12:38] the best thing to do is to continue to provide reference images.
+[12:41] All right, so I always kept telling it, "Hey, look at the reference
+[12:43] image and really think about how to make it less flat." And you can
+[12:47] see it starts to improve over time.
+[12:49] All right, and then I basically said, "Here's a reference image," "Try to
+[12:52] improve the overall, feel of the game, not just making a level that just, is
+[12:56] passable." And then I think this really drives from the message a bit more.
+[12:59] I said "Okay, we need to use some image generation to provide more
+[13:01] directed art style for the game.
+[13:03] Okay?
+[13:03] So use Images 2.5 to generate variations that allows us to preserve the existing
+[13:08] models that we have, but potential different art directions." And I
+[13:11] think this was the unlock for it.
+[13:12] All right?
+[13:13] So you can see it generated, this storybook art style, this, cell shaded
+[13:16] anime style, more furry clay style, and then this kind of cozy sunset.
+[13:20] And I said "Hey, let's go for something that's in between this and
+[13:23] this." I don't want it to be overly, like, fluffy, but I really like
+[13:26] this kind of lighting, this depth.
+[13:28] And then you can see, like this was where we were, and then you can see,
+[13:31] like it started to then, like iterate
+[13:32] And you can see with the images it was able to then say, okay, I'm gonna
+[13:36] make it a little bit more furry.
+[13:38] Gonna add some fog, add some items, adjust the lighting.
+[13:40] And with that, it was able to, start to improve the visual fidelity of
+[13:44] the game to a point that, like you can see over here, it just started to
+[13:47] add in much better looking textures, lighting, and things like that so
+[13:51] just to show you how it went through.
+[13:52] this is how it was initially, and then as it iterated through, it was able to
+[13:56] get to this stage where you can see, now the character has a bit of the
+[13:58] fluffiness that I want to look for.
+[14:00] But, the trees have a bit more texture and things like that.
+[14:02] That's the process that I would highly suggest for you to do, is, generate
+[14:05] images and tell Argon to shoot for it.
+[14:06] Here's another really great example.
+[14:07] All right?
+[14:08] So you can see here, this was one scene that was generated by
+[14:10] Argon, and, look at all the trees.
+[14:12] this is just really, not great, okay?
+[14:14] So I said, let's improve it.
+[14:16] The bush looks terrible, let's make sure to do it properly in Blender and
+[14:19] stop having repetitive things, right?
+[14:21] The trees are just basically copy and pasted everywhere.
+[14:23] So you see that, once you told it, then it was like, "Oh yeah, of
+[14:27] course I'm gonna do it." All right?
+[14:28] it rebuilt all the bushes, and I don't even know what half of
+[14:31] what these, terminology means, but it definitely knows about it.
+[14:33] It's just that it didn't think about doing it itself.
+[14:35] So you can see here, it's gonna do, this way of doing the planters and
+[14:39] it's gonna do the manicure garden, and like we went all the way to
+[14:41] something that looks like this.
+[14:42] and like I said, it made use of generating images in order to guide it
+[14:46] to know what kind of stuff to build.
+[14:47] All right, another example is the water.
+[14:49] this was the water that we had.
+[14:51] It's just, flat plane with a bunch of, circles and a duck, right?
+[14:54] And I'm like, this is terrible, right?
+[14:55] I say, it, it just goes to show you how bad the scene looks.
+[14:57] The water in the game looks terrible.
+[14:59] No volume, no movement.
+[15:00] It looks like a flat texture.
+[15:01] It looks really bad, right?
+[15:02] And this happens the same thing with the water splashes initially they made.
+[15:05] It's like it's just a circle.
+[15:06] it was just so lazy, right?
+[15:07] And all I needed to do was, like, say,, "This looks terrible. Fix it." And then
+[15:10] with that, and just by prompting it, it was like, okay, I'm gonna be able
+[15:13] to, now build you a much nicer looking level with proper lighting, with water
+[15:17] that actually looks decent now, And then you see with the water balloons, right?
+[15:20] It was able to actually have, this splash effect and while this is not
+[15:23] perfect still, this is still looking a lot better than what we had before.
+[15:26] this actually suits the game style
+[15:28] And it just shows that it's capable of doing it.
+[15:30] okay, so that was the main thing with the visual style.
+[15:31] So if you're struggling with Argon, I suggest that you do this approach.
+[15:34] Use reference images and direct it a lot more.
+[15:37] I definitely never encountered this with Astra and Opus, for sure.
+[15:41] so it's not about the capability of model.
+[15:42] it's just about it needing, that coaxing.
+[15:45] Okay?
+[15:45] So that was the environment.
+[15:46] How about your characters?
+[15:47] Okay, so these were the initial original animations that were made by Argon,
+[15:51] and to be really fair to you, these are actually pretty good already.
+[15:54] I think two months ago, I don't think models could actually do
+[15:58] animations in Blender very well.
+[15:59] They looked terrible, and you had to do all kinds of things
+[16:01] to make them look right.
+[16:03] But these were the updated animations, and as you can see, these are a little
+[16:06] bit more lively, So this is a before and after And the idea here is that
+[16:11] you want to have exaggerated movements, and one of the things that, people
+[16:14] really like about this other game that I built called Pressure Wash Panic is
+[16:17] that the graphics felt really lively.
+[16:19] And what I always did is, I want exaggerated animations, right?
+[16:22] That are easily identifiable, recognizable And whimsical.
+[16:26] And just trust me, you just end up with much more lively animations that make
+[16:29] it into the game, because otherwise, the, the game just feels very flat.
+[16:32] And the last thing that I did, I asked it to fix sockets.
+[16:35] Now, socket issues, are when you have issues such as this.
+[16:37] So you actually look over here, the stick is not actually
+[16:40] in the model's hand, right?
+[16:42] And so you have to tell it, say, and so if you're not familiar with this term,
+[16:46] when you have a socket, it's when a model attach to a part of another model.
+[16:49] So you can see here, I just told it to fix a bunch of these socket issues, this is
+[16:52] another example of a socket issue, right?
+[16:54] Like, when he's throwing, the bomb is still stuck to the person hand.
+[16:56] It should actually disappear from the socket when they're throwing it, right?
+[16:59] And then here's another example where they were holding the flag, all right?
+[17:03] And, it doesn't even look like they're holding the flag.
+[17:05] So at least when the socket is fixed, it can ensure, that it looks a lot better.
+[17:10] these are the kind of issues that you want to fix in order
+[17:12] to make your game look right.
+[17:13] This is not limited to, Argon.
+[17:14] I've seen this across the other models as well, but it's definitely something
+[17:17] that you want to keep an eye out in order to make your games looking right.
+[17:19] All right.
+[17:20] So that's everything I did to get the game to play and feel right.
+[17:22] Now, this is one thing that Argon really shines at, right?
+[17:25] So while it may struggle with, pace and fidelity, if you give it
+[17:28] a complex problem, make my game multiplayer, It will go ahead and
+[17:32] build pretty much everything one shot.
+[17:35] if you give it a task that is complex, that is, more code-oriented, it will
+[17:38] be able to achieve it very well.
+[17:40] So you can see I just said, we have a working game here.
+[17:41] It works in single-player with bots.
+[17:43] We need to make use of Colyseus.
+[17:44] Colyseus is a multiplayer framework which I highly recommend you make use if you're
+[17:48] trying to make your game multiplayer.
+[17:50] All right?
+[17:50] And if you're like me, using using Rust and WASM, you can actually get
+[17:53] really good results because The client and the server, so your player and
+[17:57] your server, will effectively be running the same code, so you don't
+[17:59] have to think about, synchronization issues and things like that.
+[18:02] It will be a much easier process making your game multiplayer.
+[18:05] So you can see here, we want to have a lobby, we want to matchmake
+[18:07] people, and then if they wait longer than a certain number of seconds,
+[18:09] we want to have bots, et cetera.
+[18:11] I gave this prompt, and It basically went ahead and made the game
+[18:14] multiplayer, connected it, had a lobby system, allowed people to join in
+[18:18] mid-match, allowed people to leave, allowed games to start and stop.
+[18:22] I was actually really impressed at how, it got everything working so quickly because
+[18:26] this is not an, an overly complicated game, But there's a lot going on, right?
+[18:29] There's three versus three.
+[18:30] You need to be quite careful with how it implements multiplayer in order
+[18:33] to make sure that the game feels right and is fair for all players.
+[18:36] And it was able to get this right the first time.
+[18:38] Now, if you're making a multiplayer game, it may not be performant
+[18:41] when you put it on the web and people are playing over the web.
+[18:43] you might see things like rubber banding or laggy characters or
+[18:45] choppiness, and the reason for this is that just because it's multiplayer
+[18:49] doesn't mean it's optimized, okay?
+[18:50] this is something that people requested about, and I'm gonna
+[18:52] try to use this opportunity to talk a little bit more about it.
+[18:55] So this is where something like Argon might come in very useful because
+[18:58] all you have to do is say, "Hey, I want you to study the netcode for
+[19:00] the game, Is it optimized for client side prediction, movement, bandwidth
+[19:04] minimization without rubber banding, et cetera? And then how would you go ahead
+[19:08] and do it?" if you don't ask for any optimization at all, Can you see that
+[19:11] the player is rubber banding, right?
+[19:13] because remember this is a multiplayer game.
+[19:14] Everybody needs to be able to see each other at the same time, but there's, lag.
+[19:18] So how do you ensure that, you don't see this effect where people are like
+[19:21] snapping back and forth all the time because the server sometimes thinks,
+[19:23] hey, the server thinks you're here, but you've already moved forward,
+[19:26] so it tries to snap you back.
+[19:28] All right?
+[19:28] So these are the kind of issues that you want to fix.
+[19:31] And so you can see here when you do a kind of like a client, a predicted
+[19:35] movement is that, it allows the player to move very smoothly, and the server
+[19:39] is not going to snap the player back.
+[19:41] This is another effect if you don't have, this kind of, you know,
+[19:44] optimization, is that you might see other players like stuttering and
+[19:47] moving around because it's not smooth.
+[19:49] All right?
+[19:49] So this is where the optimization will be able to help.
+[19:51] You can see other players moving smoothly.
+[19:52] They're not, just jumping around.
+[19:54] this affect things like aiming, so you want to be able to, make sure that when
+[19:57] you're aiming and when you're attacking an enemy, that it is where they are, right?
+[20:00] So these are all the different things that you need to remember to do.
+[20:03] And like I said, I think most agents can do it very well, but this is
+[20:06] where Argon really shine from because I just gave it this one prompt and
+[20:08] it was able to fix, basically all of these issues, right off the bat.
+[20:12] All right, so the last thing that you see over here is effectively talking about
+[20:15] how much data that you are sending down.
+[20:17] So when you're playing a game, or if you're on Wi-Fi or whatever,
+[20:20] you don't wanna be sending too much data down, right?
+[20:21] Because you're wasting bandwidth.
+[20:22] you can actually optimize the amount of data that you send down.
+[20:24] This helps the performance as well as your usage.
+[20:27] And for those of you who, may not understand this, just understand
+[20:29] that, if you just leave everything at default setting, you're sending down
+[20:32] a ton, tons, and tons of data down the wire every single second, right?
+[20:36] And if you just optimize it, in a process called quantization, you are
+[20:39] effectively sending a lot less data.
+[20:41] this saves you cost, but also in, in terms of performance as well.
+[20:43] I made this available as part of my compu- community at vibegamedev.com, so
+[20:47] that if you're interested in learning a little bit more, it's all over here.
+[20:50] But overall, I just wanna say that I'm really happy with how Google
+[20:52] has responded with Gemini for Argon.
+[20:55] for a long time, I've actually just ignored the, Gemini models because they've
+[20:59] mainly been flash models, which are really fast, but tend to not be as good for game
+[21:04] development compared to Opus, and for Astra, and your Soles, and your Sonnets.
+[21:09] All right, so now finally, after eight long months, we have gotten a
+[21:12] model from Google that I would say is actually good enough for you to start
+[21:15] building games like you see over here.
+[21:17] but just remember that it requires a lot more coaxing and steering, but
+[21:21] it does really well with things like networking, code optimization, making
+[21:26] things multiplayer, and hard technical problems that you want to solve that you
+[21:29] might not know how to solve yourself, but Argon is really good at it.
+[21:32] All right?
+[21:33] So I hope that today's video has been helpful for you.
+[21:36] Give it a like if you enjoyed it.
+[21:37] Hit that subscribe button, and don't forget to turn on notifications so
+[21:40] that you'll always be the first to know when new content like this drops.
+[21:43] Now, I've talked a lot about Opus 5.5, and there's a re- and there's a reason
+[21:47] why I think it is actually, at this point, the best model for building games.
+[21:51] and the reason for that is that it has great taste.
+[21:53] I bu- I built this 2.5D platformer using Opus 5.5 and a lot of the
+[21:58] techniques that you've seen here today, but I was able to achieve a
+[22:01] visual aesthetic that players love.
+[22:04] Th- as you can see over here, this, it was really good at nailing the look,
+[22:08] feel, and ambiance of this plat- of this platformer, and in this video that you
+[22:13] can see over here, I covered the entire process that I took to be able to do so.
+[22:17] So if that interests you, you definitely wanna check out
+[22:18] this video right over here.
+[22:20] All right, so till next time, I'll see ya.

@@ -1,0 +1,395 @@
+[00:00] Anthropic's own engineers just said they
+[00:02] stopped building a new agent for every
+[00:05] single job. And that sounds completely
+[00:08] backwards until you see what they
+[00:10] switched to building instead. Think
+[00:12] about your phone. The AI model is the
+[00:15] processor. The AI agent running it is
+[00:18] the operating system. And skills, skills
+[00:21] are the apps on your phone. You don't
+[00:23] buy a whole new phone every time you
+[00:26] want a new feature. You just install a
+[00:28] new app and all of a sudden your phone
+[00:30] can now do things it couldn't do a
+[00:32] minute ago. And skills are exactly that.
+[00:36] By the end of this video, you will stop
+[00:38] babysitting a pile of half-trained
+[00:41] agents and start building one that gets
+[00:44] better every week. So in this video, I'm
+[00:46] going to show you exactly what an AI
+[00:49] skill is, how to build one for any job
+[00:52] you want done in a couple of minutes,
+[00:54] and where to steal the best ones other
+[00:56] people already made. Let's get started.
+[00:58] Here's the trap I fell into for months.
+[01:01] Every time I wanted my agent to do a
+[01:03] job, I'd spin up a whole new agent or
+[01:06] sub-agent for it. I made one for
+[01:08] content, I made one for emails, made one
+[01:12] for outreach. And every single one
+[01:15] needed time, monitoring, training,
+[01:18] enhancement. But the moment I started
+[01:21] using and familiarizing myself with
+[01:23] skills, everything changed. All of a
+[01:25] sudden, all I had to do was teach the
+[01:28] agent the job once, save it, and then
+[01:31] have that skill at my disposal forever.
+[01:34] When you learn skill building, you're
+[01:36] moving away from the need to build more
+[01:38] AI employees and instead, you're giving
+[01:41] one employee a bigger toolbox. And the
+[01:44] best part is a skill is genuinely just a
+[01:47] folder with a text file in it. So, let
+[01:49] me show you what's actually inside. A
+[01:51] skill is essentially nothing more than
+[01:53] one folder with one file, which is
+[01:56] typically called skill.md. The top of
+[01:59] that file has two lines that matter, the
+[02:01] name and the description. The
+[02:03] description isn't for you, it's for your
+[02:06] agent. It's how the agent decides when
+[02:09] to reach for this skill. Then below
+[02:11] those two lines, you just write the
+[02:13] instructions in plain English, aka how
+[02:15] you want the job done every time it does
+[02:18] it. And from that moment onward, your
+[02:20] agent does something clever. By the way,
+[02:22] it doesn't read every single skill you
+[02:25] own on every message. That would burn
+[02:27] through your contacts very quickly. It
+[02:29] only reads the name and the description
+[02:31] until your request actually matches one.
+[02:34] Then it opens the full skill. This is
+[02:36] called progressive disclosure, by the
+[02:39] way, which is a fancy way of saying the
+[02:41] toolbox stays closed until you need to
+[02:43] use the tool. So, a skill has two jobs,
+[02:46] to tell the agent when to use it and to
+[02:48] tell it how to use it. Now, let me show
+[02:51] you how you can build one in minutes.
+[02:53] Okay, let's build a skill together. For
+[02:56] this video, I'm thinking we build a
+[02:58] YouTube research skill, which is one of
+[03:00] the skills I personally use the most and
+[03:02] teach our clients to use as well. What I
+[03:05] want the skill to do is find us viral
+[03:08] pockets inside of YouTube and outline
+[03:11] what the top five are in order of
+[03:13] virality. If you create content on
+[03:16] YouTube, this allows you to find great
+[03:19] video content ideas. The way it works is
+[03:21] we go to YouTube or a YouTube search
+[03:24] engine like VidIQ or one of 10, doesn't
+[03:27] really matter, and we search for the
+[03:30] niche that we want to look for. So, in
+[03:33] my case, for example, it's AI. Then what
+[03:35] I typically do is filter by date. So,
+[03:39] publishing date, let's put this week or
+[03:42] this month. Then we filter by at least
+[03:45] an outlier score of two. That's my
+[03:47] range. Also, view range above 50,000
+[03:52] and apply. Then we fetch all of the
+[03:55] videos here that makes sense for the
+[03:57] niche we're working with, and then we
+[03:59] try to find the common patterns and
+[04:01] formats and titles and topics. We're
+[04:05] essentially trying to see are there
+[04:06] viral topics right now or within the
+[04:09] last month are there viral formats? For
+[04:11] example, how to fill in the blank in 30
+[04:15] days. That's a format. We're trying to
+[04:17] fetch all of those and turn them into a
+[04:19] skill. So, let's do that right now. And
+[04:21] there are three ways to build a skill.
+[04:23] I'll take you from the most manual way
+[04:25] all the way to the one where you barely
+[04:28] lift a finger. The first way to build a
+[04:30] skill and also the way I would not
+[04:33] recommend my worst enemy to ever do is
+[04:36] to write it manually. I included it in
+[04:39] this video because I think it's
+[04:40] important that you at least see what a
+[04:42] skill looks like on the inside at least
+[04:45] once because it'll show you and help you
+[04:47] understand the mechanics of skill better
+[04:50] than the other two ways will ever do. In
+[04:53] order to do this, you can click on the
+[04:54] little plus sign then on skills then
+[04:58] browse skills and we're going to click
+[05:00] on add and then create a skill. At the
+[05:03] top of that file, we will include the
+[05:06] name of the skill. Let's call it YouTube
+[05:09] Pockets. Then the description which
+[05:12] remember this is how the agent will know
+[05:15] when to fire that skill. So, it's
+[05:17] important to There you go. In the
+[05:18] example, use when asked for updates,
+[05:21] right? So, let's write finds viral
+[05:24] YouTube
+[05:25] Pockets use when asked to find viral
+[05:30] YouTube videos, for example, or you can
+[05:33] even be more specific use when use when
+[05:36] I say use YouTube dash pocket. I already
+[05:40] have a skill that is exactly like it.
+[05:42] So, I don't want to confuse my skills
+[05:44] too much. I want to do the skill as a
+[05:46] demo instead. So, I'm going to go with
+[05:48] this, but if you're creating a skill for
+[05:50] the first time, then describe when or
+[05:53] what action you would be performing for
+[05:55] it to pull up that skill. And then here,
+[05:57] we describe how we want the skill to
+[05:59] work or the instructions. Those would be
+[06:01] the exact steps you want it to follow
+[06:03] when applying that skill. Think of it
+[06:05] like handing a rulebook to a new hire. I
+[06:08] I wrote down every time I say the
+[06:10] keyword YouTube pockets, I want you to
+[06:12] use VidIQ and search through the niche I
+[06:14] want. Filter out uploads 4 weeks also
+[06:17] filter out uploads with an outlier score
+[06:19] below 2x then read all of the top titles
+[06:21] that come back and find pockets patterns
+[06:24] in the titles. For example, how to fill
+[06:26] in the blank in 7 days or X ways to get
+[06:28] rich using fill in the blank. Those are
+[06:30] title formats. Before you write
+[06:32] anything, ask me questions until you
+[06:34] have everything you need. And I'm going
+[06:36] to press create and boom, we just
+[06:38] created our first skill with its own
+[06:40] skill.md file. The great thing about
+[06:43] this is you can click on download if you
+[06:45] want to share it with a friend or a
+[06:47] colleague or teammate and eventually you
+[06:49] can update it and have multiple versions
+[06:52] of this. But I don't know a single
+[06:54] person who builds skills like this
+[06:56] day-to-day. So, let me show you how I
+[06:59] actually do it. Okay, let's move on to
+[07:01] way or method number two. This is the
+[07:04] one I use for almost everything which is
+[07:07] we don't write the skill, you describe
+[07:09] the job and your agent writes the whole
+[07:11] skill for you. And the whole thing lives
+[07:14] or dies on the prompt you give to your
+[07:15] agent. So, here's a good prompt you can
+[07:18] send your agent when creating a new
+[07:20] skill. Great thing is Claude has a
+[07:22] starter prompt. If we go to skills,
+[07:24] browse skills, add, and then create with
+[07:27] Claude, then it gives us this skill. So,
+[07:30] here's what we're going to do. We're
+[07:31] going to input it and then it's going to
+[07:34] start asking us about the skill. Now, I
+[07:37] already have the previous instructions
+[07:39] that that wrote. I'm going to send it to
+[07:41] it and we'll go from here. There you go.
+[07:43] It asked me a bunch of questions so that
+[07:46] it really understands how that skill is
+[07:48] done, and I'm going to go ahead and
+[07:50] answer each and every single one of
+[07:51] them, 1 to 12. All right. We just spoke
+[07:55] a lot. It didn't write this. I just
+[07:58] spoke it out into existence, and we're
+[08:00] going to see what it comes back with.
+[08:03] All right. It has three more follow-up
+[08:04] questions, and then it says we should be
+[08:06] done. All right. We answered its
+[08:08] questions briefly. I mean, it already
+[08:10] had good guesses as to what would make
+[08:13] for a good skill here. It was great
+[08:16] because that's what it's all about with
+[08:17] you using Claude this, you know, it can
+[08:19] think and reason what is the best way to
+[08:21] get from point A to point B. And now
+[08:23] we're going to let it run and see what
+[08:25] it comes back with. Here we go. It's
+[08:27] created the skill. I'm going to click on
+[08:29] save. With that, let's tell it use
+[08:32] YouTube pockets for the
+[08:35] AI niche, and let's see if it works.
+[08:38] Look at this. It's taking all the right
+[08:40] steps. I've no idea what these searches
+[08:43] are, but that's part of its process.
+[08:45] It's fine. Searching for the keyword,
+[08:48] it's ranking by top outliers, then it's
+[08:52] validating them. So, obviously, none of
+[08:54] these videos would fit and our pocket AI
+[08:56] opportunities, AI robots, faceless AI
+[08:59] YouTube channel. Yay. There you go. So,
+[09:01] it found the most viral pockets inside
+[09:03] of AI right now, which is expected. AI
+[09:07] danger explained calmly. This is very
+[09:09] nice. Highest potential uh with title
+[09:11] suggestions. A reasonable person's guide
+[09:14] to how AI takes your job. That is very
+[09:16] grim. The dark future of AI agents. I
+[09:18] can easily see this being in the
+[09:20] millions if that is your niche. Want to
+[09:23] be an AI commentator. Hit number two,
+[09:25] contrarian AI opportunity takes. The
+[09:28] biggest AI opportunities aren't where
+[09:31] you think. Why the AI agent boom is just
+[09:33] getting started. These are great new
+[09:35] titles for your channel. Five insane,
+[09:37] and this is the third pocket by the way.
+[09:39] Five insane AI robots in 2026 you'll
+[09:41] want at your desk. Oh, it actually gave
+[09:43] us four pockets even though its
+[09:45] requirement is a minimum of two, but it
+[09:47] didn't just stop at the minimum. This AI
+[09:49] history niche is exploding. This
+[09:51] faceless AI niche is exploding right
+[09:53] now. So, those are four different
+[09:55] pockets meaning four different sub
+[09:57] niches within AI as a niche itself as
+[10:01] the mother niche as I like to call it.
+[10:02] And it gave us great video suggestions
+[10:05] for just that. This is exactly how I
+[10:08] work on both my videos, but also our
+[10:11] clients' videos to come up and ideate
+[10:15] what videos would work best for each and
+[10:18] every one of their niches. Just like
+[10:20] that, we just created a skill by telling
+[10:22] Claude itself to do it for us. Now, what
+[10:24] if I told you there was an even lazier
+[10:27] way to do this? And honestly, it's a
+[10:30] pretty cool function. And finally, on
+[10:32] Claude there is a If we go to browse
+[10:35] skill, click on add, there's a record
+[10:38] your screen option, which if we click on
+[10:40] it, we can start recording ourselves as
+[10:43] we're doing the thing so that Claude can
+[10:45] literally learn step-by-step how we want
+[10:47] something done. Now, this skill isn't
+[10:50] maybe the perfect skill to do it because
+[10:52] I wanted to use an MCP like vidIQ to
+[10:55] access the data, but say you want data
+[10:58] extraction, you want very specific
+[11:00] things that you typically do manually by
+[11:03] hand, then you can record yourself doing
+[11:05] it and it will learn every single step
+[11:08] of the way and it will see what you're
+[11:09] doing. Okay, he opened this folder on
+[11:11] his desktop, then he created a new file,
+[11:14] and he named that file this, and he got
+[11:17] this name from that place, and inside
+[11:20] that file he put in all of these
+[11:22] different other files that he downloaded
+[11:25] off of his email. So, it will learn
+[11:27] every single step of the way that you
+[11:29] previously did manually, and then it
+[11:31] will be able to recreate that for you.
+[11:34] That way you never have to do it again,
+[11:36] and you can just ask it to do that
+[11:38] process, and it will do it for you. Just
+[11:40] know that this record feature is
+[11:42] Claude's own. If you're on another agent
+[11:45] like Hermes agent, then way two or
+[11:47] method number two is your main move,
+[11:50] because a good prompt works literally
+[11:52] anywhere. And once you can build a
+[11:54] skill, the real shortcut is not having
+[11:57] to build them at all. Now, here's the
+[11:59] part that saves you the most time. You
+[12:01] do not have to build every skill you
+[12:04] need yourself. Always, always look up if
+[12:08] the skill already exists or not. And
+[12:11] there are two places where you can find
+[12:13] skills. The first is the official one.
+[12:15] You click on the little plus symbol, you
+[12:17] go to skills, you go to browse skills,
+[12:20] and from there you can find a whole
+[12:23] array of skills that are free for you to
+[12:26] download and install onto Claude.
+[12:28] There's a ton here that are absolutely
+[12:31] gold, but as you can see, you are
+[12:33] limited to, I don't know, over 200,
+[12:37] let's say, skills. The second and much
+[12:39] richer place to look for skills is the
+[12:41] community. There's now an open standard
+[12:44] for skills, which means one skill folder
+[12:46] works across Claude, Codex, Cursor,
+[12:50] Hermes, you name it. And there are full
+[12:53] marketplaces built around it. GitHub is
+[12:56] by far the most popular place you can
+[12:59] find a ton of free and open source
+[13:02] skills. You can use the search bar to
+[13:05] find anything you're specifically
+[13:07] looking for. Say, for example, marketing
+[13:10] skills, and there you go. But GitHub can
+[13:12] be very keyword search specific. This is
+[13:15] also where you can find a lot of my free
+[13:17] skills that I've open sourced like a
+[13:19] Hermes agent mission control dashboard,
+[13:21] X book marks where you bookmark things
+[13:23] on X, and then your Hermes or your open
+[13:26] Claude agent goes and reads them for you
+[13:28] at the end of the day and actions the
+[13:30] things that you've bookmarked. There's a
+[13:31] ton that I've open sourced. You can also
+[13:34] go to the trending section of GitHub,
+[13:36] which will show you all the not just
+[13:38] skills, but all the repositories that
+[13:40] are trending on GitHub. Now, for skill
+[13:43] specific libraries or repertoires, there
+[13:46] are skill marketplaces like claw
+[13:49] marketplaces.com. It has a ton of great
+[13:51] skills. One of the skills is called find
+[13:53] skills, which is literally a skill that
+[13:55] you install and then it helps you find
+[13:57] skills. So, when you say things like how
+[13:59] do I do X or find the skill for X or is
+[14:02] there a skill that can, it will trigger
+[14:04] and it will find or search for the
+[14:05] skills for you. There's skills MP,
+[14:08] skills marketplace as well. There's lobe
+[14:10] hub. There's a ton of skill
+[14:13] marketplaces. And to install them, it's
+[14:15] simple. Say, for example, I want to
+[14:17] install one of my skills like my most
+[14:19] popular one I think is the Hermes agent
+[14:21] mission control. You just copy the link
+[14:24] to that skill. You go to your claw chat,
+[14:26] to your Hermes chat, whatever it is. You
+[14:29] paste it in and you ask it install it
+[14:32] for me. A quick disclaimer though,
+[14:34] always always before you ask it to
+[14:37] install, but before you do, read the
+[14:41] entire skill and scan for anything
+[14:46] malicious or any malware. Always do that
+[14:49] because these are third-party skills.
+[14:52] You never know what a stranger is trying
+[14:54] to do because skills run code or scripts
+[14:57] and you never know what they've injected
+[14:59] into them. So, always have your agent
+[15:01] scan and make sure that that skill is
+[15:04] safe for you to install. Most skills are
+[15:06] fine to install, but it's always better
+[15:08] to be safe than sorry. And just like
+[15:10] that, you don't need more agents
+[15:12] anymore. You need one good agent and a
+[15:14] shelf of skills. You build the three
+[15:17] skills you use every week, then you
+[15:19] steal the rest and supercharge your claw
+[15:22] or any other agent you use with all the
+[15:24] skills it needs because you don't need
+[15:26] to buy a new phone for every new task.
+[15:29] Comment which skill you would build
+[15:31] first. I'm curious to see what people
+[15:34] use Claude for the most and I dropped my
+[15:36] starter skill.md template plus the full
+[15:39] list of places to find skills plus all
+[15:43] the prompts that I used inside of this
+[15:45] video in a free doc. The link is at the
+[15:48] top of this video's description so you
+[15:49] can copy the whole setup right away. If
+[15:52] you enjoyed this video, make sure to
+[15:53] leave a like and if you're new to my
+[15:55] channel, then subscribe because I have a
+[15:57] ton more content like this coming your
+[16:00] way. Oh, and the algorithm gods just
+[16:02] told me you're very likely to enjoy this
+[16:05] next video as well, so click it and I'll
+[16:07] see you there.

@@ -1,0 +1,32 @@
+[00:00] Hey guys, today I want to talk about AI slop. If you use AI to make games, 3D models, or other game assets, is it slop?
+[00:06] From my point of view, slop is low effort. And if you make a game with one or two prompts, and that's it, without your vision or your time, that's slop.
+[00:16] And that's not how AI is supposed to be used. But, if you use AI as a tool, like Blender or Photoshop or 3ds Max or any other tool, and you spend time polishing what you create, then I don't think it's slop.
+[00:29] I've spent the last 2 months making this game about managing pit boxes, and I've mentioned it a few times in our previous videos. And I worked on it in my spare time. Some days a few hours, some days a whole day, and I used AI to speed up my workflow.
+[00:41] I completely web coded this game using Claude code, and I'm spending a lot of time polishing it. I constantly reverse things, change things, try different animations, speeds, behaviors of NPCs, and so on.
+[00:55] For the animations, some were made with AI, some are from Mixamo, and some I did with motion capture myself. And maybe I'll show that in my other video.
+[01:04] I generate most of the assets using Tripo, but I also buy some from the Unity asset store and create simple things myself, like these walls, for instance.
+[01:13] So, it's a combination of all that work, and I think it's high effort, even though I'm using a lot of AI. Now, let me show you how I'm creating different environments and weather for this game.
+[01:24] Here's the winter environment, and I used a real flow add-on in Blender to create snow on top of these models, which is super cool. And I asked Claude to create shader with for these shiny pieces, which gives a real nice fresh frosty snow look.
+[01:37] I also used Claude code connected to my OpenArt account to create these snowy patches on the ground, as you can see here. And I also made this tree using Tripo.
+[01:49] As you can see, I can switch between different weather conditions, day, foggy, and night. This is the weather manager I web coded it Claude.
+[01:57] For all of the environments, I created the ground with Unity terrain and painted the soil, grass, and other layers myself. I also placed trees, grass, and these pit boxes manual. So, I'm not using AI for everything. There's still a lot of manual work.
+[02:11] Then there's this sunset one, which looks very cool. The foggy one, and the night one.
+[02:17] Claude also helped me to bake ground reflections into light probes so I can use day and night in the same scene without separate scenes. Super cool.
+[02:24] Then here's the desert one. Claude created these bushes, decals, and sand details, and I painted the desert ground myself. Looks very good to me. Tell me if you don't agree.
+[02:36] And there is autumn with these mud puddles and leaves in a few variations.
+[02:41] And the rainy one probably took the most time. Let me play it and you'll see why. As you can see, there are little puddles with animated raindrops and these nice reflections on the ground.
+[02:52] And this is URP, not HDRP. I think it looks pretty decent. Check out these reflections. This is good.
+[03:01] And it's very optimized, by the way. Every time in the end of the day or after finishing big task, I asked it to optimize everything with it. Garbage collection, graphics, code, do refactoring also. I don't leave it to the very end.
+[03:15] It definitely won't work on mobile, but for PC, it's very optimized.
+[03:21] And this is the night rain, very atmospheric. Tell me if you don't agree.
+[03:25] And check this out. The cars and these projectors have this volumetric light, and it's fake. Claude helped me to do this, too.
+[03:31] It's cone mesh where you can change the angle and the segments, and the material where you control the intensity and the falloff, so the sides can be soft or very sharp.
+[03:41] But how I'm coming up with all these looks? I probably should have mentioned that in the beginning. But before making all these, I used Claude to create prompts for Nana banana and generated reference images in OpenArt for each weather.
+[03:54] So, basically, I uploaded a screenshot from my game and asked Claude to create a few prompts for different weather conditions, which are then I gave those prompts to Nana Banana to generate these reference images for me.
+[04:07] Check it out. This is the rainy one. This image is from Nana Banana and this one is from the game. Almost identical. It's not that I told Claude do the same, I did it myself. The lighting, the reflections, how sharp they are, the colors, all the small details. I had many reference images and I chose the ones I liked and then I tried to reproduce them in the game.
+[04:30] And here's the winter one. The lighting is a bit different, but it's very close to what I was trying to achieve. And the desert sunset, check it out. Very similar to the concept.
+[04:41] So, this is how I'm using AI to make nice-looking game with a nice game feel. It's not AI doing everything. I know a lot of games made with one or two prompts. They look nice on screen, but when you play them, they are terrible because the game feel is horrible.
+[04:56] AI doesn't know yet how to make good game feel. That's what game developer does. So, from my point of view, AI is only a tool. It's not a replacement for developer.
+[05:07] Things like a raindrop decals or light beams would have been taking me a lot of time to figure out. AI helped me to understand them, to use them properly in an optimized way.
+[05:18] And I know a lot about game development, but AI still really helps me to make my games better.
+[05:24] So, that's my point of view and let me know in the comments whether you agree with me or not. And by the way, if you want to try OpenArt or Trypo, I have a link in the description. You can get some discounts for your accounts. And thanks for watching and I'll see you in the next one. Bye.
