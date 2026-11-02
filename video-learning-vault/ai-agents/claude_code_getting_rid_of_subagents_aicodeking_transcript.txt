@@ -1,0 +1,342 @@
+[00:03] Hi, welcome to another video. So, Claude
+[00:06] published an article that tells a lot of
+[00:08] us we have been building agents the
+[00:10] wrong way. It is called when to fold sub
+[00:12] agents into your main agent loop. It is
+[00:14] by Diane Sarkis and it came out on the
+[00:16] 22nd of October 2026.
+[00:19] In this video, I will first walk you
+[00:21] through what the article says in plain
+[00:22] words and then I will show you how the
+[00:24] same idea works in Panda code, which
+[00:26] gives you both a normal single chat and
+[00:28] a proper team mode. By the end, you
+[00:30] should know when to use a team and when
+[00:32] one chat is the better and cheaper call.
+[00:34] Now, let's talk about the article
+[00:35] because the main point is simple, but it
+[00:37] goes against what most people do right
+[00:39] now. So, the article says companies over
+[00:41] use sub agents because they copy their
+[00:42] org chart into the agent. The billing
+[00:44] team gets a billing sub agent, the
+[00:47] support team gets a support sub agent
+[00:49] and an orchestrator sits on top and
+[00:51] routes work between them.
+[00:52] The article calls this Conway's law at
+[00:54] work. The old idea that a system ends up
+[00:56] shaped like the teams that built it. It
+[00:58] looks organized on a diagram, but the
+[00:59] article argues it often hurts quality
+[01:01] while it adds cost and latency. What
+[01:03] does it want instead? One main agent
+[01:05] loop that loads skills and tools only
+[01:07] when the task needs them. The article
+[01:09] calls this progressive disclosure, which
+[01:10] just means the agent starts with short
+[01:12] descriptions and pulls in the full skill
+[01:14] or tool only at the moment it needs it.
+[01:15] One agent can then cover a lot of work
+[01:17] without dragging every rule into every
+[01:19] run. And this is not just theory. The
+[01:21] article says Anthropic cut the Claude
+[01:23] code system prompt for the more advanced
+[01:25] models by over 80% in part by disclosing
+[01:28] skills and tools this way instead of
+[01:29] loading everything up front. So, there
+[01:31] is that. Now, to be fair, the article
+[01:34] does not say sub agents are always bad
+[01:37] and that balance is why I like it.
+[01:39] Sub agents still help for verification
+[01:41] where a fresh agent checks work it did
+[01:43] not make and can catch mistakes the
+[01:45] maker talks itself out of.
+[01:47] They help for parallel work where pieces
+[01:49] do not depend on each other and they
+[01:51] help for modular permissioning where you
+[01:53] give a narrow piece of work only the
+[01:55] narrow access it needs instead of giving
+[01:57] one big agent the keys to everything.
+[02:00] But split too much and you get the
+[02:01] failure modes the article names. And to
+[02:04] be honest, I have seen all of them.
+[02:06] There is sub-agents brawl, where every
+[02:08] team ships its own overlapping
+[02:09] sub-agent, and nobody owns the set.
+[02:11] There is the Frankenprompt, where every
+[02:13] team adds one more sentence to the
+[02:14] system prompt until the rules fight each
+[02:16] other.
+[02:17] There is the telephone game, where each
+[02:18] handoff between agents loses a little
+[02:20] detail, so the last agent works from a
+[02:23] faded copy of what the first one knew.
+[02:25] And every nested loop adds latency
+[02:27] because each sub-agent is another full
+[02:28] agent run.
+[02:29] The article puts a number on that
+[02:30] latency. In one customer case, a single
+[02:33] agent loop ran roughly two times faster
+[02:36] than the multi-agent setup it replaced.
+[02:38] Take it with a grain of salt, since it
+[02:39] is one case, but the direction makes
+[02:41] sense when you count how many extra runs
+[02:43] a deep chain burns. So, how do you
+[02:45] decide what stays in the main loop? The
+[02:47] article's test is clean. Keep work in
+[02:48] the main loop when each step builds on
+[02:50] the step before it, when the steps share
+[02:52] the same data, or when you almost always
+[02:54] call them together. If two pieces always
+[02:56] travel together, splitting them just
+[02:57] adds a handoff in the middle for no
+[02:58] gain. Then pick the right container
+[03:00] inside that one loop. Domain judgment,
+[03:02] like how an expert handles a case,
+[03:04] belongs in a skill. An action, live data
+[03:06] from a system, or a hard limit belongs
+[03:08] in a tool. And a fact you only need now
+[03:10] and then does not belong in the prompt
+[03:12] at all.
+[03:13] It belongs in a knowledge base lookup
+[03:15] the agent calls when it needs it.
+[03:17] Judgment in a skill, action in a tool,
+[03:19] occasional facts in a lookup, that one
+[03:21] split cleans up most messy setups. The
+[03:24] article also says you can fold back the
+[03:26] separate routers, planners, and narrow
+[03:28] specialists that many of us built last
+[03:30] year because the main model now does
+[03:32] much of that routing, planning, and
+[03:33] categorizing itself as part of its
+[03:35] normal reasoning.
+[03:36] Its example is a setup with a
+[03:38] classifier, a pipeline, separate
+[03:40] branches, and an orchestrator on top,
+[03:42] all replaced by one clear prompt, four
+[03:44] or five thin tools that work with data,
+[03:46] and firm guardrails. Same job, far fewer
+[03:48] moving parts.
+[03:50] One warning sits next to this, though.
+[03:52] The article says tool choice degrades
+[03:53] once you pass roughly 30 to 50 tool
+[03:56] definitions in the prompt. So, folding
+[03:58] work into one loop does not mean dumping
+[04:00] everything into one loop. It means one
+[04:02] loop, a small set of well-named tools
+[04:04] grouped by what the user wants to do,
+[04:06] and the rest disclosed only when needed.
+[04:08] So, how do you make the change without
+[04:09] breaking a working system? Fold one
+[04:11] sub-agent at a time, starting with the
+[04:13] pair you use most or the pair that is
+[04:15] most tightly coupled. Turn that
+[04:17] sub-agent's prompt into a skill and its
+[04:19] API calls into tools, then measure
+[04:21] before you touch the next one.
+[04:23] And the measuring can start small. The
+[04:25] article says even 10 golden examples is
+[04:27] enough to start, which means a small set
+[04:29] of real tasks where you know what a good
+[04:30] result looks like. Run the old setup and
+[04:33] the folded setup on the same examples
+[04:35] and compare. And run each eval more than
+[04:37] once because the article describes a
+[04:39] support chain where folding silently
+[04:41] broke the flow and the break showed up
+[04:43] in only one run out of two. Run it once
+[04:46] and pass by luck and you have shipped a
+[04:48] coin flip. When do you keep a sub-agent
+[04:49] separate after all that? The article
+[04:51] gives three reasons. And this is the
+[04:53] checklist worth keeping.
+[04:55] Keep it separate only if you can measure
+[04:57] that its context makes the main agent
+[04:58] worse. If the work runs well in parallel
+[05:01] in fresh contexts you can throw away
+[05:03] when they finish. Or if a single agent
+[05:05] keeps struggling with tool choice or
+[05:06] with instructions that conflict. The
+[05:09] rule under all three is to split by
+[05:10] context, not by problem type. Give a
+[05:13] separate agent work that needs little
+[05:15] from the rest of the system and let it
+[05:17] hand back one compact result like
+[05:18] independent research or a black box
+[05:20] check on finished work. If I boil the
+[05:22] article down to one line, it is this:
+[05:25] measure, change one thing at a time, and
+[05:27] keep what holds up. Do not restructure
+[05:28] on vibes in either direction.
+[05:30] Now, let's come to the second half
+[05:32] because this is where it gets practical.
+[05:34] Let me show you how the same choice
+[05:36] looks in Panda code, which is the app I
+[05:38] use on this channel to run coding agents
+[05:40] and which gives you both a single agent
+[05:42] mode and a team mode for the same task.
+[05:45] One honest note before I start, Panda
+[05:47] code's own docs never say fold. That
+[05:49] word is the articles. What I do here is
+[05:51] my interpretation, taking the articles
+[05:53] principle and pointing at the Panda
+[05:55] Coder option that does the same job. It
+[05:57] is important to keep those two things
+[05:59] separate in your mind. So, here is what
+[06:01] a Panda Coder team actually is. You have
+[06:03] one architect and that is the agent in
+[06:05] your main chat. The architect plans the
+[06:07] work, splits it into assignments,
+[06:09] dispatches several workers in parallel
+[06:11] in one batch, and then reviews what
+[06:13] comes back.
+[06:14] Each worker runs in a fresh context of
+[06:16] its own. A worker is not a copy of your
+[06:18] main chat and it does not see your whole
+[06:19] conversation. It gets its own bounded
+[06:21] assignment, does that job, and reports
+[06:23] back.
+[06:23] >> And if you look here, you can see that
+[06:25] each worker can run on a different
+[06:27] harness and model with its own effort
+[06:29] setting. Whether that is Claude Code,
+[06:31] Codex, Kimmy, Open Code, GLM, Muse, or
+[06:35] another supported option.
+[06:37] You can also save team profiles. So, a
+[06:39] setup you like, say a strong architect
+[06:42] with a couple of cheaper workers, is one
+[06:44] pick next time instead of something you
+[06:45] rebuild by hand, which is pretty good
+[06:47] for sure if you watch your spend,
+[06:49] because you control where the expensive
+[06:51] model time goes. Let me show you how the
+[06:53] workers divide the work. Read-only
+[06:55] workers inspect and review code without
+[06:57] changing it and they can run alongside
+[06:59] workers that write. Writing workers
+[07:01] declare a narrow file scope before they
+[07:02] start. So, one worker owns the data
+[07:04] code, another owns the interface,
+[07:06] another owns the tests.
+[07:08] If two writing scopes overlap, Panda
+[07:10] Coder runs those workers one after the
+[07:12] other instead of at the same time. That
+[07:13] scope is advisory, not a sandbox. So,
+[07:16] treat it as a strong convention that
+[07:17] keeps workers out of each other's way,
+[07:19] not as a wall. You can also chain
+[07:20] workers with dependencies, so a review
+[07:22] worker starts only after the writing
+[07:24] worker it reviews has finished. And when
+[07:26] a worker is close but not right, a
+[07:27] follow-up sends your correction into
+[07:29] that same worker's context. That matters
+[07:31] more than it sounds. A follow-up keeps
+[07:33] what the worker already learned instead
+[07:35] of paying for a brand new worker that
+[07:36] starts from zero. In the articles
+[07:38] language, that is a handoff you just
+[07:40] avoided. And what is the main loop in
+[07:41] this picture? It is the simple option.
+[07:43] Use a single agent in a normal chat or
+[07:45] let the architect just answer and edit
+[07:47] directly without delegating at all. That
+[07:49] in my interpretation is the fold back
+[07:50] and move. No workers, no handoffs, full
+[07:53] context in one place. The choice you
+[07:55] make at the start of a task in PandaCode
+[07:56] is exactly the choice the article
+[07:58] describes, which is why I wanted to show
+[07:59] them side by side. So, where does the
+[08:01] team genuinely win?
+[08:03] Let me walk you through the cases where
+[08:05] I reach for it.
+[08:06] If we send out several read-only
+[08:08] workers, you can see them research
+[08:10] different parts of a code base at the
+[08:11] same time and each one hands back a
+[08:13] short report while the main chat stays
+[08:15] clean.
+[08:16] For a bigger feature, one worker builds
+[08:19] the data side, one builds the interface,
+[08:21] one writes the tests, and a separate
+[08:23] review worker checks the result with
+[08:25] fresh eyes.
+[08:26] That is exactly the verification case
+[08:28] from the article. A team also wins when
+[08:30] you want the same prompt run across
+[08:32] different models so you can compare the
+[08:33] results side by side. And when you have
+[08:36] bulk edits that a cheaper worker model
+[08:37] can do while the strong model only plans
+[08:39] and reviews.
+[08:40] And it wins on long tasks that would
+[08:42] fill one context window because each
+[08:45] worker carries only its own slice and
+[08:46] the architect holds the thread. But now
+[08:48] the other side, because there is always
+[08:50] another side. For a one-file typo or a
+[08:52] small config fix, a team is pure
+[08:54] overhead. Use a single chat. For
+[08:56] interactive tweaks where you need to
+[08:58] look at every step,
+[08:59] one chat keeps you in the loop instead
+[09:01] of reviewing finished work after the
+[09:02] fact. For debugging one failing test
+[09:05] where every attempt builds on the last,
+[09:07] keep that shared state in one place. The
+[09:08] same goes for a quick question about
+[09:10] code already in your context and for
+[09:12] edits that hit the same file one after
+[09:14] another. In the article's words, that
+[09:16] work chains on prior steps and shares
+[09:18] data, so it belongs in the main loop.
+[09:21] Let me also be honest about the costs
+[09:23] because I do not want to sell you the
+[09:24] team mode as free speed. Every worker is
+[09:26] another model run, so a wide team burns
+[09:28] tokens faster than one chat, especially
+[09:30] if you put strong models on every seat.
+[09:32] Workers report back in bounded
+[09:33] summaries, so some Some is lost in every
+[09:36] handoff, just like the telephone game
+[09:37] the article warns about.
+[09:39] >> And all the workers share the same
+[09:40] checkout on your machine, which is why
+[09:42] those narrow file scopes matter.
+[09:44] The team buys you parallel time and
+[09:46] fresh eyes, and you pay for that in
+[09:48] tokens and in a bit of lost detail. Know
+[09:51] the trade before you pick it.
+[09:53] My own rule after reading the article is
+[09:54] simple, and it matches its advice.
+[09:57] Default to one chat and earn the team
+[09:59] with a reason you can name.
+[10:00] Parallel research, a clean split, a
+[10:03] separate check, a job too long for one
+[10:05] context. If I cannot name the reason, I
+[10:07] stay in the main loop. And most days
+[10:10] that is the faster and cheaper answer
+[10:11] anyway.
+[10:12] Overall, I think this article is worth
+[10:14] your time, even if you never build an
+[10:15] agent for anyone but yourself, because
+[10:17] most of us have copied our own habits
+[10:19] into agent setups that are bigger than
+[10:20] the task. And I like that Panda code
+[10:22] keeps both options one decision apart,
+[10:25] so folding back to a single agent is
+[10:27] just how you start the task, not a
+[10:29] rewrite. Start simple, measure, change
+[10:31] one thing at a time, and keep what holds
+[10:33] up. Overall, it's pretty cool.
+[10:35] Anyway, let me know your thoughts in the
+[10:37] comments. [music]
+[10:37] If you like this video, consider
+[10:39] donating through the Super Thanks option
+[10:41] or becoming a member by clicking the
+[10:43] join button. Also, give this video a
+[10:45] thumbs up and subscribe to my channel.
+[10:47] I'll see you in the next one. Until
+[10:48] then, bye.
+[10:57] >> [music]
