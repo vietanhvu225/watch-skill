@@ -1,0 +1,70 @@
+[00:00] DeepSeek just open-sourced an AI coding
+[00:02] agent that doesn't wait for you to open
+[00:04] a chat. It lives inside your team's
+[00:06] GitHub, and it is built around one idea:
+[00:09] take as little human attention as
+[00:11] possible. Here's what happened. On
+[00:14] October 31st, 2026, DeepSeek's Harness
+[00:17] team put a project called DSH Superagent
+[00:20] on GitHub under the MIT license and
+[00:23] published a long design article called
+[00:25] Exploring Superagent Design.
+[00:28] Within about a day, the repository had
+[00:30] more than 6,000 stars. So, what is a
+[00:33] superagent? Most coding agents work one
+[00:36] session at a time. You open a chat, give
+[00:38] it a task, and watch it. DeepSeek says a
+[00:41] person can really follow only three to
+[00:43] five sessions at once. So, the limit on
+[00:45] multitasking isn't the model, it's you.
+[00:48] DeepSeek's answer is a two-layer design.
+[00:51] A router stays running all the time. It
+[00:53] reads incoming events like GitHub
+[00:55] comments, pull requests, or messages in
+[00:57] Feishu, ByteDance's workplace chat app.
+[01:01] When an allowed person asks for
+[01:02] something, the router opens a work item
+[01:04] called a ticket. Each ticket gets its
+[01:07] own worker session and its own folder,
+[01:09] so tasks run side-by-side without mixing
+[01:12] up their context.
+[01:13] When the work is done, the answer goes
+[01:15] back to the same conversation, often as
+[01:17] a pull request. And it is polite by
+[01:20] design. The agent confirms a request
+[01:22] once, stays quiet while it works, and
+[01:25] speaks again only when it has a result,
+[01:27] a question, or a failure.
+[01:29] Work that nobody asked for needs a
+[01:31] written team rule, and it starts in a
+[01:33] mode that only records what the agent
+[01:35] would have done. A web panel shows just
+[01:37] the things that need a human.
+[01:39] Does it work?
+[01:40] In DeepSeek's own simulation, with about
+[01:42] 300 messages and 20 real requests, the
+[01:45] superagent's slowest tasks finished in
+[01:48] 15.7 minutes compared with 29.5 minutes
+[01:51] for a single session with subagents.
+[01:53] That's about 1.9 times faster.
+[01:56] But, those are DeepSeek's numbers, on
+[01:58] simulated messages, and code quality
+[02:00] wasn't measured. Bloomberg reports that
+[02:02] DeepSeek is aiming this at Anthropic's
+[02:04] Claude code. DeepSeek itself is careful.
+[02:07] The project page calls it a research
+[02:09] prototype, not an official DeepSeek
+[02:10] product, and says to review it before
+[02:12] you use it. For developers, here's the
+[02:15] catch. You need DeepSeek Harness,
+[02:17] Node.js, Git, Python, Tmux, and the
+[02:20] GitHub command line tool. And the setup
+[02:23] is done by your own coding agent reading
+[02:25] the setup guide with you.
+[02:26] It's a clear look at where AI coding is
+[02:28] heading, from chatbots who babysit to
+[02:30] teammates that work in the background.
+[02:32] Would you let an AI agent watch your
+[02:34] team's chats? Tell us in the comments.
+[02:36] And for free AI tools, visit
+[02:38] techthril.com.
