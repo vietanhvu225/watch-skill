@@ -1,0 +1,425 @@
+[00:02] Hi. Welcome to another video. So, if you
+[00:06] have been following the channel, you
+[00:07] know that I have been building Panda
+[00:09] code, which is my open source workspace
+[00:11] where you can run Claude code, Codex,
+[00:13] Kimmy, open code, and a bunch of other
+[00:15] coding agents side by side. And one of
+[00:17] the biggest parts of Panda code is agent
+[00:19] teams where one lead agent, the
+[00:21] architect, splits a task into
+[00:23] assignments and hands them to worker
+[00:24] agents that run in parallel. But, there
+[00:26] was always one problem with this.
+[00:28] The architect had to decide which model
+[00:29] each worker should use, and honestly, it
+[00:31] was not good at that. It would either
+[00:33] put Opus on everything, which burns
+[00:36] through your limits on stuff like
+[00:37] renaming a variable, or it would pick
+[00:39] something cheap for a task that clearly
+[00:40] needed a stronger model, and then you
+[00:42] would have to clean up after
+[00:44] So, I built something to fix that. It's
+[00:46] called Panda orchestrator, and inside it
+[00:49] is a small model I call Panda router.
+[00:51] Today,
+[00:52] I want to show you how I built it, how
+[00:54] it works, and all the new updates inside
+[00:56] Panda code that make the orchestrator a
+[00:58] lot better than before. So, let's get
+[01:00] right into it. Now, the first thing to
+[01:02] understand is that Panda router is not a
+[01:04] chatbot, and it doesn't write any code.
+[01:06] It's a tiny decision model. You give it
+[01:08] a task and a list of models you can
+[01:10] actually run, and it tells you which one
+[01:11] should handle it. It reads the task and
+[01:14] gives you a category, a difficulty from
+[01:16] 1 to 10, the skills the task needs, and
+[01:18] a few flags like whether it needs tools
+[01:20] or images. Then, a normal piece of code,
+[01:22] not a neural network, takes that profile
+[01:24] and scores every model against it on
+[01:25] chance of success, cost, and speed, and
+[01:27] picks one. I kept the judgment in the
+[01:29] model and the policy in code on purpose
+[01:31] because you can test code. If the router
+[01:33] makes a weird pick, I can see exactly
+[01:35] why it made it, and I can fix the rule
+[01:37] instead of retraining anything. Another
+[01:38] thing I decided early is that the models
+[01:41] are just data.
+[01:42] Every model has a small JSON card with
+[01:44] its skill levels, its price, its context
+[01:47] window, and its latency.
+[01:49] So, when a new model comes out, which is
+[01:52] basically every other day now, you add a
+[01:54] card, and that's it.
+[01:56] You don't need to retrain the router to
+[01:57] to about it. Now, let's talk about how I
+[01:59] actually built it. Because this was a
+[02:01] pretty fun one.
+[02:03] The profiler is based on Eton, which is
+[02:05] a family of small encoder models with an
+[02:07] MIT license.
+[02:08] They are trained on open data that
+[02:10] includes code and every size shares one
+[02:12] tokenizer. So, you can train a big one
+[02:14] and distill it into a small one. So, I
+[02:16] trained a 150 million parameter teacher
+[02:18] on Modal and then distilled it into a 32
+[02:21] million parameter student. That student
+[02:23] gets quantized to int 8 and exported to
+[02:25] ONNX and the final file is about 31 MB.
+[02:29] It routes a task in around 10 to 25
+[02:31] milliseconds on a normal CPU with no GPU
+[02:34] and nothing about your task ever leaves
+[02:35] your machine. The whole Modal training
+[02:37] run cost me $1.67,
+[02:39] which is kind of hilarious if you ask
+[02:40] me. The data was the harder part. For
+[02:42] the labels, I used DeepSeek-V4-1-Flash
+[02:45] as a teacher and it labeled about 8,000
+[02:47] tasks for just $2.77. But, labels like
+[02:50] this is difficulty six are only guesses.
+[02:52] So, I also did something I call attempt
+[02:54] and grade.
+[02:55] I had real models actually attempt the
+[02:58] tasks and then a strict judge graded
+[03:01] every answer as a pass or a fail.
+[03:04] That gives you real outcome data,
+[03:05] meaning this model really did solve this
+[03:07] kind of task and this other one really
+[03:10] did not.
+[03:11] I kept going with that until my
+[03:13] OpenRouter credits literally ran out at
+[03:15] around $44
+[03:17] and the DeepSeek balance ran out halfway
+[03:18] through grading as well. So, yeah, this
+[03:21] was done on a budget for sure. From
+[03:23] those outcomes, I trained what I call a
+[03:25] success head.
+[03:26] It takes the task profile and gives you
+[03:28] a calibrated chance of success for each
+[03:31] model plus a lower bound.
+[03:33] The router makes decisions on that lower
+[03:35] bound, not on the optimistic number. So,
+[03:38] it doesn't bet on a model that only
+[03:39] looks good on paper.
+[03:41] And the cost it compares is the expected
+[03:43] cost, which includes what a failed
+[03:45] attempt costs you. Because a cheap model
+[03:47] that fails half the time is not actually
+[03:49] cheap. There are also two small things
+[03:52] in training that I really like.
+[03:53] First, the difficulty loss is lopsided.
+[03:56] If the router has to make a mistake, I
+[03:58] want it to think a task is harder than
+[04:00] it is, not easier. Because underrating a
+[04:03] task is the expensive mistake.
+[04:05] And second, I fine-tuned it on about
+[04:08] 1,500 vague requests.
+[04:10] Things like make the app better with no
+[04:12] scope at all.
+[04:13] Those get rated harder on purpose
+[04:15] because a vague task really is harder
+[04:17] for any model to get right. But the
+[04:19] biggest idea in version four is the
+[04:21] escalation ladder. Along with its pick,
+[04:24] the router gives you an ordered list of
+[04:25] models to try. You start on the first
+[04:27] one. You check the result with tests or
+[04:29] a type check or a review, and if it
+[04:31] fails, you move one step up the ladder.
+[04:33] And it never steps down, which means
+[04:35] after a model fails, the next model is
+[04:37] always at least as strong as the one
+[04:39] that failed. Now, here are the numbers.
+[04:42] And I tested these on 150 held-out tasks
+[04:45] with real attempts with a nine-model
+[04:47] pool.
+[04:48] A single pick in the default mode solved
+[04:50] about 77 out of 100 tasks for around $1
+[04:53] per 100 tasks.
+[04:55] Always sending everything to GPT 6.1
+[04:58] solved solved about 79 for $1.11. So, a
+[05:01] single pick from the router is already
+[05:03] in the same range as always using the
+[05:04] big model while being cheaper. But, once
+[05:06] you let it escalate with at most two
+[05:08] attempts, it goes up to about 91 out of
+[05:10] 100. And the best case possible, where
+[05:12] you magically know the right model for
+[05:14] every task, is 94. So, with one retry,
+[05:17] the router gets really close to perfect
+[05:19] routing, which is just amazing to see. I
+[05:21] also want to be honest about one thing.
+[05:23] I trained a version five and a version
+[05:24] six after that with more data and a
+[05:27] fresh test set, and neither of them is
+[05:29] the default. I wrote down the pass rules
+[05:31] before running the evaluations, and both
+[05:32] of them missed in at least one place.
+[05:34] So, version 4.3 stays the default.
+[05:36] Version six also caught a funny bug
+[05:38] where answers longer than 6,000
+[05:40] characters were getting cut off before
+[05:41] grading. So, they almost always failed,
+[05:43] which made Sonnet look way worse than it
+[05:45] really is. So, there's that. Now, I'm
+[05:47] keeping the training part short here
+[05:48] because there is a lot more to it than I
+[05:50] can fit in this video. So, I made a
+[05:52] separate members-only video where I go
+[05:54] through all of it in detail. That covers
+[05:56] where the 8,000 training tasks came
+[05:58] from, how the teachers and judges were
+[05:59] checked against each other, the model
+[06:01] runs, the trick I used for vague tasks,
+[06:03] the success head and how it's
+[06:05] calibrated, and every mistake I made
+[06:07] from version 1 to version 6 with all the
+[06:09] numbers. If you're into that kind of
+[06:10] stuff, you can join the channel through
+[06:12] the join button, and it's right there in
+[06:14] the members tab. Anyway, the repo is MIT
+[06:17] licensed, and it comes with a CLI, an
+[06:19] HTTP server, a Python API, and an MCP
+[06:22] server, so you can use it with pretty
+[06:23] much any agent, not just PandaCode.
+[06:25] Anyway,
+[06:26] now let's come to PandaCode, because
+[06:28] this is where the router actually
+[06:30] becomes useful for you.
+[06:32] Panda router is now built straight into
+[06:33] PandaCode. I ported the whole thing to
+[06:35] Rust, and ONNX runtime ships inside the
+[06:38] app, so you don't need Python. You don't
+[06:40] need a server, and you don't need to
+[06:42] install anything. The first time you
+[06:43] turn on a team, PandaCode downloads the
+[06:45] 35 MB byte profiler once from a pinned
+[06:48] commit on GitHub and checks it with
+[06:49] SHA-256. It never downloads at launch,
+[06:52] and while it downloads, a simple keyword
+[06:54] fallback picks models, so your team
+[06:55] never waits on it. The router also sees
+[06:58] every model of every coding tool you
+[06:59] have installed. Before this, the
+[07:01] automatic team only offered 24 models,
+[07:04] six per tool, so things like Muse or the
+[07:06] newer Kimmy releases could just be
+[07:07] missing. Now it gets the whole list, and
+[07:09] on my machine, it's picking from 45
+[07:11] rated models right now. Next is the team
+[07:13] button in the prompt box. When you click
+[07:15] it, you now get one simple menu with no
+[07:17] team, cheap team, balanced, and best
+[07:19] team. Cheap team picks the cheapest
+[07:21] model whose chance of success clears a
+[07:23] minimum that you set. Balanced weighs
+[07:25] success against cost and speed, and best
+[07:27] just goes for the strongest fit. New
+[07:29] tasks start on whatever you used last,
+[07:31] so you set it once and forget it. And
+[07:33] this is where the escalation ladder
+[07:34] comes in. In cheap and balanced teams,
+[07:36] each worker starts on the cheapest model
+[07:38] that's likely to pass. The architect
+[07:40] checks the result, and if it fails, it
+[07:41] replaces the worker, and the router
+[07:43] picks a model stronger than every model
+[07:44] that already failed on that assignment.
+[07:46] After two retries, it stops and tells
+[07:48] you that it failed instead of burning
+[07:50] your limits in a loop, so you can
+[07:51] actually see this in the thread. The
+[07:53] dispatch note says something like routed
+[07:55] to Haiku, ladder one of three, and if
+[07:57] Haiku fails the review, the next note
+[07:58] shows the step up and the models it
+[08:00] skipped. Now, the next update is that
+[08:02] teams are router first. Every assignment
+[08:05] goes through Panda router by default.
+[08:07] The architect only picks a model itself
+[08:09] when you name one in your message, and
+[08:11] it only falls back to its own model when
+[08:13] the router has nothing left. So, if you
+[08:15] say use Kimmy K3 for the front end, it
+[08:18] will use Kimmy K3, and everything else
+[08:20] gets routed. Then there's failover,
+[08:22] which I think a lot of you will love. A
+[08:24] lot of the time, a worker doesn't fail
+[08:26] because the model is bad. It fails
+[08:28] because the harness broke. Maybe you hit
+[08:31] a rate limit, maybe the CLI crashed,
+[08:33] maybe your login expired. So, now when
+[08:35] that happens, Pandacode moves the worker
+[08:37] to the same model on another harness you
+[08:39] have installed like GPT-61S all through
+[08:41] Codex instead of through Command Code,
+[08:43] and runs it again on a fresh session.
+[08:45] The architect sees a failover node with
+[08:47] the real error, so nothing is hidden.
+[08:49] And this connects to model health. When
+[08:51] a model errors on a harness, Pandacode
+[08:53] pauses it there for 10 minutes, and that
+[08:55] doubles every time up to 2 hours. If two
+[08:58] models on the same harness are paused,
+[09:00] the whole harness is paused until
+[09:01] something on it works again.
+[09:03] Paused models never reach the router or
+[09:05] the architect. The pauses survive a
+[09:07] restart.
+[09:08] And in settings, you can see each one
+[09:10] with the reason, the time left, and an
+[09:12] allow now button. Also, a crashed run no
+[09:15] longer counts as a bad answer. Only a
+[09:17] result that fails review moves the task
+[09:20] to a stronger model, which is how it
+[09:21] should have been from the start. You
+[09:23] also get a switch for every harness and
+[09:25] every model in settings under models for
+[09:27] teams. So, if you don't want a certain
+[09:29] model to ever be used by your team, you
+[09:31] just switch it off, and the router, the
+[09:33] fallbacks, and the failover all skip it.
+[09:35] And harnesses with huge catalogs, like
+[09:38] Open Code or Kilo, now only give your
+[09:40] team their 10 most recently used models
+[09:42] plus any you add with the add model
+[09:44] button, so the router doesn't pick some
+[09:46] random model you have never touched.
+[09:47] Now, this next one is my favorite, and
+[09:50] it's the tier list. In settings, you can
+[09:53] drag your models into S, A, B, C, and D
+[09:55] rows, just like a normal tier list, and
+[09:58] your ranking actually steers the router.
+[10:00] For a ranked model, the chance of
+[10:02] success is 70% your tier and 30% the
+[10:05] router's own rating at every difficulty.
+[10:08] Your ranking also decides the order on
+[10:09] the escalation ladder and the floor for
+[10:11] never stepping down. One rank covers
+[10:13] that model on every harness. And a model
+[10:16] the router has no card for becomes
+[10:17] pickable as soon as you rank it. So, if
+[10:19] you think Kimmy K31 Pro is S-tier for
+[10:22] your kind of work, you can just tell it
+[10:24] that and the router will listen. It's a
+[10:26] strong weight and not a hard override
+[10:27] though. So, if you want your order to
+[10:29] win completely, rank both models.
+[10:31] Anyway, those are the routing updates,
+[10:33] but the orchestrator itself also got a
+[10:34] lot better in the latest releases.
+[10:36] First, workers can now start their own
+[10:38] sub-workers when a task really splits.
+[10:40] It's one level deep with at most three
+[10:42] running and six in total and only inside
+[10:44] the worker's own files, so they can't
+[10:46] step on anyone else's work. And while a
+[10:48] worker waits on its sub-workers,
+[10:50] it gets parked. Its process exits and
+[10:52] frees about 250 to 390 epic types of
+[10:55] memory. And it picks up again with their
+[10:57] results without using an attempt or an
+[10:58] architect round. Second, team messaging
+[11:01] doesn't need polling anymore.
+[11:04] Every team tool result now carries a
+[11:06] short digest of unread messages.
+[11:08] Agents can message the whole team or
+[11:10] reply to a single message. And an urgent
+[11:13] message reaches a running worker in the
+[11:14] middle of its turn.
+[11:16] There's also a shared notes board with
+[11:17] up to 64 short facts, like an API shape
+[11:20] or a decision the team made. And every
+[11:22] new worker gets it when it starts. So,
+[11:25] the front-end worker knows what the
+[11:27] back-end worker decided without someone
+[11:28] copy-pasting it around. Third, the
+[11:31] architect rests while workers run
+[11:32] before. It kept a spare process idling
+[11:35] the whole time. Now, only an urgent
+[11:38] message, a blocker, a failure, or
+[11:40] finished results wake it up and
+[11:42] everything uses fewer tokens, too.
+[11:44] Workers get app instructions that are
+[11:46] 80% shorter, about a third of the team
+[11:48] tool text. And the architect's review
+[11:50] turns are about a third of their old
+[11:52] size. So, you get more work out of the
+[11:54] same limits, which is quite great for
+[11:56] sure.
+[11:57] And you can actually follow all of this
+[11:58] now.
+[11:59] Every PandaCode tool reads as a sentence
+[12:02] in the thread. So, a dispatch shows up
+[12:04] as something like dispatch to workers
+[12:06] with a card listing each worker's model,
+[12:08] files, and status.
+[12:09] Team messages show up as bubbles and the
+[12:11] changes view now highlights which worker
+[12:13] changed which lines, and it opens big
+[12:15] diffs right away instead of freezing.
+[12:16] So, let me show you how this looks when
+[12:18] you put it all together.
+[12:20] I'll pick balance team from the team
+[12:21] button, and I'll give it a task like add
+[12:23] dark mode to this app with a settings
+[12:25] toggle, and make sure the tests pass.
+[12:28] Now, watch this. The architect splits it
+[12:30] into a few assignments and dispatches
+[12:31] them all in one batch. You can see the
+[12:33] small styling task got a cheap model,
+[12:35] the settings logic got a mid-tier model,
+[12:38] and the review got a stronger one. Each
+[12:40] line tells you which rung of the ladder
+[12:41] it is on. If we wait a bit, one of the
+[12:43] workers comes back, and the architect
+[12:45] runs the tests. Let's say one test
+[12:46] fails. The architect replaces that
+[12:48] worker with profile auto, and the router
+[12:50] moves it to a stronger model, never a
+[12:52] weaker one, and it's now done with every
+[12:54] worker on the cheapest model that could
+[12:55] actually do its job. Overall, I'm really
+[12:58] happy with how this turned out.
+[13:00] The whole router went from an empty repo
+[13:01] to version four in about 3 days.
+[13:04] It cost around $50 in total,
+[13:06] and it's now running inside an
+[13:07] open-source app that anyone can use for
+[13:09] free. It's not perfect. The model cards
+[13:12] are still estimates for a lot of the
+[13:13] coding tool models.
+[13:15] The success numbers look low because
+[13:16] they come from a strict judge, so you
+[13:18] should compare models with each other
+[13:20] and not against 100%. And Intel Macs and
+[13:23] x86 Linux still use the keyword fallback
+[13:26] because there's no compatible Onyx
+[13:27] runtime build for them yet.
+[13:29] And escalation is only as good as the
+[13:30] check the architect runs, so give it
+[13:32] real tests if you can. But the upsides
+[13:34] make it super worth it. You stop wasting
+[13:36] your best models on easy stuff.
+[13:38] You stop getting burned by weak models
+[13:39] on hard stuff, and when a harness
+[13:41] breaks, your team just keeps going. Both
+[13:43] Panda Orchestrator and Panda Code are
+[13:45] open source, and the links are in the
+[13:46] description.
+[13:48] Overall, it's pretty cool.
+[13:50] Anyway, let me know your thoughts in the
+[13:51] comments. If you like this video,
+[13:53] consider donating through the Super
+[13:54] Thanks option, or becoming a member by
+[13:56] clicking [music] the join button. Also,
+[13:58] give this video a thumbs up and
+[14:00] subscribe to my channel. I'll see you in
+[14:01] the next one. Until then, bye.
+[14:08] >> [music]
