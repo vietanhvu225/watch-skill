@@ -1,0 +1,417 @@
+[00:03] Hi, welcome to another video. So, the
+[00:06] Deep Seek Harness team just published a
+[00:08] long article called Exploring Super
+[00:10] Agent Design and I think it is one of
+[00:12] the most useful things I have read about
+[00:14] coding agents this year because it isn't
+[00:16] selling a model or a feature. It starts
+[00:18] from a problem that you have probably
+[00:20] felt already. The agents got good enough
+[00:22] to work on their own and now the thing
+[00:24] slowing you down is you. They say that a
+[00:27] person can usually follow only three to
+[00:28] five active sessions at once, and that
+[00:30] sounds right to me. Past that point, you
+[00:32] forget which session knows what. One of
+[00:34] them has been waiting on an approval for
+[00:36] 20 minutes, and two of them are touching
+[00:38] the same pull request. A single task is
+[00:40] limited by the model, but running many
+[00:42] tasks is limited by your attention. So,
+[00:44] their idea is to stop making the session
+[00:46] the thing you manage. You talk to one
+[00:48] agent in the places where you already
+[00:50] work, like your team chat and your
+[00:51] GitHub comments, and the system creates
+[00:53] and manages the sessions behind it. They
+[00:55] call this a super agent. Now, one
+[00:57] important thing before we start. This
+[00:59] article is about architecture. It is not
+[01:01] a list of features that Deep Seek Caress
+[01:02] has today. They also published a
+[01:04] prototype on GitHub called DSH Super
+[01:07] Agent. And they say clearly that it is
+[01:09] research code and not an official
+[01:10] product. So, you can't just install the
+[01:12] system from the article, but you can use
+[01:14] a lot of these ideas right now. So, in
+[01:16] this video, I want to explain how the
+[01:17] design works and then show you how I
+[01:19] would build a version of it in Pandaode
+[01:21] with client pass for the models and
+[01:23] client desktop for the recurring jobs.
+[01:25] So, let's get right into it.
+[01:26] >> The article says that a super agent
+[01:28] needs four things. It has to be
+[01:30] continuous, which means it always feels
+[01:33] like one agent. So, you can ask for plan
+[01:35] A in the chat, switch to plan B in a
+[01:37] pull request comment, and it understands
+[01:39] the change. It has to be productive, so
+[01:42] it can take your next instruction before
+[01:44] the last task is finished. It has to be
+[01:46] proactive, so it watches what is
+[01:48] happening and acts on what matters
+[01:50] without being told. and it has to be
+[01:52] persistent so it stays online and
+[01:54] recovers when something breaks. The
+[01:56] first big idea is the one I like the
+[01:57] most and it comes from a simple
+[01:59] trade-off. If you send every event to
+[02:01] one session, you get perfect context,
+[02:03] but that session can only do one thing
+[02:05] at a time and the details of different
+[02:07] tasks get mixed together. If you give
+[02:09] every event its own new session, you get
+[02:11] a lot of speed, but nothing is connected
+[02:13] and you get several agents all replying
+[02:15] to you separately. So, they split it
+[02:17] into two layers. The first layer is the
+[02:19] router, which is one longived session
+[02:21] that talks to people and hands out work.
+[02:24] It doesn't do the work itself, and it
+[02:26] can even run without a bash tool. The
+[02:28] second layer is the workers. Each worker
+[02:30] gets one task and its own clean context,
+[02:32] and it never talks to people directly.
+[02:34] It only reports back to the router, so
+[02:36] you only ever hear from one agent. This
+[02:38] also flips how you would normally pick
+[02:39] your models. The router's job is simpler
+[02:41] than it looks, so a lighter model is
+[02:43] usually enough. The workers are the ones
+[02:45] writing the code, so that is where your
+[02:46] best model should go. And it is
+[02:48] different from a normal agent team where
+[02:49] the lead has to deeply understand the
+[02:51] task and split it into steps. This
+[02:53] router doesn't split anything. It just
+[02:55] decides who gets what and keeps track of
+[02:56] how the tasks relate. The second big
+[02:58] idea is that prompts stop being the main
+[03:01] input. Group chat messages, emails,
+[03:04] review comments, and CI results all
+[03:07] become events and they call those events
+[03:09] triggers. Most of them are noise and you
+[03:12] don't want a big model reading everyone.
+[03:14] So they use two filters. Normal code
+[03:16] removes what it can first using things
+[03:18] like the source of the event and allow
+[03:20] lists. Only what survives goes to the
+[03:22] model which decides based on rules that
+[03:24] you write in plain language. There is a
+[03:26] clever part here too. Once a worker owns
+[03:28] a task, it subscribes to that task's
+[03:30] thread like a pull request. And new
+[03:32] events on that thread go straight to the
+[03:34] worker. The router still sees them, but
+[03:36] it doesn't have to forward them. And if
+[03:38] two workers are on the same pull
+[03:39] request, they both get the same events,
+[03:41] so they can notice a conflict on their
+[03:43] own. They also treat the context window
+[03:45] like a cache. The model first gets an ID
+[03:47] and a short summary, then the things it
+[03:49] will probably need next, and anything
+[03:52] long gets cut off with a pointer to the
+[03:53] rest. Since every object links to
+[03:55] related objects by ID, the router can
+[03:57] follow those links back to an old task
+[03:59] when you bring it up weeks later. They
+[04:02] call that chain of recall. And then
+[04:04] there is the part that feels a little
+[04:07] like the future. In their own user
+[04:09] group, they set a policy called silently
+[04:10] reproduce and fix. When someone reports
+[04:13] an issue, the agent tries to reproduce
+[04:15] it in the background, and if it confirms
+[04:17] the issue and finds a simple fix. It
+[04:19] opens a pull request while people are
+[04:20] still discussing it. If it doesn't, you
+[04:22] never hear about it. That is pretty
+[04:24] amazing, to be honest. The rest of the
+[04:26] design is about keeping this alive. Long
+[04:28] commands run in the background, so the
+[04:30] agent can still answer you while they
+[04:32] run. Replies change by channel, and they
+[04:35] found that a hard limit of 100 words per
+[04:37] chat reply works well with the detailed
+[04:39] writing kept for pull requests. The
+[04:41] agent loop and the saved state live in
+[04:43] the cloud while your real machine stays
+[04:45] where it is and runs a small Damon that
+[04:47] just executes commands and a separate
+[04:50] watchdog session runs on a schedule
+[04:52] because a stuck agent usually isn't a
+[04:54] crashed process. The process looks
+[04:56] healthy but the model is going in
+[04:58] circles or has drifted from the goal.
+[05:00] Now the experiment is really interesting
+[05:02] but take it with a grain of salt because
+[05:04] they say themselves that the results are
+[05:06] only indicative. They used about 300
+[05:08] messages per run. About 20 of them were
+[05:10] real work requests and the coding was
+[05:12] simulated by a tool that just uses up
+[05:14] time. So this tests the scheduling and
+[05:17] not the quality of the code. The super
+[05:19] agent finished a typical task in 12.4
+[05:21] minutes and 15.7 at the slow end. A
+[05:24] single session with a neutral prompt
+[05:26] that said to use a sub agent when
+[05:28] appropriate,
+[05:29] didn't call a sub aent in any of its
+[05:31] five runs, and its slow end reached 29.5
+[05:34] minutes. with a prompt that pushed hard
+[05:37] for delegation. It delegated in four of
+[05:39] five runs. And in the fifth, it decided
+[05:41] the work was small and did it all
+[05:43] itself. If you ask me, that is the most
+[05:46] useful result in the whole article. You
+[05:47] can't rely on a prompt to make a model
+[05:49] delegate. You have to make it the
+[05:51] structure of the system. The router also
+[05:53] held up better than you would expect. As
+[05:55] they went from about 1 to about 40
+[05:57] decisions per minute, events started to
+[05:59] batch together, and the time per
+[06:00] decision dropped from 6.4 seconds to
+[06:02] 1.6. So one router session is enough for
+[06:05] a team of their size and there is no
+[06:07] need to split it early. There is a cost
+[06:09] though. Several sessions read a lot more
+[06:11] cached tokens. A super agent run used
+[06:14] 23.2 million cash read tokens and even
+[06:17] that needed their pass through system
+[06:19] because without it the number went up to
+[06:21] 31.8 million. Now this is where a cheap
+[06:24] model changes the maths. At DeepSeek
+[06:27] V4.1 flash off peak pricing 23.2 2
+[06:30] million cached tokens cost about 7. At
+[06:33] sonnet 5.5 pricing, the same cash tokens
+[06:36] cost about $4.64.
+[06:38] That is only the cash reads from one
+[06:39] synthetic run. But you can see why this
+[06:41] design makes much more sense on cheap
+[06:43] models. And they are honest about what
+[06:45] is not solved. Long-term memory is still
+[06:47] the main limit. Once a system has been
+[06:49] running for months, and security is a
+[06:51] big one. An agent that reads outside
+[06:53] events is exposed to prompt injection.
+[06:55] So if the cloud loop gets compromised,
+[06:56] every machine connected to it could be
+[06:58] taken over. Please keep that in mind
+[07:00] before you connect this to a public
+[07:01] group chat. So, how do you use these
+[07:03] ideas today? This is how I would do it
+[07:05] in Pandode. If you don't know it,
+[07:07] Pandode is my free and open source
+[07:08] desktop app that runs all your coding
+[07:10] agents in one window, including DeepSeek
+[07:12] through its own harness and Klein. It
+[07:14] isn't a super agent, and I will show you
+[07:16] exactly where it falls short. But the
+[07:18] pieces for a practical version are
+[07:20] already there, mostly in a feature
+[07:22] called bots. A bot is a persistent agent
+[07:24] that you can message from Telegram,
+[07:26] Slack, Discord, WhatsApp, or a local web
+[07:29] chat. It has its own memory, schedules,
+[07:31] and rules. And every conversation is a
+[07:34] normal Panda Code task that you can open
+[07:36] on your computer and read. So that
+[07:38] already gives you the continuous part
+[07:39] because you message it from your phone
+[07:41] and then see the same work on your
+[07:42] desktop. The trick is to make more than
+[07:44] one bot. First, I make one called router
+[07:47] and I give it DeepS v4.1 flash as its
+[07:50] brain. Since this job is light and we
+[07:53] want it cheap, in its instructions, I
+[07:56] write that it only talks to me and hands
+[07:57] out work and that chat replies stay
+[08:00] under 100 words. Then I make a couple of
+[08:02] worker bots with stronger models like
+[08:04] one for building and one for reviewing.
+[08:06] Bots can send work to each other with a
+[08:08] tool called bot messagebot. The work
+[08:10] goes to the other bot's own conversation
+[08:12] and when it is done, the result comes
+[08:14] back to the sender as an update. So the
+[08:16] router stays clean. Each worker has its
+[08:18] own context and you only hear from one
+[08:20] agent. That is the two-layer design and
+[08:23] you build it with a form. Now remember
+[08:25] the experiment because a prompt isn't
+[08:26] enough. So I also add deny rules on the
+[08:28] routerbot for its shell and edit tools.
+[08:31] Deny rules always win. So now it can't
+[08:33] decide that the work is small and do it
+[08:34] itself which is the same idea as
+[08:36] deepseek removing the bash tool. And by
+[08:39] the way, Panda Code has something called
+[08:40] Panda Router and it is a different thing
+[08:42] from the router in this article. Their
+[08:44] router talks to people. Panda router
+[08:46] picks a model. If you start a normal
+[08:48] task and turn on an automatic team, it
+[08:49] reads each assignment on your computer
+[08:51] and picks the cheapest model that is
+[08:52] likely to pass. And if a worker fails,
+[08:54] the replacement moves to a stronger
+[08:56] model. So for one big job at your desk,
+[08:58] a team is the better option. For an
+[09:00] always assistant, you want the bots. Now
+[09:02] for the models, this is where Klein Pass
+[09:03] comes in. Klein Pass is the $9.99 per
+[09:06] month plan from the Klein team, and it
+[09:08] gives you models like Kimmy K3.1 Pro,
+[09:10] GLM 5.3, Quen 38 Max, and Deepsec V4.1
+[09:14] Flash. A setup like this runs a lot of
+[09:16] sessions, so having one plan with a
+[09:18] bunch of strong open models makes a lot
+[09:19] of sense instead of paying for each
+[09:21] provider separately. And you can check
+[09:22] your 5-hour, weekly, and monthly limits
+[09:24] on the client dashboard. To set it up,
+[09:26] run npm install-g client, then run
+[09:30] client off and sign in, and choose
+[09:32] client pass. Panda code finds Klein
+[09:34] after that, so you can pick it for a
+[09:36] bot. I would put Kimmy K3.1 Pro on the
+[09:39] builder since it is good at holding on
+[09:41] to a long task and GLM 5.3 on the
+[09:44] reviewer because different models make
+[09:46] different mistakes and you need the
+[09:48] Deepseek harness for the router. So run
+[09:50] npm install-g at deepseek-ai/dsh
+[09:54] and paste your API key in settings under
+[09:56] providers. Let me show you how this
+[09:58] looks. I connect the router to Telegram.
+[10:00] The first time I message it, it gives me
+[10:02] a pairing code and I approve that in the
+[10:04] app so random people can't talk to it.
+[10:06] That is basically the first filter from
+[10:08] the article. Now I'll send the login
+[10:10] page breaks on mobile. Can you take a
+[10:12] look? The router gives me one short line
+[10:14] and sends the work to the builder. While
+[10:16] that runs, I send something completely
+[10:18] different like what changed in the
+[10:19] billing code this week. And that goes to
+[10:22] its own conversation. So the two tasks
+[10:24] don't get mixed together. In Panda Code,
+[10:26] you can see each one as its own thread
+[10:28] with every command and every file
+[10:29] change. When the builder needs to do
+[10:31] something risky, the approval comes to
+[10:33] me in Telegram and I can just reply yes
+[10:34] or no. Then when the fix is ready, the
+[10:36] builder reports back and I get one short
+[10:38] message from the router with the pull
+[10:40] request link. If I change my mind, I
+[10:42] just tell the router and it passes that
+[10:43] on to the builder. And if anything looks
+[10:45] wrong, slashs stop in the chat stops the
+[10:48] bot and is scheduled. Next, the
+[10:50] proactive part. Each bot has goals and
+[10:53] an optional heartbeat which checks those
+[10:56] goals on a readonly basis and reports
+[10:58] back or proposes something. And it has
+[11:00] schedules so you can make a small
+[11:02] watchdog bot that runs every 30 minutes,
+[11:05] checks your open pull requests and CI
+[11:07] with the GitHub CLI and only messages
+[11:09] you if something is stuck. It is a lot
+[11:11] simpler than what DeepS describes, but
+[11:13] it covers the same problem, which is
+[11:15] that a process can look fine while the
+[11:17] work is going nowhere. Then the
+[11:19] persistent part. If your bots run on a
+[11:22] laptop, they stop when it sleeps. So you
+[11:24] can run panda code on a spare machine or
+[11:26] a server with the pandic code serve
+[11:28] command and your bots keep running there
+[11:30] for a single long task. You can also
+[11:32] pick a cloud provider in the run-on menu
+[11:34] and the task keeps going while your
+[11:36] laptop sleeps and the changes come back
+[11:38] to a local work tree. Now where does
+[11:40] client desktop fit? I would use it for
+[11:42] the boring recurring jobs. It is an
+[11:45] open- source app that runs outside your
+[11:47] IDE with parallel sessions that each
+[11:49] keep their own context. It has a
+[11:51] schedule page where you pick the
+[11:52] frequency, the prompt, the model, and
+[11:54] the workspace. So, you can set up a
+[11:56] nightly pull request review or a
+[11:58] security scan on client pass and forget
+[12:00] about it. You can also import old
+[12:01] sessions from claude code or codecs and
+[12:04] continue them on cheaper models. And
+[12:05] there is a marketplace for skills and
+[12:07] MCP servers. It is still you managing
+[12:09] sessions, so it doesn't solve the
+[12:11] attention problem by itself. But for
+[12:13] fixed jobs that don't need a router, you
+[12:15] don't need anything more than that. Now,
+[12:17] let me be fair here. This is not what
+[12:19] Deepseek describes. Pandaode bots only
+[12:22] accept paired senders, so the bot won't
+[12:24] sit in a public group chat and jump in
+[12:26] on its own. And honestly, I think that
+[12:29] is the safer default for now. A GitHub
+[12:31] comment isn't a channel for a bot, so it
+[12:34] can't follow your plan B from a pull
+[12:36] request comment the way their agent
+[12:37] does. Each chat thread is its own
+[12:40] conversation with shared memory, not one
+[12:42] global context. And the router in my
+[12:44] setup depends on its instructions and
+[12:46] rules, not on a proper system with
+[12:48] subscriptions and pass through. If you
+[12:50] want to try the real thing, you can look
+[12:52] at the DSH super agent repo. It watches
+[12:55] one GitHub repository and optionally fue
+[12:58] and it has a panel that shows what needs
+[12:59] a person. It is actually set up by an
+[13:02] agent. So you can open a task in
+[13:03] Pandaode and tell DeepSeek to read
+[13:06] setup.mmd in that repo and set it up
+[13:08] with you. But its workers run commands
+[13:10] without approval as your user. So do
+[13:12] this on a separate machine or a test
+[13:13] repo. They also start any proactive work
+[13:16] in a mode that only records what it
+[13:18] would have done. And I would leave it
+[13:19] like that until you trust it. So what do
+[13:21] I think? I think DeepS is right about
+[13:24] the main point. Models are not the only
+[13:25] thing limiting us anymore. And adding
+[13:27] more sessions to a screen doesn't fix
+[13:29] that. The real idea here is simple. One
+[13:31] agent talks to you, a bunch of isolated
+[13:33] workers do the work, cheap code filters
+[13:35] the noise, and something independent
+[13:37] checks that the work is actually moving.
+[13:39] You don't need their prototype to use
+[13:40] that. You can set up a useful version
+[13:42] with Pandaode bots this weekend. Run it
+[13:44] on Klein Pass and DeepSeek for very
+[13:46] little money and leave the fixed jobs to
+[13:48] client desktop. It's not perfect, but it
+[13:50] is a really good way to get past that
+[13:51] limit of 3 to 5 sessions. All the links
+[13:53] are in the description. Overall, it's
+[13:55] pretty cool.
+[13:57] Anyway, [music] let me know your
+[13:58] thoughts in the comments. If you like
+[13:59] this video, consider donating through
+[14:01] the super thanks option or becoming a
+[14:03] member [music] by clicking the join
+[14:04] button. Also, give this video a thumbs
+[14:06] up and subscribe to my channel. I'll see
+[14:08] you in the next one. Until then, bye.
+[14:15] >> [music]
