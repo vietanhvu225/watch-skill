@@ -1,0 +1,242 @@
+[00:00] Okay, now you may have seen this graph recently of  the number of changes that Anthropic are merging  
+[00:04] in every single day. And it's become increasingly  clear that almost nobody at Anthropic or OpenAI  
+[00:10] are reading every single line of code anymore. So  it kind of begs the question, what exactly are the  
+[00:14] engineers doing all day? Now they've kind of been  hinting at this in different blog posts, podcast  
+[00:18] episodes, and tweets. But I think this interview  is one of the clearest examples that I found. And  
+[00:22] it shows that what they care about the most is the  plan and the verification instead of reading every  
+[00:28] single line of code. Now in this video, I want  to talk about what exactly that looks like. But  
+[00:32] I will be going into many of these ideas in much  more detail inside of my upcoming cohort that will  
+[00:36] be linked down below. So inside of this podcast  episode, they talked about how they rewrote the  
+[00:40] messages API for Claude from Python to Rust. And  apparently when they started, nobody on the team  
+[00:46] was even a Rust developer. Now Claude wrote the  code, but before they had Claude write any of it,  
+[00:51] they basically stopped and asked themselves the  question, okay, what exactly is a verifier here?  
+[00:55] How will we know that the new version is correct?  And the answer was shadow traffic. So the new  
+[01:01] version in Rust and the old API in Python would  get the exact same real traffic. And if the new  
+[01:07] version is correct, then it should give the exact  same answers as the old one. And I imagine what  
+[01:11] they did is that anytime the Rust version gave a  different answer, that diff went back into Claude.  
+[01:17] Claude worked out what was wrong, fixed it, and  then they ran the traffic again. And once the 2  
+[01:21] matched, they slowly moved the real traffic over.  Now here's how they put it in the podcast episode.  
+[01:26] The 2 things that mattered the most were the plan  to do the thing and then the verification of the  
+[01:31] thing. Because actual implementation here was  Claude writing all the code. So Claude wrote the  
+[01:35] code whilst humans used Claude to write the plan,  design the system, and make sure that the verifier  
+[01:41] was correct. And basically they did this because  of the compute constraints. So they managed to  
+[01:45] drop the CPU usage on the API by 40 to 50%. Now  this is the same mental shift that I've been  
+[01:50] teaching many engineers at pretty big companies  over the last few months when doing consulting  
+[01:54] and training workshops. Whereby instead of people  thinking, how do I get my agents to write better  
+[01:59] tests? They think, okay, what is the verify  for this? When I'm about to do a big refactor  
+[02:04] or implement a big feature, how will I know that's  correct? What verification do I need here? So the  
+[02:09] agent can hill climb towards the right answer. And  I think that this is important because nowadays  
+[02:13] when you get agents to write tests, especially  unit and integration tests, they're basically  
+[02:17] restating what the code already does. So all the  tests can be green, but when you open up the page,  
+[02:22] the button still does nothing. And that's where  a lot of engineers are kind of facing a losing  
+[02:26] battle where they keep adding more rules to their  Claude.md files saying like, always write proper  
+[02:30] tests, never weaken an assertion, hoping that the  agent will suddenly write better tests. But if we  
+[02:35] look at what the engineers at Anthropic are doing,  they're not talking about getting their agents to  
+[02:39] write better tests. They're talking about creating  verification systems, tooling, and environments.  
+[02:43] So I kind of want to zoom out here and make  sure that we're all on the same page by kind  
+[02:47] of defining what a verifier is. So it's basically  a check that your agent can't argue against. So  
+[02:53] every good verifier has 3 parts. It has a surface.  And this is the same surface that a real user or  
+[02:59] another system would be meeting the change that  your coding agent is making. So this could be  
+[03:03] a webpage, an API, an MCP server, a CLI, mobile  app or desktop application. And if you're making,  
+[03:09] I don't know, some kind of voice agents, then it  could even be over the phone as well. Now next up,  
+[03:13] we have what I'm calling the answer key. And that  is what write looks like for your system. Now the  
+[03:18] most important thing here is that the agent didn't  write it. You kind of define it upfront with the  
+[03:23] help of your agent. And finally, we have the  comparison itself. So does what happened match  
+[03:28] the answer key? Answer key or not. And that's kind  of the big difference from getting your agents  
+[03:31] to write tests. So when your agent writes a test,  it writes an answer key too. So of course it will  
+[03:35] end up passing, but you've got to kind of define  the answer key upfront. Now how good a verifier  
+[03:39] is comes down to its answer key. And I find that  the best answer key is an old system that already  
+[03:45] exists and does the same job. So in the case of  Anthropic's earlier example of the messages API,  
+[03:50] the answer key was the old Python system. Another  answer key that we could have is a snapshot that  
+[03:55] I will go into later. It could also be an  independent test suite that doesn't depend on  
+[03:59] the code itself. So this could be something like  Playwright end-to-end tests. And at the bottom,  
+[04:04] we have a spec that could also be an answer key.  Now in my own specs, my answer key looks something  
+[04:09] kind of like a table at the very bottom of the  spec that defines what a user should be able to  
+[04:14] do and the expected result. So for example, if  I had a really simple note-taking application,  
+[04:18] and I made a spec to allow for tagging to be  added, then essentially I would have a table  
+[04:23] kind of like a user should be able to add a tag  to a note. And then the expected result would be a  
+[04:28] tag shows on the note at once. Another user action  would be a user can filter notes by tag, and the  
+[04:34] expected result would be only notes with that tag  show. Or for example, another user action would be  
+[04:40] deleting a tag completely, and then the expected  result would be that the tag goes from every  
+[04:44] note and from the tag list. So I can basically  define like 10 or 15 of these depending on how  
+[04:49] complicated of a tagging system that I want, and  this would form my answer key. Now of course, this  
+[04:54] one is slightly weaker because we are depending  on an agent to make the final call, and ideally  
+[04:58] you should have another agent Deciding whether  the expected result has been met. And a pretty  
+[05:03] nice open source framework that I like for this  is called E2E. So you can kind of see that you can  
+[05:08] define end-to-end tests kind of like this. So for  example, a member would upgrade to Pro and then we  
+[05:14] would open up the billing page. We would then have  an agent using browser use basically act and then  
+[05:19] upgrade the workspace to Pro. And then we have  another agent with a different model maybe. And  
+[05:24] this could be a fast, cheap System 1 model, kind  of like a JEV deciding Okay, the invoice preview  
+[05:29] shows a prorated amount. And then we can pass  in some more determinism. So I really like this  
+[05:33] framework because we can combine deterministic  and agentic testing together. And you can see  
+[05:38] from these 2 lines over here, they agree with the  idea whereby the agent that is deciding whether  
+[05:42] the expected result has been met is different  from the agent that is actually taking out the  
+[05:46] actions. Now this is pretty cool because they have  a bunch of stuff like caching to make sure you're  
+[05:50] only paying for tokens when a test fails. And for  some of my projects, I basically deleted every  
+[05:55] single test So you can see in this PR, I deleted  110,000 lines. In this other PR, I deleted 295,000  
+[06:02] lines and then replaced them only with E2E tests  instead. And I generally found that with this, I'm  
+[06:06] catching even more bugs per PR. But essentially  what is happening with me is that anytime the  
+[06:11] spec has been implemented, any user behavior that  was defined at the bottom of the spec gets turned  
+[06:16] into an E2E test instead to basically make sure  that user behavior is conserved going forwards.  
+[06:22] And this is basically acting as my verifier,  whereby my answer key is taken from the spec and  
+[06:27] then defined in the code kind of like this. And  finally, the worst situation is basically having  
+[06:31] no answer key at all, because the agent will  basically decide for itself what exactly verified  
+[06:36] looks like. And that could be basically having  green unit tests, but still having broken buttons.  
+[06:41] Now I'll also be going into this in much more  detail inside of my upcoming cohort in the office  
+[06:46] hours and the lessons that will be linked down  below. It will be starting in just over a week if  
+[06:50] you're interested. And if you sign up in the next  few days, then you'll benefit from the early bird  
+[06:54] discount. So now, as we've seen so far, some of  our verifiers can be completely deterministic and  
+[06:59] depend solely on scripts, kind of like the API  response diff that we talked about at the very  
+[07:03] beginning. And some of them can depend on your  agent's judgment, such as implementing a spec  
+[07:08] over here. And finally, some of them can be a bit  of both. So a big split that I personally have is  
+[07:12] that, is this a refactor, in which case we can use  an old system or a snapshot as a verifier? Or is  
+[07:18] this a new feature, in which case we may want to  use an agentic end-to-end test? So nowadays, just  
+[07:24] like many of the Anthropic and OpenAI engineers,  building and maintaining good verifiers is where  
+[07:29] most of my day goes these days. And it basically  comes down to 3 jobs. So we have building good  
+[07:33] verifiers, maintaining them so they don't go  stale, and then also auditing them to make sure  
+[07:39] that they're actually catching problems. Now I  did package all of this up into some free skills  
+[07:43] that I have for Claude Code and Codex that will  be linked down below. So I have create-prove-it,  
+[07:48] then I have maintain-prove-it, and then finally  audit-prove-it. So in the case of create-prove-it,  
+[07:52] it's making another skill which will be a prove-it  skill. So the order in which it works is basically  
+[07:57] it maps all the surfaces. It then checks whether  you can actually reach the surfaces. It then finds  
+[08:02] anything that can be used as answer keys and  brainstorms with you. And then it generates a  
+[08:07] skill. And then after you've actually gone ahead  with implementation, you can run it for real. So  
+[08:11] I'll go for a really quick example. So let's say  that I want to add an MCP server to my sandboxing  
+[08:16] service, impello.ai. By the way, this is one  of the cheapest sandboxing service providers  
+[08:20] that you'll find online. So if you are spending  hundreds or even thousands of dollars on sandboxes  
+[08:25] every single month, you may want to consider  moving to this. Essentially, if I want to add  
+[08:29] an MCP server, I can start out by installing the  skill. So I'm going to quickly add the marketplace  
+[08:34] and then copy over the other command to basically  go ahead and install the skill, install it for all  
+[08:39] users. And then I can do /create-prove-it. And  this will be my skill that is always used for  
+[08:45] verifying and proving any changes to the MCP  server that ends up happening. So I can say,  
+[08:51] okay, I want to make a brand new MCP server for  this repo. Can you basically help me brainstorm  
+[08:56] like how exactly we're going to like verify this,  prove it once it's completed, and then basically  
+[09:00] press enter. So what you're basically doing  is that you're triggering the skill and then  
+[09:04] you're making a Prove It skill for any of these  surfaces in your application. But you can also use  
+[09:09] it for any big refactors as well. So if I said  something like /create-prove-it and then said,  
+[09:15] hey, so I basically want to migrate the backend  API from Go to Rust instead. And then it will  
+[09:20] basically go ahead and find ways in which I can  prove that it's done. Now the MCP response came  
+[09:25] back and it basically said the surface would be  the MCP server. So this is planned. Our existing  
+[09:30] surfaces are the public API, the dashboard UI,  the stored state, and also the logs as well. And  
+[09:36] then it basically gives me a bunch of ways that  we can go ahead and prove it. And it shows me  
+[09:40] the method that we could use, the answer key, and  then also the cost as well. And it's like, okay,  
+[09:45] let's combine a bunch of these together. So we'll  combine 1, 2, 3, and 6 together. And now I can  
+[09:50] turn this into a skill that I can basically use  once the MCP server has been implemented to verify  
+[09:55] that everything works. If something failed for  whatever reason, then that would go back to the  
+[09:59] builder. The builder agent would make changes and  then the verifier would try to re-verify the flow.  
+[10:04] And now afterwards, I would have a skill, which  is kind of like prove Impello MCP. And anytime a  
+[10:10] change happens to MCP server in the future, then  it will automatically use the skill to basically  
+[10:14] verify that the changes have been made correctly.  Likewise, for the migration from Go to Rust,  
+[10:18] if I were to do that, it basically shows  me a bunch of methods that I could take,  
+[10:22] what I would catch, what the setup cost would be  as well. So for example, for the read-only shadow,  
+[10:27] a shadow API, that has a pretty high setup cost  because we're basically running continuously. But  
+[10:32] it also has the best performance in the sense it  would be using traffic shapes that no one thought  
+[10:38] to actually go ahead and script. So in the case  of a big refactor, the first thing you want to  
+[10:42] figure out is What is your answer key? And in the  case of the Anthropic example, the answer key was  
+[10:48] the old API. So you basically keep your old system  running and then copy any requests over to a new  
+[10:53] system and then compare every response and then  pass any diffs or anything that disagree back over  
+[10:59] to Claude. It can find the root cause, fix it, and  then you continue until you hit zero differences.  
+[11:04] And they kind of, kind of brainstormed this by  using the /create-prove-it skill that I made. Now,  
+[11:08] Bun did something very similar when they  rewrote their runtime. From Zig to Rust,  
+[11:12] but the answer key was basically their existing  test suite. Because if you go to the article  
+[11:16] that they showed it in, then scrolling down,  I can basically see over here that they said,  
+[11:21] fortunately, Bun's own test suite is written  in TypeScript, which means that it doesn't  
+[11:25] depend on the runtime's programming language.  So in that case, after they got Claude to use  
+[11:30] a whole bunch of subagents in a dynamic workflow  to basically do the migration, they hill climbed  
+[11:35] to 100% of the tests passing again. With zero  tests being skipped or deleted. Now another  
+[11:40] interesting verifier that we have is byte-for-byte  equality. So there's been an interesting trend of  
+[11:46] people using agents to do matching decompilations  of old games, which basically means that you have  
+[11:51] the agent rebuild the source code of the game  from the binary, and then you check it to make  
+[11:56] sure it compiles back into the exact same machine  code as the original game. So for example, over  
+[12:01] here someone had agents running for a few hundred  hours to basically do a matching decompilation  
+[12:06] of Crimson Land that they then posted on GitHub  over here. And I can actually go over to the link  
+[12:11] inside of my browser and then play if I wanted  to. But they're basically using the same idea  
+[12:15] of having verifiers as well. So in this case, the  answer key is the original game. You compile the  
+[12:20] agent's code with the same old compiler and the  comparison is bytes. So do they match exactly or  
+[12:25] not? And another good example of byte-for-byte  equality is this one by Mitchell Hashimoto,  
+[12:30] who made Ghosty the terminal. And he basically  wanted Ghosty to show images the same way that  
+[12:35] Kitty does. So Kitty, which is a terminal that I  like using, has a way of showing images inside of  
+[12:40] your terminal. And many programs now use it. And  he basically wanted the same programs to work in  
+[12:44] Ghosty as well. So in his case, the answer key was  basically Kitty. Now another related example that  
+[12:49] you could consider is pixeldiffs, where basically  you can have a screenshot as an answer key. So if  
+[12:54] I take this website, which is fingerprint.com,  I really like the design of this website. I can  
+[12:59] basically give it over to an agent and then  say, use a builder verifier loop to copy the  
+[13:04] design of the website using a pixel diff as your  verifier. Now I can kind of see it working over  
+[13:09] here. So it has original on the left-hand side, my  version on the right-hand side, and then it shows  
+[13:13] me the pixel diff. And if I were to scroll down,  then it basically says that it went from having  
+[13:18] 19% diff to 1.8% to 0.54% to 0.52%, and then it  stopped. And then it says, if I remove any logos,  
+[13:26] then it would actually be 0.07%. Now, of course,  this is more of an easy-to-understand example. But  
+[13:32] some people have been doing the same thing when  it comes to making any font files smaller on their  
+[13:36] website to make their website load faster. They  basically use a pixel diff as their verifier. Now,  
+[13:41] everything that I mentioned so far depends on  there being some kind of answer key. But often  
+[13:45] when it comes to a brand new feature, there  is no old system that you can depend on. So  
+[13:49] in this case, the answer key becomes your own  specification. So when you're writing a spec  
+[13:54] with the help of your agent, you kind of want to  define What is expected behavior for a user? So  
+[13:59] going back to the earlier example, we want to make  sure like, okay, if we're adding tags to notes,  
+[14:03] the tags actually appear. And the main thing here  is you want to make sure that all the behaviors,  
+[14:08] the potential paths that your user could take  through your application are defined during the  
+[14:12] spec writing phase. And as I said, with the E2E  library, after the spec has been implemented,  
+[14:17] you can then turn this into end-to-end test. Now  to show a real example for a real application  
+[14:21] here, I'm going to go ahead and open up Slack.  And despite most of my videos being inside of  
+[14:25] Claude Code in the terminal, like 97% of my  coding happens in Claude sandboxes via Slack  
+[14:31] instead. Because as I do talk about inside of  my cohorts as well, I think that Slack is the  
+[14:36] best surface in which you should be building  with your agents, especially with the brand  
+[14:39] new code channels feature. So if I go over, then  I can basically see all the code that had been  
+[14:44] written by the agent. And then I can see video  recordings of everything that I went ahead and  
+[14:48] verified. So if I go to this recording over here,  I can basically see that it's like verifying and  
+[14:53] testing the macOS application to make sure that  this brand new like mic picker functionality that  
+[14:58] it added is actually working. And I can see that  in this particular case, it basically verified a  
+[15:03] whole bunch of user flows. And then it said at  the very bottom that on a real Windows machine,  
+[15:07] it passed 4 of the 5 flows. And then I think it  went back to the builder to basically fix what was  
+[15:13] broken. And it kind of like went back and forth  with this like builder verifier loop. To make sure  
+[15:17] that everything had been implemented correctly  and is working as I defined earlier on inside of  
+[15:21] my answer key. And yeah, with a setup kind of like  this, I can deliver really reliable results. Now  
+[15:26] the second job that we have is maintaining our  Prove It skills because they can become stale  
+[15:31] over time. Now to go through a real example, if  I go to one of my previous cohorts that I ran,  
+[15:36] I have like my office hours page over here where  the recording of the office hours appears. And the  
+[15:41] problem that some people are facing was that video  playback sometimes broke on Safari. So I made a  
+[15:46] change to the video player on the website, and  then it worked fine on Chrome, but it was broken  
+[15:50] on Safari and sometimes even Firefox. And the  reason why it went unnoticed was basically because  
+[15:55] my Prove It skill was clicking around the website  and testing the changes in Playwright Chromium.  
+[16:01] But because Safari and Chrome handle video  playback a little bit differently, the change  
+[16:06] would have not actually been verified on Safari.  So when our user reported to me like, hey, Safari  
+[16:11] playback doesn't work that well, I basically  told my agent, can you spin up Playwright WebKit,  
+[16:15] which is based on Safari, and also use a real  Mac that it has access to, to basically try and  
+[16:21] identify the problem, fix those changes. And after  that was fixed, I wanted to make sure that future  
+[16:26] changes don't break Safari again. And that fix  was upstream inside of the Prove It skill. So I  
+[16:32] basically told the agent, anything that touches  video playback inside of the Prove It skill,  
+[16:36] should also be checked with Playwright WebKit  and also on a real Safari on a MacBook that  
+[16:41] it has access to. So essentially zooming out  here, the meta pattern is that even though your  
+[16:46] Prove It skills and your verification skills will  catch many problems before they hit production,  
+[16:51] there will be some problems that users still come  across and report. And instead of thinking, okay,  
+[16:55] how could the agent have been prompted better?  How could I have written a better spec? It's  
+[16:59] more of a case of how can you improve your Prove  It skill upstream So your agent can catch these  
+[17:03] changes before it ever reaches production. And  that's basically what the maintain-prove-it skill  
+[17:07] allows you to do. So after a couple of runs, you  basically run it and then it goes back through  
+[17:11] your previous runs. It would also look through  any user feedback and any bugs that have been  
+[17:15] reported and try to identify improvements  that can be made to the prove-it skill. So  
+[17:20] that when a bug does slip through the cracks and  gets reported by a user or comes up in Sentry,  
+[17:25] then a similar class of bugs and problems can be  fixed before they ever reach users in the future.  
+[17:30] Now the third job is basically auditing your Prove  It skills on a regular basis to make sure they're  
+[17:35] actually catching problems. And I find that one of  the best ways of doing this is mutation testing,  
+[17:40] which is where you break your app on purpose to  basically see if your checks actually notice. So  
+[17:44] that is what the audit-prove-it skill does. So it  basically takes a change that you made recently,  
+[17:49] plants a realistic bug inside the code, like  making the counter off by 1 for example,  
+[17:54] And then a fresh agent that is basically told  to verify the flow again, such as going back to  
+[17:59] the previous example of adding tags to notes. It  would see if the fresh agent is able to identify  
+[18:04] that problem without telling it what broke. So  if you're using an agentic verifier instead of  
+[18:09] a deterministic verifier, if it catches a bug,  then that's really great. If it doesn't, then  
+[18:13] it means that your skill would need some kind of  fixing. So I think going back to where we started  
+[18:17] earlier in the video, so many lines of code are  being written and so many changes are being merged  
+[18:22] that no one is really reading every line of code  anymore. And depending on the industry you're in,  
+[18:26] that can be fine as long as something else  is checking it. So ideally that should be  
+[18:30] some kind of verifier. And you want to kind of  ask your agent before you make a big change,  
+[18:35] what exactly is the verifier here? How would  we know that this is correct once it has been  
+[18:40] implemented? But essentially, as we saw from the  podcast episode, a lot of the best engineers are  
+[18:44] focusing on building verification tooling around  their agents. So with the limited attention that  
+[18:49] they do have every single day, they can basically  make sure that their agent has gone through enough  
+[18:53] verification itself before it finally shows  a change back to them. And often they're not  
+[18:57] even reading the code of the change, they're  watching videos and looking at graphics and  
+[19:01] HTML files. So yeah, all 3 of my Prove It skills  will be down below if you do want to use them,  
+[19:06] and I will be making updates to them over time.  And if you do want to hear more ideas from me on  
+[19:10] a regular basis, then you may also want to join  my newsletter that will be linked down below too.
