@@ -1,0 +1,212 @@
+[00:00] So AWS just dropped a blog post where
+[00:02] they released Infinity, a runtime for
+[00:04] extreme agent concurrency. Here on the
+[00:06] Infinity homepage, it says Infinity is a
+[00:08] Rust framework for building massively
+[00:10] concurrent agentic systems, which is
+[00:12] light enough to fit 75,000 agents in the
+[00:15] memory of a Raspberry Pi, which is about
+[00:17] 8 GB. Now, the engineering decisions
+[00:20] that allowed them to pull this off are
+[00:21] fascinating. So let's dive into exactly
+[00:24] how this works. To understand why AWS
+[00:27] decided to build their own agentic
+[00:28] system framework, it's important to
+[00:30] understand what the current problems are
+[00:31] with agentic systems. And one of the
+[00:33] biggest problems is highlighted here.
+[00:35] Agents spend most of their lives
+[00:37] waiting. Builds can take 20 minutes. Web
+[00:39] hooks can fire hours later. And humans
+[00:41] can take a long time to reply. And
+[00:43] current agentic systems that hold a
+[00:45] process per agent pay for all that
+[00:47] waiting time by keeping the process
+[00:48] alive. While Infinity, on the other
+[00:50] hand, hibernates a waiting agent and
+[00:52] only wakes it up once a new message
+[00:54] arrives. Now this whole idea of waiting
+[00:56] for some external resource to complete
+[00:58] some work while you do other work in the
+[01:00] meantime is exactly what the async await
+[01:02] model allows and that's exactly where
+[01:04] infinity took its inspiration here.
+[01:06] says, "Infinity gives agents primitives
+[01:08] for asynchrony. A tool call can stay
+[01:10] open as a stream of events." And that's
+[01:12] the key here because currently with
+[01:13] traditional agentic systems, when an
+[01:15] agent makes a tool call, for example, a
+[01:17] tool call for reading a source file or
+[01:19] doing a web search or whatever else,
+[01:22] that agent cannot make progress on other
+[01:24] work while it's waiting for the tool
+[01:25] call to complete. And because tool calls
+[01:27] are made so often, that means agents
+[01:29] spend most of their times just waiting.
+[01:31] Here we can see that in a traditional
+[01:33] agentic system there's a lot of waiting
+[01:35] in between work being done but with
+[01:37] infinity we're able to do that work
+[01:39] concurrently. Now the way infinity was
+[01:41] able to accomplish this is through a few
+[01:43] architectural decisions. The first one
+[01:45] being executing everything in slices. A
+[01:47] quick note before we jump into slices.
+[01:49] If you're a developer who's looking to
+[01:51] land a Rust job or systems programming
+[01:52] job, but you can't get interviews
+[01:54] because you don't have real world
+[01:55] experience, check out our Rust Live
+[01:57] Accelerator. It's designed specifically
+[01:59] to help you master the hard technical
+[02:01] skills and also all the career skills to
+[02:03] help you land a role. Click the link in
+[02:04] the pinned comment to learn more. Now,
+[02:06] back to the video. Okay, so what exactly
+[02:08] is a slice? Here it says that a slice
+[02:10] begins when one or more message arrives
+[02:12] for a thread. This might be a little bit
+[02:14] difficult to see, but here we have the
+[02:16] input Q on the left hand side and we can
+[02:18] see the first thing that happens is a
+[02:19] message comes in, which could either be
+[02:21] a tool result, some user text or an
+[02:23] event. And then the Infinity runtime
+[02:25] starts a slice. The first thing that
+[02:27] happens after that is the message
+[02:28] history is loaded from durable storage
+[02:31] and then there's some pre-processing
+[02:32] done on the inputs and then after that
+[02:34] the model provider is called. So for
+[02:36] example models from anthropic or open
+[02:38] AI. Then the model provider returns
+[02:40] either text some reasoning tokens or a
+[02:42] tool call. Next the current state of the
+[02:44] slice is persisted back into durable
+[02:46] storage and if the model provider came
+[02:48] back with a tool call then a post is
+[02:50] fired to the rap tool server. RAP stands
+[02:53] for reactive agent protocol. This server
+[02:56] is able to execute the tool call while
+[02:58] the runtime continues to do other work.
+[03:00] And then once the tool call completes,
+[03:02] whether it's minutes, hours, or days
+[03:04] later, the RAP tool server sends a
+[03:06] message back to the input Q, which kicks
+[03:08] off a new slice. Now we can map the
+[03:11] system to the Rust async await model. In
+[03:13] Rust, an async function is a future,
+[03:15] which is just a state machine. Inside of
+[03:18] a function, if we make some external API
+[03:20] call, for example, we call await which
+[03:22] signifies that the async function can
+[03:24] pause at that point and wait for the
+[03:26] HTTP call to come back while the async
+[03:28] runtime is doing other work. And each
+[03:30] await point in the function is a state
+[03:32] in the future state machine. And the
+[03:34] beautiful thing about that is that state
+[03:35] machine can be saved in memory and then
+[03:37] retrieved later by the async runtime
+[03:39] which knows exactly where it left off.
+[03:41] Well, in the same way here when we get a
+[03:43] new message, it's similar to executing
+[03:45] an async function. And during execution,
+[03:47] when the model hits a tool call, that's
+[03:49] exactly like hitting a doawait point in
+[03:51] an async function. At that point, the
+[03:53] state of the slices persisted and a call
+[03:56] to the RAP tool server is made to
+[03:58] process the tool request while the
+[03:59] Infinity runtime can continue to do
+[04:01] other work. When the RAP tool server
+[04:04] returns the response, it's very similar
+[04:06] to an HTTP request returning its
+[04:08] response. Now, one interesting thing you
+[04:09] might notice here is when the RAP tool
+[04:11] server completes a tool request, it
+[04:13] sends back a message to the input queue.
+[04:15] And this is another architectural
+[04:17] decision that Infinity made. Everything
+[04:19] is a message. Inside a conversation with
+[04:21] the LLM provider, there are three things
+[04:23] a model generally understands. User
+[04:25] messages, system messages, and tool
+[04:28] calls. Building a new event system
+[04:30] outside of the primitives available in a
+[04:32] conversation would make it more
+[04:33] difficult to track the order of events
+[04:35] in the conversation. and sending a new
+[04:37] user message would attribute that
+[04:38] message to the user, which would make it
+[04:40] difficult for the model to distinguish
+[04:42] between actual user messages and event
+[04:44] messages. So instead, what Infinity
+[04:47] decided to do is use synthetic tool
+[04:49] calls. To see how synthetic events work,
+[04:51] here's an example of a spawn thread tool
+[04:54] call. In this case, the spawn thread has
+[04:56] instructions to review the o.ts file for
+[04:58] security issues. This is what a regular
+[05:00] tool call looks like. Now when that
+[05:02] child thread actually completes its
+[05:04] work, it's going to send a synthetic
+[05:06] tool call which are distinguished from
+[05:08] regular tool calls because they end with
+[05:10] this underscore injected tag. And the
+[05:12] beauty of this design is not only its
+[05:14] simplicity, but it's the fact that
+[05:15] reusing this system of tool calls which
+[05:18] model providers already support allows
+[05:20] the Infinity runtime to shut down
+[05:22] completely between slices. because
+[05:24] there's no improcess state machine
+[05:26] tracking which work we're waiting on to
+[05:28] be completed. Whatever the work the
+[05:29] agent is waiting on to be completed will
+[05:31] eventually show up as a synthetic tool
+[05:33] call message and then a new slice will
+[05:35] be created and it'll be able to
+[05:37] reconstruct the message history from
+[05:38] durable storage and continue running.
+[05:41] This entire architecture lets Infinity
+[05:43] scale to zero by default, which means
+[05:45] when agents are idle, they effectively
+[05:47] take up zero computing resources and
+[05:49] that makes the Infinity Agentic
+[05:51] framework perfect for running on
+[05:53] serverless environments like AWS Lambda.
+[05:56] In general, I find this project
+[05:58] extremely interesting both on the
+[06:00] technical side, but also on the use case
+[06:02] side because I can imagine that if you
+[06:04] have a system that needs a ton of
+[06:05] concurrency and scale, this might
+[06:07] actually be really useful. For example,
+[06:09] maybe you have hundreds of thousands of
+[06:11] customer service requests coming in and
+[06:12] you want to spin up an AI agent to
+[06:14] handle each customer service request.
+[06:16] With a use case like that, I think
+[06:17] Affinity could actually be really
+[06:19] useful. But let me know what you think
+[06:21] about Affinity in the comment section
+[06:22] below. And if you're someone who's
+[06:24] interested in building large scale
+[06:26] performance systems and landing a
+[06:28] systems programming or Rust job, check
+[06:30] out our Rust Live Accelerator. It's our
+[06:32] tailored mentorship program where we
+[06:33] help developers go beyond YouTube
+[06:35] videos, build production-grade Rust
+[06:37] systems, and land their first Rust job.
+[06:39] You can join the wait list for our next
+[06:41] cohort by heading over to let's
+[06:42] getrusty.com/join
+[06:44] or by clicking the link in the pinned
+[06:46] comment below. When you join the wait
+[06:47] list, we'll also send you our Rust
+[06:49] developer roadmap as a small gift. So
+[06:51] tap the link, join the list, and I'll
+[06:53] talk to you very soon.
