@@ -1,0 +1,189 @@
+[00:00] Screenshotbased computer use takes 3 to
+[00:02] 8 seconds every single time the agent
+[00:04] looks at the screen. Versel's new agent
+[00:07] desktop reads the real UI in 50 to 200
+[00:10] milliseconds because it never takes a
+[00:12] screenshot at all. It asks the operating
+[00:14] system for the actual structure of every
+[00:16] window free and open- source on Mac,
+[00:19] Windows and Linux. There is one place
+[00:21] this approach genuinely breaks down
+[00:23] though and that part of the story is
+[00:25] coming before the end. This comes from
+[00:27] Versel Labs, the experimental arm of the
+[00:29] company behind Nex.js with nearly 10,000
+[00:33] followers and 395 public repositories on
+[00:36] GitHub. Chris Tate announced it on
+[00:38] October 31st with one line, agent
+[00:41] browser for your whole computer. That
+[00:43] framing matters because agent browser
+[00:45] already won a following as the token
+[00:47] efficient way for agents to drive
+[00:49] websites. Agent desktop extends the same
+[00:52] philosophy. Pass the browser to every
+[00:54] app on your machine. On Prism Labs,
+[00:56] computer use infrastructure is exactly
+[00:58] the layer we watch. Here's the core idea
+[01:01] straight from the docs. Instead of
+[01:03] looking at pixels, agent desktop asks
+[01:06] the OS accessibility API, the same layer
+[01:09] screen readers use for the live
+[01:11] structure of an app. A snapshot returns
+[01:13] JSON with a ref for every element an
+[01:15] agent can act on, every button, every
+[01:18] text field labeled by RO. The agent
+[01:20] clicks or types against a ref, then
+[01:22] snapshots again to verify what changed.
+[01:25] Observe, act, observe. Refs stay stable
+[01:28] across snapshots. Actions are safe to
+[01:30] retry, and nothing is inferred from a
+[01:32] picture. If you've ever watched a vision
+[01:34] agent click two pixels left of a button,
+[01:37] you already know why this matters. The
+[01:39] performance difference isn't subtle.
+[01:41] Third party testing puts an
+[01:42] accessibility tree read at 50 to 200
+[01:45] milliseconds. A typical snapshot lands
+[01:47] around 120. Screenshot vision computer
+[01:50] use the approach used by the big model
+[01:52] driven loops needs three to eight
+[01:54] seconds per observation because a
+[01:56] frontier model has to look at an image
+[01:58] and reason about coordinates every step
+[02:00] through the native binary. A single
+[02:02] agent desktop call runs in about 21
+[02:05] milliseconds when an agent needs 50
+[02:07] observations to finish a task. That's
+[02:09] the difference between seconds and
+[02:10] minutes. And because snapshots are plain
+[02:13] JSON, you're not paying vision token
+[02:15] prices for every glance either. It
+[02:17] installs as one npm package. Snapshot an
+[02:20] app and you get the interactive elements
+[02:22] with their refs. Act on a ref, click it,
+[02:24] type into it, set a value, and the tool
+[02:27] confirms delivery before returning.
+[02:29] Notice the ref format. The snapshot ID
+[02:31] and element ID travel together. So, a
+[02:34] stale ref from an old snapshot gets
+[02:36] rejected instead of silently clicking
+[02:38] the wrong thing. That one design
+[02:40] decision kills the classic computer use
+[02:41] failure mode where the screen changed
+[02:43] and the agent didn't notice. This is the
+[02:46] entire contract between the agent and
+[02:48] your desktop. Structured JSON, a
+[02:50] snapshot ID, and a list of elements with
+[02:52] RO, label, and value. No bounding boxes
+[02:55] to estimate. No OCR, no coordinates. A
+[02:59] language model can read this directly in
+[03:01] a few hundred tokens. Compare that to
+[03:03] shipping a full screenshot into a vision
+[03:05] model on every step. It's the same trick
+[03:07] that made agent browser popular on the
+[03:09] web applied to native apps. Give the
+[03:12] model text because text is what models
+[03:14] are actually good at. The safety model
+[03:16] is unusually conservative and honestly
+[03:18] refreshing. Headless by default. It
+[03:21] never moves your pointer or steals focus
+[03:23] unless you explicitly pass the headed
+[03:25] flag. Raw key down and mouse down
+[03:27] primitives flatout refuse to run until
+[03:29] the team trusts their release mechanics.
+[03:31] Protected OS processes can't be closed.
+[03:34] On Windows, elevated apps reject
+[03:36] standard callers with a permission error
+[03:38] instead of letting an agent escalate.
+[03:40] the pattern across all of it. When in
+[03:42] doubt, refuse. Make the agents world
+[03:44] predictable rather than powerful. The
+[03:46] numbers moved fast for infrastructure
+[03:48] this low level. 8,778
+[03:51] stars and 609 forks within days of the
+[03:54] version 1.0 announcement. More than 60
+[03:56] commands across all three platforms, and
+[03:59] it isn't locked to any one agent. It
+[04:01] ships as a plain CLI, as an installable
+[04:04] skill through the skills ecosystem, and
+[04:06] as a C library for inprocess calls with
+[04:08] Python bindings demonstrated in the
+[04:10] docs, claude code, codeex, cursor, or
+[04:13] your own script. Anything that can run a
+[04:16] shell command can drive a desktop with
+[04:17] it. That neutrality is rare. Most
+[04:20] computer use stacks assume you've
+[04:21] married one vendor's agent. Put it next
+[04:23] to the incumbent approach in the
+[04:25] architectural split is clean. Anthropic,
+[04:28] OpenAI, and Gemini computer use all work
+[04:30] the same way. Screenshot, send to model,
+[04:33] infer coordinates, click, repeat. The
+[04:36] model is in the loop for every
+[04:37] observation. Agent Desktop has no model
+[04:40] inside at all. It's deterministic
+[04:42] tooling. The model calls like a compiler
+[04:44] or a database client. Screenshot loops
+[04:47] handle anything visible, including
+[04:49] canvas. Tree reads handle anything
+[04:51] labeled instantly and cheaply. That
+[04:53] trade is the whole debate and it's where
+[04:55] the criticism lands. Developer Flavio
+[04:58] Copes ran it end to end on Linux and
+[05:00] summed up the design in one line. The
+[05:02] agent observes, acts, and observes
+[05:04] again. There is no pixel match in that
+[05:06] loop. His testing confirmed the claimed
+[05:08] behavior. Real text landed in a real
+[05:11] editor. Edits came back verified and the
+[05:13] auto weight handled timing without
+[05:15] sleeps. For a tool 4 days past its 1.0,
+[05:18] independent reproduction matters more
+[05:20] than any benchmark slide. The repository
+[05:23] is pure Rust with platform adapters per
+[05:25] OS. The accessibility API on Mac OS, UI
+[05:29] automation on Windows, ATSPI on Linux.
+[05:33] Releases moved quickly. Version 1.0.0 on
+[05:36] October 28th, a patch the same night,
+[05:39] 1.0.2
+[05:41] days later, with the public announcement
+[05:43] following on the 31st. There's one more
+[05:45] clever bridge in here for Electron and
+[05:47] Chromium apps where accessibility labels
+[05:49] get thin. Agent Desktop can open a dev
+[05:52] tools port and hand the web content over
+[05:54] to agent browser. The two tools are
+[05:56] designed to meet in the middle. And
+[05:58] here's the catch I promised at the top.
+[06:00] The community reaction is split along
+[06:02] one line. Accessibility trees are only
+[06:05] as good as the labels developers bother
+[06:07] to write. Canvas rendered apps are
+[06:09] invisible to this approach. Electron
+[06:11] apps with half missing labels give you
+[06:13] half a UI. The counterpoint that
+[06:15] DevTools handoff to agent browser covers
+[06:18] exactly the worst offenders. And for
+[06:20] everything else, screenshot fallback
+[06:22] still exists. Others are simply relieved
+[06:24] someone is unifying computer use across
+[06:26] Claude, Chat, GPT, and Grock instead of
+[06:29] shipping another silo. The timeline
+[06:31] shows patience, then a sprint. The repo
+[06:34] started quietly in February 2026.
+[06:37] Through spring and summer, it iterated
+[06:38] on the ref model and the per platform
+[06:40] adapters. Version 1.0.0 landed October
+[06:44] 28th, got patched within hours, and
+[06:47] 1.0.2 2 followed on the 30th, then the
+[06:50] announcement on Halloween after the
+[06:52] stable release, not before it. Versel
+[06:55] shipped the software first and the hype
+[06:56] second, which tells you who they built
+[06:58] it for. For a category this failure,
+[07:01] that ordering is the credibility signal.
+[07:03] Agent desktop is free, Apache 2.0, and
+[07:07] linked below next to agent hyphen
+[07:09] browser. Subscribe to Prism Labs. Agent
+[07:12] infrastructure moves weekly and we keep
+[07:14] you a step ahead of all of
