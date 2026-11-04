@@ -1,0 +1,263 @@
+[00:03] Hi, welcome to another video. So,
+[00:05] Deepseek put out a video a while back
+[00:07] showing off creator mode in Deepseek
+[00:09] Harness where the app basically builds
+[00:11] its own plugins while you talk to it.
+[00:13] They showed a 3D landmark gallery, a
+[00:15] transformer visualizer, a pixel art skin
+[00:18] for the whole app and a few more. And a
+[00:20] lot of people, including me, wanted to
+[00:21] know what prompts they actually used.
+[00:23] Well, they have now published all of
+[00:25] them. It's one simple page with seven
+[00:27] prompts in English and Chinese with a
+[00:29] copy button on each one. And I think
+[00:31] this page is more useful than it looks
+[00:33] because if you read these prompts
+[00:34] closely, they are basically a guide to
+[00:36] how you should talk to creator mode. So
+[00:38] in this video, I want to go through all
+[00:39] seven, show you what each one teaches
+[00:41] you, and then show you how I would run
+[00:42] this without burning through API credits
+[00:44] with client pass, client desktop, and a
+[00:46] bit of Panda code. So let's get right
+[00:48] into it. First, a quick refresher.
+[00:50] Deepseek harness is Deepseek's open
+[00:51] source agent app. The repo is MIT
+[00:53] licensed. It has crossed 269,000 stars
+[00:56] on GitHub and the tagline is everything
+[00:58] is a plug-in. The latest build is
+[01:00] version 0.211 release candidate 5 from
+[01:03] October 30th and it has different modes.
+[01:05] Standard mode is the normal coding
+[01:06] agent. Creator mode adds two readonly
+[01:08] tools that let the agent look inside the
+[01:10] running app before it writes anything.
+[01:12] It can list what is loaded and check the
+[01:14] exact methods and types that are
+[01:15] available. Then it packages the plugin
+[01:17] as a bundle and installs it through the
+[01:19] plug-in manager. And the plugin belongs
+[01:21] to your profile so it survives a
+[01:22] restart. The instructions on the page
+[01:24] are really simple. You copy a prompt,
+[01:27] paste it into Deep Seek Harness, and
+[01:29] select the creator mode option, but
+[01:31] there is one honest line here that I
+[01:33] really like. They say that some of these
+[01:35] plugins were refined over several rounds
+[01:36] of conversation. So, a single prompt may
+[01:39] not get you exactly what you saw in the
+[01:41] video, so keep that in mind. These are
+[01:43] starting points, not magic spells. Now,
+[01:45] let's go through them. The first one is
+[01:47] a 3D gallery of famous landmarks. It
+[01:50] asks for a plug-in with a left sidebar
+[01:52] entry that renders 3D models of the
+[01:53] Eiffel Tower, the Great Wall of China,
+[01:55] the Forbidden City, and one more famous
+[01:57] building of the model's choice. And the
+[01:59] first thing you notice is that it says
+[02:01] where the plug-in lives, left sidebar
+[02:02] entry. Six of these seven prompts tell
+[02:04] the agent where the plug-in goes. Three
+[02:06] of them use the left sidebar, two are
+[02:08] opened from the conversation, and one
+[02:10] lives in the right sidebar. That is
+[02:12] lesson number one. Always say where it
+[02:14] lives. And the one more of your choice
+[02:16] part is a nice touch because it gives
+[02:17] the model a little room to be creative
+[02:19] instead of making it guess everything.
+[02:21] The second one is a transformer 3D
+[02:24] visualization. It asks for an
+[02:25] interactive 3D demonstration game that
+[02:27] helps you understand the computation
+[02:29] inside a transformer. And then there's
+[02:31] this line, keep the panel title and
+[02:33] toolbar clear of the native Mac OS
+[02:35] window buttons so they don't overlap.
+[02:37] That is clearly a line somebody added
+[02:39] after the first attempt got it wrong.
+[02:41] And that's lesson number two. When
+[02:42] something looks broken, don't start
+[02:44] over. Just name the exact problem in
+[02:45] your next message and put it in the
+[02:47] prompt next time. The third one is my
+[02:49] favorite. It's called the DSH pixelated
+[02:51] interface. It is a plugin that changes
+[02:54] the look of the entire app with five
+[02:56] different styles to choose from and a
+[02:58] pixelated look as one of them. So, this
+[03:01] is not a panel inside the app. This is
+[03:03] the app changing itself. That is the
+[03:05] whole everything is a plug-in idea in
+[03:08] one prompt. And lesson number three is
+[03:10] right there as well. Give it a count.
+[03:12] Five styles, not some styles. Numbers
+[03:16] are much easier to check than
+[03:17] adjectives. The fourth one is a poster
+[03:20] design workbench. This one opens from
+[03:23] the conversation and it tells the model
+[03:25] to use the shader background pattern and
+[03:28] the English font from the Deep Seek
+[03:29] Harness website. You can customize the
+[03:32] title, the text, and the shader colors.
+[03:35] And then it says, keep the default page
+[03:37] minimal with no unnecessary subheadings
+[03:40] or information and set the default title
+[03:42] to everything is a plug-in. So lesson
+[03:44] number four, tell it what you don't want
+[03:46] and give it the default values. Models
+[03:48] love adding filler and this prompt just
+[03:50] shuts that down. The fifth one is a
+[03:53] video editing workbench. a dark
+[03:55] interface with the familiar interactions
+[03:56] of established video editors, multiple
+[03:59] video uploads, editing and exporting, a
+[04:02] large preview on top, and a timeline
+[04:04] below. And you can also import and edit
+[04:06] videos with natural language requests in
+[04:08] the conversation. So, this one describes
+[04:11] the layout like a wireframe top and
+[04:13] bottom, and it connects the plug-in back
+[04:15] to the chat. That's lesson number five.
+[04:18] A plugin is better when the agent can
+[04:20] drive it, too. The sixth one is a paper
+[04:22] reader. From the right sidebar, you
+[04:24] upload papers and it has to keep the
+[04:26] original layout, fonts, images, and
+[04:29] everything else without any loss. When
+[04:31] you select text, it shows a floating
+[04:34] menu with three options. Highlight, add
+[04:36] a note, or ask about it in the
+[04:37] conversation. And then the default
+[04:39] question prompt has to match the
+[04:41] interface language. That last line is
+[04:43] the kind of detail that you only think
+[04:44] of when you have actually used the
+[04:45] thing. Lesson number six, spell out the
+[04:48] interaction step by step. And the
+[04:50] seventh one is conversation statistics.
+[04:52] It's built on your actual conversation
+[04:54] data. And it shows total token usage,
+[04:57] conversation count, and estimated costs
+[05:00] and a budget based on that usage plus a
+[05:03] token timeline, usage and cost per
+[05:05] conversation, and CPU activity and
+[05:07] utilization. And that's lesson number
+[05:09] seven. Say real data or you will get a
+[05:12] beautiful dashboard full of fake
+[05:14] numbers. And funnily enough, this is the
+[05:16] one prompt that doesn't say where the
+[05:17] plug-in lives. So the model has to
+[05:19] guess. So if I put all of that together,
+[05:21] a good creator mode prompt has five
+[05:23] parts. Where it lives, what it does, the
+[05:25] numbers and the defaults, what to leave
+[05:27] out, and how it connects back to the
+[05:29] conversation. That's pretty much it. But
+[05:31] now here's the catch. That line about
+[05:33] several rounds of conversation is the
+[05:35] part that cost you money. Creator mode
+[05:37] reads the runtime, writes the plugin,
+[05:39] installs it, and then you go back and
+[05:41] forth on the details. And that is a lot
+[05:43] of tokens for every single plugin. If
+[05:46] you are paying per token, that adds up
+[05:48] really fast. And this is where Klein
+[05:50] Pass is pretty cool. Klein Pass is the
+[05:53] subscription from the Klein team and
+[05:54] it's $9.99 per month for a lineup of
+[05:57] open models with two to five times more
+[05:59] usage than paying for the same models
+[06:01] directly. And it gives you an API key so
+[06:04] it isn't locked to client. Deepseek
+[06:05] harness lets you add a custom model API.
+[06:08] You go to settings, then models, and add
+[06:11] a model provider. Pick custom model API.
+[06:14] Put in the client pass base URL. Choose
+[06:17] the OpenAI chat completions protocol and
+[06:20] paste your key. Then you can hit fetch
+[06:21] available models to pull in the model
+[06:23] list or just add the model IDs by hand.
+[06:25] Klein Pass speaks the OpenAI format so
+[06:28] it should slot right in. Then you can
+[06:29] run creator mode on the Klein Pass
+[06:31] models like Kimmy K31 Pro for the bigger
+[06:33] plugins and the Flash models for the
+[06:35] small fixes. And you don't have to worry
+[06:37] about every extra round of conversation.
+[06:39] Then there's Klein desktop. Not
+[06:41] everything you want is a Deep Seek
+[06:42] harness plugin. Sometimes you just want
+[06:44] to ask the agent to build a normal web
+[06:46] app or do a review on a repo every
+[06:48] morning. Client desktop is the client
+[06:50] agent as a standalone app. It's still in
+[06:52] beta and it runs on the same client pass
+[06:54] subscription. So the same 9992 covers
+[06:57] both apps. And it has schedule where you
+[07:00] give it a name, a frequency, a prompt, a
+[07:03] model, and a workspace and it runs that
+[07:04] job for you. It also has import so you
+[07:07] can bring in a conversation from cloud
+[07:09] code or codeex and keep going on a
+[07:11] client pass model. So deepse harness is
+[07:14] where the app builds itself and client
+[07:16] desktop is where the regular work gets
+[07:17] done. And if you want to go one step
+[07:19] further, Pandode can actually run deepse
+[07:21] harness as one of its harnesses. You
+[07:23] install the DSH package from npm and
+[07:25] pandode launches it over ACP, lists its
+[07:28] models and lets you set the reasoning
+[07:29] effort. And Klein is in there as well.
+[07:31] So you can have an architect that holds
+[07:33] the whole task and then send one worker
+[07:35] to Deep Sea Carnis and another to Klein
+[07:37] on Klein Pass, each on its own model.
+[07:39] So, if you wanted all seven of these
+[07:41] plug-in ideas built as standalone apps,
+[07:43] you could hand them out in parallel and
+[07:44] review them in one place, which is
+[07:46] pretty awesome for sure. Now, I do have
+[07:48] to mention the limitations. Deepseek
+[07:49] harness is still in developer preview
+[07:52] and it ships release candidates very
+[07:54] often, so things can change between
+[07:56] builds. Deepseek themselves say that a
+[07:58] single prompt may not reproduce what is
+[08:00] in their video, so expect to iterate. A
+[08:03] plugin that changes the whole app, like
+[08:05] the pixel style one, can also break the
+[08:07] look of things, so nowhere to turn it
+[08:09] off. The plug-in manager is right there
+[08:11] for that. And client pass is not
+[08:13] unlimited either. So if you run Kimmy
+[08:15] K31 Pro on creator mode all day, you're
+[08:17] going to hit the limits. Also, Klein
+[08:20] desktop is still in beta, so expect some
+[08:22] rough edges there, too. So, so to
+[08:23] summarize, Deepseek published the seven
+[08:26] prompts behind their creator mode video,
+[08:28] and they are a really good lesson in how
+[08:29] to talk to a plug-in building agent. Say
+[08:32] where it lives, give it numbers and
+[08:34] defaults.
+[08:36] Say what to leave out and connect it
+[08:38] back to the chat. Then run it on client
+[08:40] pass so the back and forth doesn't cost
+[08:43] you a fortune. Use client desktop for
+[08:45] the regular work and Pandaode if you
+[08:47] want to run all of it in parallel.
+[08:49] Overall, it's pretty cool.
+[08:52] Anyway, let me know your thoughts in the
+[08:53] comments. If you like this video,
+[08:55] consider donating through the super
+[08:57] thanks [music] option or becoming a
+[08:58] member by clicking the join button. Also
+[09:00] give this video a thumbs [music] up and
+[09:02] subscribe to my channel. I'll see you in
+[09:04] the next one. Until then, bye.

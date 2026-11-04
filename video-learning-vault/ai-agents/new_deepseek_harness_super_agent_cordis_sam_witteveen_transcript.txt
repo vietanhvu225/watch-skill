@@ -1,0 +1,484 @@
+[00:00] Okay, so this past weekend, Deep Seek
+[00:02] released something that a lot of people
+[00:04] out there are calling the answer to
+[00:05] Claude code. It's an agent that sits on
+[00:08] a GitHub repo. It watches the issues and
+[00:10] pull requests. And when someone on your
+[00:12] team asks it to do something, it then
+[00:15] goes off into its own session, does the
+[00:17] work, and comes back with a PR. Now,
+[00:20] while that's cool in itself, that's not
+[00:22] really the part that I want to talk
+[00:24] about here. The part that I find really
+[00:26] interesting is how they built it. The
+[00:28] whole thing is just a set of plugins
+[00:31] dropped into their agent harness. And to
+[00:34] understand why that matters, we need to
+[00:36] go back and actually look at the harness
+[00:38] itself. So, when the Deep Seek harness
+[00:40] came out back in August, I didn't
+[00:42] actually cover it. And honestly, the
+[00:43] reason for that was I just got so busy
+[00:45] playing with it and trying out new ideas
+[00:47] with it all the time. I kept putting off
+[00:49] making the video because I felt like
+[00:51] there were so many things that I wanted
+[00:52] to show. For me, the whole plugin
+[00:55] architecture of that harness is really
+[00:57] cool, and it just allows you to do a
+[01:00] whole bunch of things like this new
+[01:01] super agent enables. Now, obviously in
+[01:04] the meantime, a lot of people ended up
+[01:05] covering it. It's turned out to be one
+[01:07] of the most starred projects on GitHub
+[01:09] this year. So, in this video, I'm going
+[01:10] to do a sort of catch-up on that and
+[01:13] look at some of the new stuff that
+[01:14] they've actually built on top of this.
+[01:16] All right, so the new thing that Deep
+[01:17] Seek has launched is called super agent.
+[01:19] And along with the repos that they
+[01:20] launched, they've basically written an
+[01:22] article on X called exploring super
+[01:25] agent design towards a more autonomous
+[01:28] agent system. And in that article and
+[01:30] the repo, they're very up front about
+[01:32] that this is a research prototype. It's
+[01:34] not an official Deep Seek product. And
+[01:37] they even mention that it grew out of
+[01:38] their own day-to-day development work.
+[01:41] And that a lot of the ideas and the
+[01:43] engineering here were actually written
+[01:45] by coding agents themselves. So, the
+[01:47] basic idea is this. Instead of you
+[01:50] opening a session and talking to an
+[01:52] agent, the agent listens to where your
+[01:54] team already works. And the example that
+[01:56] they've launched now, that happens to be
+[01:58] GitHub. It also happens to be an app
+[02:00] called Feishu, which is ByteDance's sort
+[02:02] of Slack equivalent. Now, when someone
+[02:05] who's allowed to asks it for something,
+[02:08] it opens up a work item, it spins up its
+[02:11] own session in its own directory, does
+[02:14] all of the work, replies back to the
+[02:16] original conversation, and then usually
+[02:19] in that reply, it's going to have a pull
+[02:21] request in there. And in many ways, you
+[02:23] can kind of think of this as building on
+[02:24] the whole ideas of software factories,
+[02:28] of automated software generation and
+[02:30] stuff that we've seen a lot of people
+[02:31] being talking about over the past couple
+[02:33] of months. Now, DeepSeek themselves say
+[02:35] that they've been running an internal
+[02:37] version of this continuously. It's been
+[02:40] reproducing and fixing bug issues,
+[02:42] responding to code review comments, and
+[02:44] it's actually been making improvements
+[02:46] to the DeepSeek harness itself. So,
+[02:49] before I go into showing you the how of
+[02:51] how it actually all works, I want to
+[02:53] show you why the harness layer matters
+[02:55] so much. Recently on the Venture B
+[02:57] podcast Beyond the Pilot, which I
+[02:59] co-host, we've interviewed a number of
+[03:01] interesting people, including the CTO of
+[03:03] Instacart and the CTO of Box. Now, both
+[03:06] of those episodes are coming up over the
+[03:08] next couple of weeks or so, but one of
+[03:10] the questions that I put to both of them
+[03:13] was basically, what's more important
+[03:15] now, the model or the harness? Both of
+[03:18] them came back on the side of the
+[03:19] harness, and I'll leave it for you to
+[03:21] watch the full interviews cuz it was
+[03:23] fascinating conversations. But clearly
+[03:25] now, a lot of the innovation has moved
+[03:27] away from just the model itself to the
+[03:30] actual harnesses. And maybe it will
+[03:32] swing back in the future as we get
+[03:34] better models, but currently you need to
+[03:36] be focused on where the harnesses are
+[03:38] going. All right, so one of the things
+[03:39] that my team and I are trying to do
+[03:41] right now is increase the coverage and
+[03:43] the number of videos that we're doing.
+[03:45] It would really help if you just support
+[03:46] the channel by clicking that subscribe
+[03:48] button. We know that most of you are
+[03:50] watching a lot of the videos and still
+[03:52] not subscribed. Anyway, back to why the
+[03:54] harness is so important. So, this is the
+[03:57] Frontier harness chart and result table.
+[04:00] So, these aren't my numbers. This comes
+[04:02] from a benchmark called Frontier Harness
+[04:04] Eval. And what they did was take one
+[04:07] model, the Kim e K3, and run it through
+[04:09] nine different coding agent harnesses,
+[04:12] 12 configurations in total. Codex,
+[04:15] Claude Code, Pi, Open Code, DeepSeek
+[04:18] Harness, etc. They then gave it the same
+[04:21] 30 tasks, same model, same runtime. The
+[04:24] only thing that changed here was the
+[04:26] harness. Now, you could make the
+[04:28] argument that it's not a totally fair
+[04:29] comparison, that Claude Code is
+[04:31] optimized for its models, that Codex is
+[04:34] optimized for the models, but it's
+[04:35] really interesting to see the results
+[04:37] that they got here. Codex came out on
+[04:40] top with 66.7 pass rate. But if you look
+[04:43] at that next row, DeepSeek Harness in
+[04:46] its creator configuration and Claude
+[04:49] Code both scored 63.3%. That's the same
+[04:54] pass rate, same model, but the DeepSeek
+[04:57] Harness run cost only about $3.28 per
+[05:00] successful task, and Claude Code cost
+[05:03] about $18.34. Now, across the whole
+[05:06] table, the gap between the cheapest and
+[05:09] most expensive configurations was
+[05:11] actually about 17.5x. Now, I would be
+[05:14] careful reading too much into the exact
+[05:16] configurations here. It's 30 tasks, so
+[05:19] one task is worth about three and a
+[05:21] third points. The difference between
+[05:23] Codex and DeepSeek is literally just one
+[05:25] task here. But I do think the big
+[05:27] picture holds true here, that the
+[05:29] harness isn't just a wrapper. It changes
+[05:32] the cost, the caching, the speed, and
+[05:35] the success rate, even when the model is
+[05:38] held constant. So, if you're evaluating
+[05:40] a model, I'd try and do it in two or
+[05:43] three harnesses before deciding whether
+[05:46] the model is any good. Otherwise, you
+[05:48] might be just blaming a model for what
+[05:49] actually is the harness's
+[05:51] responsibility. All right, so what is
+[05:53] DeepSeek Harness, and why does it do
+[05:55] well here? So, DeepSeek Harness, or DSH,
+[05:58] came out on August 13th, alongside the
+[06:01] initial release of DeepSeek version 4
+[06:04] Pro. It's MIT licensed and there's a web
+[06:06] UI. So, you can start with just one NPX
+[06:09] command and a desktop app. It's not
+[06:12] locked to the Deep Seek models. I think
+[06:14] that's really important to stress here.
+[06:16] It works with other providers and even
+[06:18] with OpenAI compatible endpoints. The
+[06:21] key tagline here though that sort of
+[06:23] sums this up is that everything is a
+[06:26] plugin and they mean that very
+[06:28] literally. In most agent frameworks,
+[06:31] you've got a core, the agent loop, the
+[06:33] model calls, the tool handling, and then
+[06:36] plugins sort of hang off on the side. In
+[06:39] DSH, the router itself is a plugin, the
+[06:43] tool registry, a plugin, the session
+[06:45] log, a plugin, even the agent loop
+[06:48] itself is a plugin. Underneath all of
+[06:50] this is a framework called Cordis and
+[06:53] there's a paper behind that from three
+[06:55] researchers at the Beijing University.
+[06:57] And this framework, Deep Seek called a
+[06:59] programming paradigm for spatio-temporal
+[07:02] composability. Now, that sounds like a
+[07:05] lot but the two ideas here are actually
+[07:06] pretty simple. The first is what they
+[07:09] call temporal composability. When you
+[07:11] remove a component, everything it did
+[07:13] gets completely undone. If a plugin
+[07:16] registered a tool or a hook into event,
+[07:18] unloading it reverses all of that. The
+[07:21] simplest way to think about this is that
+[07:23] you can unplug something really cleanly.
+[07:26] The second element here is spatial
+[07:27] composability. Components declare what
+[07:30] they depend on and the runtime activates
+[07:33] or deactivates them as those
+[07:35] dependencies come and go. So, you can
+[07:37] basically plugin things safely and
+[07:39] unplug them safely as well. Now, why
+[07:41] does an agent harness need this? Because
+[07:43] systems are changing constantly. You're
+[07:45] swapping models, you're adding tools,
+[07:47] you're turning things on and off per
+[07:49] permission. And if every one of those
+[07:51] changes sort of leaves junk behind,
+[07:54] things get messy really quickly. We saw
+[07:57] this even when people sort of reverse
+[07:58] engineered how Claude code was working.
+[08:01] Everyone that's making agent harnesses
+[08:03] at the moment is moving at such a fast
+[08:05] pace. It's just a simple fact that often
+[08:07] code gets left behind. Anyway, so how
+[08:10] does this look in practice? Well,
+[08:11] running DSH is actually a tree of
+[08:13] plugins which gets composed when it
+[08:16] boots up from layers. First come bundles
+[08:19] which are package sets of plugins plus
+[08:21] their configs, then your profiles patch
+[08:23] a YAML file called cordis.patch, then
+[08:26] you've got a home level patch, and then
+[08:28] anything you pass in on the command
+[08:30] line. So, each layer here can target any
+[08:33] plugin by its ID and replace its config
+[08:36] or insert new ones. They've even got a
+[08:39] command in there for dump config that
+[08:41] just prints out the whole tree that your
+[08:43] machine is booting from, and every row
+[08:45] in that can be overwritten. Now, in the
+[08:47] UI, they've got four modes and they work
+[08:50] in the same way. You've got standard,
+[08:52] PGC, minimal, and creator. And those
+[08:54] themselves are just different sets of
+[08:57] plugins. The creator mode is sort of the
+[08:59] logical end point for this. You can
+[09:01] describe a plugin in chat and the agent
+[09:04] will write it, install it, and then
+[09:07] check that it's actually live. So, you
+[09:09] can kind of think of this as while
+[09:11] everyone's been focused on just
+[09:12] continual learning for models, this is
+[09:15] bringing continual learning into the
+[09:17] harness. Another thing that's worth
+[09:19] knowing here is that the core repo here
+[09:21] isn't taking outside pull requests now.
+[09:23] They're pointing people to discussions
+[09:26] and building plugins instead, which
+[09:29] actually makes total sense for this
+[09:31] design, right? If there's no core to
+[09:33] patch, then plugins are how you
+[09:36] contribute. And that's what brings us
+[09:38] back to the whole super agent. So, if
+[09:40] you open the super agent repo, one of
+[09:42] the first files you'll see is the
+[09:43] cordis.patch.yaml file. And that file is
+[09:46] basically the whole integration. Inserts
+[09:48] a core super agent plugin, a GitHub
+[09:51] watcher plugin, and a facial watcher
+[09:53] plugin by default. Now, obviously if
+[09:55] you're not using those, you could just
+[09:56] turn those off. But the way super agent
+[09:58] works is that it defines a separate
+[10:00] preset for the workers. You can think of
+[10:03] it as DSH's standard preset with a bunch
+[10:06] of things stripped out. No asking the
+[10:08] person questions, no plan mode, no web
+[10:11] fetch, no spinning off sub agents, etc.
+[10:14] And the shell is set so that any command
+[10:16] running longer than 5 seconds gets
+[10:18] pushed to a background job. That way a
+[10:20] long build doesn't stop the worker from
+[10:22] noticing that someone just left a new
+[10:24] command as it's going through.
+[10:26] Obviously, that can be one of the
+[10:27] frustrating things with Claude code and
+[10:29] Codex is once it starts going, you're
+[10:32] sitting there waiting to basically
+[10:33] update it and you perhaps want to inject
+[10:35] a prompt in while it's still going as
+[10:38] you realize it's going in the wrong
+[10:39] direction. So, what you're looking at in
+[10:41] this agent is a fairly different system
+[10:43] entirely. It's built from configurations
+[10:46] and plugins. There's no forking of the
+[10:48] harness and really that's the whole
+[10:50] payoff of the DSH design that we've just
+[10:53] talked about. Now, DSH itself did
+[10:55] actually have an experimental agent
+[10:57] teams feature with a roster, a task
+[11:00] board, a mailbox. So, why build this?
+[11:03] Well, you can think about agent teams is
+[11:05] about coordinating agents inside one
+[11:08] job. The super agent is about handling
+[11:11] lots of independent jobs that arrive
+[11:14] from the outside world over perhaps a
+[11:16] long period of time and also from lots
+[11:18] of different people posting here. It's
+[11:20] actually addressing a different problem
+[11:22] than what the teams feature did. And one
+[11:24] cool practical detail here is that the
+[11:26] router and the workers can each be given
+[11:28] a different model. So, I'll come back to
+[11:30] that in a second. Now, if we look at the
+[11:32] architecture here, this basically has
+[11:35] two layers to it. On top there's one
+[11:37] long running session that they call the
+[11:39] router. It handles all the human
+[11:41] interaction, keeps the big picture
+[11:43] context, hands out work to perhaps
+[11:45] different plugins or different agents.
+[11:48] Underneath are those worker agents, each
+[11:50] running in their own isolated session.
+[11:53] Workers never have to talk to people
+[11:54] directly. They report back to the
+[11:56] router. The router does all the
+[11:58] communication. Everything going in from
+[12:00] the outside is a trigger. A new issue, a
+[12:03] review comment, a chat message, etc.
+[12:06] Each trigger first goes through a gate,
+[12:08] which is plain code and not even a
+[12:10] model. And that gives you a
+[12:11] deterministic feature to basically
+[12:14] check, is this person even on the
+[12:16] allowed list to be able to comment or to
+[12:19] be able to file a pull request, etc. It
+[12:21] also helps it to answer things like, did
+[12:23] they actually address the agent? Now,
+[12:25] only when those checks are passed does
+[12:27] the model actually get to look at it and
+[12:29] decide, you know, whether it's real
+[12:30] work. If it is, it becomes a ticket with
+[12:33] what they call a mandate. That's a
+[12:35] record of who asked for it, under which
+[12:37] rules, how far the work is allowed to
+[12:39] go, etc. That ticket and the mandate
+[12:41] then get passed to a worker. Now, here's
+[12:44] a really cool detail that they've got in
+[12:46] there. Once a worker owns a ticket, it
+[12:48] subscribes to that conversation. So,
+[12:51] when someone comments on the PR that it
+[12:53] opens, that comment goes straight to the
+[12:55] worker. It skips the router entirely.
+[12:58] And you can think about that skipping of
+[13:00] that orchestration layer and going
+[13:01] straight through just saves you a huge
+[13:04] amount on tokens, etc. In fact, when
+[13:06] they turned off this in their
+[13:07] experiments, router decisions actually
+[13:10] went up by 30%and obviously the amount
+[13:13] of tokens went up with it. For me
+[13:15] though, the part that I find most
+[13:16] interesting here though, is about the
+[13:18] router as the bottleneck. So, we would
+[13:20] assume that one central session that's
+[13:22] doing the orchestration, handing
+[13:23] everything out, would just get
+[13:25] overwhelmed as things get busy. It
+[13:28] actually turns out here that it kind of
+[13:30] does the opposite. When triggers arrive
+[13:32] while the router is in mid inference,
+[13:35] they pile up and they get handled
+[13:37] together in the next call. And because
+[13:39] the way that they've structured that
+[13:40] router's job to be sort of long input
+[13:43] and short on output, it actually allows
+[13:46] it to batch these things really cheaply.
+[13:48] Now, in Deep Six stress test, they
+[13:50] pushed the trigger rate from about one a
+[13:52] minute to about 40 a minute. Average
+[13:55] batch size went from one to 2.8. And
+[13:58] sure, each call did get a bit slower
+[14:00] from about 2.5 seconds to 3.9, but the
+[14:04] time per decision, because it's being
+[14:06] done now in batches, actually drops from
+[14:08] 6.4 seconds down to 1.6 seconds. So, it
+[14:12] got more efficient under load. They also
+[14:15] say that the router job is often simpler
+[14:17] than you'd expect, and a lighter model
+[14:20] usually handles it fine. That kind of
+[14:22] goes against the grain for a lot of
+[14:24] thinking of where people have been
+[14:25] thinking that your orchestrator needs to
+[14:27] have the best model, and that your
+[14:29] subagents can get away with simpler
+[14:30] models. It turns out that that router
+[14:32] doesn't even need a bash tool. So,
+[14:35] overall, that router can use a fast,
+[14:37] cheap model. You can actually use the
+[14:39] stronger model for some of your workers.
+[14:41] And this is something that I definitely
+[14:42] want to test more with open models going
+[14:44] forward. Anyway, on top of this, they
+[14:46] have this philosophy, which I think is a
+[14:48] really useful part. The principle is
+[14:51] take as little human attention as
+[14:53] possible, and give as much value as
+[14:56] possible. And I kind of feel as we're
+[14:58] building agents, it's really hard to
+[15:00] argue against that. You want an agent
+[15:02] that only acts when someone allowed asks
+[15:04] for it, or when a rule the team wrote
+[15:06] actually allows it. Interestingly, even
+[15:08] in there, when work nobody asked for
+[15:10] starts, it actually starts in a mode
+[15:13] where it just records what it would have
+[15:15] done. It then confirms itself whether or
+[15:18] that would have actually worked, and
+[15:19] then only speaks up when there's a
+[15:21] result or a decision that somebody needs
+[15:24] to make. I really think there are a lot
+[15:25] of lessons in here that all of us can
+[15:27] take away for how we build our own
+[15:30] agents. Okay, so what's missing here?
+[15:32] Let me go through a few caveats here.
+[15:34] First, this is a prototype, and they say
+[15:36] that really clearly. The published code
+[15:38] isn't identical to their internal
+[15:40] version. Some designs in the article are
+[15:42] actually future directions that aren't
+[15:45] in the repo yet. And from what I can
+[15:46] see, things like the watchdog session
+[15:48] perhaps isn't fully there yet, and I'm
+[15:50] sure there are others that are missing
+[15:52] as well. Second, this is all kind of
+[15:54] narrow. It's one GitHub repo. They
+[15:56] haven't set this up to work with Slack
+[15:58] or with email. But actually, I'm not
+[16:00] really worried about that, because
+[16:02] everything is basically a plugin.
+[16:04] They've also included a cookbook for
+[16:06] adding your own source code in there.
+[16:08] So, my guess is very quickly we'll see
+[16:09] forks of this with lots of other
+[16:11] integrations in there. Third up, the
+[16:13] thing that we should be a little bit
+[16:14] concerned about is that the super agent
+[16:17] experiments that they ran on and
+[16:19] reported their benchmarks on are
+[16:21] actually run on synthetic workloads in a
+[16:23] simplified environment. And they say
+[16:25] themselves that this is basically just a
+[16:27] preliminary reference. And on things
+[16:29] like the 30 tasks, this is just a small
+[16:31] sample. So just treat those rankings as
+[16:33] a rough guide. Finally, the big thing to
+[16:35] be a little bit concerned about here is
+[16:37] security. They do list the problems of
+[16:40] prompt injection, credentials leaking,
+[16:42] permissions across devices, etc. as
+[16:44] things that they haven't fully solved
+[16:46] yet. So naturally, you probably want to
+[16:48] be a bit careful about how you use this.
+[16:51] But if you are using it with local
+[16:52] models in a totally locked down
+[16:53] environment, you probably don't have a
+[16:55] lot to really worry about here. All
+[16:57] right, so overall, while I think super
+[16:59] agent is a really interesting product
+[17:01] here, what is even more interesting here
+[17:04] is just basically the proof of design.
+[17:06] Deep Seek has built something which is
+[17:08] quite a different agent system on top of
+[17:10] their own harness with just a few patch
+[17:12] files and plugins without touching the
+[17:15] core of the harness at all. And for me,
+[17:17] the bigger point here is just showing
+[17:19] you how much harnesses are evolving at
+[17:21] such a quick pace at the moment. Anyway,
+[17:23] as always, I've put the links to the
+[17:25] repos, the paper, the benchmark, all of
+[17:27] that's in the description. Let me know
+[17:29] in the comments what you think. Do you
+[17:31] see the future of the harnesses of being
+[17:34] these composable plugins where different
+[17:36] people create different ideas in
+[17:39] different ways, and we're not just
+[17:41] reliant on the same coding agent
+[17:43] interfaces that we've seen up until now?
+[17:46] As always, if you found the video
+[17:47] useful, please click like and subscribe,
+[17:49] and I'll talk to you in the next video.
+[17:50] Bye for now.

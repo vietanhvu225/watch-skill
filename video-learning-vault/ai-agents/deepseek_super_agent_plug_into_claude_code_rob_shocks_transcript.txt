@@ -1,0 +1,401 @@
+[00:00] Okay, so what did DeepSseek actually
+[00:01] build? So, you might have heard of
+[00:02] Deepseek harness. It's their open-
+[00:04] source agent harness. Their super agent
+[00:06] is a prototype and design for running
+[00:08] agents on top of it. And DSH super agent
+[00:12] is the prototype that goes with it. But
+[00:14] don't worry if you're not into Deep
+[00:15] Seek. I'm going to show you how you can
+[00:16] set it up with claw code, open code,
+[00:18] whatever you want later. It's the
+[00:19] principles we're going to take away.
+[00:20] It's basically template for their idea
+[00:22] of a super agent which can work a lot
+[00:24] more autonomously. I've gone and
+[00:25] deconstructed it so you can use it with
+[00:27] claw code, open code, cursor, whatever
+[00:29] you want. And I'll show you how I did
+[00:30] that later on in the video so you could
+[00:31] try it out yourself. Now, in my last
+[00:33] video, I showed how I use Grockbot as
+[00:35] the manager for my coding agents. One
+[00:37] agent I talk to and then the workers
+[00:39] behind it doing all the code, either
+[00:41] claw code or codeex or cursor, whatever
+[00:43] you want. And that's one way around this
+[00:44] block. But what I like here is this is a
+[00:47] completely build your own run your own
+[00:49] system. So if you are work in an
+[00:51] enterprise in your own company, you're
+[00:52] running multiple agents, you've got a
+[00:54] team, etc. You can basically take what
+[00:56] DeepSeek have here and apply it
+[00:58] specifically to your workflows without
+[01:00] being tied into any other kind of
+[01:01] proprietary setup. So the argument of
+[01:03] Deepseek's agent here is the models
+[01:05] aren't the thing that's slowing us down
+[01:06] anymore. It's us, the meat proxies, the
+[01:08] humans, the slow humans in the middle.
+[01:10] Every agent you add is just another tab
+[01:13] you have to watch. It's another diff to
+[01:14] read, another question waiting on you.
+[01:16] We talked about this in a video a couple
+[01:18] of weeks ago from Entropic and their
+[01:19] SDLC where they talked about review
+[01:21] being the big bottleneck. So anyway,
+[01:22] Deepseek open sourced a research
+[01:24] prototype on this on the 31st of October
+[01:26] and it picked up a ton of GitHub stars
+[01:28] in just 2 days and it's growing. So it's
+[01:30] built around this one principle which is
+[01:32] take as little human attention as
+[01:35] possible. So if we can't read every line
+[01:37] anymore, where does the human go? So
+[01:39] Deep Seek's approach to this is a little
+[01:41] bit different from what we've seen in
+[01:42] other videos on the topic. So
+[01:44] essentially here's Deep Seek's argument.
+[01:46] The idea is that over the last year or
+[01:48] so, particularly in the last six months,
+[01:50] the models are just getting so much
+[01:52] better at completing tasks. They don't
+[01:53] need as much babysitting. But how we're
+[01:55] working, the workflows, the tools,
+[01:56] they're still treating one session as a
+[01:58] unit of work. You open a chat, you give
+[02:00] it a task, it's your brain space that
+[02:02] remembers what's in it. You open five of
+[02:04] these if you're working synchronously in
+[02:06] parallel, and now you are the router
+[02:08] between all these conversations. You are
+[02:10] the project manager and the memory for
+[02:12] all of them. They also talk about how
+[02:14] bolting on MCP servers and CLIs doesn't
+[02:17] necessarily fix this. You're still the
+[02:19] one that's unblocking sessions and long
+[02:21] jobs. Mentally, all the context from
+[02:23] different task is getting mixed
+[02:24] together. And then, of course, when your
+[02:25] laptop stops or goes to sleep,
+[02:27] everything stops. So, the idea is one
+[02:29] continuous agent instead of a pile of
+[02:32] sessions. Lots of companies that are
+[02:33] trying to really move fast with agents
+[02:35] are hitting the same kind of walls right
+[02:36] now. So, quick one before we carry on.
+[02:38] Client Desktop is a free open- source
+[02:40] app for working with AI models. And it's
+[02:42] not only for coding. You can use it for
+[02:44] research and working through files as
+[02:46] well as building apps. The biggest
+[02:48] reason to try it is the choice of
+[02:49] models. You can use over 300 models
+[02:52] through the client provider. You can run
+[02:53] local models or bring your own API keys
+[02:56] from more than 50 providers. That's huge
+[02:58] flexibility. There are free models, too,
+[03:00] so you can try it without paying
+[03:01] anything. I've got my 8-year-old son set
+[03:03] up in this. He loves to vibe code apps.
+[03:05] If you've got a big architecture choice
+[03:06] to make, you can get different opinions
+[03:08] from different models all in the same
+[03:09] app. If you've started a job in cloud
+[03:12] code or codeex, you can just import that
+[03:14] session and carry on in client really
+[03:15] simply. You can easily run agents side
+[03:17] by side with session management. One
+[03:19] building a feature, another one
+[03:20] researching an API. I can also schedule
+[03:23] a task that searches the web each
+[03:24] morning and summarize the news on the
+[03:26] tools that I cover. For models, you can
+[03:28] use client pass. It's an optional $9.99
+[03:30] a month subscription for open-weed
+[03:32] models like DeepSeek, Kimmy, and GLM,
+[03:34] which gets you about five times the
+[03:36] usage limit on standard API access.
+[03:38] Download Client Desktop for free in the
+[03:39] link in the description down below.
+[03:41] Anyway, with this one continuous agent,
+[03:43] they give it four traits: continuous,
+[03:46] productive, proactive, and persistent.
+[03:48] So, it's the same agent wherever you
+[03:50] talk to it. It runs tasks in parallel.
+[03:53] It doesn't wait to be asked, and it's
+[03:54] always on. So this is kind of the open
+[03:56] source version of the Grockbot
+[03:57] implementation I talked about in a video
+[03:59] a couple of days ago. So the trick that
+[04:01] makes this work is splitting the agent
+[04:03] into two. At the top there is a router.
+[04:06] It's longived persistent and it handles
+[04:09] every conversation with humans and then
+[04:11] it hands out the work to the other
+[04:12] agents. It never does the work itself.
+[04:14] It can work without a bash tool at all
+[04:17] and a lighter faster model is usually
+[04:19] enough. Again similar to what we're
+[04:21] seeing with Rockbot. So underneath are
+[04:22] the workers. Each one gets its own
+[04:24] content, a full set of tools, one task,
+[04:27] and the strongest model you can give it.
+[04:29] The workers will never talk to you
+[04:30] directly. They report back to the
+[04:32] router, and the router does all the
+[04:33] talking. Again, very similar to the
+[04:35] Grockbot setup we looked at a couple of
+[04:37] days ago. What's interesting about this
+[04:38] whole system is this is very flexible.
+[04:40] It's something if you're building out an
+[04:42] enterprise system in your own company,
+[04:44] you're working with a number of
+[04:45] different developers, you can learn a
+[04:46] lot from this and apply it exactly to
+[04:48] your tools and your workflow. So there's
+[04:50] one line in here that really is I guess
+[04:52] the manifesto for the whole repository.
+[04:54] Sessions should be an implementation
+[04:56] detail of the system. They shouldn't be
+[04:58] a mental burden on its users. The second
+[05:01] big approach here is a change in how
+[05:03] it's being driven. If you remember a
+[05:05] while back, we talked about how Entropic
+[05:07] approaches their SDLC. They use an
+[05:09] intent. MD file to gather all of the
+[05:12] intent about what needs to be done.
+[05:13] Whether that's messages, emails,
+[05:15] calendars, Jira, uh, sentry, support
+[05:18] messages, all that kind of stuff. The
+[05:20] super agent here takes a similar
+[05:22] approach. It's not based on you typing
+[05:24] prompts anymore. It's coming from group
+[05:26] chat messages, emails, sentry, jira,
+[05:30] linear, code, review, comments, and
+[05:32] continuous integration results. And they
+[05:34] call all of these triggers. Now, most of
+[05:36] all this intent coming in is going to be
+[05:38] noise. So, it gets filtered twice. For
+[05:40] the first check, just using code is who
+[05:42] sent it and from where are they
+[05:44] authorized. And then only what gets true
+[05:46] goes to the model, which then will check
+[05:48] it against policies written as prompts,
+[05:50] which isn't as secure as I'd like it.
+[05:51] But let's keep going. So once a worker
+[05:54] picks up a pull request, it goes and
+[05:56] subscribes to the pull request thread.
+[05:58] Every follow-up comment goes straight to
+[06:00] that worker without going through the
+[06:01] router. The idea that keeping the same
+[06:03] worker alive for this is going to save a
+[06:05] lot on cash tokens because if you know
+[06:07] your fundamentals, every new agent,
+[06:09] every new session requires a whole
+[06:11] context drop in order to get started.
+[06:13] And that's initially going to cost you
+[06:14] more tokens and more money. The other
+[06:16] thing the worker does is it works and
+[06:18] acts ahead. In Deep Seek test, they set
+[06:20] up a policy called silently reproduce
+[06:23] and fix. When someone reports a bug, the
+[06:25] agent tries to reproduce it and find a
+[06:27] fix in the background. Now, we've seen
+[06:29] something simple from Lauren Tan's
+[06:30] approach to this. It's called fix and
+[06:32] fuzz. An agent will pick up on a bug,
+[06:34] see if it can be replicated, and then go
+[06:36] ahead and try and fix it. So, in Deep
+[06:38] Seek's approach here, the worker is only
+[06:39] going to speak up once it's confirmed
+[06:41] the issue and found a simple fix.
+[06:43] Otherwise, it just stays quiet. Again,
+[06:45] we're not overloading the human with
+[06:46] decisions unless they're required. A
+[06:49] separate watchdog session checks whether
+[06:50] each worker is actually making any
+[06:52] progress or if it's drifted off the
+[06:53] goal. So, the question is, does it beat
+[06:55] one agent with a load of sub aents
+[06:57] attached? So they tested it and about
+[06:59] 300 messages from a group chat from
+[07:01] GitHub and continuous integration only
+[07:03] about 20 of those were actual real work
+[07:05] requests. So in their test they just
+[07:07] used a tool which had a set amount of
+[07:09] time to run and they gave it to the sub
+[07:11] aents and then to Deep Seek's approach.
+[07:12] This is really just to measure the
+[07:14] coordination because with
+[07:15] non-deterministic agents they might have
+[07:16] gone and taken different approaches and
+[07:18] it wouldn't be a fair test. So each
+[07:19] design ran five times. So with this
+[07:22] super agent approach, it finished tasks
+[07:24] in about 12 minutes at the median and
+[07:26] 15.7 minutes for the slowest runs. A
+[07:28] single session with a sub aent tool and
+[07:30] a neutral prompt took about 20 to 29
+[07:33] minutes. Okay, so you'd expect a single
+[07:35] router in this setup to choke when
+[07:37] things got busy. Let's say you're
+[07:38] sending lots of different things to this
+[07:40] model in order to get it to delegate to
+[07:42] the others. So it actually seems to do
+[07:44] the opposite. Events that pile up during
+[07:46] one turn get batched into the next call.
+[07:48] So that goes from one trigger a minute
+[07:50] up to about 40 and the time per decision
+[07:52] drops from about 6.4 seconds to 1.6. So
+[07:55] in this experiment there is a trade-off
+[07:58] and you kind of need to make that
+[07:59] decision for yourself. Because we're
+[08:00] running lots of independent sessions
+[08:02] here. The super agent used about 23
+[08:04] million cash read tokens in a run
+[08:07] against about 6 million that you'd use
+[08:09] for a single session. So what they're
+[08:10] doing here is trading tokens for shorter
+[08:13] and more stable completion times. So the
+[08:15] big question from the start of the video
+[08:17] is can we take all this brain frying
+[08:20] human verification out of each of these
+[08:22] steps? Can we move it further up the
+[08:24] chain? According to Deep Seek's
+[08:25] conclusion, yes. Once the system handles
+[08:27] the sessions and the context, people can
+[08:29] move further up the chain from execution
+[08:32] details to higher level decisions and
+[08:34] sign off. And the prototype is built
+[08:36] really to protect your attention. It
+[08:37] only acts when someone it's allowed to
+[08:39] listen to asks it or when a rule from
+[08:42] the team allows it. It only pipes up
+[08:44] when a person needs to act or can use a
+[08:46] result and it's only going to ask one
+[08:48] question at a time not to overwhelm you.
+[08:49] So the important thing here is the human
+[08:51] isn't disappearing. It's just moving
+[08:52] around in the chain of decisions. You
+[08:54] want to take yourself away from the
+[08:56] small decisions and keep working on the
+[08:58] big ones. You're moving up to the parts
+[09:00] that only you can do. Deciding what's
+[09:01] worth building, setting the rules,
+[09:03] signing off, almost more product
+[09:05] engineering than anything else. So I
+[09:06] think that's where the growth potential
+[09:08] is to be ambitious. A team with a super
+[09:10] agent watching their chat, their pull
+[09:12] requests, and their CI aren't capped by
+[09:15] a small amount of sessions anymore.
+[09:16] Agent starts to become more proactive.
+[09:18] Now, to be clear, this is a research
+[09:20] prototype. It is not a product of any
+[09:22] kind. It is purely for research only.
+[09:24] Before you go installing anything like
+[09:26] this in the deployment dock, both the
+[09:28] router and the workers run with
+[09:30] dangerous full access, which is a big no
+[09:33] no unless you've got your system locked
+[09:35] down. So, it's advised that you run this
+[09:36] in a sandbox or a dedicated OS account.
+[09:39] Highly recommend you do that. Now, the
+[09:41] other big issue I see with moving fast
+[09:43] like this is the more events and the
+[09:45] more input you open your agent up to,
+[09:48] the more untrusted input it can read,
+[09:50] the more prompt ejection it opens to or
+[09:52] any kind of malicious plugins or
+[09:53] nefarious actors can feed in
+[09:56] instructions that you just don't want.
+[09:57] Okay, so for those of you who are
+[09:59] interested, here's how I set up my own
+[10:00] version of this, which I can run with
+[10:02] clog code, open code, etc. Now, I didn't
+[10:04] install the Deep Seek harness. I
+[10:06] basically got my agent to read the
+[10:07] design docs and prompts, keep the best
+[10:09] ideas, and built a small version of my
+[10:12] own in Typescript. In my setup, it
+[10:14] watches a GitHub repo. When someone on
+[10:16] the allow list mentions the bot on an
+[10:18] issue, a gate that's written in code
+[10:20] decides whether to act before any model
+[10:23] runs because I don't want to waste a
+[10:24] load of tokens. So, nothing typed in a
+[10:26] comment can grant permission. So, each
+[10:28] request becomes a ticket with its own
+[10:30] branch, work tree, and an agent session.
+[10:32] And then again, and just like we talked
+[10:34] about, any follow-up goes back into the
+[10:36] same session. The agent can't post to
+[10:38] GitHub itself. It goes through a tiny
+[10:41] command called SA. And then the host
+[10:43] checks every message, keeps it short,
+[10:44] and stamps it as written by an automated
+[10:46] agent. Because this is just a shell
+[10:48] command, you can swap out claw code for
+[10:50] open code in just one line of config.
+[10:52] From a security standpoint, I got it to
+[10:53] run in a Docker container as a non-root
+[10:56] user with no access to my home directory
+[10:58] or my SSH keys. It's got its own GitHub
+[11:00] bot account which I set permissions in
+[11:02] the token so it can only reach one
+[11:04] sandbox repo and you can add more if you
+[11:06] like and just add the permissions of the
+[11:08] repo and the workflow so it can run what
+[11:10] you need to. So in the first real run I
+[11:12] opened an issue. I asked it to fix a
+[11:13] spelling mistake in the readme. It
+[11:15] replied once, fixed the typo, ran the
+[11:17] tests and opened a pull request about 30
+[11:19] seconds end to end and about 10 cents
+[11:21] using haiku from claw code. So I've set
+[11:23] it so it can't merge its own work. It
+[11:25] just sits in a panel that says needs
+[11:27] you. I can just check in on this panel
+[11:28] whenever I want. Now, to be honest, if
+[11:30] you're a solo dev with an agent already
+[11:33] open, the gain is going to be small with
+[11:34] this kind of workflow. The coding is
+[11:36] essentially going to be the same. It's
+[11:37] the same kind of agent. There's nothing
+[11:39] special here. The difference here is the
+[11:41] mindset that we have this kind of a
+[11:43] quite teammate running as a service in
+[11:45] the background. This is Deepseek's a
+[11:47] super agent pattern. If you want to
+[11:49] build your own version of this, I'll put
+[11:50] a link in the description with the
+[11:51] instructions you can pass straight to
+[11:52] your agent to get it set up for you.
+[11:54] Now, I'm well aware that a lot of the
+[11:55] workflows we see here are possible with
+[11:57] other thirdparty agents that you plug
+[11:59] in. But what I like here is this is a
+[12:02] completely build your own, run your own
+[12:04] system. So, if you are work in an
+[12:05] enterprise in your own company, you're
+[12:07] running multiple agents, you've got a
+[12:09] team, etc. You can basically take what
+[12:11] DeepS have here and apply it
+[12:12] specifically to your workflows without
+[12:14] being tied into any other kind of
+[12:16] proprietary setup. If you want to build
+[12:18] setups like these alongside other
+[12:19] people, learn the fundamentals and the
+[12:21] advanced parts, that's what the Switch
+[12:22] Dimension course and community are for.
+[12:24] The link is in the description. So, I
+[12:26] know this one was a little bit advanced.
+[12:27] I like to keep track of exactly what's
+[12:29] happening on the edge. If it was useful,
+[12:31] subscribe because there's a lot more
+[12:32] coming on agents like this. And if you
+[12:34] want to see how I've been playing with
+[12:35] using Rockbot as my manager for my own
+[12:37] coding agents, watch that one
