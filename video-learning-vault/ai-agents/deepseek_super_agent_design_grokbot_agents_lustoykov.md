@@ -155,3 +155,4 @@ Một hệ thống phân tán chạy liên tục 24/7 không bao giờ có thể
 - [Giải Phẫu Kiến Trúc DeepSeek Harness & Cordis Framework (Sam Witteveen)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/new_deepseek_harness_super_agent_cordis_sam_witteveen.md) — Cách hiện thực hóa các khối kiến trúc trên bằng hệ thống plugin Cordis và bảng điểm Frontier Harness Eval.
 - [Giải Mã DeepSeek Super-Agent & Tích Hợp Vào Claude Code (Rob Shocks)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_super_agent_plug_into_claude_code_rob_shocks.md) — Bản cài đặt thực tế các nguyên lý Fast/Slow Path và Isolation cho Claude Code.
 - [AWS Infinity: AI Agent Runtime Viết Bằng Rust (Let's Get Rusty)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/amazon_infinity_ai_agent_runtime_rust_lets_get_rusty.md) — Đối chiếu cách AWS tách biệt Compute và State bằng Execution Slices và RAP Tool Server.
+

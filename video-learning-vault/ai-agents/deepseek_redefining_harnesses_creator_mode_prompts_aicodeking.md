@@ -133,3 +133,4 @@ Từ 7 ví dụ trên, mọi prompt yêu cầu AI xây dựng công cụ/plugin 
 - [Giải Phẫu Kiến Trúc DeepSeek Harness & Cordis Framework (Sam Witteveen)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/new_deepseek_harness_super_agent_cordis_sam_witteveen.md) — Cơ chế Spatio-Temporal Composability của framework Cordis giúp DSH nạp/gỡ plugin sạch sẽ 100%.
 - [9 NEW Claude Mods That Can Truly Change How You Work (Robonuggets)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/9_new_claude_mods_robonuggets.md) — Đối chiếu kiến trúc Malleable Software (Phần mềm tự biến đổi) giữa Claude Code Mods và DeepSeek Creator Mode.
 - [Tự Chế Mô Hình Cục Bộ 31MB Đánh Bại Cả Opus: Panda Router (AICodeKing)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/tiny_local_model_outperforms_opus_orchestration_aicodeking.md) — Cách PandaCode điều phối đa harness và leo bậc thang tự động.
+

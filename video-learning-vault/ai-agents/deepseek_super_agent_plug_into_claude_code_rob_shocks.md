@@ -162,3 +162,4 @@ Do đó, Rob đã thiết kế lại một phiên bản **TypeScript tinh gọn,
 - [DeepSeek Mã Nguồn Mở DSH Superagent (TEKTHRILL)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_open_sources_super_agent_dsh_tekthrill.md) — Tổng quan nhanh về triết lý "Polite by Design" của nguyên mẫu DeepSeek.
 - [Xác Minh Là Code Review Mới (Ray Amjad)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/verification_is_the_new_code_review_ray_amjad.md) — Cách xây dựng hệ thống Verifiers tự động để con người tự tin ký duyệt ở bước cuối.
 - [Công Cụ Git Worktree Tốt Nhất: Worktrunk (Better Stack)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/the_best_git_worktree_tool_worktrunk_better_stack.md) — Hạ tầng quản lý Git Worktree siêu tốc bổ trợ hoàn hảo cho các Worker Sessions.
+

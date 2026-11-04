@@ -176,3 +176,4 @@ Dù vượt trội về tốc độ và chi phí, cộng đồng kỹ sư vẫn 
 - [AWS Infinity: AI Agent Runtime Viết Bằng Rust](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/amazon_infinity_ai_agent_runtime_rust_lets_get_rusty.md) — Kiến trúc Rust hiệu năng cao giải phóng bộ nhớ khi chờ đợi.
 - [Panda Router: Mô Hình Local 31MB Đánh Bại Cả Opus](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/tiny_local_model_outperforms_opus_orchestration_aicodeking.md) — Tách bạch giữa Phán đoán định tính trong Model và Chính sách tất định trong Code.
 - [WebMCP Changes Everything (ByteGrad)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/webmcp_changes_everything_bytegrad.md) — Giao thức Model Context Protocol mở rộng cho tương tác web và desktop UI.
+
