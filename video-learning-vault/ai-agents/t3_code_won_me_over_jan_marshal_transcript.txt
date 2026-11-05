@@ -1,0 +1,855 @@
+[00:00] Claude Code, Codex, Cursor. I love all
+[00:03] three, but every time I start a project,
+[00:05] I'm choosing which one gets the job.
+[00:08] Sometimes I want all of them. Claude
+[00:10] investigates, Codex builds, Grok
+[00:12] researches. One environment working
+[00:15] together using the subscriptions I
+[00:17] already have and pay for. So, when T3
+[00:20] Code kept showing up on my Twitter feed,
+[00:22] it got my attention right away.
+[00:25] Apparently, Theos ADE could finally give
+[00:27] me the setup I was always looking for.
+[00:30] There was just one slight problem. I've
+[00:32] already tried it in the past and I
+[00:34] absolutely hated everything about it.
+[00:41] So, I gave it another chance. And okay,
+[00:43] Theo, you cooked. This time you got me.
+[00:46] Some of these features are honestly
+[00:48] game-changing. Orchestrator V2, T3
+[00:51] Connect, the visualization feature, just
+[00:54] to name a few. There is a lot to love
+[00:56] here. Enough that T3 Code might actually
+[00:58] become my main development environment.
+[01:01] And this says a lot coming from me.
+[01:03] Nevertheless, there are still a few
+[01:04] things that drive me absolutely insane.
+[01:07] So, let's dive into it. Now, one thing I
+[01:09] want you set straight right away is that
+[01:12] T3 Code is not a harness. Repeat after
+[01:15] me, T3 Code is not a harness. So, if you
+[01:19] need some singing lessons, then call me.
+[01:21] But no, I'm of course joking. Let's stay
+[01:24] serious for a second. While scrolling
+[01:26] through Twitter, I saw a lot of tweets
+[01:28] which were quite similar to this right
+[01:30] here. Some people made this like Theo
+[01:33] for multiple reasons, blah blah blah.
+[01:35] But y'all should admit T3 Code is the
+[01:37] best harness out there at the moment.
+[01:40] Well, yeah, kind of, but not really. T3
+[01:43] Code is not a harness. It never was one
+[01:46] and it probably will never be one, which
+[01:48] is absolutely fine. So, what is it?
+[01:51] Well, it's an agentic development
+[01:53] environment, ADE, built around existing
+[01:55] coding agent harnesses. Uh-huh, and
+[01:58] what's a harness? Well, the model is the
+[02:00] big brain. It does the thinking,
+[02:02] reasoning, and all of the fancy stuff.
+[02:04] And the harness gives the tools and
+[02:06] manages how it works. So, this means
+[02:09] reading files, editing code, running
+[02:11] commands, managing contacts, and if
+[02:13] needed, asking for permissions. And
+[02:16] Claude, Code Codex, Cursor, etc., each
+[02:19] provide their own harness. So, if you're
+[02:21] using T3 Code right now, then this also
+[02:24] means that you're using Claude, Code
+[02:25] Codex, or something like that in the
+[02:27] background. T3 Code does not bring its
+[02:30] own harness. It builds on top of the
+[02:32] harness and then also adds its own
+[02:34] features on top of the harness.
+[02:36] Interesting, right? So, let's look at
+[02:38] this diagram so that you get a better
+[02:40] understanding. On a high level, you get
+[02:43] two things with T3 Code, an application
+[02:46] and then also the orchestrator. Right
+[02:48] now, two application types are offered,
+[02:51] the desktop application and the mobile
+[02:53] application. And once you are done
+[02:55] ready, you send a prompt like, "Hey,
+[02:57] make me a millionaire, build an Intercom
+[02:59] clone," something like that. And this
+[03:01] message is then routed through the
+[03:03] orchestrator, in this case, the V2
+[03:05] orchestrator. On a simple level, the
+[03:07] orchestrator is there to create and
+[03:10] manage threats, to delegate work, and
+[03:12] also enable provider switching. And now
+[03:15] you might say, "Jan, what's now this V2
+[03:17] orchestrator? Is there also a V1
+[03:20] orchestrator?" Well, right now, yes,
+[03:22] there is a difference. If you use the
+[03:24] nightly version, so like the beta
+[03:26] version, then you get the V2
+[03:28] orchestrator. If you use the stable
+[03:30] version of T3 Code, then you get the V1
+[03:32] orchestrator. The biggest problem with
+[03:34] the V1 orchestrator is that you can't
+[03:37] use multiple harnesses at once. So,
+[03:39] here's something you should know about
+[03:41] me. I'm someone who likes using multiple
+[03:44] models at once. Opus 5.1, GPT 6.1, Soul,
+[03:48] Grok 4.7, maybe even Gemini. No, I'm
+[03:51] joking, but I think you get the idea. I
+[03:53] like using multiple models at once. And
+[03:55] with the V1 orchestrator, that's not
+[03:58] possible. You are locked into one
+[03:59] harness. If you start the threat with,
+[04:01] for example, Opus 5.5 and with that
+[04:04] Claude code, then you have to stick to
+[04:06] Claude code and the models provided by
+[04:08] the harness. If you create a threat with
+[04:10] a model provided by the Codex harness,
+[04:13] then you have to use the model provided
+[04:15] by that harness. That was one of the
+[04:16] biggest problems with T3 code in the
+[04:19] past, and that's also why I did not
+[04:20] really like the experience. But, this
+[04:23] has now finally changed. You can now use
+[04:25] multiple models in one session at once,
+[04:28] which is a huge game changer, because no
+[04:31] other provider does that. Yes, with
+[04:33] Cursor, you can use multiple models at
+[04:35] once, but this also means that you use
+[04:37] the harness provided by Cursor. With T3
+[04:40] code, you can exploit the subsidized
+[04:42] usage provided by the providers,
+[04:44] Anthropic, OpenAI, Google, et cetera.
+[04:47] And that's essentially a little cheat
+[04:49] code, to be super honest with you. And
+[04:51] then, finally, at the bottom, you also
+[04:53] have your environment with your project
+[04:55] files, Git work trees, the terminal, and
+[04:58] then also tools, so skills, MCP servers,
+[05:01] et cetera. So, now you might say, "Okay,
+[05:03] Jan, interesting, but let's be honest
+[05:06] for a second. Isn't T3 code just a
+[05:09] harness wrapper?" Well, on a high level,
+[05:11] yes, it is a wrapper, but it adds a lot
+[05:13] of features on top of the existing
+[05:15] harness. And I would say that T3 code,
+[05:17] on a deeper level, is a multi-agent
+[05:20] orchestrator. That's the core feature.
+[05:22] But, at the same time, you also get T3
+[05:24] Connect. You can use your phone and just
+[05:26] log into any environment you already
+[05:29] have, your MacBook, your Mac Studio,
+[05:31] your Windows machine, it does not
+[05:33] matter. You also get checkpoints, the
+[05:35] GitHub integration, and a lot of other
+[05:37] fancy stuff. But, the core idea of T3
+[05:39] code is the multi-agent orchestrator.
+[05:42] Use multiple agents, multiple harnesses
+[05:44] in one environment. No switching needed.
+[05:47] But now, before we continue building a
+[05:50] high-end landing page for your business
+[05:52] is really only the beginning. Because
+[05:54] once you deploy it, you still have to
+[05:56] track competitors, watch rankings, find
+[05:59] new opportunities, update reports, and
+[06:01] figure out what's actually moving the
+[06:03] business forward. And doing all of that
+[06:05] manually gets repetitive very quickly.
+[06:08] And that's exactly where Let AI Do comes
+[06:11] into play. Let AI Do is built by the
+[06:13] team behind Ahrefs. And the easiest way
+[06:16] to think about it is almost like live
+[06:18] coding for marketing. Instead of
+[06:20] manually putting together another
+[06:22] dashboard or automation, you just
+[06:24] describe the outcome you want, and Let
+[06:27] AI Do can build the actual workflow for
+[06:29] you. For example, let's say I want a
+[06:32] weekly competitor tracker. I can give it
+[06:34] five competitors and ask it to track
+[06:37] things like new or lost keywords, new
+[06:40] ranking pages, and notable backlink
+[06:42] changes. And since it can directly
+[06:45] connect to my Ahrefs data, it can pull
+[06:47] that information in and turn it into an
+[06:49] actual dashboard that stays inside my
+[06:51] workspace. And instead of me trying to
+[06:54] define everything perfectly in one giant
+[06:57] prompt, it can ask questions along the
+[06:59] way. For example, which competitors
+[07:02] matter? What actually counts as a
+[07:04] notable backlink? Do I want every single
+[07:06] change or rather just the things worth
+[07:09] paying attention to? And once everything
+[07:11] looks right, I can tell Let AI Do to run
+[07:14] it every week and send important parts
+[07:16] directly to Slack while keeping the full
+[07:19] report saved, allowing me to access it
+[07:21] whenever needed. And that's just one
+[07:24] workflow. You could build a content
+[07:26] freshness dashboard, an AI visibility
+[07:29] report, a content update workflow, or
+[07:31] basically your own internal marketing
+[07:34] tools without having to build all of
+[07:35] that infrastructure yourself. So, check
+[07:38] out Let AI Do, scan the QR code on the
+[07:41] screen, or use the first link down below
+[07:44] in the YouTube description. Thank you
+[07:46] let AI do for making this video possible
+[07:49] and now let's get back to the video. All
+[07:51] right, I'm now in the T3 code
+[07:53] application and one thing you should see
+[07:56] right away is that I have the nightly
+[07:58] version installed. You can see that
+[08:00] because on the top left I have this
+[08:02] Galaxy background image or whatever you
+[08:04] want to call it and that's probably also
+[08:07] one of the biggest recommendations I can
+[08:09] give you. Please don't install the
+[08:10] stable version, install the nightly
+[08:13] version. The nightly version has way
+[08:15] more features. Again, the V2
+[08:17] orchestrator T3 connect in my opinion
+[08:19] kind of works better. I'm not sure why.
+[08:21] You get the visualization feature and
+[08:23] much more. It's also way faster, way
+[08:26] smoother. I know it sounds weird because
+[08:28] the stable version should be better, but
+[08:29] it isn't. The nightly version is 10
+[08:31] times better and let's again go back and
+[08:33] let's quickly analyze it. What do we
+[08:35] have here? Well, this layout should look
+[08:38] quite familiar to you. Have we IDE looks
+[08:40] the same. On the left we first of all
+[08:43] have a sidebar with all of the threats.
+[08:45] Then in the center we have the
+[08:46] individual conversation where we can
+[08:49] give instructions using our prompt
+[08:51] fields down below and we can also then
+[08:53] view the agent's work and also view sub
+[08:55] agents, stuff like that. So if I go into
+[08:58] an active threat, then you will see here
+[09:00] that we currently have one sub agent
+[09:02] running and in theory I can also open it
+[09:04] and then you will see the work right
+[09:06] here. Then on the right side we
+[09:08] essentially have like a threat details
+[09:10] panel with the environment used Mac
+[09:13] Studio. I can open the project. This is
+[09:15] the work tree. I can also view the
+[09:17] branch and then I can view the changes.
+[09:20] And one thing I want to show you right
+[09:22] away is how the V2 orchestrator works.
+[09:25] So I will create a new threat. For that
+[09:27] I will click on this button right here.
+[09:29] This will open a new model and I will
+[09:32] start a new project in my syntax kit
+[09:34] repository. So what I will do right here
+[09:37] is change the main agent. Let me
+[09:39] collapse the sidebar. I will use the
+[09:41] Codex model. Let's use GPT 6.1 soul with
+[09:44] high reasoning effort, and I want this
+[09:47] main agent to now spin up a sub agent
+[09:49] from a different harness from Claude
+[09:52] code. So, I can say the following, "Hey,
+[09:54] I want you to figure out when this
+[09:56] repository was created. So, please spin
+[09:59] up a Haiku 5.5 sub agent to just find
+[10:02] out when the repository was created, how
+[10:05] many PRs have already been created, and
+[10:08] when the last PR was merged." I will now
+[10:10] click on enter, and I want you to look
+[10:12] at something super important. So, 1 2 3,
+[10:16] and look at this, setting up work tree.
+[10:18] I currently have a setting set where T3
+[10:21] code automatically creates a new work
+[10:23] tree whenever I create a new threat. And
+[10:26] the thing is this work tree is based on
+[10:28] my origin. So, it's always the latest
+[10:30] code. And as you see here, getting
+[10:33] orchestration capabilities, T3 code will
+[10:35] now orchestrate between our two
+[10:37] harnesses, and that's what you will see
+[10:39] right here. We have the Claude symbol,
+[10:41] and this means we use the Claude code
+[10:43] harness, even though the main agent uses
+[10:46] the Codex harness. I can now open the
+[10:48] sub agent, and then you will see here
+[10:50] that it's currently working on my
+[10:51] request. So, if I open the settings, let
+[10:54] me quickly show it to you, then you will
+[10:56] see here that you have the option to add
+[10:58] or update your providers. And currently,
+[11:01] I have three providers set, Codex,
+[11:03] Claude code, and also Cursor. So, I can
+[11:06] switch between the harnesses, and in
+[11:08] this case also T3 code can orchestrate
+[11:10] between the different harnesses. And how
+[11:13] do you know that this application, that
+[11:14] this software was created by a YouTuber?
+[11:17] Well, the display name and account email
+[11:19] is blurred out by default. So, let's go
+[11:22] back to our active session. One thing
+[11:24] you will see right here is that it now
+[11:26] has this done symbol. So, I will click
+[11:28] into it, and we now have our result. The
+[11:31] PR or the repository was created in
+[11:33] January. 500 PRs have been created and
+[11:36] this is the latest PR merged. And that's
+[11:39] why I love T3 code so much. It allows
+[11:42] you to orchestrate between different
+[11:43] harnesses without any issues. And that's
+[11:46] also what sets T3 code apart from for
+[11:49] example open code. Open code
+[11:51] fundamentally has the same idea. Take
+[11:54] your existing subscriptions and use them
+[11:56] in one environment. What's the problem
+[11:58] with open code? Well, they use their own
+[12:00] harness and this means Anthropic forbids
+[12:02] them to use the subscription. So, what I
+[12:04] mean by that is you can't use your
+[12:06] existing Claude code subscription in
+[12:08] open code. It's possible in T3 code
+[12:11] because T3 code does not have its own
+[12:13] harness. And by the way, also using the
+[12:15] provider's harness in my opinion is
+[12:18] actually even better than using a
+[12:19] third-party harness. Because for
+[12:21] example, the Claude code harness is
+[12:23] extractable just for Claude models. The
+[12:26] open code harness is a more general
+[12:28] harness and they don't really have
+[12:30] access to all of the internal data that
+[12:32] Anthropic has access to. What I want you
+[12:35] now do is quickly look at the thread
+[12:37] which I essentially took from A to Z.
+[12:40] So, I started with a simple prompt and
+[12:42] this then led to a full-blown PR. So,
+[12:45] the task was simple. I wanted to do an
+[12:47] audit. So, hey, use the React doctor
+[12:49] CLI, find all of the issues, use Haiku
+[12:51] 5.5 sub agents. Our lead agent did that.
+[12:55] It started 10 research agents. And by
+[12:57] the way, the main agent at the start was
+[13:00] Opus 5.5. So, the agent then found a few
+[13:03] issues as you see here. React doctor
+[13:05] results, blah blah blah. This is not
+[13:07] super important. And then I told the
+[13:09] agent to use P stack and to fix
+[13:12] everything. The agent started with that.
+[13:14] It started fixing everything. One thing
+[13:16] you will see right here is that I ran
+[13:18] out of my usage limit. Claude usage
+[13:21] limit reached. The turn is paused until
+[13:23] the 5-hour limit resets in 2 hours. So,
+[13:26] what did I do? Well, I remembered that I
+[13:28] use T3 code. So, I told the agent, "Hey,
+[13:30] I'm out of my usage limit, so please
+[13:32] switch to GPT-6.1-Sol."
+[13:35] And that's what you will see right here.
+[13:36] Context handoff, Claude Opus 5.5,
+[13:40] GPT-6.1-Sol.
+[13:41] So, not only can you orchestrate between
+[13:43] different sub-agents, you can also
+[13:46] change the main agent, the main model
+[13:48] mid-run. T3 code will automatically
+[13:51] create a context handoff. So, the agent
+[13:53] then continued, it created a few
+[13:55] sub-agents, and then again my usage
+[13:57] limit ran out. So, what did I do? Well,
+[14:00] again, I did the context handoff from
+[14:02] GPT-6.1-Sol
+[14:04] to Opus 5.5. And that's what I do
+[14:06] constantly. When my Claude usage limit
+[14:09] runs out, I switch to Codex. Once my
+[14:11] Codex usage limit runs out, I switch to
+[14:14] Cursor. And this then just goes in a
+[14:16] loop. And that's quite powerful. Let's
+[14:18] now talk about all of the things that
+[14:20] annoy me a lot. And one thing is how
+[14:22] sub-agents work. Wait, what? Didn't I
+[14:25] just say that they work very well and
+[14:27] that you can view everything and that
+[14:29] you can also delegate to different
+[14:31] sub-agents from different harnesses?
+[14:33] Yes, but still they are not perfect. So,
+[14:35] here I currently have two sub-agents
+[14:37] running. For example, the cost-weighted
+[14:40] AI quota and USD cost sub-agent. It
+[14:43] worked for 33 minutes. And as you see
+[14:46] here, the agent did quite a lot of
+[14:48] things. It first of all thought and
+[14:50] reasoned, then it used my P-stacks
+[14:52] skill, so potato mode, it again thought,
+[14:55] then it ran a few commands. This all
+[14:57] looks good. Where is the issue? Well, do
+[14:59] you see any code changes? No. Uh-huh.
+[15:03] So, the agent probably did not write any
+[15:05] code, right? No. The agent actually
+[15:08] created about 2,000 lines of code, but I
+[15:10] can't review them inside of here. I
+[15:12] can't see what the sub-agent did. And
+[15:15] the same thing, by the way, is also true
+[15:17] for main agents. So, in this case, this
+[15:19] is the main agent, and can you view any
+[15:21] code changes? No, you don't see it. You
+[15:24] can only at the end review everything
+[15:26] once the agent is finished. So, the
+[15:28] agent, for example, inside of here
+[15:30] updated the PID. And yes, I can now
+[15:32] review everything, but this is something
+[15:34] that annoys me a lot. Let's quickly head
+[15:36] over to Claude Code. And this is just a
+[15:38] random session where I worked on a fake
+[15:41] tweet generator. As you see here, I
+[15:43] instantly see what the agent did. The
+[15:46] agent read the tweet card and then as a
+[15:48] next step, the agent also created some
+[15:51] code. And this is a small thing. It's
+[15:52] kind of trivial, right? Let's be honest.
+[15:55] Nevertheless, in my opinion, this is
+[15:56] very, very essential. Because I often
+[15:59] catch myself creating sub agents and
+[16:01] then sub agents will just sit there for
+[16:03] 20 minutes straight and not do anything.
+[16:06] And often I will then go into the main
+[16:08] agent and say, "Hey, are you currently
+[16:09] lagging? Is the sub agent lagging?" And
+[16:12] the main agent will tell me, "No, the
+[16:13] sub agent already created 300 lines of
+[16:16] code." Well, great. Thank you, but I
+[16:18] would like to also see it with my own
+[16:20] eyes. And that's something that is not
+[16:22] possible with T3 code. Again, it's super
+[16:24] basic. It's trivial. I'm not sure why it
+[16:27] hasn't been added. Also, one thing that
+[16:29] annoys me with sub agents is that they
+[16:31] don't restart once your session limit
+[16:34] has been hit. In this case, my rate
+[16:36] limit was hit yesterday and still the
+[16:38] agent or the sub agent did not restart.
+[16:41] The main agent restarted, but the sub
+[16:43] agent did not restart. That's one
+[16:45] annoying thing that has to be fixed.
+[16:47] Another thing I don't like is the
+[16:49] sidebar on the left. Let me zoom in a
+[16:51] bit. And by the way, the zoom in
+[16:52] functionality also does not work. I have
+[16:54] to go to the view right here and then
+[16:57] click on zoom in. But okay, it is what
+[16:59] it is. So, on the left we have all of
+[17:01] the threats, as already mentioned. I can
+[17:03] also settle a threat. This means I'm
+[17:05] finished and I can view everything
+[17:07] inside of here. On the left side, I see
+[17:09] the repository, syntax get final, cargo
+[17:12] new, syntax path homepage, etc. But one
+[17:15] thing I don't like is that we don't have
+[17:17] any grouping. What do I mean by that?
+[17:20] Well, let's quickly head over to cloud
+[17:22] code. What do we have inside of here? We
+[17:24] can group the session threats. Inside of
+[17:26] here, I have my syntax path workspace
+[17:29] with two sessions. Then the same thing
+[17:31] right here, Fable homepage workspace
+[17:34] with one session. We also get the same
+[17:36] thing in cursor. Let me quickly open
+[17:38] cursor. Let me open the sidebar. What do
+[17:41] we have inside of here? We have a
+[17:42] workspace and then I can view all of the
+[17:45] sessions inside of here. I'm not sure
+[17:47] why T3 code chose it to do it this way,
+[17:50] meaning without any grouping. And yes, I
+[17:52] know kind of got used to it, but it's
+[17:54] something I don't enjoy at all. I love
+[17:57] grouping all of my session threats. I
+[17:59] like to view them in these like folders.
+[18:01] I like to open them, collapse them. It
+[18:04] makes everything a bit easier for me.
+[18:06] And this also means if I want to now
+[18:08] create a new session or threat, I can't
+[18:10] just click inside of here and say, "Hey,
+[18:12] let's create a threat in this
+[18:14] repository." No, I have to click on this
+[18:16] button. Then I have to select the
+[18:17] correct repository. So, for example,
+[18:20] this one, and then I can get started.
+[18:22] This just creates unnecessary friction,
+[18:25] which I don't need and honestly don't
+[18:27] want. So, yeah, I wish there would be
+[18:29] some sort of setting. Yes, I can filter
+[18:31] everything like I can say, "Hey, only
+[18:33] give me session threats from this
+[18:35] repository." And then you will also see
+[18:37] everything right here. Nevertheless, I
+[18:39] don't like that. I don't know, it's not
+[18:41] my preferred way of working. It's
+[18:43] trivial, I know, but it should be
+[18:45] changed or at least there should be some
+[18:47] sort of functionality to create normal
+[18:49] grouping folders. One thing I do love is
+[18:52] like this quick toggle hover. Inside of
+[18:54] here, I instantly see, "Hey, this is the
+[18:56] threat name. This is the repository.
+[18:58] This is the machine. This is the branch.
+[19:00] This is the model. This is the PRs which
+[19:02] have been created." In this case, for
+[19:04] example, I have a chain of PRs, four in
+[19:07] total. Here I see instantly limited.
+[19:09] This means my usage limit again got used
+[19:12] up. Then what do I see right here? Oh my
+[19:14] god, these are all of the PRs. What is
+[19:16] it, 10 in total or more? So that's quite
+[19:18] cool. This here is super smooth. Let's
+[19:21] now talk about a few features I really
+[19:23] love, and one of them is T3 Connect. So
+[19:26] I will go into my settings, and inside
+[19:28] of here you will find a button called
+[19:30] connections. Let me make this a bit
+[19:32] smaller, and this here is my local
+[19:34] environment, Mac Studio from Jan. This
+[19:37] is what I'm currently recording on.
+[19:39] Nevertheless, I have another
+[19:40] environment, MacBook from Jan. And what
+[19:43] I can now do is literally just take my
+[19:45] MacBook, turn it on, and if I now just
+[19:48] reload this quickly, then you will see
+[19:50] that my MacBook is now connected. I have
+[19:52] another environment connected to this
+[19:54] Mac Studio, and this also means that I
+[19:56] can do one very powerful thing. I can go
+[19:59] back to our main threat viewer, however
+[20:02] it's called. Inside of here, I will
+[20:04] create a new session. Let's use our
+[20:06] Syntax Kit repository, and here I can
+[20:09] now change the actual environments. I
+[20:11] can now either use my Mac Studio, the
+[20:14] current machine, or I can use my
+[20:16] MacBook. So I will now say, "Hey, how
+[20:18] are you?" And if I click on enter, we
+[20:20] will still create our work tree, fetch
+[20:22] base branch, and it's now thinking. And
+[20:25] this again is currently not running on
+[20:27] my machine. It's running on this remote
+[20:29] MacBook, and in theory I could now be, I
+[20:32] don't know, in the US. I'm currently in
+[20:33] Germany. I could be in the US, and this
+[20:35] would still work perfectly fine. This is
+[20:38] just a remote connection. I'm able to
+[20:40] remotely connect into this machine, and
+[20:42] the thing you have to realize here is
+[20:44] that this is always connected. I don't
+[20:46] have to go into the terminal, because
+[20:48] with, for example, Cloud Code, I have to
+[20:50] first of all open my terminal, then say
+[20:52] cloud RC. This takes a little bit, then
+[20:55] I have to say, "Hey, let's select the
+[20:57] default, blah blah blah." Then I have to
+[20:59] open my phone. This fully works, don't
+[21:01] get me wrong, but the T3 Connect
+[21:03] experience is way smoother. Honestly,
+[21:06] it's on a different level. And by the
+[21:08] way, I get the same access also on my
+[21:10] phone. This is right now my phone and I
+[21:13] have the T3 code application installed.
+[21:15] And inside of here, I will create a
+[21:17] message. Yo, what's up? And let me also
+[21:20] switch the model. I will now use GPT-6
+[21:23] Luna. Let me click on save and I will
+[21:25] click on enter. And one thing you will
+[21:27] see right here is that we now have a new
+[21:29] message. Yo, what's up? We also have a
+[21:32] context handoff and now we have a new
+[21:34] response. Hey, I'm here and ready. I
+[21:37] also see the same message on my phone.
+[21:39] Thank you. And let's again switch the
+[21:41] model. And this time I will use cursor.
+[21:44] And now I can also select the cursor
+[21:46] model. Let me use Grok 4.7. I will click
+[21:49] on save and let's click on enter. And
+[21:51] again, we will see the same message
+[21:53] right here. Context handoff, Opus 5.5,
+[21:56] GPT-6 Luna, Grok 4.7. Thank you. That's
+[22:00] the power of T3 code. Everything works
+[22:03] right away. I don't have to first of all
+[22:05] open my terminal, run some sort of
+[22:07] command, then go into my phone app, then
+[22:09] create some sort of weird connection.
+[22:11] No, T3 connect is a game-changer. And
+[22:14] the only thing you have to do is log in.
+[22:16] And that's what you will see right here.
+[22:18] I'm currently logged in with this
+[22:19] account and that's how I'm able to
+[22:21] connect between all of my different
+[22:23] devices. This also means you could now
+[22:25] buy an external server, let's say like a
+[22:27] Mac mini, and this could be your work
+[22:29] machine. You could just log into or
+[22:31] connect into that machine and run
+[22:33] everything inside of there. That's
+[22:35] something I will also do soon. I will
+[22:38] buy a little Mac mini and everything
+[22:40] will run on the Mac mini. Also, quick
+[22:42] FYI, if you want to install the mobile
+[22:44] application or the nightly mobile
+[22:47] application, then please go into the
+[22:48] general settings and click on mobile
+[22:51] application. And if we now look at the
+[22:53] settings, then you will also see how
+[22:55] developer-friendly everything is. So,
+[22:57] inside of here, I can update the default
+[23:00] model. And not only can I update it for
+[23:02] the current environment, my Mac Studio,
+[23:04] I can apply or change the default model
+[23:07] across all of my environments.
+[23:09] Everything is synced. So, T3 Connect
+[23:11] does not just allow you to do a simple
+[23:14] remote call or something like that. No,
+[23:16] it's essentially a sync engine, if that
+[23:18] makes sense. So, again, here's my
+[23:20] MacBook. I will now do the following. I
+[23:22] will change the default model to Rock
+[23:24] 4.7, and look at my desktop. It updated
+[23:27] automatically. All of this here is
+[23:30] completely real-time. Isn't that cool?
+[23:32] Then, this setting is super important.
+[23:34] Workspace. Inside of here, I set it to
+[23:37] new work tree. Meaning, whenever I
+[23:39] create a new threat, instead of just
+[23:41] using the current checkout, and with
+[23:43] that kind of mangling everything
+[23:45] together, I rather create a new work
+[23:47] tree. And that's something I find 10
+[23:49] times better. And that's something I
+[23:50] would always recommend doing. Here, you
+[23:52] will also find a setting called
+[23:54] appearance. You can update the
+[23:56] appearance to use a different color.
+[23:58] Honestly, I tried all of them. I didn't
+[24:00] like the other options. The default T3
+[24:03] code theme looks the best, and that's
+[24:05] why I would recommend to use this one
+[24:07] right here. One feature I like quite a
+[24:10] bit is this snapshots feature. It's
+[24:12] super similar to Code X, where you can
+[24:14] use a shortcut to create a screenshot.
+[24:17] So, let's quickly go back. I will go to
+[24:19] the T3 Connect website, click on my two
+[24:21] command keys. Right now, we can go back.
+[24:24] You will see the screenshot right here.
+[24:25] Now, surprise, surprise, since I'm on
+[24:28] the nightly version, this is sadly
+[24:30] broken. The screenshot does not load.
+[24:32] It's completely blurry, and that's kind
+[24:34] of annoying. And this is not the first
+[24:36] time I had this issue. I already had it
+[24:38] once, then I updated the version, or I
+[24:41] updated T3 code. It again worked. Now,
+[24:43] it's again broken. It's annoying. Like,
+[24:45] that's what you get when you are at the
+[24:47] bleeding edge. But, I'm fine with that.
+[24:49] I can just use my normal screenshot
+[24:51] tool. Yes, the team ships a lot of
+[24:52] features. A lot of things work very
+[24:54] well. Nevertheless, there are also a lot
+[24:56] of things that break constantly. Like
+[24:58] for example, this screenshot tool. And
+[25:00] another thing that broke for me was
+[25:02] design mode. So, what I can do inside of
+[25:05] here is open the web browser. Browser,
+[25:07] let's open. Is my dev server running?
+[25:10] I'm not sure. So, T3 code has all of the
+[25:12] standard features you would want and
+[25:14] would also expect. So, let me right here
+[25:16] zoom in a bit. And what I can do inside
+[25:18] of here is click on this button. This is
+[25:20] the design mode button feature,
+[25:23] whatever. And I can now select things. I
+[25:25] could now select the text, the H1, and
+[25:27] say, "Hey, this is broken." As an
+[25:30] example. It's not broken, but if I now
+[25:31] click on attach, it will attach it in
+[25:34] the text field. And if I click on enter,
+[25:36] it should also in theory create a
+[25:38] screenshot. But it did not create one.
+[25:40] The screenshot again is broken, as you
+[25:42] see here. So, let me go away. Let me do
+[25:44] this. Where's the screenshot? Can I open
+[25:46] it? So, this is the screenshot. I'm not
+[25:48] sure what's wrong. It's constantly
+[25:50] Something constantly breaks screenshots
+[25:52] specifically. I don't like it, but it is
+[25:55] what it is. Inside of here, we also get
+[25:57] like browser mode, meaning I can see
+[25:59] exactly what the agent is doing. It's
+[26:02] currently visiting my site. I can also
+[26:04] scroll through it, and that's also quite
+[26:06] cool. So, there are a lot of great
+[26:07] features. Nevertheless, there are also a
+[26:10] lot of great features which are
+[26:11] completely broken. Let's look at another
+[26:14] thing which I love, which I have never
+[26:16] seen with any other provider, which is
+[26:18] the usage window. Inside of here, I see
+[26:20] the estimated API usage. So, as you
+[26:23] already know, I use Cloud Code, Coda,
+[26:25] Cursor, etc. And with all of these
+[26:28] providers, I get subsidized usage. You
+[26:30] get the same. I'm not sponsored, right?
+[26:32] We get the same usage. So, even though I
+[26:34] just pay, again, just is kind of
+[26:37] relative, I pay $100 per month for Cloud
+[26:39] Code, and still I got about $3,000 worth
+[26:42] of usage in terms of API credits or API
+[26:45] usage. And that's quite cool. If I go to
+[26:47] my 90 days, yes, I know my cursor usage
+[26:50] is through the roof, 20k. Don't comment
+[26:53] on that. I know it's too much. Um I will
+[26:55] probably go broke soon. No, I'm joking.
+[26:58] But this is quite cool. I love it. I see
+[27:00] exactly what models I use today. The
+[27:02] usage, I can see the tokens, cached
+[27:04] input, uncached input, output, the cache
+[27:07] savings. And we can also see the
+[27:09] breakdown right here of all of the
+[27:10] models. This is quite nice to see. I
+[27:13] have never seen that with any other
+[27:14] provider, open code, anti-gravity,
+[27:16] cursor, or I mean yes, you see it, but
+[27:18] it's not broken down in such a manner.
+[27:20] And you can also always see like the
+[27:22] model trend or what you use right now.
+[27:25] So in the past 7 days, I almost did not
+[27:27] use any Codex models. I just used cursor
+[27:30] and also Claude code, my favorites. So
+[27:34] this all looks great to me. Another core
+[27:36] feature that T3 Code offers is this PR
+[27:39] review tool or pull requests view. So I
+[27:41] can view all of the PRs here. I have 11
+[27:43] in total, which are currently open. I
+[27:45] can now open it inside of here. And then
+[27:48] on the right, I can view the summary. I
+[27:50] can view the timeline, so comment, pull
+[27:52] request, docs. And then I can also
+[27:54] review the code again if needed. Quite
+[27:56] basic, but it looks good. Also, the nice
+[27:59] thing is with T3 Code, it automatically
+[28:01] subscribes to your PRs. So instead of me
+[28:04] having to go inside of here and say,
+[28:06] "Hey, please look at the PR. Please make
+[28:08] sure that everything works. Fix the bug
+[28:11] bot comments." T3 Code does everything
+[28:13] automatically without my input needed.
+[28:15] One thing I can quickly mention is that
+[28:17] you also get access to scheduled tasks.
+[28:20] But honestly, it's something I don't
+[28:22] really use. All of these schedules were
+[28:24] created by my agent, but it's not
+[28:26] something I do myself. It's not
+[28:28] something I enjoy doing or I often don't
+[28:30] really see the need for schedules.
+[28:32] Everything that could be a schedule can
+[28:34] also be done manually. I don't know,
+[28:36] maybe I just haven't used schedules
+[28:38] enough to vouch for them. But yeah, it's
+[28:40] a feature. It's offered. Agents have
+[28:42] access to it. There's one more feature I
+[28:44] want to show you, and that's the
+[28:45] visualization feature. Let me again zoom
+[28:48] in a bit. So, view then zoom in. Yes,
+[28:50] it's broken. I know it's kind of
+[28:52] annoying. And inside of here, T3 code
+[28:54] now visualized this right here. Let me
+[28:56] give you a bit of context. So, I wanted
+[28:58] to create a plugin or an effect for
+[29:00] Final Cut Pro, which allows me to do
+[29:02] like auto zooms and also to have my face
+[29:04] on the right. It doesn't really matter.
+[29:06] But, I asked the agent how it would do
+[29:08] that. It said, "Hey, I would use motion
+[29:11] templates, maybe the FX plugin or
+[29:13] something like that." Who cares? And I I
+[29:15] told the agent, "Ah, can you create a
+[29:17] high-quality visualization explaining
+[29:20] how this will work in detail?" And
+[29:22] that's exactly what we have here. I can
+[29:24] now update it. I can make this smaller,
+[29:26] bigger. I can change the margin. That's
+[29:28] nice to see. And now okay, let me be
+[29:30] honest. Cloud code has that also with
+[29:33] artifacts. Then, uh what else? CodeX
+[29:35] also has like these visualizations. It's
+[29:38] not a groundbreaking feature. Let me be
+[29:40] totally honest with you. But, the thing
+[29:42] that is important here or the thing that
+[29:44] you have to realize here is that this
+[29:46] works with literally any harness. It
+[29:48] does not matter if you use Cloud code,
+[29:50] cursor, open code, uh CodeX,
+[29:52] antigravity. I don't care. It works
+[29:54] everywhere. And that's not something
+[29:56] that you have with other providers.
+[29:58] Because every provider has their own
+[30:00] primitive. Cloud code has artifacts.
+[30:02] Then, CodeX has essentially the same
+[30:04] thing. I'm not even sure if antigravity
+[30:06] has visualizations. So, that's what I'm
+[30:09] trying to say. Even though this is not a
+[30:10] groundbreaking feature, it works with
+[30:13] every harness and it works it's like a
+[30:15] standardized primitive. That's what I'm
+[30:17] trying to say. Another thing that I
+[30:18] don't really love is that you can't use
+[30:20] the primitives of other harnesses. So,
+[30:23] as mentioned, Cloud code has something
+[30:25] called artifacts. And annoying thing
+[30:27] here is that with T3 code, I can't
+[30:29] actually view artifacts or create them.
+[30:32] I don't really understand why that does
+[30:34] not work. Because again, I use the Cloud
+[30:36] code harness. It should be in theory
+[30:37] able to view all of the artifacts. But,
+[30:40] I always get an error which says that
+[30:42] artifacts are not viewable inside of
+[30:44] here. I'm not sure what the issue is. It
+[30:46] should be fixed because again, it's a
+[30:47] harness feature. I would like to view my
+[30:49] artifacts inside of here, but it is what
+[30:51] it is. It's as simple as that. So yeah,
+[30:53] we now looked at all of the features,
+[30:55] everything that T3 code offers, and
+[30:57] everything that is still broken. So,
+[31:00] what are my thoughts on T3 code
+[31:01] summarized? Well, I'm a huge fan. I
+[31:04] started using T3 code actively about 6
+[31:07] days ago, as you see here, and I haven't
+[31:10] stopped. I have been using it throughout
+[31:12] every single day. On my phone, on my Mac
+[31:14] Studio, on my MacBook. I have been using
+[31:17] T3 Connect about 60% of the time because
+[31:20] I've been constantly coding on this
+[31:21] MacBook while being connected to my Mac
+[31:23] Studio. Everything works reliably. I had
+[31:26] zero issues with T3 Connect, which is
+[31:29] kind of surprising because again, T3
+[31:31] code is free and it's open source. There
+[31:34] are paid players which literally do a
+[31:36] worse job. One thing that should be
+[31:38] fixed is the sidebar. I would love to
+[31:40] group everything. I know some people
+[31:42] don't like that. I like grouping. I got
+[31:44] used to these individual threads, but I
+[31:47] don't enjoy them. I would rather use the
+[31:49] grouping primitive. It's easier to
+[31:50] understand and it's cleaner. But yeah,
+[31:52] that's all right, yet. Please let me
+[31:54] know down below in the comments what you
+[31:56] thought of the video, what you think of
+[31:57] T3 code, if you are already using it or
+[32:00] have used it in the past, how you would
+[32:02] compare T3 code to all of its
+[32:04] competitors, and yeah, in general, let
+[32:05] me know your thoughts. I read every
+[32:07] comment and I love interacting with you
+[32:10] guys. And with that out of the way,
+[32:11] enjoy your day. See you in the next
+[32:13] video. And with that, I guess, over and
+[32:16] out. Bye-bye.

@@ -1,0 +1,585 @@
+[00:00] It's like making the Claude Code
+[00:02]  desktop app usable with various AI
+[00:04]  agents. Basically, you can use it
+[00:06]  within the scope of your subscription.
+[00:07]  I created a 10-second hero landing
+[00:09]  animation. So, this is T3 Code. It's
+[00:12]  incredibly good. Hello, everyone. I'm
+[00:20]  Imani, an AI programming instructor. I
+[00:22]  previously introduced things like
+[00:24]  Superset, which is like the ultimate AI
+[00:26]  environment,
+[00:28] >> and Orca, but when I tried using them,
+[00:30]  they felt a bit, how should I say,
+[00:32]  terminal-like.
+[00:34] >> Yeah.
+[00:35] >> That was actually pretty difficult, so
+[00:36]  I ended up coming back to the app
+[00:38]  versions.
+[00:39] >> Ah, you mean desktop apps like Claude
+[00:41]  Code or Cursor?
+[00:42] >> Yes, exactly.
+[00:43] >> Right, right, right.
+[00:44] >> Are you still using those like Superset
+[00:46]  or
+[00:47] >> Orca? Well, what I'm using now is
+[00:49]  basically Orca and the like, but I have
+[00:51]  an app that fits perfectly with what
+[00:53]  you just said, J-kun.
+[00:55] >> Really?
+[00:55] >> Yeah, like, I want to graduate from
+[00:57]  apps. I want to move on from Claude
+[00:59]  Code apps and things like that.
+[01:00] >> Yeah, yeah, yeah. Ah, I see.
+[01:03] >> Hey,
+[01:03] >> something more like for advanced users,
+[01:05] >> like
+[01:06] >> Ah, I see. In that context, there's
+[01:09]  something really great recently called
+[01:11]  T3 Code. This is incredibly good. For
+[01:19]  one, you can use things like Claude
+[01:21]  Code or Cursor within your subscription
+[01:22] , and since the screen feels quite
+[01:24]  similar to desktop apps like Cursor, I
+[01:26]  think for non-engineers, or for people
+[01:28]  like J-kun who are a bit resistant to
+[01:30]  using the terminal, it's perfect for
+[01:31]  those who don't want to switch between
+[01:33]  too many different apps if they can
+[01:35]  help it. So, for J-kun's sake, I think
+[01:43]  I'll introduce some apps from time to
+[01:45]  time. Yes. So, for the "J-kun Revival
+[01:48]  Festival," today I'd like to talk about
+[01:51]  this T3 Code. I've been using it
+[01:55]  regularly and find it very easy to use,
+[01:57]  so I think it's probably easier for
+[01:59]  many people than Orca or Superset. I'll
+[02:04]  explain how to use it, or rather, what
+[02:06]  kind of tool it is. All right, let's
+[02:09]  get started. Yes. First, this is the T3
+[02:16]  Code site. It’s a pretty familiar
+[02:19]  look, right? This one.
+[02:21] >> Kind of like other AI tool sites.
+[02:27] >> It might look similar to tools like
+[02:29]  Orca or Superset, but it's very simple,
+[02:31]  the features are well-curated, and
+[02:33]  it’s not terminal-based. It’s more
+[02:41]  like a desktop app—think of it as a
+[02:43]  way to use various AI agents in
+[02:44]  something like a Claude Code desktop
+[02:46]  app. Essentially, with Claude Code, you
+[02:50]  can only use Claude. With Code-dex, you
+[02:53]  can only use GPT; this integrates them
+[02:55]  well while keeping an interface almost
+[02:57]  identical to the Code-dex desktop app.
+[03:00]  So, this is T3 Code. It's incredibly
+[03:03]  good. It really is just like that.
+[03:05]  Right. Some of my school students might
+[03:11]  be fine with a terminal, but for many,
+[03:13]  it’s a bit too much, so I really want
+[03:15]  to recommend T3 Code to them first,
+[03:17]  which is why I’m starting with this.
+[03:23]  Personally speaking. As it says here,
+[03:26]  you can basically integrate all the
+[03:28]  major ones like Claude Code, Code-dex,
+[03:30]  OpenCode, Cursor, Grok, and Anthropic.
+[03:36]  There’s a lot of explanation written
+[03:37]  here, but regarding your concerns about
+[03:39]  Windows support, rest assured. It
+[03:43]  supports Mac, Windows, Linux, and also
+[03:45]  mobile—iPhone and Android. That's
+[03:49]  right, being able to connect and use it
+[03:51]  on mobile is a huge plus, so you can
+[03:53]  leave it at home and connect via mobile
+[03:55] , which is super convenient. So, what
+[03:59]  does the interface actually look like?
+[04:01]  It’s like this. You can see some
+[04:03]  things I’ve built on the left side,
+[04:05]  and if you look at this screen, right
+[04:07]  down here, it looks like this. Well, my
+[04:09]  current favorites, the ones I use most
+[04:12]  often, are GPT-6.1 Thor and Claude Opus
+[04:15]  5.5 Sonnet, so I've marked those as
+[04:17]  favorites. And look, there are others
+[04:20]  here, oh wow, just GPT-6. GPT-6.1 Thor
+[04:23]  is available. Luna is also available.
+[04:28]  Since these are all linked to my
+[04:29]  subscription, if you look at the
+[04:31]  settings on the left side, you can
+[04:32]  change things like the appearance, but,
+[04:34]  well,
+[04:36] >> Hey, let's change it to that sexy pink.
+[04:38] >> What are you talking about? Stop saying
+[04:40]  "sexy pink." We'll get banned. I've
+[04:42]  never used such a vulgar word on this
+[04:44]  channel, so stop it. Hey, J-kun, look,
+[04:48]  this is a very serious educational
+[04:49]  channel, so I’d really like you to
+[04:52]  avoid using words like that.
+[04:53] >> This color isn't good. Oh, well then, I
+[04:55]  think I'll go ahead and use this color,
+[04:57]  which J-kun called "sexy," since it’s
+[04:59]  here. Yes. Actually, this is kind of
+[05:01]  stylish, isn't it? It's simple, you
+[05:03]  know.
+[05:04] >> Yes.
+[05:05] >> And there's a "Create Theme" button on
+[05:07]  the right, so it seems you can make
+[05:08]  your own themes. You can tune things
+[05:11]  here and there, but I think just
+[05:13]  picking one of these for now is fine.
+[05:15]  Then, in the settings menu on the left,
+[05:17]  there's this "Providers" section. As
+[05:22]  I've done before, I have both my
+[05:23]  MacBook Pro and my Mac mini linked.
+[05:27] >> There it is. The one at home.
+[05:29] >> Right, since both are linked to my home
+[05:31]  Mac mini, I can access things from
+[05:33]  either one. I can certainly access my
+[05:35]  Mac mini environment from this MacBook
+[05:37]  right now. Looking at this, on the
+[05:40]  MacBook Pro side, I have Codestral,
+[05:42]  Claude, and Cursor linked, and yes, I'm
+[05:44]  using Grok too, of course. On the Mac
+[05:47]  mini, Grok—well, it says "not found."
+[05:51]  Ah, not Grok, it's Cursor, it says it's
+[05:54]  not found, but anyway, I'm properly
+[05:56]  separating the providers—the AI
+[05:58]  models—by environment, with these
+[06:00]  settings for the Mac mini and those for
+[06:02]  the MacBook Pro. It's great that you
+[06:05]  can use this with a subscription. Yeah,
+[06:06]  that's true. That’s why these things
+[06:08]  are so convenient. Well, since it works
+[06:10]  within your Claude or CodeX
+[06:12]  subscription, you just need to link it
+[06:13]  to the one you're currently using.
+[06:17]  Basically, once you turn this on, it
+[06:19]  automatically checks if your CodeX
+[06:21]  subscription is linked to your local
+[06:23]  environment or the one you've specified
+[06:24] , and then you just authenticate, and
+[06:26]  that's it. Yes. So, essentially, it
+[06:30]  confirms that you can use it within the
+[06:32]  scope of your subscription, which is
+[06:34]  right here. There are also various
+[06:38]  integrations and other features, and to
+[06:40]  be honest, I don't know them all, but
+[06:41]  since you can create profiles, it gives
+[06:43]  the impression that there are a lot of
+[06:45]  useful functions. There's also stuff
+[06:54]  for Git and storage, and while a lot of
+[06:56]  it is written in English, you can also
+[06:58]  link it to other environments—or "
+[06:59] Connections" as they're called here—
+[07:01] like linking a Mac Mini in addition to
+[07:03]  your MacBook Pro. Alright, I've
+[07:09]  installed it right away. Oh, that's
+[07:11]  fantastic. It's really good; I honestly
+[07:14]  want to recommend this to the students
+[07:15]  at my school. Moving on, there are
+[07:19]  these environment settings, but I think
+[07:21]  the most important part is linking the
+[07:23]  provider. So, back on this screen, you
+[07:26]  see something like this, yes. I'll go
+[07:28]  ahead and link it again just to be sure
+[07:30] , but you see that "Add Project" in the
+[07:32]  top left, right? Yes, inside the "Add
+[07:34]  Project" section. Here, you choose
+[07:36]  between your MacBook Pro or Mac Mini—
+[07:38] I'll pick MacBook Pro—and then "Local
+[07:40]  Folder" refers to your actual local
+[07:42]  folder. So, you can link it from here,
+[07:47]  or if you have Git, you could integrate
+[07:49]  it that way, but let's set that aside
+[07:51]  for now and just assume you'll link it
+[07:53]  via a local folder. So, with a local
+[07:58]  folder—well, this is just a folder on
+[08:00]  my machine—inside the recording
+[08:02]  projects, there's, uh, YouTube, right?
+[08:06]  And inside, there's a folder with
+[08:08]  today's date, and look, you see this "
+[08:11] T3 Code Demo" here? So, if you click
+[08:15]  that and—it says "Add" here—hit
+[08:17]  Command-Enter, and look, here's the "T3
+[08:20]  Code Demo" project folder. It’s like
+[08:24]  a thread has been started inside there.
+[08:25] >> Wow, it feels kind of like CodeX.
+[08:28] >> Exactly, exactly, exactly. CodeX is
+[08:30]  actually really easy to use, you know.
+[08:32]  I installed this myself earlier, but...
+[08:34] >> The initial connection...
+[08:36] >> The subscription setup is super easy.
+[08:38] >> Yeah. It’s really quick, nothing to
+[08:40]  get stuck on.
+[08:41] >> I had it done in 10 seconds. Yeah,
+[08:43]  it’s truly simple. Up here on the top
+[08:46]  right, you can open an editor like
+[08:48]  Cursor, or use tools like Git, but
+[08:49]  let’s put that aside for a moment.
+[08:55]  I’m thinking of trying something out,
+[08:56]  but do you have any ideas for something
+[08:58]  I could demo quickly? Well, speaking of
+[09:01]  that, you've been doing YouTube video
+[09:03]  editing lately, right?
+[09:04] >> Yeah, yeah.
+[09:05] >> Using, uh, moving characters? I make it
+[09:08]  all. Well, the video everyone is
+[09:10]  watching right now is actually edited
+[09:12]  entirely by AI.
+[09:13] >> Yes. Almost everything lately has been
+[09:15]  AI. I’d like you to make a little
+[09:17]  moving character.
+[09:18] >> Ah, I see. Like a short video clip.
+[09:20] >> Yes.
+[09:21] >> Got it. Well, if it’s only about 10
+[09:23]  seconds, it shouldn't take too much
+[09:25]  time, so I'll give it a shot. Basically
+[09:28] , for creative stuff, Opus 5.5 is
+[09:30]  incredibly good, so I’ll use Opus 5.5
+[09:32] , and while I’m at it, I think I’ll
+[09:35]  turn on "Fast Mode" here with the
+[09:37]  medium setting. High-speed mode, right.
+[09:40]  So, you see here there's supervise,
+[09:42]  output, and various other things, like
+[09:44]  auto mode and full access, but let's go
+[09:47]  with auto mode for now. Done. Oh, I see
+[09:54] . Well, I understand. Please create a
+[09:59]  10-second animation video with the
+[10:01]  theme of J-kun returning, kind of a
+[10:03]  hero-style animation. I'd like you to
+[10:08]  quickly make a 10-second animation that
+[10:10]  looks like a hero has returned. Do you
+[10:15]  have any specific preferences? J-kun's
+[10:18]  preference is that the hero should be
+[10:20]  red. The hero's color should be red,
+[10:23] >> wearing boxing gloves,
+[10:25] >> wearing boxing gloves,
+[10:26] >> a hero punching the air.
+[10:28] >> Striking a pose with a fist in the air.
+[10:31]  Yes, that should be enough. I'm truly
+[10:35]  sorry for showing you such nonsense. Oh
+[10:38] , something came up. Well, it appeared
+[10:43]  like this, and after I entered the "
+[10:45] Claude auth login" command, it started
+[10:47]  moving again, so authentication has
+[10:49]  begun. I'm running this with Claude
+[10:54]  Opus 5.5, medium, and fast mode turned
+[10:56]  on. Doesn't this make it super easy to
+[10:59]  use? The UI/UX is really great, isn't
+[11:02]  it? Personally speaking. Yes. So, it's
+[11:04]  running like this. As you can see, if
+[11:09]  you click here to start a new one, for
+[11:11]  instance, naming it "T3 Code Demo," you
+[11:13]  can launch a new thread here, so it's
+[11:15]  running right now. Can you tell? It's
+[11:19]  working.
+[11:20] >> It's working.
+[11:20] >> It's running like that, see? And you
+[11:23]  can launch another new thread over here
+[11:26] , and in this new thread, you can
+[11:28]  decide to use GPT 6.1 instead of Claude
+[11:30] . For example, if you do it in the same
+[11:35]  "T3 Code Demo" folder or project, it
+[11:37]  might get a bit messy, so I might leave
+[11:39]  this one be, or rather, it's better to
+[11:41]  use a different one, but you can also
+[11:44]  do things without a project. So,
+[11:48]  looking at what we just did in Claude,
+[11:50]  you can see it's laid out all its
+[11:52]  thinking like this. Well, with a prompt
+[11:55]  on such a difficult topic, of course
+[11:57]  it's going to do some thinking.
+[11:58] >> I said it again, didn't I?
+[12:00] >> No, seriously. Anyway, as for what kind
+[12:03]  of output we get, as you can see here,
+[12:05]  the UI is super easy to use. I mean,
+[12:10]  things like Orca are easy to use too,
+[12:12]  but they're quite terminal-based, so
+[12:14]  for someone new or not used to that, I
+[12:16]  think it might be a bit difficult. So,
+[12:23]  there’s nothing showing here right
+[12:24]  now, but since you can also do various
+[12:26]  browsing on the right, maybe I'll show
+[12:28]  you what I was doing earlier. I was
+[12:34]  making some explanatory materials for
+[12:36]  the school that I run.
+[12:38] >> Oh, nice.
+[12:39] >> Yeah, look at this.
+[12:41] >> It's good. Top 10%AI talent, huh?
+[12:43] >> Exactly. I'm thinking of rebranding and
+[12:46]  going in this direction now.
+[12:47] >> Yes.
+[12:48] >> And this, for that person who does AI
+[12:50] ...
+[12:50] >> Yeah, that’s easy to understand,
+[12:52]  right? I made it look like this. I made
+[12:55]  this with Claude Code, but isn't the
+[12:56]  quality pretty good? The model is
+[12:59]  incredibly impressive.
+[13:00] >> It really is. Oh, you're not
+[13:02]  complimenting me, you're complimenting
+[13:03]  the model, right?
+[13:04] >> I-san.
+[13:05] >> Yes?
+[13:05] >> It’s finally finished, isn’t it?
+[13:07] >> That's right. It's finished. Believe it
+[13:09]  or not, the presentation creation skill
+[13:11]  I’ve been showing you all—It’s
+[13:13]  finally ready for distribution.
+[13:15] >> By the way, how can I get this skill?
+[13:19] >> If you register on LINE and enter the
+[13:20]  keyword listed here and in the YouTube
+[13:22]  description, I will send you the
+[13:24]  instructions and the files for that
+[13:25]  skill. I've completed this skill so you
+[13:30]  can create the kind of materials I'm
+[13:32]  showing you now, so I'd be very happy
+[13:33]  if you all could get it via LINE.
+[13:35]  Anyway, let’s set that aside for a
+[13:37]  moment. So, uh, not the school stuff,
+[13:40]  but looking at the D3 code, it's like
+[13:43]  this, drawing frame by frame using Pyon
+[13:45] . I wonder? It feels like the direction
+[13:49]  might be a bit different, so let's put
+[13:50]  this aside for now. I'll close the left
+[13:53]  side. When I open the right side, there
+[13:56]  are files here; look, it's like J-kun
+[13:58]  is back. Let's look at the MP4. Oh,
+[14:02] >> Is this actually done? It is.
+[14:04] >> Whoa. Wait, this is actually amazing.
+[14:08]  Wait, show it to me in full screen.
+[14:12]  Everyone, please take another look.
+[14:16] >> Isn't this super good? It's super lame.
+[14:20] >> It's totally different from what I
+[14:22]  imagined, though. Amazing. Wait, look,
+[14:27]  a 10-second hero animation has been
+[14:29]  created. With sound effects and a
+[14:32]  fanfare, yes.
+[14:33] >> I'm super happy about it.
+[14:34] >> Well, I'll give it to you as a gift
+[14:36]  later. I'll make sure to send it to you
+[14:38] . You should definitely send it to your
+[14:41]  friends, but since this is done in
+[14:43]  Python, it feels a bit mediocre. I'd
+[14:47]  love to see something higher quality
+[14:49]  based on JavaScript, maybe using
+[14:50]  Remotion or Hyperframe to make it even
+[14:52]  better. It's a bit subpar. But, even so
+[14:56] ...This isn't video generation, you see
+[15:01] . Right, it's not video generation,
+[15:04]  it's more like creating a video with
+[15:06]  this program. Creating videos through
+[15:09]  programming—I want to talk about this
+[15:11]  eventually—involves deterministic
+[15:13]  versus probabilistic approaches. The
+[15:17]  probabilistic approach is like
+[15:18]  generative AI, where the output is
+[15:20]  probabilistic. That produces flexible,
+[15:24]  highly creative output, but the nuance
+[15:26]  and taste change every single time,
+[15:28]  right? And since a program is basically
+[15:31]  just running code, as long as the
+[15:33]  program is the same, you can produce
+[15:35]  the exact same thing every time. So,
+[15:39]  anyway, I’ve always thought that
+[15:40]  creating videos using this kind of
+[15:42]  program would definitely become the
+[15:44]  mainstream, and recently, I feel like
+[15:46]  using programs as the main tool for
+[15:48]  things like video editing is becoming
+[15:50]  quite common. Right now, it’s
+[15:53]  rebuilding this using De-motion, so
+[15:55]  it’s doing various things, but well,
+[15:57]  we’ll see how it turns out. And just
+[16:01]  so you know, this isn't a project to
+[16:03]  create a video about making Jake's
+[16:05]  videos. So, I thought I’d take a look
+[16:09]  at what "T3 Code" is while it's working
+[16:11]  on this. If you look here, you can also
+[16:14]  open a terminal in this area. Yes. Or,
+[16:17]  you know, agents. Yeah, and you can
+[16:21]  also open a browser here to see things,
+[16:23]  like that. Yes. You can do that, and,
+[16:28]  well, this might be for when agents or
+[16:29]  sub-agents are running. Look, there's "
+[16:32] Spawn Sub-agents," and well, since I'm
+[16:34]  not creating or using sub-agents right
+[16:35]  now, they don't appear, but you know
+[16:37]  how sub-agents often popped up like
+[16:39]  this in things like Code-X? Sub-agents
+[16:41]  or Claude Code. Oh, the screen where
+[16:43]  you can see that is really almost
+[16:44]  identical to the Code-X screen, right?
+[16:46]  And so it's building it like this now,
+[16:48]  and it's rebuilding it, so, well, in
+[16:50]  fast mode, or whatever you call it, I
+[16:52]  think it's reasonably quick. Or, if
+[16:54]  there are Python files, for instance,
+[16:56]  you can take a look at the files like
+[16:58]  this. I mean, you probably wouldn't
+[17:00]  usually need to look at Python files,
+[17:02]  but it shows how the video was
+[17:04]  generated based on these kinds of files
+[17:06] , yes. Or, well, you can look at
+[17:09]  various things on this right-hand
+[17:11]  screen, and also, do you remember that
+[17:13]  "Teto" thing? You know, marking things
+[17:22]  here or writing directly to save...Yeah
+[17:24] , exactly, it has features that were
+[17:26]  really in things like the Cursor
+[17:27]  desktop app, and since it’s still a
+[17:29]  relatively new tool, I think it will
+[17:31]  keep evolving, but it already has the
+[17:33]  bare minimum essentials you'd want,
+[17:35]  which I think is great. I mean, both
+[17:43]  Claude and Cursor had skills, right?
+[17:47]  You can call up skills with a slash,
+[17:48]  and you can also use the at sign to
+[17:50]  mention things. The at sign part can be
+[17:55]  a little unresponsive at times, but if
+[17:57]  you do it like this, you can see you're
+[17:59]  able to select files and, of course,
+[18:01]  perform mentions. Yes. So, in this way,
+[18:07]  you can easily use other providers just
+[18:09]  like you would with a desktop app for
+[18:11]  Cursor or Claude. At our company, we
+[18:17]  provide various support in the AI and
+[18:19]  education sector, including employee
+[18:21]  training, seminar speaking, and
+[18:22]  internal support for building AI-native
+[18:24]  organizations. If you are interested,
+[18:28]  please contact us using the form
+[18:29]  provided in the description. So, while
+[18:34]  there are various settings, I think if
+[18:35]  you can just understand the really
+[18:37]  important parts, like these settings at
+[18:39]  the bottom and the screen on the right,
+[18:41]  you'll be set for now. Of course, there
+[18:45]  are also various features geared more
+[18:46]  toward engineers. There are things like
+[18:51]  pull requests written here, and while
+[18:53]  it might look a bit cluttered with
+[18:54]  various settings, I think we can take
+[18:56]  our time looking at them as we actually
+[18:57]  start using it. Also, there are
+[19:04]  permissions here where you can set
+[19:05]  defaults, such as basing it on
+[19:07]  auto-mode or full access, using
+[19:09]  auto-mode, or handling things like
+[19:11]  sub-agents. You can also choose which
+[19:16]  model to use for new threads, like
+[19:18]  starting with GPT-6 Astra, though
+[19:20]  I’ve been using 6.1 Sol a lot lately,
+[19:22]  so I can set that up too. There are all
+[19:26]  sorts of things you can configure like
+[19:28]  this. However, if you look at the
+[19:32]  search bar in the top left, there are
+[19:34]  settings you can enter, but since you
+[19:35]  can't set the language to Japanese, I
+[19:37]  think some people might find the
+[19:39]  English interface a bit intimidating.
+[19:42]  Still, I personally think it's quite
+[19:44]  easy to use. Yes. So, I’d like to
+[19:47]  wait for the Remotion video to be
+[19:49]  finished. I think it will probably be
+[19:52]  done in about five to ten minutes. Well
+[19:54]  then, while we wait for this video,
+[19:56]  shall we go to the comment response
+[19:57]  corner?
+[19:57] >> Sure, let's do that. Was there a Jeb
+[20:00]  video?
+[20:00] >> Yes. Yes. Jeb’s, right? "
+[20:02] >> I haven't seen Jeb lately."
+[20:03] >> Ah.
+[20:04] >> Oh, Jeb-kun, that one.
+[20:06] >> Ah, that comment, right.
+[20:08] >> That comm-
+[20:09] >> It was a bit difficult to reply to.
+[20:10]  Isn't that the comment we thought was
+[20:12]  hard to respond to? I think Jeb-kun
+[20:14]  returning is the answer to that comment
+[20:16] .
+[20:17] >> Ah, I see. Well, Jeb-kun has returned,
+[20:19]  although I don't know if everyone was
+[20:21]  waiting for him or not, but yes.
+[20:23]  Jeb-kun is back. Jeb-kun had quite a
+[20:26]  few fans who liked hearing about him,
+[20:28]  you know.
+[20:28] >> I don't know him.
+[20:29] >> Watch it properly. I definitely,
+[20:31]  definitely don't know him. I have no
+[20:32]  idea who that is.
+[20:33] >> Yutaka has returned, you see.
+[20:35] >> Yes. Everyone's long-awaited Jay, right
+[20:37] ? Oh, I was sort of, well, moderately
+[20:39]  waiting for him.
+[20:41] >> Yes. It's like making desktop apps like
+[20:45]  Codecks or Claude Code usable with an
+[20:47]  AI agent.
+[20:49] >> Being able to use that over there is
+[20:51]  great. Windows too.
+[20:52] >> Ah, that's right. I think it's good
+[20:55]  that it's usable on Windows and Mac,
+[20:57]  and for people using multiple models,
+[20:58]  whether it's Claude or Codecks.
+[21:01] >> Even in the last video or something
+[21:02]  like that...
+[21:03] >> Yeah.
+[21:03] >> The previous SuperSet video.
+[21:05] >> Yes, yes, yes.
+[21:06] >> We got quite a few comments asking if
+[21:08]  they could use this on Windows.
+[21:09] >> Oh. Yes, yes, yes, yes. There were many
+[21:11] .
+[21:12] >> That's true. Well, after all, since AI
+[21:14]  is being used, development speed is
+[21:16]  obviously getting faster, right? I mean
+[21:18] , the "Mac first" mentality has really
+[21:20]  decreased, hasn't it? Until now, it was
+[21:23]  taken for granted that you'd start with
+[21:25]  a Mac if you used AI, but now that
+[21:27]  development has become so much more
+[21:29]  flexible, I think Windows is catching
+[21:31]  up. Can we do it soon? The outline is
+[21:36]  good, so we can do it. Yes. I'd like to
+[21:41]  wait a little bit until this is
+[21:43]  finished. Yes. Remotion is, well, more
+[21:47]  complex and allows for more elaborate
+[21:49]  creations, so it took some time, but
+[21:52]  let's take a look. It's not finished
+[21:54]  yet, but I saw the file, so I thought
+[21:57]  we'd take a look. In this Remotion area
+[22:00] , there's an "out" output folder, and
+[22:02]  the video was there. So, Jay is back.
+[22:06]  This video here. Oh, it hasn't changed
+[22:09]  at all. It's the same. It really hasn't
+[22:12]  changed much, has it? Wait, maybe it
+[22:14]  evolved a little bit, looking more like
+[22:17]  an animation. But look, he's raising
+[22:21]  his hands with boxing gloves.
+[22:24] >> Take a look one more time. Wait, does
+[22:28]  this contain what we just made? Just
+[22:31]  now?
+[22:32] >> Oh, I think it's probably in there. The
+[22:35]  base. That's right. Then let's look at
+[22:36]  the one from before. Seriously, it's
+[22:41]  rare to have such an unproductive video
+[22:43]  at the end, but the quality has gone up
+[22:45] .
+[22:47] >> Yeah. Amazing.
+[22:49] >> So, he's back, everyone.
+[22:50] >> Yes. So, I've made my return. It's kind
+[22:53]  of like J-kun, that T3 code. I really
+[22:57]  hope you all give it a try. Well,
+[23:01]  whenever a great tool or app comes out
+[23:03]  that could be useful to you all, I want
+[23:05]  to make sure to share it with you. So,
+[23:08]  if you haven't subscribed to the
+[23:10]  channel yet, please do. Also, for those
+[23:13]  who sign up for our LINE, we hold
+[23:15]  exclusive, free study sessions and
+[23:16]  various other events, so I would love
+[23:18]  for you to join us there as well. With
+[23:21]  that said, that's all for today. See
+[23:23]  you next time.

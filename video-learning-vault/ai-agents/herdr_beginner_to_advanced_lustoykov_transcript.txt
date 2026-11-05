@@ -1,0 +1,474 @@
+[00:00] Herder is the best way to use multiple
+[00:02] AI agents in your terminal. And if
+[00:03] you're not a big terminal fan, I totally
+[00:05] get that. But there are certain use
+[00:07] cases where it makes a lot of sense, and
+[00:09] I use it for a big chunk of my work, and
+[00:10] I'm going to show you in this video. And
+[00:12] if you like terminals, especially if
+[00:13] you're coming from teamworks, you would
+[00:14] absolutely love what Herder can do for
+[00:16] you. And with that, [music] let's have a
+[00:18] look at Herder. So, our starting point
+[00:19] would be a very simple cloud code
+[00:21] session in Herder where we can see
+[00:23] spaces and agents, and this will all
+[00:25] start making sense. But then, by the end
+[00:27] of the video, you'll see a more
+[00:28] complicated setup that is way, way more
+[00:31] powerful. It is super overwhelming when
+[00:33] you look at it at first, but it would
+[00:35] all make sense. On the left-hand side, I
+[00:37] have two machines, my local machine with
+[00:39] a single project, Halvie, and my remote
+[00:41] machine, Mac Mini, which I have
+[00:43] connected to. And then here on the tabs,
+[00:45] I have different tabs, and you could see
+[00:47] I have four different workers. Those
+[00:49] four workers are orchestrated by a
+[00:51] single Opus 5.5 lead agent. And because
+[00:54] my Opus 5.5 lead doesn't have a great
+[00:57] computer use, I also have one computer
+[00:59] use Hans agent, which is a GPT agent.
+[01:02] This is a Codex agent. And those
+[01:04] workers, if you look at them, we have
+[01:05] Opus for UI polish, we have Opus for
+[01:08] architecture, and then we also have GPT
+[01:10] for bug fixes and for performance fixes.
+[01:13] Now, what is really, really nice for
+[01:14] Herder is that this is a terminal that
+[01:16] is taught from the ground up for agents,
+[01:19] and it provides a very nice bridge for
+[01:22] the agents to synchronize and
+[01:23] communicate between each other. So, the
+[01:25] lead and the workers, they could all
+[01:27] like communicate between each other and
+[01:29] send messages. And of course, I
+[01:31] understand you can set that up with code
+[01:32] CLI and with cloud code CLI and the
+[01:35] desktop apps, but it is much more
+[01:37] cumbersome than what we get here because
+[01:40] it is basically natively integrated. We
+[01:42] don't have to do some hacks on top of
+[01:44] hacks. This is how it's meant to work.
+[01:47] But first, let's start from the
+[01:48] beginning, from the installation, from a
+[01:50] single agent, then multiple agents, and
+[01:52] then multiple machines. Now, for the
+[01:54] installation, you simply want to go on
+[01:55] their website and just copy and paste
+[01:57] one of the installation commands in your
+[01:59] terminal, but I want to highlight
+[02:00] something else here. The agent skill
+[02:02] file, it is very important to also
+[02:05] install this one. If we write Herder
+[02:07] skill, then you'll see that it
+[02:09] essentially tells the agent how they can
+[02:12] use the powers that Herder provides. For
+[02:14] example, how the agents can communicate
+[02:16] with each other, how the agents can
+[02:18] start different agents, open different
+[02:20] panes, split your terminal horizontally
+[02:22] and vertically. All of this
+[02:24] orchestration is here in the skill file.
+[02:26] So, it is very important to install it.
+[02:28] All right, let's say we have installed
+[02:30] Herder and we want to start it now. What
+[02:32] is Herder? Herder is a terminal
+[02:34] workspace manager for coding agents and
+[02:36] a multiplexer, which means you can open
+[02:38] multiple terminals within a single
+[02:41] window, which makes it much easier to
+[02:43] start and manage multiple agents on a
+[02:45] single window, on a single terminal
+[02:47] window. It is a mouse-first terminal,
+[02:49] but you could also use your tmux key
+[02:51] bindings. So, it is the best of both
+[02:53] worlds. Now, for the key bindings, we're
+[02:55] going to enter something like control B.
+[02:57] This is the most important thing here.
+[02:58] And then our terminal is in prefix mode.
+[03:00] Essentially, when we want to control the
+[03:02] terminal with the keyboard instead of
+[03:03] the mouse, first we click control B, and
+[03:06] then we click whatever key combination
+[03:08] we need to execute the action. I'm going
+[03:10] to show you how that works. Now, for the
+[03:11] installation, we're going to click
+[03:12] continue, and then we have different
+[03:14] settings like teams, for example. I'm
+[03:16] going to choose cappuccino here.
+[03:17] Indicators, this is super cool. I'm
+[03:19] going to show you also later how that
+[03:21] works, but essentially, whenever your
+[03:23] agent is working, whenever your agent is
+[03:25] blocked, idle, or needs your input, then
+[03:27] we'll see a different color next to your
+[03:29] agent. A different color of a dot. So,
+[03:31] you could see a very nice overview of
+[03:33] which of your agents need your input,
+[03:35] which are working, and so on. Then we
+[03:37] have a sound. I have turned it off
+[03:38] because it's a bit annoying for me. When
+[03:40] agents are sending you messages, you
+[03:41] could get sound alerts, but imagine if
+[03:43] you have like 20 agents, at some point
+[03:45] it starts getting annoying. And then we
+[03:47] have the different integrations. You can
+[03:49] choose the ones that you want. I have Pi
+[03:50] Cloud, Codex, and Open Code. So, now
+[03:52] we're set up Hurder. What do we do from
+[03:54] here?
+[03:55] There are two ways to control the
+[03:56] terminal. One way is with the mouse.
+[03:58] Let's say for example, I want to split
+[04:00] this pane in half like vertically in
+[04:02] order to be able to run two coding
+[04:03] agents side by side. So, to do that I'm
+[04:06] going to right click on my mouse and
+[04:07] then I'm going to click split right and
+[04:09] now we have two different panes, two
+[04:11] different terminals where we could use
+[04:13] coding agents in parallel side by side.
+[04:16] All right, but people who are coming
+[04:17] from tmux can use their key bindings,
+[04:20] which means they can all the terminal
+[04:22] with the keyboard only. And a fun fact
+[04:24] here, Hurder is not built on top of
+[04:25] tmux, it is different architecture. So,
+[04:27] let's say now I want to split again this
+[04:29] terminal vertically. How do I do it?
+[04:32] What's the key binding? Well, instead of
+[04:33] memorizing all the key bindings at once,
+[04:35] I can give you an approach that you can
+[04:37] follow whenever you're tempted to use
+[04:39] the mouse. Let's say we want to split
+[04:40] vertically this pane as we did here.
+[04:43] What do we do? We hit control plus B,
+[04:45] then we can see here this footer
+[04:46] appears. And then we hit question mark,
+[04:49] okay? We hit question marks and here we
+[04:51] can see all the key bindings. But, we
+[04:53] don't want to scroll through them. There
+[04:54] are too many. So, now we're going to
+[04:56] click slash in order to search them.
+[04:59] What you're looking for is how to split
+[05:01] a pane vertically. So, I'm going to
+[05:04] search for maybe vertical and then I see
+[05:06] panes and how to split them. Okay.
+[05:09] Prefix plus V. Prefix is control plus B
+[05:12] and then I hit V after that and I split
+[05:14] it vertically. Let's try it out. I click
+[05:16] escape to go back. I click escape to
+[05:18] close. Then I come here. I click control
+[05:21] B and I click V and we can see that we
+[05:25] have now vertically split the terminal
+[05:27] only using the keyboard. Now, we have
+[05:29] one pane too many. What do we do? I want
+[05:31] to close it. Of course, I can click
+[05:33] right click on my mouse and then I could
+[05:34] select close pane. But, we want to learn
+[05:36] the key bindings here. If you want to
+[05:38] learn them, I mean. Now, we are looking
+[05:39] for a key binding that closes this pane.
+[05:42] So, I'm going to hit control B. I'm
+[05:43] going to see the footer here. I'm going
+[05:44] to click question mark
+[05:46] slash to search and then I'm going to
+[05:48] search for close.
+[05:50] And then I see here panes. I could click
+[05:52] prefix, which is control and B plus X to
+[05:55] close the pane. Escape once, escape
+[05:58] twice. I'm going to center the pane that
+[05:59] I want to close. I'm going to hit
+[06:01] control B and then X and then that
+[06:03] should close the pane. X, yes. I'm not
+[06:06] going to go through all the key
+[06:07] bindings. I don't know them myself, but
+[06:08] this is one way to learn them. And now
+[06:10] let's go to the fun part. All right,
+[06:12] what do we have here? We have this big
+[06:14] panel where our coding agents are
+[06:16] running and then we have spaces here on
+[06:18] the top left side. This is where our
+[06:20] projects are and in agents are our
+[06:22] coding agents. Now let's see an example.
+[06:24] I'm going to go to my project, which is
+[06:26] called Halvi.
+[06:27] And you can already see that the project
+[06:29] appears here on the left side. I'm going
+[06:31] to start my coding agent, which would be
+[06:33] Claude. We can see now one coding agent
+[06:35] appears on the bottom left here under
+[06:37] agents. And very interestingly, we have
+[06:39] this green color here.
+[06:42] And this green color is indicator of the
+[06:43] status of the agent. If the color is
+[06:45] red, this means that the agent is
+[06:47] blocked. If the color is yellow, this
+[06:49] means that the agent is working right
+[06:51] now. And if the color is cyan like this
+[06:53] one here, it means that the agent is
+[06:54] done working. So keep an eye on those
+[06:57] colors here. Also, depending on the
+[06:59] status of the agent, you may get some
+[07:00] sound notifications. I have turned them
+[07:02] off because they get too noisy, but you
+[07:04] can click on the menu here and then go
+[07:06] to settings and then go to sound and you
+[07:08] can switch between on and off. All
+[07:10] right, we have our first coding agent
+[07:11] here, but how do we start multiple
+[07:13] coding agents within our project? Well,
+[07:16] one option is to split the panes and
+[07:19] then within this pane I can run another
+[07:21] coding agent in parallel,
+[07:23] but I can also create different tabs and
+[07:25] in each tab I can run as many coding
+[07:27] agents as I want. Now this here would be
+[07:29] my lead agent, so I don't need another
+[07:31] pane, so I'm going to close it. And
+[07:33] remember that we said that with a harder
+[07:35] skill, the agents can actually control
+[07:37] the terminal. So what I'd like to change
+[07:38] here is to name this agent the Opus 5.5
+[07:41] lead. I'm just going to ask it to do it
+[07:43] for me. Can you change your name to Opus
+[07:45] 5.5 lead and also the tab name? We can
+[07:48] see that yellow color appears here,
+[07:50] which means as expected the agent is
+[07:51] working and now it has changed its name
+[07:54] to Opus 5.5 lead and we can see the tab
+[07:56] name has changed as well. All right, we
+[07:58] have one project here on the left side
+[08:00] and we have one agent in a single tab
+[08:03] that is running and we're going to level
+[08:05] up now. We're going to start worker
+[08:07] agents and I'm going to start those
+[08:09] worker agents in a second tab because
+[08:11] they are not something that I'm looking
+[08:13] at very often and anything that I'm not
+[08:15] looking at very often, I don't want it
+[08:17] to be in my main tab here. Usually in my
+[08:19] main tab I'm running a single agent and
+[08:22] any other agent that is working for my
+[08:24] lead agent is on a different tab. But
+[08:26] remember with Herder we can control the
+[08:28] terminal through our agents. So instead
+[08:30] of me clicking here manually and using
+[08:32] key bindings, I'm just going to ask my
+[08:34] lead to create what I want. So first I'm
+[08:37] going to say create a workers tab in the
+[08:39] same workspace. So in my projects
+[08:42] workspace, I want to create a new tab
+[08:44] here with a 2 by 2 grid four fresh
+[08:47] worker sessions one per pane. But I also
+[08:50] want to specify the coding agents here.
+[08:52] I think GPT models are good at bug
+[08:53] fixing and performance. So I'm telling
+[08:55] my lead agents I want two GPTs, one to
+[08:58] take care of performance, one to take
+[09:00] care of bugs and I'm also specifying the
+[09:02] model and the effort level. Now I'd like
+[09:04] two more coding agents, but those ones
+[09:06] they should be Opus agents because Opus
+[09:08] is better in my opinion at UI and
+[09:12] generally architecture. So once I hit
+[09:14] sent, my lead should start a second tab
+[09:17] with four coding agents in a 4 by 4
+[09:19] grid. Lead coding agent is working
+[09:21] status is yellow. This looks good. All
+[09:23] right, we have the workers tab now. I
+[09:25] can click it.
+[09:26] I could see that Codex one coding agent
+[09:29] has started. One agent is here, another
+[09:31] agent has started here, another agent is
+[09:34] here bug fixes. Opus is starting here
+[09:36] and Opus is here. Now we have four
+[09:37] coding agents. We have one lead agent
+[09:40] and we have four different workers here.
+[09:43] And we see in green they are all idle.
+[09:45] They are waiting for input. Now, the
+[09:47] only thing that I need to look at is my
+[09:48] lead actually. Here's the list of the
+[09:50] coding agent it has started. I can click
+[09:52] on workers. We can see and now we can
+[09:55] start delegating work to them. Now, I'm
+[09:57] going to start another tab here just to
+[09:58] show you how the agents communicate
+[10:00] between each other. Herder provides a
+[10:03] CLI and I can write something like this.
+[10:05] Herder agent prompt Opus 5.5 lead, give
+[10:08] me a quick status update on the workers.
+[10:10] And this would send this message into my
+[10:13] lead. And this is how my lead
+[10:15] communicates with the workers through
+[10:16] the Herder CLI. Remember the Herder is
+[10:19] multiplexer that owns all the terminals,
+[10:22] which means that it can inject messages,
+[10:24] which means that the agents can use
+[10:25] Herder bridge to inject message into
+[10:28] each other. And this would be very
+[10:29] important now because I'm going to
+[10:30] suggest something a bit crazy. Now, I'm
+[10:32] going to suggest something that is a bit
+[10:34] unconventional before we move to the
+[10:36] remote machines, but I think it's super
+[10:37] helpful because working with 10 to 20
+[10:39] different agents on separate work trees
+[10:42] has completely destroyed my disk space.
+[10:45] So, I had to figure out something else.
+[10:46] And Herder was super helpful here. When
+[10:48] I tell the agents to coordinate between
+[10:50] each other, it is actually fine. It is
+[10:53] fine that they all work on main at the
+[10:55] same time. And this is only possible
+[10:57] with something like Herder because I can
+[10:59] tell the workers, "Hey, please
+[11:00] coordinate between each other. Be
+[11:02] mindful that all of you are working on
+[11:04] main." And then the agents are
+[11:05] coordinating between each other and they
+[11:07] are all working on main and there are no
+[11:09] conflicts and almost no problems and
+[11:11] every small problem is resolved by the
+[11:14] agents and I'm going to show you the
+[11:15] prompt now. And I know there are many
+[11:16] other ways to coordinate swarms of
+[11:18] agents like temp files, custom scripts,
+[11:21] using the native CLI commands, but at
+[11:23] the end of the day this one just works
+[11:24] out of the box. You don't have to
+[11:26] maintain it. It's really pleasant. Give
+[11:28] it a try. So, the prompt that I use
+[11:29] looks something like this. Tell all
+[11:31] workers, you share the same checkout on
+[11:34] main, coordinate directly through Herder
+[11:36] messaging, very important. Make routine
+[11:38] decisions autonomously and only message
+[11:40] the lead with completed work, unresolved
+[11:42] blockers, or important decisions needing
+[11:44] input. Skip chatter and routine progress
+[11:47] updates. Because I don't want my workers
+[11:49] to pollute my lead with messages that
+[11:52] are not super important. And I want the
+[11:53] workers to autonomously coordinate the
+[11:55] edits that they are doing at the same
+[11:57] time on the main branch. And of course,
+[11:58] there are cases where I'll see that the
+[12:00] workers are stepping on each other's
+[12:02] toes, and that's when I tell them you
+[12:03] could use your own work tree if you
+[12:05] really need it, but be mindful of my
+[12:07] disk space. And I find that they rarely
+[12:09] actually need it and then they rarely
+[12:11] actually use it, but they still have a
+[12:13] way out. All right, how do we connect my
+[12:15] Mac mini now? Because when I have so
+[12:18] many agents working in parallel, I find
+[12:20] that my computer is just not powerful
+[12:21] enough, and I need to offload some of
+[12:23] them in the cloud. But because the cloud
+[12:25] is not on macOS, and I'm developing an
+[12:27] iOS application, and I have a Mac mini
+[12:29] in the other room, I decided to use it.
+[12:31] And there I have just installed Herder,
+[12:34] and I have set up SSH connection to my
+[12:36] Mac mini, so I could do something like
+[12:38] SSH Mac mini. This is something that you
+[12:40] need to set up before you do the next
+[12:42] step, which is connecting a remote
+[12:44] machine through Herder.
+[12:46] Make sure you have SSH connection set
+[12:48] up, and make sure that you have Herder
+[12:49] installed on your virtual machine. Now,
+[12:51] this may be a bit hard to see because
+[12:53] the text is probably pretty small, but
+[12:56] this is my Herder setup on my Mac mini
+[12:58] now. And what you see here is the screen
+[12:59] share that macOS provides, but this is
+[13:02] very inconvenient to work through screen
+[13:04] share. I want to bring all of this
+[13:06] Herder setup
+[13:07] onto my local computer. I want to
+[13:09] connect to this remote setup with my
+[13:12] local Herder setup. So, let's do that
+[13:14] now. To do that, the only thing that we
+[13:15] have to do is execute a single command,
+[13:17] which is
+[13:18] Herder machine at Mac mini label Mac
+[13:21] mini. Just going to hit enter, and then
+[13:23] you can observe here on the the side
+[13:25] what would happen. Mac mini has been
+[13:27] connected and now the workspaces have
+[13:29] been divided into local and Mac mini.
+[13:32] And I can see my local projects and I
+[13:34] could see my Mac mini projects here.
+[13:37] Now, if I click attached, which is the
+[13:38] other project that I'm working on, you
+[13:40] could also see similar setup and the
+[13:42] lead agent is working. It is showing
+[13:44] some code changes on the right side and
+[13:46] we also have the worker agents here. So,
+[13:48] it is a very similar setup like the one
+[13:50] that I have locally. It is just on the
+[13:52] other machine over there. So, I can work
+[13:53] on both projects from the same machine
+[13:56] and I can connect to as many remote
+[13:58] machines as I want. You can also see
+[14:00] here on the left side that the agents
+[14:01] are getting a bit crowded. So, instead
+[14:03] of grouped, I could also click priority
+[14:06] and this would give me a priority of the
+[14:07] agents that I actually needs to answer
+[14:09] to.
+[14:10] But, I find that when you have so many
+[14:12] agents, however you group them, it is a
+[14:14] mess. So, the only thing that I'm doing
+[14:15] is actually looking at the lead here and
+[14:17] then I have only two leads to look at
+[14:19] and maybe if I see some red dots here
+[14:21] that agents are blocked, maybe I'll look
+[14:23] at them as well. I realize now I forgot
+[14:25] to show you probably the coolest feature
+[14:27] of Herder. This is my This is my whole
+[14:29] terminal. Let's say I close it, okay? I
+[14:31] close it. Close.
+[14:34] It's gone now. Every agent is dead,
+[14:36] right? No, it is not. Because Herder is
+[14:39] running a server on my computer, all the
+[14:41] agents are now still working. All the
+[14:43] terminals are there. So, I can just
+[14:44] write Herder
+[14:46] and I can bring them back to life.
+[14:47] Actually, they were always alive. They
+[14:50] were just in the background. This is
+[14:51] extremely cool. You can just close your
+[14:53] terminal. The agents would keep cooking.
+[14:55] Uh you can do something else and once
+[14:57] you need them, you just go into Herder
+[14:58] and you see them. So, this is inspired
+[15:01] by tmux, of course. Now, Herder is
+[15:03] specifically nice for iOS development as
+[15:05] well, if you don't have a super powerful
+[15:06] computer because if you have four agents
+[15:08] working on the same application, they
+[15:10] tend to start like 10 different iOS
+[15:11] simulators. But, I only have a pool of
+[15:14] three simulators that my Mac mini can
+[15:16] support and I give this pool of iOS
+[15:18] simulators to my agents and I tell them,
+[15:20] "Hey, coordinate between each other
+[15:21] who's going to use the simulator. And
+[15:23] they just talk to each other. And of
+[15:25] course, I can implement some temporary
+[15:26] files and some locks and so and so on.
+[15:29] But this just works. It's really nice.
+[15:30] And when I have so many agents working
+[15:32] on so many things, this is my preferred
+[15:34] setup actually. Although I'm not a big
+[15:35] terminal guy, harder really nice. This
+[15:38] is pretty much all you need to
+[15:39] coordinate forms of agents in harder.
+[15:41] Hope you enjoyed the video. Thanks a lot
+[15:42] for watching. I'll see you next time.
