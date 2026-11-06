@@ -1,197 +1,384 @@
-# Amazon Infinity: AI Agent Runtime Viết Bằng Rust Cho Cực Hạn Đồng Thời (75,000 Agents Trên Raspberry Pi) | Let's Get Rusty
+# Amazon Infinity — Runtime Rust Cho 75,000 AI Agents Đồng Thời — Let's Get Rusty
 
-- **Video URL:** [YouTube Link](https://www.youtube.com/watch?v=os5eNeAVRpc)
-- **Video ID:** `os5eNeAVRpc`
+- **Video URL:** https://www.youtube.com/watch?v=os5eNeAVRpc
+- **Watch Skill ID:** `f99f79c639eac3cb`
 - **Category:** #ai-agents
-- **Date Processed:** 2026-10-20
+- **Date Processed:** 2026-11-07
 - **Duration:** 07:06
-- **Speaker:** Bogdan (Let's Get Rusty) — Phân tích bài công bố chính thức của Amazon AWS về dự án Infinity (Massively Concurrent Agent Runtime in Rust)
-- **Transcript File:** [amazon_infinity_ai_agent_runtime_rust_lets_get_rusty_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/amazon_infinity_ai_agent_runtime_rust_lets_get_rusty_transcript.txt)
+- **Speaker:** Lý giải bởi Let's Get Rusty (Rust education channel)
+- **Channel:** Let's Get Rusty
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
-
-Đội ngũ kỹ thuật của Amazon Web Services (AWS) vừa công bố mã nguồn mở một framework mang tính cách mạng cho hệ thống tác nhân AI: **Infinity** — một runtime được viết hoàn toàn bằng **Rust**, thiết kế chuyên biệt cho bài toán **đồng thời cực hạn (Extreme Agent Concurrency)**.
-
-Thông số benchmark ấn tượng nhất mà AWS đưa ra: **Infinity có thể vận hành đồng thời 75,000 AI agents trên bộ nhớ vỏn vẹn 8 GB của một chiếc máy tính mini Raspberry Pi** (~100 KB footprint cho mỗi agent ở trạng thái chờ).
-
-Lý do đằng sau kỳ tích kỹ thuật này xuất phát từ một nhận thức mang tính bản chất về hành vi của AI Agent trong thế giới thực: **"Agents spend most of their lives waiting" (Các tác nhân AI dành phần lớn cuộc đời của chúng chỉ để chờ đợi)**:
-- Chờ bản build CI/CD chạy mất 15–20 phút.
-- Chờ Webhook từ hệ thống bên thứ ba phản hồi sau vài giờ.
-- Chờ con người kiểm duyệt (Human-in-the-loop approval) mất nửa ngày hoặc nhiều ngày.
-
-Các framework agent truyền thống (phần lớn viết bằng Python như LangChain, CrewAI, AutoGen) duy trì mô hình **1 Process / 1 Thread cho mỗi Agent** và giữ tiến trình đó chạy liên tục trong RAM để chờ kết quả. Đây là một sự lãng phí tài nguyên khủng khiếp. 
-
-AWS Infinity giải quyết triệt để vấn đề này bằng cách mang tư duy **Async/Await State Machine của Rust** lên tầng kiến trúc phân tán: chia nhỏ vòng đời agent thành các **Execution Slices (Lát cắt thực thi)**, đưa công cụ ra ngoài qua giao thức **RAP (Reactive Agent Protocol)**, và áp dụng nguyên lý **Synthetic Tool Calls** để đưa tài nguyên agent về mức **Zero Memory / Zero CPU** khi đang chờ đợi.
+## 1. Tóm Tắt Điều Hành
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                    TRADITIONAL PROCESS-PER-AGENT VS. AWS INFINITY SLICES                    │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│  TRADITIONAL MODEL (LangChain / CrewAI / Python Daemons):                                    │
-│  [Process A: 150MB RAM] ──(Gọi Tool)──> [CHỜ BUILD 20 PHÚT: Vẫn ngốn 150MB RAM & OS Thread]  │
-│  [Process B: 150MB RAM] ──(Gọi Duyệt)─> [CHỜ USER 2 NGÀY: Vẫn ngốn 150MB RAM & OS Thread]   │
-│  ➔ HẬU QUẢ: Cạn kiệt RAM/Thread khi scale lên hàng nghìn Agents, rò rỉ bộ nhớ khi chờ đợi. │
-│                                                                                             │
-│  AWS INFINITY MODEL (Rust Sliced Execution + RAP Server):                                    │
-│                                                                                             │
-│   Incoming Event       EXECUTION SLICE (Vài giây)          HIBERNATION / SCALE TO ZERO      │
-│   ┌────────────┐      ┌───────────────────────────┐         ┌─────────────────────────┐     │
-│   │Input Queue ├─────►│ 1. Load State từ Durable  │         │ Agent Process TẮT HẲN!  │     │
-│   │(SQS/Redis) │      │ 2. Pre-process input      │         │ 0 MB RAM in Memory      │     │
-│   └────────────┘      │ 3. Call LLM (Bedrock/...) │         │ 0% CPU Overhead         │     │
-│                       │ 4. Lưu State vào Storage  │         └────────────▲────────────┘     │
-│                       │ 5. Bắn Tool sang RAP Serv │                      │ Chờ vài giờ      │
-│                       └─────────────┬─────────────┘                      │ hoặc vài ngày    │
-│                                     │ Trigger Async Execution            │                  │
-│                                     ▼                                    │                  │
-│                       ┌───────────────────────────┐                      │                  │
-│                       │ RAP Tool Server (Worker)  ├──────────────────────┘                  │
-│                       │ - Chạy build/gửi webhook  │ (Sau khi hoàn tất: PUSH Event           │
-│                       │ - Khi xong: gửi message   │  ngược vào Input Queue để mở            │
-│                       └─────────────┬─────────────┘  Slice tiếp theo)                       │
-│                                     │                                                       │
-│                                     ▼                                                       │
-│                              Input Queue (Event: Tool_Result_injected)                      │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────┐
+│   AMAZON INFINITY: RUNTIME CHO EXTREME AGENT CONCURRENCY                   │
+│   (AWS Open Source Blog — 23 Oct 2026 | by Shadaj Laddad)                 │
+│                                                                            │
+│  VẤN ĐỀ HIỆN TẠI: Agents dành phần lớn thời gian để... chờ               │
+│    → Build có thể mất 20 phút                                              │
+│    → Webhook fire sau nhiều giờ                                            │
+│    → Con người trả lời vào ngày hôm sau                                   │
+│    → Runtime cũ: giữ 1 process/agent suốt thời gian chờ → lãng phí RAM   │
+│                                                                            │
+│  GIẢI PHÁP: Infinity — "Scale to Zero" Agent Runtime                      │
+│    → Idle agent = chỉ là conversation history (pure data)                  │
+│    → 103 KB/agent → 75,000 agents trên 8GB Raspberry Pi RAM               │
+│    → Hibernate khi chờ, wake up khi message đến                           │
+│                                                                            │
+│  3 KIẾN TRÚC CỐT LÕI:                                                     │
+│  ┌────────────────────────────────────────────────────────────────┐        │
+│  │  1. EXECUTION SLICES     → Giống async/await trong Rust        │        │
+│  │     Mỗi slice = 1 turn; giữa slices = không có state machine  │        │
+│  │                                                                │        │
+│  │  2. RAP TOOL SERVER      → Reactive Agent Protocol             │        │
+│  │     Tách biệt tool execution khỏi runtime slice               │        │
+│  │                                                                │        │
+│  │  3. EVERYTHING IS A MESSAGE (InputMessage)                     │        │
+│  │     User text, tool results, synthetic tool calls = cùng type │        │
+│  └────────────────────────────────────────────────────────────────┘        │
+│                                                                            │
+│  KEY INSIGHT: Reuse LLM tool call primitive để giao tiếp nội bộ           │
+│  → Runtime tắt hoàn toàn giữa slices (true scale to zero)                 │
+│  → Perfect cho AWS Lambda (serverless)                                     │
+└────────────────────────────────────────────────────────────────────────────┘
 ```
+
+AWS ra mắt **Infinity** (một dự án của Hydro) — Rust framework mã nguồn mở để xây dựng agentic systems đồng thời cực hạn, nhẹ đến mức chứa 75,000 agents trong 8GB RAM. Let's Get Rusty phân tích các quyết định kỹ thuật đằng sau.
 
 ---
 
-## 2. Căn Bệnh "Thuế Chờ Đợi" (Idle Waiting Tax) Của Kiến Trúc Agent Hiện Nay
+## 2. Vấn Đề Cốt Lõi: Agents Dành 90% Thời Gian Chờ
 
-Trong các hệ sinh thái AI Agent hiện nay (chủ yếu được xây dựng trên nền Python), khi một tác nhân thực hiện một nhiệm vụ phức tạp, nó liên tục rơi vào trạng thái chờ I/O:
-1. **Tool Execution Latency:** Đọc một codebase lớn, thực hiện web scraping, gọi database queries, chạy test suite, kích hoạt deployment pipeline.
-2. **Asynchronous External Events:** Chờ webhook thanh toán Stripe, chờ GitHub Action hoàn thành test, chờ đối tác phản hồi API.
-3. **Human Feedback Loop:** Chờ người quản trị xác nhận lệnh xoá database, phê duyệt PR hoặc chọn phương án thiết kế.
+```
+Timeline điển hình của 1 agent:
 
-### Hậu Quả Kỹ Thuật Khi Dùng Mô Hình Tiến Trình Giữ Chỗ (Process-per-agent):
-- **Bộ nhớ chết (Dead Memory Bloat):** Mỗi tiến trình Python agent thường tiêu tốn từ 50MB đến 200MB RAM chỉ để nạp interpreter, dependencies, prompt templates và in-memory vector cache. Nếu bạn có 10,000 agents đang phục vụ khách hàng nhưng 9,900 agents đang "ngủ" chờ khách nhập tin nhắn, hệ thống vẫn phải cấp phát gần **1.5 TB đến 2 TB RAM** chỉ để giữ các tiến trình đó sống!
-- **Cạn kiệt File Descriptors & Sockets:** Các tiến trình giữ kết nối HTTP/gRPC và database pool mở liên tục trong lúc không làm gì, dẫn tới cạn kiệt tài nguyên mạng của hệ điều hành.
-- **Rủi ro Crash & Mất dữ liệu:** Nếu một node máy chủ bị restart hoặc crash trong lúc agent đang `time.sleep()` hoặc `await` một webhook, toàn bộ in-process state machine của agent đó tan biến, khiến quy trình dang dở không thể phục hồi.
+  t=0      t=0.1s  t=20m    t=20m+1s  t=hours  t=hours+1s
+   │          │      │          │         │          │
+  [WORK]  [TOOL]  [wait...]  [WORK]   [wait...]  [WORK]
+           call    build       0.1s    webhook     0.1s
+                              done     response   done
+
+Với runtime cũ:
+  → 1 process/agent suốt timeline → lãng phí RAM cả lúc chờ
+
+Với Infinity:
+  → Agent = pure data khi chờ
+  → Chỉ chiếm RAM khi đang thực sự chạy (slice)
+```
+
+**Nguồn gốc:** AWS blog post "Introducing Infinity: a runtime for extreme agent concurrency" — by Shadaj Laddad, 23 Oct 2026.
 
 ---
 
-## 3. Kiến Trúc Lõi Của AWS Infinity — 4 Trụ Cột Kỹ Thuật
+## 3. Kiến Trúc: 75k Agents Trên Raspberry Pi
 
-AWS Infinity giải quyết bài toán trên bằng cách tái cấu trúc toàn diện tầng runtime với 4 trụ cột kỹ thuật hệ thống:
+### 3.1 Idle Agent = Pure Data
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                       AWS INFINITY 4 CORE ARCHITECTURAL PILLARS                             │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                             │
-│  [Trụ Cột 1: Execution Slices]         [Trụ Cột 2: Async Future State Machine]              │
-│  - Thực thi theo lát cắt hữu hạn       - Tương tự `async fn` trong Rust                     │
-│  - Không chạy daemon vô tận            - Điểm `.await` chính là điểm gọi Tool Call          │
-│  - Xong một bước là tắt runtime        - Trạng thái được tuần tự hoá ra Storage bền vững   │
-│                                                                                             │
-│  [Trụ Cột 3: RAP & Synthetic Messages] [Trụ Cột 4: Scale to Zero / Serverless Ready]        │
-│  - Reactive Agent Protocol Server      - Không tốn một byte RAM nào khi agent nhàn rỗi      │
-│  - "Everything is a Message"           - Chạy hoàn hảo trên AWS Lambda / ECS Fargate        │
-│  - Sự kiện injected như tool call thật - Đạt kỷ lục 75,000 agents trên 8GB RAM              │
-│                                                                                             │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+Idle agent (giữa các turns):
+  - Conversation history  ← stored in durable storage
+  - No task
+  - No stack
+  - No open connection
+  → Chỉ ~103 KB/agent
+
+Tính toán:
+  8 GB RAM ÷ 103 KB/agent ≈ 75,000 agents đồng thời
 ```
 
-### Trụ Cột 1: Vòng Đời Lát Cắt Thực Thi (Execution Slices)
+**Triết lý:** "Infinity does for agents what async did for threads."
 
-Một Agent trong Infinity **không bao giờ là một process chạy liên tục**. Nó chỉ tồn tại trong các "Lát cắt" (Slice) có thời gian sống ngắn (vài trăm mili-giây đến vài giây).
+### 3.2 Execution Slices — Giống Async/Await
 
-Một Slice được khởi động theo chu trình nghiêm ngặt:
-1. **Trigger từ Input Queue:** Một message mới xuất hiện trong hàng đợi (có thể là tin nhắn của user, kết quả của tool, hoặc một event từ bên ngoài).
-2. **Hydration từ Durable Storage:** Runtime tải lịch sử hội thoại và context của thread từ kho lưu trữ bền vững (DynamoDB, S3, PostgreSQL).
-3. **Pre-processing:** Kiểm tra schema, lọc token, nạp prompt.
-4. **Invoke Model Provider:** Gửi request đến LLM (Claude trên AWS Bedrock, OpenAI,...). Model trả về: Text phản hồi, Reasoning tokens, hoặc một **Tool Call**.
-5. **Persist State:** Ghi nhận trạng thái mới nhất vào Durable Storage.
-6. **Dispatch & Shutdown:** Nếu model yêu cầu gọi Tool, runtime bắn một lệnh POST không đồng bộ tới **RAP Tool Server** rồi **ngay lập tức chấm dứt lát cắt (terminate slice)**. Runtime giải phóng toàn bộ RAM và CPU của agent đó.
+```
+Infinity: Time-Sliced
 
-### Trụ Cột 2: Ánh Xạ Tư Duy Rust Async Await Vào Hệ Thống Phân Tán
+  time →
+  ─────────────────────────────────────────────────────
+  Agent 1: [slice1]      [slice2]         [slice3]
+  Agent 2:        [slice1]    [slice2]
+  Agent 3:                         [slice1]    [slice2]
+  ─────────────────────────────────────────────────────
+  → 1 chỉ có "active slices" tại bất kỳ thời điểm nào
+  → Giữa slices: không có in-process state machine
+```
 
-Trong ngôn ngữ Rust:
-- Một hàm `async fn` thực chất được trình biên dịch chuyển đổi thành một **State Machine (Máy trạng thái)** hiện thực trait `Future`.
-- Mỗi khi gặp từ khoá `.await`, hàm sẽ tạm dừng (yield) trả quyền điều khiển lại cho Executor (Tokio), cho phép thread đó chạy các task khác.
-- Khi I/O hoàn tất, Executor đánh thức (wake) state machine dậy và tiếp tục thực thi chính xác từ điểm đã dừng.
+**Mapping sang Rust async:**
+```
+Rust async:                     Infinity:
+─────────────────────────       ─────────────────────────
+async fn process()          =   agent receiving message
+  ...
+  let result = api.await    =   model hits tool call
+  ...                       =   RAP tool server executes
+  use result                =   new slice starts, reconstructs
+                                from durable storage
+```
 
-AWS Infinity mang chính xác tư duy này áp dụng cho cấp độ hệ thống phân tán:
-- **Hàm Async** = Toàn bộ quy trình giải quyết tác vụ của Agent.
-- **Điểm `.await`** = Lời gọi Tool Call (chờ API, chờ build, chờ người duyệt).
-- **Lưu State Machine** = Thay vì giữ trong con trỏ bộ nhớ (RAM pointer) của tiến trình, Infinity lưu cấu trúc state machine này xuống **Durable Storage**.
-- **Waker** = Khi RAP Server chạy xong tool, nó gửi message vào Input Queue đóng vai trò như Waker, kích hoạt một slice mới để tiếp tục hành trình của agent.
+### 3.3 Anatomy of a Slice — Vòng Đời Đầy Đủ
 
-### Trụ Cột 3: Giao Thức RAP & Nguyên Lý "Everything is a Message"
+```
+InputMessage arrives (tool result / user text / event)
+       │
+       ▼
+  Runtime Slice Starts
+       │
+       ├─→ Load history + processed IDs from Durable Storage
+       ├─→ Prepare inputs (dedup, routing)
+       │
+       ▼
+  Model Provider (Anthropic, OpenAI, etc.)
+       │
+       ├─→ Returns: text, reasoning tokens, OR tool call
+       │
+       ▼
+  Persist new turn to Durable Storage
+       │
+       ├─→ If tool call: POST to RAP Tool Server (Fire and Forget!)
+       │   └─→ 200 OK (acknowledgment only)
+       │   └─→ Slice ENDS, process exits
+       │
+       └─→ RAP Tool Server executes (minutes/hours later)
+              │
+              ▼
+         POST result to callback URL → new message on Input Queue
+              │
+              ▼
+         New Slice Starts (reconstructs from Durable Storage)
+```
 
-Khi thiết kế hệ thống sự kiện cho Agent, các kỹ sư thường mắc 2 sai lầm:
-1. **Tạo ra Event System riêng biệt:** Dẫn đến việc mô hình LLM không hiểu thứ tự thời gian giữa các sự kiện bên ngoài và luồng chat.
-2. **Đẩy sự kiện vào vai trò `user` message:** Khiến LLM hiểu lầm rằng chính người dùng gõ câu thông báo đó, gây sai lệch ngữ cảnh và ảo giác phân quyền.
+**Fire and Forget:** Runtime nhận 200 OK từ RAP và kết thúc ngay. Không giữ connection mở.
 
-Infinity giải quyết vấn đề này bằng triết lý **"Everything is a Message"** thông qua **Synthetic Tool Calls (Lời gọi công cụ tổng hợp)**:
-- Mọi tương tác đều tuân thủ đúng 3 vai trò gốc mà LLM hiểu: `system`, `user`, và `tool`.
-- Khi agent muốn tạo một tác vụ con (sub-thread), nó gọi công cụ chuẩn:
-  ```json
-  {
-    "tool": "spawn_thread",
-    "parameters": {
-      "task": "Review auth.ts for security vulnerabilities"
-    }
+---
+
+## 4. RAP — Reactive Agent Protocol Tool Server
+
+```
+RAP (Reactive Agent Protocol) = Tách rời tool execution:
+
+  Runtime Slice                  RAP Tool Server
+  ─────────────                  ───────────────
+  Nhận tool call request  ──→    Nhận POST
+  Nhận 200 OK             ←──    Xử lý tool (file I/O, web, etc.)
+  SLICE ENDS ✓                   ...chờ...
+                                 Xong! POST result to callback URL
+                           ──→   New InputMessage arrives
+  New Slice Starts               → New Slice processes result
+```
+
+**Lợi ích:**
+- Tool execution có thể mất minutes/hours/days
+- Runtime không cần biết — nó đã kết thúc
+- Khi tool xong → message mới → slice mới → xử lý tiếp
+
+---
+
+## 5. Everything Is A Message — InputMessage
+
+### 5.1 Thiết Kế Thống Nhất
+
+```
+Mọi input đều là InputMessage:
+  ┌───────────────────────────────────────────────────────┐
+  │  InputMessage                                          │
+  │  ├── user text          ← người dùng gõ               │
+  │  ├── tool result        ← RAP trả về                  │
+  │  ├── subscription event ← streaming events            │
+  │  ├── OAuth challenge    ← auth flow                   │
+  │  ├── timer wake-up      ← scheduled triggers          │
+  │  └── synthetic tool call ← (đặc biệt!)               │
+  │                                                        │
+  │  Mỗi message có: group_id (conversation thread)       │
+  └───────────────────────────────────────────────────────┘
+```
+
+### 5.2 Synthetic Tool Calls — Trick Thông Minh
+
+**Vấn đề:** Làm sao notify runtime khi child thread xong mà không cần in-process state machine?
+
+**Giải pháp:** Dùng lại primitive tool calls của LLM provider, nhưng đánh dấu `_injected`:
+
+```json
+// Regular tool call (spawn child thread):
+{
+  "tool": "spawn_thread",
+  "args": {
+    "instructions": "Review auth.ts for security issues"
   }
-  ```
-- Khi tác vụ con đó hoàn thành (dù sau 30 phút hay 3 tiếng), RAP Server sẽ đóng gói kết quả và gửi trả lại luồng chính dưới dạng một **Synthetic Tool Call** được đánh dấu hậu tố đặc biệt:
-  ```json
-  {
-    "tool": "spawn_thread_injected",
-    "result": "Found SQL injection vulnerability on line 42..."
+}
+
+// Synthetic tool call (child thread completed):
+{
+  "tool": "spawn_thread_injected",  ← "_injected" suffix
+  "args": {
+    "result": "Found 3 security issues: ..."
   }
-  ```
-- **Ý nghĩa sống còn:** Bằng cách biến mọi sự kiện bất đồng bộ thành cặp `tool_call` và `tool_result_injected`, Infinity **hoàn toàn không cần bất kỳ in-process state machine nào** để theo dõi trạng thái chờ! Lịch sử hội thoại chính là trạng thái duy nhất.
+}
+```
 
-### Trụ Cột 4: Scale to Zero & Serverless Native
+**Tại sao dùng tool call syntax thay vì user message?**
+- User message → model tưởng user nói → confused
+- Tool call syntax → model biết đây là system event
+- `_injected` suffix → phân biệt synthetic vs real
 
-Nhờ thiết kế Slices và Durable State:
-- Một Agent đang chờ người duyệt trong 5 ngày **tiêu thụ đúng 0 byte RAM và 0 chu kỳ CPU**.
-- Chi phí duy nhất là dung lượng lưu trữ vài chục KB JSON trong cơ sở dữ liệu.
-- Runtime có thể triển khai hoàn hảo trên các nền tảng **Serverless** như AWS Lambda:
-  - Message vào SQS -> Kích hoạt Lambda chạy 1 Slice (2 giây) -> Lưu DB -> Lambda kết thúc.
-  - Không cần duy trì cụm máy chủ EC2 hay Kubernetes đắt đỏ chạy 24/7 chỉ để đợi tin nhắn của người dùng.
+**Kết quả:** Runtime có thể tắt hoàn toàn vì không có state machine nào cần giữ. Khi child xong → synthetic tool call message → new slice → reconstruct từ durable storage → tiếp tục.
 
 ---
 
-## 4. Bảng So Sánh Đối Chiếu Hệ Thống: Python Frameworks vs. AWS Infinity (Rust)
+## 6. Scale to Zero — Serverless Ready
 
-| Tiêu Chí So Sánh | Frameworks Truyền Thống (LangChain, CrewAI, AutoGen) | AWS Infinity Runtime (Rust) |
-| :--- | :--- | :--- |
-| **Ngôn ngữ lõi** | Python (GIL, dynamic memory allocations) | Rust (Zero-cost abstractions, Memory safety) |
-| **Mô hình luồng** | Long-running Process / Thread per Agent | Stateless Ephemeral Execution Slices |
-| **Mức tiêu thụ RAM khi chờ** | **50MB – 200MB / Agent** (Giữ full context trong RAM) | **0 MB** (Toàn bộ tiến trình tắt hoàn toàn) |
-| **Khả năng đồng thời** | Vài trăm đến tối đa vài nghìn agents trên cụm server lớn | **75,000 agents trên 8GB RAM Raspberry Pi** |
-| **Xử lý tác vụ chờ dài hạn** | Block luồng hoặc dùng async loop dễ đứt gãy nếu crash | Hibernation tự nhiên; Tool chạy trên RAP Server |
-| **Phục hồi sự cố (Crash Recovery)** | Khó khăn, dễ mất state nếu tiến trình chết giữa chừng | Deterministic Recovery từ Durable Storage 100% |
-| **Tương thích Serverless** | Kém (Yêu cầu runtime chạy nền liên tục) | Hoàn hảo (Thiết kế đo ni đóng giày cho AWS Lambda) |
-| **Cơ chế sự kiện bất đồng bộ** | Custom event bus hoặc Polling vòng lặp | Native Synthetic Tool Calls (`_injected`) |
+```
+Vòng đời memory của agent:
 
----
+  Agent nhận message → Slice starts → load từ storage
+                                         │
+                             [RAM: conversation state]
+                                         │
+                       Slice ends (tool call dispatched)
+                                         │
+                             [RAM: 0 bytes ✓]
+                                         │
+  Tool completes → New message → New Slice → load lại
+```
 
-## 5. Ứng Dụng Thực Tiễn & Tác Động Tới Kỹ Sư Hệ Thống
-
-Kiến trúc của AWS Infinity mở ra kỷ nguyên ứng dụng AI Agent ở quy mô công nghiệp:
-
-1. **Hệ Thống Chăm Sóc Khách Hàng Siêu Quy Mô (Customer Support at Massive Scale):**
-   - Một sàn thương mại điện tử phục vụ hàng triệu người dùng cùng lúc. Mỗi khách hàng có thể hỏi một câu rồi biến mất 15 phút mới trả lời tiếp.
-   - Với Infinity, hàng triệu agent có thể được tạo ra mà không làm sập hạ tầng, vì 99% thời gian chúng không tốn tài nguyên máy chủ.
-
-2. **Hệ Thống Tự Động Hoá Di Chuyển Mã Nguồn Lớn (Enterprise Codebase Migration):**
-   - Hàng chục ngàn sub-agents được kích hoạt để refactor từng module mã nguồn độc lập. Mỗi agent có thể đợi build test hoặc bảo mật hàng giờ mà không gây cạn kiệt tài nguyên cluster.
-
-3. **Bài Học Cho Kỹ Sư Xây Dựng Agentic Systems:**
-   - **Tách rời Thực thi suy luận (Reasoning) khỏi Thực thi công cụ (Tool Execution):** Đừng bao giờ cho agent process trực tiếp chạy những lệnh tốn thời gian. Hãy bắn lệnh sang một worker queue (như RAP Server) và cho agent đi ngủ.
-   - **Tận dụng LLM-native formats:** Đừng cố phát minh ra các giao thức chat kỳ quái. Hãy tận dụng cơ chế `tool_call` chuẩn mực của LLM để thông báo sự kiện bất đồng bộ.
-   - **Rust là tương lai của Agent Infrastructure:** Trong khi Python vẫn thống trị ở tầng thử nghiệm và nghiên cứu mô hình (research/prototyping), tầng hạ tầng vận hành (runtime infrastructure/orchestrator) quy mô lớn bắt buộc phải chuyển dịch sang Rust để đảm bảo hiệu năng và chi phí.
+**Scale to Zero by default:**
+- Idle agents: 0 RAM, 0 CPU
+- Perfect cho AWS Lambda (pay per invocation)
+- Không có "sleeping process" tiêu tốn tài nguyên
 
 ---
 
-## 6. Liên Kết Chéo & Tài Liệu Liên Quan Trong Vault
+## 7. So Sánh Với Traditional Agentic Systems
 
-- [Báo Cáo Anthropic: Gộp Sub-Agents Vào Một Vòng Lặp Duy Nhất](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/claude_code_getting_rid_of_subagents_aicodeking.md) — Phân tích sự tối giản hóa kiến trúc agent và loại bỏ sự cồng kềnh của mô hình multi-agent truyền thống.
-- [DeepSeek SuperAgent Harness Hands-On](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_superagent_harness_hands_on_aicodeking.md) — Kiến trúc Harness và tối ưu hoá chi phí vòng lặp tự động.
-- [High-Throughput Agentic Engineering (Kun Chen)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/high_throughput_agentic_engineering_kun_chen.md) — Kỹ thuật kỹ nghệ luồng thông lượng cao cho AI Agents.
+| Tiêu chí | Traditional | Infinity |
+|----------|-------------|---------|
+| Memory/agent khi idle | Toàn bộ process (~100MB+) | ~103 KB (pure data) |
+| Agents trên 8GB | ~80 agents | 75,000 agents |
+| Tool execution | Blocking (giữ process) | Async (fire & forget) |
+| State persistence | In-process state machine | Durable storage |
+| Serverless friendly | ❌ (long-lived process) | ✅ (scale to zero) |
+| Concurrency model | 1 process/agent | Async runtime (Tokio) |
+| Failure recovery | Process crash = state lost | Reconstruct từ storage |
+
+---
+
+## 8. Rust Async Analogy — Tại Sao Rust?
+
+```
+Rust async/await:
+  async fn foo() {
+    let x = make_http_call().await;  ← pause point
+    // ...
+  }
+
+Compile thành state machine:
+  State 0: before await
+  State 1: waiting for HTTP
+  State 2: after await, have x
+
+Infinity slices:
+  Slice 0: nhận message, call model
+  [PAUSE] tool call → RAP (fire & forget)
+  Slice 1: nhận tool result, tiếp tục
+```
+
+**Key mapping:**
+- `await` point = model hits tool call → slice ends
+- State machine serialized to memory = Infinity persists to durable storage
+- async runtime resumes correct state = new slice reconstructs from storage
+
+**Tại sao Rust đặc biệt phù hợp:**
+- Zero-cost abstractions → lightweight per-agent overhead
+- Memory safety → không leak state giữa agents
+- Tokio async runtime → thousands of agents on few threads
+- Pure Rust → không GC pause, deterministic memory
+
+---
+
+## 9. Use Cases Thực Tế
+
+```
+Infinity phù hợp nhất cho:
+
+  ✅ Customer service at scale
+     → Hàng trăm nghìn requests → 1 agent/request
+     → Agents chờ human reply → không tốn RAM
+
+  ✅ CI/CD agents
+     → Build 20 phút → agent hibernate → wake up khi done
+
+  ✅ Monitoring agents
+     → Chờ webhook hours → không tốn tài nguyên
+
+  ✅ Scheduled agents
+     → Timer wake-up → xử lý → hibernate lại
+
+  ❌ Không phù hợp cho:
+     → Agents cần low-latency streaming response
+     → Single agent, high-performance inference loop
+```
+
+---
+
+## 10. Triết Lý Cốt Lõi
+
+```
+"Infinity does for agents what async did for threads."
+
+Trước async:
+  1 thread = 1 connection → blocking I/O → scale kém
+
+Sau async:
+  1 thread = N connections → non-blocking → massive scale
+
+Trước Infinity:
+  1 process = 1 agent → sleeping processes → scale kém
+
+Sau Infinity:
+  1 runtime = N agents → hibernate/wake → extreme scale
+```
+
+---
+
+## 11. Key Takeaways
+
+```
+3 insights quan trọng nhất:
+
+  1. IDLE = PURE DATA
+     → Đừng giữ process cho sleeping agents
+     → Chỉ cần conversation history trong durable storage
+
+  2. TOOL CALL AS COMMUNICATION PRIMITIVE
+     → Reuse LLM tool call format cho synthetic events
+     → Runtime không cần biết về event types → đơn giản hóa
+
+  3. FIRE AND FORGET TOOL SERVER
+     → Dispatch tool call → 200 OK → slice ends
+     → Không cần long-lived connection
+     → Tool results → messages → new slices
+
+Áp dụng ngay:
+  → Nếu có system cần >100 concurrent agents: xem xét Infinity
+  → Nếu dùng AWS Lambda: Infinity scale to zero = cost efficient
+  → Nếu agents của bạn chờ nhiều: đây là kiến trúc đúng
+```
+
+---
+
+## 12. Liên Kết Chéo & Tài Liệu Liên Quan Trong Vault
+
+### Notes về Agent Runtime & Infrastructure:
+- [Agent Desktop — Computer Use Không Cần Screenshot](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/agent_desktop_computer_use_accessibility_tree_prism_labs.md) — Pure Rust agent tooling (cùng ngôn ngữ)
+- [The 3 Levels of Harness Engineering — Agentic Labs](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/the_3_levels_of_harness_engineering_agentic_labs.md) — Kiến trúc harness levels
+
+### Notes về Multi-Agent Orchestration:
+- [DeepSeek Super Agent Design — Grokbot Agents](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_super_agent_design_grokbot_agents_lustoykov.md) — Kiến trúc distributed agent (State/Compute/Environment separation)
+- [Anthropic Managed Agents — Brain tách khỏi Hands](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/anthropic_managed_agents_evolution_harness_beamnxw.md) — Session-based architecture
+
+### Notes về Scalable Agent Systems:
+- [Claude Code Getting Rid of Sub-Agents](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/claude_code_getting_rid_of_subagents_aicodeking.md) — Single loop vs multi-agent trade-offs
+- [My New AI Coding Setup — 30+ PRs/Day](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/my_new_ai_coding_setup_ship_30_prs_a_day.md) — Multi-agent practical setup
