@@ -1,197 +1,293 @@
-# Thử Nghiệm Thực Chiến DeepSeek SuperAgent Harness: Bản Thiết Kế Đột Phá Hay Chỉ Là Lý Thuyết? | AICodeKing
+# Thực Chiến DeepSeek SuperAgent Harness — Có Thực Sự Tốt Không?
 
-- **Video URL:** [YouTube Link](https://www.youtube.com/watch?v=ZIcvDE0HoWE)
-- **Video ID:** `ZIcvDE0HoWE`
+- **Video URL:** https://www.youtube.com/watch?v=ZIcvDE0HoWE
+- **Watch Skill ID:** `09c842bacf5f5ebb`
 - **Category:** #ai-agents
-- **Date Processed:** 2026-10-20
+- **Date Processed:** 2026-11-07
 - **Duration:** 14:16
 - **Speaker:** AICodeKing
-- **Transcript File:** [deepseek_superagent_harness_hands_on_aicodeking_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_superagent_harness_hands_on_aicodeking_transcript.txt)
+- **Channel:** AICodeKing
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
-
-Sau khi nhóm nghiên cứu DeepSeek Harness công bố tài liệu kiến trúc chuyên sâu *"Exploring Super-agent Design"* và mã nguồn mở nguyên mẫu `dsh-superagent-prototype`, **AICodeKing** đã tiến hành mổ xẻ thực nghiệm toàn diện hệ thống này. Thay vì các chiêu bài quảng cáo mô hình thông thường, công trình của DeepSeek giải quyết trực diện một "nỗi đau" nhức nhối mà mọi kỹ sư vận hành AI đều thấm thía: **Mô hình AI đã đủ giỏi để làm việc tự chủ, nhưng thứ đang làm chậm toàn bộ quy trình lại chính là... sự chú ý của con người**.
-
-Não bộ con người chỉ có thể theo sát tối đa **3 đến 5 phiên chat đồng thời**. Vượt quá ngưỡng này, kỹ sư bắt đầu quên mất phiên nào đang nắm ngữ cảnh gì, các agent bị treo 20 phút để chờ bấm nút duyệt, hoặc hai agent giẫm chân lên nhau sửa cùng một Pull Request. Triết lý cốt lõi của DeepSeek là: **Ngừng biến "phiên làm việc" (session) thành thứ mà con người phải quản lý**. Kỹ sư chỉ giao tiếp với **duy nhất một tác nhân đại diện** trên các kênh quen thuộc (Telegram, Slack, Feishu, GitHub), trong khi hệ thống ngầm tự động tạo, điều phối và hủy bỏ hàng chục phiên làm việc biệt lập bên dưới.
+## 1. Tóm Tắt Điều Hành
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                    DEEPSEEK SUPERAGENT: ARCHITECTURAL DECOUPLING                            │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│  TRADITIONAL COLLAPSE (CON NGƯỜI LÀ ĐIỂM NGHẼN):                                            │
-│  [Human Engineer] ──── Quản lý 5 cửa sổ chat ────> [Context Switching Fatigue / Lỗi chồng lấn]│
-│                                                                                             │
-│  DEEPSEEK 2-LAYER SUPERAGENT ARCHITECTURE:                                                  │
-│                                                                                             │
-│  [Human Engineer] (Telegram / Slack / GitHub / Feishu)                                      │
-│         │                                                                                   │
-│         ▼ < 100 từ, trả lời nhanh                                                           │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │ TẦNG 1: THE ROUTER (DeepSeek V4.1 Flash - Siêu Rẻ)                                    │  │
-│  │ - KHÔNG CÓ BASH / EDIT TOOLS (Cấm cứng bằng Deny Rules để ép buộc ủy quyền)           │  │
-│  │ - Tiếp nhận triggers (Chat, PR comments, CI events qua bộ lọc Code Filter)            │  │
-│  │ - Quản lý ngữ cảnh như bộ đệm cache (Context as Cache & Chain of Recall)              │  │
-│  └───────────────────────────────────┬───────────────────────────────────────────────────┘  │
-│                                      │                                                      │
-│                                      │ Điều phối tác vụ (bot_message_bot / Ticket)          │
-│                                      ▼                                                      │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │ TẦNG 2: ISOLATED WORKERS (Mô hình Lập trình Cấp cao: Kimi K3.1 Pro / GLM 5.3)         │  │
-│  │ - Worker A (Builder): Checkout Worktree riêng, thực thi TDD, im lặng lập trình        │  │
-│  │ - Worker B (Reviewer): Phản biện đối kháng độc lập, phát hiện lỗi góc khuất           │  │
-│  │ - Không bao giờ nói chuyện trực tiếp với con người (chỉ báo cáo về Router)            │  │
-│  └───────────────────────────────────┬───────────────────────────────────────────────────┘  │
-│                                      │                                                      │
-│                                      ▼                                                      │
-│  [KẾT QUẢ ĐẦU RA: Tự động mở Pull Request / Báo cáo ngắn gọn kèm link nghiệm thu]          │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-Điểm nhấn thực nghiệm nổi bật:
-- **Phát hiện chấn động về ủy quyền:** Một mô hình với prompt thông thường *"hãy ủy quyền cho subagent nếu thấy phù hợp"* đã **0 lần gọi subagent trong cả 5 lần thử nghiệm**! Muốn AI ủy quyền, bắt buộc phải dùng **ràng buộc kiến trúc (Architectural Enforcement - tước bỏ công cụ shell của Router)** chứ không thể trông chờ vào prompt.
-- **Bài toán kinh tế học Token Cache:** Một lần chạy Superagent ngốn tới **23.2 triệu cached tokens**. Trên Claude Sonnet 3.5, chi phí là **$4.64/run**, nhưng trên DeepSeek V4.1 Flash, chi phí chỉ vỏn vẹn **$0.07/run (rẻ hơn 66 lần)**. Kiến trúc Superagent chỉ khả thi về mặt thương mại trên nền tảng open-weight giá rẻ.
-- **Công thức triển khai thực tế của AICodeKing:** Kết hợp **Pandode** (Desktop Multi-Agent) + **Cline Pass ($9.99/tháng)** + **DeepSeek Harness** để dựng hệ thống Superagent cá nhân chạy 24/7 ngay trong tuần.
-
----
-
-## 2. Bốn Trụ Cột Cốt Lõi Của Một "Super-Agent" Chuẩn Mực
-
-Theo định nghĩa trong tài liệu nghiên cứu của DeepSeek, một Superagent thực thụ phải thỏa mãn đồng thời 4 thuộc tính:
-
-| Trụ Cột | Khái Niệm | Biểu Hiện Thực Tế Trong Quy Trình Kỹ Thuật |
-| :--- | :--- | :--- |
-| **1. Continuous (Tính Liền Mạch)** | Luôn tạo cảm giác là một thực thể duy nhất | Kỹ sư yêu cầu Kế hoạch A trên Telegram, sau đó chuyển sang Kế hoạch B trong bình luận GitHub PR; Agent hiểu rõ toàn bộ bối cảnh chuyển dịch mà không bị đứt đoạn. |
-| **2. Productive (Tính Năng Suất)** | Tiếp nhận việc mới trước khi việc cũ hoàn thành | Nhận lệnh tiếp theo của kỹ sư khi tác vụ trước vẫn đang build/test ngầm, không bắt con người phải chờ đợi phiên làm việc nhàn rỗi. |
-| **3. Proactive (Tính Chủ Động)** | Tự quan sát và hành động không cần nhắc | Tự động nhân bản lỗi người dùng vừa báo trong chat (`Silently Reproduce and Fix`), tạo PR sửa lỗi trước khi cuộc thảo luận kết thúc; nếu không tái hiện được thì im lặng không làm phiền. |
-| **4. Persistent (Tính Bền Vững)** | Sống 24/7 và tự phục hồi khi có sự cố | Vòng lặp agent nằm trên cloud/server; tiến trình giám sát độc lập (Watchdog) định kỳ kiểm tra để giải cứu các agent bị kẹt vòng lặp logic (semantic loop). |
-
----
-
-## 3. Giải Phẫu Kiến Trúc 2 Tầng: Router & Workers
-
-### 3.1. Nghịch Lý Lựa Chọn Mô Hình: Đảo Ngược Vai Trò
-Trong các nhóm multi-agent truyền thống, người ta thường đặt mô hình mạnh nhất (Opus/GPT-4o) làm "Trưởng nhóm" (Lead) để phân rã nhiệm vụ và mô hình rẻ làm công nhân. **DeepSeek đảo ngược hoàn toàn tư duy này:**
-- **Router (Tầng 1):** Nhiệm vụ của Router thực chất đơn giản hơn vẻ bề ngoài — nó chỉ đọc tin nhắn, tra cứu bảng người dùng hợp lệ, gán việc và gửi phản hồi dưới 100 từ. Vì vậy, một mô hình siêu nhẹ, siêu rẻ và có độ trễ cực thấp như **DeepSeek V4.1 Flash** là hoàn hảo.
-- **Workers (Tầng 2):** Đây mới là nơi diễn ra công việc lập trình thực tế, đòi hỏi suy luận sâu, bám sát context dài và xử lý cú pháp phức tạp. Do đó, toàn bộ ngân sách và mô hình mạnh nhất (**Kimi K3.1 Pro, GLM 5.3, Claude Sonnet**) phải được dồn cho Tầng 2.
-
-### 3.2. Cấm Cứng Bằng Ràng Buộc Kiến Trúc (Deny Rules Over Prompting)
-Thực nghiệm của DeepSeek chỉ ra một sự thật cay đắng: Khi prompt mô hình: *"Hãy dùng subagent khi thích hợp"*, mô hình **tự làm 100% trong cả 5 lần chạy** vì nó luôn tự tin đánh giá tác vụ là "đơn giản".
-- **Giải pháp của DeepSeek:** Tước bỏ hoàn toàn công cụ `bash` và `edit_file` khỏi Router.
-- **Triển khai của AICodeKing:** Thiết lập **Deny Rules** tuyệt đối trên Router Bot trong Pandode. Khi không có công cụ gõ lệnh hay sửa file, Router **buộc phải gọi worker** thông qua cơ chế gửi thông điệp liên bot (`bot_message_bot`).
-
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                          DEEPSEEK DELEGATION BENCHMARK RESULTS                              │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. Neutral Prompt ("Use subagent when appropriate"):                                        │
-│    ➔ Gọi Subagent: 0 / 5 lần (0%)  | Thời gian hoàn thành: 29.5 phút (Chậm nhất)            │
-│                                                                                             │
-│ 2. Aggressive Prompt ("Push hard for delegation"):                                          │
-│    ➔ Gọi Subagent: 4 / 5 lần (80%) | Vẫn có 1 lần tự ý ôm việc vì nghĩ task nhỏ             │
-│                                                                                             │
-│ 3. Structural Enforcement (Gỡ bỏ Bash tool / Deny Rules):                                   │
-│    ➔ Bắt buộc phân luồng 100%      | Thời gian hoàn thành: 15.7 phút (Nhanh hơn 1.9 lần)    │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│          "EXPLORING SUPER-AGENT DESIGN" — DeepSeek Harness Team     │
+│          Phân tích kiến trúc + Demo PandaCode thực tế               │
+├─────────────────────────────────────────────────────────────────────┤
+│  VẤN ĐỀ: Bottleneck là CON NGƯỜI (3-5 sessions max)               │
+│  Ý TƯỞNG: "Stop managing sessions" → 1 agent duy nhất bạn nói chuyện│
+├──────────────────────────┬──────────────────────────────────────────┤
+│  SUPER AGENT = 4 TÍNH CHẤT│  2-LAYER DESIGN                       │
+│  • Continuous            │  Layer 1: Router (long-lived session)   │
+│  • Productive            │    - Talks to people, hands out work    │
+│  • Proactive             │    - No bash tool needed                │
+│  • Persistent            │  Layer 2: Workers (isolated contexts)   │
+│                          │    - 1 task + 1 folder per worker       │
+│                          │    - Never talk to people directly      │
+└──────────────────────────┴──────────────────────────────────────────┘
+  KEY INSIGHT: Không thể dựa vào prompt để model tự delegate.
+               Phải làm nó thành CẤU TRÚC CỦA HỆ THỐNG.
 ```
 
 ---
 
-## 4. Kỹ Nghệ Quản Trị Ngữ Cảnh & Kinh Tế Học Token
+## 2. Nguồn Gốc & Disclaimer
 
-### 4.1. Ngữ Cảnh Như Một Bộ Đệm (Context as Cache & Chain of Recall)
-Thay vì nhồi nhét toàn bộ lịch sử trò chuyện vào prompt của Router:
-- Hệ thống chỉ nạp **ID và bản tóm tắt cực ngắn (short summary)** của các đối tượng liên quan.
-- Các nội dung dài (diffs, full logs) được cắt tỉa và thay bằng **con trỏ (pointer)**.
-- **Chain of Recall:** Mọi đối tượng đều liên kết với nhau qua ID. Khi người dùng nhắc lại một lỗi từ nhiều tuần trước, Router lần theo chuỗi ID này để truy xuất đúng ngữ cảnh lịch sử mà không làm phình kích thước cửa sổ hoạt động.
+- **Bài viết gốc:** "Exploring Super-Agent Design" — DeepSeek Harness team (tiếng Trung, bản dịch máy)
+- **Prototype:** `dsh-superagent` trên GitHub — research code, **không phải sản phẩm chính thức**
+- **Disclaimer quan trọng:** Bài viết về **kiến trúc** (architectural ideas), không phải danh sách features hiện có của DSH
 
-### 4.2. Cơ Chế Lắng Nghe Trực Tiếp (Thread Subscriptions)
-Khi Worker nhận bàn giao một Pull Request (ví dụ PR #102):
-- Worker **tự động đăng ký (subscribe)** vào luồng sự kiện của PR đó.
-- Các bình luận review mới từ GitHub sẽ chảy thẳng vào Worker mà Router không cần tốn token trung chuyển.
-- Nếu 2 Worker cùng thao tác trên 1 PR, cả hai cùng nhận được luồng sự kiện để **tự động phát hiện xung đột mã nguồn**.
-
-### 4.3. Bài Toán Kinh Tế: Vì Sao Mô Hình Giá Rẻ Quyết Định Tương Lai Superagent
-Trong một phiên mô phỏng xử lý 20 yêu cầu lập trình thực tế:
-- Hệ thống tiêu tốn tới **23.2 triệu Cached Read Tokens** (nếu không có bộ lọc pass-through, con số này lên tới **31.8 triệu tokens**).
-- **So sánh chi phí:**
-  - Trên **Claude Sonnet 3.5/5.5**: 23.2 triệu tokens tốn khoảng **$4.64**.
-  - Trên **DeepSeek V4.1 Flash (Off-peak)**: 23.2 triệu tokens chỉ tốn **~$0.07**.
-- **Kết luận:** Mô hình Superagent chạy nền liên tục chỉ có thể trở thành hiện thực trong doanh nghiệp nếu chi phí token đệm giảm về mức tiệm cận 0, biến DeepSeek và các dòng mô hình mã nguồn mở giá rẻ thành nền tảng tối ưu.
+**AICodeKing nói:** "One of the most useful things I have read about coding agents this year. Because it isn't selling a model or a feature. It starts from a problem you have probably felt already."
 
 ---
 
-## 5. Hướng Dẫn Thực Hành: Xây Dựng Superagent Cá Nhân Bằng Pandode & Cline Pass
-
-AICodeKing hướng dẫn chi tiết cách hiện thực hóa các ý tưởng của DeepSeek ngay trên máy tính cá nhân bằng bộ công cụ có sẵn:
+## 3. Vấn Đề Cốt Lõi
 
 ```
-                  ┌───────────────────────────────────────────────────────────┐
-                  │                 PANDODE PERSONAL SUPERAGENT               │
-                  └─────────────────────────────┬─────────────────────────────┘
-                                                │
-                     ┌──────────────────────────┴──────────────────────────┐
-                     ▼                                                     ▼
-        ┌─────────────────────────┐                           ┌─────────────────────────┐
-        │ ROUTER BOT (Telegram)   │                           │ CLINE DESKTOP           │
-        │ - Model: DeepSeek V4.1  │                           │ - Tác vụ định kỳ (Cron) │
-        │ - Deny: Bash / Edit     │                           │ - Review PR ban đêm     │
-        │ - Pairing Code (RBAC)   │                           │ - Security Scans        │
-        └────────────┬────────────┘                           └─────────────────────────┘
-                     │
-          ┌──────────┴──────────┐
-          ▼                     ▼
-┌──────────────────┐  ┌──────────────────┐
-│ BUILDER BOT      │  │ REVIEWER BOT     │
-│ - Model: Kimi    │  │ - Model: GLM 5.3 │
-│   K3.1 Pro       │  │ - Bắt lỗi góc    │
-│ - Giữ context sâu│  │   khuất đối lập  │
-└──────────────────┘  └──────────────────┘
+  REALITY: Người có thể follow 3-5 sessions cùng lúc
+  
+  PAST 5 SESSIONS:
+  • Quên session nào biết gì
+  • 1 session đã chờ approval 20 phút
+  • 2 sessions đang touch cùng 1 pull request
+
+  Single task limited by: MODEL
+  Many tasks limited by: YOUR ATTENTION
 ```
 
-### Bước 1: Cài Đặt Công Cụ & Gói Thuê Bao Mô Hình Siêu Rẻ
-1. Cài đặt **Pandode** (Ứng dụng desktop mã nguồn mở quản lý đa agent).
-2. Đăng ký gói **Cline Pass** ($9.99/tháng): Cung cấp quyền truy cập trọn gói không giới hạn cho các mô hình mã nguồn mở hàng đầu: Kimi K3.1 Pro, GLM 5.3, Qwen 38 Max, DeepSeek V4.1 Flash.
-3. Cài đặt CLI:
-   ```bash
-   npm install -g cline
-   cline auth  # Đăng nhập và kích hoạt Cline Pass
-   npm install -g @deepseek-ai/dsh
-   ```
-
-### Bước 2: Thiết Lập Router Bot
-- Tạo bot tên `Router`, gán não bộ là **DeepSeek V4.1 Flash**.
-- Kết nối kênh liên lạc qua **Telegram Bot** (yêu cầu mã Pairing Code duyệt con người trong lần đầu để chống tin nhắn rác).
-- **Cấu hình Deny Rules:** Tắt quyền truy cập tool `shell` và `edit_file`.
-- Thiết lập System Prompt: Giới hạn câu trả lời chat dưới 100 từ, nhiệm vụ duy nhất là tiếp nhận và phân phối việc qua lệnh `bot_message_bot`.
-
-### Bước 3: Thiết Lập Đội Ngũ Worker Chuyên Biệt
-- **Builder Bot:** Sử dụng **Kimi K3.1 Pro** nhờ khả năng ghi nhớ ngữ cảnh dài cực tốt cho các phiên viết mã phức tạp.
-- **Reviewer Bot:** Sử dụng **GLM 5.3** (nguyên lý: *hai mô hình khác nhau có các điểm mù khác nhau*, giúp phát hiện bug khách quan).
-- **Cơ chế phê duyệt:** Khi Worker cần chạy lệnh nguy hiểm (xóa DB, deploy production), thông báo phê duyệt sẽ gửi về Telegram của kỹ sư để bấm Yes/No.
-
-### Bước 4: Thiết Lập Watchdog Tự Động Định Kỳ
-- Dùng **Cline Desktop** thiết lập lịch chạy mỗi 30 phút.
-- Watchdog sử dụng GitHub CLI (`gh pr list`, `gh run list`) kiểm tra tình trạng CI và PRs; chỉ nhắn tin cảnh báo kỹ sư khi phát hiện tiến trình bị treo hoặc lỗi.
+**Giải pháp:** Stop making the session the thing you manage. Talk to ONE agent in places where you already work (team chat, GitHub comments) → system creates and manages sessions behind the scenes.
 
 ---
 
-## 6. Cảnh Báo An Ninh Sống Còn (Security & Prompt Injection)
+## 4. 4 Tính Chất Của Super Agent
 
-AICodeKing nhấn mạnh lời cảnh báo nghiêm khắc từ DeepSeek:
-1. **Rủi Ro Prompt Injection Từ Kênh Công Khai:**
-   - Nếu bạn kết nối Superagent vào một nhóm chat công khai hoặc mở quyền cho bất kỳ ai comment trên GitHub issue, kẻ xấu có thể chèn prompt độc hại (Prompt Injection).
-   - Nếu Router bị chiếm quyền, nó có thể điều khiển các worker chạy mã độc phá hoại toàn bộ các máy chủ được kết nối.
-2. **Quy Tắc Vàng:**
-   - Chỉ cho phép người dùng đã xác thực (Allowlist / Pairing code) tương tác với Agent.
-   - Luôn khởi chạy các tác vụ tự động ở chế độ **Dry-Run (Chỉ ghi log, không ghi đè mã nguồn)** cho đến khi độ tin cậy được kiểm chứng hoàn toàn.
+| # | Tính chất | Mô tả |
+|---|-----------|-------|
+| 1 | **Continuous** | Luôn cảm giác là 1 agent. Plan A trong chat → Plan B trong PR comment → hiểu được sự thay đổi |
+| 2 | **Productive** | Nhận instruction tiếp theo TRƯỚC KHI task trước xong |
+| 3 | **Proactive** | Tự theo dõi, tự hành động mà không cần được nhắc |
+| 4 | **Persistent** | Luôn online, tự phục hồi khi có lỗi |
 
 ---
 
-## 7. Bài Học Hành Động Dành Cho Kỹ Sư (Actionable Takeaways)
+## 5. 2-Layer Design: Router + Workers
 
-1. **Nhận Diện Điểm Nghẽn Bản Thân:** Đừng cố mở 10 tab chat Claude/Cursor để rồi kiệt sức chuyển đổi ngữ cảnh. Hãy chuyển sang tư duy xây dựng Router trung gian.
-2. **Ép Buộc Phân Luồng Bằng Ràng Buộc Cứng (Hard Constraints):** Không tin vào prompt khi muốn agent phân quyền. Hãy tước công cụ shell khỏi tác nhân điều phối.
-3. **Tận Dụng Mô Hình Đa Dạng (Ensemble Diversity):** Dùng mô hình siêu rẻ (DeepSeek Flash) cho việc định tuyến, mô hình giữ context (Kimi K3.1 Pro) để code, và mô hình độc lập (GLM 5.3) để review.
-4. **Tách Biệt Nhiệm Vụ Cố Định:** Đưa các việc lặp lại (review PR đêm, quét bảo mật, dọn dẹp log) vào các job định kỳ độc lập (Cline Desktop Cron) thay vì giao cho agent tương tác.
+### Trade-off cơ bản:
+```
+  Gửi mọi event vào 1 session:
+  → Context hoàn hảo, nhưng chỉ làm 1 việc 1 lúc + mix tasks
+
+  Mỗi event = 1 session mới:
+  → Nhiều tốc độ, nhưng không có kết nối + nhiều agents reply riêng lẻ
+
+  GIẢI PHÁP: 2 layers
+```
+
+### Layer 1: Router
+```
+  ROUTER (long-lived session, always running)
+  ├─ Talks to people (team chat, GitHub comments)
+  ├─ Hands out work → Workers
+  ├─ Doesn't do the work itself
+  ├─ Có thể chạy KHÔNG CẦN bash tool
+  └─ Tracks how tasks relate
+
+  Model choice: LIGHT model (router job đơn giản hơn trông)
+```
+
+### Layer 2: Workers
+```
+  WORKER (per-task)
+  ├─ 1 task + 1 clean context + 1 folder
+  ├─ NEVER talks to people directly
+  ├─ Only reports back to Router
+  └─ Model choice: BEST model (đây là nơi code được viết)
+```
+
+**Khác với normal agent team:** Lead trong normal team phải deeply understand + split task. Router chỉ decide ai nhận việc gì + track relations.
+
+---
+
+## 6. Cơ Chế Event-Driven & Filter
+
+**Events = inputs thay thế prompts:**
+```
+  Group chat messages  ──┐
+  Emails               ──┤  FILTER 1: Code (source + allow lists)
+  Review comments      ──┤  FILTER 2: Model (plain language rules)
+  CI results           ──┘       ↓
+                            Router processes
+```
+
+### Subscription System (Clever Part!)
+Khi worker nhận task, nó **subscribe** vào thread của task (ví dụ PR):
+- Events mới trên thread → đi thẳng vào worker
+- Router vẫn thấy nhưng không cần forward
+- 2 workers cùng PR → cả 2 nhận cùng events → tự phát hiện conflict
+
+### Context Window As Cache
+```
+  Model nhận:
+  1. ID + short summary (đầu tiên)
+  2. Things it will probably need next
+  3. Long content: truncated + pointer to rest
+
+  Every object links to related objects by ID
+  → Router follows links back to OLD tasks weeks later
+  → Called: "Chain of Recall"
+```
+
+---
+
+## 7. Tính Năng "Silently Reproduce and Fix" (Future-Like)
+
+Khi ai đó report issue:
+```
+  Agent (background) → Reproduce it
+       ↓ Confirmed + simple fix?
+  YES  → Open pull request WHILE people are still discussing
+  NO   → Silent (you never hear about it)
+```
+
+AICodeKing: "That is pretty amazing, to be honest."
+
+---
+
+## 8. Persistence Architecture
+
+```
+  CLOUD (agent loop + saved state)
+        ↕
+  YOUR MACHINE (small daemon — just executes commands)
+        ↕
+  WATCHDOG (separate session, runs on schedule)
+  → Phát hiện stuck agent (process healthy nhưng model going in circles)
+```
+
+**Channel-aware replies:** Hard limit 100 words per chat reply; detailed writing cho pull requests.
+
+---
+
+## 9. Kết Quả Benchmark (Chỉ Indicative!)
+
+| Scenario | Typical | Slow end |
+|----------|---------|----------|
+| **Super agent** | 12.4 phút | 15.7 phút |
+| Single session (neutral prompt) | — | 29.5 phút |
+
+**Kết quả quan trọng nhất (theo AICodeKing):**
+- Neutral prompt "use subagent when appropriate" → **0/5 runs** gọi subagent
+- Aggressive delegation prompt → **4/5 runs** delegated (run thứ 5 tự làm vì task nhỏ)
+
+> **"You can't rely on a prompt to make a model delegate. You have to make it the STRUCTURE OF THE SYSTEM."**
+
+### Chi phí cache tokens (1 synthetic run):
+| Model | Cost (23.2M cache tokens) |
+|-------|--------------------------|
+| DeepSeek v4.1 Flash (off-peak) | **~$0.07** |
+| Sonnet 5.5 | **~$4.64** |
+
+→ Design này chỉ hợp lý với **cheap models**.
+
+---
+
+## 10. Vấn Đề Chưa Giải Quyết
+
+- **Long-term memory**: Vẫn là giới hạn chính sau nhiều tháng chạy
+- **Security**: Agent đọc outside events → exposed to **prompt injection**. Cloud loop bị compromise → mọi machine kết nối đều có thể bị takeover
+- **⚠️ CẢNH BÁO:** Đừng connect tới public group chat cho đến khi security được giải quyết
+
+---
+
+## 11. Cách AICodeKing Build Phiên Bản Thực Tế Với PandaCode
+
+### Bots feature trong PandaCode:
+
+```
+  PandaCode Bot = Persistent agent
+  ├─ Message từ Telegram / Slack / Discord / WhatsApp / local web chat
+  ├─ Own memory + schedules + rules
+  └─ Every conversation = normal PandaCode task (readable on desktop)
+```
+
+### "The Trick": More Than One Bot
+
+```
+  ROUTER BOT          BUILDER BOT         REVIEWER BOT
+  "Only talk to me,   "Build what          "Review pull
+   hand out work,      Router assigns"      requests"
+   reply < 100 words"
+  
+  Model: DeepSeek V4.1 Flash   Model: Best available
+```
+
+**Cài qua:** `npm install -g @deepseek-ai/dsh` → PandaCode Router needs DSH
+
+### Tính năng "Productive" trong PandaCode:
+```
+  User: /stop  (trong chat để hủy task)
+  
+  Watchdog: Separate "Radar" bot, runs every 30 minutes on schedule
+            → Phát hiện stuck agent
+```
+
+### Persistence:
+```
+  Cloud task keeps running even when laptop is asleep
+  → Back to worktree when back online
+  
+  Recurring: Set up once
+  ├─ NIGHTLY: PR review
+  └─ OR: Security scan (Cline Desktop schedule feature)
+```
+
+---
+
+## 12. Gaps — PandaCode Khác Với DSH Thực Sự
+
+| GAP | PandaCode | DSH Superagent |
+|-----|-----------|----------------|
+| **GAP 1** | Paired senders only (safer default) | Có thể sit in public group chat |
+| **GAP 2** | GitHub comment không phải channel | Có thể follow Plan B từ PR comment |
+| **GAP 3** | Mỗi chat thread = conversation riêng | One global context với shared memory |
+| **GAP 4** | Router phụ thuộc instructions & rules | Proper subscription + pass-through system |
+
+**AICodeKing trung thực:** "This is not a super agent. I'll show you where it falls short."
+
+---
+
+## 13. Nhận Xét & Key Takeaways
+
+**Nhận xét cuối:**
+"DeepSeek is right about the main point. Models are not the only thing limiting us anymore, and adding more sessions to a screen doesn't fix that."
+
+**The real idea (đơn giản):**
+```
+  One agent talks to you
+  + Isolated workers do the work  
+  + Cheap code filters the noise
+  + Independent watchdog checks progress
+```
+
+**Key takeaways:**
+1. **Bottleneck = con người**, không phải model — 3-5 sessions là giới hạn thực
+2. **"Stop managing sessions"** — 1 agent trong nơi bạn đã làm việc (chat, GitHub)
+3. **Router = light model**, Workers = best model (ngược với normal lead-heavy teams)
+4. **Prompt không đủ để delegate** — phải làm thành cấu trúc hệ thống
+5. **Cost: DeepSeek Flash $0.07/run vs Sonnet $4.64/run** — cheap model là bắt buộc
+6. **Security warning**: Prompt injection risk khi connect tới public channels
+7. **PandaCode Bots**: Thực tế, không hoàn hảo, nhưng workable version ngay hôm nay
+
+---
+
+## Liên Kết Đến Các Note Liên Quan
+
+- [[deepseek_open_sources_super_agent_dsh_tekthrill]] — TEKTHRILL overview DSH superagent
+- [[deepseek_redefining_harnesses_creator_mode_prompts_aicodeking]] — Creator Mode của DSH
+- [[deepseek_super_agent_design_grokbot_agents_lustoykov]] — Phân tích thiết kế super agent kiểu Grokbot
+- [[new_deepseek_harness_super_agent_cordis_sam_witteveen]] — Sam Witteveen: Cordis + DSH
+- [[claude_code_getting_rid_of_subagents_aicodeking]] — So sánh: fold subagents (Anthropic)
+- [[tiny_local_model_outperforms_opus_orchestration_aicodeking]] — PandaCode Panda Router
