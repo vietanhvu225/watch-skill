@@ -1,179 +1,391 @@
-# Vercel Agent Desktop: Computer Use Mã Nguồn Mở Tốc Độ Gấp 40 Lần Bằng Accessibility Tree (Không Dùng Screenshot) | Prism Labs
+# Agent Desktop — Computer Use Không Cần Screenshot, Nhanh Hơn 40x — Prism Labs
 
-- **Video URL:** [YouTube Link](https://www.youtube.com/watch?v=iEhCLn9utDU)
-- **Video ID:** `iEhCLn9utDU`
+- **Video URL:** https://www.youtube.com/watch?v=iEhCLn9utDU
+- **Watch Skill ID:** `55fcaceb3822812f`
 - **Category:** #ai-agents
-- **Date Processed:** 2026-11-03
+- **Date Processed:** 2026-11-07
 - **Duration:** 07:16
-- **Speaker:** Prism Labs (Phân tích kiến trúc mã nguồn mở Vercel Agent Desktop — Chris Tate / Vercel Labs)
-- **Transcript File:** [agent_desktop_computer_use_accessibility_tree_prism_labs_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/agent_desktop_computer_use_accessibility_tree_prism_labs_transcript.txt)
+- **Speaker:** Prism Labs (channel narration / analysis)
+- **Channel:** Prism Labs
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
-
-Vào ngày 31 tháng 10 năm 2026, **Vercel Labs** đã bất ngờ công bố mã nguồn mở dự án **Agent Desktop** (giấy phép Apache 2.0) với tuyên bố gây chấn động: *"agent-browser, cho toàn bộ máy tính của bạn"*. Dự án đạt gần **9,000 stars và hơn 600 forks** chỉ sau vài ngày ra mắt bản 1.0.
-
-Điểm đột phá mang tính cách mạng của Agent Desktop là: **Loại bỏ hoàn toàn ảnh chụp màn hình (Screenshots) ra khỏi vòng lặp điều khiển máy tính (Computer Use Loop)**. 
-- Các hệ thống Computer Use hiện nay từ Anthropic (Claude Computer Use), OpenAI, và Google đều dựa vào quy trình: Chụp màn hình ➔ Gửi ảnh vào mô hình thị giác (Vision LLM) ➔ Dự đoán tọa độ pixel `(x, y)` ➔ Click chuột. Quy trình này tốn **3 đến 8 giây** cho mỗi bước quan sát, tiêu tốn hàng nghìn vision tokens đắt đỏ, và cực kỳ dễ gãy (click lệch 2 pixel, sai lệch khi đổi độ phân giải màn hình hoặc DPI scaling).
-- Ngược lại, **Agent Desktop đọc trực tiếp Cây Trợ Năng (OS Accessibility Tree)** của hệ điều hành — tầng dữ liệu ngữ nghĩa mà các ứng dụng đọc màn hình (Screen Readers) sử dụng. 
-- **Tốc độ nhảy vọt 40x đến 150x:** Một lần chụp cấu trúc UI chỉ mất **50 đến 200 mili-giây** (thực tế ~120ms, lời gọi nhị phân Rust native ~21ms).
-- Thay vì truyền hình ảnh, Agent Desktop trả về **JSON có cấu trúc** với các định danh phần tử ngữ nghĩa (**Qualified Refs**). Tác nhân AI tương tác trực tiếp lên ref, triệt tiêu hoàn toàn bài toán ước lượng tọa độ pixel.
+## 1. Tóm Tắt Điều Hành
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                    VISION SCREENSHOT COMPUTER USE VS. VERCEL AGENT DESKTOP                  │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│  TRADITIONAL VISION APPROACH (Anthropic / OpenAI / Gemini):                                 │
-│                                                                                             │
-│   Desktop Screen ──► [Screenshot PNG] ──► [Vision LLM (Sonnet/GPT-4o)] ──► Bounding Boxes   │
-│                             │                           │                       │           │
-│                       Tốn 3-8 giây                Tốn hàng nghìn           Tọa độ (x, y)    │
-│                       mỗi quan sát                Vision Tokens            dễ lệch 2 pixel  │
-│                                                                                             │
-│  ➔ VÒNG LẶP 50 BƯỚC: Mất 4 đến 7 phút, chi phí token khổng lồ, dễ click nhầm khi UI đổi!   │
-│                                                                                             │
-│  VERCEL AGENT DESKTOP (OS Accessibility Tree + Rust CLI):                                   │
-│                                                                                             │
-│   Desktop Screen ──► [OS Accessibility API] ──► [JSON Semantic Tree] ──► [LLM thuần Text]   │
-│                      - macOS: AXUIElement       - snapshot_id: "snap_94a"      │            │
-│                      - Windows: UI Automation   - ref: "snap_94a:btn_save"     ▼            │
-│                      - Linux: AT-SPI            - role: button, label: "Save"  Lệnh gọi Ref │
-│                             │                           │                      (Tất định)   │
-│                       Tốn 50-200 ms               Tốn <500 Text Tokens                      │
-│                       (Nhanh gấp 40x)             (Cực kỳ rẻ)                               │
-│                                                                                             │
-│  ➔ VÒNG LẶP 50 BƯỚC: Hoàn thành trong vài giây, an toàn tuyệt đối nhờ cơ chế từ chối Stale Ref!│
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────┐
+│   AGENT DESKTOP: COMPUTER USE KHÔNG CẦN SCREENSHOT                         │
+│   (by Vercel Labs — phân tích bởi Prism Labs)                              │
+│                                                                            │
+│  VẤN ĐỀ: Screenshot-based computer use = chậm                             │
+│    → 3-8 giây MỖI LẦN agent nhìn vào màn hình                             │
+│    → Model phải nhìn ảnh + suy luận tọa độ → click                        │
+│    → Tọa độ bị drift, pixel-match thất bại                                 │
+│                                                                            │
+│  GIẢI PHÁP: Agent Desktop — hỏi OS thay vì chụp ảnh                       │
+│    → Dùng Accessibility API (cùng layer screen readers dùng)               │
+│    → Nhận JSON với ref cho mỗi phần tử UI                                  │
+│    → Observe → Act → Observe (không pixel nào)                             │
+│                                                                            │
+│  HIỆU NĂNG:                                                                │
+│  ┌────────────────────────────────────────────────────────────────┐        │
+│  │  Tree snapshot:   120ms (thường)  │  21ms qua native binary   │        │
+│  │  Vision best:     3,000ms          │  3s                       │        │
+│  │  Vision worst:    8,000ms          │  8s                       │        │
+│  │  → Nhanh hơn 25-66x so với screenshot                         │        │
+│  └────────────────────────────────────────────────────────────────┘        │
+│                                                                            │
+│  KEY INSIGHT: "Give the model text because text is what models             │
+│               are actually good at."                                       │
+│                                                                            │
+│  FREE & OPEN SOURCE: Apache 2.0, Mac + Windows + Linux                    │
+│  8.8k ⭐ GitHub | 609 forks | 60+ commands | 3 platforms                  │
+└────────────────────────────────────────────────────────────────────────────┘
+```
+
+Agent Desktop là tool của Vercel Labs (thực nghiệm arm của Vercel — tạo ra Next.js, 10k followers, 395 public repos trên GitHub). Chris Tate announce ngày 31/10 với một dòng: **"Agent browser for your whole computer."** Prism Labs phân tích đây là breakthrough trong lớp hạ tầng computer use.
+
+---
+
+## 2. Vấn Đề Cốt Lõi: Screenshot Computer Use Quá Chậm
+
+### 2.1 Vòng Lặp Của Screenshot-Based Computer Use
+
+```
+Agent muốn click button
+        │
+        ▼
+  [Chụp screenshot]  ← 3-8 giây
+        │
+        ▼
+  [Gửi ảnh vào model frontier]  ← token vision đắt tiền
+        │
+        ▼
+  [Model suy luận tọa độ x, y]  ← dễ sai 2px
+        │
+        ▼
+  [Click vào tọa độ đó]
+        │
+        ▼
+  [Chụp screenshot lại để verify]  ← 3-8 giây nữa
+```
+
+**Ví dụ:** Agent cần 50 observations để hoàn thành task:
+- Screenshot loop: 50 × 3-8s = **2.5 — 6.6 phút** chỉ nhìn màn hình
+- Agent Desktop: 50 × 120ms = **6 giây** tổng cộng
+
+### 2.2 Điểm Yếu Chết Người
+
+```
+"If you've ever watched a vision agent click two pixels left of a 
+ button, you already know why this matters."
+                                              — Prism Labs
 ```
 
 ---
 
-## 2. So Sánh Chi Tiết: Vision Computer Use vs. Accessibility Tree
+## 3. Giải Pháp: Accessibility Tree + JSON Refs
 
-Bảng phân tích đối sánh kiến trúc giữa hai trường phái điều khiển máy tính:
-
-| Tiêu Chí Kỹ Thuật | Phương Pháp Chụp Màn Hình (Anthropic / OpenAI) | Vercel Agent Desktop (OS Accessibility Tree) |
-| :--- | :--- | :--- |
-| **Bản chất quan sát** | Xử lý ảnh raster (Pixels) qua Vision Encoder | Đọc cây phân cấp đối tượng ngữ nghĩa từ OS kernel |
-| **Thời gian quan sát** | **3,000 – 8,000 ms** (3 đến 8 giây / bước) | **50 – 200 ms** (Trung bình 120ms, native 21ms) |
-| **Định dạng dữ liệu** | Ảnh PNG/JPEG kích thước lớn | JSON thuần túy (Role, Label, State, Value) |
-| **Tiêu thụ Token** | Hàng nghìn Vision Tokens đắt đỏ | Vài trăm Text Tokens thông thường |
-| **Cơ chế xác định mục tiêu**| Ước lượng tọa độ pixel `(x, y)` tương đối | Tham chiếu định danh chuẩn hóa (`Qualified Ref`) |
-| **Khả năng gãy (Brittle)** | Rất cao (kẹt DPI scale, đổi theme, lệch 2px) | Rất thấp (tương tác trực tiếp lên OS element handle) |
-| **Xử lý UI thay đổi ngầm** | Dễ click nhầm do agent không nhận ra UI trượt | **Tự động từ chối (Reject)** nếu snapshot ID bị cũ |
-| **Chiếm quyền người dùng** | Thường chiếm trỏ chuột và cửa sổ (Headed) | **Headless mặc định** (không cướp chuột, không đổi focus)|
-| **Hạn chế lớn nhất** | Chậm và tốn kém | Mù đối với Canvas / WebGL (Figma, Games) |
-
----
-
-## 3. Kiến Trúc Lõi Của Vercel Agent Desktop
-
-Dự án được xây dựng bằng ngôn ngữ **Rust** thuần túy với các tầng adapter chuyên biệt cho từng hệ điều hành:
-- **macOS Adapter:** Giao tiếp qua `AXUIElement` (Accessibility API của Apple).
-- **Windows Adapter:** Tích hợp sâu với Microsoft `UI Automation` (UIA COM interfaces).
-- **Linux Adapter:** Kết nối với daemon `AT-SPI` (Assistive Technology Service Provider Interface) qua D-Bus.
+### 3.1 Kiến Trúc Cốt Lõi
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                          AGENT DESKTOP INTERNAL ARCHITECTURE                                │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                             │
-│   AI Agent (Claude Code / Codex / Cursor / Python Script / Shell)                           │
-│        │                                                                                    │
-│        ├─── (1) `agent-desktop snapshot --app "VSCode"`                                      │
-│        │                                                                                    │
-│        ▼                                                                                    │
-│   ┌─────────────────────────────────────────────────────────────────────────────────────┐   │
-│   │ RUST CORE CLI & C-BINDINGS (60+ Commands)                                           │   │
-│   ├─────────────────────────────────────────────────────────────────────────────────────┤   │
-│   │ [macOS: AXUIElement]   │   [Windows: UI Automation]   │   [Linux: AT-SPI D-Bus]     │   │
-│   └────────────────────────┴──────────────────────────────┴─────────────────────────────┘   │
-│        │                                                                                    │
-│        ▼ (2) Trả về JSON Snapshot                                                           │
-│   {                                                                                         │
-│     "snapshot_id": "snap_x810",                                                             │
-│     "elements": [                                                                           │
-│       { "ref": "snap_x810:e12", "role": "button", "label": "Run Tests", "enabled": true },  │
-│       { "ref": "snap_x810:e13", "role": "editor", "label": "main.rs", "value": "..." }     │
-│     ]                                                                                       │
-│   }                                                                                         │
-│        │                                                                                    │
-│        ├─── (3) `agent-desktop click --ref "snap_x810:e12"`                                 │
-│        │    `agent-desktop type --ref "snap_x810:e13" --text "cargo test"`                  │
-│        ▼                                                                                    │
-│   ┌─────────────────────────────────────────────────────────────────────────────────────┐   │
-│   │ VERIFICATION & RE-SNAPSHOT LOOP: Observe ➔ Act ➔ Observe                            │   │
-│   │ - Kiểm tra stale ref (Nếu snapshot_id cũ ➔ Từ chối ngay)                            │   │
-│   │ - Xác nhận event dispatch thành công trước khi trả control về agent                 │   │
-│   └─────────────────────────────────────────────────────────────────────────────────────┘   │
-│                                                                                             │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+                    Calling Agent
+                    (LLM code / CLI)
+                         │
+                         ▼
+              ┌──────────────────┐
+              │   agent-desktop  │  ← CLI / C library / npm package
+              └──────────────────┘
+                         │
+              ┌──────────┼──────────┐
+              ▼          ▼          ▼
+           macOS      Windows     Linux
+         AX API    UI Automation  ATSPI
+              │          │          │
+              └──────────┼──────────┘
+                         ▼
+                    Target App
+                 (bất kỳ app nào)
 ```
 
-### 1. Vòng lặp: Observe ➔ Act ➔ Verify (Không Khớp Pixel)
-Mô hình hoạt động của Agent Desktop tuân theo 3 nhịp:
-1. **Observe (Quan sát):** Gọi lệnh snapshot cửa sổ ứng dụng. Hệ điều hành trả về danh sách các node có thể tương tác kèm nhãn, vai trò và trạng thái.
-2. **Act (Hành động):** Agent thực hiện lệnh click, gõ chữ, chọn menu dựa trên mã `ref`. Công cụ xác nhận OS đã nhận lệnh thành công rồi mới phản hồi.
-3. **Verify (Xác minh):** Snapshot lại lần nữa để kiểm tra xem giá trị hoặc trạng thái của UI đã thay đổi đúng như kỳ vọng hay chưa.
+**PlatformAdapter** trừu tượng hóa 3 OS — Core không bao giờ import OS crate, platform crates inject vào Core khi compile time.
 
-### 2. Định Danh Phần Tử Chuẩn Hóa (Qualified Ref System)
-Trong Agent Desktop, một `ref` không bao giờ đứng độc lập. Nó luôn mang theo `snapshot_id`:
-$$\text{Ref Format} = \text{snapshot\_id} : \text{element\_id}$$
+### 3.2 Vòng Lặp 4 Lệnh — "The Loop in Four Commands"
 
-*Ví dụ:* `snap_94a2:btn_submit`.
-- Nếu màn hình đã thay đổi (người dùng click chuyển trang hoặc ứng dụng tự cập nhật), `snapshot_id` hiện tại sẽ trở thành `snap_94a3`.
-- Khi agent cố tình bắn lệnh click vào ref cũ `snap_94a2:btn_submit`, hệ thống **ngay lập tức từ chối lệnh (Hard Reject)** thay vì bấm mù vào một phần tử mới chiếm chỗ cũ.
-- Thiết kế này tiêu diệt tận gốc lỗi kinh điển của Computer Use: **Giao diện đã trôi đi nhưng Agent vẫn tưởng đang ở trang cũ và click bừa vào nút nguy hiểm**.
+```
+1. agent-desktop snapshot --app Notes -i --compact
+   → Trả về JSON: snapshot ID + list elements với role/label
 
-### 3. Cầu Nối DevTools Bridge Cho Ứng Dụng Electron & Chromium
-Một vấn đề nan giải của các ứng dụng viết bằng Electron (như Slack, VS Code, Discord) là các lập trình viên web thường lười viết thẻ Accessibility đầy đủ, khiến cây trợ năng bị thiếu thông tin.
+2. agent-desktop act --ref "gs8f3k2p9:e4" click  
+   → Click vào element với ref đó; tool confirm delivery trước khi return
 
-Vercel Labs giải quyết vấn đề này cực kỳ thông minh:
-- Agent Desktop có thể tự động mở cổng **Chrome DevTools Protocol (CDP)** trên tiến trình Electron đó.
-- Sau đó, nó chuyển quyền điều khiển nội dung web bên trong ứng dụng cho **agent-browser** (công cụ điều khiển DOM web nổi tiếng của Vercel).
-- Hai công cụ kết hợp hoàn hảo: Agent Desktop quản lý viền cửa sổ, menu native OS; `agent-browser` quản lý trực tiếp DOM bên trong!
+3. agent-desktop type --ref "gs8f3k2p9:e8" "Hello World"
+   → Gõ text vào textarea
 
----
+4. agent-desktop snapshot --app Notes  
+   → Snapshot lại để verify thay đổi
+```
 
-## 4. Mô Hình An Ninh Cực Đoan: "Safety by Refusal" (An Toàn Bằng Cách Từ Chối)
+**Ref format:** `snapshotID:elementID` — stale ref từ snapshot cũ bị **reject tự động**, không silent click nhầm.
 
-Khác với các công cụ tự động hóa cẩu thả thường đòi hỏi full quyền Admin hoặc tự do chiếm chuột, Agent Desktop áp dụng triết lý an toàn nghiêm ngặt:
+### 3.3 JSON Snapshot Format
 
-1. **Headless Mặc Định:** Không di chuyển con trỏ chuột của người dùng, không giật focus cửa sổ trừ khi lập trình viên chủ động truyền cờ `--headed`. Người dùng vẫn có thể tiếp tục gõ phím làm việc trên máy trong khi agent chạy ngầm.
-2. **Khóa Các Primitive Nguy Hiểm:** Các lệnh thô như `mouse_down` hoặc `key_down` cấp thấp bị vô hiệu hóa hoàn toàn cho đến khi cơ chế release được kiểm định chặt chẽ.
-3. **Bảo Vệ Tiến Trình Hệ Thống:** Không cho phép agent ra lệnh đóng hoặc can thiệp vào các tiến trình bảo mật cốt lõi của hệ điều hành.
-4. **Chặn Leo Thang Đặc Quyền (Privilege Escalation):** Trên Windows và Linux, các ứng dụng chạy quyền Administrator/Root sẽ tự động từ chối lời gọi từ Agent Desktop với thông báo lỗi phân quyền, ngăn chặn AI vô tình hoặc bị prompt injection chiếm quyền root máy tính.
+```json
+{
+  "snapshot": "s8f3k2p9",
+  "app": "Notes",
+  "elements": [
+    {
+      "ref": "gs8f3k2p9:e4",
+      "role": "button",
+      "label": "New Note"
+    },
+    {
+      "ref": "0s8f3k2p9:e8",
+      "role": "textfield",
+      "label": "Body",
+      "value": ""
+    }
+  ]
+}
+```
 
----
-
-## 5. Cuộc Tranh Luận Thẳng Thắn: Hạn Chế Của Cây Trợ Năng
-
-Dù vượt trội về tốc độ và chi phí, cộng đồng kỹ sư vẫn chỉ ra những ranh giới rõ ràng của phương pháp này:
-
-- **Ứng dụng vẽ trên Canvas/WebGL:** Toàn bộ các ứng dụng vẽ đồ họa như Figma Canvas, Game 3D, Blender viewport chỉ xuất hiện trên OS Accessibility Tree dưới dạng **một khối Canvas rỗng duy nhất**. Cây trợ năng hoàn toàn "mù" trước các đối tượng bên trong canvas.
-- **Phụ thuộc vào ý thức Accessibility của Developer:** Nếu ứng dụng dùng custom UI toolkit mà không gán nhãn trợ năng (`aria-label`, accessibility identifier), cây JSON trả về sẽ thiếu thuộc tính.
-- **Giải pháp lai tối ưu (Hybrid Approach):** 
-  - 95% tác vụ văn phòng, quản trị hệ thống, lập trình, nhập liệu form: **Dùng Agent Desktop** để đạt tốc độ 50ms và tiết kiệm tối đa token.
-  - 5% tác vụ đồ họa, chỉnh sửa canvas hoặc game: **Chuyển sang Screenshot Vision fallback** khi Accessibility Tree trả về node Canvas.
+**Điểm mấu chốt:** Model đọc text JSON ở vài trăm tokens — không phải hình ảnh toàn màn hình. Rẻ hơn nhiều.
 
 ---
 
-## 6. Bài Học Hành Động Cho Kỹ Sư AI & Agentic Developers
+## 4. Hiệu Năng: Số Liệu Thực Tế
 
-1. **Đưa Văn Bản Vào LLM Thay Vì Đưa Hình Ảnh:**
-   - LLM bản chất là công cụ xử lý ngôn ngữ. Việc cố ép LLM làm bài toán thị giác máy tính (Computer Vision) để nhận diện nút bấm là hướng đi lãng phí và độ trễ cao. Biến UI thành JSON ngữ nghĩa là cách làm đúng đắn nhất.
-2. **Tách Rời Tooling Khỏi Model:**
-   - Agent Desktop không chứa bất kỳ mô hình AI nào bên trong. Nó là một **công cụ thuần túy tất định (Deterministic CLI)** viết bằng Rust, có thể tích hợp vào bất kỳ agent nào (Claude Code, Antigravity, Codex, Cursor, Python CLI).
-3. **Xây Dựng Phần Mềm Trước, Làm Truyền Thông Sau:**
-   - Dự án được phát triển âm thầm từ tháng 2/2026, hoàn thiện bản 1.0.0, tung bản patch 1.0.2 ổn định rồi mới công bố ra công chúng vào ngày Halloween. Đây là tiêu chuẩn vàng về tính chuyên nghiệp của Vercel Labs.
+```
+Time per observation (milliseconds):
+
+Tree snapshot    █ 120ms
+Vision (best)    ████████████████████████████ 3,000ms  
+Vision (worst)   █████████████████████████████████████████████████████████████████ 8,000ms
+
+Qua native binary (direct C call): ~21ms/observation
+```
+
+**So sánh chi tiết:**
+| Phương pháp | Thời gian/observation | Lý do |
+|-------------|----------------------|-------|
+| Tree snapshot | 50-200ms (avg ~120ms) | Hỏi OS trực tiếp, không model |
+| Vision (best case) | ~3,000ms | Model frontier xem ảnh |
+| Vision (worst case) | ~8,000ms | Mạng chậm + phức tạp |
+| Native binary call | ~21ms | Không overhead JS/CLI |
+
+**Verification độc lập:** Developer Flavio Copes chạy end-to-end trên Linux:
+> *"The agent observes, acts, and observes again. There is no pixel match in that loop."*
+Real text landed in real editor, edits verified, auto-wait handled timing không cần `sleep`.
 
 ---
 
-## 7. Liên Kết Chéo & Tài Liệu Liên Quan Trong Vault
+## 5. Safety by Refusal
 
-- [Vercel CEO: Agentic Engineering Workflow (Guillermo Rauch)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/vercel_ceo_agentic_engineering_workflow_guillermo_rauch.md) — Triết lý của CEO Vercel về việc xây dựng Software Factory và hạ tầng máy ảo Sandbox cho AI Agents.
-- [AWS Infinity: AI Agent Runtime Viết Bằng Rust](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/amazon_infinity_ai_agent_runtime_rust_lets_get_rusty.md) — Kiến trúc Rust hiệu năng cao giải phóng bộ nhớ khi chờ đợi.
-- [Panda Router: Mô Hình Local 31MB Đánh Bại Cả Opus](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/tiny_local_model_outperforms_opus_orchestration_aicodeking.md) — Tách bạch giữa Phán đoán định tính trong Model và Chính sách tất định trong Code.
-- [WebMCP Changes Everything (ByteGrad)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/webmcp_changes_everything_bytegrad.md) — Giao thức Model Context Protocol mở rộng cho tương tác web và desktop UI.
+```
+┌──────────────────────────────────────────────────────┐
+│  SAFETY BY REFUSAL — Mô hình an toàn cực kỳ thận trọng │
+│                                                      │
+│  ✓ Headless by default                               │
+│    → Không bao giờ di chuyển pointer hoặc steal focus  │
+│    → Phải explicit pass --headed flag                │
+│                                                      │
+│  ✓ Snapshot-scoped refs                              │
+│    → Stale refs bị reject thay vì click nhầm         │
+│                                                      │
+│  ✓ key-down / mouse-down refuse until proven safe    │
+│    → Raw primitives bị vô hiệu cho đến khi team      │
+│      tin tưởng release mechanics                     │
+│                                                      │
+│  ✓ Protected OS processes can't be closed            │
+│                                                      │
+│  ✓ Elevated Windows apps → PERM_DENIED               │
+│    → Không cho phép agent leo thang privilege        │
+│                                                      │
+│  Triết lý: "When in doubt, refuse."                  │
+│  "Make the agent's world predictable, not powerful." │
+└──────────────────────────────────────────────────────┘
+```
 
+---
+
+## 6. Installation & Usage
+
+### 6.1 Cài Đặt
+
+```bash
+# Qua npm (Node wrapper)
+npm install -g agent-desktop
+# → agent-desktop@1.0.2
+
+# Qua AGY skills
+agy skills add https://github.com/vercel-labs/agent-desktop --skill agent-desktop
+agent-desktop skills get-desktop
+agent-desktop skills verify-rig
+
+# Dùng như C library (in-process, Python bindings)
+# Xem docs trên GitHub
+```
+
+### 6.2 Workflow Thực Tế
+
+```bash
+# 1. Snapshot app để xem elements
+$ agent-desktop snapshot --app Notes -i --compact
+{"snapshot":"s8f3k2p9","elements":[
+  {"ref":"gs8f3k2p9:e4","role":"button","label":"New Note"},
+  {"ref":"0s8f3k2p9:e8","role":"textfield","label":"Body"}]}
+
+# 2. Act on element
+$ agent-desktop set --ref "0s8f3k2p9:e8" "My new note content"
+
+# 3. Verify
+$ agent-desktop snapshot --app Notes
+```
+
+### 6.3 Platform Support
+
+| Feature | macOS | Windows | Linux |
+|---------|-------|---------|-------|
+| Accessibility API | AX API | UI Automation | ATSPI |
+| Screenshot | Yes | Yes | Yes (Wayland: portal) |
+| Mouse input | Yes | Yes | X11 / libei |
+| Click/Type/Keyboard | Yes | Yes | AT-SPI, X11 GNOME |
+| App & window mgmt | Yes | Yes | LaunchSVC X11 window control |
+
+---
+
+## 7. So Sánh Proprietary vs Open Source
+
+```
+PROPRIETARY                        OPEN SOURCE
+Screenshot computer use     VS     Agent Desktop
+─────────────────────────          ─────────────────────────
+• Model reasons over pixels        • OS reports real UI structure
+• 3-8s per observation             • 50-200ms per read
+• Coordinates can drift            • Stable refs, safe retries
+• Works on ANYTHING visible        • Works on anything LABELED
+• Vision tokens for every step     • Text tokens (cheap)
+```
+
+**Key trade-off:** 
+- Screenshot: works kể cả canvas apps, game rendered UI
+- Agent Desktop: chỉ hoạt động nếu app có accessibility labels
+
+---
+
+## 8. Command Groups (60+ Commands)
+
+| Group | Commands |
+|-------|---------|
+| Observe | snapshot, find, get, ls, screenshot, list-surfaces |
+| Act on a ref | click, double-click, triple-click, right-click, type, set-value, clear, focus, select, toggle, check, uncheck, expand, collapse, scroll, activate |
+| Keyboard/mouse | key, reset, insert-text, mouse-move, mouse-up, mouse-down |
+| Apps & windows | launch, close-app, list-apps, list-windows, focus-window, minimize-window, review-window, new-window, maximize, escalate, restore, open-surface |
+| Notifications | list-notifications, dismiss-notification, dismiss-all-notifications, notification-action |
+| Clipboard | clipboard-get, clipboard-set, clipboard-clear |
+| Wait | wait |
+| Sessions | session, trace, cursor-overlay |
+| System | status, permissions, version, batch, skills |
+
+---
+
+## 9. Phản Ứng Cộng Đồng
+
+```
+COMMUNITY (ủng hộ):
+  "Computer use across Claude, ChatGPT and Grok is fragmented —
+   one tool for all of them is welcome."
+
+SKEPTIC (phản biện):
+  "The accessibility tree is great until you hit a canvas app or
+   an Electron app with half the labels missing."
+
+SKEPTIC:
+  "How does it compare to the other drivers? We need a real
+   computer-use benchmark."
+
+PRISM LABS (đáp):
+  "Fair — but 120ms reads + the agent-browser DevTools bridge 
+   cover most real workflows today."
+```
+
+**Bridge thông minh cho Electron apps:** Agent Desktop có thể mở DevTools port và chuyển web content sang Agent Browser — hai tool designed to "meet in the middle".
+
+---
+
+## 10. Timeline: 8 Tháng Đến 1.0
+
+```
+Timeline:
+  2026-02-19  ● Repo created
+              │  Quiet start under vercel-labs
+              │
+  2026-10-28  ● v1.0.0 ships
+              │  Patched to v1.0.1 same night
+              │
+  2026-10-30  ● v1.0.2
+              │  Stability fixes before going public
+              │
+  2026-10-31  ● Public announcement (Halloween)
+                 "agent-browser, for your whole computer"
+                 — After stable release, NOT before it
+```
+
+**Nhận xét của Prism Labs:**
+> *"Vercel shipped the software first and the hype second, which tells you who they built it for."*
+
+---
+
+## 11. Điểm Đặc Biệt: Agent-Agnostic
+
+Không lock vào bất kỳ agent vendor nào:
+- **Claude Code** ✓
+- **Codex** ✓  
+- **Cursor** ✓
+- **Bất kỳ script nào có thể chạy shell command** ✓
+
+Ships as:
+- Plain CLI
+- Installable skill qua skills ecosystem
+- C library cho in-process calls với Python bindings
+
+---
+
+## 12. Key Takeaways
+
+```
+Triết lý cốt lõi của Agent Desktop:
+
+  "Give the model text because text is what models are actually good at."
+
+  Thay vì: Screenshot → Vision model → Coordinates → Click
+  Dùng:    OS Accessibility API → JSON text → Ref → Act
+
+Áp dụng ngay:
+  ✅ npm install -g agent-desktop
+  ✅ agent-desktop snapshot --app [AppName]
+  ✅ Dùng ref từ snapshot để act
+  ✅ Snapshot lại để verify
+  ✅ Không cần screenshot, không cần vision tokens
+
+Giới hạn cần biết:
+  ⚠️ Canvas-rendered apps (games, Figma) → không thấy elements
+  ⚠️ Electron apps với bad accessibility labels → partial visibility
+  ⚠️ → Workaround: DevTools bridge sang Agent Browser
+```
+
+---
+
+## 13. Liên Kết Chéo & Tài Liệu Liên Quan Trong Vault
+
+### Notes về Computer Use & Desktop Automation:
+- [Vercel CEO Agentic Engineering Workflow — Guillermo Rauch](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/vercel_ceo_agentic_engineering_workflow_guillermo_rauch.md) — Context về Vercel's agentic vision
+
+### Notes về Agent Infrastructure:
+- [Excalidraw CLI — Diagrams cho AI Agents](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/excalidraw_cli_diagrams_for_ai_agents.md) — CLI tools cho agents
+- [Amazon Infinity AI Agent Runtime — Rust](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/amazon_infinity_ai_agent_runtime_rust_lets_get_rusty.md) — Pure Rust agent runtime (cùng ngôn ngữ với Agent Desktop)
+
+### Notes về Multi-Platform Agent Tools:
+- [Claude Code Mods Ultimate Guide](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/claude_code_mods_ultimate_customization_guide.md) — Skills ecosystem agent-desktop dùng để install
+- [9 New Claude Mods — Robonuggets](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/9_new_claude_mods_robonuggets.md) — MCP tools + computer use integrations

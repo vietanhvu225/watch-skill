@@ -454,3 +454,4 @@ Checklist sử dụng LLM hiệu quả:
 > **"Vibe coding"** — term do Karpathy đặt ra, mô tả workflow "nhường quyền cho Composer, chỉ cho lệnh, hy vọng nó chạy". Worst case: fall back to standard programming.
 
 > **Deep Research = "first draft"** — cảnh báo quan trọng: thậm chí với citations, Deep Research vẫn có thể hallucinate. Treat như starting point, không phải truth.
+
