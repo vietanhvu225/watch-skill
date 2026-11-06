@@ -319,3 +319,4 @@ SIDEBAR VIEW:
 ### Notes về Skill Files & Agent Coordination:
 - [Anthropic Engineers Stopped Building Agents](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/anthropic_engineers_stopped_building_agents_skills_sharbel.md) — Skills-based approach
 - [Claude Code Mods Ultimate Customization Guide](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/claude_code_mods_ultimate_customization_guide.md) — Customize harness
+

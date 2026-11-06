@@ -313,3 +313,4 @@ Imani plan dạy theo thứ tự:
 
 ### Notes về Remote & Multi-Device:
 - [Vercel CEO Agentic Workflow](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/vercel_ceo_agentic_engineering_workflow_guillermo_rauch.md) — Remote workflow của CEO
+

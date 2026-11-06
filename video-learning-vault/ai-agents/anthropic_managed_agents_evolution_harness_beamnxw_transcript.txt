@@ -1,0 +1,331 @@
+[00:00] I'm product engineer at Anthropic. I
+[00:02] work in a wide variety of things from
+[00:03] improving our models at specific tasks
+[00:05] to building agent harnesses to working
+[00:07] with some of our biggest customers to
+[00:09] actually implement agent use cases, as
+[00:12] well as a wide variety of other things.
+[00:13] So, really my day is a mixed bag. Uh,
+[00:16] today I'm here to talk about how we have
+[00:19] seen the evolution of agentic surfaces,
+[00:22] specifically agent building interfaces
+[00:25] that folks are acclimated to and how
+[00:27] they've evolved over time and how it's
+[00:29] kind of culminated in what we have built
+[00:31] recently called cloud managed agents.
+[00:33] Uh, it is a product, but I just want to
+[00:35] talk more about the evolution and then
+[00:38] various use cases and things like that.
+[00:39] So,
+[00:40] excited to share more.
+[00:43] Uh, we'll cover core concepts like how
+[00:45] managed agents works. There is a portion
+[00:47] of this that's like a hands-on workshop,
+[00:49] but we're not going to do a hands-on
+[00:50] workshop today. I don't think we have we
+[00:51] have enough time, so I'll just cover how
+[00:53] that would work. And then we'll talk
+[00:54] about beyond the basics and and what we
+[00:56] can get started with later on.
+[00:58] So, to start off with, I know all of
+[01:01] you're used to building agents before
+[01:03] and at the beginning of
+[01:06] the sunrise of large language models and
+[01:08] AI, we had this offering called messages
+[01:10] API and I'm sure a lot of folks are here
+[01:12] familiar with it. And what we provided
+[01:15] was just tokens in and tokens out,
+[01:18] right? So, this is just Claude, you give
+[01:20] it the input and then you get the next
+[01:22] token predictions. That was messages
+[01:24] API.
+[01:25] And as
+[01:26] things became more complicated and you
+[01:28] had to build more
+[01:31] complicated agents and loops and
+[01:33] workflows, there was still a need for
+[01:35] you to manage and build your own agentic
+[01:37] loop, manage your context, do tool
+[01:40] execution, session state and recovery,
+[01:44] handling odds, observability, custom
+[01:46] tool logic. All of this was still yours
+[01:48] to build. And so, there was still a
+[01:50] problem in managing all of these.
+[01:53] We then saw the rise of Claude code,
+[01:55] which is our take on an agentic furnace
+[01:58] and we wrap that into something called
+[02:00] the Claude Agent SDK. And this agent SDK
+[02:02] essentially provided that agentic loop
+[02:04] and harness. It provided context
+[02:06] management. It provided built-in tool
+[02:08] executions of a sandbox and a file
+[02:10] system capability. And under the hood it
+[02:13] still uses messages API for tokens in
+[02:15] and tokens out, right? But you still had
+[02:18] to manage hosting and scaling, session
+[02:20] state, observability, custom tool logic,
+[02:23] etc. There was still a lot of work that
+[02:25] you had to do to take your agent to
+[02:27] production.
+[02:29] The third iteration, and this is kind of
+[02:31] the evolution of agentic services, is
+[02:33] what we call Claude managed agents. And
+[02:36] the idea is that you come with just your
+[02:38] task and your agent configuration and
+[02:42] you come with any of your custom tool
+[02:43] logic and Anthropic handles the
+[02:46] purpose-built harness the tool runtime
+[02:48] and sandbox the session state
+[02:51] persistence and checkpointing auth
+[02:53] credential vaults and storing uh storing
+[02:56] API keys uh securely for your other
+[02:58] services. And of course hosting,
+[03:00] scaling, observability. You don't have
+[03:02] to worry about that out of the box. And
+[03:04] of course, under the hood is tokens in,
+[03:06] tokens out. And this is how we've kind
+[03:08] of seen the evolution of what interfaces
+[03:12] developers use to build agents.
+[03:15] And so really Claude managed agents,
+[03:17] something that's fairly new, is our
+[03:19] fastest way to build and ship
+[03:21] transformative agentic products. If you
+[03:23] want to go from idea to actually having
+[03:26] a highly feature-rich agent in your
+[03:29] product I would recommend you start with
+[03:31] Claude managed agents. And I'll show you
+[03:33] how you can get started pretty quick and
+[03:34] it'll kind of illustrate how quickly you
+[03:36] can take stuff to production. Because
+[03:39] often times we found that customers
+[03:40] spend uh a bit of time, like it takes
+[03:43] hours to get to a prototype, and then
+[03:46] weeks to actually ship your agent to
+[03:48] production because there's so much to
+[03:50] handle around the actual agent product.
+[03:53] So, there's three primary resources in
+[03:55] Cloud Managed Agents. First is the
+[03:57] persona and capabilities. What your
+[04:00] agent is, which model it uses, the
+[04:02] prompts, tools, MCP servers, skills.
+[04:06] All of this is versioned and immutable,
+[04:08] so you can iterate on those and roll
+[04:09] back if needed.
+[04:12] The second is infrastructure and
+[04:13] guardrails. What container does your
+[04:16] model live in?
+[04:17] How does the networking boundary of that
+[04:19] container how what is it defined? And
+[04:22] what are the allowed hosts? What what is
+[04:24] not allowed? Things like that. Things
+[04:26] the environment that your agent lives
+[04:28] in, that's the second resource we
+[04:29] expose.
+[04:30] And third is the actual sessions
+[04:33] resource, which is you take your agent
+[04:35] configuration and then you take the
+[04:37] environment that you configured, and
+[04:39] then you spin up your session. Right?
+[04:41] So, three simple resources. There's a
+[04:42] few more that There's There's few more
+[04:44] like richer API things that I can talk
+[04:46] about later, but these are the core
+[04:48] things that you can use to to configure
+[04:51] and ship your agent uh in blazing fast
+[04:53] time.
+[04:55] And as a reminder, with Cloud Managed
+[04:57] Agents, the agentic loop is running
+[05:00] server-side.
+[05:01] What this means is that the
+[05:03] orchestration and execution of the agent
+[05:06] is happening in the cloud. And
+[05:09] what you are doing is essentially
+[05:11] handling and directing that agentic loop
+[05:14] in the cloud. So, your events go in and
+[05:17] you you push the agent in different
+[05:19] directions as needed.
+[05:20] The actual And you can close your laptop
+[05:22] and the agent is still running in the
+[05:23] cloud. That's the analogy.
+[05:26] And a key architectural change has
+[05:28] occurred, which is previously agent the
+[05:32] agent loop and the tool execution used
+[05:34] to happen in the same container as where
+[05:37] the agent was hosted. This meant that
+[05:39] every single time you had to start an
+[05:41] agent, there was a high latency cost,
+[05:43] and it was a single point of failure. If
+[05:45] If container went down, then your
+[05:46] agentic loop goes down. With cloud
+[05:48] managed agents, the agent loop is
+[05:51] uh separated from the actual sandbox.
+[05:54] So, the brain, the model is separated
+[05:57] from the hands, from the tools, from the
+[06:00] sandbox. Because not every agent use
+[06:02] case needs a sandbox, and it can only be
+[06:04] spin up spun up when needed. And this is
+[06:06] a critical architecture difference
+[06:08] because it allows you to scale way
+[06:10] allows us to scale way way more way more
+[06:12] quickly, and for you to have much lower
+[06:14] latency and high reliability.
+[06:17] So, there's a hands-on workshop, but I
+[06:19] we won't have time again to get into
+[06:20] this because it's a lightning talk. Uh I
+[06:22] gave this talk at Code with Claude,
+[06:23] which is our developer conference. And
+[06:26] uh you can check it out. There's an
+[06:27] open-source repo, GitHub, Anthropic or
+[06:29] Anthropic organization, and CWC
+[06:32] workshops. There's uh a folder in there
+[06:34] that shows how you can ship your first
+[06:36] managed agent. It's like an SRE agent.
+[06:39] And I'll walk through that right now.
+[06:40] So, let's say you have an incident uh
+[06:43] and uh your your checkout service is
+[06:45] more than high baseline, uh and wouldn't
+[06:48] have been nice if there was like an SRE
+[06:50] agent with a full rich set of
+[06:51] capabilities that can investigate and
+[06:53] find what's going wrong?
+[06:55] Well,
+[06:56] in this workshop, we kind of walk
+[06:57] through how to implement that. And it's
+[06:59] quite simple. So, as I said before,
+[07:01] first you define what your agent is. So,
+[07:04] you you write this piece of like a small
+[07:06] piece of code. Of course, we'll Claude
+[07:07] write it we'll write it for you. Uh but,
+[07:09] you write this piece of code that kind
+[07:11] of describes the tools the agent has,
+[07:13] the model you'd use, uh and the name of
+[07:15] it. And immediately when you do that,
+[07:17] it's persisted in the cloud.
+[07:20] And then you define where your container
+[07:22] is. So, uh you will define
+[07:25] uh like the networking boundaries, like
+[07:27] how much internet access the model has,
+[07:29] things like that. And you you persist
+[07:31] that in the cloud. You need you get a
+[07:32] unique ID.
+[07:33] And then you use and then you mount any
+[07:36] data you want. So, if you want to upload
+[07:37] a log file for the agent to use when
+[07:39] investigating stuff, you can upload
+[07:41] that. Uh if you want to upload any
+[07:43] skills, you can do that. And all of this
+[07:45] is persistent in the cloud.
+[07:47] And then you use the agent and
+[07:49] environment that I talked about, and you
+[07:51] start the session. Right, you use the
+[07:53] agent ID, environment, and start the
+[07:55] session. And this agent in the cloud
+[07:58] will have a real sandbox that it can use
+[08:01] to do the same graph, blob capabilities
+[08:05] to kind to use and find the root cause
+[08:09] of issue you're experiencing. And all of
+[08:11] this, as you're writing this code, this
+[08:13] is production grade. So, when you're
+[08:15] happy with your agent, you can use that
+[08:18] same agent ID, same environment, and
+[08:21] then you can put this into your into
+[08:22] your product and ship it as a real agent
+[08:25] on your platform. The scalability comes
+[08:27] built in. So, when you're ready with
+[08:29] your agent prototype, you can serve it
+[08:31] to your users with minimal changes
+[08:33] needed. And as a reminder, sessions
+[08:35] speak in events. And some of this, of
+[08:37] course, I
+[08:38] these things may change, so just
+[08:41] double-check when you're using the
+[08:42] management agent API. But the idea is
+[08:45] from the cloud, you will get events
+[08:47] about what the agent is doing, and you
+[08:48] would send events back to control and
+[08:50] see what that control and and move its
+[08:53] direction. So, just to illustrate this,
+[08:56] the cloud agent is actually running in
+[08:58] the cloud, and you would get any custom
+[09:01] tool use if there's any local needs, or
+[09:03] if it's just the MCP server will
+[09:04] directly reach out. And you can kind of
+[09:07] handle and orchestrate the agent from
+[09:09] your product. You don't have to worry
+[09:11] about actually hosting the agent, etc.
+[09:13] All you have to worry about is providing
+[09:15] it the right context and providing it
+[09:17] the right task when needed.
+[09:20] And this is just a snippet of code that
+[09:22] opens the streams and sends the
+[09:24] messages.
+[09:25] And this is not necessarily relevant.
+[09:28] And as a reminder, the conversation
+[09:30] lives in the cloud.
+[09:31] And some of this code is it's no longer
+[09:33] in beta, so ignore this. But uh the
+[09:35] conversation lives in the cloud, so the
+[09:37] sessions
+[09:39] um are essentially persisted. So, you
+[09:42] can create multi multi ser multi-session
+[09:46] uh persistence, and you can list out all
+[09:48] the sessions you have in the cloud with
+[09:50] a simple command. No need to worry about
+[09:51] how to persist a transcript, store it,
+[09:54] read from it, uh etc.
+[09:56] And there's way more features. There's
+[09:58] subagents uh or multi-agents where you
+[10:01] can spin off like agents in uh
+[10:04] uh in a hierarchy, memory so you can
+[10:06] learn from your sessions and you
+[10:08] remember things over time, and your
+[10:10] agent gets better. There's dreaming,
+[10:12] which is not mentioned here, that kind
+[10:14] of uh
+[10:15] uh learns from transcripts over time and
+[10:19] implement skills and uh improves the
+[10:21] memory store to perform better in the
+[10:23] future. Outcomes, which iterates on a
+[10:26] product multiple times, kind of like a
+[10:28] Ralph Breaks the Internet movie, but
+[10:29] like iterates on it to give uh a
+[10:31] high-quality output. Vaults, which is
+[10:33] super important because it allows you to
+[10:35] store your credentials in a highly safe
+[10:37] manner. MCP servers, webhooks,
+[10:40] permission policies, interrupts. Uh
+[10:43] there's also even a console agent
+[10:45] builder where you can go into the
+[10:46] Anthropic console and describe in plain
+[10:48] text what agent you want, and you get a
+[10:50] production-grade configuration that you
+[10:51] can use in your product. And there's
+[10:53] also scheduled and triggered agents.
+[10:55] Let's say you you want your agent to run
+[10:57] automatically regularly at 1:00 a.m.
+[10:59] every day. Uh you want a daily digest
+[11:01] every morning at 8:00 a.m. And you want
+[11:03] that for your users. They're scheduled
+[11:05] and triggered. Uh you can also just set
+[11:07] up your agents like a cron job uh that
+[11:09] runs at a
+[11:10] uh at a scheduled manner.
+[11:12] And so, with that, today we were able to
+[11:14] hopefully get the mental model of
+[11:16] managed agents, the evolution of you
+[11:18] didn't ship an a working agent quite yet
+[11:20] because but you can do that uh with the
+[11:21] link provided. And then you also know
+[11:23] where to go next. There's way more
+[11:24] features. It's highly feature-rich. And
+[11:26] if you have any questions, like feel
+[11:28] free to just
+[11:29] uh email me or or LinkedIn me. I should
+[11:31] talk to Anthropic, and then uh we can go
+[11:33] ahead and take a look uh at any feature
+[11:35] requests as well.
+[11:37] So, with that, uh I'm excited for
+[11:39] everyone to get started
+[11:40] uh and uh looking forward to speaking
+[11:42] with folks here. So, thanks for taking
+[11:44] the time.
