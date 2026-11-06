@@ -1,130 +1,281 @@
-# Hướng Dẫn Tùy Biến Tối Thượng: Claude Code Mods | Eric Tech
+# Claude Code Mods: Hướng Dẫn Tùy Biến Toàn Diện
 
-- **Video URL:** [YouTube Link](https://www.youtube.com/watch?v=8wZVnc99x_k)
-- **Video ID:** `8wZVnc99x_k`
+- **Video URL:** https://www.youtube.com/watch?v=8wZVnc99x_k
+- **Watch Skill ID:** `a8836baaacbb0049`
 - **Category:** #ai-agents
-- **Date Processed:** 2026-10-20
+- **Date Processed:** 2026-11-07
 - **Duration:** 09:53
 - **Speaker:** Eric Tech
-- **Transcript File:** [claude_code_mods_ultimate_customization_guide_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/claude_code_mods_ultimate_customization_guide_transcript.txt)
+- **Channel:** Eric Tech
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
-
-Trong cẩm nang kỹ thuật thực chiến này, **Eric Tech** giải phẫu tính năng thay đổi cuộc chơi của Claude Code: **Claude Code Mods (Plugins)** — cho phép người dùng không chỉ điều khiển hành vi logic mà còn tái thiết kế toàn bộ giao diện người dùng (UI), chặn bắt các cuộc gọi công cụ (tool call interception), và nhúng trạng thái có bộ nhớ (stateful memory) vào bên trong ứng dụng Claude Code.
-
-Eric đưa ra hai phép ẩn dụ mang tính khai sáng để làm rõ sự khác biệt giữa các cơ chế tùy biến:
-1. **Phép Ẩn Dụ Căn Nhà (The House Metaphor):**
-   - **Skills & Hooks:** Là *Nội thất* của căn nhà (bạn có thể kê thêm bàn ghế, bổ sung quy trình SOPs).
-   - **Mods:** Là việc *Đập tường, xây lại layout* căn nhà (thay đổi tận gốc cách thức giao diện hiển thị và luồng tương tác bên trong).
-2. **Phép Ẩn Dụ Nhân Sự (Contractor vs. Full-Time Employee):**
-   - **Hooks (Nhà thầu bên ngoài):** Chạy bên ngoài ứng dụng Claude Code, được kích hoạt phi trạng thái (stateless) qua script kịch bản dòng lệnh, không có quyền chạm vào giao diện đồ họa.
-   - **Mods (Nhân viên chính thức):** Sống ngay bên trong runtime của Claude Code, có bộ nhớ trạng thái duy trì qua các lượt chat, có quyền tương tác trực tiếp lên giao diện (vẽ progress bar, tạo nút bấm chuyển model, hiển thị modal câu hỏi phụ) và tạm dừng tiến trình để xin phê duyệt từ người dùng.
+## 1. Tóm Tắt Điều Hành
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                       CLAUDE CODE INTERNAL MOD RUNTIME ARCHITECTURE                         │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                  USER / DEVELOPER                                           │
-│                                          │                                                  │
-│                                          ▼                                                  │
-│                        [ CLAUDE CODE DESKTOP / CLI RUNTIME ]                                │
-│                                          │                                                  │
-│         ┌────────────────────────────────┼────────────────────────────────┐                 │
-│         ▼ (UI / Presentation Layer)      ▼ (Interception Layer)           ▼ (Memory Layer)  │
-│   [ WINDOW MODIFICATIONS ]         [ TOOL CALL INTERCEPTORS ]       [ STATEFUL CACHE ]      │
-│   - Header Progress Bar            - Intercept File Writes          - Context Window Meter  │
-│   - Clickable Model Switcher       - Require Interactive Approval   - Prompt Cache % Gauge  │
-│   - Image Previews in Prompt Box   - Sensitive Path Guardrails      - Skill Calibration Log │
-│         │                                │                                │                 │
-│         └────────────────────────────────┼────────────────────────────────┘                 │
-│                                          │                                                  │
-│                                          ▼                                                  │
-│                         [ FRONTIER MODEL (THE BRAIN) ]                                      │
-│                               (Claude 3.7 / Opus 5.5)                                       │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│              CLAUDE CODE MODS — THAY ĐỔI CẤU TRÚC APP              │
+├──────────────────────────┬──────────────────────────────────────────┤
+│    Skills & Hooks        │           Mods                          │
+│    = Di chuyển nội thất  │           = Phá dỡ / dịch chuyển tường │
+│    Same app structure    │           Change the app structure      │
+│    (giữ cấu trúc UI)    │           (thay đổi hoàn toàn UI)      │
+├──────────────────────────┴──────────────────────────────────────────┤
+│  CÁCH TẠO MOD (không cần code):                                     │
+│  ① Mô tả điều bạn muốn → ② Claude viết code → ③ Tích hợp vào App  │
+├─────────────────────────────────────────────────────────────────────┤
+│  MOD CÓ THỂ LÀM GÌ:                                                │
+│  • Thêm/thay đổi UI window (panel, progress bar, model router...)  │
+│  • Intercept tool calls (hỏi approval trước khi thực thi)         │
+│  • Nhớ dữ liệu giữa các phiên (Memory)                            │
+│  • Thêm slash commands mới (/aside, /q push...)                    │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Điểm mấu chốt:** Mods là "nhân viên toàn thời gian" bên trong app — khác với Hooks là "nhà thầu bên ngoài". Chỉ Mods mới có thể thay đổi UI, nhớ dữ liệu, và tạo tương tác đa chiều.
+
+---
+
+## 2. Claude Code Là Gì? (Quick Recap)
+
+Khi dùng Claude Code, có 2 thành phần chính:
+
+```
+  Your Computer
+       ↓ (request)
+  Claude Code App    ← Middleman
+       ↓ (redirect)
+     Brain            ← AI Model (Opus 5.5, v.v.)
+       ↓ (output)
+  Claude Code App    ← Render UI + tool calls
+```
+
+**Trước khi có Mods**, chỉ có thể tùy biến:
+- `CLAUDE.md` / `agent.md` (system prompt)
+- Skills (workflows, instructions, SOPs)
+- Hooks (triggers chạy scripts bên ngoài)
+
+**Sau khi có Mods**: Thay đổi hoàn toàn UI và hành vi của Claude Code app.
+
+---
+
+## 3. Phép Ẩn Dụ Ngôi Nhà
+
+```
+  Claude Code = Ngôi nhà
+  ┌─────────────────────────────────────────────────────┐
+  │            Skills & Hooks           │      Mods      │
+  │          Di chuyển nội thất         │ Phá/dựng tường │
+  │         (cùng cấu trúc app)         │  (đổi cấu trúc)│
+  └─────────────────────────────────────────────────────┘
+```
+
+- **Skills & Hooks**: Như thêm bàn ghế, đổi màu sơn — không thay đổi bố cục phòng
+- **Mods**: Như phá tường, xây phòng mới — thay đổi hoàn toàn bố cục
+
+---
+
+## 4. Mods Có Thể Làm Gì?
+
+Mods kiểm soát 2 thứ chính trong Claude Code App:
+
+### 4.1 Window (UI)
+
+Thêm panel UI tùy chỉnh phía trên input box:
+- **Cache percentage tracker**: Hiển thị % token tiết kiệm được nhờ cache
+- **Model router**: Button click để chuyển model (Haiku/Sonnet/Opus) thay vì gõ `/model`
+- **Progress bar**: Theo dõi tiến độ task đang chạy + context window usage
+- **Image preview**: Chụp ảnh màn hình → paste vào Claude CLI → hiển thị preview ngay trong UI
+- **Task board**: Hiển thị danh sách tasks đang mở
+
+### 4.2 Tool Calls (Intercept)
+
+Mod có thể intercept tool calls TRƯỚC khi thực thi:
+```
+  Claude → Tool Call → [MOD INTERCEPT] → Hỏi approval? → Thực thi
+```
+
+Ví dụ từ video:
+```
+  Tool timeline:
+  ✓ Read package.json          0.2s
+  ✗ Bash rm -rf dist           DENIED (mod blocked dangerous rm -rf)
+  ✓ Bash trash dist            0.3s  (mod redirected to safer trash)
+  ✓ Bash bun test              42 tests ✓
+```
+Mod có thể deny `rm -rf dist` và suggest dùng `trash dist` thay thế — an toàn hơn!
+
+---
+
+## 5. Mod vs Hook — Sự Khác Biệt Quan Trọng
+
+| Tiêu chí | Hook | Mod |
+|----------|------|-----|
+| **Vị trí** | Ngoài Claude app (`.claude/hooks/`) | Bên trong Claude app |
+| **Phép ẩn dụ** | Nhà thầu bên ngoài | Nhân viên toàn thời gian |
+| **Trigger** | Programmatic (script) | UI-aware (có thể render UI) |
+| **Memory** | ❌ Không có | ✅ Có thể nhớ dữ liệu |
+| **Thay đổi UI** | ❌ Không | ✅ Có thể render/change UI |
+| **Interaction** | ❌ Chỉ chạy 1 chiều | ✅ Hỏi approval, pause, v.v. |
+
+```
+  Hook:  Trigger → Run script
+         (Hiring a contractor is enough)
+
+  Mod:   New interface + Remember data + More interaction
+         (Only Mods can do this)
 ```
 
 ---
 
-## 2. So Sánh Bản Chất: Hooks vs. Mods
+## 6. Cách Tạo Mod (Không Cần Tự Code)
 
-| Đặc tính kỹ thuật | Claude Code Hooks | Claude Code Mods (Plugins) |
-| :--- | :--- | :--- |
-| **Vị trí cư trú** | Nằm ngoài ứng dụng (thư mục `.claude/hooks/`) | Nằm bên trong runtime ứng dụng (`.claude/plugins/`) |
-| **Giao diện người dùng (UI)** | Hoàn toàn không thể can thiệp vào UI | Toàn quyền kiểm soát, vẽ thêm widgets, thanh tiến trình |
-| **Quản lý trạng thái (Memory)** | Vô trạng thái (Stateless); chạy xong tự hủy | Có bộ nhớ (Stateful); lưu dữ liệu qua nhiều phiên chat |
-| **Cơ chế can thiệp** | Kích hoạt tự động khi lệnh thực thi xong | Chặn bắt (Intercept), tạm dừng, hiển thị hộp thoại xin phép |
-| **Hình tượng tương đương** | Nhà thầu bên ngoài (External Contractor) | Nhân viên biên chế nội bộ (Full-Time Employee) |
+3 bước đơn giản:
+```
+  ① Describe what you need
+     "Tôi muốn có panel hiển thị model hiện tại và
+      context window usage"
 
----
+  ② Claude writes the code
+     Claude tự viết mod code
 
-## 3. Các Tính Năng Đột Phá Mà Mods Mang Lại
+  ③ Add it to the app
+     Mod tự động được tích hợp
+```
 
-### 1. Tùy Biến Cửa Sổ & Giao Diện Người Dùng (UI Window Customization)
-- **Thanh tiến trình & Giám sát Cache (Cache % Tracker):** Hiển thị trực quan tỷ lệ cache hit của Prompt Caching ngay trên thanh trạng thái, giúp lập trình viên biết chính xác mình đang tiết kiệm được bao nhiêu token.
-- **Nút chuyển đổi mô hình (Visual Model Switcher):** Thay vì phải gõ lệnh `/model` và chọn danh sách thủ công, Mod cho phép gắn các nút bấm trực quan để chuyển tức thì giữa Sonnet, Haiku, và Opus 5.5.
-- **Xem trước ảnh nội dòng (Inline Image Previews):** Khi chụp ảnh màn hình hoặc tải ảnh vào cửa sổ chat, Mod hiển thị thumbnail ảnh trực tiếp bên trên ô nhập prompt thay vì chỉ hiển thị đường dẫn tệp văn bản khô khan.
-
-### 2. Chặn Bắt & Kiểm Soát Cuộc Gọi Công Cụ (Tool Call Interception)
-- Khi mô hình chuẩn bị thực thi công cụ chỉnh sửa tệp tin nhạy cảm (như `.env`, migrations, hoặc core files), Mod chặn yêu cầu lại và hiển thị hộp thoại xác nhận tương tác, chờ lập trình viên bấm cho phép rồi mới nhả lệnh.
+**Nguồn tham khảo**: Tweet của Thariq (@trq212, kỹ sư Anthropic): "Claude can make mods for you! Just prompt it" — có link đến blog post của Addy Osmani.
 
 ---
 
-## 4. Top 6 Mods Thực Chiến Được Đánh Giá Cao Nhất
+## 7. Cài Đặt Mod Từ Community
 
-Từ kho lưu trữ cộng đồng với hơn 50 bộ sưu tập mods, Eric chỉ ra 6 mod có giá trị thực dụng cao nhất:
+### 7.1 Cập Nhật Claude Trước
 
-1. **`Next Steps` (Phát triển bởi Theoric — Kỹ sư Anthropic):**
-   - Tự động gợi ý các bước tiếp theo mang tính logic sau mỗi hành động (ví dụ: sau khi git status sạch sẽ, mod đề xuất nút bấm *"Commit changes"*, *"Switch branch"* hoặc *"Bump version"* điền thẳng vào prompt).
-2. **`Aside` (Khung Hội Thoại Phụ - Sub-Chat Modal):**
-   - **Vấn đề giải quyết:** Khi đang chạy một session phức tạp, nếu lập trình viên hỏi một câu hỏi ngoài lề (như *"hàm này cú pháp thế nào?"*), toàn bộ câu hỏi và câu trả lời rác sẽ làm ô nhiễm cửa sổ ngữ cảnh chính (Context Pollution).
-   - **Giải pháp:** `Aside` mở một pop-up chat phụ cô lập hoàn toàn, trả lời xong đóng lại mà không để lại bất kỳ token thừa nào trong luồng chính.
-3. **`Secret Redactor` (Tự Động Che Giấu Bí Mật):**
-   - Tự động quét và che giấu (mask/redact) các chuỗi nhạy cảm như API keys, tokens, mật khẩu trước khi gửi payload lên mô hình, ngăn ngừa rò rỉ bảo mật.
-4. **`Claude Queue` (Hàng Đợi Lệnh Tự Động):**
-   - Cho phép người dùng xếp hàng nhiều prompt và tác vụ để Claude Code tự động xử lý tuần tự mà không cần ngồi chờ canh từng lượt phản hồi.
-5. **`Flight Deck` (Trạm Chỉ Huy Tác Vụ):**
-   - Bảng điều khiển tổng hợp theo dõi các sub-agents đang chạy ngầm, trạng thái kế hoạch và hạn mức quota.
-6. **`Context Meter` / `Quota Watcher`:**
-   - Đồng hồ đo mức tiêu thụ context window theo thời gian thực, cảnh báo khi phiên làm việc chạm ngưỡng nguy hiểm cần nén (compact).
-
----
-
-## 5. Hướng Dẫn Cài Đặt & Quản Trị Hệ Thống Mods
-
-### 1. Cập Nhật Phiên Bản Mới Nhất
 ```bash
-claude update
+claude update  # Cập nhật lên version mới nhất hỗ trợ Mods
 ```
 
-### 2. Cài Đặt Mod Từ Cộng Đồng Hoặc Đường Dẫn URL
+### 7.2 Cài Từ Community Marketplace
+
+**Repository chính thức:** `github.com/anthropics/claude-plugins-community`
+- Có **50+ collections of mods** từ cộng đồng
+- Tìm mod phù hợp → copy link → paste vào Claude: "Please install this mod"
+
+### 7.3 Ví Dụ: Cài Mod "next-steps"
+
+Tác giả: Thariq (kỹ sư Anthropic)
+
+**Chức năng:** Sau mỗi turn, hiển thị tối đa 3 gợi ý prompt phía trên input box:
+```
+  next:
+  1: run the tests you just wrote
+  2: do the same for the settings page
+  3: /code-review high
+  0: dismiss
+```
+
+Nhấn 1, 2, 3 → điền vào input box → Enter để thực thi. Tab key lấy gợi ý đầu tiên. Plugin never prompts on its own.
+
+**Cơ chế:** Dùng `function-hooks plugin (hooks/register.tsx)`:
+- `turn.complete`: fork session với `$model.fork` để ask next prompts
+- `$.command.list`: session's skills and slash commands
+
+---
+
+## 8. Top 6 Mods Được Eric Recommend
+
+Eric dùng Claude để phân tích "second brain" của mình và chọn 6 mods phù hợp:
+
+| # | Mod | Mô tả |
+|---|-----|-------|
+| 1 | **flight-deck** | Xem task đang chạy, plan hiện tại, context window (Eric bỏ qua vì đã có status bar) |
+| 2 | **context-meter** | Đo lường context usage chi tiết |
+| 3 | **quota-watcher** | Theo dõi quota / rate limit |
+| 4 | **Claude Q** | Queue messages — `/q push "message"` thêm message vào queue trong khi Claude đang làm việc |
+| 5 | **secret-reductor** | Ẩn secrets/sensitive values khỏi UI (passwords, API keys, v.v.) |
+| 6 | **aside** | Hỏi side question mà không làm bẩn main chat context |
+
+**Đặc biệt về `/aside`:** Claude Code không có tính năng này như ChatGPT. Với `aside` mod, dùng `/aside <câu hỏi>` → câu hỏi không được thêm vào main conversation → có thể đóng lại và tiếp tục chat.
+
+Demo từ video:
 ```bash
-# Cài đặt trực tiếp từ URL mod được chia sẻ
-# Ví dụ: Dán link repository plugin của cộng đồng vào phiên Claude Code
-claude plugins install <PLUGIN_GIT_URL_OR_NAME>
+/aside Is the current secret-reductor already active?
+# → Claude trả lời trong side window
+# → Đóng lại → tiếp tục main conversation bình thường
 ```
 
-### 3. Vị Trí Lưu Trữ Cục Bộ
-Toàn bộ các mod đã cài đặt được lưu trữ tại:
-```text
-~/.claude/plugins/
+---
+
+## 9. Quản Lý Mods
+
+### 9.1 Nơi Lưu Trữ
+
+```
+  ~/.claude/
+  └── plugins/
+      ├── next-steps/
+      ├── token-weather/   (đã xóa trong video)
+      └── blast-radius/
 ```
 
-### 4. Quản Lý Danh Sách & Gỡ Bỏ
+### 9.2 Các Lệnh Quản Lý
+
 ```bash
-# Liệt kê tất cả các mods đang hoạt động
+# Liệt kê tất cả mods đã cài
 claude plugin list
 
-# Gỡ bỏ mod không sử dụng
-claude plugin uninstall <plugin_name>
+# Xóa mod
+claude plugin uninstall blast-radius
+
+# Reload mods trong session hiện tại
+/reload-plugins
 ```
 
 ---
 
-## 6. Bài Học Hành Động
+## 10. Slash Commands Mới Từ Mods
 
-1. **Nâng cấp từ Prompting sang Interface Customization:** Đừng chấp nhận giao diện mặc định nếu nó làm chậm tốc độ của bạn. Hãy tận dụng Mods để đưa các thông tin quan trọng (Cache %, Token Quota, Active Plans) ra trước mắt.
-2. **Sử Dụng `Aside` Để Bảo Vệ Context:** Tuyệt đối không hỏi các câu hỏi lý thuyết bên lề trong phiên làm việc chính; hãy dùng modal `Aside` để giữ cho ngữ cảnh sạch và tiết kiệm chi phí.
-3. **Bảo mật là trên hết:** Cài đặt ngay `Secret Redactor` để đảm bảo các khóa API bí mật không bao giờ bị vô tình gửi vào context prompt của LLM.
+Sau khi cài mods, Eric có thêm các slash commands:
+```bash
+/reload-plugins    # Reload tất cả plugins/mods
+/q push "message"  # Queue message trong khi Claude đang làm việc
+/aside "question"  # Hỏi side question không ảnh hưởng main chat
+/cache             # Kiểm soát prompt cache
+```
+
+---
+
+## 11. EricOS Custom Mod (Mod Tự Làm)
+
+Eric đã tự tạo "EricOS" — custom mod hiển thị trong CLI với các tính năng:
+
+```
+  EricOS (Claude Code v2.1.292, Opus 5.5 1M context)
+  ├─ Model switching        → Click để đổi model
+  ├─ Task tracking          → Xem tasks đang chạy
+  ├─ Skill recap/recalibrate → Xem lại và cải thiện skills
+  └─ Retro sections         → Phân tích conversation → cải thiện skills
+```
+
+Eric đã đóng gói tất cả mods tự tạo thành PDF có thể tải trong school community.
+
+---
+
+## 12. Key Takeaways
+
+1. **Mods = "di chuyển tường"** — thay đổi cấu trúc app, không chỉ nội dung
+2. **Không cần code** — mô tả → Claude tạo mod cho bạn
+3. **Phân biệt Hook vs Mod**: Hook là contractor (ngoài app), Mod là nhân viên (trong app) — chỉ Mod mới có UI + Memory + Interaction
+4. **50+ community mods** tại `github.com/anthropics/claude-plugins-community`
+5. **Top picks**: next-steps, aside, secret-reductor, Claude Q, quota-watcher
+6. **Mods lưu tại** `~/.claude/plugins/` — manage qua `claude plugin list/uninstall`
+7. **Reload trong session**: `/reload-plugins`
+
+---
+
+## Liên Kết Đến Các Note Liên Quan
+
+- [[claude_code_getting_rid_of_subagents_aicodeking]] — Khi nào fold subagents (AICodeKing)
+- [[s_tier_claude_code_mods_ray_amjad]] — S-tier Claude Code mods từ Ray Amjad
+- [[anthropic_engineers_use_claude_code_ai_labs]] — Anthropic engineers dùng Claude Code thế nào
+- [[9_new_claude_mods_robonuggets]] — 9 Claude mods mới từ Robonuggets
