@@ -1,169 +1,284 @@
-# Claude Code Khai Tử Sub-Agents? Khi Nào Nên Gộp Sub-Agents Về Một Vòng Lặp Duy Nhất | AICodeKing (Phân Tích Báo Cáo Anthropic)
+# Claude Code Đang Loại Bỏ Sub-Agents? — Phân Tích Bài Viết Của Anthropic
 
-- **Video URL:** [YouTube Link](https://www.youtube.com/watch?v=fdtkh30oFA8)
-- **Video ID:** `fdtkh30oFA8`
+- **Video URL:** https://www.youtube.com/watch?v=fdtkh30oFA8
+- **Watch Skill ID:** `759a58fea2734de2`
 - **Category:** #ai-agents
-- **Date Processed:** 2026-10-20
+- **Date Processed:** 2026-11-07
 - **Duration:** 11:04
-- **Speaker:** AICodeKing (Phân tích bài viết *"Building agents: When to fold subagents into your main agent loop"* của Diane Sarkis — Anthropic, xuất bản 22/10/2026)
-- **Transcript File:** [claude_code_getting_rid_of_subagents_aicodeking_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/claude_code_getting_rid_of_subagents_aicodeking_transcript.txt)
+- **Speaker:** AICodeKing
+- **Channel:** AICodeKing
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
-
-Vào ngày 22 tháng 10 năm 2026, **Diane Sarkis** thuộc đội ngũ nghiên cứu Anthropic đã xuất bản một bài viết mang tính bước ngoặt có tựa đề: *"Building agents: When to fold subagents into your main agent loop"* (Xây dựng tác nhân: Khi nào nên gộp sub-agents trở lại vòng lặp chính). Bài viết đưa ra một lời cảnh tỉnh đanh thép gửi tới toàn bộ cộng đồng kỹ sư AI: **Phần lớn chúng ta đang thiết kế hệ thống Multi-Agent hoàn toàn sai lầm**.
-
-Các doanh nghiệp đang rơi vào cái bẫy sao chép nguyên xi sơ đồ tổ chức phòng ban (Org Chart) vào kiến trúc AI — một minh chứng kinh điển của **Định luật Conway (Conway's Law)**: Phòng Kế toán tạo Sub-agent Kế toán, Phòng Hỗ trợ tạo Sub-agent Hỗ trợ, và một Orchestrator ngồi trên đỉnh điều phối. Mô hình này trông rất đẹp mắt trên slide thuyết trình, nhưng trong thực tế sản xuất, nó **làm suy giảm chất lượng đầu ra, thổi phồng chi phí token và kéo dài độ trễ một cách thảm hại**.
-
-Anthropic đề xuất mô hình thay thế: **Một vòng lặp tác nhân duy nhất (Single Main Agent Loop)** kết hợp cơ chế **Tiết lộ tiệm tiến (Progressive Disclosure)** — nạp kỹ năng và công cụ khi và chỉ khi tác vụ thực sự cần đến.
+## 1. Tóm Tắt Điều Hành
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                 CONWAY'S LAW ANTI-PATTERN VS. SINGLE LOOP PROGRESSIVE DISCLOSURE             │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│  ANTI-PATTERN: SUBAGENT SPRAWL (SAO CHÉP SƠ ĐỒ PHÒNG BAN):                                  │
-│                                                                                             │
-│                      ┌──────────────────────────────────────┐                               │
-│                      │ Orchestrator / Router / Classifier   │                               │
-│                      └──────────────────┬───────────────────┘                               │
-│                                         │                                                   │
-│             ┌───────────────────────────┼───────────────────────────┐                       │
-│             ▼                           ▼                           ▼                       │
-│     ┌───────────────┐           ┌───────────────┐           ┌───────────────┐               │
-│     │ Billing Agent │ ◄───────> │ Support Agent │ ◄───────> │ Database Agent│               │
-│     └───────────────┘           └───────────────┘           └───────────────┘               │
-│     ➔ HẬU QUẢ: Tam sao thất bản (Telephone Game), Frankenprompt, trễ gấp 2 lần, chi phí vọt │
-│                                                                                             │
-│  ANTHROPIC RECOMMENDED ARCHITECTURE (SINGLE AGENT LOOP + PROGRESSIVE DISCLOSURE):           │
-│                                                                                             │
-│     ┌──────────────────────────────────────────────────────────────────────────────┐        │
-│     │                      SINGLE MAIN AGENT LOOP (Claude Code)                    │        │
-│     │  - System Prompt rút gọn >80% (Chỉ nạp tên & tóm tắt ngắn của skills/tools) │        │
-│     │  - Tự suy luận phân luồng, tự lập kế hoạch bằng năng lực nội sinh            │        │
-│     └───────┬───────────────────────────────┬──────────────────────────────┬───────┘        │
-│             │ On-Demand                     │ On-Demand                    │ Query          │
-│             ▼                               ▼                              ▼                │
-│     ┌───────────────┐               ┌───────────────┐              ┌───────────────┐        │
-│     │ SKILLS        │               │ TOOLS         │              │ KNOWLEDGE     │        │
-│     │ (Phán đoán    │               │ (Hành động,   │              │ BASE LOOKUP   │        │
-│     │  chuyên gia   │               │  dữ liệu sống,│              │ (Sự thật thỉnh│        │
-│     │  SKILL.md)    │               │  giới hạn)    │              │  thoảng tra)  │        │
-│     └───────────────┘               └───────────────┘              └───────────────┘        │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│          "FOLD SUBAGENTS INTO MAIN LOOP" — Anthropic / Diane Sarkis │
+│                        (22/10/2026)                                  │
+├─────────────────────────────────────────────────────────────────────┤
+│  VẤN ĐỀ: Nhiều team sao chép sơ đồ tổ chức vào agent architecture  │
+│  → billing subagent, support subagent, search subagent, ...         │
+│  → Conway's Law: hệ thống phản chiếu cấu trúc tổ chức              │
+├─────────────────────────────────────────────────────────────────────┤
+│  GIẢI PHÁP: Một main agent loop duy nhất                            │
+│  → Progressive disclosure: skills & tools tải theo nhu cầu         │
+│  → Anthropic giảm Claude Code system prompt >80% bằng cách này     │
+├──────────────────────────┬──────────────────────────────────────────┤
+│  KHI NÀO GIỮ SUBAGENT?  │  KHI NÀO GỌP VÀO MAIN LOOP?            │
+│  • Verification độc lập  │  • Mỗi bước xây trên bước trước         │
+│  • Parallel work          │  • Các bước chia sẻ dữ liệu            │
+│  • Modular permissioning │  • Thường gọi cùng nhau                 │
+│  (đo được, có lý do đặt │  • Routing/planning có thể tự làm        │
+│   tên cụ thể)            │                                          │
+└──────────────────────────┴──────────────────────────────────────────┘
 ```
 
-Điểm nhấn thực nghiệm then chốt:
-- **Tăng tốc 2 lần khi gộp Sub-agents:** Trong một trường hợp khách hàng doanh nghiệp của Anthropic, việc xóa bỏ hệ thống multi-agent phức tạp và gộp về một vòng lặp đơn đã giúp hệ thống chạy **nhanh hơn gấp 2 lần** (giảm 50% độ trễ).
-- **Rút gọn 80% System Prompt:** Anthropic đã cắt giảm hơn **80% độ dài system prompt** của Claude Code trên các mô hình tiên tiến bằng cách áp dụng cơ chế Progressive Disclosure thay vì nạp toàn bộ hướng dẫn từ đầu.
-- **Ranh giới gộp vs giữ:** Chỉ giữ lại Sub-agents khi thỏa mãn đúng 3 tiêu chí: **Kiểm chứng độc lập (Verification)**, **Tác vụ song song hoàn toàn (Parallelization)**, hoặc **Cô lập quyền hạn (Modular Permissioning)**. Quy tắc vàng: **"Tách theo ngữ cảnh, không tách theo loại bài toán"**.
+**Luận điểm chính:** Mặc định dùng one chat. Chỉ nâng lên team mode khi có lý do cụ thể đặt tên được.
 
 ---
 
-## 2. Bốn Bệnh Lý Tử Huyệt Của Vấn Nạn Tràn Lan Sub-Agents (Sub-Agent Sprawl)
+## 2. Nguồn Gốc & Bối Cảnh
 
-Khi các nhóm kỹ sư lạm dụng mô hình Multi-Agent, hệ thống sẽ nhanh chóng mắc phải 4 căn bệnh trầm kha:
+Video phân tích bài viết chính thức của Anthropic: **"Building agents: When to fold subagents into your main agent loop"** do **Diane Sarkis** (Claude Platform) viết, đăng ngày 22/10/2026.
 
-### 2.1. Vấn Nạn Tràn Lan Tác Nhân (Subagent Sprawl)
-Mỗi nhóm tính năng tự viết một sub-agent riêng biệt để giải quyết bài toán của mình. Hậu quả là xuất hiện hàng chục sub-agents chồng chéo chức năng (ví dụ: nhóm Auth có sub-agent tạo token, nhóm User cũng có sub-agent tạo token). Không ai sở hữu bức tranh toàn cảnh và không ai chịu trách nhiệm bảo trì tập hợp tác nhân này.
-
-### 2.2. Bẫy "Quái Vật Lắp Ghép" (The Frankenprompt)
-Khi nhiều nhóm cùng đóng góp vào một hệ thống multi-agent, mỗi nhóm lại nhét thêm một câu chỉ dẫn vào system prompt chung: *"Hãy nhớ luôn kiểm tra quyền"*, *"Hãy nhớ format JSON theo chuẩn X"*, *"Không được sửa file Y"*. Dần dần, prompt biến thành một quái vật Frankenprompt với hàng trăm quy tắc triệt tiêu và mâu thuẫn lẫn nhau, dẫn đến hiện tượng suy giảm chú ý nghiêm trọng (prompt fatigue).
-
-### 2.3. Trò Chơi Tam Sao Thất Bản (The Telephone Game)
-Đây là nguồn cơn lớn nhất gây suy thoái chất lượng đầu ra:
-- Người dùng nói yêu cầu với Agent A (Orchestrator).
-- Agent A tóm tắt lại và giao cho Agent B (Planner).
-- Agent B lại tóm tắt và ra lệnh cho Agent C (Executor).
-- **Hậu quả:** Cứ qua mỗi lần chuyển giao (handoff), thông tin ngữ cảnh tinh tế bị rơi rụng một phần. Agent cuối cùng thực thi công việc dựa trên một "bản photocopy mờ nhạt" so với ý định nguyên bản của người dùng.
-
-### 2.4. Độ Trễ Xếp Chồng (Cascading Latency & Token Burn)
-Mỗi một sub-agent lồng nhau là một chu trình khởi chạy LLM hoàn chỉnh (đọc prompt, tải tools, suy luận, trả về). Chuỗi 3 sub-agents lồng nhau sẽ nhân ba thời gian phản hồi và đốt cháy lượng token khổng lồ chỉ để trung chuyển dữ liệu giữa các agent.
+AICodeKing trình bày bài viết theo 2 phần:
+1. Phân tích nội dung bài viết bằng ngôn ngữ đơn giản
+2. Demo thực tế trên **PandaCode** — công cụ tích hợp cả single-agent mode và team mode
 
 ---
 
-## 3. Giải Pháp Anthropic: Vòng Lặp Đơn & Tiết Lộ Tiệm Tiến (Progressive Disclosure)
+## 3. Vấn Đề Cốt Lõi: Conway's Law Trong Agent Design
 
-### 3.1. Progressive Disclosure Là Gì?
-Thay vì nhồi nhét 50 trang hướng dẫn và hàng chục công cụ vào ngữ cảnh ngay từ đầu:
-1. **Khởi đầu tối giản:** Vòng lặp chính chỉ mang theo một danh sách tóm tắt cực ngắn (tên và 1 dòng mô tả) của các kỹ năng/công cụ có sẵn.
-2. **Nạp động theo nhu cầu:** Khi và chỉ khi người dùng yêu cầu một tác vụ chạm tới kỹ năng đó (ví dụ: cần thao tác với cơ sở dữ liệu Supabase), Agent mới nạp toàn bộ nội dung chi tiết của `SKILL.md` hoặc schema công cụ vào bộ nhớ làm việc.
-3. **Thành quả thực tế:** Bằng kỹ thuật này, Anthropic đã **cắt giảm hơn 80% kích thước system prompt** của Claude Code cho các mô hình thế hệ mới mà vẫn mở rộng được phạm vi xử lý công việc.
+### 3.1 Lỗi Phổ Biến: Copy Org Chart Vào Agent
 
-### 3.2. Ngưỡng Suy Giảm Công Cụ (The 30–50 Tool Limit)
-Nghiên cứu của Anthropic chỉ ra rằng: **Độ chính xác khi lựa chọn công cụ (Tool Choice Accuracy) của LLM sẽ suy giảm rõ rệt khi số lượng định nghĩa công cụ trong prompt vượt quá ngưỡng 30 đến 50 tools**.
-Do đó, "gộp về một vòng lặp" không có nghĩa là nhét bừa 100 tools vào một prompt. Nó đồng nghĩa với việc: **giữ một vòng lặp duy nhất, trang bị một tập hợp nhỏ các công cụ cốt lõi được đặt tên chuẩn xác, và tiết lộ các công cụ chuyên biệt theo cơ chế on-demand**.
+Nhiều công ty copy sơ đồ tổ chức (org chart) vào kiến trúc agent:
+- Billing team → Billing subagent
+- Support team → Support subagent
+- Search team → Search subagent
+- Orchestrator ngồi trên điều phối
 
-### 3.3. Tái Cấu Trúc 3 Ngăn Chứa Tri Thức Chuẩn Mực
-Trong một vòng lặp đơn, hãy phân bổ tri thức vào đúng 3 ngăn chứa:
-- **Domain Judgment (Phán đoán chuyên môn / Cách chuyên gia xử lý ca khó):** ➔ Đưa vào **Skill** (`SKILL.md`).
-- **Actions & Live State (Thao tác thực thi, gọi API, giới hạn cứng):** ➔ Đưa vào **Tool**.
-- **Occasional Facts (Sự thật thỉnh thoảng mới cần tra cứu):** ➔ Đưa vào **Knowledge Base Lookup (RAG / Kho tài liệu)**, tuyệt đối không gắn chết vào prompt!
+**Vấn đề:** Trông có vẻ có tổ chức trên diagram, nhưng thực tế **làm giảm chất lượng, tăng chi phí và latency**.
+
+### 3.2 Giải Pháp: Progressive Disclosure
+
+Thay vì load tất cả subagents trước, dùng **progressive disclosure**:
+- Agent bắt đầu với mô tả ngắn
+- Tải skill/tool đầy đủ **chỉ khi cần**
+- Kết quả: Anthropic giảm Claude Code system prompt **>80%** cho các advanced models
 
 ---
 
-## 4. Khung Ra Quyết Định: Khi Nào Gộp & Khi Nào Tách Sub-Agents?
+## 4. Khi Nào Subagent Vẫn Hữu Ích
 
-Anthropic cung cấp một bộ trắc nghiệm logic rõ ràng để kỹ sư quyết định cấu trúc hệ sinh thái agent:
+Bài viết không nói subagent luôn tệ. 3 trường hợp subagent vẫn nên dùng:
 
+### 4.1 Verification (Kiểm Chứng Độc Lập)
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                            SUBAGENT DECISION FLOWCHART                                      │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                             │
-│  Câu hỏi 1: Các bước có phụ thuộc tuần tự vào nhau (Bước sau cần dữ liệu bước trước)?       │
-│  ├── [CÓ] ➔ GỘP VÀO VÒNG LẶP CHÍNH (Single Main Loop)                                       │
-│  └── [KHÔNG] ➔ Chuyển sang Câu hỏi 2                                                        │
-│                                                                                             │
-│  Câu hỏi 2: Các bước có dùng chung một tập dữ liệu hoặc luôn được gọi cùng nhau?            │
-│  ├── [CÓ] ➔ GỘP VÀO VÒNG LẶP CHÍNH (Single Main Loop)                                       │
-│  └── [KHÔNG] ➔ Chuyển sang Câu hỏi 3                                                        │
-│                                                                                             │
-│  Câu hỏi 3: Thỏa mãn 1 trong 3 điều kiện đặc biệt sau?                                      │
-│      (1) Cần kiểm chứng độc lập với ngữ cảnh bằng 0 (Verification / Goldfish)?              │
-│      (2) Tác vụ song song hoàn toàn không phụ thuộc (Parallel Research)?                    │
-│      (3) Cần cách ly quyền hạn nghiêm ngặt (Modular Permissioning / Read-only)?             │
-│  ├── [CÓ] ➔ TÁCH THÀNH SUB-AGENT ĐỘC LẬP (Fresh Bounded Context)                             │
-│  └── [KHÔNG] ➔ MẶC ĐỊNH GỘP VÀO VÒNG LẶP CHÍNH                                              │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+  maker (viết code) → artifact → fresh agent (không viết code này)
+  "looks fine to me" ×              ✓ mistake caught
+```
+Fresh agent chưa tạo ra artifact nên không bị bias — có thể bắt lỗi mà maker tự thuyết phục là đúng.
+
+### 4.2 Parallel Work (Công Việc Song Song)
+Các pieces không phụ thuộc nhau → chạy song song thực sự tiết kiệm thời gian.
+
+### 4.3 Modular Permissioning (Phân Quyền Module)
+Cho subagent chỉ những access cần thiết thay vì cấp full access cho một agent lớn.
+
+---
+
+## 5. Ba Failure Modes Khi Split Quá Nhiều
+
+### Failure Mode 1: Subagent Sprawl
+Mỗi team ship subagent riêng, overlap nhau, không ai sở hữu toàn bộ set.
+
+### Failure Mode 2: The Frankenprompt
+```
+  system prompt:
+  ├─ "Be brief."           ← team A thêm
+  ├─ "Explain every step." ← team B thêm
+  ├─ "Never use lists."    ← team C thêm
+  └─ "Always use a list."  ← team D thêm
+        → THE RULES FIGHT EACH OTHER
 ```
 
-### 4.1. Những Trường Hợp BẮT BUỘC Phải Gộp Vào Vòng Lặp Chính
-- **Sửa một lỗi nhỏ / Typo / Đổi cấu hình:** Mở team subagent chỉ làm tăng overhead vô ích.
-- **Gỡ lỗi tương tác (Interactive Debugging):** Khi sửa một test bị fail, mỗi lần thử nghiệm đều cần học hỏi từ lỗi của lần thử trước ➔ Phải giữ chung trạng thái (shared state) trong một cuộc hội thoại duy nhất.
-- **Chỉnh sửa liên tiếp trên cùng một file:** Tách sub-agent sẽ dẫn đến xung đột ghi đè tệp tin.
+### Failure Mode 3: The Telephone Game
+```
+  agent 1 → agent 2 → agent 3 → agent 4
+  [full detail] → [a bit lost] → [more lost] → [faded copy]
+  + mỗi handoff thêm latency
+```
 
-### 4.2. Ba Lý Do Hợp Lệ Duy Nhất Để Giữ Sub-Agent Riêng Biệt
-1. **Xác minh khách quan (Independent Verification):** Một agent kiểm thử mới tinh với bộ nhớ bằng 0 đọc lại thành phẩm của agent lập trình để bắt những lỗi mà agent lập trình tự biện minh bỏ qua.
-2. **Nghiên cứu song song (Parallel Isolated Exploration):** Cho 3 worker đọc 3 thư mục mã nguồn khác nhau cùng lúc, mỗi worker chỉ trả về bản tóm tắt 10 dòng để giữ cho cửa sổ chat chính luôn sạch sẽ.
-3. **Phân quyền tối thiểu (Least Privilege):** Giao việc nhạy cảm cho một worker bị tước quyền ghi file hoặc không có kết nối internet để giảm thiểu bán kính rủi ro (blast radius).
-
----
-
-## 5. Quy Trình Di Chuyển An Toàn (Migration Strategy)
-
-Để tái cấu trúc một hệ thống multi-agent cồng kềnh trở về vòng lặp đơn mà không làm gián đoạn sản phẩm:
-1. **Gộp từng sub-agent một:** Bắt đầu từ cặp sub-agents gắn kết chặt chẽ nhất (tightly coupled) hoặc được gọi thường xuyên nhất.
-2. **Chuyển hóa cấu trúc:** Biến prompt của sub-agent thành một file **Skill**, và biến các API calls của nó thành **Tools**.
-3. **Thử nghiệm bằng Golden Dataset:** Chuẩn bị ít nhất **10 ví dụ thực tế chuẩn mực (golden examples)** mà bạn biết chắc chắn kết quả đúng. Chạy so sánh hệ thống cũ và hệ thống mới.
-4. **Chạy eval nhiều lần:** Luôn chạy mỗi bài kiểm tra ít nhất 2 đến 3 lần. Anthropic cảnh báo rằng việc gộp agent có thể gây ra lỗi hồi quy tiềm ẩn (silent regression) mà chỉ xuất hiện trong 1 trên 2 lần chạy. Nếu chỉ test 1 lần và pass ngẫu nhiên, bạn đang đẩy canh bạc hên xui lên môi trường production.
+**Con số thực tế:** Trong một case study, single agent loop chạy **~2x nhanh hơn** multi-agent setup mà nó thay thế.
 
 ---
 
-## 6. Góc Nhìn Thực Chiến Của AICodeKing Trên PandaCode
+## 6. Test Của Bài Viết: Cái Gì Ở Lại Trong Main Loop?
 
-AICodeKing chỉ ra cách áp dụng triết lý này trong công cụ PandaCode (hoặc bất kỳ CLI harness nào):
-- **Phân định rõ ràng:**
-  - *Single Chat Mode:* Là vòng lặp đơn (Single Loop) — lựa chọn mặc định cho 80% công việc hàng ngày.
-  - *Team Mode (Architect + Workers):* Chỉ kích hoạt khi cần giải phóng thời gian bằng nghiên cứu song song hoặc khi task quá dài có nguy cơ làm tràn cửa sổ ngữ cảnh.
-- **Tối ưu chi phí:** Nếu dùng Team Mode, gán mô hình mạnh (Opus/Sonnet) cho Architect để hoạch định, và gán mô hình rẻ (DeepSeek Flash, GLM) cho Workers thực thi tác vụ đọc mã nguồn.
-- **Kỷ luật cá nhân:** *"Mặc định dùng một cửa sổ chat đơn lẻ; chỉ triệu tập Team khi bạn có thể nêu đích danh một lý do không thể chối cãi (nghiên cứu song song, kiểm chứng độc lập, hoặc phân quyền)"*.
+**Giữ trong main loop khi:**
+1. **Mỗi bước xây trên bước trước** (sequential dependency)
+2. **Các bước chia sẻ cùng dữ liệu**
+3. **Thường gọi cùng nhau** — nếu 2 pieces luôn đi cùng nhau, split chỉ thêm handoff vô nghĩa
+
+**Pick the right container trong main loop:**
+```
+  Domain judgment (cách expert xử lý case) → SKILL
+  Action / live data / hard limit           → TOOL
+  Facts chỉ cần thỉnh thoảng              → KNOWLEDGE BASE LOOKUP
+```
+
+### 6.1 Fold Back: Nhiều Router/Planner Giờ Có Thể Xóa
+
+Các model hiện đại tự làm routing, planning, categorizing trong normal reasoning. Ví dụ bài viết: Classifier + pipeline + branches + orchestrator → thay bằng **1 prompt rõ ràng + 4-5 thin tools + guardrails**.
+
+**Cảnh báo quan trọng:** Tool choice degraded khi vượt **30-50 tool definitions** trong prompt. Nên: 1 loop + small set well-named tools + phần còn lại disclosed khi cần.
 
 ---
 
-## 7. Bài Học Hành Động Dành Cho Kỹ Sư Phần Mềm (Actionable Takeaways)
+## 7. Quy Trình Migration (Làm Thế Nào Chuyển Đổi An Toàn)
 
-1. **Kháng Cự Lại Cơn Sốt "Multi-Agent Hype":** Đừng vội chia nhỏ bài toán thành một bầy agent chỉ vì nó nghe có vẻ thời thượng. Đa số các bài toán kỹ thuật hiện nay giải quyết bằng một vòng lặp đơn với kỹ năng được thiết kế tốt sẽ nhanh hơn gấp đôi và rẻ hơn một nửa.
-2. **Áp Dụng Nguyên Lý Tiết Lộ Tiệm Tiến (Progressive Disclosure):** Giữ file `CLAUDE.md` hoặc system prompt dưới 200 dòng. Chuyển toàn bộ tài liệu chuyên sâu vào thư mục `skills/` để nạp khi cần.
-3. **Giám Sát Số Lượng Tools:** Không nạp quá 30 tools vào ngữ cảnh hoạt động. Nhóm các chức năng liên quan thành các skill on-demand.
-4. **Quy Tắc Vàng:** **"Split by context, not by problem type"** (Tách tác nhân khi cần cô lập ngữ cảnh, tuyệt đối không tách tác nhân theo phòng ban hay tên gọi bài toán).
+```
+1. Fold từng subagent một lần
+   → Bắt đầu với pair hay dùng nhất hoặc tightly coupled nhất
+   → Convert subagent's prompt → skill
+   → Convert API calls → tools
+
+2. Đo lường trước khi chuyển cái tiếp theo
+   → Dùng ít nhất 10 golden examples (tasks với kết quả đã biết)
+   → Chạy old setup và folded setup trên cùng examples
+
+3. Run mỗi eval NHIỀU lần
+   → Case study: folding silently broke flow, chỉ xuất hiện trong 1/2 runs
+   → Run 1 lần pass may mắn = ship coin flip
+```
+
+---
+
+## 8. Checklist: Khi Nào GIỮ Subagent Riêng
+
+**Giữ separate CHỈ KHI (phải đo được):**
+
+| # | Điều kiện | Mô tả |
+|---|-----------|-------|
+| 1 | **Context makes main worse** | Đo được rằng context của subagent làm main agent tệ hơn |
+| 2 | **Parallel fresh contexts** | Work chạy tốt song song trong fresh contexts có thể throw away khi xong |
+| 3 | **Tool/instruction conflict** | Một agent liên tục struggle với tool choice hoặc conflicting instructions |
+
+**Quy tắc chung:** Split by **context** (how little the work needs from the rest), NOT by **problem type** (billing vs support vs search).
+
+```
+  Cho separate agent:
+  ├─ work cần ít từ phần còn lại của system
+  └─ trả về 1 compact result (independent research, black-box check)
+```
+
+---
+
+## 9. Demo Thực Tế: PandaCode
+
+AICodeKing demo bài viết trên **PandaCode** — app có cả single agent mode và team mode.
+
+### 9.1 PandaCode Team Architecture
+```
+  ARCHITECT (Claude Opus 5.5 · max)
+  ├─ Plans task
+  ├─ Splits into assignments
+  ├─ Dispatches workers in parallel (one batch)
+  └─ Reviews results
+
+  WORKERS (mỗi worker = fresh context riêng)
+  ├─ Read-only workers: inspect & review (không thay đổi code)
+  └─ Writing workers: declare narrow file scope trước khi bắt đầu
+       worker 1 → owns: src/stats/goal.ts (data code)
+       worker 2 → owns: src/stats/goal-calc.ts (calc code)
+       worker 3 → owns: tests/stats/ (test code)
+```
+
+**Nếu 2 writing scopes overlap:** PandaCode chạy tuần tự thay vì song song.
+
+### 9.2 "Fold" trong PandaCode
+
+Bài viết của Anthropic dùng từ "fold". Trong PandaCode:
+```
+  Article: "fold subagents into main loop"
+       ↕ (tương đương)
+  PandaCode: "Team off = one chat / Team on = architect + workers"
+```
+
+AICodeKing lưu ý: "fold" là từ của article, không phải PandaCode. Đây là interpretation.
+
+### 9.3 Khi Nào Team Wins (PandaCode)
+
+| Scenario | Mode |
+|----------|------|
+| Read-only research song song nhiều phần codebase | TEAM |
+| Feature lớn: data side + interface + tests + review | TEAM |
+| Compare model outputs cùng prompt | TEAM |
+| Bulk edits với cheap worker, strong model review | TEAM |
+| Task quá lớn cho 1 context window | TEAM |
+| One-file typo / small config fix | SINGLE CHAT |
+| Interactive tweaks (cần xem từng step) | SINGLE CHAT |
+| Debug 1 failing test (state shared) | SINGLE CHAT |
+| Edits cùng file liên tiếp | SINGLE CHAT |
+
+### 9.4 Chi Phí Của Team Mode
+
+```
+  Team mode ≠ free speed
+
+  Bạn nhận được:          Bạn trả bằng:
+  ├─ Parallel time    ←→  ├─ Token nhiều hơn (mỗi worker = 1 model run)
+  └─ Fresh eyes       ←→  └─ Lost detail ở mỗi handoff (telephone game)
+```
+
+---
+
+## 10. Quy Tắc Cá Nhân Của AICodeKing
+
+```
+  ┌─────────────────────────────────────────────────────────┐
+  │  DEFAULT: one chat                                       │
+  │                                                          │
+  │  EARN the team with a reason you can NAME:              │
+  │  ✓ Parallel research                                     │
+  │  ✓ Clean split (ít overlap)                             │
+  │  ✓ Separate check / verification                        │
+  │  ✓ Job too long for one context                         │
+  │                                                          │
+  │  Can't name the reason? → STAY IN MAIN LOOP             │
+  └─────────────────────────────────────────────────────────┘
+```
+
+**Kết luận:** PandaCode giữ cả 2 options chỉ 1 decision apart — "fold back to single agent" = chỉ cần chọn Team off lúc bắt đầu task, không cần rewrite.
+
+---
+
+## 11. Key Takeaways
+
+1. **Mặc định one chat** — team mode phải có lý do đặt tên được
+2. **Progressive disclosure** > loading everything upfront
+3. **Split by context** (how isolated the work is), NOT by problem type/org structure
+4. **3 failure modes** khi split quá nhiều: sprawl, Frankenprompt, telephone game
+5. **Migrate từng bước**: 1 subagent, đo, rồi mới chuyển cái tiếp theo
+6. **Run eval nhiều lần** — 1 run pass có thể là may mắn
+7. **Tool limit ~30-50** definitions — vượt qua thì tool choice degraded
+8. **Verification subagent** vẫn hữu ích (fresh eyes, no bias)
+
+---
+
+## 12. Thông Tin Video
+
+- **Bài viết gốc:** "Building agents: When to fold subagents into your main agent loop" — Diane Sarkis, Claude Platform, 22/10/2026
+- **Công cụ demo:** PandaCode (architect + workers architecture)
+- **Điểm đặc biệt:** AICodeKing dùng custom diagram slides (trắng-đen) giải thích rõ từng concept, không chỉ screen record
+
+---
+
+## Liên Kết Đến Các Note Liên Quan
+
+- [[anthropic_managed_agents_evolution_harness_beamnxw]] — Multi-agent harness evolution từ Anthropic
+- [[claude_code_mods_ultimate_customization_guide]] — Claude Code customization deep dive
+- [[deepseek_super_agent_design_grokbot_agents_lustoykov]] — So sánh thiết kế super agent
+- [[herdr_plugins_multi_agent_orchestration]] — Multi-agent orchestration patterns
+- [[tiny_local_model_outperforms_opus_orchestration_aicodeking]] — Orchestration với local models
