@@ -1,322 +1,173 @@
-# Herdr: Từ Người Mới Đến Nâng Cao Trong 15 Phút | lustoykov
+# 🐄 Herdr: Beginner To Advanced in 15 min (Basics, Multi-Agent, Remote Machines & Persistent Runtime)
 
-- **Video URL:** [https://www.youtube.com/watch?v=WTmCkYMelIU](https://www.youtube.com/watch?v=WTmCkYMelIU)
-- **Video ID:** `WTmCkYMelIU`
-- **Category:** #ai-agents
-- **Date Processed:** 2026-11-06
+## 📋 Metadata
+- **Video Title:** Herdr: Beginner To Advanced in 15 min (Basics, Multi-Agent, Remote Machines…)
+- **Channel / Creator:** Lyubomir Stoykov (`lustoykov`)
+- **URL:** https://www.youtube.com/watch?v=WTmCkYMelIU
 - **Duration:** 15:44
-- **Speaker:** lustoykov
-- **Transcript File:** [herdr_beginner_to_advanced_lustoykov_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/herdr_beginner_to_advanced_lustoykov_transcript.txt)
+- **Watch Skill ID:** `cc426a3acb3d1f9f`
+- **Frames Inspected:** 21 frames (`frame_0000.jpg` – `frame_0020.jpg` in `C:\Users\Admin\.watch-skill\frames\cc426a3acb3d1f9f\`)
+- **Date Processed:** 2026-11-07
+- **Topic:** Multi-Agent Terminal Runtime (`herdr`), Self-Orchestrating Lead + 2×2 Worker Grid, Single-Branch (`main`) Coordination, Remote SSH Machines & Shared Resource Pools
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
+## 🎯 Tóm tắt cốt lõi (Executive Summary)
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      HERDR: TERMINAL CHO AI AGENTS              │
-│                                                                 │
-│  Herdr = Terminal Workspace Manager + Multiplexer               │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │  LEAD AGENT (Opus 5.5)                                  │   │
-│  │       │                                                 │   │
-│  │   orchestrates via Herdr CLI/Messaging Bridge           │   │
-│  │       │                                                 │   │
-│  │  ┌────┴────────────────────────────────────┐            │   │
-│  │  │  WORKER AGENTS (2x2 grid)               │            │   │
-│  │  │  ┌──────────┐  ┌──────────┐             │            │   │
-│  │  │  │ GPT:     │  │ GPT:     │             │            │   │
-│  │  │  │ Bug Fix  │  │ Perf Fix │             │            │   │
-│  │  │  └──────────┘  └──────────┘             │            │   │
-│  │  │  ┌──────────┐  ┌──────────┐             │            │   │
-│  │  │  │ Opus:    │  │ Opus:    │             │            │   │
-│  │  │  │ UI Polish│  │ Architect│             │            │   │
-│  │  │  └──────────┘  └──────────┘             │            │   │
-│  │  └────────────────────────────────────────┘            │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│                                                                 │
-│  KEY FEATURES:                                                  │
-│  • Mouse-first + tmux keybindings (not built on tmux)           │
-│  • Status indicators: 🔴 blocked  🟡 working  🟢 done           │
-│  • Persist sessions (server mode): close terminal, agents run   │
-│  • Remote machine via SSH: `herdr machine @macmini`             │
-│  • Agent Skill File: teaches agents Herdr's CLI capabilities    │
-└─────────────────────────────────────────────────────────────────┘
-```
+Lyubomir Stoykov (`lustoykov`) hướng dẫn toàn diện từ cơ bản đến nâng cao về **Herdr** (`herdr.dev` — *"Run them anywhere. Leave them running."*) — một **Agent Runtime / Terminal Multiplexer** mã nguồn mở (Apache 2.0) được thiết kế chuyên biệt cho thời đại chạy 10–20+ AI coding agents song song:
 
-lustoykov giới thiệu **Herdr** — terminal workspace manager được thiết kế từ đầu dành cho AI agents. Video đi từ cơ bản (cài đặt, keybinding, single agent) đến nâng cao (multi-agent orchestration, remote machine qua SSH, resource pooling). Điểm nổi bật: agents có thể tự điều khiển terminal thông qua Herdr Skill File, giao tiếp với nhau qua Herdr CLI bridge, và tất cả tiếp tục chạy ngay cả khi đóng terminal.
+1. **Không phải wrapper trên `tmux`:** Herdr được viết mới hoàn toàn từ đầu nhưng hỗ trợ **song song cả hai trường phái**: thao tác chuột trực quan (click phải để split pane, đóng pane, kéo thả) lẫn bộ phím tắt chuẩn `tmux` (`Ctrl+B` prefix, `?` xem bảng phím tắt, `/` tìm kiếm phím tắt).
+2. **File Skill tích hợp sẵn (`herdr --skill`) — Chìa khóa tự điều phối (Self-Orchestration):** Khi cấp cho Lead Agent file skill của Herdr (`herdr --skill` hoặc `npx skills add herdrdev/herdr --skill herdr -g`), bạn không cần tự tạo từng pane thủ công nữa. Chỉ cần ra lệnh bằng ngôn ngữ tự nhiên, Lead Agent sẽ tự chạy lệnh CLI `herdr` để đổi tên tab/pane của chính nó, tạo tab `Workers` mới, chia lưới **2×2 gồm 4 Worker Agents** (pha trộn giữa `Claude Opus 5.5` và `OpenAI Codex GPT-6.1-Sol xhigh`), đặt tên định danh và gửi prompt giao việc cho từng worker.
+3. **Chiến lược Single-Branch (`main`) thay vì lạm dụng Git Worktrees:** Khi chạy 10–20 agents với git worktrees, ổ cứng nhanh chóng bị tràn bởi hàng chục bản copy `node_modules` / build artifacts và lúc merge lại cực kỳ đau đầu. Giải pháp thực chiến của Lyubomir: cho tất cả workers **dùng chung một checkout trên nhánh `main`** và tự điều phối qua hệ thống nhắn tin nội bộ của Herdr (`herdr agent prompt`), chỉ tạo worktree khi thực sự bất khả kháng.
+4. **Remote Machines qua SSH & Persistent Background Server:** Kết nối máy Mac mini ở phòng khác vào cùng một giao diện Herdr (`herdr machine add mac-mini --label "Mac mini"`) để offload tác vụ build iOS nặng và điều phối **pool 3 iOS Simulators dùng chung** giữa các agents. Đóng hoàn toàn cửa sổ terminal không làm chết agents — gõ `herdr` là kết nối lại ngay lập tức.
 
 ---
 
-## 2. Khái Niệm Cốt Lõi
+## Architecture & Multi-Agent Topology trong Herdr
 
-### 2.1 Herdr Là Gì?
+```mermaid
+flowchart TB
+    subgraph HerdrServer["🐄 Herdr Persistent Background Server"]
+        direction TB
+        
+        subgraph LocalMachine["💻 Machine: Local (Project: hallvi)"]
+            Lead["👑 Tab 1: Opus 5.5 Lead<br/>Claude Code v2.1.384 (Opus 5.5)<br/>herdr agent: opus-5-5-lead"]
+            
+            subgraph WorkersTab["🧩 Tab 2: Workers (2×2 Grid on shared 'main' branch)"]
+                W1["⚡ perf: Worker GPT - Performance<br/>Codex v0.163.0 (GPT-6.1-Sol xhigh)"]
+                W2["🎨 ui: Worker Opus - UI Polish<br/>Claude Code v2.1.384 (Opus 5.5 high)"]
+                W3["🐛 bugs: Worker GPT - Bug Fixes<br/>Codex v0.163.0 (GPT-6.1-Sol xhigh)"]
+                W4["🏗️ simplify: Worker Opus - Architecture<br/>Claude Code v2.1.384 (Opus 5.5 high)"]
+            end
+            
+            Hands["🖱️ Tab 3: Browser / Computer Use Hands<br/>Codex (GPT-6.1-Sol xhigh) — alias: hands"]
+        end
 
-**Herdr** = Terminal Workspace Manager + Multiplexer dành cho AI coding agents.
+        subgraph RemoteMacMini["🍎 Machine: Mac mini via SSH (Project: attachd)"]
+            iOSLead["📱 iOS Lead + 4 Workers"]
+            SimPool["📲 Shared Pool of 3 iOS Simulators<br/>Coordinated via Herdr Messaging & work/ui.lock"]
+        end
 
-| Tính năng | Mô tả |
-|-----------|-------|
-| **Terminal Multiplexer** | Mở nhiều terminal trong 1 cửa sổ duy nhất |
-| **Mouse-first** | Điều khiển bằng chuột, nhưng cũng hỗ trợ tmux keybindings |
-| **Không phải tmux** | Kiến trúc khác hoàn toàn, tuy nhiên hỗ trợ tmux key conventions |
-| **Agent-native** | Thiết kế từ đầu để agents điều khiển terminal |
-| **Server mode** | Chạy server nền — đóng terminal nhưng agents vẫn hoạt động |
-
-### 2.2 Herdr Skill File — Thành Phần Quan Trọng
-
-Khi cài Herdr, **bắt buộc phải cài thêm Agent Skill File**:
-
-```bash
-# Xem skill file
-herdr skill
-
-# Skill file dạy agents:
-# - Cách giao tiếp với agents khác
-# - Cách spawn agents mới
-# - Cách mở panes, split terminal
-# - Toàn bộ Herdr CLI orchestration
-```
-
-Skill file là "instruction manual" để agents biết dùng các power mà Herdr cung cấp.
-
-### 2.3 Hệ Thống Màu Trạng Thái (Status Indicators)
-
-```
-🔴 Đỏ  = Agent bị blocked (cần input từ user)
-🟡 Vàng = Agent đang làm việc (working)
-🟢 Xanh = Agent đã xong (done/idle)
-```
-
-Với nhiều agents chạy song song, nhìn vào màu để biết ngay agent nào cần chú ý — không cần nhìn vào từng pane.
-
----
-
-## 3. Setup Chi Tiết: Từ Cơ Bản Đến Nâng Cao
-
-### 3.1 Cài Đặt & Khởi Động
-
-```bash
-# Cài Herdr (copy lệnh từ website)
-# Sau đó khởi động:
-herdr
-
-# Cài Agent Skill File (quan trọng!)
-herdr skill
-```
-
-**Setup ban đầu:**
-- Chọn theme (ví dụ: cappuccino)
-- Bật/tắt Status Indicators (màu trạng thái)
-- Bật/tắt Sound notifications (ồn nếu có 20+ agents)
-- Chọn integrations: Pi Cloud, Codex, Open Code, ...
-
-### 3.2 Điều Khiển Terminal
-
-**Hai cách điều khiển:**
-
-1. **Chuột**: Right-click → "Split right", "Close pane", ...
-2. **Keyboard** (tmux-style):
-   - `Ctrl+B` → prefix mode
-   - `Ctrl+B` + `?` → xem tất cả keybindings
-   - `Ctrl+B` + `/` → tìm kiếm keybinding
-   - `Ctrl+B` + `V` → split vertically
-   - `Ctrl+B` + `X` → đóng pane
-
-**Triết lý học keybindings:**
-> Thay vì cố nhớ hết, cứ nhấn `Ctrl+B` rồi `?` rồi `/` để tìm cái cần dùng.
-
-### 3.3 Spaces & Agents
-
-Herdr có 2 khái niệm chính trong sidebar:
-- **Spaces** (Projects): Projects đang làm việc
-- **Agents**: Các coding agents đang chạy trong project đó
-
-### 3.4 Setup Lead Agent
-
-```
-# Yêu cầu agent tự đổi tên (Herdr Skill cho phép điều này!)
-> "Can you change your name to Opus 5.5 lead and also the tab name?"
-
-# Agent sẽ dùng Herdr CLI để:
-# 1. Đổi tên instance của mình
-# 2. Cập nhật tên tab
-```
-
-### 3.5 Setup Worker Agents (2x2 Grid)
-
-Thay vì click thủ công, **để Lead Agent tự tạo**:
-
-```
-Prompt gửi cho Lead:
-"Create a workers tab in the same workspace with a 2x2 grid 
- four fresh worker sessions one per pane:
- - 2x GPT for performance and bug fixing (specify model + effort)
- - 2x Opus for UI polish and architecture"
-```
-
-Kết quả: Lead agent sẽ:
-1. Tạo tab mới tên "Workers"
-2. Chia 4 panes theo 2x2 grid
-3. Khởi động đúng coding agent trong từng pane
-4. Assign đúng task cho từng worker
-
----
-
-## 4. Orchestration: Điều Phối Agents
-
-### 4.1 Herdr CLI Bridge — Giao Tiếp Giữa Agents
-
-```bash
-# Gửi message vào Lead agent từ terminal riêng
-herdr agent prompt "Opus 5.5 lead" "Give me a quick status update on the workers"
-
-# Agents giao tiếp với nhau thông qua Herdr Bridge:
-# Lead → inject message → Worker
-# Worker → inject message → Lead
-```
-
-**Tại sao dùng Herdr thay vì custom scripts?**
-- Herdr là terminal multiplexer sở hữu tất cả terminal instances
-- Inject messages natively, không cần hacks
-- Hoạt động out-of-the-box — không cần maintain custom code
-
-### 4.2 Multi-Agent trên 1 Branch (Tiết Kiệm Disk)
-
-Thay vì tạo worktree riêng cho mỗi agent (tốn disk), lustoykov dùng trick:
-
-```
-Prompt cho Lead Agent:
-"Tell all workers: You share the same checkout on main.
- Coordinate directly through Herdr messaging.
- Make routine decisions autonomously.
- Only message the lead with:
-   - Completed work
-   - Unresolved blockers  
-   - Important decisions needing input
- Skip chatter and routine progress updates."
-```
-
-**Kết quả**: 
-- Tất cả workers làm việc trên `main` cùng lúc
-- Tự phối hợp với nhau qua Herdr messaging
-- Rất ít conflict
-- Nếu thực sự cần worktree riêng → agents có thể tự tạo nhưng họ ít khi thực sự cần
-
-### 4.3 Resource Pooling (iOS Simulator Example)
-
-```
-Scenario: 4 agents, nhưng chỉ có 3 iOS simulators
-
-Giải pháp Herdr:
-"Hey, coordinate between each other who's going 
- to use the simulator."
-
-→ Agents tự thỏa thuận ai dùng simulator nào
-→ Lock/unlock chia sẻ simulator tự động
+        Lead <-->|"herdr agent prompt / send<br/>(Only completed work & blockers)"| WorkersTab
+        Lead <-->|"Delegate UI verification"| Hands
+        iOSLead --> SimPool
+    end
 ```
 
 ---
 
-## 5. Remote Machine Integration
+## ⏱️ Phân tích chi tiết theo dòng thời gian & Visual Frames
 
-### 5.1 Prerequisites
-
-```bash
-# Trên remote machine:
-# 1. Cài Herdr
-# 2. Setup SSH connection
-ssh macmini  # phải chạy được trước
-```
-
-### 5.2 Connect Remote Machine
-
-```bash
-# Single command để connect remote Herdr session
-herdr machine @macmini --label "Mac mini"
-```
-
-Sau khi connect:
-- Sidebar chia thành **Local** và **Mac mini**
-- Có thể thấy projects và agents của cả hai machines
-- Điều khiển agents remote như agents local
-- Connect bao nhiêu remote machines tùy ý
-
-### 5.3 Use Cases
-
-| Situation | Lý do dùng Remote |
-|-----------|------------------|
-| Quá nhiều agents → máy local quá tải | Offload sang Mac mini/cloud box |
-| iOS development trên Mac | Dev trên Mac mini từ máy khác |
-| Team dev | Mỗi người connect vào shared dev box |
+### 1. Giới thiệu Herdr & Cài đặt (`00:00` – `02:30` | `frame_0000` – `frame_0007`)
+- **Trang chủ `herdr.dev` (`frame_0001`, `frame_0002`):**
+  - Tagline: *"Run them anywhere. Leave them running."* — **THE AGENT RUNTIME**.
+  - Thống kê hệ sinh thái hiển thị trực tiếp trên trang chủ (`frame_0002`):
+    - **`44,946`** GitHub Stars
+    - **`1,691,340`** lượt cài đặt
+    - **`1,828`** community plugins
+    - **`22`** Agent CLIs được tự động nhận diện (Claude Code, Codex, OpenCode, Pi, Gemini CLI, Cursor CLI, v.v.).
+  - **Lệnh cài đặt (`frame_0002`, `frame_0003`):**
+    ```bash
+    curl -fsSL https://herdr.dev/install.sh | sh
+    ```
+    Hỗ trợ đầy đủ **macOS, Linux, Windows** (bản quyền **Apache 2.0**), có sẵn trên `winget`, `homebrew`, và `nix`.
+- **Tổng quan giao diện nâng cao (`frame_0004` – `frame_0006`):**
+  - Thanh sidebar bên trái hiển thị danh sách **Workspaces** và trạng thái trực tiếp của từng Agent (Lead, 4 Workers trong lưới 2×2, và agent `hands` chuyên phụ trách Browser/Computer Use vì `GPT-6.1-Sol` mạnh về thao tác máy tính hơn `Opus 5.5`).
 
 ---
 
-## 6. Feature Nổi Bật: Persist Sessions
-
-```
-Scenario:
-1. Herdr đang chạy với 5 agents làm việc
-2. User đóng terminal window
-3. ??? 
-
-Với tmux thông thường: agents chết
-Với Herdr: Herdr chạy server ngầm → agents TIẾP TỤC CHẠY
-
-4. User mở terminal mới
-5. Gõ: herdr
-6. Tất cả agents quay lại — họ chưa bao giờ dừng!
-```
-
-**Tác dụng thực tế:**
-- Khởi động agents buổi sáng, đi làm việc khác
-- Agents tự xử lý tasks
-- Quay lại xem tiến độ bất cứ lúc nào
-- Không bao giờ mất session
+### 2. Bí quyết quan trọng nhất: Cài đặt `herdr --skill` cho AI Agents (`02:31` – `03:54` | `frame_0007` – `frame_0008`)
+- Nhiều người cài Herdr xong chỉ dùng nó như một terminal chia màn hình thông thường và bỏ lỡ 80% sức mạnh thực sự.
+- **Cách kích hoạt khả năng tự điều phối (`frame_0007`, `frame_0008`):**
+  - Chạy lệnh in tài liệu skill tích hợp sẵn:
+    ```bash
+    herdr --skill
+    ```
+  - Hoặc cài trực tiếp vào kho global skills cho mọi coding agent trên máy:
+    ```bash
+    npx skills add herdrdev/herdr --skill herdr -g
+    ```
+- **Nội dung bên trong file Skill (`frame_0008`):**
+  - Cung cấp cho AI agent các biến môi trường tự nhận diện vị trí của nó (`$HERDR_PANE_ID`, `$HERDR_TAB_ID`, `$HERDR_WORKSPACE_ID`) và bộ lệnh CLI đầy đủ:
+    - Kiểm tra bố cục hiện tại: `herdr pane layout --pane "$HERDR_PANE_ID"`
+    - Tự tách pane mới: `herdr pane split --current --direction right --cwd "$PWD" --no-focus`
+    - Đặt tên định danh cho agent và giao tiếp liên-agent: `herdr agent set-name`, `herdr agent prompt <target> "<message>"`.
 
 ---
 
-## 7. Workflow Thực Tế Của lustoykov
-
-```
-Setup hoàn chỉnh cho dự án iOS (Halvie):
-
-LOCAL MACHINE:
-├── Tab 1: Lead Agent (Opus 5.5) — Tab chính, theo dõi chủ yếu
-└── Tab 2: Workers (2x2 grid)
-    ├── Pane 1: GPT — Bug fixing
-    ├── Pane 2: GPT — Performance optimization
-    ├── Pane 3: Opus — UI polish
-    └── Pane 4: Opus — Architecture
-
-REMOTE MACHINE (Mac mini):
-└── Attached project với Lead + Workers tương tự
-
-SIDEBAR VIEW:
-├── 🔴 = Blocked agents (cần attention)
-├── Priority view = chỉ hiện agents cần reply
-└── Grouped view = theo project/machine
-```
-
-**Triết lý**: Chỉ cần nhìn vào Lead agent, workers tự xử lý. Chỉ nhảy vào khi thấy 🔴 (blocked).
+### 3. Hệ thống Đèn Trạng thái, Âm báo & Phím tắt `tmux` (`03:55` – `06:12` | `frame_0009` – `frame_0011`)
+- **Bảng Settings (`frame_0009`, `frame_0010`):**
+  - Mở bằng nút bánh răng góc dưới bên trái hoặc phím tắt `Ctrl+B` rồi nhấn `s`.
+  - Hỗ trợ hàng loạt bộ theme chuẩn terminal: `catppuccin`, `catppuccin-latte`, `tokyo-night`, `dracula`, `nord`, `gruvbox`, `solarized`...
+  - **Ý nghĩa hệ thống chấm màu trạng thái (Status Indicators - `04:30`):**
+    - 🟢 **Xanh lá (Green):** Agent đang rảnh (Idle / Waiting for input).
+    - 🟡 **Vàng (Yellow):** Agent đang chạy tác vụ (Working).
+    - 🔴 **Đỏ (Red):** Agent đang bị chặn / cần quyền phê duyệt hoặc câu trả lời từ người dùng (Blocked / Needs input).
+    - 🔵 **Xanh lơ (Cyan):** Agent vừa hoàn thành xong công việc (Done working).
+  - **Quản lý âm báo (Sound Notifications):** Khi mới chạy 1–2 agents thì âm báo rất tiện, nhưng khi chạy tới **20 agents song song**, tiếng ping liên tục sẽ gây mất tập trung — có thể tắt ngay trong Settings.
+- **Chuột + Phím tắt `tmux` (`frame_0011`):**
+  - Click chuột phải vào bất kỳ đâu trong pane để mở menu `Split right`, `Split down`, `Close pane`.
+  - Nhấn `Ctrl+B` rồi `?` để mở bảng **Keybinds Modal** (`frame_0011`), nhấn `/` để tìm kiếm nhanh (`prefix+v` chia dọc, `prefix+x` đóng pane, `prefix+q` detach, `prefix+shift+r` reload config, `prefix+o` nhảy tới thông báo mới nhất).
 
 ---
 
-## 8. Liên Kết Chéo & Tài Liệu Liên Quan Trong Vault
+### 4. Tự động dựng Đội hình Lead + 2×2 Multi-Agent Grid bằng Ngôn ngữ Tự nhiên (`06:13` – `10:34` | `frame_0012` – `frame_0016`)
+- **Bước 1 — Yêu cầu Lead Agent tự định danh chính mình (`frame_0012`, `frame_0013`):**
+  - Trong project `hallvi`, Lyubomir khởi chạy `Claude Code v2.1.384` (`Opus 5.5`) và gõ prompt:
+    > *"Use herdr skill to rename your current tab, pane label, and Herdr agent name to Opus 5.5 Lead, and also queue /rename Opus 5.5 Lead inside Claude Code once you're idle."*
+  - Ngay lập tức, Claude đọc skill Herdr và thực thi chuỗi lệnh (`frame_0013`):
+    - Đổi tên tab → `Opus 5.5 Lead`
+    - Đổi nhãn pane → `Opus 5.5 Lead`
+    - Đặt Herdr agent name → `opus-5-5-lead`
+    - Tự xếp hàng lệnh `/rename Opus 5.5 Lead` vào phiên Claude Code của chính nó khi vừa chuyển sang trạng thái idle!
+- **Bước 2 — Yêu cầu Lead Agent tự tạo Tab `Workers` chia lưới 2×2 gồm 4 Agents hỗn hợp (`frame_0014` – `frame_0016`):**
+  - Thay vì tự tay chia 4 màn hình, khởi chạy từng CLI và gõ tên từng pane, Lyubomir giao thẳng cho `Opus 5.5 Lead`:
+    > *"Create a new tab called `Workers` in this same workspace with a 2x2 grid of 4 fresh workers for this repo: 2 OpenAI Codex (`GPT-6.1-Sol xhigh` in YOLO mode) and 2 Claude Code (`Opus 5.5 high`)."*
+  - `Opus 5.5 Lead` tự động dựng tab `Workers` (`frame_0015`, `frame_0016`) với 4 ô vuông cân đối, khởi chạy đúng CLI trong từng ô và gán nhãn chuyên biệt:
+    1. **Ô trên-trái (`perf`):** `"Worker GPT - Performance"` — chạy `OpenAI Codex v0.163.0` (`gpt-6.1-sol xhigh`, `--dangerously-bypass-approvals-and-sandbox`).
+    2. **Ô trên-phải (`ui`):** `"Worker Opus - UI Polish"` — chạy `Claude Code v2.1.384` (`Opus 5.5 high`).
+    3. **Ô dưới-trái (`bugs`):** `"Worker GPT - Bug Fixes"` — chạy `OpenAI Codex v0.163.0` (`gpt-6.1-sol xhigh`).
+    4. **Ô dưới-phải (`simplify`):** `"Worker Opus - Architecture"` — chạy `Claude Code v2.1.384` (`Opus 5.5 high`).
 
-### Notes cùng chủ đề Herdr:
-- [Herdr Terminal Multiplexer](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/herdr_terminal_multiplexer.md) — Overview ban đầu về Herdr
-- [Herdr Plugins & Multi-Agent Orchestration](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/herdr_plugins_multi_agent_orchestration.md) — Ecosystem plugins của Herdr
+---
 
-### Notes về Multi-Agent Orchestration:
-- [AI Civilization in Herdr](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/ai_civilization_in_herdr.md) — Use case nâng cao
-- [Orchestras Not Factories](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/orchestras_not_factories_charlie_holtz.md) — Triết lý orchestration đúng
-- [High Throughput Agentic Engineering](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/high_throughput_agentic_engineering_kun_chen.md) — Scale agents
+### 5. Điều phối Single-Branch (`main`) — Tại sao bỏ Git Worktrees khi chạy 10–20 Agents? (`10:35` – `12:14`)
+- **Vấn đề thực tế với Git Worktrees:**
+  - Khi chạy 10–20 agents mà mỗi agent tạo một git worktree riêng, ổ cứng nhanh chóng cạn sạch dung lượng do nhân bản thư mục dependencies/build caches, đồng thời bước rebase/merge 10 nhánh lệch nhau vào cuối ngày cực kỳ dễ vỡ.
+- **Mẫu Prompt Điều phối Single-Branch của Lyubomir (`10:55` – `12:10`):**
+  > *"Tell all workers: you share the same checkout on `main`, coordinate directly through Herdr messaging. Make routine decisions autonomously and only message the lead with completed work, unresolved blockers, or important decisions needing input. Skip chatter and routine progress updates. If you truly need isolation, you have permission to create a git worktree."*
+- **Hai quy tắc vàng trong prompt này:**
+  1. **Cấm "chatter" (nhắn tin báo cáo lặt vặt):** Nếu không cấm, 4 workers sẽ liên tục bắn tin nhắn cập nhật tiến độ vào hộp thư của Lead Agent làm loãng context và tốn token vô ích. Chỉ nhắn khi **hoàn thành xong việc**, **gặp blocker không tự gỡ được**, hoặc **cần quyết định kiến trúc**.
+  2. **Chia sẻ cùng nhánh `main` nhưng giao phạm vi file/mục tiêu rõ ràng:** Lead Agent phân công nhiệm vụ độc lập cho từng worker (`perf`, `ui`, `bugs`, `simplify`) và các worker tự nhắn tin cho nhau qua Herdr nếu cần đụng vào file giao thoa.
 
-### Notes về T3 Code (ADE tương tự):
-- [T3 Code Đã Chinh Phục Jan Marshal](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/t3_code_won_me_over_jan_marshal.md) — So sánh Herdr vs T3 Code
-- [Sử Dụng AI Agents Sai Cách — Theo t3.gg](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/youre_using_ai_agents_wrong_theo_t3.md) — Workflow T3 Code của Theo
+---
 
-### Notes về Skill Files & Agent Coordination:
-- [Anthropic Engineers Stopped Building Agents](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/anthropic_engineers_stopped_building_agents_skills_sharbel.md) — Skills-based approach
-- [Claude Code Mods Ultimate Customization Guide](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/claude_code_mods_ultimate_customization_guide.md) — Customize harness
+### 6. Kết nối Remote Machines qua SSH & Quản lý Pool iOS Simulators (`12:15` – `15:44` | `frame_0017` – `frame_0020`)
+- **Đưa máy trạm từ xa vào chung một giao diện Herdr (`frame_0017` – `frame_0019`):**
+  - Lyubomir có một chiếc **Mac mini** đặt ở phòng khác chuyên dùng để build ứng dụng iOS (`attachd`).
+  - Chỉ cần cấu hình SSH chuẩn (`ssh mac-mini` kết nối được không cần mật khẩu) rồi chạy lệnh:
+    ```bash
+    herdr machine add mac-mini --label "Mac mini"
+    ```
+  - Ngay lập tức, thanh sidebar bên trái của Herdr chia thành mục **`machines`** (`frame_0018`, `frame_0019`):
+    - `Local` (chứa workspace `hallvi` trên MacBook đang ngồi làm việc).
+    - `Mac mini` (chứa workspace `attachd` chạy trực tiếp trên phần cứng của Mac mini từ xa, độ trễ gần như bằng 0).
+  - Hỗ trợ chuyển đổi góc nhìn sidebar giữa **`grouped`** (gom theo máy/workspace) và **`priority`** (đẩy các agents đang 🔴 Blocked hoặc 🔵 Done lên đầu danh sách bất kể đang chạy ở máy nào).
+- **Persistent Background Server & Bài toán Pool 3 iOS Simulators (`14:25` – `15:42` | `frame_0020`):**
+  - **Không bao giờ sợ mất phiên khi tắt Terminal:** Ngay cả khi bấm nút đỏ đóng hẳn cửa sổ terminal ứng dụng (`14:35`), toàn bộ 10+ agents trên cả máy Local và Mac mini vẫn tiếp tục chạy ngầm trong Herdr daemon. Mở lại terminal và gõ `herdr` là toàn bộ giao diện, lịch sử log và trạng thái pane hiện lại nguyên vẹn.
+  - **Chia sẻ tài nguyên phần cứng hữu hạn (Shared iOS Simulator Pool - `frame_0020`):**
+    - Khi chạy 4 workers làm app iOS trên Mac mini, nếu để mặc định, mỗi agent sẽ tự bật thêm các iOS Simulator mới (có lúc lên tới 10 Simulators làm treo cứng máy).
+    - Lyubomir cấp sẵn một **Pool cố định gồm 3 iOS Simulators**, và dặn Lead + Workers trên Mac mini tự điều phối lượt dùng Simulator thông qua tin nhắn Herdr và cơ chế lock (`work/ui.lock`).
 
+---
+
+## 🛠️ Tổng hợp Lệnh CLI & Prompt Mẫu áp dụng ngay
+
+| Tác vụ | Lệnh / Prompt |
+|--------|---------------|
+| **Cài đặt Herdr** | `curl -fsSL https://herdr.dev/install.sh \| sh` |
+| **Cài Herdr Skill cho mọi Agent** | `npx skills add herdrdev/herdr --skill herdr -g` (hoặc xem bằng `herdr --skill`) |
+| **Thêm máy trạm SSH từ xa** | `herdr machine add <ssh-host> --label "<Tên hiển thị>"` |
+| **Prompt tự đặt tên Lead Agent** | `"Use herdr skill to rename your current tab, pane label, and Herdr agent name to Opus 5.5 Lead, and queue /rename Opus 5.5 Lead once idle."` |
+| **Prompt dựng lưới 2×2 Workers** | `"Create a new tab called Workers in this workspace with a 2x2 grid of 4 fresh workers (2 Codex GPT-6.1-Sol xhigh YOLO, 2 Claude Opus 5.5 high) for perf, ui, bugs, and simplify."` |
+| **Prompt điều phối chung nhánh `main`** | `"Tell all workers: you share the same checkout on main, coordinate directly through Herdr messaging. Only message the lead with completed work, unresolved blockers, or key decisions. Skip routine chatter."` |
