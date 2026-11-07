@@ -236,3 +236,4 @@ ASYNCHRONOUS REACT LOOP (Full-Duplex / Background Execution):
 - **Đối chiếu kiến trúc tương đồng từ các Frontier Labs khác:**
   - [Cách Anthropic Xây Dựng Multi-Agent Harnesses: Claude Managed Agents](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/anthropic_managed_agents_evolution_harness_beamnxw.md) — Kiến trúc *"Brain tách khỏi Hands"* của Anthropic có cùng tư tưởng phân tách `Agent Loop` (stateless container), `Session Database` (event log) và `Environment` (sandboxes/endpoints).
   - [Amazon Infinity: AI Agent Runtime Viết Bằng Rust](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/amazon_infinity_ai_agent_runtime_rust_lets_get_rusty.md) — Cách AWS giải bài toán thực thi bất đồng bộ (`RAP Tool Server`) và biến agent đang chờ thành dữ liệu thuần túy (`Scale to Zero`).
+
