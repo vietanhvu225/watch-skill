@@ -1,316 +1,205 @@
-# T3 Code Giải Thích Toàn Diện — Môi Trường AI Agent Tốt Nhất Hiện Tại | いまにゅのAIプログラミング塾
+# T3 Code Giải Thích Toàn Diện — Môi Trường AI Agent Tốt Nhất Cho Mọi Người (Không Cần Terminal) | いまにゅのAIプログラミング塾
 
 - **Video URL:** [https://www.youtube.com/watch?v=DzXAsObvMio](https://www.youtube.com/watch?v=DzXAsObvMio)
 - **Video ID:** `DzXAsObvMio`
+- **Watch Skill ID:** `edb481699633f512`
 - **Category:** #ai-agents
-- **Date Processed:** 2026-11-06
-- **Duration:** 23:34
-- **Speaker:** Imani (いまにゅ) — AI Programming Instructor, Japan
-- **Transcript File:** [t3_code_徹底解説_aimy_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/t3_code_徹底解説_aimy_transcript.txt)
+- **Date Processed:** 2026-11-07
+- **Duration:** 23:34 (61 frames trích xuất & phân tích trực quan)
+- **Speakers:** **Imanyu (いまにゅ)** — Giảng viên AI Programming, Founder của `code4biz` (株式会社ミチガエル) & **J-kun (J君)** — Co-host trở lại ("J君復活祭")
 
 ---
 
 ## 1. Tóm Tắt Điều Hành (Executive Summary)
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│   T3 CODE — GIỚI THIỆU CHO NGƯỜI DÙNG KHÔNG THÍCH TERMINAL      │
-│                                                                  │
-│  Góc nhìn: AI Programming Instructor Nhật Bản (Imani/いまにゅ)   │
-│  Đối tượng: Người dùng thích GUI, không muốn dùng terminal      │
-│                                                                  │
-│  POSITIONING:                                                    │
-│  ┌─────────────────┐    ┌─────────────────┐   ┌──────────────┐  │
-│  │ Terminal tools  │    │   Desktop Apps  │   │   T3 Code    │  │
-│  │ (Superset, Orca)│    │ (Cursor, Claude │   │   (Best of   │  │
-│  │  Powerful but   │ vs │   Code Desktop) │vs │    Both!)    │  │
-│  │ terminal-heavy  │    │  Single model   │   │  GUI + Multi │  │
-│  └─────────────────┘    └─────────────────┘   │   harness!   │  │
-│                                               └──────────────┘  │
-│                                                                  │
-│  KEY VALUE PROP (theo Imani):                                    │
-│  • Interface quen thuộc như Codex desktop app                    │
-│  • Dùng được Claude, Codex, Cursor trong 1 nơi                   │
-│  • Cross-platform: Mac, Windows, Linux, iPhone, Android          │
-│  • Setup siêu dễ: link subscription hiện có, done               │
-│  • T3 Connect: access từ xa qua mobile/remote machine            │
-└──────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────┐
+│      T3 CODE — MA TRẬN ĐỊNH VỊ 2×2 CỦA IMANYU (FRAME 0008)                   │
+│                                                                              │
+│                       いろんなAIを使える (Dùng được nhiều AI)                 │
+│                                      ▲                                       │
+│                   ┌──────────────────┼──────────────────┐                    │
+│                   │                  │                  │                    │
+│                   │  ★ T3 Code       │  Superset · Orca │                    │
+│                   │  (GUI + Đa AI)   │  (>_ Terminal)   │                    │
+│                   │                  │                  │                    │
+│  アプリ (GUI App) ◄──────────────────┼──────────────────► ターミナル (むずい) │
+│                   │                  │                    (Terminal: Khó!)   │
+│                   │  Claude Code App │                  │                    │
+│                   │  Codex App       │                  │                    │
+│                   │                  │                  │                    │
+│                   └──────────────────┼──────────────────┘                    │
+│                                      ▼                                       │
+│                         使えるAIは1つ (Chỉ dùng 1 AI)                         │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Video từ kênh giáo dục AI programming của Nhật Bản giới thiệu T3 Code như một sự thay thế hoàn hảo cho terminal-heavy tools như Superset/Orca. Imani (AI instructor) và J-kun (người co-host "không thích terminal") demo trực tiếp: tạo animation 10 giây bằng T3 Code với Claude Opus 5.5. Video nhắm vào người học AI muốn chuyển lên tool chuyên nghiệp hơn mà không cần qua terminal.
+Video từ kênh giáo dục AI Programming hàng đầu Nhật Bản **いまにゅのAIプログラミング塾** giải thích toàn diện về **T3 Code (`t3.codes`)** — *"The open-source control plane for coding agents"* (24k+ GitHub stars, *"Tolerated by over 400,000 devs"*). Cùng với sự trở lại của trợ lý **J-kun** (đại diện cho nhóm người dùng non-engineer sợ màn hình đen Terminal), Imanyu chỉ ra vì sao các công cụ multi-harness như **Superset** hay **Orca** quá nặng về Terminal đối với người mới, trong khi **Claude Code Desktop** và **Codex Desktop** lại bị khóa chặt vào 1 hệ sinh thái mô hình duy nhất. **T3 Code** lấp đầy khoảng trống góc phần tư **App (GUI) + Đa mô hình**, hỗ trợ đa nền tảng (macOS, Windows 10/11, Linux, iPhone/iPad, Android), liên kết trực tiếp gói thuê bao sẵn có trong 10 giây, điều khiển đa thiết bị (MacBook Pro + Mac mini ở nhà), và đi kèm bộ công cụ Right Panel (Browser, Terminal, Files, Diff, PR, Sub-agents, Device).
 
 ---
 
-## 2. Bối Cảnh & Góc Nhìn Của Imani
+## 2. Định Vị T3 Code Trên Bản Đồ AI Agent Harnesses (`00:00 – 04:05`)
 
-### 2.1 Vấn Đề Của Người Dùng Nhật Bản (Và Người Mới Nói Chung)
+### 2.1 Bối Cảnh & Ma Trận 2×2 (`frame_0008`)
 
-Imani dạy AI programming tại trường của mình. Nhiều học sinh gặp vấn đề:
-- Terminal tools như Superset, Orca quá khó dùng
-- Nhiều người quay lại với Cursor/Claude Code desktop app (single model)
-- Muốn dùng nhiều models nhưng không muốn dùng terminal
+*(Lưu ý kỹ thuật ở `00:17`, `frame_0004`: Micro của Imanyu gặp sự cố nhiễu nhẹ trong buổi ghi hình mừng J-kun trở lại nên ekip đã bổ sung phụ đề telop tiếng Nhật chi tiết xuyên suốt video).*
 
-### 2.2 Giải Pháp: T3 Code
+Imanyu chia sẻ thực tế từ trường đào tạo `code4biz` (nơi dạy AI cho dân văn phòng & non-engineers):
+- Trước đây, anh từng giới thiệu **Superset** và **Orca** — các công cụ rất mạnh cho phép chạy song song nhiều AI agents nhưng lại đặt trọng tâm vào **Terminal (`>_`)**. Nhiều học viên (và cả J-kun) thấy màn hình dòng lệnh quá đáng sợ (`むずい` — khó nhằn), dẫn đến việc bỏ cuộc và quay về dùng **Claude Code Desktop App** hoặc **Codex Desktop App**.
+- Tuy nhiên, dùng app chính hãng của từng bên lại gặp hạn chế lớn: chỉ gọi được mô hình của đúng hãng đó (Claude Code chỉ chạy Claude; Codex chỉ chạy GPT).
+- **T3 Code (`t3.codes`, `frame_0013`–`frame_0014`, `frame_0059`)** giải quyết triệt để bài toán này:
+  - **Slogan chính thức:** *"The open-source control plane for coding agents. Orchestrate Claude Code, Codex, Antigravity, OpenCode, Cursor, and Grok from one surface. Bring your own subscription. Fork the whole thing."*
+  - Giao diện mang cảm giác gần như **90% giống Codex Desktop App / Claude Code Desktop App**, nhưng bên dưới có thể điều phối mọi harness lớn.
 
-```
-"For non-engineers, or for people who are a bit resistant to 
- using the terminal, it's perfect for those who don't want 
- to switch between too many different apps if they can help it."
-```
+### 2.2 Hỗ Trợ Đa Nền Tảng — Phá Bỏ Tư Duy "Mac-First" (`03:38 – 03:58`, `frame_0013`, `frame_0050`)
 
-T3 Code lấp đúng khoảng trống này: GUI quen thuộc như Codex Desktop, nhưng hỗ trợ nhiều providers.
-
----
-
-## 3. T3 Code Là Gì — Từ Góc Nhìn Người Dùng
-
-### 3.1 Core Value Proposition
-
-```
-Với Claude Code: chỉ dùng Claude
-Với Codex:       chỉ dùng GPT
-Với Cursor:      chỉ dùng Cursor models
-
-Với T3 Code: dùng tất cả → Claude, Codex, Cursor, Grok, Anthropic
-             Trong 1 interface gần giống Codex desktop
-```
-
-### 3.2 Platform Support (Quan Trọng Với Người Dùng Nhật)
-
-```
-✅ macOS
-✅ Windows    ← Rất quan trọng! (nhiều học sinh Nhật dùng Windows)
-✅ Linux
-✅ iPhone
-✅ Android
-
-Lý do Windows quan trọng:
-- Nhật Bản có truyền thống dùng Windows nhiều hơn Mac
-- Trước đây nhiều AI tools chỉ support Mac
-- T3 Code giải quyết vấn đề này
-```
-
-### 3.3 Interface — Familiar Và Dễ Dùng
-
-```
-Layout T3 Code:
-├── Left sidebar: danh sách threads (projects/conversations)
-├── Center: conversation với agent (chat interface)
-└── Right panel:
-    ├── Browser (xem web app/kết quả)
-    ├── Terminal (nếu cần)
-    ├── File viewer
-    └── Sub-agents view (khi có sub-agents chạy)
-```
-
-Imani nhận xét: "Sub-agents view trông gần giống hệt Codex screen."
+Trên trang chủ `t3.codes`, T3 Code cung cấp bộ cài đặt đầy đủ cho:
+- **macOS:** Apple Silicon (`arm64`) & Intel (`x64` build).
+- **Windows:** `Windows 10, 11 (.exe)` — Imanyu nhấn mạnh đây là điểm cộng cực lớn tại Nhật Bản, nơi đa số học viên và doanh nghiệp dùng Windows và thường bị bỏ rơi bởi các công cụ AI "Mac-first".
+- **Linux:** `Debian, Ubuntu (.deb)` và `x86_64 (AppImage)` (cùng bản `arm64`).
+- **Mobile (`frame_0050`):** Có ứng dụng trên **iPhone & iPad (App Store)** và **Android (Google Play)** để kết nối từ xa vào máy tính ở nhà.
+- **Bản Nightly vs Stable:** Imanyu khuyên người dùng có thể cài song song hoặc ưu tiên bản **T3 Code (Alpha / Nightly)** vì tính năng mới được cập nhật liên tục mỗi ngày.
 
 ---
 
-## 4. Demo Thực Tế: Animation 10 Giây Với T3 Code
+## 3. Giao Diện, Themes & Cấu Hình Providers/Environments (`04:05 – 07:25`)
 
-### 4.1 Setup Project
+### 3.1 Phím Tắt Model Favorites (`frame_0000`, `frame_0016`–`frame_0017`)
 
-```
-1. Mở T3 Code → "Add Project"
-2. Chọn machine (MacBook Pro hoặc Mac Mini)
-3. "Local Folder" → chọn thư mục dự án
-4. Command+Enter → thread được tạo
-5. Chọn model → Opus 5.5 (vì task creative)
-6. Bật Fast Mode (medium setting)
-7. Auto mode (không cần approve từng bước)
-```
+Trong menu chọn model của T3 Code, người dùng có thể gắn sao (**Favorites**) để chuyển đổi tức thì bằng phím tắt `⌘1`, `⌘2`, `⌘3`:
+- Bộ Favorites thực tế của Imanyu (`frame_0017`):
+  - `⌘1` — **GPT-6.1-Sol** *(Codex)*
+  - `⌘2` — **Claude Opus 5.5** `[NEW]` *(Claude)*
+  - `⌘3` — **Claude Sonnet 5.5** `[NEW]` *(Claude)*
+  - Ngoài ra trong danh sách còn có **GPT-6.1 Luna**, v.v.
 
-### 4.2 Prompt Demo
+### 3.2 Cá Nhân Hóa Giao Diện & Themes (`frame_0018`–`frame_0019`)
 
-```
-Task: Tạo animation 10 giây với nhân vật anh hùng trở lại
-      Nhân vật: màu đỏ, đeo găng boxing, đấm vào không khí
+Trong `Settings -> Appearance`:
+- **Color scheme:** `System` / `Light` / `Dark`.
+- **Light theme / Dark theme:**
+  - `T3 Code` *(Default — Clean neutral palette built for focus)*
+  - `T3 Chat` *(T3 Chat palette — tông màu hồng đặc trưng mà J-kun hài hước gọi là "エロいピンク" / hồng quyến rũ, được Imanyu chọn dùng xuyên suốt buổi demo)*
+  - `Grove` *(Warm earthy greens with natural contrast)*
+  - `Ocean` *(Cool coastal blues with crisp depth)*
+  - `Ember` *(Warm amber tones with a soft glow)*
+  - `Iris` *(Soft violet accents with balanced contrast)*
+  - Nút **`+ Create theme`** / **`+ Add theme`** cho phép tự tạo theme riêng.
+- **Contrast slider:** Điều chỉnh độ tương phản (`100%` mặc định) và **Diff colors** (`Red & green`).
 
-Model chọn: Claude Opus 5.5 (lý do: creative tasks)
-Mode: Fast Mode medium
-Permission: Auto mode
-```
+### 3.3 Liên Kết Subscriptions Trong 10 Giây (`05:20 – 06:30`, `frame_0001`)
 
-**Kết quả lần 1**: Python animation (Pyon/Pygame) — tạo frame by frame, chạy được nhưng chất lượng "mediocre"
+Trong `Settings -> Providers`, T3 Code tự động phát hiện và liên kết các gói thuê bao CLI/Desktop sẵn có trên máy mà **không tốn thêm phí API riêng**:
+- **Codex:** `v0.160.0` — `Authenticated · ChatGPT Pro 20x Subscription`
+- **Claude:** `v2.1.209` — `Authenticated`
+- **Cursor:** `v2026.09.10-f2a0623` — `Authenticated · Cursor Ultra Subscription`
+- **Grok:** Hỗ trợ bật/tắt trực tiếp bằng nút gạt.
 
-**Kết quả lần 2**: Remotion version — chất lượng cao hơn nhiều, có sound effects, fanfare
+### 3.4 Quản Lý Đa Môi Trường — `Connections / Environments` (`06:30 – 07:25`, `frame_0020`)
 
-### 4.3 Nhận Xét Của Imani
-
-```
-Deterministic vs Probabilistic video creation:
-
-Generative AI (Probabilistic):
-- Output thay đổi mỗi lần
-- Creative, flexible
-- Nhưng nuance và "taste" khác nhau mỗi lần
-
-Programmatic (Deterministic):
-- Code → output giống nhau mỗi lần
-- Chính xác, lặp lại được
-- Phù hợp cho branded content, presentations
-```
-
-> "Creating videos using this kind of program will definitely become the mainstream."
+Tại mục `Settings -> Connections`:
+- Imanyu kết nối đồng thời 2 máy:
+  1. **`MacBook Pro`** *(This device — máy đang dùng để quay video)*
+  2. **`ImanyuのMac mini`** *(Máy đặt cố định ở nhà)*
+- Khi chuyển tab môi trường trên đầu trang `Providers` (`MacBook Pro` ↔ `ImanyuのMac mini`), mỗi máy quản lý trạng thái đăng nhập Provider độc lập. Người dùng có thể giao việc nặng cho chiếc Mac mini ở nhà chạy nền và theo dõi từ MacBook Pro hoặc điện thoại iPhone khi ra ngoài.
 
 ---
 
-## 5. Features Được Highlight Trong Video
+## 4. Khởi Tạo Dự Án, Mức Effort & Thực Chiến Tạo Video Bằng Code (`07:25 – 16:08`)
 
-### 5.1 Provider Setup — Đơn Giản Nhất
+### 4.1 Thêm Project & Chọn Nguồn (`07:25 – 08:30`, `frame_0021`–`frame_0023`)
 
-```
-Settings → Providers:
-- Claude (linked)
-- Codex (linked)  
-- Cursor (linked)
-- Grok (linked)
+Khi bấm **`Add project`**:
+1. **Chọn Environment:** `MacBook Pro (This device)` hoặc `ImanyuのMac mini`.
+2. **Chọn Sources (`frame_0022`):**
+   - `New project`
+   - `Local folder` (Imanyu chọn thư mục `/Users/imanyu/projects/YouTube/20261005/T3 Code 実演用`)
+   - `Git URL`
+   - `GitHub repository`
+   - `Azure DevOps repository`
+   - `Bitbucket repository`
+3. Ngoài ra còn có chế độ **`Without project`** (`frame_0024`) để mở nhanh một luồng chat/tác vụ độc lập mà không cần gắn vào thư mục dự án cố định.
 
-Với mỗi provider:
-1. Toggle ON
-2. Authenticate (auto-detect subscription)
-3. Done — 10 giây setup
-```
+### 4.2 Tinh Chỉnh Effort, Context Window & Permission (`08:30 – 09:50`, `frame_0025`)
 
-### 5.2 T3 Connect — Multi-Machine
+Ở thanh công cụ bên dưới khung chat, khi chọn **Claude Opus 5.5**, T3 Code hiển thị bảng điều khiển chi tiết (`frame_0025`):
+- **Effort Levels:**
+  - `Medium`
+  - `High`
+  - `Extra High`
+  - `Max`
+  - `Ultracode` *(xhigh effort plus multi-agent workflow orchestration)*
+  - `Ultrathink`
+- **Context Window:** `200k` hoặc `1M Default`.
+- **Fast Mode:** Bật/tắt (`On` / `Off`) để tăng tốc độ phản hồi.
+- **Permission Mode:** `Supervised` / `Auto` / `Full access`.
 
-```
-Imani setup:
-- MacBook Pro (đang dùng để record)
-- Mac Mini (ở nhà)
+### 4.3 Live Demo 1: Tạo Video Animation 10 Giây Mừng J-kun Trở Lại (`09:55 – 14:55`)
 
-Hai machines linked qua T3 Connect:
-→ Có thể run agents trên Mac Mini
-→ Monitor từ MacBook Pro
-→ Hoặc ngược lại
-→ Access từ iPhone khi ra ngoài
-```
+- **Prompt (nhập bằng giọng nói qua Aqua Voice):** Tạo một video animation khoảng 10 giây theo chủ đề *"J-kun đã trở lại như một người hùng"* (`J君帰還のヒーローアニメーション`) — nhân vật anh hùng màu đỏ, đeo găng tay đấm bốc (boxing gloves), giơ nắm đấm lên trời.
+- **Xử lý lỗi OAuth thực tế (`frame_0027`):** Ngay lần chạy đầu, T3 Code báo đỏ: `Failed to authenticate: OAuth session expired and could not be refreshed — Claude could not authenticate. For subscription login, run "claude auth login"`. Imanyu chỉ cần mở terminal gõ `claude auth login` là phiên chạy tiếp tục trơn tru (`frame_0028`).
+- **Chạy đa luồng song song (`11:08 – 11:45`):** Trong lúc luồng 1 đang chạy Claude Opus 5.5 (`Working...`), Imanyu mở ngay một thread mới bên cạnh và chọn **GPT-6.1** để làm việc khác mà không hề bị xung đột.
+- **Kết quả Lần 1 — Python (`PIL + numpy + ffmpeg`, `frame_0037`–`frame_0039`):**
+  - Sau `5m 29s`, Claude Opus 5.5 tự viết script `j_returns.py` dùng `PIL + numpy` vẽ từng frame (`1920x1080 / 30fps / 10.0秒`), tự tạo hiệu ứng âm thanh fanfare bằng bộ lọc thông thấp (`one-pole lowpass filter` trên `numpy` vì máy chưa cài `scipy`), tự kiểm tra preview từng mốc thời gian (`0~2秒: 夜の街に星が光り、「あの男が、ついに……」の字幕が出る`), dịch chuyển vị trí đám mây khỏi đè lên phụ đề rồi xuất ra file `J君が帰ってきた.mp4`.
+  - Khi mở xem trực tiếp trong Right Panel của T3 Code (`frame_0038`), J-kun bật cười thích thú vì có cả nhạc fanfare và hình nhân vật chữ `J` đeo găng đỏ, nhưng Imanyu đánh giá bản vẽ bằng Python còn hơi sơ sài ("クソしょぼい").
 
-### 5.3 Right Panel Features
+### 4.4 Live Demo 2: Nâng Cấp Lên Remotion & Triết Lý Deterministic vs Probabilistic (`14:45 – 23:10`)
 
-```
-Right panel toolbar:
-├── Browser         → xem kết quả web app ngay trong T3 Code
-├── Terminal        → khi cần chạy lệnh thủ công
-├── Files           → xem/edit files được tạo ra
-└── Sub-agents      → khi agent spawn sub-agents
-                       (trông giống Codex sub-agent view)
-```
-
-### 5.4 Skills (Slash Commands)
-
-```
-/ → gọi skill
-@ → mention file/context
-
-Lưu ý từ Imani:
-"The @ sign can be a little unresponsive at times"
-(Bug nhỏ trên nightly)
-```
-
-### 5.5 Settings Quan Trọng
-
-```
-Permission settings:
-├── Auto mode   → agent tự quyết định, hỏi khi cần
-├── Full access → agent làm mọi thứ không hỏi
-└── Supervise   → hỏi mỗi bước (chậm nhưng an toàn)
-
-Default model setting:
-├── Chọn model mặc định cho new threads
-└── Imani dùng GPT-6.1 Sol nhiều → đặt mặc định
-```
+- Imanyu yêu cầu agent làm lại bằng **JavaScript / Remotion** (hoặc Hyperframe) để đạt chất lượng đồ họa cao hơn (`frame_0042`).
+- **Góc nhìn chiến lược của Imanyu — Tạo video bằng Code (`15:00 – 15:52`, `frame_0040`–`frame_0041`):**
+  - **Tiếp cận Xác suất (`確率論的なアプローチ` — Generative Video AI như Sora/Runway):** Linh hoạt, tự do nhưng mỗi lần chạy lại ra một sắc thái/gu thẩm mỹ khác nhau, rất khó chỉnh sửa chính xác một chi tiết nhỏ.
+  - **Tiếp cận Tất định (`決定論的なアプローチ` — Programmatic Video bằng Code như Remotion/Python):** Viết code để dựng video giúp đảm bảo tính nhất quán tuyệt đối (chạy 100 lần ra kết quả giống hệt 100 lần), dễ dàng chỉnh sửa đúng 1 dòng chữ hay màu sắc và tái sử dụng làm template hàng loạt. Imanyu khẳng định dựng và biên tập video bằng chương trình sẽ trở thành xu hướng chủ đạo.
+- **Kết quả Lần 2 — Remotion (`frame_0047`–`frame_0049`, `frame_0051`–`frame_0058`):**
+  - Agent tự động tạo thư mục `j-returns-remotion/`, dựng khung xương SVG (`SVGの骨格リグ`), kiểm tra ảnh tĩnh (`stills/sheet1.png`, `sheet2.png`, `sheet3.png`, `jzoom.png`), phát hiện chữ `"J"` ở tiêu đề hơi bị lẹm phần đầu nên tự căn chỉnh lại rồi mới render file `J君が帰ってきた_Remotion.mp4`.
+  - Bản Remotion có hiệu ứng tia chớp đánh xuống bầu trời đêm thành phố (`frame_0056`), hiệu ứng rung chấn camera, tia sáng mặt trời xoay tròn rực rỡ và nhân vật cử động mượt mà hơn hẳn (`frame_0057`–`frame_0058`).
 
 ---
 
-## 6. Khuyến Nghị Của Imani Cho Người Mới
+## 5. Khám Phá Right Panel, Skills & Cài Đặt Mặc Định (`16:08 – 19:50`)
 
-### 6.1 Cho Ai Nên Dùng T3 Code?
+### 5.1 Menu Công Cụ Right Panel (`16:12 – 17:35`, `frame_0043`–`frame_0044`)
 
-```
-✅ Phù hợp với T3 Code:
-- Người đang dùng Claude Code Desktop / Codex / Cursor
-- Muốn dùng nhiều models không muốn switch apps
-- Không thích terminal (có GUI tương tự desktop apps)
-- Muốn access từ Windows (và Mac, Linux)
-- Muốn remote access qua mobile
+Khi bấm dấu `+` ở thanh điều hướng bên phải (`frame_0044`), T3 Code cung cấp 8 chế độ xem chuyên biệt kèm phím tắt:
+1. **`Browser` (`B`)** — Trình duyệt tích hợp ngay trong app để xem live preview hoặc duyệt web; hỗ trợ cả tính năng **Annotate** (khoanh vùng/vẽ trực tiếp lên giao diện để chỉ định chỗ cần sửa giống Codex Desktop App, `17:15`).
+2. **`Terminal` (`T`)** — Mở cửa sổ dòng lệnh khi cần chạy lệnh thủ công.
+3. **`Files` (`F`)** — Cây thư mục dự án (`Search files`), xem code trực tiếp và phát file media (`.mp4`, `.png`) ngay trong T3 Code.
+4. **`Diff` (`D`)** — Xem chi tiết các dòng code thay đổi.
+5. **`Pull request` (`P`)** & **`Linked pull requests` (`L`)** — Quản lý PR trực tiếp cho kỹ sư phần mềm.
+6. **`Agents` (`A`)** — Quan sát các **Sub-agents** (`Spawn sub-agents`) đang chạy song song với giao diện trực quan tương tự Codex Desktop (`16:28 – 16:45`).
+7. **`Device` (`M`)** — Quản lý thiết bị/môi trường kết nối.
 
-❌ Có thể vẫn thích tool khác:
-- Developer hardcore muốn full control → Orca/Superset
-- Muốn terminal-first workflow → Herdr
-- Chỉ cần 1 model → Cursor/Claude Code Desktop
-```
+### 5.2 Gọi Skills (`/`) & Mentions (`@`) — Cùng Ứng Dụng Thực Tế Tạo Tài Liệu 50 Trang (`12:30 – 13:40`, `17:40 – 18:10`)
 
-### 6.2 Getting Started Tips
+- Trong ô nhập lệnh (`Ask anything, @tag files/folders, $use skills, or / for commands`):
+  - Dùng `/` hoặc `$` để gọi các **Skills** đã cài trong Claude Code và Codex.
+  - Dùng `@` để đính kèm file/thư mục (Imanyu lưu ý nhỏ rằng trên bản Nightly hiện tại phím `@` đôi lúc phản hồi hơi trễ một nhịp, chỉ cần bấm chọn lại là được).
+- **Minh họa sức mạnh của Skill tạo tài liệu (`12:30 – 13:38`, `frame_0030`–`frame_0036`):**
+  - Trong lúc chờ agent render video, Imanyu mở bộ tài liệu giới thiệu trường học **code4biz スクールご案内** dài **50 trang** (`TOP10%のAI人材へ — 「AIといえば、あの人」になる`, `frame_0030`–`frame_0036`) được tạo hoàn toàn bằng **Skill tạo tài liệu (`資料作成スキル`)** chạy trên Claude Code.
 
-```
-1. Download nightly version (có nhiều features hơn stable)
-2. Link subscription hiện có (Claude, Codex, Cursor)
-3. Tạo project đầu tiên → chọn local folder
-4. Chọn Opus 5.5 cho creative tasks
-5. Thử Fast Mode để xem kết quả nhanh hơn
-6. Khám phá right panel để xem files/browser
-```
+### 5.3 Thiết Lập Mặc Định & Lưu Ý Ngôn Ngữ (`18:35 – 19:45`, `frame_0046`–`frame_0047`)
 
----
-
-## 7. So Sánh Tools Từ Góc Nhìn Giáo Dục
-
-| Tool | Interface | Models | Terminal? | Mobile? | Cho ai? |
-|------|-----------|--------|-----------|---------|---------|
-| Cursor | GUI Desktop | Cursor + others | Optional | ❌ | Developer quen |
-| Claude Code Desktop | GUI Desktop | Claude only | Optional | ❌ | Claude users |
-| Codex (OpenAI) | GUI Desktop | GPT only | Optional | ❌ | GPT users |
-| Superset/Orca | Terminal | Multiple | ✅ Heavy | ❌ | Power users |
-| Herdr | Terminal | Multiple | ✅ Heavy | ❌ | Terminal fans |
-| **T3 Code** | GUI Desktop | Multiple | Optional | ✅ | **Tất cả mọi người** |
+- Người dùng có thể cấu hình mặc định cho mỗi khi mở thread mới:
+  - **Default Permission:** Chọn sẵn `Auto mode` hoặc `Full access` để không phải bấm chỉnh lại mỗi lần.
+  - **Default Model:** Imanyu đặt mặc định cho New Thread là **`GPT-6.1-Sol`** (hoặc `GPT-6 Astra`).
+- **Điểm hạn chế duy nhất hiện tại (`19:30 – 19:44`):** Giao diện T3 Code hiện chưa có tùy chọn ngôn ngữ tiếng Nhật (chỉ có tiếng Anh), nhưng bố cục rất trực quan nên chỉ cần nắm khu vực chỉnh Model/Effort ở dưới khung chat và Right Panel bên phải là có thể sử dụng thành thạo.
 
 ---
 
-## 8. Điểm Chú Ý Từ Video Nhật Bản
+## 6. Bảng Đối Chiếu Các Công Cụ AI Coding Theo Góc Nhìn Đào Tạo
 
-### 8.1 UI Language
-
-T3 Code hiện chỉ có tiếng Anh — một điểm hạn chế với người dùng Nhật:
-> "Since you can't set the language to Japanese, I think some people might find the English interface a bit intimidating."
-
-Imani vẫn recommend vì interface đủ intuitive cho người dùng quen với coding tools.
-
-### 8.2 "Mac First" Mentality Đang Thay Đổi
-
-```
-Trước đây: "Muốn dùng AI coding → phải có Mac"
-Hiện tại: T3 Code support Windows → "Mac first" mentality giảm
-
-Imani: "Until now, it was taken for granted that you'd start 
-        with a Mac if you used AI, but now that development 
-        has become so much more flexible, Windows is catching up."
-```
-
-### 8.3 T3 Code Như "Upgrade Path" Cho Học Sinh
-
-Imani plan dạy theo thứ tự:
-1. Bắt đầu: Claude Code Desktop / Codex (single model)
-2. Upgrade: T3 Code (multi-model, multi-machine)
-3. Advanced: Superset/Orca/Herdr (nếu cần terminal power)
+| Tiêu chí | Claude Code / Codex Desktop | Superset / Orca | **T3 Code (`t3.codes`)** |
+| :--- | :--- | :--- | :--- |
+| **Giao diện chính** | GUI Desktop thân thiện | Nặng về Terminal (`>_`) | **GUI Desktop hiện đại (6 themes + Custom)** |
+| **Số lượng AI / Harnesses** | Khóa vào 1 hãng duy nhất | Đa mô hình / Đa agent | **Đa nền tảng (Claude, Codex, Cursor, Grok, Antigravity, OpenCode)** |
+| **Hệ điều hành hỗ trợ** | Chủ yếu ưu tiên macOS trước | Desktop (Mac/Linux/Win) | **macOS, Windows 10/11, Linux + iOS & Android** |
+| **Kết nối đa máy từ xa** | Hạn chế | Tùy cấu hình SSH | **Tích hợp sẵn Connections (MacBook ↔ Mac mini ↔ Mobile)** |
+| **Độ thân thiện với Non-Engineer** | ⭐⭐⭐⭐⭐ | ⭐⭐ (Dễ nản vì CLI) | **⭐⭐⭐⭐⭐ (Quen thuộc ngay lập tức)** |
 
 ---
 
-## 9. Liên Kết Chéo & Tài Liệu Liên Quan Trong Vault
+## 7. Liên Kết Chéo Trong Video Learning Vault
 
-### Notes về T3 Code:
-- [T3 Code Đã Chinh Phục Jan Marshal](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/t3_code_won_me_over_jan_marshal.md) — Review sâu hơn, từ developer góc nhìn
-- [Sử Dụng AI Agents Sai Cách — Theo t3.gg](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/youre_using_ai_agents_wrong_theo_t3.md) — Workflow của tác giả T3 Code
-
-### Notes về Tools So Sánh:
-- [Herdr: Beginner To Advanced](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/herdr_beginner_to_advanced_lustoykov.md) — Alternative terminal-based tool
-- [Agent Harness — Claude Code & Codex](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/agent_harness_claude_code_codex_200lab.md) — So sánh harnesses
-
-### Notes về Multi-Agent Orchestration:
-- [High Throughput Agentic Engineering](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/high_throughput_agentic_engineering_kun_chen.md) — Scale agents
-- [How Senior Engineers Build with AI](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/how_senior_engineers_build_with_ai_intercom_clone.md) — Senior engineer patterns
-
-### Notes về Remote & Multi-Device:
-- [Vercel CEO Agentic Workflow](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/vercel_ceo_agentic_engineering_workflow_guillermo_rauch.md) — Remote workflow của CEO
-
+- [T3 Code Đã Chinh Phục Jan Marshal (`SAFrydhpgJo`)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/t3_code_won_me_over_jan_marshal.md) — Phân tích chuyên sâu T3 Code từ góc nhìn kỹ sư phần mềm.
+- [Bạn Đang Dùng AI Agents Sai Cách — Theo t3.gg (`q1D90-uGvBg`)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/youre_using_ai_agents_wrong_theo_t3.md) — Triết lý thiết kế của tác giả T3 Code.
+- [Setup AI Coding Ship 30 PRs/Ngày (`54D1hFfaju8`)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/my_new_ai_coding_setup_ship_30_prs_a_day.md) — Quy trình phối hợp Claude Opus 4.6 và Codex 5.4 trong thực tế.
+- [Herdr: Beginner To Advanced (`WTmCkYMelIU`)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/herdr_beginner_to_advanced_lustoykov.md) — Công cụ điều phối đa agent hướng terminal.
