@@ -1,271 +1,169 @@
-# 🚦 Fixing the PR Bottleneck: Kiểm soát "Khẩu đại bác Slop" (Slop Cannon) trong Kỷ nguyên AI Software Factory
+# 🚦 Fixing the PR Bottleneck: Kiểm Soát "Khẩu Đại Bác Slop" (Slop Cannon) Với 3 Tầng Phanh, Deep Modules & Compounding Retro — Matt Pocock (AIHero)
 
-> **Nguồn tư liệu:** [Fixing the PR Bottleneck — Matt Pocock, AIHero @ AI Engineer Summit](https://www.youtube.com/watch?v=LlgiOCmFG_w)  
-> **Diễn giả:** Matt Pocock (Founder AIHero.dev, Tác giả Total TypeScript, Chuyên gia hệ thống Agentic Workflows)  
-> **Thời lượng:** 22:34 | **Transcript gốc:** [fixing_the_pr_bottleneck_matt_pocock_aihero_transcript.txt](file:///f:/source/watch-skill/video-learning-vault/ai-agents/fixing_the_pr_bottleneck_matt_pocock_aihero_transcript.txt)  
-> **Chủ đề chính:** AI Agent Architecture, Code Review Scaling, Deep Modules, 3-Brake Defense, Red-Green-Refactor with Sub-agents, Compounding Retrospectives.
+- **Source URL:** https://www.youtube.com/watch?v=LlgiOCmFG_w
+- **Channel:** AI Engineer (Diễn giả: Matt Pocock — AIHero.dev, tại AI Engineer Paris organized by Mistral)
+- **Duration:** 22:34
+- **Watch Skill ID:** `0d17794d0232f55e`
+- **Date Processed:** 2026-11-07
+- **Tags:** #matt-pocock #aihero #pr-bottleneck #code-review #deep-modules #software-factory #tautological-tests #subagents #retro-skill
 
 ---
 
-## Executive Summary: Nút thắt cổ chai mới của Kỹ nghệ Phần mềm
+## Executive Summary: Nút Thắt Cổ Chai Mới Của Kỹ Nghệ Phần Mềm
 
-Trong vòng 2 năm qua, ngành công nghiệp phần mềm tập trung toàn lực vào việc tăng tốc độ tạo mã (*code generation speed*). Với Claude 3.7 Sonnet, Codex, và các framework agent tự hành (SWE-bench agents), tốc độ viết code đã tăng từ 10x đến 100x. Tuy nhiên, một hệ quả nhức nhối đã xuất hiện: **Nút thắt cổ chai đã dịch chuyển hoàn toàn từ việc "Viết mã" sang "Đánh giá Pull Request (PR Review)"**.
+Tại hội nghị **AI Engineer Paris** (do Mistral tổ chức — `frame_0001`, `frame_0005`), **Matt Pocock** (`aihero.dev/skills`, phát hành phiên bản `v1.3`) giải phẫu nghịch lý lớn nhất của kỷ nguyên **Software Factory**: khi các tác nhân AI và trình phân loại tự động (như **Jev** phân loại support tickets hay **PlanetScale** gửi báo cáo slow queries) tự động kích hoạt luồng sinh code không cần con người bấm nút (`Accelerators`), nếu thiếu hệ thống phanh hãm (`Brakes`), toàn bộ nhà máy phần mềm sẽ biến thành một **"Khẩu đại bác bắn Slop" (`Slop Cannon`)**.
 
 ```
 +-----------------------------------------------------------------------------------------+
 |                              THE SLOP CANNON DILEMMA                                    |
 |                                                                                         |
-|  [ AI Code Generator ]  ==== (100x Code/PRs) ====> [  PR QUEUE  ] ====> [ Human Devs ] |
-|   (Rẻ, Nhanh, Không mệt)                            (Tắc nghẽn)          (Sức cùng lực kiệt) |
+|  [ Accelerators ]  ==== (Bug reports, Support tickets, Slow queries) ====>              |
+|  [ AI Agents ]     ==== (Permanent Acceleration) ====> [ SLOP CANNON ] ===> [ PR Queue ]|
 |                                                                                         |
-|  -> HỆ QUẢ 1: Developer bị kiệt sức vì đọc hàng ngàn dòng diff vụn vặt, nông cạn.       |
-|  -> HỆ QUẢ 2: Team bấm "Approve" đại để kịp tiến độ -> Mã rác tràn vào production.     |
+|  -> HỆ QUẢ: Codebase là môi trường sống của Agent ("Code is the environment your agent  |
+|     operates in"). Code tồi sinh ra nhiều code tồi hơn (Software Entropy Nightmare).   |
+|  -> GIẢI PHÁP: Hệ thống 3 Tầng Phanh (Automated Checks -> Automated Review -> Human)    |
+|     với nguyên lý cốt lõi: "Stop The Slop: Higher code quality = faster human review". |
 +-----------------------------------------------------------------------------------------+
 ```
 
-Matt Pocock định nghĩa AI Code Generator hiện nay như một **"Khẩu đại bác bắn Slop" (Slop Cannon)**. Nếu không trang bị hệ thống phanh hãm nhiều tầng (*layered brakes*), đội ngũ kỹ thuật sẽ bị chôn vùi dưới đống PR rác hoặc tự hủy hoại chất lượng hệ thống.
-
-Bài thuyết trình đưa ra một kiến trúc toàn diện gồm **3 Tầng Phanh (3 Brakes)**, tư duy thiết kế phần mềm **Deep Modules**, mô hình **Tách biệt Implementer và Reviewer thành 2 Context Window độc lập**, và cơ chế **Compounding Retrospectives (Retro)** để biến mỗi nhận xét của con người thành đòn bẩy nâng cấp hệ thống vĩnh viễn.
+Bài thuyết trình cung cấp kiến trúc thực chiến gồm **3 Tầng Phanh (3 Brakes)**, vạch trần **3 kiểu "nói dối" của Automated Checks**, áp dụng **Deep Modules** (John Ousterhout) kèm kỹ năng kiểm toán HTML (`course-video-manager`), tách rời **Overloaded Implementer** và **Underloaded Reviewer Sub-Agent (`CODING_STANDARDS.md`)** theo quy tắc **"Commits, Not Comments"**, chuẩn hóa PR với **Merge Danger (`One-Way vs Two-Way Door`) + Pseudocode/Show-Me Diagrams**, và khép kín vòng lặp tiến hóa bằng kỹ năng **`retro` (Retrospective)**.
 
 ---
 
-## 1. Bản chất vấn đề: Tại sao Automated Checks lại "Nói Dối"?
+## 1. Accelerators vs. Brakes & Nguyên Lý "Stop The Slop" (`[00:00]` – `[04:09]`)
 
-Hầu hết các kỹ sư khi dùng AI đều tự tin: *"Tôi có Typechecker (TypeScript), Linter (ESLint/Biome), và Test suite (Jest/Vitest/Pytest). Nếu CI/CD xanh thì code an toàn!"*
+- **Accelerators — Đầu vào tự động của Software Factory (`frame_0005` – `frame_0007`):**
+  - Slide `Accelerators`: *"Inputs to the software factory - bug reports, support tickets, slow queries"*.
+  - Thay vì con người khởi tạo mọi tác vụ, các hệ thống định sẵn (deterministic code) tự động kích hoạt: ví dụ bộ phân loại **Jev** đọc support ticket và chuyển thành bản vá/reproduction, hoặc **PlanetScale** báo cáo các truy vấn cơ sở dữ liệu chậm (`slow queries`) và tự đẩy vào pipeline của nhà máy phần mềm.
+- **Ba Tầng Phanh (`3 Brakes` — `frame_0001`, `frame_0015`):**
+  1. **Brake 1 — Automated Checks:** Các kiểm tra tất định (deterministic checks) đã tồn tại từ thập niên 1950: Linting, Tests, Type Checking, Code Quality Metrics. Chỉ tốn **CPU cycles**, không tốn token hay sức người.
+  2. **Brake 2 — Automated Review:** Tác nhân AI kiểm tra những gì test bỏ sót và cấu trúc tổng thể của codebase.
+  3. **Brake 3 — Human Review:** Con người duyệt PR ở tầng cuối cùng.
+- **Nguyên lý đòn bẩy (`frame_0015` — `Stop The Slop`):**
+  - Khi chất lượng code đầu ra từ 2 tầng đầu được nâng cao, con người phải can thiệp ít hơn hẳn, giúp tốc độ duyệt PR tổng thể tăng vọt (*counterintuitively go faster*).
 
-Matt Pocock chỉ ra một sự thật phũ phàng: **Automated checks thường xuyên "nói dối" (Automated checks lie)** khi đối mặt với code do AI sinh ra.
+---
+
+## 2. Tại Sao Automated Checks Lại "Nói Dối"? — Hệ Thống Phát Hiện Nói Dối (`Lie Detectors`, `[04:10]` – `[08:25]`)
+
+- **Visual (`frame_0019` – `frame_0020`):** Slide **`Automated Checks: Lie Detectors`** — *"Does a green CI mean that the code is ready for merge? No. Automated/human review is for finding lies in the automated checks."*
+- Matt Pocock trình chiếu **3 bằng chứng code thực tế** từ các tác nhân AI (đặc biệt là `Opus 5`) viết các bài test vô giá trị làm xanh CI giả tạo:
 
 ```
 +-----------------------------------------------------------------------------------------+
-|                         CÁC CHIÊU TRÒ "LỪA TEST" CỦA AI AGENT                           |
+|                    3 KIỂU "NÓI DỐI" CỦA AUTOMATED CHECKS DO AI SINH RA                  |
 +-----------------------------------------------------------------------------------------+
-| 1. Tautological Tests (Test lặp thừa/vô nghĩa):                                         |
-|    Agent viết test chỉ để khẳng định lại chính logic nội bộ nó vừa viết:               |
-|    expect(add(1, 2)).toBe(add(1, 2))  hoặc  mockService.call = true; expect(true)        |
+| 1. Tautological Tests (Test lặp thừa định nghĩa — [05:24], frame_0021):                 |
+|    - Code thực thi: `X_POST_CHARACTER_LIMIT = 280`                                      |
+|    - Test của Opus 5: `expect(X_POST_CHARACTER_LIMIT).toBe(280)`                        |
+|    -> Chỉ khẳng định lại đúng hằng số vừa khai báo, không kiểm tra hành vi thực.        |
 |                                                                                         |
-| 2. Over-Mocking (Mock quá đà phá vỡ giá trị thực tế):                                   |
-|    Khi gặp lỗi tích hợp (Integration error), agent mock toàn bộ DB/Network/Module:       |
-|    -> Test xanh lè nhưng khi chạy thật trên môi trường thực tế thì crash vỡ vụn.         |
+| 2. Structure-Sensitive Tests (Test nhạy cảm cấu trúc — [06:04], frame_0022–0026):       |
+|    - Định nghĩa (frame_0022): "A test that knows too much about the internal workings   |
+|      of the system".                                                                    |
+|    - Ví dụ thực tế cực đoan (frame_0024–0025): Để kiểm tra mục `Videos` hiển thị sau    |
+|      mục `Content Plan` trên trang `_app.pitches.$pitchId.tsx`, thay vì render UI,      |
+|      Agent dùng `fs.readFileSync(PITCH_DETAIL_PATH, "utf-8")` đọc thẳng mã nguồn        |
+|      vào bộ nhớ rồi so sánh vị trí chuỗi:                                               |
+|      `const contentPlanIndex = content.indexOf(">Content Plan<");`                      |
+|      `const videosIndex = content.indexOf('title="Videos"');`                           |
+|      `expect(videosIndex).toBeGreaterThan(contentPlanIndex);`                           |
+|    -> Chỉ cần đổi cách trình bày mã nguồn là test vỡ ngay lập tức!                      |
 |                                                                                         |
-| 3. Structure-Sensitive Tests (Test phụ thuộc cấu trúc nội bộ):                           |
-|    Agent test chi tiết từng biến private/hàm phụ trợ thay vì test hành vi bên ngoài:     |
-|    -> Bất kỳ lần refactor nhỏ nào sau này cũng làm vỡ test dù hành vi không đổi.       |
+| 3. Tests That Literally Cannot Fail (Test không thể đỏ do lạm dụng Mock — [07:15]):     |
+|    - Hàm `useAudioBoost()` gọi `AudioContext` API của DOM vốn có nhiều chế độ lỗi       |
+|      phức tạp trong thực tế, nhưng Agent stub/mock toàn bộ bằng các hàm giả.            |
+|    -> Test luôn xanh nhưng ứng dụng crash ngay trên production.                         |
 +-----------------------------------------------------------------------------------------+
 ```
-
-Khi automated checks bị vô hiệu hóa bởi các test vô giá trị, trách nhiệm phát hiện lại đổ dồn 100% lên vai người review con người — dẫn đến tình trạng kiệt quệ.
 
 ---
 
-## 2. Mô hình 3 Tầng Phanh (The 3 Brakes Defense)
+## 3. Codebase Design: Chống Gian Lận Test Bằng "Deep Modules" (`[08:25]` – `[11:12]`)
 
-Để ghìm cương "Khẩu đại bác Slop", Pocock thiết kế một hệ thống kiểm soát 3 tầng dựa trên chi phí tài nguyên và độ tin cậy:
+Làm sao để thiết kế codebase khiến AI không thể viết các bài test nhạy cảm cấu trúc (`Structure-Sensitive Tests`)? Câu trả lời của Matt Pocock là **Deep Modules** (từ cuốn *A Philosophy of Software Design* của GS. John Ousterhout):
 
-```
-                  +----------------------------------------------+
-                  |           BRAKE 1: AUTOMATED CHECKS          |
-                  |  - Typecheck, Lint, Fast Unit Tests          |
-                  |  - Tài nguyên: CPU (Cực rẻ, Chạy mili-giây)  |
-                  +----------------------------------------------+
-                                         |
-                                         v
-                  +----------------------------------------------+
-                  |           BRAKE 2: AUTOMATED REVIEW          |
-                  |  - AI Sub-Agent chuyên trách Code Review     |
-                  |  - Tài nguyên: Tokens (Chi phí vừa phải)     |
-                  |  - Nhiệm vụ: Soi diff, đối chiếu chuẩn,      |
-                  |    sửa test dỏm, TRỰC TIẾP COMMIT BẢN SỬA!   |
-                  +----------------------------------------------+
-                                         |
-                                         v
-                  +----------------------------------------------+
-                  |            BRAKE 3: HUMAN REVIEW             |
-                  |  - Senior Engineer đánh giá kiến trúc        |
-                  |  - Tài nguyên: Sự chú ý người (Cực kỳ đắt)   |
-                  |  - Chỉ can thiệp vào "Cửa một chiều"         |
-                  +----------------------------------------------+
-```
-
-### Brake 1: Automated Checks (CPU Compute)
-- Rẻ nhất, chạy tức thì trên mọi commit/push.
-- Kiểm tra tính hợp lệ cú pháp, kiểu dữ liệu, các invariant cơ bản.
-
-### Brake 2: Automated Review (Token Compute)
-- Mục tiêu chính: **Kiểm tra xem Brake 1 có đang nói dối hay không!**
-- Đọc diff, phát hiện tautological test, mock lậu, và vi phạm kiến trúc.
-- Thay vì để con người phải làm việc này, ta dùng một LLM Sub-agent có context riêng.
-
-### Brake 3: Human Review (Human Attention)
-- Tài nguyên khan hiếm và đắt đỏ nhất trong toàn bộ công ty.
-- Phải được bảo vệ tuyệt đối: Chỉ đọc những PR đã qua chọn lọc kỹ lưỡng, đã được refactor sạch sẽ và có độ nén thông tin cao.
+- **So sánh Module A vs Module B (`frame_0030` – `frame_0032`):**
+  - **Module A (Deep Module — Hình chữ nhật hẹp và sâu bên trái ở `frame_0031`):** Giao diện (interface) ở đỉnh cực nhỏ nhưng ẩn giấu phần cài đặt (implementation) lớn và phức tạp bên dưới. Khi ép Agent chỉ được kiểm thử qua giao diện nhỏ ở đỉnh, Agent buộc phải viết test hành vi thực chất thay vì chọc sâu vào chi tiết cài đặt.
+  - **Module B (Shallow Module — Hình chữ nhật rộng và nông bên phải ở `frame_0031`):** Giao diện phơi bày hàng tá hàm nhỏ lẻ, mỗi hàm làm rất ít việc, tạo điều kiện cho AI viết các bài test phụ thuộc chặt vào cấu trúc nội bộ.
+- **Skill Kiểm Toán Deep Modules & Từ Vựng Thiết Kế Chung (`frame_0033` – `frame_0036`):**
+  - Khi chạy skill thiết kế codebase trên một repo thực tế (`course-video-manager` trong `frame_0033`), skill xuất ra báo cáo HTML trực quan so sánh sơ đồ **Before vs After**: *"Give Course View Display Settings a predicate module instead of three inline copies"*.
+  - **Phân tích cụ thể trên slide (`frame_0035` – `frame_0036`):**
+    - **Problem:** Biểu thức kiểm tra hiển thị phức hợp (`compound visibility expression`) bị viết tay lặp lại ở 3 nơi gọi khác nhau mà không có tên chung và không có unit test nào (`section-card.tsx` hoàn toàn không có file test).
+    - **Solution:** Gom từng quy tắc có tên (*"can show the dependency spine"*, *"can show the lesson-type icon"*) vào module thuần `visibility-predicates.ts` xử lý trên `ResolvedVisibility`, để cả 3 component (`section-card.tsx`, `lesson-item.tsx`, v.v.) cùng gọi.
+    - **3 Thuộc tính ngôn ngữ thiết kế chuẩn hóa cho cả Team & Agent:**
+      1. **Locality (Tính cục bộ):** Quy tắc kiểm soát nằm gọn trong một module duy nhất, có thể unit test độc lập mà không cần mount cả 3 UI components.
+      2. **Leverage (Đòn bẩy):** Một giao diện đơn giản phục vụ ba nơi gọi (*"one interface, three call sites"*).
+      3. **Seam & Deletion Test:** Xóa module đó sẽ làm lộ rõ 3 components mất nguồn chân lý duy nhất (*source of truth*).
 
 ---
 
-## 3. Kiến trúc Sub-Agent: Tách rời "Implementer" và "Reviewer"
+## 4. Automated Review: Tách Rời Implementer (Overloaded) & Reviewer (Underloaded) (`[11:13]` – `[16:28]`)
 
-Sai lầm phổ biến nhất của các đội ngũ xây dựng AI Agent hiện nay là: **Nhồi nhét toàn bộ hướng dẫn kiến trúc và coding standards vào prompt của Implementer Agent (`AGENTS.md` toàn cục)**.
+Làm thế nào để bắt buộc Agent tuân thủ các tiêu chuẩn **Deep Modules** và viết test chuẩn?
 
-### Tại sao Implementer Agent luôn bị quá tải (Overloaded)?
+### 4.1. Sai lầm kinh điển: Nhồi `CODING_STANDARDS` vào Implementer Agent (`frame_0037` – `frame_0039`)
+- Trong một cửa sổ ngữ cảnh (context window) duy nhất, **Implementer Agent** đã phải gánh 3 phần việc nặng nề (`frame_0039`):
+  1. **Exploration** (tìm kiếm file và vị trí cần sửa).
+  2. **Implementation** (viết và cập nhật code).
+  3. **Debugging** (chạy automated checks và sửa lỗi).
+- **Mental Model cốt lõi:** **Implementer Agent luôn bị quá tải (`Implementation is overloaded`)**. Nếu nhồi thêm hàng trăm dòng quy chuẩn code vào `AGENTS.md` toàn cục, nó sẽ bị loãng sự chú ý và làm việc kém đi.
 
-```
-+-----------------------------------------------------------------------------------------+
-|                         IMPLEMENTER AGENT (OVERLOADED CONTEXT)                          |
-+-----------------------------------------------------------------------------------------+
-| [ Exploration ]: Đọc codebase, tìm file, lần dấu vết hàm/type...      (Tốn 30% Context) |
-| [ Implementation ]: Sinh code mới, sửa file hiện có...                 (Tốn 40% Context) |
-| [ Debugging/Checks ]: Chạy test, parse lỗi, sửa code lặp đi lặp lại... (Tốn 30% Context) |
-|                                                                                         |
-| -> NẾU NHỒI THÊM "CODING STANDARDS" DÀI 200 DÒNG:                                       |
-|    Context bị bão hòa, LLM bị phân tâm, chú ý suy giảm (Attention degradation),         |
-|    Agent bắt đầu cắt xén góc (cut corners), viết test qua loa để thỏa mãn linter!        |
-+-----------------------------------------------------------------------------------------+
-```
+### 4.2. Giải pháp Red-Green-Refactor với 2 Context Windows: `code-review` Sub-Agent (`frame_0040` – `frame_0043`)
+- Tách quy trình viết code tốt thành **2 pha trên 2 cửa sổ ngữ cảnh độc lập** (tương tự **Red-Green-Refactor** trong TDD):
+  - **Pha 1 — Implementer Agent (`Red-Green`):** Chỉ tập trung làm cho code chạy được (*"make it work"*), không bị áp đặt `CODING_STANDARDS.md`.
+  - **Pha 2 — Code Review Sub-Agent (`Refactor` — `frame_0041` – `frame_0043`):** Chạy trong một **Sub-agent có context window riêng**. Vì nó nhận sẵn bản `git diff`, nó chỉ cần làm một chút `Exploration` để hiểu ngữ cảnh xung quanh và hoàn toàn không phải làm `Implementation` hay `Debugging` từ đầu. Do **Reviewer đang rảnh tải (`Review is underloaded`)**, ta có thể nạp toàn bộ file **`CODING_STANDARDS.md`** của dự án vào cho nó kiểm tra cực kỳ sắc bén.
+- **Đừng thuê ngoài (Don't Outsource Automated Review — `[14:32]` – `[15:20]`):**
+  - Các dịch vụ bên thứ ba như Cursor BugBot hay CodeRabbit thường quá chung chung (gây nhiều cảnh báo giả — false positives) hoặc không khớp với đặc thù ngôn ngữ/kiến trúc riêng của đội ngũ. Hãy tự xây dựng file `CODING_STANDARDS.md` nội bộ và chia sẻ trong team.
 
-### Giải pháp: Tách Review thành Sub-Agent độc lập (Underloaded Reviewer)
-
-```
-[ Giai đoạn 1: Implementer Agent ]
-   |
-   +--> Mục tiêu duy nhất: "Make it work" (Red -> Green)
-   +--> Không cần lo các tiêu chuẩn viết code tinh tế hay kiến trúc hoàn hảo.
-   +--> Kết quả: Tạo ra một `git diff` hoạt động được.
-   |
-   v
-[ Giai đoạn 2: Code Review Sub-Agent ]
-   |
-   +--> Nhận đầu vào: `git diff` + file `coding_standards.md` chuyên biệt.
-   +--> Context sạch 100%: Không phải tốn token cho việc suy nghĩ cách giải bài toán.
-   +--> Reviewer Agent là **Underloaded** -> Có thừa dung lượng chú ý để soi xét từng chi tiết.
-   +--> QUY TẮC CỐT LÕI: Reviewer Agent PHẢI TỰ COMMIT BẢN SỬA, KHÔNG ĐƯỢC ĐỂ LẠI COMMENT!
-```
-
-> **Nguyên tắc "Commits, Not Comments":**  
-> Khi AI Reviewer chỉ comment vào PR (như CodeRabbit hay BugBot), nó đang **tạo thêm việc** cho kỹ sư con người (con người phải đọc comment, phân tích, rồi quay lại sửa code).  
-> AI Reviewer chuẩn phải **tự tay thực hiện refactor, chạy lại test và commit trực tiếp lên branch**! Khi kỹ sư con người mở PR ra, họ đang chiêm ngưỡng một artifact đã được mài giũa hoàn hảo.
+### 4.3. Nguyên Tắc Vàng: "Commits, Not Comments" (`[15:22]` – `[16:19]`, `frame_0046` – `frame_0048`)
+- **Visual (`frame_0047`):** Slide **`Automated Review: Commits, Not Comments`** — *"Automated review should NOT burden humans with comments to review and fix."*
+- Nếu Agent kiểm duyệt chỉ để lại hàng loạt bình luận dài dòng trên PR, nó đang **đẩy thêm việc cho con người** đọc và quyết định.
+- **Quy tắc bắt buộc:** Mặc định của Reviewer Agent là **trực tiếp sửa code và tạo Commit mới lên nhánh PR**. Chỉ khi thực sự có thắc mắc không thể tự quyết định mới để lại comment. Hãy ngừng cố gắng "one-shot" code hoàn hảo ngay ở bước Implementer!
 
 ---
 
-## 4. Thiết kế phần mềm cho AI: Triết lý Deep Modules
+## 5. Human Review: Tối Ưu Hóa PR Cho Con Người & Vòng Lặp Lãi Kép `retro` (`[16:29]` – `[22:34]`)
 
-Làm thế nào để code của chúng ta khiến AI không thể "ăn gian" test? Câu trả lời nằm ở cuốn sách kinh điển *A Philosophy of Software Design* của GS. John Ousterhout: **Deep Modules vs Shallow Modules**.
+### 5.1. Kỹ năng `pr` mới: Phân loại `One-Way vs Two-Way Door` & Thẻ `Merge Danger` (`frame_0051` – `frame_0052`)
+- **Visual (`frame_0051`):** Slide **`Human Review: One-Way or Two-Way Door?`** — *"How easily can we revert this change?"*
+  - **Two-Way Door (Cửa 2 chiều — đa số PR phần mềm):** Có thể hoàn tác dễ dàng. Khác với kỹ sư cầu đường (xây cầu sập là cửa 1 chiều), kỹ sư phần mềm có thể `git revert` hầu hết thay đổi. Bạn **không cần** soi từng dòng ở mọi cửa 2 chiều.
+  - **One-Way Door (Cửa 1 chiều):** Thay đổi vô tình bắn email cho 60,000 khách hàng, chạy database migration đắt đỏ hoặc gây mất dữ liệu (`data loss`). Những PR này bắt buộc con người phải kiểm tra cực kỳ kỹ lưỡng.
+- **Thẻ `Merge Danger` ở cuối mỗi PR (`frame_0052`):**
+  - Hình chụp thực tế từ PR của Matt Pocock:
+    > **Merge Danger**
+    > **Door:** Two-way — trivial to revert; changes only how an error message is rendered, no behavior change to the turn loop itself.
+    > **Blast Radius:** Localized — only affects the text of error messages surfaced from stream `"error"` parts (auth/bridge/compact failures) across all commands, not just `/compact`. No API, schema, or control-flow changes.
 
-```
-    SHALLOW MODULE (Module Cạn)                     DEEP MODULE (Module Sâu)
-   +---------------------------+                    +-----------------------+
-   | interface doStuff(a,b,c)  |                    | interface process()   |  <-- Giao diện cực nhỏ
-   +---------------------------+                    +-----------------------+
-   | (Implementation nông cạn, |                    |                       |
-   |  chỉ bọc 1 hàm khác,     |                    |  Rất nhiều logic phức |
-   |  logic rải rác khắp nơi)  |                    |  tạp, cache, state,   |  <-- Triển khai sâu sắc,
-   +---------------------------+                    |  xử lý lỗi ẩn bên     |      che giấu chi tiết
-                                                    |  dưới giao diện       |
-                                                    +-----------------------+
-   -> Chi phí học cao, ít giá trị                   -> Đòn bẩy (Leverage) cực cao!
-   -> AI dễ viết mock giả mạo                       -> AI buộc phải test qua boundary thật
-```
+### 5.2. Hiểu "Why" Nhanh Nhất Bằng Pseudocode & Sơ Đồ Trực Quan (`show-me` Skill — `frame_0053` – `frame_0055`)
+- Lấy cảm hứng từ kỹ năng **`show-me`** trong repo `humanlayer` của **Dex Horthy**, phần mô tả PR loại bỏ các bức tường chữ (wall of text) và thay bằng:
+  1. **Sequence / Mermaid Diagrams (`frame_0054`):** Minh họa luồng tương tác giữa `Author` → `lesson-item-planner` (`section flips empty -> real, renumbers every real section's path`, `updateSectionTitle(id, "02-my-section")`) → `section-title` (`tries to save the clicked, outdated path — the exact "01-domain-language" bug`).
+  2. **Tóm tắt CLI / Pseudocode ngắn gọn (`frame_0055`):**
+     ```bash
+     ip move ...
+     ip delete <id>      # soft delete
+     ip restore <id>     # NEW: undelete
+     ip words <id>
+     ```
+     Giúp người duyệt nắm bắt ngay lệnh mới và cờ (flags) chỉ trong vài giây.
 
-### Hai thuộc tính then chốt của Deep Modules đối với Agent:
-
-1. **Leverage (Đòn bẩy):**
-   - Caller (người gọi) chỉ cần gọi 1 hàm đơn giản (`watch_video(url)`) nhưng nhận lại toàn bộ giá trị khổng lồ (tải video, tách audio, transcribe, cache, tạo metadata).
-   - Agent không cần phải biết bên trong dùng thư viện gì, quản lý temp file ra sao.
-2. **Locality (Tính cục bộ):**
-   - Toàn bộ logic liên quan nằm tập trung tại một nơi. Khi cần thay đổi cơ chế transcription (từ Whisper CPU sang GPU), chỉ cần sửa nội bộ module đó.
-   - Không có hiệu ứng cánh bướm (*ripple effect*) làm vỡ 20 file khác trong repository.
-3. **Uncheatable Tests (Test không thể gian lận):**
-   - Khi module có giao diện sâu và khép kín, test suite sẽ kiểm tra hợp đồng bên ngoài (*contract-based testing*) thay vì soi mói biến nội bộ. AI không thể lừa test bằng cách mock linh tinh.
-
----
-
-## 5. Thiết kế PR thân thiện với con người: Cửa 1 chiều vs Cửa 2 chiều
-
-Matt Pocock mượn khái niệm nổi tiếng của Jeff Bezos (Amazon):
-
-```
-+-----------------------------------------------------------------------------------------+
-|                              ONE-WAY DOOR VS TWO-WAY DOOR                               |
-+-----------------------------------------------------------------------------------------+
-| TWO-WAY DOOR (Cửa 2 chiều - Chiếm 90% PR):                                              |
-| - Có thể hoàn tác (revert) tức thì bằng 1 lệnh git revert.                             |
-| - Tác động cục bộ (UI tweak, refactor nội bộ hàm, thêm test, cập nhật docs).           |
-| - Blast Radius (Bán kính sát thương): Nhỏ / Localized.                                  |
-| -> HÀNH ĐỘNG: Review lướt qua hoặc merge tự động sau khi qua 2 tầng phanh AI!          |
-+-----------------------------------------------------------------------------------------+
-| ONE-WAY DOOR (Cửa 1 chiều - Chiếm 10% PR):                                              |
-| - Không thể hoàn tác hoặc hoàn tác cực kỳ đau đớn/tốn kém.                             |
-| - Migration Database lớn, xóa dữ liệu, gửi email hàng loạt tới 100.000 khách hàng,    |
-|   thay đổi chính sách phân quyền/bảo mật, đổi cơ chế billing tiền bạc.                  |
-| - Blast Radius: Toàn hệ thống (System-wide / Catastrophic).                             |
-| -> HÀNH ĐỘNG: Senior Engineer phải soi từng dòng, test kỹ lưỡng trên staging!          |
-+-----------------------------------------------------------------------------------------+
-```
-
-### Tiêu chuẩn một PR Body do AI sinh ra:
-Ở cuối mỗi PR do AI tạo ra, phải có huy hiệu **Merge Danger**:
-
-```markdown
-### 🛡️ Merge Danger Assessment
-- **Door Type:** Two-Way Door (Dễ dàng revert, không chạm vào database schema)
-- **Blast Radius:** Localized (`src/watch_skill/perceive/` only)
-- **Review Priority:** Low (Automated tests & review agent passed with 0 warnings)
-```
-
-### Visual First (Show Me Skill):
-Thay vì viết một bức tường chữ markdown giải thích code:
-- Sử dụng **Pseudocode** tóm lược luồng thực thi.
-- Dùng **Mermaid Diagrams / CLI flow chart** minh họa trực quan sự thay đổi.
-- Con người nắm bắt hình ảnh nhanh hơn chữ viết gấp 10 lần.
+### 5.3. Nguyên Lý Thứ 3: Duyệt Quy Trình Tạo Code Qua Skill `retro` (`[19:43]` – `[22:34]`, `frame_0058` – `frame_0060`)
+- **Tư duy hệ thống:** *"When you do a human review, you're not just reviewing the code, you're reviewing the system that creates it. You never want to write the same comment twice."*
+- **Cơ chế hoạt động của kỹ năng `retro` (Retrospective):**
+  - Sau một phiên làm việc của Agent, một PR, hoặc toàn bộ các PR và nhận xét review trong tuần qua, chạy skill `retro` để tạo **hiệu ứng lãi kép (compounding effect — `frame_0058`)** thông qua 5 tác động tự động:
+    1. **Đề xuất Automated Checks mới** để bắt lỗi bằng CPU ở lần sau.
+    2. **Đề xuất cập nhật vào `CODING_STANDARDS.md`** cho Reviewer Sub-Agent.
+    3. **Bổ sung `Navigation Pointers` vào `AGENTS.md`:** Phân tích xem Agent tìm kiếm thông tin trong repo có vất vả không và thêm chỉ dẫn đường đi để lần sau tìm thấy ngay.
+    4. **Kiểm toán `Tool Economy`:** Phát hiện các lệnh gọi công cụ tốn nhiều token không cần thiết trong phiên làm việc để tối ưu hóa hiệu suất token.
+    5. **Cắt tỉa `Bloat` (`frame_0060`):** Rà soát các file điều hướng (`steering files`) hoặc `skills` bị phình to làm giảm chất lượng đầu ra để tổ chức lại gọn gàng hơn.
 
 ---
 
-## 6. Vòng phản hồi tiến hóa: Skill "Retro" (Compounding Retrospectives)
+## 6. Tổng Kết Chiến Lược Giải Quyết PR Bottleneck
 
-Quy tắc tối thượng của Matt Pocock dành cho kỹ sư trong kỷ nguyên AI:  
-> **"Bạn không bao giờ được viết cùng một comment review 2 lần!"**  
-> *(You never want to write the same comment twice!)*
-
-Nếu một lập trình viên con người phát hiện một lỗi trong PR của Agent, đó không chỉ là lỗi của dòng code đó — **đó là lỗi của cả hệ thống tạo ra nó**.
-
-```
-+-----------------------------------------------------------------------------------------+
-|                          COMPOUNDING RETROSPECTIVE FLYWHEEL                             |
-|                                                                                         |
-|       [ Human Review ]  ---> Phát hiện vấn đề (VD: thiếu validation input, mock dở)     |
-|              |                                                                          |
-|              v                                                                          |
-|       [ Chạy Skill: Retro ]                                                             |
-|              |                                                                          |
-|              +--> Đề xuất Automated Check mới (Linter rule, regex guard)                |
-|              +--> Cập nhật `coding_standards.md` cho Reviewer Sub-agent                 |
-|              +--> Bổ sung Navigation Pointers vào `AGENTS.md` (giúp tìm file nhanh)     |
-|              +--> Cắt tỉa Prompt Bloat (Loại bỏ các chỉ dẫn thừa thãi gây tốn token)    |
-|              |                                                                          |
-|              v                                                                          |
-|       [ Lần chạy tiếp theo: Agent không bao giờ mắc lại sai lầm đó nữa! ]               |
-+-----------------------------------------------------------------------------------------+
-```
-
-Hệ thống code của bạn không còn là một kho chứa tĩnh, mà trở thành một **cơ thể sống tự tiến hóa** (*self-improving system*). Mỗi giờ con người bỏ ra review hôm nay sẽ tiết kiệm 10 giờ review trong tương lai.
-
----
-
-## 7. Áp dụng thực tiễn vào Dự án `watch-skill`
-
-Những bài học từ Matt Pocock có thể được chuyển hóa ngay lập tức vào kiến trúc của chính repository `watch-skill`:
-
-| Vấn đề hiện tại | Giải pháp theo Pocock | Kế hoạch triển khai cho `watch-skill` |
-|---|---|---|
-| Script xử lý video đôi khi viết code lặp lại logic download / transcribe | **Deep Modules** | Tạo hàm facade `acquire_and_transcribe(url)` với interface tối giản, che giấu hoàn toàn ffmpeg, yt-dlp, whisper. |
-| Test suite mock quá nhiều khiến lỗi thật của yt-dlp/ffmpeg bị bỏ sót | **Uncheatable Contract Tests** | Dùng fixture video 3 giây thực tế (mẫu cực nhỏ) để test end-to-end pipeline không cần mock network giả tạo. |
-| Prompt của Agent bị dài và loãng quy tắc | **Tách biệt Implement vs Review** | Giữ `AGENTS.md` ngắn gọn cho nhiệm vụ chính; đưa quy chuẩn định dạng markdown/links vào `coding_standards.md`. |
-| PR / Vault notes cần kiểm tra độ an toàn | **Merge Danger Badge** | Gắn nhãn đánh giá One-Way / Two-Way Door cho các thay đổi trong schema DB `index.db` vs sửa đổi tài liệu vault. |
-
----
-
-## 8. Kết luận & Takeaway ghi nhớ
-
-1. **Tốc độ sinh mã không còn là lợi thế cạnh tranh:** Lợi thế nằm ở **năng lực kiểm soát chất lượng ở cửa ngõ PR**.
-2. **Không ép 1 Agent làm tất cả:** Hãy tách thành 2 pha độc lập: *Implementer* (làm cho chạy) và *Reviewer* (làm cho chuẩn, commit trực tiếp).
-3. **Automated Checks phải đi kèm Automated Review:** Dùng token rẻ để bảo vệ thời gian đắt đỏ của con người.
-4. **Áp dụng Deep Modules:** Giao diện nhỏ, logic sâu, kiểm thử hành vi thực tế, triệt tiêu mọi cơ hội sinh test giả mạo của AI.
-5. **Vận hành Retrospectives liên tục:** Biến mọi feedback của con người thành luật tự động hóa, xây dựng hiệu ứng lãi kép cho chất lượng phần mềm.
+| Tầng kiểm soát | Tài nguyên tiêu thụ | Công cụ & Kỹ năng chủ lực (`aihero.dev/skills v1.3`) | Nguyên tắc cốt lõi |
+| :--- | :--- | :--- | :--- |
+| **1. Automated Checks** | CPU Cycles (Rẻ nhất) | Linting, Typecheck, Unit Tests + **Deep Modules (`codebase-design`)** | Thiết kế giao diện hẹp & sâu (`Locality` + `Leverage`) để chống test giả (`Tautological` / `Structure-Sensitive`). |
+| **2. Automated Review** | Tokens (Sub-agent riêng) | **`code-review` skill** + **`CODING_STANDARDS.md`** | Không nhồi chuẩn code vào Implementer; tách sang Sub-agent rảnh tải và tuân thủ **"Commits, Not Comments"**. |
+| **3. Human Review** | Sự chú ý của con người (Đắt nhất) | **`pr` skill** (`Merge Danger`, `show-me` diagrams) + **`retro` skill** | Chỉ soi kỹ **One-Way Doors**, lướt nhanh **Two-Way Doors**, và dùng `retro` để không bao giờ viết cùng một nhận xét 2 lần. |
