@@ -1,192 +1,162 @@
-# Công Cụ Git Worktree Tốt Nhất Cho AI Coding Agents: Phân Tích Kỹ Thuật Worktrunk | Better Stack
+# 🌳 The Best Git Worktree Tool I've Used: Worktrunk (`wt`) — Better Stack
 
-- **Video URL:** [YouTube Link](https://www.youtube.com/watch?v=mNo24Omj8X4)
-- **Video ID:** `mNo24Omj8X4`
-- **Category:** #ai-agents
-- **Date Processed:** 2026-10-20
+## 📋 Metadata
+- **Video Title:** The Best Git Worktree Tool I've Used (Worktrunk)
+- **Channel / Creator:** Better Stack (Presented by Josh)
+- **URL:** https://www.youtube.com/watch?v=mNo24Omj8X4
 - **Duration:** 07:13
-- **Speaker:** Josh (Better Stack)
-- **Transcript File:** [the_best_git_worktree_tool_worktrunk_better_stack_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/the_best_git_worktree_tool_worktrunk_better_stack_transcript.txt)
+- **Watch Skill ID:** `1c7210ab1589417b`
+- **Frames Inspected:** 50 frames (`frame_0000.jpg` – `frame_0049.jpg` in `C:\Users\Admin\.watch-skill\frames\1c7210ab1589417b\`)
+- **Date Processed:** 2026-11-07
+- **Topic:** Git Worktree CLI for Parallel AI Coding Agents (`max-sixty/worktrunk`), Copy-on-Write (`wt step copy-ignored`), `hash_port` Filter, and 6-in-1 `wt merge`
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
+## 🎯 Tóm tắt cốt lõi (Executive Summary)
 
-Khi các mô hình ngôn ngữ lớn (LLM) ngày càng thông minh, rào cản năng suất kỹ thuật không còn nằm ở tốc độ sinh mã của mô hình, mà nằm ở **khả năng điều phối song song nhiều Agent (Parallel Agent Orchestration)**. Vấn đề kinh điển xuất hiện: Nếu bạn chạy từ 2 Agent trở lên trên cùng một thư mục mã nguồn, chúng sẽ "giẫm chân lên nhau" (`writing on the same sheet of paper`) — Agent A đang tái cấu trúc module thì Agent B chạy kiểm thử và thất bại thảm hại do mã nguồn bị thay đổi giữa chừng.
+Josh từ **Better Stack** phân tích tại sao tính năng worktree tích hợp sẵn của Claude Code (`claude --worktree`) mới chỉ giải quyết được **một nửa bài toán** (tạo và tự dọn dẹp), nhưng lại bỏ qua nửa đau đớn nhất khi chạy 3–10+ AI agents song song: **không có lệnh gộp (merge) kết quả về nhánh chính, không có màn hình tổng quan theo dõi trạng thái mọi agents, và bắt cài lại dependencies từ đầu (cold start)**.
 
-Git Worktree là giải pháp cốt lõi cấp hệ thống: cho phép checkout nhiều nhánh trên nhiều thư mục độc lập nhưng chia sẻ chung cơ sở dữ liệu lịch sử `.git`. Tuy nhiên:
-- **Git thuần (Plain Git):** Quá rườm rà (gõ tên nhánh 3 lần để tạo, 3 lệnh để dọn dẹp, danh sách hiển thị chỉ là đường dẫn thô).
-- **Claude Code Native Worktree:** Chỉ làm được **một nửa chặng đường** (tạo worktree tự động), nhưng bỏ sót toàn bộ nửa chặng đường gây đau đầu nhất: không có bảng điều khiển trạng thái tập trung, không có lệnh tự động merge về main, và ép mỗi agent phải cài đặt lại dependencies từ đầu (`cold install`).
+**Worktrunk (`wt`)** (`github.com/max-sixty/worktrunk` / `worktrunk.dev`, viết bằng **Rust**, giấy phép **MIT / Apache-2.0**, ~3.6k+ stars, phát hành bản mới ~3 lần/tuần) giải quyết triệt để các điểm nghẽn này:
+1. **Tư duy theo Nhánh thay vì Thư mục (`Branch-First UX`):** Thay vì phải gõ tên nhánh 3 lần (`git worktree add -b feat ../repo.feat && cd ../repo.feat`), bạn chỉ cần gõ 1 dòng `wt switch -c claude feature-a` để vừa tạo nhánh, vừa tạo thư mục theo template, vừa nhảy vào thư mục đó và khởi chạy luôn Claude Code.
+2. **Màn hình Giám sát Bầy đàn (`wt list`):** Hiển thị toàn bộ worktrees trên một bảng duy nhất kèm trạng thái diff (`HEAD±`, `main↕`, `main…±`), trạng thái CI và biểu tượng trực quan: 🤖 (Agent đang làm việc) hoặc 💬 (Agent đang đợi phản hồi của bạn).
+3. **Vũ khí sát thủ `wt step copy-ignored` (Copy-on-Write / Reflink):** Một worktree mới không có `node_modules/`, `target/` hay `.env`. Thay vì copy 14GB thư mục `target/` của Rust mất **2 phút + tốn thêm 14GB ổ cứng**, `wt step copy-ignored` dùng cơ chế **Copy-on-Write (reflink)** trên APFS (macOS), btrfs/XFS (Linux), ReFS (Windows) chỉ mất **20 giây và tốn ~0 GB ổ cứng**, kéo thời gian build Rust lần đầu từ **68 giây xuống còn 3–4 giây**!
+4. **Bộ lọc `hash_port` & Lệnh Gộp 6-trong-1 (`wt merge`):** Cấp tự động mỗi worktree một port dev server riêng (`PORT={{ branch | hash_port }}`) để 3 agents không tranh giành cổng `3000`. Khi agent làm xong, một lệnh `wt merge` duy nhất thực hiện trọn gói 6 bước: `commit` → `squash` → `rebase onto main` → `fast-forward main` → `delete worktree` → `delete branch`.
 
-**Worktrunk (`wt`)** — một công cụ dòng lệnh mã nguồn mở viết bằng Rust — xuất hiện như mảnh ghép hoàn thiện nửa còn lại bị thiếu hụt:
-1. **Chuyển dịch tư duy từ Thư mục sang Nhánh (`Branch-First Thinking`):** Chỉ cần `wt switch <branch>`, công cụ tự động phân giải cấu trúc thư mục từ template.
-2. **Bảng Giám Sát Trạng Thái Đa Agent Tập Trung (`wt list`):** Hiển thị trực quan toàn bộ agents trên một màn hình với biểu tượng robot 🤖 (đang chạy tác vụ) và bong bóng thoại 💬 (đang chờ phê duyệt từ kỹ sư), kèm độ lệch commit và kích thước diff.
-3. **Nhân Bản Dependencies Siêu Tốc Bằng Copy-on-Write (`CoW`):** Sao chép toàn bộ thư mục `.gitignore` (`node_modules`, `target`, `.env`) bằng cơ chế CoW (APFS / Btrfs / ReFS), biến thư mục build 14 GB từ 2 phút copy thành 20 giây với **0 GB dung lượng ổ cứng phát sinh**, ép thời gian build Rust từ 68s xuống 3-4s.
-4. **Phân Bổ Cổng Tự Động Tránh Xung Đột (`HashPort Filter`):** Mỗi agent có một port dev server riêng biệt (không tranh chấp port 3000).
-5. **Gói Gọn 6 Lệnh Git Thành 1 Lệnh Merge Duy Nhất (`wt merge`):** Tự động commit, squash, rebase lên main, fast-forward và xóa sạch worktree khi agent hoàn thành công việc.
+---
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                       WORKTRUNK PARALLEL AGENT ARCHITECTURE                                 │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│  TRADITIONAL COLLISION (CÙNG CHUNG THƯ MỤC):                                                │
-│  [Agent A: Refactor Auth] ────┐                                                             │
-│                               ▼                                                             │
-│                    [Shared Repo /src/auth.ts] ◄──── [Agent B: Run Tests (FAIL CATASTROPHIC)]│
-│                                                                                             │
-│  WORKTRUNK ISOLATION PIPELINE (3 AGENTS SONG SONG):                                         │
-│                                                                                             │
-│  wt switch claude feat-auth  wt switch claude feat-billing  wt switch claude fix-cache      │
-│            │                              │                            │                    │
-│            ▼                              ▼                            ▼                    │
-│   ┌──────────────────┐           ┌──────────────────┐         ┌──────────────────┐          │
-│   │ Worktree: auth/  │           │Worktree: billing/│         │ Worktree: cache/ │          │
-│   │ Port: 3101       │           │Port: 3102        │         │ Port: 3103       │          │
-│   │ CoW node_modules │           │CoW node_modules  │         │ CoW node_modules │          │
-│   └────────┬─────────┘           └────────┬─────────┘         └────────┬─────────┘          │
-│            │                              │                            │                    │
-│            └──────────────────────┬────────────────────────────────────┘                    │
-│                                   ▼                                                         │
-│                   ┌───────────────────────────────────────┐                                 │
-│                   │ wt list: DASHBOARD TẬP TRUNG TUI      │                                 │
-│                   │ - feat-auth:   [+3 commits] [🤖 RUN]  │                                 │
-│                   │ - feat-billing:[+1 commit ] [💬 WAIT] │                                 │
-│                   │ - fix-cache:   [+5 commits] [🤖 RUN]  │                                 │
-│                   └───────────────────┬───────────────────┘                                 │
-│                                       │ wt merge                                            │
-│                                       ▼                                                     │
-│                   ┌───────────────────────────────────────┐                                 │
-│                   │ 6-IN-1 PIPELINE TO MAIN:              │                                 │
-│                   │ Commit ➔ Squash ➔ Rebase ➔ Fast-Fwd ➔ │                                 │
-│                   │ Auto-Delete Worktree & Branch         │                                 │
-│                   └───────────────────────────────────────┘                                 │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+## 🏗️ Kiến trúc Luồng Công việc Song song với Worktrunk (`wt`)
+
+```mermaid
+flowchart LR
+    subgraph MainRepo["📦 Main Checkout (main)"]
+        BaseCache["🗂️ Gitignored Cache<br/>node_modules/ | target/ (14GB) | .env"]
+    end
+
+    subgraph ParallelWorktrees["🚀 Parallel Agent Worktrees (via 'wt switch')"]
+        direction TB
+        WT_A["🌿 feature-a (Port: hash_port)<br/>🤖 Claude Code Working<br/>HEAD: +1K -74"]
+        WT_B["🌿 feature-b (Port: hash_port)<br/>💬 Waiting on User<br/>HEAD: +15 -1"]
+        WT_C["🌿 feature-c (Port: hash_port)<br/>🤖 Codex / Gemini CLI<br/>HEAD: +1K -6"]
+    end
+
+    subgraph MergePipeline["🔄 'wt merge' (6 Git Commands in 1)"]
+        direction LR
+        M1["1. Commit"] --> M2["2. Squash"] --> M3["3. Rebase onto main"] --> M4["4. Fast-forward"] --> M5["5. Remove worktree & branch"]
+    end
+
+    BaseCache ==>|"wt step copy-ignored<br/>Copy-on-Write Reflink (20s, ~0GB)"| ParallelWorktrees
+    ParallelWorktrees -->|"wt list (Single Status View)"| MergePipeline
+    MergePipeline --> MainRepo
 ```
 
 ---
 
-## 2. Vì Sao Git Worktree Thuần & Claude Code Native Vẫn Chưa Đủ?
+## ⏱️ Phân tích chi tiết theo dòng thời gian & Visual Frames
 
-### 2.1. Nỗi Đau Của Git Worktree Truyền Thống
-Để thiết lập một môi trường biệt lập cho một agent bằng lệnh git gốc:
-1. Bạn phải gõ tên nhánh lặp lại 3 lần: `git worktree add -b feature-a ../repo-feature-a feature-a`.
-2. Khi hoàn thành, dọn dẹp cần ít nhất 3 lệnh: chuyển thư mục, xóa worktree (`git worktree remove`), xóa nhánh cục bộ (`git branch -d`).
-3. Lệnh `git worktree list` chỉ trả về một danh sách các đường dẫn thư mục khô khan, không cho biết agent nào đang chạy, nhánh nào đang dẫn trước main bao nhiêu commit, hay độ lớn của diff là bao nhiêu dòng.
-
-### 2.2. Điểm Nghẽn Trong Tính Năng Worktree Tích Hợp Sẵn Của Claude Code
-Claude Code đã đưa tính năng tạo worktree vào CLI của mình, nhưng Josh chỉ ra rằng: **"Bản tích hợp sẵn chỉ làm một nửa công việc, và nửa bị bỏ sót chính là nửa gây đau đớn nhất"**:
-1. **Thiếu Lệnh Tích Hợp Mã Trở Lại (`No Merge Back Command`):** Khi Claude hoàn thành task trong worktree, không có cơ chế tự động nào để gộp các thay đổi đó về lại nhánh chính. Kỹ sư phải tự tay giải quyết thủ công.
-2. **Mất Dấu Trạng Thái Đa Agent (`No Single Pane of Glass`):** Khi chạy 3 đến 5 agent cùng lúc, kỹ sư không biết agent nào đã xong, agent nào bị kẹt, agent nào đang chờ nhập lệnh.
-3. **Thảm Họa Dependencies Bị Bỏ Qua (`Cold Install Tax`):** Bản thân tài liệu chính thức của Claude Code viết: *"Hãy yêu cầu Claude tự cài đặt dependencies"*. Điều này đồng nghĩa với việc mỗi worktree mới tạo ra là một môi trường trắng tinh: không có `node_modules`, không có cache build (`target`), không có file cấu hình bí mật `.env`. Chạy 5 agent là bạn phải trả giá bằng 5 lần chạy `npm install` hoặc `cargo build` lạnh lùng, tiêu tốn hàng chục gigabyte ổ cứng và hàng chục phút chờ đợi vô ích.
-
----
-
-## 3. Kiến Trúc Kỹ Thuật Của Worktrunk (`wt`)
-
-Worktrunk là một CLI siêu nhẹ viết bằng **Rust**, phát hành theo giấy phép kép MIT/Apache-2.0, được thiết kế chuyên biệt để hoạt động như một tầng trừu tượng thông minh bên trên Git Worktree.
-
-### 3.1. Rào Cản Shell & Cơ Chế Cài Đặt Hàm Wrapper
-Một tiến trình con (child process) như Worktrunk không thể trực tiếp thay đổi thư mục làm việc hiện tại (`cwd`) của tiến trình cha (terminal shell). Do đó:
-- Worktrunk yêu cầu bước khởi tạo: `wt config shell install`.
-- Lệnh này sẽ chèn một hàm shell wrapper cực nhỏ vào `.bashrc` / `.zshrc` / PowerShell profile.
-- **Lưu ý cốt tử:** Nếu bỏ qua bước này, Worktrunk vẫn chạy bình thường nhưng lệnh chuyển thư mục `cd` sẽ âm thầm không có tác dụng.
-
-### 3.2. Khả Năng Tương Thích Rộng Mở (Plugin Ecosystem)
-Worktrunk không đối đầu với Claude Code mà cắm thẳng vào bên trong nó. Plugin của Worktrunk hook trực tiếp vào sự kiện tạo worktree của Claude Code, biến mọi worktree do Claude tự sinh đều được quản lý bởi Worktrunk.
-Ngoài Claude Code, Worktrunk hiện hỗ trợ plugin cho **6 CLI Agent hàng đầu**:
-- Claude Code
-- OpenAI Codex CLI
-- OpenCode
-- Gemini CLI
-- Aider / Custom Agentic CLIs
+### 1. Tại sao `git worktree` thuần và `claude --worktree` vẫn chưa đủ? (`00:00` – `01:26` | `frame_0000` – `frame_0019`)
+- **Xung đột khi chạy chung 1 thư mục (`frame_0014`):** Khi `Agent A` và `Agent B` cùng sửa `repo/src/api.ts` và chạy `src/api.test.ts` trên một thư mục duy nhất, `Agent A` đang refactor dở sẽ làm test của `Agent B` nổ tung — giống như hai người cố viết lên cùng một tờ giấy.
+- **Nỗi khổ của `git worktree` gốc (`frame_0016`):**
+  - Để tạo một worktree mới, bạn phải gõ tên nhánh tới 3 lần:
+    ```bash
+    git worktree add -b feat ../repo.feat && cd ../repo.feat
+    ```
+  - Khi dọn dẹp lại tốn thêm 3 lệnh nữa, và `git worktree list` chỉ trả về một danh sách đường dẫn thư mục khô khan.
+- **Hạn chế của `claude --worktree` tích hợp sẵn (`frame_0003`, `frame_0009`, `frame_0019`):**
+  - Dù đã tự động hóa bước **1. Create** và **2. Clean up** (`frame_0009`), nó vẫn thiếu 2 mảnh ghép sống còn (`frame_0019`):
+    - ❌ **Merge back:** Không có lệnh đưa code đã hoàn thành về lại nhánh `main`.
+    - ❌ **One view of every agent:** Không có bảng điều khiển chung để biết agent nào đang chạy, agent nào đang chờ mình.
+    - Về phần cài đặt thư viện (`dependencies`), tài liệu chính thức chỉ bảo: *"Hãy nhắc Claude tự chạy lệnh cài đặt"*.
 
 ---
 
-## 4. Năm Tính Năng Sát Thủ (Killer Features) Giải Phóng Sức Mạnh Đa Agent
-
-### 4.1. Khởi Tạo & Chuyển Đổi Trong 1 Dòng Lệnh (`wt switch`)
-Thay vì phải nhớ đường dẫn thư mục dài ngoằng, kỹ sư chỉ cần tương tác theo tên nhánh:
-```bash
-# Cửa sổ 1: Giao việc cho Claude Code làm tính năng Auth
-wt switch claude feat-auth
-
-# Cửa sổ 2: Mở nhánh sửa lỗi thanh toán
-wt switch claude feat-billing
-
-# Cửa sổ 3: Tối ưu bộ nhớ cache
-wt switch claude fix-cache
-```
-Chỉ với 1 dòng lệnh, Worktrunk tự động: tạo nhánh mới, checkout thư mục riêng biệt theo template đặt sẵn, và khởi động ngay phiên làm việc của Agent.
-
-### 4.2. Bảng Giám Sát Thời Gian Thực Tập Trung (`wt list`)
-Chỉ cần gõ `wt list`, kỹ sư nhận được toàn cảnh hoạt động của dàn Agent:
-- Tên worktree và tên nhánh tương ứng.
-- Khoảng cách so với nhánh `main` (Ahead / Behind).
-- Độ lớn của bản diff thay đổi (Lines added / deleted).
-- **Chỉ báo trạng thái trực quan:**
-  - 🤖 **Robot icon:** Agent đang hoạt động tích cực (đang suy nghĩ, gọi tool, chỉnh sửa file).
-  - 💬 **Speech bubble icon:** Agent đã hoàn thành một chặng hoặc gặp khúc mắc và đang chờ kỹ sư phản hồi/phê duyệt.
-- Muốn can thiệp vào agent nào, chỉ cần gõ `wt switch <branch-name>` là terminal lập tức nhảy thẳng vào thư mục đó.
-
-### 4.3. Siêu Tốc Độ Với Copy-on-Write (`wt step copy-ignore`)
-Đây là tính năng mang tính đột phá về hạ tầng lưu trữ:
-- Khi tạo worktree mới, Git bỏ qua tất cả những gì nằm trong `.gitignore`.
-- Worktrunk cung cấp lệnh `copy-ignore` sử dụng cơ chế **Copy-on-Write (CoW)** của hệ thống tệp hiện đại (APFS trên macOS, Btrfs/XFS reflink trên Linux, ReFS Dev Drive trên Windows):
-  - Thư mục mới trỏ vào **cùng một khối dữ liệu vật lý (physical storage blocks)** trên ổ đĩa với thư mục gốc, chỉ phân tách khi có sự kiện ghi mới.
-  - **Số liệu thực nghiệm từ tác giả:** Thư mục build Rust nặng **14 GB** thông thường mất hơn 2 phút copy và tốn thêm 14 GB dung lượng; qua cơ chế CoW chỉ mất **20 giây và tốn xấp xỉ 0 GB dung lượng mới**.
-  - Lần build đầu tiên của Rust trong worktree mới giảm từ **68 giây xuống chỉ còn 3 đến 4 giây** nhờ tái sử dụng toàn bộ compilation cache!
-
-### 4.4. Bộ Lọc HashPort Ngăn Chặn Xung Đột Dev Server
-Khi 3 agent cùng lúc chạy `npm run dev` hoặc khởi động máy chủ thử nghiệm, chúng sẽ tranh chấp cổng mặc định (như `3000` hoặc `8080`).
-Worktrunk tích hợp bộ lọc **HashPort**:
-- Băm (hash) tên nhánh hoặc định danh worktree thành một số cổng duy nhất và ổn định.
-- Tự động nạp cổng này vào biến môi trường của từng worktree (ví dụ: `PORT=3101`, `PORT=3102`).
-- 3 Agent chạy 3 máy chủ dev hoàn toàn độc lập, không xảy ra xung đột `EADDRINUSE`.
-
-### 4.5. Lệnh Gộp Nhất Thể Hóa 6-trong-1 (`wt merge`)
-Khi một agent hoàn thành nhiệm vụ và vượt qua kiểm thử:
-```bash
-wt merge
-```
-Worktrunk sẽ tự động thực hiện chuỗi 6 thao tác phức tạp:
-1. Tạo commit cho toàn bộ thay đổi còn lại.
-2. Nén (Squash) các commit nháp vụn vặt của Agent thành một commit sạch sẽ.
-3. Rebase các thay đổi lên trên đầu nhánh `main` mới nhất.
-4. Fast-forward nhánh `main` tới trạng thái mới.
-5. Xóa bỏ nhánh feature cục bộ.
-6. Hủy đăng ký và dọn dẹp sạch sẽ thư mục worktree trên đĩa.
+### 2. Thực chiến Chạy 3 Agents Song song & Bảng điều khiển `wt list` (`01:27` – `03:23` | `frame_0020` – `frame_0024`)
+- **Khởi chạy 3 Agents trên 3 Nhánh bằng 1 dòng lệnh duy nhất (`01:32` – `02:18`):**
+  - Mở 3 khung terminal, trong mỗi khung chỉ cần chạy 1 lệnh `wt switch` để tạo worktree cho `feature-a`, `feature-b`, `feature-c` và kích hoạt thẳng Claude Code.
+  - Ba thư mục hoàn toàn tách biệt được sinh ra tự động (`~/Desktop/taskflow-api.feature-a`, `.feature-b`, `.feature-c` - `frame_0023`, `frame_0024`).
+- **Bảng tổng quan `wt list` (`frame_0007`, `frame_0020`, `frame_0023`, `frame_0024`):**
+  - Chạy `wt list` (hoặc `wt list --full` để xem cả trạng thái CI PR) hiển thị toàn bộ bức tranh trên một màn hình:
+    ```text
+    Branch      Status   HEAD±       main↕   main…±     Remotes  Commit   Age  Message
+    @ main          ^|                                           6d24512  20m  main commit
+    + feature-a !?  ~    +1K   -74                               6d24512  20m  main commit
+    + feature-b !   ~    +15   -1                                6d24512  20m  main commit
+    + feature-c !?  ~    +1K   -6                                6d24512  20m  main commit
+    ```
+  - **Các ký hiệu trực quan của Agent:**
+    - Biểu tượng **Robot (🤖):** Agent trong worktree đó đang tích cực chạy tác vụ.
+    - Biểu tượng **Bong bóng thoại (💬):** Agent đang dừng lại chờ quyết định từ người dùng.
+  - Chuyển đổi tức thì giữa các worktrees mà không cần nhớ đường dẫn thư mục bằng lệnh:
+    ```bash
+    wt switch feature-a
+    ```
 
 ---
 
-## 5. Phân Tích So Sánh Các Giải Pháp Trên Thị Trường
-
-| Tiêu Chí | Plain Git Worktree | Claude Code Native | Vibe Kanban | Worktrunk (`wt`) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Giao diện tương tác** | Terminal thô | Terminal CLI | Web GUI Kanban Board | **Terminal Native TUI** |
-| **Độ phức tạp khởi tạo** | Cao (3 lệnh lặp tên) | Trung bình (Tự động tạo) | Thấp (Kéo thả thẻ) | **Siêu thấp (1 lệnh `wt switch`)** |
-| **Quản trị trạng thái** | Danh sách path thô | Không có | Bảng Kanban trực quan | **Dashboard TUI (Robot 🤖 / Chat 💬)** |
-| **Tự động hóa Merge** | Không (Thủ công) | Không có | Tùy cấu hình | **Tự động 6-trong-1 (`wt merge`)** |
-| **Xử lý Dependencies** | Thủ công hoàn toàn | Cold install tốn thời gian | Thủ công / Container | **Copy-on-Write (0 GB, 3s build)** |
-| **Xung đột Port Dev** | Tự quản lý | Tự giải quyết | Port mapping phức tạp | **HashPort tự động** |
-| **Môi trường phù hợp** | Kỹ sư Git kỳ cựu | Chạy 1 agent đơn lẻ | Đội ngũ thích UI chuột | **Power Users chạy 3–10 Agents song song** |
+### 3. Cơ chế Hoạt động Ngầm: Shell Wrapper & Hook Đa Agent CLI (`03:24` – `04:16` | `frame_0025` – `frame_0033`)
+- **Tại sao bắt buộc phải chạy `wt config shell install`? (`frame_0028` – `frame_0030`):**
+  - Trong hệ điều hành Unix/Windows, một tiến trình con (như binary `wt`) **không thể tự thay đổi thư mục hiện hành (`cd`) của tiến trình shell cha**.
+  - Khi gõ `which wt` (`frame_0029`, `frame_0030`), ta thấy `wt config shell install` cài một hàm wrapper siêu nhỏ vào shell:
+    ```zsh
+    wt () {
+      cd_file="$(mktemp)"
+      {
+        WORKTRUNK_DIRECTIVE_CD_FILE="$cd_file" command "${execution[@]}"
+      } always {
+        if [[ -s "$cd_file" ]]
+        then
+          builtin cd -- "$(<"$cd_file")"
+        fi
+      }
+    }
+    ```
+  - Nếu bỏ qua bước `wt config shell install`, mọi lệnh tạo nhánh vẫn chạy nhưng thao tác nhảy thư mục (`cd`) sẽ âm thầm không xảy ra!
+- **Tích hợp trực tiếp vào Hook `WorktreeCreate` của 6 Agent CLIs (`frame_0032`, `frame_0033`):**
+  - Worktrunk không hề xung đột với tính năng worktree sẵn có của Claude Code mà móc thẳng vào **`WorktreeCreate` hook** (`frame_0032`) — nghĩa là ngay cả khi Claude Code tự tạo worktree, nó cũng đi qua pipeline của Worktrunk.
+  - Hỗ trợ chính thức **6 Agent CLIs** (`frame_0033`):
+    1. **Claude Code**
+    2. **Codex**
+    3. **OpenCode**
+    4. **Pi**
+    5. **oh-my-pi (`omp`)**
+    6. **Gemini CLI**
 
 ---
 
-## 6. Điểm Cần Cảnh Giác & Giới Hạn Kỹ Thuật (Gotchas & Caveats)
+### 4. Ba Tính năng Sát thủ: `wt step copy-ignored` (CoW), `hash_port` & `wt merge` (`04:17` – `05:27` | `frame_0034` – `frame_0042`)
+- **1. Xóa sổ Cold Start bằng `wt step copy-ignored` (`frame_0035` – `frame_0040`):**
+  - **Vấn đề (`frame_0036`):** Một worktree mới chỉ có mã nguồn (`your code`), nhưng mất sạch các tệp nằm trong `.gitignore`: ❌ `node_modules/`, ❌ `target/` (build cache), ❌ `.env`. Chạy 5 agents là phải trả giá cài đặt và biên dịch lại từ đầu 5 lần.
+  - **Giải pháp Copy-on-Write (`frame_0037`, `frame_0038`):** Lệnh `wt step copy-ignored` nhân bản các thư mục `.gitignore` từ nhánh chính sang worktree mới bằng cơ chế **Copy-on-Write (reflink)** — cả `main/target/` và `feature-a/target/` cùng trỏ vào một khối dữ liệu vật lý trên ổ đĩa (`disk blocks`) cho đến khi có file bị ghi đè.
+  - **Benchmark thực tế trên thư mục `target/` 14GB của Rust (`frame_0040`):**
 
-1. **Phần Mềm Giai Đoạn Sớm (Pre-1.0 / v0.8.x):**
-   - Từ khóa `breaking` xuất hiện hơn 80 lần trong lịch sử phiên bản (trong đó có 8 breaking changes ngay trong bản phát hành gần nhất). Cần chuẩn bị tâm lý cập nhật file cấu hình khi nâng cấp.
-2. **Không Tự Động Xóa Bỏ Xung Đột Hợp Nhất (Merge Conflicts):**
-   - Worktree cách ly môi trường thực thi, nhưng **không thể triệt tiêu xung đột logic Git**. Nếu 2 agent sửa đổi cùng một dòng code, `wt merge` sẽ dừng quy trình rebase và nhường quyền xử lý xung đột lại cho con người.
-3. **Phụ Thuộc Hệ Thống Tệp Cho Copy-on-Write:**
-   - Tính năng sao chép thần tốc CoW chỉ hoạt động trên APFS (macOS), Btrfs/XFS (Linux) hoặc ReFS (Windows Dev Drive). Trên định dạng `ext4` tiêu chuẩn hoặc NTFS thông thường, lệnh sẽ quay về sao chép đầy đủ (full physical copy) và tốn tài nguyên đĩa.
-4. **Cảnh Giác Với Project Hooks:**
-   - Worktrunk cho phép cấu hình hook tự động chạy lệnh shell khi chuyển worktree. Mặc dù công cụ sẽ hỏi xác nhận trong lần chạy đầu tiên, kỹ sư cần kiểm tra kỹ nội dung script để phòng ngừa rủi ro bảo mật supply chain.
+    | Phương pháp | Thời gian | Dung lượng ổ cứng tiêu tốn | Thời gian Build Rust lần đầu |
+    | :--- | :--- | :--- | :--- |
+    | **`cp -R` (Full copy truyền thống)** | **2 phút** | **14 GB** | ~68 giây (nếu không copy cache) |
+    | **`wt step copy-ignored` (Reflinked)** | **20 giây** | **~0 GB** | **3 – 4 giây** |
+
+- **2. Bộ lọc `hash_port` chống đụng độ cổng `3000` (`05:09` – `05:16` | `frame_0048`):**
+  - Trong cấu hình hook khởi tạo của dự án, dùng filter `PORT={{ branch | hash_port }}` để băm tên nhánh thành một số cổng cố định duy nhất:
+    ```yaml
+    echo 'PORT={{ branch | hash_port }}' > .env.local
+    ```
+  - 3 agents chạy 3 dev servers cùng lúc mà không bao giờ đụng độ cổng `3000`.
+- **3. Lệnh Gộp 6-trong-1 `wt merge` (`05:17` – `05:27` | `frame_0042`):**
+  - Khi agent hoàn thành công việc, chỉ cần gõ `wt merge`, Worktrunk tự động chạy chuỗi 6 thao tác Git:
+    1. `commit` các thay đổi còn lại
+    2. `squash` các commit nhỏ lẻ
+    3. `rebase onto main`
+    4. `fast-forward` nhánh `main`
+    5. Xóa thư mục worktree
+    6. Xóa nhánh phụ
 
 ---
 
-## 7. Lời Khuyên Hành Động Cho Kỹ Sư (Actionable Takeaways)
-
-- **Nếu bạn chỉ chạy 1 Agent duy nhất tại một thời điểm:** Hãy gắn bó với tính năng native của Claude Code hoặc quy trình Git thông thường; không cần thiết phải nạp thêm một công cụ trung gian như Worktrunk.
-- **Nếu bạn vận hành từ 3 đến 5 Agent song song (Swarm Ops):** Worktrunk là công cụ bắt buộc phải có để chấm dứt tình trạng giẫm chân lên nhau, nghẽn ổ cứng do `node_modules` trùng lặp, và mệt mỏi khi phải gõ 6 lệnh dọn dẹp Git sau mỗi phiên làm việc.
-- **Thiết lập Dev Drive / APFS:** Luôn đảm bảo thư mục làm việc của bạn nằm trên phân vùng hỗ trợ Copy-on-Write để tận dụng tối đa tốc độ sao chép dependencies tức thì.
+### 5. So sánh Công cụ & 4 Lưu ý Thực tế trước khi dùng (`05:28` – `07:13` | `frame_0043` – `frame_0049`)
+- **Đặt lên bàn cân với các giải pháp khác (`frame_0043`, `frame_0044`):**
+  - **Native Claude Code Worktrees (`claude --worktree`):** Đủ dùng nếu bạn chỉ chạy 1 agent tại một thời điểm, nhưng thiếu hẳn `merge` và bảng trạng thái tổng hợp.
+  - **Vibe Kanban (`vibekanban.com`, 28,510 stars - `frame_0044`):** Giao diện Web UI Kanban đầy đủ để kéo thả và quản lý nhiều local coding agents, nhưng cồng kềnh nếu bạn chỉ muốn sống thuần trong terminal.
+  - **Worktrunk (`wt`):** Thuần terminal (terminal-native), tích hợp sẵn hooks, CoW cache và `wt merge`.
+- **4 Cảnh báo thẳng thắn từ Josh (`05:51` – `06:48` | `frame_0045` – `frame_0048`):**
+  1. **Chưa lên bản 1.0 (Pre-1.0 Breaking Changes):** Phiên bản trong video là `v0.8.1`. Từ khóa `"breaking"` xuất hiện hơn **80 lần** trong changelog (riêng bản mới nhất có 8 thay đổi breaking), nên bạn cần sẵn sàng cập nhật lại file config khi nâng cấp.
+  2. **Worktree không làm biến mất Merge Conflicts:** Nếu 2 agents cùng sửa một dòng trong cùng một file, `wt merge` sẽ dừng bước rebase lại và bàn giao xung đột đó cho bạn tự giải quyết.
+  3. **Giới hạn Hệ thống Tập tin của Copy-on-Write (`frame_0047`):** Reflink CoW chỉ hoạt động trên các hệ thống tập tin hỗ trợ nó: **APFS (macOS)**, **btrfs** và **XFS (Linux)**, **ReFS (Windows)**. Nếu bạn chạy trên phân vùng Linux **`ext4`** truyền thống (hoặc NTFS chuẩn), nó sẽ phải copy toàn bộ file như bình thường và các native modules vẫn cần biên dịch lại.
+  4. **An ninh khi duyệt Project Hooks (`frame_0048`):** Các hook tự động trong repo (`pre-start install: npm ci`, `pre-start build: cargo build --release`, `pre-start env`) thực thi lệnh shell trực tiếp. Dù Worktrunk luôn hiện bảng hỏi xác nhận ở lần chạy đầu tiên (`Allow and remember? [y/N]`), hãy đọc kỹ các lệnh trong đó trước khi bấm `y`.
