@@ -1,165 +1,209 @@
-# Giải Mã DeepSeek Super-Agent & Hướng Dẫn Tích Hợp Trực Tiếp Vào Claude Code / OpenCode | Rob Shocks (Switch Dimension)
+# Giải Mã DeepSeek Super-Agent & Hướng Dẫn Tích Hợp Trực Tiếp Vào Claude Code / OpenCode
 
-- **Video URL:** [YouTube Link](https://www.youtube.com/watch?v=n2TLtU65ZtA)
-- **Video ID:** `n2TLtU65ZtA`
+- **Video URL:** https://www.youtube.com/watch?v=n2TLtU65ZtA
+- **Watch Skill ID:** `e3295b2559218e5d`
 - **Category:** #ai-agents
-- **Date Processed:** 2026-11-05
+- **Date Processed:** 2026-11-07
 - **Duration:** 12:39
-- **Speaker:** Rob Shocks (Switch Dimension — Phân tích nguyên mẫu `dsh-superagent-prototype` của DeepSeek và hướng dẫn tự dựng Super-Agent bằng TypeScript + Docker cho Claude Code / OpenCode)
-- **Transcript File:** [deepseek_super_agent_plug_into_claude_code_rob_shocks_transcript.txt](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_super_agent_plug_into_claude_code_rob_shocks_transcript.txt)
+- **Speaker:** Rob Shocks
+- **Channel:** Rob Shocks - Switch Dimension
 
 ---
 
-## 1. Tóm Tắt Điều Hành (Executive Summary)
-
-Trong bối cảnh các mô hình ngôn ngữ lớn (LLM) đã tiến bộ vượt bậc trong 6 tháng qua và không còn cần con người "trông trẻ" (babysit) từng bước, nút thắt cổ chai thực sự của ngành công nghệ phần mềm đã dịch chuyển hoàn toàn sang **con người — những "Meat Proxies" (Trạm trung chuyển bằng xương bằng thịt)**. Như Lauren Tan (SpaceX/Cursor) từng ví von về *"dòng sông mã nguồn hung dữ" (violent river of code)* hay báo cáo SDLC của Anthropic chỉ ra: mỗi tác nhân AI bạn mở thêm chỉ là một tab terminal nữa bạn phải canh chừng, một bản diff nữa phải đọc, và một câu hỏi nữa đang chờ bạn bấm nút duyệt.
-
-Theo nghiên cứu của DeepSeek, một lập trình viên chỉ có thể theo dõi tối đa **3 đến 5 phiên làm việc (sessions) đồng thời** trước khi não bộ bị quá tải ngữ cảnh. Để đập tan giới hạn này, ngày 31/10/2026, DeepSeek công bố nguyên mẫu nghiên cứu **DSH Super-Agent** (`dsh-superagent-prototype`) xoay quanh một tuyên ngôn duy nhất trong tài liệu triết lý (`000-philosophy.md`):
-
-> **"Sessions should be an implementation detail of the system. They shouldn't be a mental burden on its users."**
-> *(Các phiên làm việc phải là chi tiết kỹ thuật ẩn bên dưới hệ thống, chứ không được phép là gánh nặng tâm trí đè lên người dùng).*
-
-Điểm giá trị nhất của video này là **Rob Shocks** không chỉ giải phẫu kiến trúc của DeepSeek mà còn **tách rời hoàn toàn bản thiết kế này khỏi hệ sinh thái DeepSeek**, đóng gói thành một bản mẫu mã nguồn mở viết bằng **TypeScript chạy trong Docker khóa chặt (Locked-down Container)** để bất kỳ ai cũng có thể cắm trực tiếp vào **Claude Code, OpenCode hoặc Cursor** chỉ với 1 dòng cấu hình.
+## 1. Tóm Tắt Điều Hành
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│               SESSION-BASED BABYSITTING VS. DEEPSEEK / ROB SHOCKS SUPER-AGENT               │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│  TRADITIONAL WORKFLOW (CON NGƯỜI LÀ BỘ ĐỊNH TUYẾN - "MEAT PROXY"):                          │
-│                                                                                             │
-│     [Tab 1: Claude Code] ◄──┐                                                               │
-│     [Tab 2: Codex CLI]   ◄──┼──► [LẬP TRÌNH VIÊN (3-5 Tabs Max)] ──► Quá tải não bộ,        │
-│     [Tab 3: Cursor]      ◄──┤    - Tự nhớ ngữ cảnh từng tab          Mất hết việc khi       │
-│     [Tab 4: OpenCode]    ◄──┘    - Tự copy-paste kết quả qua lại     gập màn hình Laptop!   │
-│                                                                                             │
-│  SUPER-AGENT ARCHITECTURE (1 CONTINUOUS ENTITY + LOCKED-DOWN DOCKER SANDBOX):               │
-│                                                                                             │
-│   External Triggers              STAGE 1: CODE GATE          STAGE 2: ROUTER & WORKERS       │
-│   ┌────────────────┐           ┌────────────────────┐      ┌─────────────────────────────┐  │
-│   │- GitHub Issues │           │ Deterministic Code │      │  ROUTER (Light Model, No    │  │
-│   │- PR Comments   ├──────────►│ Allowlist Check    ├─────►│  Bash) ──► Tạo Ticket +     │  │
-│   │- CI Failures   │           │ (Chặn 93% nhiễu,   │      │  Git Worktree + Branch      │  │
-│   │- Sentry / Jira │           │  tốn 0 Token!)     │      └──────────────┬──────────────┘  │
-│   └────────────────┘           └────────────────────┘                     │                 │
-│                                                                           ▼                 │
-│   ┌────────────────────────────────────────────────┐      ┌─────────────────────────────┐  │
-│   │ HUMAN SIGN-OFF PANEL ("Needs You")             │      │  ISOLATED WORKER (Docker)   │  │
-│   │ - Không tự ý merge code                        │◄─────┤  - Claude Code / OpenCode   │  │
-│   │ - Chỉ giao tiếp qua cổng CLI kiểm duyệt `sa`   │      │  - Subscribe thẳng vào PR   │  │
-│   │ - Con người chỉ làm Product Decisions & Duyệt  │      │  - Silently Reproduce & Fix │  │
-│   └────────────────────────────────────────────────┘      └─────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────┐
+│          DEEPSEEK SUPER-AGENT EXPLAINED (PLUG IT INTO CLAUDE CODE)         │
+│          Giải phẫu dsh-superagent-prototype & Bản dựng TypeScript/Docker   │
+├────────────────────────────────────────────────────────────────────────────┤
+│  ĐIỂM NGHẼN MỚI: Không còn là năng lực Model, mà là CON NGƯỜI ("Meat Proxy"│
+│                  đọc từng diff, nhớ từng tab chat, làm Router thủ công)    │
+│  TUYÊN NGÔN:     "Sessions should be an implementation detail of the       │
+│                  system, not a mental burden on its users."                │
+├───────────────────────────────┬────────────────────────────────────────────┤
+│  KIẾN TRÚC DEEPSEEK PROTOTYPE │  BẢN TỰ DỰNG CỦA ROB SHOCKS (TYPESCRIPT)  │
+│  • 01: DeepSeek Harness (OSS) │  • Không phụ thuộc DeepSeek Harness        │
+│  • 02: Super-agent (Design)   │  • Pluggable Workers: Claude Code, OpenCode│
+│  • Router (No bash, light LLM)│  • Code Gate (Allowlist) chặn trước LLM    │
+│  • Workers (1 task, warm cache│  • CLI cổng kiểm duyệt `sa` (Outbox stamp) │
+│    via PR Thread Pass-Through)│  • Docker Non-root (`uid=1000(node)`),     │
+│  • Event Batching: 1→40/min,  │    0 access vào $HOME / SSH keys           │
+│    latency 6.4s → 1.6s        │  • First real run: ~30s, \$0.10 (Haiku),   │
+│  • 23M cache-read tokens/run  │    nằm chờ ở bảng "Needs You" (No auto-merge)│
+└───────────────────────────────┴────────────────────────────────────────────┘
 ```
 
 ---
 
-## 2. Giải Phẫu Nguyên Mẫu DeepSeek Super-Agent (`dsh-superagent-prototype`)
+## 2. DeepSeek Thực Sự Đã Xây Dựng Cái Gì? (Frame `0:00` – `0:29`)
 
-### 1. Bốn Đặc Tính Cốt Lõi (The 4 Core Traits)
-Thay vì coi mỗi lần mở cửa sổ chat là một đơn vị công việc rời rạc, Super-Agent hoạt động như một thực thể duy nhất với 4 phẩm chất:
-1. **Continuous (Liên tục):** Dù bạn nhắn tin cho nó trên GitHub Issue, PR thread hay ứng dụng chat nội bộ, bạn vẫn đang nói chuyện với cùng một tác nhân duy nhất nắm giữ mạch bối cảnh xuyên suốt.
-2. **Productive (Năng suất cao):** Thực thi hàng chục tác vụ phức tạp song song ở dưới nền mà không bao giờ làm nghẽn luồng giao tiếp với người dùng.
-3. **Proactive (Chủ động):** Không ngồi chờ người dùng gõ prompt. Tự động lắng nghe sự kiện môi trường và hành động trước.
-4. **Persistent (Bền bỉ 24/7):** Luôn online trên server/container; không bị ngắt quãng khi lập trình viên đóng nắp MacBook đi ngủ.
-
-### 2. Kiến Trúc Phân Tầng: Router (Không Công Cụ) & Workers (Cô Lập)
-- **Tầng Router (Điều phối viên):**
-  - Chạy một phiên sống dài hạn (long-lived session), chịu trách nhiệm toàn bộ việc giao tiếp với con người và phân công việc.
-  - **Quy tắc sống còn:** Router **không bao giờ tự làm việc** và **hoàn toàn không được cấp quyền dùng công cụ `bash`**. Vì chỉ làm nhiệm vụ phân loại và điều phối, Router chỉ cần dùng một model nhỏ, nhanh và rẻ.
-- **Tầng Workers (Công nhân thực thi):**
-  - Mỗi Worker nhận một nhiệm vụ độc lập, chạy trong không gian ngữ cảnh riêng biệt với bộ công cụ đầy đủ và model mạnh nhất.
-  - Worker **không bao giờ nói chuyện trực tiếp với con người** mà chỉ báo cáo kết quả về cho Router.
-
-### 3. Cơ Chế Triggers, Lọc Kép (Double Filtering) & Đăng Ký Luồng Trực Tiếp (PR Subscription)
-Tương tự như cách Anthropic sử dụng file `intent.md` để gom mọi tín hiệu từ Email, Jira, Sentry, lịch họp vào quy trình SDLC, DeepSeek gọi mọi tín hiệu đầu vào là **Triggers**.
-- **Lọc Tầng 1 (Code Gate):** Kiểm tra bằng code thuần túy xem người gửi là ai, từ nguồn nào, có nằm trong danh sách cho phép (`allowlist`) hay không.
-- **Lọc Tầng 2 (Prompt Policy):** Chỉ những sự kiện vượt qua Tầng 1 mới được đưa vào LLM để đối chiếu với các chính sách viết bằng ngôn ngữ tự nhiên.
-- **Tối ưu hóa Cache Token bằng PR Thread Subscription:** Khi một Worker đã nhận xử lý một Pull Request, nó sẽ **đăng ký theo dõi (subscribe) trực tiếp vào luồng PR đó**. Mọi bình luận review tiếp theo trên PR sẽ đi thẳng vào phiên của Worker đó mà **bỏ qua Router**. Điều này giúp giữ nguyên bộ nhớ Warm Cache của Worker, tránh việc phải nạp lại toàn bộ ngữ cảnh (context drop) vốn cực kỳ tốn tiền.
-
-### 4. Chính Sách "Silently Reproduce and Fix" (Âm Thầm Tái Hiện & Sửa Lỗi)
-Nếu Lauren Tan có mẫu hình *"Fix and Fuzz"*, thì DeepSeek áp dụng chính sách **"Silently Reproduce and Fix"**:
-- Khi thấy một báo cáo lỗi (bug report) xuất hiện trong nhóm chat hoặc Issue, một Worker sẽ âm thầm chạy ở chế độ nền để thử tái hiện lỗi và tìm bản vá.
-- **Bảo vệ sự chú ý tuyệt đối:** Nếu không tái hiện được hoặc chưa tìm ra cách sửa đơn giản, Worker sẽ **im lặng hoàn toàn**. Nó chỉ lên tiếng báo cáo khi đã xác nhận được lỗi và có sẵn phương án sửa chữa rõ ràng.
-- Bên cạnh đó, một phiên **Watchdog (Chó canh gác)** độc lập chạy định kỳ để kiểm tra xem các Workers có đang tiến triển thực sự hay đã đi chệch mục tiêu (goal drift).
+**Rob Shocks** mở đầu bằng việc phân biệt rõ hai lớp công nghệ mà DeepSeek vừa tung ra (Frame `0001`, `0002`, `0004`):
+1. **Lớp 01 — `DeepSeek Harness` (`THE HARNESS · OPEN SOURCE`):** Bộ khung agent mã nguồn mở xây dựng trên kiến trúc *"Everything is a plugin"* của Cordis, có thể chạy như ứng dụng Desktop hoặc khởi chạy Web UI từ code.
+2. **Lớp 02 — `Super-agent` (`THE DESIGN · RUNS ON 01`):** Kho lưu trữ `deepseek-ai/dsh-superagent-prototype` (phát hành ngày 31/10/2026, đạt **12.8k stars** và **1.3k forks** chỉ sau 2 ngày — Frame `0004`, `0012`). Đây là bản thiết kế kiêm nguyên mẫu nghiên cứu chạy bên trên lớp 01.
+3. **Tính độc lập công cụ (Frame `0006`, `0007`):** Giá trị lớn nhất nằm ở **các nguyên lý kiến trúc**. Bạn không bắt buộc phải dùng mô hình DeepSeek hay DeepSeek Harness — Rob Shocks đã bóc tách bản thiết kế này để cắm trực tiếp vào **`Claude Code`**, **`OpenCode`** hoặc **`Cursor`** theo triết lý *"Build your own. Run your own."* cho doanh nghiệp mà không bị khóa chặt vào bất kỳ nền tảng độc quyền (proprietary setup) nào.
 
 ---
 
-## 3. Phân Tích Số Liệu Thực Nghiệm: Đánh Đổi Token Lấy Tốc Độ & Sự Ổn Định
+## 3. Điểm Nghẽn "Meat Proxy" & Thang Bậc Vị Trí Con Người (Frame `1:03` – `2:37`)
 
-DeepSeek đã thiết lập một bài kiểm thử thực tế lấy từ **300 tin nhắn thực** (từ group chat, GitHub và thông báo CI), trong đó chỉ có **20 tin nhắn là yêu cầu công việc thực sự** (còn lại 280 tin nhắn là nhiễu).
+### Tại sao con người lại trở thành Router bất đắc dĩ? (Frame `0016`)
+Khi chạy song song 5 cuộc trò chuyện (`CHAT 01: Fix auth bug`, `CHAT 02: Add tests`, `CHAT 03: Update docs`, `CHAT 04: Refactor API`, `CHAT 05: Review PR`), chính bộ não của bạn phải đóng vai **`Project manager` + `Router`**:
+- Mỗi agent mở thêm là một tab phải canh chừng, một bản diff phải đọc, một câu hỏi đang chờ bạn trả lời.
+- Gắn thêm MCP servers hay CLIs vào một local single-session agent không giải quyết được gốc rễ: nó vẫn chạy đồng bộ, ngữ cảnh giữa các việc bị trộn lẫn, và khi gập laptop thì mọi thứ chết đứng (Frame `0019`).
 
-| Chỉ Số Đo Lường (Chạy 5 lần) | Một Phiên Đơn Lẻ + Sub-Agent Tool | DeepSeek Super-Agent (Router + Workers) | Đánh Giá Kỹ Thuật |
-| :--- | :---: | :---: | :--- |
-| **Thời gian hoàn thành (Trung vị)** | ~20.0 – 25.0 phút | **12.0 phút** | Nhanh hơn gần gấp đôi |
-| **Thời gian chạy chậm nhất (Worst-case)**| **29.5 phút** | **15.7 phút** | Ổn định hơn vượt trội |
-| **Độ trễ quyết định khi tải cao (40 triggers/phút)**| Nghẽn cổ chai tuần tự | **Giảm từ 6.4s xuống 1.6s / quyết định** | Nhờ cơ chế gom lô tự động (**Event Batching**) |
-| **Lượng Cache Read Tokens tiêu thụ** | **~6 triệu tokens** | **~23 triệu tokens** | Đánh đổi ~3.8x cache tokens để mua thời gian của con người |
-
-> [!IMPORTANT]
-> **Hiện tượng nghịch lý của Router khi tải cao:** Bạn có thể nghĩ một Router duy nhất sẽ bị nghẽn khi có quá nhiều sự kiện dồn dập. Nhưng thực tế, khi tần suất tăng từ 1 trigger/phút lên **40 triggers/phút**, các sự kiện đến trong lúc Router đang suy luận sẽ được **gom lại thành một lô (Batch)** cho lượt gọi tiếp theo. Nhờ vậy, thời gian trung bình cho mỗi quyết định điều phối giảm mạnh từ **6.4 giây xuống chỉ còn 1.6 giây**!
-
----
-
-## 4. Hướng Dẫn Tự Dựng Super-Agent Với Claude Code / OpenCode Trong Docker Khóa Chặt
-
-Rob Shocks cảnh báo một lỗ hổng bảo mật lớn trong tài liệu triển khai (`006-deployment.md`) của nguyên mẫu DeepSeek: Mặc định cả Router và Workers của họ đều chạy với quyền **Full Access nguy hiểm (`--dangerously-skip-permissions`)**, rất dễ dính tấn công **Prompt Injection** khi đọc bình luận từ nguồn không tin cậy.
-
-Do đó, Rob đã thiết kế lại một phiên bản **TypeScript tinh gọn, an toàn cấp doanh nghiệp** (`switch-dimension/deepseek-superagent-guide`) để chạy với **Claude Code** hoặc **OpenCode**:
+### Thang bậc "Where The Human Sits" (Frame `0015`, `0020`, `0021`, `0058`)
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│             ROB SHOCKS' LOCKED-DOWN DOCKER SUPER-AGENT FOR CLAUDE CODE / OPENCODE           │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                             │
-│  [GitHub Repo Issues / PRs]                                                                 │
-│              │                                                                              │
-│              ▼ (1) Mention Bot (@my-agent)                                                  │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │ HOST MACHINE GATE (Plain TypeScript Code)                                             │  │
-│  │ - Kiểm tra cứng người gửi có trong `allowlist` không (Comment không thể tự cấp quyền) │  │
-│  │ - Tạo Ticket ID + Nhánh Git mới + Git Worktree độc lập                                │  │
-│  └───────────┬───────────────────────────────────────────────────────────────────────────┘  │
-│              │                                                                              │
-│              ▼ (2) Khởi chạy Agent trong Container cô lập                                   │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │ LOCKED-DOWN DOCKER CONTAINER (Non-Root User)                                          │  │
-│  │ - KHÔNG có quyền truy cập thư mục `$HOME` hay `SSH Keys` của máy chủ                  │  │
-│  │ - Dùng tài khoản GitHub Bot riêng với Fine-grained Token chỉ mở cho 1 Sandbox Repo    │  │
-│  │ - Engine: Đổi giữa `claude` (Claude Code) hoặc `opencode` chỉ bằng 1 dòng Config!     │  │
-│  │ - Agent KHÔNG ĐƯỢC gọi trực tiếp GitHub API, bắt buộc phải đi qua lệnh CLI nhỏ: `sa`  │  │
-│  └───────────┬───────────────────────────────────────────────────────────────────────────┘  │
-│              │                                                                              │
-│              ▼ (3) Lệnh `sa` kiểm duyệt đầu ra                                              │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │ OUTPUT SANITIZER & "NEEDS YOU" SIGN-OFF PANEL                                         │  │
-│  │ - Host kiểm tra độ dài tin nhắn, đóng dấu `[Automated Agent]`                         │  │
-│  │ - CẤM Agent tự merge PR của chính nó ──► Đưa vào bảng "Needs You" chờ người duyệt!    │  │
-│  └───────────────────────────────────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+          ┌─────────────────────────┐
+          │        Sign off         │  ▲
+          ├─────────────────────────┤  │  MỤC TIÊU DỊCH CHUYỂN LÊN TRÊN:
+   (ROB) ─►│      Set the rules      │  │  Product Engineering, đặt luật,
+          ├─────────────────────────┤  │  kiểm tra kết quả & ký duyệt
+          │    Check the result     │  │
+          ├─────────────────────────┤  │
+          │     Review the PR       │  │
+          ├─────────────────────────┤ ─┼────────────────────────────────
+   (ROB) ─►│    Read every diff      │ ◄── [BOTTLENECK HIỆN TẠI]
+          ├─────────────────────────┤
+          │     Write the code      │  (Đã giao cho Agent)
+          └─────────────────────────┘
 ```
 
-### Các Chốt Chặn An Ninh & Vận Hành Thực Tế Của Rob Shocks:
-1. **Không Cấp Quyền Qua Văn Bản:** Cổng kiểm tra quyền (`allowlist`) được viết cứng bằng code TypeScript trước khi gọi bất kỳ mô hình nào. Không một câu thần chú Prompt Injection nào trong bình luận GitHub có thể lừa hệ thống cấp quyền thực thi.
-2. **Cổng Giao Tiếp Một Chiều `sa` (Super-Agent CLI):** Tiến trình Claude Code bên trong container không có token để post thẳng lên GitHub. Khi muốn phản hồi, nó phải gọi một lệnh shell nhỏ tên là `sa`. Tiến trình chủ (Host) sẽ kiểm duyệt nội dung, cắt gọn và tự động gắn nhãn xác thực trước khi đăng.
-3. **Thử Nghiệm Thực Tế (End-to-End):**
-   - Rob mở một Issue yêu cầu sửa lỗi chính tả trong file `README.md`.
-   - Hệ thống tự động nhận diện, tạo worktree, dùng mô hình **Claude Haiku** trong Claude Code sửa lỗi, chạy toàn bộ test suite và mở Pull Request hoàn chỉnh.
-   - **Tổng thời gian:** **30 giây**. **Tổng chi phí:** **~$0.10 (10 cents)**.
-   - PR hoàn tất nằm gọn trong bảng điều khiển **"Needs You"** để con người vào bấm nút duyệt cuối cùng (Sign-off).
+- Trước đây, nút thắt cổ chai nằm ở tầng **`Read every diff`** (Frame `0021`).
+- Triết lý của `dsh-superagent` là: **"Take as little human attention as possible, and give as much value as possible"** (Chiếm dụng ít sự chú ý của con người nhất có thể, và mang lại nhiều giá trị nhất có thể — Frame `0060`). Con người không biến mất, mà dịch chuyển lên tầng **`Set the rules`**, **`Check the result`** và **`Sign off`** (Frame `0058`).
 
 ---
 
-## 5. Bài Học Chiến Lược: Vị Trí Mới Của Kỹ Sư Phần Mềm
+## 4. Điểm Qua Công Cụ Hỗ Trợ: Cline Desktop & ClinePass (Frame `2:43` – `3:40`)
 
-- **Con người không biến mất, mà dịch chuyển lên tầng cao hơn (Moving Up the Chain):** Khi hệ thống tự quản lý các phiên làm việc và ngữ cảnh, kỹ sư phần mềm thoát khỏi cảnh làm "bảo mẫu đọc diff" ở tầng thực thi để bước lên tầng **Product Engineering**: Quyết định cái gì đáng xây dựng, thiết lập quy tắc kiểm thử (rules/verifiers), và ký duyệt cuối cùng (sign-off).
-- **Sở hữu toàn bộ hạ tầng (Build Your Own, Run Your Own):** Thay vì phụ thuộc vào các nền tảng đóng đắt đỏ, bất kỳ đội ngũ kỹ thuật nào cũng có thể áp dụng mẫu hình Router + Worktree Workers + Docker Sandbox này lên chính công cụ họ đang dùng (Claude Code, OpenCode, Codex).
+- **Cline Desktop (`cline.bot/desktop` — Frame `0023` – `0037`):** Ứng dụng mã nguồn mở miễn phí trên Mac, Windows và Linux, hỗ trợ hơn **300 models** từ hơn **50 providers** (DeepSeek V4 Pro, GLM-5.3, Kimi K3, Qwen3.8 Max, MiniMax M3, MiMo-V2.5 Pro, Nemotron 3.5 Super VL free...).
+- **Tính năng nổi bật:**
+  - Không chỉ dùng để code mà còn làm Research và xử lý file (`Not only for coding · Research`).
+  - Import trực tiếp phiên làm việc đang dở từ `Claude Code` hoặc `Codex` sang Cline.
+  - Chạy nhiều agents song song (`AGENTS SIDE BY SIDE` — Frame `0032`: một phiên `Checkout feature [BUILD]`, một phiên `Stripe API research [RESEARCH]`).
+  - Lập lịch tác vụ tự động (`New schedule` — Frame `0033`: chạy mỗi sáng 7:00 AM tìm kiếm tin tức công cụ mới).
+  - Gói **`ClinePass` (\$9.99/tháng — Frame `0036`):** Cho các mô hình open-weight (DeepSeek, Kimi, GLM) với hạn mức sử dụng **gấp 5 lần (`Up to 5x`)** so với API tiêu chuẩn.
 
 ---
 
-## 6. Liên Kết Chéo & Tài Liệu Liên Quan Trong Vault
+## 5. Giải Phẫu 6 Cơ Chế Cốt Lõi Của DeepSeek Super-Agent (Frame `3:56` – `9:17`)
 
-- [Thực Chiến DeepSeek SuperAgent Harness (AICodeKing)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_superagent_harness_hands_on_aicodeking.md) — Phân tích thực nghiệm vì sao phải tước bỏ công cụ `bash` khỏi Router và bài toán kinh tế học token cache.
-- [DeepSeek Mã Nguồn Mở DSH Superagent (TEKTHRILL)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_open_sources_super_agent_dsh_tekthrill.md) — Tổng quan nhanh về triết lý "Polite by Design" của nguyên mẫu DeepSeek.
-- [Xác Minh Là Code Review Mới (Ray Amjad)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/verification_is_the_new_code_review_ray_amjad.md) — Cách xây dựng hệ thống Verifiers tự động để con người tự tin ký duyệt ở bước cuối.
-- [Công Cụ Git Worktree Tốt Nhất: Worktrunk (Better Stack)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/the_best_git_worktree_tool_worktrunk_better_stack.md) — Hạ tầng quản lý Git Worktree siêu tốc bổ trợ hoàn hảo cho các Worker Sessions.
+### 5.1. Kiến Trúc 2 Tầng & Tuyên Ngôn Xóa Bỏ Session (Frame `0039`, `0040`, `0065`)
+- **Tầng trên — `Router` (Frame `0039`):**
+  - `TALKS TO HUMANS` (Giao tiếp với người dùng trong 1 khung chat nhóm duy nhất — `One team chat`).
+  - `LONG-LIVED · PERSISTENT` (Sống dài hạn, bền bỉ).
+  - `DISPATCHES WORK` (Phân phối việc cho các agents bên dưới, không bao giờ tự làm).
+  - `✗ NO BASH TOOL` (Không có công cụ bash).
+  - `LIGHTER MODEL ■■□□□` (Chỉ cần mô hình nhẹ, tốc độ cao).
+- **Tầng dưới — `Workers` (Frame `0065`):**
+  - Mỗi Worker nhận **1 ngữ cảnh cô lập**, bộ công cụ đầy đủ, **1 nhiệm vụ duy nhất**, và **mô hình mạnh nhất** bạn có.
+  - Không bao giờ nói chuyện trực tiếp với con người mà báo cáo ngược về Router. Nhờ đó, nhóm làm việc thoát khỏi giới hạn `CAP · 3-5 SESSIONS`.
+- **Tuyên ngôn của toàn bộ Repository (`THE MANIFESTO` — Frame `0040`):**
+  > *"Sessions should be an implementation detail of the system, not a mental burden on its users."*
 
+### 5.2. Thay Thế `INTENT.MD` Bằng Luồng Sự Kiện & Lọc 2 Tầng (Frame `0041` – `0043`)
+- So sánh với bài nói về Anthropic SDLC dùng file `intent.md` (Frame `0011`, `0041`) để gom ý định từ Slack/Jira/Sentry: Super-agent chuyển hẳn sang cơ chế **Event-Driven Triggers** (tin nhắn group chat, email, Sentry, Jira, Linear, comment code review, kết quả CI).
+- **Lọc nhiễu 2 bước (Frame `0043`):**
+  1. `01 · FAST PATH (Code filter)`: Kiểm tra bằng code thuần (`SOURCE` / `GROUP` / `Allowlist`) xem ai gửi và có quyền không.
+  2. `02 · SLOW PATH (Prompt policies)`: Chỉ những gì vượt qua bước 1 mới vào model để đối chiếu với quy tắc viết bằng ngôn ngữ tự nhiên.
+
+### 5.3. Đăng Ký Luồng (`Threads and Pass-Through`) Để Giữ Ấm Cache (Frame `0044`)
+- Khi một Worker nhận xử lý `PULL REQUEST #482 · OPEN (Fix retry in rate limiter)`, nó tạo kết nối `SUBSCRIBED` trực tiếp vào thread của PR đó.
+- Mọi bình luận tiếp theo (`MAYA: Can you add a test?`, `TOM: Rename the flag`, `MAYA: Nit: log the retry count`) **bỏ qua Router (`--✗--> Router`)** và đi thẳng vào Worker đó.
+- **Lý do kinh tế (`CONTEXT █████ KEPT WARM`):** Mỗi khi khởi tạo một agent/session mới, bạn phải nạp lại toàn bộ ngữ cảnh từ đầu (cold context drop). Giữ nguyên Worker sống xuyên suốt vòng đời PR giúp **tận dụng tối đa Prompt Cache (`cache tokens`)**, tiết kiệm chi phí lớn.
+
+### 5.4. Hành Động Đi Trước (`Silently Reproduce and Fix`) vs `Fix and Fuzz` (Frame `0046` – `0051`)
+- DeepSeek áp dụng chính sách **`"silently reproduce and fix"`** (Frame `0046`): Khi có người báo lỗi trong group chat, Worker âm thầm tái hiện lỗi và tìm bản vá dưới nền; chỉ lên tiếng khi đã xác nhận được lỗi và có bản sửa gọn.
+- **Đối chiếu với `Fix and Fuzz` của Lauren Tan (`poteto` — Frame `0047`, `0048`):**
+  - Lauren Tan dùng bot `sandcastle` để cắt bản phát hành (release cut), tự động DM cho mọi contributors kèm link PR, sau đó kích hoạt **`automated fuzz swarm`** (hơn 10 agents chạy `Grok 4.7 xhigh` đóng vai người dùng thật và `"chaos monkey"` click ngẫu nhiên tìm lỗi), rồi `@mention` bot kỹ sư `poteto` tạo Cursor Project để vá lỗi và cherry-pick vào nhánh release.
+- **Giám sát viên độc lập (`Watchdog · SEPARATE SESSION` — Frame `0051`):** Một phiên Watchdog riêng biệt theo dõi tiến độ của từng Worker (`W1`, `W2`, `W3`) hướng tới `GOAL` để phát hiện các Worker bị kẹt hoặc đi chệch hướng.
+
+### 5.5. Thực Nghiệm Ablation Study & Hiện Tượng Gom Lô Sự Kiện (Frame `0052` – `0055`)
+Trong mục **7.1 Ablation Study** (Frame `0052` – `0054`), DeepSeek thử nghiệm 4 thiết kế trên luồng **300 tin nhắn** (chỉ có **~20 yêu cầu công việc thật**, còn lại là chat phiếm, follow-up, hủy lệnh, thông báo CI), chạy lặp lại 5 lần:
+
+| Thiết kế | Thời gian hoàn thành (Median / P95) | Ghi chú từ thực nghiệm |
+| :--- | :--- | :--- |
+| **Super-agent** | **12.4 phút** (Median) / **15.7 phút** (P95) | Nhanh và ổn định nhất (Frame `0054`). |
+| **Single Session + Subagent tool** | **~20 – 29.5 phút** | Dùng prompt trung lập (*"Use a subagent when appropriate..."*) hoặc prompt ưu tiên ủy quyền (*"delegation-first prompt"*). |
+
+- **Bài kiểm tra tải Router (`ROUTER UNDER LOAD · TEST 7.2 — CHOKES?` — Frame `0055`):**
+  - Tưởng rằng khi bắn dồn dập sự kiện vào 1 Router duy nhất thì Router sẽ bị nghẽn cổ chai. Nhưng thực tế xảy ra điều ngược lại nhờ **Cơ chế Gom lô (`Event Batching`)**: Các sự kiện dồn ứ trong lúc một lượt gọi đang chạy sẽ được gom chung vào lượt gọi kế tiếp!
+  - Khi lưu lượng tăng từ **1 trigger/phút lên 40 triggers/phút**, thời gian xử lý trung bình cho mỗi quyết định **giảm mạnh từ `6.4 giây` xuống chỉ còn `1.6 giây`**.
+- **Sự đánh đổi về Token (`Trade-off`):**
+  - Vì chạy nhiều phiên độc lập, một lần chạy Super-agent tiêu thụ khoảng **23 triệu cache-read tokens** so với **~1 triệu tokens** của thiết kế 1 phiên đơn lẻ. Bạn đang **đổi lượng token (đã được giảm giá nhờ cache) để lấy thời gian hoàn thành ngắn hơn và ổn định hơn**.
+
+### 5.6. Năm Quy Tắc Cư Xử Trong `000 Philosophy` (Frame `0060`, `0061`)
+Tài liệu `docs/000-philosophy.md` định nghĩa 5 kỷ luật vàng cho Agent:
+1. **Chỉ hành động khi được yêu cầu trực tiếp hoặc có quy tắc thành văn (`It acts only when asked, or when a written rule allows it`):** Việc không ai yêu cầu mà tự làm thì phải có luật do nhóm viết ra, và ban đầu chỉ chạy ở **chế độ ghi nhận (`starts in a mode that only records what the agent would have done`)**.
+2. **Chỉ lên tiếng khi con người cần hành động hoặc dùng được kết quả (`It speaks only when a person must act or can use a result`):** Xác nhận yêu cầu đúng 1 lần kèm tên việc sẽ làm, sau đó im lặng làm việc.
+3. **Mỗi lần chỉ hỏi 1 câu hỏi cụ thể (`It asks one concrete question at a time`):** Đặt ở định dạng có cấu trúc rõ ràng thay vì chôn vùi câu hỏi trong một báo cáo dài lê thê.
+4. **Dừng lại theo mức độ tác động, không phải theo công sức (`It stops by impact, not by effort`):** Thay đổi cục bộ thì làm thẳng tới kết quả review được; thay đổi cần quyết định thiết kế thì dừng lại kèm câu hỏi rõ ràng.
+5. **Báo cáo trung thực (`It reports honestly`):** Bản nháp phải gắn nhãn chưa xong, thất bại báo là thất bại, không bao giờ tự ý vượt rào giới hạn để né việc đặt câu hỏi.
+
+---
+
+## 6. Cảnh Báo Bảo Mật Nghiêm Trọng Của Nguyên Mẫu Gốc (Frame `9:18` – `9:58`)
+
+Rob Shocks chỉ ra 2 tử huyệt bảo mật nếu bạn bê nguyên `dsh-superagent-prototype` lên chạy thật (Frame `0066`, `0067`, `0071`):
+1. **`danger-full-access` trên tài khoản OS của người vận hành (Frame `0067`):** Cả hai preset `dsh-superagent-worker` và `dsh-superagent-router` trong nguyên mẫu gốc đều chạy với quyền `danger-full-access` dưới user OS hiện tại, thay đổi `PATH` và cấu hình `git` toàn cục, đồng thời đọc được toàn bộ thư mục `$HOME` của bạn!
+2. **Lỗ hổng `LLM01:2025 Prompt Injection` (Frame `0071`):** Càng mở rộng cánh cửa cho agent đọc nhiều nguồn sự kiện không đáng tin cậy (untrusted inputs từ GitHub issues công khai, group chat, plugins bên thứ ba), kẻ tấn công càng dễ cài cắm chỉ thị độc hại (invisible prompt injection) để chiếm quyền điều khiển agent.
+
+---
+
+## 7. Hướng Dẫn Tự Dựng Super-Agent Cho Claude Code / OpenCode Trong Docker Khóa Chặt (Frame `9:59` – `12:15`)
+
+Thay vì cài đặt DeepSeek Harness nặng nề, Rob Shocks đã cho agent đọc tài liệu thiết kế + bộ prompts của DeepSeek để viết lại một phiên bản **TypeScript tinh gọn, độc lập và khóa chặt bảo mật** (Frame `0073` – `0076`):
+
+### 7.1. Cấu Trúc Mã Nguồn TypeScript (`package.json` & `src/` — Frame `0073`, `0074`)
+```
+deepseek-harness/
+├── bin/
+│   └── sa                        # CLI cổng kiểm duyệt duy nhất để Agent gửi thông điệp ra ngoài
+├── docker/
+│   └── entrypoint.sh             # Script khởi chạy container cô lập
+├── prompts/
+│   └── team/
+│       ├── host.md               # System prompt cho Router (Host)
+│       └── worker.md             # System prompt cho Worker
+├── src/
+│   ├── adapters/
+│   │   ├── claude-code.ts        # Adapter cắm trực tiếp Claude Code (@anthropic-ai/claude-code)
+│   │   ├── opencode.ts           # Adapter cắm OpenCode (đổi qua lại chỉ bằng 1 dòng config)
+│   │   ├── index.ts
+│   │   └── types.ts
+│   ├── config.ts                 # Cấu hình đọc từ superagent.config.json (Zod validation)
+│   ├── domain.ts                 # Định nghĩa Ticket, Trigger, Thread, Pull
+│   ├── engine.ts                 # Lõi điều phối: subscribe(t.id, thread, "pull"), pullsDone(), replyTarget()
+│   ├── executor.ts               # Quản lý tiến trình Worker & Git Worktree riêng cho từng Ticket
+│   ├── gate.ts                   # Cổng lọc bằng Code (Allowlist) chạy TRƯỚC mọi lệnh gọi LLM
+│   ├── main.ts                   # CLI entry: start | doctor | status
+│   ├── outbox.ts                 # Kiểm duyệt tin nhắn đầu ra, đóng dấu "[Automated Agent]"
+│   ├── proc.ts                   # Quản lý child processes
+│   ├── server.ts                 # Web panel phục vụ bảng "Needs You"
+│   └── store.ts                  # Lưu trữ trạng thái bền vững
+├── Dockerfile                    # Image node:24-bookworm-slim + claude-code@2.1.316
+└── docker-compose.yml
+```
+
+### 7.2. Năm Chốt Chặn An Ninh & Vận Hành Thực Chiến (Frame `0074` – `0076`)
+1. **Cổng kiểm tra bằng Code cứng (`gate.ts`):** Khi có người nhắc tên bot trên GitHub Issue, `gate.ts` kiểm tra xem user đó có nằm trong `allowlist` hay không **trước khi gọi bất kỳ mô hình nào**. Không một dòng chữ nào viết trong comment có thể tự cấp quyền (chống Prompt Injection leo thang đặc quyền).
+2. **Cách ly Ticket bằng Branch + Worktree + Session riêng:** Mỗi yêu cầu hợp lệ trở thành 1 `Ticket` có nhánh Git riêng, thư mục worktree riêng và phiên agent riêng. Mọi comment phản hồi trên cùng luồng sẽ đi thẳng về đúng phiên đó (`this.store.subscribe(t.id, thread, "pull")` trong `engine.ts` dòng 408 — Frame `0074`).
+3. **Cổng kiểm duyệt đầu ra qua lệnh `sa` (`bin/sa` & `outbox.ts`):** Agent **không có quyền tự đăng bài lên GitHub**. Nó chỉ được phép gọi một shell command nhỏ tên là `sa`. Tiến trình Host sẽ kiểm tra từng tin nhắn, ép độ dài ngắn gọn, và đóng dấu rõ ràng là được viết bởi tác nhân tự động.
+4. **Đóng gói Docker Non-Root tuyệt đối (`Frame 0075`):**
+   - Chạy trong container `node:24-bookworm-slim` dưới quyền user thường **`uid=1000(node) gid=1000(node)`**.
+   - **Không có quyền truy cập vào thư mục `$HOME` hay SSH keys** của máy chủ.
+   - Sử dụng một tài khoản GitHub Bot riêng biệt với Fine-grained Token chỉ được phép chạm vào đúng 1 repository sandbox được chỉ định.
+5. **Chặn quyền tự Merge & Bảng điều khiển `"Needs You"` (`Frame 0076`):**
+   - Trong lần chạy thực tế đầu tiên (`FIRST REAL RUN · ISSUE #1 -> PR #2`, từ `15:04:56` đến `15:05:25`), Rob mở một issue yêu cầu sửa lỗi chính tả trong `README.md`.
+   - Agent phản hồi đúng 1 lần, sửa lỗi, chạy bộ test và mở Pull Request trong **~30 giây End-to-End** với chi phí chỉ **~10 cents (\$0.10)** khi dùng mô hình **Haiku** qua `Claude Code`.
+   - Agent bị cấm tự merge PR của chính nó — kết quả nằm yên trong bảng điều khiển ở mục **`"Needs You"`** để con người rảnh tay vào duyệt bất cứ lúc nào.
+
+---
+
+## 8. Liên Kết Chéo Trong Kho Lưu Trữ (Cross-References)
+
+- [DeepSeek Tiết Lộ Thiết Kế Super Agent: Cách Xây Dựng Tác Nhân Kiểu GrokBot Dưới Góc Nhìn Hệ Thống Phân Tán — lustoykov](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_super_agent_design_grokbot_agents_lustoykov.md) — Phân tích chi tiết 5 khối kiến trúc lý thuyết (`Two-Level Architecture`, `Chain of Recall`, `Full-Duplex ReAct`, `Endpoint Daemons`).
+- [Thực Chiến DeepSeek SuperAgent Harness — AICodeKing](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_superagent_harness_hands_on_aicodeking.md) — Phân tích bài toán chi phí 23M cached tokens (\$0.07 trên DeepSeek Flash vs \$4.64 trên Sonnet) và thiết lập qua PandaCode Bots.
+- [DeepSeek Open-Source Super-Agent DSH — TEKTHRILL](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/deepseek_open_sources_super_agent_dsh_tekthrill.md) — Tổng quan nhanh về nguyên mẫu `dsh-superagent`.
+- [LIVE: Poteto on Shipping 1,000s of PRs a Month (Matt Pocock x Lauren Tan)](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/live_poteto_pstack_shipping_thousands_prs_spacex_matt_pocock.md) — Kiến trúc `Fix and Fuzz` và `sandcastle` + `poteto` bot mà Rob Shocks trích dẫn ở phút `06:31`.
