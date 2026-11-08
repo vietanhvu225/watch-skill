@@ -14,6 +14,13 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 ## 📅 1. Dòng thời gian xử lý (Chronological Timeline)
 *Xem nhanh các phân tích mới nhất được thực hiện gần đây.*
 
+### 🟢 Mới phân tích (08/11/2026)
+*Phân tích hệ thống 3 tầng thư viện UI giúp xóa bỏ diện mạo "AI-Generated Look" khi làm việc với Claude Code:*
+
+| Video ID | Tiêu đề Video | Chủ đề chính | Tài liệu Ghi Chú | Thời lượng |
+| :--- | :--- | :--- | :--- | :--- |
+| `zsCGS-Yzjnw` | UI Libraries for Claude Code (Ban the AI Look) | Griffin Wooldridge phân loại hệ sinh thái thư viện UI thành **3 tầng** để chấm dứt việc AI tự code component từ đầu (`build from scratch`): (1) **Foundations (`shadcn/ui`, `Base UI`, `Radix Primitives`)** xử lý hành vi bàn phím/Focus/ARIA cho 80% ứng dụng, kèm cảnh báo **"Default `shadcn/ui` đã trở thành một kiểu AI Look"** và công thức **3 biến số** (`Border Radius` + `Brand Colors` + `Serif Typography`) sửa trực tiếp trong `components/ui/`; (2) **Specialists (`Sonner`, `Vaul`, `cmdk`, `NumberFlow`)** giải quyết triệt để các chi tiết vật lý vi mô mà AI luôn bỏ sót (Toast xếp chồng 3D, Drawer kéo thả có quán tính trên mobile, bảng lệnh `⌘K`, cuộn số mượt mà), tự động hóa qua skill **`pick-ui-library`** của **Emil Kowalski** (`github.com/emilkowalski/skills` — bao gồm `base-ui`, `input-otp`, `Leva`/`dialkit`, `motion`, `torph`, `Cobe`, `Satori`, `shiki`); (3) **Design Components** gồm **`Beautiful UI` (`beautifului.dev` — Turbo)** chuyên biệt cho giao diện AI Agent (`Churning 0.5s`, `Tool Chips`, `Approval Card`, `Agent Screen`, `Prompt Bar` đính kèm `@`), **`Rare UI` (`rareui.in`)**, **`Magic UI` (`magicui.design` — 150+ components trên nền `shadcn/ui`)**, **`Aceternity UI` (`ui.aceternity.com` — 200+ hiệu ứng Landing Page cài qua `npx shadcn@latest add @aceternity/3d-card`)**, và chợ giao diện **`21st.dev` (12,000+ components, 4.18M+ builders)**, chốt lại bằng quy tắc vàng **"One Huge Standout Moment Per Page"** để tránh biến trang web thành mớ hỗn độn phát sáng. | [ui_libraries_for_claude_code_ban_the_ai_look_griffin_wooldridge.md](file:///d:/1_source/0_Learning/watch-skill/video-learning-vault/ai-agents/ui_libraries_for_claude_code_ban_the_ai_look_griffin_wooldridge.md) | 04:27 |
+
 ### 🟢 Mới phân tích (07/11/2026)
 *Re-analyze 26 videos Group A + 12 videos Group B với watch-skill pipeline đầy đủ; bắt đầu với Agent Desktop (Prism Labs) — computer use không cần screenshot:*
 
