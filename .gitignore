@@ -34,6 +34,7 @@ CLAUDE.md
 .claude/
 AGENTS.local.md
 *_REPORT.md
+!video-learning-vault/video_analysis_report.md
 *.session.md
 issues_export.local.json
 

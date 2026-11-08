@@ -4,6 +4,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 
 ## Decision report
 
+- [📊 Báo Cáo Phân Tích Video — Video Learning Vault (Master Report & GPU Metrics)](video_analysis_report.md) — bảng thống kê toàn bộ các video đã phân tích trong Vault, thời lượng, Watch Skill ID, trạng thái sử dụng GPU RTX 5070 và thời gian xử lý.
 - [Game Walkthrough Reverse-Engineering — feasibility and pipeline finding](game-development/game_walkthrough_reverse_engineering_findings.md) — deferred: prioritize creator devlogs/post-mortems over pure visual walkthroughs for reliable game logic extraction.
 - [Spotify Portal `shunt` — context-routing finding](ai-agents/spotify-portal-shunt-context-routing-2026-09-07.md) — deferred: borrow enforced I/O routing, not Spotify Portal/AiKA; includes Windows argv blocker and future-trial criteria.
 - [AI Agents — adoption report for current work and game loops](ai-agents/adoption-report-work-and-game-loops-2026-08-21.md) — 21-note comparison, Herdr Windows smoke, and recommended Herdr/Orca/LoopX boundaries.
