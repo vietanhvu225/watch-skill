@@ -198,3 +198,4 @@ Lauren chia sẻ những thứ cô **cấm tuyệt đối (Hard Ban trên CI)** 
 | **Điều phối số lượng lớn Agents** | Mở 10–20 tab chat song song và tự đọc/duyệt từng tab | **Phân cấp 3 tầng:** 1 General Manager $\rightarrow$ 3 Project Managers $\rightarrow$ 40+ Workers; chia nhỏ thành các PR nguyên tử và tự động restack/merge |
 | **Xử lý Bug từ Slack** | Kỹ sư oncall đọc mô tả mơ hồ, cố tái hiện lỗi trên máy cá nhân | Cloud Agent (`Benny`) tự động bật VM có GUI, xem video lỗi, tự tái hiện lỗi trên commit cũ và kiểm tra/vá lỗi trên `main` |
 | **Bảo vệ chất lượng Codebase** | Dựa vào con người review code hoặc dặn dò trong `AGENTS.md` | **Kiến trúc `Dune` + Hard CI:** Cấm `useEffect`, cấm code comments rác, cấm import chéo `main`/`renderer`, dùng file tự khám phá (auto-discovered entrypoints) để tránh merge conflict |
+

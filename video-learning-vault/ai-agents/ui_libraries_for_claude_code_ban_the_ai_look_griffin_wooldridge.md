@@ -136,3 +136,4 @@ Khác với Tầng 1 (chưa trang trí hoặc chỉ trang trí tối giản), T�
    - Luôn ưu tiên chạy `$ npx shadcn@latest add button ...` hoặc registry tương ứng để file `.tsx` xuất hiện trực tiếp trong thư mục dự án. Khi mã nguồn nằm trong repo, Claude Code có thể đọc hiểu cấu trúc props chính xác 100% và tùy biến giao diện mà không bị ảo giác API.
 3. **Giao quyền chọn thư viện tự động cho Skill `pick-ui-library`:**
    - Cài đặt skill **`pick-ui-library`** (`github.com/emilkowalski/skills`) vào dự án để mỗi khi cần đến Toast, Drawer, Command Menu, OTP hay bộ đếm số, Claude tự động tra bảng và cài đúng thư viện chuyên gia thay vì tự chế lại từ đầu.
+
