@@ -4,6 +4,7 @@ Chào mừng bạn đến với kho lưu trữ tài liệu phân tích và học
 
 ## Decision report
 
+- [🎯 Finding & Repo/Video Shortlist: Đối Chiếu Hệ Sinh Thái 3 Tầng (`andy-delivery-flow` · `adt-yagni` · `andy-dev-board` / `lane-board`) Với Video Learning Vault](ai-agents/andy-delivery-flow-repo-shortlist-findings-2026-11-09.md) — phân tích kiến trúc 3 tầng (Flow → Team → Board), đối chiếu với 103 video trong Vault và lập Shortlist các repos/videos ưu tiên cho `andy-delivery-flow` (`H-001`..`H-003`, `R-301`..`R-302`) và `andy-dev-board` (`B-01`..`B-17`, `L-01`..`L-04`).
 - [📊 Báo Cáo Phân Tích Video — Video Learning Vault (Master Report & GPU Metrics)](video_analysis_report.md) — bảng thống kê toàn bộ các video đã phân tích trong Vault, thời lượng, Watch Skill ID, trạng thái sử dụng GPU RTX 5070 và thời gian xử lý.
 - [Game Walkthrough Reverse-Engineering — feasibility and pipeline finding](game-development/game_walkthrough_reverse_engineering_findings.md) — deferred: prioritize creator devlogs/post-mortems over pure visual walkthroughs for reliable game logic extraction.
 - [Spotify Portal `shunt` — context-routing finding](ai-agents/spotify-portal-shunt-context-routing-2026-09-07.md) — deferred: borrow enforced I/O routing, not Spotify Portal/AiKA; includes Windows argv blocker and future-trial criteria.
